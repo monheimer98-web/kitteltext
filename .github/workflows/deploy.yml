@@ -28,8 +28,6 @@ jobs:
       # Den eigenständigen PC-Zwilling zusätzlich unter /kitteltext-pc.html bereitstellen
       - run: cp dist-pc/pc.html dist/kitteltext-pc.html
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
