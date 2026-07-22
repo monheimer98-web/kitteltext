@@ -1,5 +1,6 @@
 import { signal } from "@preact/signals";
 import { screen } from "../store.ts";
+import { freigeschaltet, pruefeCode } from "../access.ts";
 import { Home } from "./Home.tsx";
 import { SeitenGate } from "./SeitenGate.tsx";
 import { Composer } from "./Composer.tsx";
@@ -19,7 +20,55 @@ function bestaetigeZweck() {
   zweckBestaetigt.value = true;
 }
 
+const codeEingabe = signal("");
+const codeFehler = signal(false);
+
+function ZugangsGate() {
+  function absenden() {
+    if (!pruefeCode(codeEingabe.value)) {
+      codeFehler.value = true;
+    }
+  }
+  return (
+    <div class="overlay">
+      <div class="karte">
+        <h2>Kitteltext</h2>
+        <p>Bitte den Zugangscode eingeben, um fortzufahren.</p>
+        <div class="feld">
+          <input
+            type="text"
+            autofocus
+            autocapitalize="off"
+            autocomplete="off"
+            spellcheck={false}
+            placeholder="Zugangscode"
+            value={codeEingabe.value}
+            onInput={(e) => {
+              codeEingabe.value = (e.target as HTMLInputElement).value;
+              codeFehler.value = false;
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") absenden();
+            }}
+          />
+        </div>
+        {codeFehler.value && (
+          <p class="hinweis" style="color:var(--warn)">
+            Code stimmt nicht.
+          </p>
+        )}
+        <button class="cta" onClick={absenden}>
+          Freischalten
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export function App() {
+  if (!freigeschaltet.value) {
+    return <ZugangsGate />;
+  }
   if (!zweckBestaetigt.value) {
     return (
       <div class="overlay">
