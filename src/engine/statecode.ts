@@ -31,7 +31,7 @@ const CODE_SEITE: Record<number, Seite> = {
 // Fingerprint nicht -> Fehler statt stillem Falschtext.
 type BausteinPayload = [
   number, // globaler Baustein-Index
-  number[], // aktive befund-Indizes (lokal)
+  Array<[number, Array<[number, string]>]>, // abw-Befunde: [befundIdx, [[slotIdx, Wert]…]]
   Array<[number, number]>, // auswahl: [lokalIdx, gewaehlt]
   Array<[number, string]>, // werte: [lokalPhIdx, Wert]
   Array<[number, number, string]>?, // messwerte: [lokalIdx, versteckt(0/1), Wert]
@@ -46,8 +46,12 @@ function alleBausteine(katalog: Katalog): Baustein[] {
   return out;
 }
 
-function befundIds(b: Baustein): string[] {
-  return b.segmente.filter((s) => s.art === "befund").map((s: any) => s.id);
+function befundSegList(
+  b: Baustein,
+): Array<{ id: string; slots?: Array<{ id: string }> }> {
+  return b.segmente
+    .filter((s) => s.art === "befund")
+    .map((s: any) => ({ id: s.id, slots: s.slots }));
 }
 function auswahlIds(b: Baustein): string[] {
   return b.segmente.filter((s) => s.art === "auswahl").map((s: any) => s.id);
@@ -68,7 +72,12 @@ export function fingerprint(katalog: Katalog): string {
   const teile: string[] = [];
   for (const b of alleBausteine(katalog)) {
     teile.push(b.id);
-    teile.push("f:" + befundIds(b).join(","));
+    teile.push(
+      "f:" +
+        befundSegList(b)
+          .map((s) => s.id + "[" + (s.slots ?? []).map((x) => x.id).join(".") + "]")
+          .join(","),
+    );
     teile.push("a:" + auswahlIds(b).join(","));
     teile.push("p:" + b.platzhalter.map((p) => p.id).join(","));
     teile.push("m:" + messwertSegs(b).map((m) => m.id).join(","));
@@ -134,10 +143,16 @@ export function encode(fall: Fall, katalog: Katalog): string {
     if (g == null) continue;
     const b = bausteine[g];
 
-    const bIds = befundIds(b);
-    const aktiveBefunde: number[] = [];
-    bIds.forEach((bid, i) => {
-      if (fall.befunde[bid]) aktiveBefunde.push(i);
+    const bSegs = befundSegList(b);
+    const abwBefunde: Array<[number, Array<[number, string]>]> = [];
+    bSegs.forEach((seg, i) => {
+      if (fall.befundStatus[seg.id] !== "abw") return;
+      const slotVals: Array<[number, string]> = [];
+      (seg.slots ?? []).forEach((slot, j) => {
+        const v = fall.befundSlots[`${seg.id}.${slot.id}`];
+        if (v != null && v !== "") slotVals.push([j, v]);
+      });
+      abwBefunde.push([i, slotVals]);
     });
 
     const aIds = auswahlIds(b);
@@ -164,7 +179,7 @@ export function encode(fall: Fall, katalog: Katalog): string {
       }
     });
 
-    bp.push([g, aktiveBefunde, auswahl, werte, messwerte]);
+    bp.push([g, abwBefunde, auswahl, werte, messwerte]);
   }
 
   const payload: Payload = [
@@ -223,19 +238,28 @@ export function decode(codeRaw: string, katalog: Katalog): DecodeErgebnis {
   const fall: Fall = {
     bausteinIds: [],
     seite: seiteCode ? CODE_SEITE[seiteCode] ?? null : null,
-    befunde: {},
+    befundStatus: {},
+    befundSlots: {},
     werte: {},
     auswahl: {},
     versteckt: {},
   };
 
-  for (const [g, aktiveBefunde, auswahl, werte, messwerte] of bp) {
+  for (const [g, abwBefunde, auswahl, werte, messwerte] of bp) {
     const b = bausteine[g];
     if (!b) return { ok: false, grund: "format", meldung: "Unbekannter Baustein im Code." };
     fall.bausteinIds.push(b.id);
 
-    const bIds = befundIds(b);
-    for (const i of aktiveBefunde) if (bIds[i]) fall.befunde[bIds[i]] = true;
+    const bSegs = befundSegList(b);
+    for (const [i, slotVals] of abwBefunde) {
+      const seg = bSegs[i];
+      if (!seg) continue;
+      fall.befundStatus[seg.id] = "abw";
+      for (const [j, v] of slotVals ?? []) {
+        const slot = (seg.slots ?? [])[j];
+        if (slot) fall.befundSlots[`${seg.id}.${slot.id}`] = v;
+      }
+    }
 
     const aIds = auswahlIds(b);
     for (const [i, wahl] of auswahl) if (aIds[i]) fall.auswahl[aIds[i]] = wahl;

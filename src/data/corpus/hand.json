@@ -233,10 +233,10 @@
             {
               "art": "befund",
               "id": "hand-dq-finkelstein",
-              "chip": "Finkelstein positiv",
+              "chip": "Finkelstein negativ?",
               "gruppe": "Provokationstests",
-              "normal": "Finkelstein-Test negativ.",
-              "abweichung": "Finkelstein-Test positiv."
+              "normal": "Finkelstein-Test positiv.",
+              "abweichung": "Finkelstein-Test negativ."
             }
           ]
         },
@@ -282,10 +282,10 @@
             {
               "art": "befund",
               "id": "hand-sf-trigger",
-              "chip": "Triggerphänomen",
+              "chip": "Kein Triggerphänomen?",
               "gruppe": "Funktion",
-              "normal": "Kein Triggerphänomen.",
-              "abweichung": "Sichtbares Triggerphänomen."
+              "normal": "Triggerphänomen auslösbar.",
+              "abweichung": "Kein Triggerphänomen auslösbar."
             }
           ]
         },
@@ -302,10 +302,10 @@
             {
               "art": "befund",
               "id": "hand-rhiz-grind",
-              "chip": "Grind-Test positiv",
+              "chip": "Grind-Test negativ?",
               "gruppe": "Provokationstests",
-              "normal": "Grind-Test negativ. ",
-              "abweichung": "Grind-Test positiv. "
+              "normal": "Grind-Test positiv. ",
+              "abweichung": "Grind-Test negativ. "
             },
             {
               "art": "text",
@@ -560,7 +560,7 @@
           "segmente": [
             {
               "art": "text",
-              "text": "Ausführliche Aufklärung des Patienten über den Befund und die Therapiemöglichkeiten erfolgt. Generell ist bei mehrfragmentären Schaftfrakturen des Grundgliedes eine operative Versorgung zu empfehlen. Aufgrund der nicht-dislozierten Stellung ist in diesem Fall aber auch ein konservatives Procedere möglich. Dieses wünscht der Patient. 1) Ruhigstellung in Intrinsic-Plus-Gipsschiene mit Buddy-Tape für "
+              "text": "Ausführliche Aufklärung des Patienten über den Befund und die Therapiemöglichkeiten erfolgt. Generell ist bei mehrfragmentären Schaftfrakturen der Mittelhandknochen eine operative Versorgung zu empfehlen. Aufgrund der nicht-dislozierten Stellung ist in diesem Fall aber auch ein konservatives Procedere möglich. Dieses wünscht der Patient. 1) Ruhigstellung in Intrinsic-Plus-Gipsschiene mit Buddy-Tape für "
             },
             {
               "art": "platzhalter",
@@ -646,8 +646,8 @@
               "id": "finger-us-ds-phalanx",
               "chip": "DS Phalanx",
               "gruppe": "Palpation",
-              "normal": "Kein Druckschmerz über der Phalanx proximalis, medialis oder distalis. ",
-              "abweichung": "Druckschmerz über der Phalanx proximalis, medialis oder distalis. "
+              "normal": "Kein Druckschmerz über der Phalanx proximalis, media oder distalis. ",
+              "abweichung": "Druckschmerz über der Phalanx proximalis, media oder distalis. "
             },
             {
               "art": "befund",

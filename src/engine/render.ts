@@ -12,6 +12,7 @@ import {
   Katalog,
   Platzhalter,
   SEITE_TEXT,
+  Segment,
 } from "../model/types.ts";
 
 /** Ein noch nicht aufgeloester Pflicht-Platzhalter (blockiert den Export). */
@@ -45,6 +46,56 @@ function platzhalterDef(
 /** Braucht dieser Baustein eine Koerperseite? (enthaelt ein "seite"-Segment) */
 export function bausteinBrauchtSeite(baustein: Baustein): boolean {
   return baustein.segmente.some((s) => s.art === "seite");
+}
+
+type BefundSeg = Extract<Segment, { art: "befund" }>;
+
+/**
+ * Rendert einen einzelnen Befund: Normalbefund (offen/bestaetigt) oder die
+ * per Slots aufgeloeste Abweichung ("abw"). Sammelt offene Pflicht-Slots.
+ * Wird von der Engine UND der Composer-Zeilenvorschau genutzt.
+ */
+export function befundText(
+  seg: BefundSeg,
+  fall: Fall,
+  baustein?: Baustein,
+  offene?: OffenerPunkt[],
+): string {
+  if (fall.befundStatus[seg.id] !== "abw") return seg.normal;
+  if (!seg.slots || seg.slots.length === 0) return seg.abweichung;
+
+  let t = seg.abweichung;
+  for (const slot of seg.slots) {
+    const key = `${seg.id}.${slot.id}`;
+    const roh = fall.befundSlots[key];
+    let val = "";
+    const markiereOffen = () => {
+      offene?.push({
+        bausteinId: baustein?.id ?? "",
+        bausteinTitel: baustein?.titel ?? "",
+        id: key,
+        label: `${seg.chip}: ${slot.label}`,
+      });
+      return MARKER_OFFEN;
+    };
+    if (slot.art === "auswahl") {
+      const idx = roh != null && roh !== "" ? Number(roh) : slot.default ?? 0;
+      val = slot.optionen[idx] ?? slot.optionen[0] ?? "";
+      if (val === "" && slot.required) val = markiereOffen();
+    } else if (slot.art === "lokaleSeite") {
+      if (roh) val = roh;
+      else if (slot.required) val = markiereOffen();
+    } else if (slot.art === "zahl") {
+      const v = (roh ?? "").trim();
+      if (v) val = slot.einheit ? `${v} ${slot.einheit}` : v;
+      else if (slot.required) val = markiereOffen();
+      else val = slot.leerMarker ?? "";
+    } else {
+      val = (roh ?? "").trim();
+    }
+    t = t.split(`{${slot.id}}`).join(val);
+  }
+  return t.replace(/\{[^}]+\}/g, "").replace(/\s{2,}/g, " ");
 }
 
 function findeBaustein(katalog: Katalog, id: string): Baustein | undefined {
@@ -110,8 +161,9 @@ export function renderBaustein(
       }
 
       case "befund": {
-        const abweichung = fall.befunde[seg.id] === true;
-        out += abweichung ? seg.abweichung : seg.normal;
+        const lokal: OffenerPunkt[] = [];
+        out += befundText(seg, fall, baustein, lokal);
+        offene.push(...lokal);
         break;
       }
 

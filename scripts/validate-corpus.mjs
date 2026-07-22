@@ -70,6 +70,28 @@ for (const datei of dateien) {
           if (!s.id || !s.chip) err(`Baustein ${b.id}: befund unvollständig`);
           if (typeof s.normal !== "string" || typeof s.abweichung !== "string")
             err(`Baustein ${b.id}/${s.id}: normal/abweichung fehlt`);
+          if (s.slots != null) {
+            if (!Array.isArray(s.slots))
+              err(`Baustein ${b.id}/${s.id}: slots kein Array`);
+            const SLOT_ARTEN = ["auswahl", "zahl", "lokaleSeite", "detail"];
+            for (const slot of s.slots ?? []) {
+              if (!SLOT_ARTEN.includes(slot.art))
+                err(`Baustein ${b.id}/${s.id}: slot-art "${slot.art}" ungültig`);
+              if (!slot.id || !slot.label)
+                err(`Baustein ${b.id}/${s.id}: slot unvollständig`);
+              if (slot.art === "auswahl" && (!Array.isArray(slot.optionen) || !slot.optionen.length))
+                err(`Baustein ${b.id}/${s.id}/${slot.id}: auswahl-slot ohne optionen`);
+              // jeder Slot muss in der Abweichungs-Vorlage vorkommen
+              if (!s.abweichung.includes(`{${slot.id}}`))
+                warnung(`Baustein ${b.id}/${s.id}: slot "${slot.id}" nicht in abweichung-Vorlage`);
+            }
+          }
+          // jeder {token} in abweichung braucht einen Slot
+          for (const m of (s.abweichung.match(/\{([^}]+)\}/g) ?? [])) {
+            const tok = m.slice(1, -1);
+            if (!(s.slots ?? []).some((sl) => sl.id === tok))
+              err(`Baustein ${b.id}/${s.id}: {${tok}} ohne passenden Slot`);
+          }
         }
         if (s.art === "auswahl") {
           if (!s.id || !Array.isArray(s.optionen) || s.optionen.length === 0)

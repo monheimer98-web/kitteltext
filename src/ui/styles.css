@@ -1088,3 +1088,211 @@ button:focus:not(:focus-visible) {
 .seg-text:focus {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
 }
+
+/* ============================================================================
+   Befundzeile (Drei-Zustands-Modell) + Slots
+   ========================================================================== */
+.befundzeile {
+  border-radius: 12px;
+  margin-bottom: 4px;
+  transition: background 0.2s var(--ease);
+}
+.befundzeile.abw {
+  background: var(--warn-bg);
+  box-shadow: inset 3px 0 0 var(--warn);
+}
+.bz-kopf {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.kreis {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.14s var(--ease), background 0.16s, border-color 0.16s;
+}
+.kreis:active {
+  transform: scale(0.88);
+}
+.kreis.offen {
+  border: 2px dashed var(--line);
+  color: transparent;
+}
+.kreis.ok {
+  border: 2px solid var(--ok);
+  background: color-mix(in srgb, var(--ok) 18%, transparent);
+  color: var(--ok);
+}
+.kreis.abw {
+  border: 2px solid var(--warn);
+}
+.bz-body {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  text-align: left;
+  padding: 12px 6px;
+  font-size: 16px;
+  font-weight: 550;
+  cursor: pointer;
+  min-height: 48px;
+}
+.befundzeile.abw .bz-label {
+  color: var(--warn);
+  font-weight: 650;
+}
+.befundzeile.offen .bz-label {
+  color: var(--text-dim);
+}
+.bz-chev {
+  color: var(--warn);
+  margin-left: auto;
+}
+.bz-detail {
+  padding: 2px 6px 12px 42px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: screenIn 0.18s var(--ease);
+}
+.slot-label {
+  font-size: 12px;
+  color: var(--text-dim);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.pill {
+  background: var(--chip-off);
+  border: 1.5px solid var(--line);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 550;
+  cursor: pointer;
+  min-height: 40px;
+  transition: transform 0.12s var(--ease), background 0.16s, border-color 0.16s,
+    color 0.16s;
+}
+.pill:active {
+  transform: scale(0.95);
+}
+.pill.on {
+  background: var(--accent-2);
+  border-color: var(--accent);
+  color: #fff;
+}
+.slot-input {
+  width: 100%;
+  background: var(--bg-2);
+  border: 1.5px solid var(--line);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 11px 13px;
+  font-size: 15px;
+  min-height: 46px;
+}
+.slot-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.slot-hinweis {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+.bz-satz {
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-style: italic;
+}
+.bz-satz.offen {
+  border-color: var(--warn);
+}
+.bz-satz mark {
+  background: var(--warn);
+  color: #fff;
+  border-radius: 3px;
+  padding: 0 3px;
+  font-style: normal;
+}
+
+/* Gruppen-Kopf mit Sweep */
+.g-kopf {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.g-kopf .g-label {
+  margin-bottom: 0;
+}
+.g-sweep {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+  border-radius: 8px;
+  padding: 6px 11px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.g-sweep:active {
+  background: var(--bg-3);
+}
+
+/* Baustein-Kopf mit Badge + Kollaps */
+.bb-kopf {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 0 12px;
+}
+.bb-kopf h3 {
+  margin: 0;
+}
+.bb-badge {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: var(--bg-3);
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.bb-badge.abw {
+  color: #fff;
+  background: var(--warn);
+}
+.bb-chev {
+  margin-left: auto;
+  color: var(--text-dim);
+}

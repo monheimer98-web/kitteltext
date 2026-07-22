@@ -66,18 +66,25 @@ export type Segment =
       optionen: string[];
       default?: number;
     }
-  // Negativ-Default-Befund: normal (Default) <-> abweichung (angetippt)
+  // Negativ-Default-Befund (Tri-State): offen/bestaetigt rendern `normal`,
+  // nur "auffaellig" rendert `abweichung`. Die Abweichung kann per Slots
+  // praezisiert werden (Varianten, Lokalisation, Wert, lokale Seite, Detail).
   | {
       art: "befund";
       id: string;
-      /** Kurzlabel des Chips im Composer, z.B. "Druckschmerz Außenknöchel" */
+      /** Kurzlabel der Befundzeile, z.B. "Druckschmerz Außenknöchel" */
       chip: string;
       /** Text im Normalzustand (Default, Befund unauffaellig) */
       normal: string;
-      /** Text bei Abweichung (Chip aktiv) */
+      /**
+       * Text bei Abweichung. Mit Slots: Vorlage mit {slotId}-Platzhaltern,
+       * z.B. "Druckschmerz über dem {lok}Außenknöchel{ausmass}."
+       */
       abweichung: string;
-      /** optische Gruppierung der Chips im Composer */
+      /** optische Gruppierung im Composer */
       gruppe?: string;
+      /** optionale Praezisierung der Abweichung */
+      slots?: BefundSlot[];
     }
   // Messwert (z.B. Bewegungsausmass nach Neutral-Null): mit physiologischem
   // Normwert vorbelegt und per Kaestchen ausblendbar. Blockiert NIE den Export –
@@ -96,6 +103,34 @@ export type Segment =
       /** optische Gruppierung im Composer */
       gruppe?: string;
     };
+
+/**
+ * Ein Slot praezisiert eine Abweichung. Rein deterministisch – die Optionstexte
+ * werden 1:1 an die {slotId}-Stelle der Abweichungs-Vorlage eingesetzt.
+ */
+export type BefundSlot =
+  // kuratierte Varianten/Token (Ausmass, Lokalisation …): Option = fertiger Textbaustein
+  | {
+      art: "auswahl";
+      id: string;
+      label: string;
+      optionen: string[];
+      default?: number;
+      required?: boolean;
+    }
+  // Zahlenwert (z.B. Grad, cm)
+  | {
+      art: "zahl";
+      id: string;
+      label: string;
+      einheit?: string;
+      required?: boolean;
+      leerMarker?: string;
+    }
+  // lokale Seite – UNABHAENGIG vom Seiten-Gate (bilaterale Strukturen, z.B. Pupille)
+  | { art: "lokaleSeite"; id: string; label: string; required?: boolean }
+  // eng begrenzter, zeichenklassengefilterter Freitext (Notnagel)
+  | { art: "detail"; id: string; label: string; maxLen: number };
 
 export type BausteinTyp =
   | "anamnese"
@@ -161,8 +196,15 @@ export interface Fall {
   /** geordnete Bausteine dieses Falls */
   bausteinIds: string[];
   seite: Seite | null;
-  /** segmentId -> Abweichung aktiv? (Negativ-Default: fehlend = normal) */
-  befunde: Record<string, boolean>;
+  /**
+   * befund-Id -> Zustand. Fehlend = "offen" (nicht beurteilt).
+   * "ok" (unauffaellig bestaetigt) und "offen" rendern beide `normal`;
+   * nur "abw" rendert die Abweichung. Damit ist der dritte Zustand kostenlos
+   * (kein Tempoverlust, geht nicht in den Transfer-Code).
+   */
+  befundStatus: Record<string, "ok" | "abw">;
+  /** Slot-Werte der Abweichungen. Key = `${befundId}.${slotId}`. */
+  befundSlots: Record<string, string>;
   /** platzhalter-/messwert-Id -> eingegebener Wert */
   werte: Record<string, string>;
   /** auswahl-Segment-id -> gewaehlter Index */
@@ -175,7 +217,8 @@ export function leererFall(): Fall {
   return {
     bausteinIds: [],
     seite: null,
-    befunde: {},
+    befundStatus: {},
+    befundSlots: {},
     werte: {},
     auswahl: {},
     versteckt: {},

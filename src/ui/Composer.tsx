@@ -1,19 +1,22 @@
+import { signal } from "@preact/signals";
 import { katalog } from "../data/katalogStore.ts";
-import { Baustein, Segment } from "../model/types.ts";
+import { Baustein, BefundSlot, Segment } from "../model/types.ts";
 import {
   entferneBaustein,
   fall,
   geheZu,
   neuerFall,
   setAuswahl,
+  setBefundAbw,
+  setBefundOk,
+  setBefundSlot,
   setWert,
-  toggleBefund,
+  sweepGruppe,
   toggleVersteckt,
 } from "../store.ts";
-import { MARKER_OFFEN, renderFall } from "../engine/render.ts";
+import { MARKER_OFFEN, befundText, renderFall } from "../engine/render.ts";
 import { BausteinPicker, pickerOffen } from "./BausteinPicker.tsx";
 import { tick } from "./haptics.ts";
-import { signal } from "@preact/signals";
 import { speichereAlsStapel } from "../data/katalogStore.ts";
 
 const TIP_KEY = "kitteltext.tip.composer.v1";
@@ -26,6 +29,10 @@ function tipWeg() {
 const stapelDialog = signal(false);
 const stapelName = signal("");
 const stapelToast = signal(false);
+/** kollabierte Bausteine (Ansichts-Status, nicht im Fall) */
+const kollabiert = signal<Record<string, boolean>>({});
+
+type BefundSeg = Extract<Segment, { art: "befund" }>;
 
 function findeBaustein(id: string): Baustein | undefined {
   for (const r of katalog.value.regionen) {
@@ -41,55 +48,204 @@ function inputMode(typ: string): string {
     : "text";
 }
 
-function BefundChips({ baustein }: { baustein: Baustein }) {
-  const f = fall.value;
-  const befunde = baustein.segmente.filter(
-    (s): s is Extract<Segment, { art: "befund" }> => s.art === "befund",
-  );
-  if (befunde.length === 0) return null;
+// zeichenklassen-gefilterter Detail-Freitext (nur klinische Angaben)
+function filterDetail(s: string, maxLen: number): string {
+  return s.replace(/[^\p{L}\p{N}\s°%\/.,()\-]/gu, "").slice(0, maxLen);
+}
 
-  const gruppen: string[] = [];
-  for (const b of befunde) {
-    const g = b.gruppe ?? "Befund";
-    if (!gruppen.includes(g)) gruppen.push(g);
+// ---------------------------------------------------------------- Slot-Steuerung
+function SlotControl({ seg, slot }: { seg: BefundSeg; slot: BefundSlot }) {
+  const f = fall.value;
+  const key = `${seg.id}.${slot.id}`;
+
+  if (slot.art === "auswahl") {
+    const cur =
+      f.befundSlots[key] != null && f.befundSlots[key] !== ""
+        ? Number(f.befundSlots[key])
+        : slot.default ?? 0;
+    return (
+      <div class="slot">
+        <div class="slot-label">{slot.label}</div>
+        <div class="pills">
+          {slot.optionen.map((opt, i) => (
+            <button
+              key={i}
+              class={"pill" + (cur === i ? " on" : "")}
+              onClick={() => {
+                tick();
+                setBefundSlot(seg.id, slot.id, String(i));
+              }}
+            >
+              {opt.trim() === "" ? "—" : opt.trim()}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
   }
 
-  return (
-    <>
-      {gruppen.map((g) => (
-        <div class="chip-gruppe" key={g}>
-          <div class="g-label">{g}</div>
-          <div class="chips">
-            {befunde
-              .filter((b) => (b.gruppe ?? "Befund") === g)
-              .map((b) => (
-                <button
-                  key={b.id}
-                  class={"chip" + (f.befunde[b.id] ? " on" : "")}
-                  onClick={() => {
-                    tick();
-                    toggleBefund(b.id);
-                  }}
-                >
-                  {b.chip}
-                </button>
-              ))}
-          </div>
+  if (slot.art === "lokaleSeite") {
+    const cur = f.befundSlots[key] ?? "";
+    return (
+      <div class="slot">
+        <div class="slot-label">{slot.label}</div>
+        <div class="pills">
+          {["rechts", "links", "beidseits"].map((s) => (
+            <button
+              key={s}
+              class={"pill" + (cur === s ? " on" : "")}
+              onClick={() => {
+                tick();
+                setBefundSlot(seg.id, slot.id, cur === s ? "" : s);
+              }}
+            >
+              {s}
+            </button>
+          ))}
         </div>
-      ))}
-    </>
+      </div>
+    );
+  }
+
+  if (slot.art === "zahl") {
+    return (
+      <div class="slot">
+        <div class="slot-label">
+          {slot.label}
+          {slot.einheit && <span class="einheit">in {slot.einheit}</span>}
+        </div>
+        <input
+          class="slot-input"
+          type="text"
+          inputMode="decimal"
+          value={f.befundSlots[key] ?? ""}
+          onInput={(e) =>
+            setBefundSlot(seg.id, slot.id, (e.target as HTMLInputElement).value)
+          }
+        />
+      </div>
+    );
+  }
+
+  // detail
+  return (
+    <div class="slot">
+      <div class="slot-label">{slot.label}</div>
+      <input
+        class="slot-input"
+        type="text"
+        maxLength={slot.maxLen}
+        placeholder="z. B. lateral, 2 cm"
+        value={f.befundSlots[key] ?? ""}
+        onInput={(e) =>
+          setBefundSlot(
+            seg.id,
+            slot.id,
+            filterDetail((e.target as HTMLInputElement).value, slot.maxLen),
+          )
+        }
+      />
+      <div class="slot-hinweis">
+        nur klinische Details – keine Namen/Patientenangaben
+      </div>
+    </div>
   );
 }
 
+// ---------------------------------------------------------------- Befundzeile
+function Befundzeile({ seg }: { seg: BefundSeg }) {
+  const f = fall.value;
+  const status = f.befundStatus[seg.id]; // "ok" | "abw" | undefined(offen)
+  const abw = status === "abw";
+  const satz = abw ? befundText(seg, fall.value) : "";
+  const offenerSatz = satz.includes(MARKER_OFFEN);
+
+  return (
+    <div class={"befundzeile " + (status ?? "offen")}>
+      <div class="bz-kopf">
+        <button
+          class={"kreis " + (status ?? "offen")}
+          aria-label="unauffällig bestätigen"
+          onClick={() => {
+            tick();
+            setBefundOk(seg.id);
+          }}
+        >
+          {status === "ok" ? "✓" : ""}
+        </button>
+        <button
+          class="bz-body"
+          onClick={() => {
+            tick();
+            setBefundAbw(seg.id);
+          }}
+        >
+          <span class="bz-label">{seg.chip}</span>
+          {abw && <span class="bz-chev">▾</span>}
+        </button>
+      </div>
+
+      {abw && (
+        <div class="bz-detail">
+          {(seg.slots ?? []).map((slot) => (
+            <SlotControl key={slot.id} seg={seg} slot={slot} />
+          ))}
+          <div class={"bz-satz" + (offenerSatz ? " offen" : "")}>
+            {satz.split(MARKER_OFFEN).map((t, i, arr) => (
+              <span key={i}>
+                {t}
+                {i < arr.length - 1 && <mark>?</mark>}
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------- Felder (Auswahl/Messwert/Platzhalter)
 function Felder({ baustein }: { baustein: Baustein }) {
   const f = fall.value;
-
   const auswahlSegs = baustein.segmente.filter(
     (s): s is Extract<Segment, { art: "auswahl" }> => s.art === "auswahl",
+  );
+  const messwertSegs = baustein.segmente.filter(
+    (s): s is Extract<Segment, { art: "messwert" }> => s.art === "messwert",
   );
 
   return (
     <>
+      {messwertSegs.map((seg) => {
+        const versteckt = !!f.versteckt[seg.id];
+        return (
+          <div class="feld" key={seg.id}>
+            <label class="mess-label">
+              <span>{seg.label}</span>
+              <label class="mess-aus">
+                <input
+                  type="checkbox"
+                  checked={versteckt}
+                  onChange={() => toggleVersteckt(seg.id)}
+                />
+                ausblenden
+              </label>
+            </label>
+            {!versteckt && (
+              <input
+                type="text"
+                inputMode="decimal"
+                placeholder={seg.normal ?? "…"}
+                value={f.werte[seg.id] ?? seg.normal ?? ""}
+                onInput={(e) =>
+                  setWert(seg.id, (e.target as HTMLInputElement).value)
+                }
+              />
+            )}
+          </div>
+        );
+      })}
+
       {auswahlSegs.map((seg) => (
         <div class="feld" key={seg.id}>
           <label>{seg.label}</label>
@@ -108,41 +264,6 @@ function Felder({ baustein }: { baustein: Baustein }) {
         </div>
       ))}
 
-      {baustein.segmente
-        .filter(
-          (s): s is Extract<Segment, { art: "messwert" }> =>
-            s.art === "messwert",
-        )
-        .map((seg) => {
-          const versteckt = !!f.versteckt[seg.id];
-          return (
-            <div class="feld" key={seg.id}>
-              <label class="mess-label">
-                <span>{seg.label}</span>
-                <label class="mess-aus">
-                  <input
-                    type="checkbox"
-                    checked={versteckt}
-                    onChange={() => toggleVersteckt(seg.id)}
-                  />
-                  ausblenden
-                </label>
-              </label>
-              {!versteckt && (
-                <input
-                  type="text"
-                  inputMode="decimal"
-                  placeholder={seg.normal ?? "…"}
-                  value={f.werte[seg.id] ?? seg.normal ?? ""}
-                  onInput={(e) =>
-                    setWert(seg.id, (e.target as HTMLInputElement).value)
-                  }
-                />
-              )}
-            </div>
-          );
-        })}
-
       {baustein.platzhalter.map((p) => {
         const wert = f.werte[p.id] ?? p.default ?? "";
         const offen = !!p.required && wert.trim() === "";
@@ -157,7 +278,6 @@ function Felder({ baustein }: { baustein: Baustein }) {
               class={offen ? "offen" : ""}
               type="text"
               inputMode={inputMode(p.typ) as any}
-              placeholder={p.typ === "rom" ? "z. B. 0/0/140" : ""}
               value={f.werte[p.id] ?? p.default ?? ""}
               onInput={(e) =>
                 setWert(p.id, (e.target as HTMLInputElement).value)
@@ -170,6 +290,81 @@ function Felder({ baustein }: { baustein: Baustein }) {
   );
 }
 
+// ---------------------------------------------------------------- Baustein-Block
+function BausteinBlock({ baustein }: { baustein: Baustein }) {
+  const f = fall.value;
+  const befunde = baustein.segmente.filter(
+    (s): s is BefundSeg => s.art === "befund",
+  );
+  const abwZahl = befunde.filter(
+    (b) => f.befundStatus[b.id] === "abw",
+  ).length;
+  const eingeklappt = !!kollabiert.value[baustein.id] && abwZahl === 0;
+
+  // Gruppen in Auftrittsreihenfolge
+  const gruppen: string[] = [];
+  for (const b of befunde) {
+    const g = b.gruppe ?? "Befund";
+    if (!gruppen.includes(g)) gruppen.push(g);
+  }
+
+  return (
+    <div class="baustein-block">
+      <button
+        class="bb-kopf"
+        onClick={() =>
+          (kollabiert.value = {
+            ...kollabiert.value,
+            [baustein.id]: !kollabiert.value[baustein.id],
+          })
+        }
+      >
+        <h3>{baustein.titel}</h3>
+        {abwZahl > 0 ? (
+          <span class="bb-badge abw">{abwZahl} auffällig</span>
+        ) : (
+          <span class="bb-badge">unauffällig ✓</span>
+        )}
+        <span class="bb-chev">{eingeklappt ? "▸" : "▾"}</span>
+      </button>
+
+      {!eingeklappt && (
+        <>
+          {gruppen.map((g) => {
+            const inGruppe = befunde.filter((b) => (b.gruppe ?? "Befund") === g);
+            const offenInGruppe = inGruppe.filter(
+              (b) => f.befundStatus[b.id] == null,
+            ).length;
+            return (
+              <div class="chip-gruppe" key={g}>
+                <div class="g-kopf">
+                  <span class="g-label">{g}</span>
+                  {offenInGruppe > 0 && (
+                    <button
+                      class="g-sweep"
+                      onClick={() => {
+                        tick();
+                        sweepGruppe(baustein.id, g);
+                      }}
+                    >
+                      alle o.B. ✓
+                    </button>
+                  )}
+                </div>
+                {inGruppe.map((b) => (
+                  <Befundzeile key={b.id} seg={b} />
+                ))}
+              </div>
+            );
+          })}
+          <Felder baustein={baustein} />
+        </>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------- Composer
 export function Composer() {
   const f = fall.value;
   const erg = renderFall(f, katalog.value);
@@ -177,13 +372,15 @@ export function Composer() {
     .map(findeBaustein)
     .filter((b): b is Baustein => !!b);
 
-  // aktive Abweichungen im aktuellen Fall zählen
-  const befundIdsImFall = new Set<string>();
+  let abwGesamt = 0;
+  let offenGesamt = 0;
   for (const b of bausteine)
-    for (const s of b.segmente) if (s.art === "befund") befundIdsImFall.add(s.id);
-  const abweichungen = Object.entries(f.befunde).filter(
-    ([id, v]) => v && befundIdsImFall.has(id),
-  ).length;
+    for (const s of b.segmente)
+      if (s.art === "befund") {
+        const st = f.befundStatus[s.id];
+        if (st === "abw") abwGesamt++;
+        else if (st == null) offenGesamt++;
+      }
 
   const vorschauTeile = erg.text.split(MARKER_OFFEN);
 
@@ -197,14 +394,12 @@ export function Composer() {
           <h1>Befund</h1>
           <div class="sub">
             {f.seite ? `Seite: ${f.seite} · ` : ""}
-            {abweichungen === 0
-              ? "alles unauffällig"
-              : `${abweichungen} Abweichung${abweichungen === 1 ? "" : "en"}`}
+            {abwGesamt === 0 ? "keine Abweichung" : `${abwGesamt} auffällig`}
+            {offenGesamt > 0 ? ` · ${offenGesamt} offen` : ""}
           </div>
         </div>
       </div>
 
-      {/* Fall-Leiste: Bausteine im Fall, entfernbar, + hinzufügen */}
       <div class="fall-leiste">
         {bausteine.map((b) => (
           <span key={b.id} class="fall-chip">
@@ -240,8 +435,8 @@ export function Composer() {
         {!tipGesehen.value && (
           <div class="tip">
             <div>
-              <strong>Normalbefund ist vorausgewählt.</strong> Tippe nur die
-              Abweichungen an – der Rest bleibt unauffällig.
+              <strong>Kreis = unauffällig bestätigen, Zeile = auffällig.</strong>{" "}
+              Nur „auffällig" ändert den Text; tippe dann Details an.
             </div>
             <button onClick={tipWeg} aria-label="verstanden">
               ✕
@@ -249,17 +444,13 @@ export function Composer() {
           </div>
         )}
         {bausteine.map((b) => (
-          <div class="baustein-block" key={b.id}>
-            <h3>{b.titel}</h3>
-            <BefundChips baustein={b} />
-            <Felder baustein={b} />
-          </div>
+          <BausteinBlock key={b.id} baustein={b} />
         ))}
       </div>
 
       <div class="vorschau">
         <div class="v-label">
-          Vorschau{abweichungen > 0 ? ` · ${abweichungen} angetippt` : ""}
+          Vorschau{abwGesamt > 0 ? ` · ${abwGesamt} Abweichung${abwGesamt === 1 ? "" : "en"}` : ""}
         </div>
         <div class="v-text">
           {vorschauTeile.map((t, i) => (

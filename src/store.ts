@@ -36,10 +36,18 @@ function ladeFall(): Fall {
   try {
     const roh = localStorage.getItem(SPEICHER_KEY);
     if (!roh) return leererFall();
-    const f = JSON.parse(roh) as Fall;
+    const f = JSON.parse(roh) as Fall & { befunde?: Record<string, boolean> };
     // Minimalvalidierung + Normalisierung (aeltere Faelle ohne neue Felder)
     if (!Array.isArray(f.bausteinIds)) return leererFall();
-    if (!f.befunde) f.befunde = {};
+    if (!f.befundStatus) f.befundStatus = {};
+    if (!f.befundSlots) f.befundSlots = {};
+    // Migration: altes befunde:Record<string,boolean> -> befundStatus "abw"
+    if (f.befunde) {
+      for (const [id, aktiv] of Object.entries(f.befunde)) {
+        if (aktiv) f.befundStatus[id] = "abw";
+      }
+      delete f.befunde;
+    }
     if (!f.werte) f.werte = {};
     if (!f.auswahl) f.auswahl = {};
     if (!f.versteckt) f.versteckt = {};
@@ -126,9 +134,39 @@ export function setSeite(s: Seite) {
   commit({ ...fall.value, seite: s });
 }
 
-export function toggleBefund(id: string) {
-  const befunde = { ...fall.value.befunde, [id]: !fall.value.befunde[id] };
-  commit({ ...fall.value, befunde });
+/** Linker Kreis: "unauffällig bestätigen" (offen <-> ok; von abw -> ok). */
+export function setBefundOk(id: string) {
+  const s = { ...fall.value.befundStatus };
+  if (s[id] === "ok") delete s[id];
+  else s[id] = "ok";
+  commit({ ...fall.value, befundStatus: s });
+}
+
+/** Zeilenkörper: "auffällig" (offen/ok <-> abw; abw schließt Detail wieder). */
+export function setBefundAbw(id: string) {
+  const s = { ...fall.value.befundStatus };
+  if (s[id] === "abw") delete s[id];
+  else s[id] = "abw";
+  commit({ ...fall.value, befundStatus: s });
+}
+
+/** Slot-Wert einer Abweichung setzen (key = befundId.slotId). */
+export function setBefundSlot(befundId: string, slotId: string, wert: string) {
+  const befundSlots = { ...fall.value.befundSlots, [`${befundId}.${slotId}`]: wert };
+  commit({ ...fall.value, befundSlots });
+}
+
+/** Gruppen-Sweep: alle noch OFFENEN Befunde einer Gruppe auf "ok" setzen. */
+export function sweepGruppe(bausteinId: string, gruppe: string) {
+  const b = findeBaustein(bausteinId);
+  if (!b) return;
+  const s = { ...fall.value.befundStatus };
+  for (const seg of b.segmente) {
+    if (seg.art !== "befund") continue;
+    if ((seg.gruppe ?? "Befund") !== gruppe) continue;
+    if (s[seg.id] == null) s[seg.id] = "ok"; // nur offene, abw/ok unangetastet
+  }
+  commit({ ...fall.value, befundStatus: s });
 }
 
 export function setWert(id: string, wert: string) {

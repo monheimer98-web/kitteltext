@@ -323,7 +323,7 @@
               "label": "Extension/Flexion",
               "gruppe": "Beweglichkeit",
               "vorlage": "Extension/Flexion {w}. ",
-              "normal": "10/0/150"
+              "normal": "0/0/150"
             },
             {
               "art": "messwert",

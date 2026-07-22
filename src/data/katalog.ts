@@ -20,7 +20,7 @@ import untere from "./corpus/untere.json";
 
 // Die 4 handgepflegten Kern-Regionen (OSG, Knie, HWS, SHT) – der Referenz-Stil.
 const CORE: Katalog = {
-  version: 1,
+  version: 2,
   regionen: [
     // ----------------------------------------------------------------- OSG
     {
@@ -52,7 +52,17 @@ const CORE: Katalog = {
               chip: "DS Außenknöchel",
               gruppe: "Palpation",
               normal: "Kein Druckschmerz über dem Außenknöchel. ",
-              abweichung: "Druckschmerz über dem Außenknöchel. ",
+              abweichung: "Druckschmerz über dem Außenknöchel{grad}{detail}. ",
+              slots: [
+                {
+                  art: "auswahl",
+                  id: "grad",
+                  label: "Ausmaß",
+                  optionen: ["", " (leicht)", " (deutlich)"],
+                  default: 0,
+                },
+                { art: "detail", id: "detail", label: "Detail (optional)", maxLen: 40 },
+              ],
             },
             {
               art: "befund",
@@ -60,7 +70,16 @@ const CORE: Katalog = {
               chip: "DS Innenknöchel",
               gruppe: "Palpation",
               normal: "Kein Druckschmerz über dem Innenknöchel. ",
-              abweichung: "Druckschmerz über dem Innenknöchel. ",
+              abweichung: "Druckschmerz über dem Innenknöchel{grad}. ",
+              slots: [
+                {
+                  art: "auswahl",
+                  id: "grad",
+                  label: "Ausmaß",
+                  optionen: ["", " (leicht)", " (deutlich)"],
+                  default: 0,
+                },
+              ],
             },
             {
               art: "befund",
@@ -70,7 +89,16 @@ const CORE: Katalog = {
               normal:
                 "Kein Druckschmerz über dem fibulotalaren Bandapparat. ",
               abweichung:
-                "Druckschmerz über dem fibulotalaren Bandapparat. ",
+                "Druckschmerz über dem fibulotalaren Bandapparat{grad}. ",
+              slots: [
+                {
+                  art: "auswahl",
+                  id: "grad",
+                  label: "Ausmaß",
+                  optionen: ["", " (leicht)", " (deutlich)"],
+                  default: 0,
+                },
+              ],
             },
             {
               art: "befund",
@@ -209,7 +237,16 @@ const CORE: Katalog = {
               chip: "DS medialer Gelenkspalt",
               gruppe: "Palpation",
               normal: "Kein Druckschmerz über dem medialen Gelenkspalt. ",
-              abweichung: "Druckschmerz über dem medialen Gelenkspalt. ",
+              abweichung: "Druckschmerz über dem medialen Gelenkspalt{grad}. ",
+              slots: [
+                {
+                  art: "auswahl",
+                  id: "grad",
+                  label: "Ausmaß",
+                  optionen: ["", " (leicht)", " (deutlich)"],
+                  default: 0,
+                },
+              ],
             },
             {
               art: "befund",
@@ -217,7 +254,16 @@ const CORE: Katalog = {
               chip: "DS lateraler Gelenkspalt",
               gruppe: "Palpation",
               normal: "Kein Druckschmerz über dem lateralen Gelenkspalt. ",
-              abweichung: "Druckschmerz über dem lateralen Gelenkspalt. ",
+              abweichung: "Druckschmerz über dem lateralen Gelenkspalt{grad}. ",
+              slots: [
+                {
+                  art: "auswahl",
+                  id: "grad",
+                  label: "Ausmaß",
+                  optionen: ["", " (leicht)", " (deutlich)"],
+                  default: 0,
+                },
+              ],
             },
             {
               art: "befund",
@@ -225,7 +271,16 @@ const CORE: Katalog = {
               chip: "DS Patella",
               gruppe: "Palpation",
               normal: "Kein Druckschmerz über der Patella. ",
-              abweichung: "Druckschmerz über der Patella. ",
+              abweichung: "Druckschmerz über der Patella{grad}. ",
+              slots: [
+                {
+                  art: "auswahl",
+                  id: "grad",
+                  label: "Ausmaß",
+                  optionen: ["", " (leicht)", " (deutlich)"],
+                  default: 0,
+                },
+              ],
             },
             {
               art: "befund",
@@ -240,10 +295,19 @@ const CORE: Katalog = {
             {
               art: "befund",
               id: "knie_lachmann",
-              chip: "Lachmann positiv",
+              chip: "Lachman positiv",
               gruppe: "Stabilität",
-              normal: "Lachmann-I-Zeichen negativ. ",
-              abweichung: "Lachmann-I-Zeichen positiv. ",
+              normal: "Lachman-Test negativ. ",
+              abweichung: "Lachman-Test positiv{grad}. ",
+              slots: [
+                {
+                  art: "auswahl",
+                  id: "grad",
+                  label: "Anschlag",
+                  optionen: ["", " (weicher Anschlag)", " (fehlender Anschlag)"],
+                  default: 0,
+                },
+              ],
             },
             {
               art: "befund",
@@ -414,7 +478,16 @@ const CORE: Katalog = {
               gruppe: "Neurologie",
               normal: "Pupillen isokor und seitengleich lichtreagibel. ",
               abweichung:
-                "Anisokorie / entrundete bzw. verzögert lichtreagible Pupille. ",
+                "Anisokorie{seite}, entrundete bzw. verzögert lichtreagible Pupille. ",
+              slots: [
+                {
+                  art: "auswahl",
+                  id: "seite",
+                  label: "weitere Pupille",
+                  optionen: ["", " (rechts weiter)", " (links weiter)"],
+                  default: 0,
+                },
+              ],
             },
             {
               art: "befund",

@@ -186,23 +186,7 @@
           "id": "achilles-untersuchung",
           "titel": "Achillessehne – Untersuchung",
           "typ": "untersuchung",
-          "platzhalter": [
-            {
-              "id": "achilles_sono_bereich",
-              "typ": "begriff",
-              "label": "Rupturlokalisation (Sonographie)",
-              "required": true,
-              "leerMarker": "___"
-            },
-            {
-              "id": "achilles_sono_mm",
-              "typ": "zahl",
-              "label": "Enden-Annäherung bei 30° Plantarflexion",
-              "einheit": "mm",
-              "required": false,
-              "leerMarker": "___"
-            }
-          ],
+          "platzhalter": [],
           "segmente": [
             {
               "art": "text",
@@ -264,24 +248,28 @@
               "abweichung": "Anhalt für ein Kompartmentsyndrom. "
             },
             {
-              "art": "text",
-              "text": "Sonographie: Nachweis einer Achillessehnenruptur im Bereich "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "achilles_sono_bereich"
-            },
-            {
-              "art": "text",
-              "text": ", bei 30° Plantarflexion Annäherung der beiden Enden bis auf "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "achilles_sono_mm"
-            },
-            {
-              "art": "text",
-              "text": ", kein größeres Hämatom nachweisbar."
+              "art": "befund",
+              "id": "achilles_sono_ruptur",
+              "chip": "Sono: Ruptur",
+              "gruppe": "Sonographie",
+              "normal": "",
+              "abweichung": "Sonographie: Nachweis einer Achillessehnenruptur im Bereich {bereich}, bei 30° Plantarflexion Annäherung der beiden Enden bis auf {mm}, kein größeres Hämatom nachweisbar.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "bereich",
+                  "label": "Rupturlokalisation (Sonographie)",
+                  "maxLen": 40
+                },
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Enden-Annäherung bei 30° Plantarflexion",
+                  "einheit": "mm",
+                  "required": false,
+                  "leerMarker": "___"
+                }
+              ]
             }
           ]
         },

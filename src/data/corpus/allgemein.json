@@ -207,10 +207,10 @@
             {
               "art": "befund",
               "id": "haut_jackson",
-              "chip": "Plateau/Jackson positiv",
+              "chip": "Plateau-Phänomen/Hauteinziehung",
               "gruppe": "Mamma",
-              "normal": "Kein Plateau-Phänomen. Jackson-Test negativ.",
-              "abweichung": "Plateau-Phänomen positiv. Jackson-Test positiv."
+              "normal": "Kein Plateau-Phänomen, keine Hauteinziehung.",
+              "abweichung": "Plateau-Phänomen/Hauteinziehung nachweisbar."
             }
           ]
         },
@@ -474,7 +474,7 @@
               "id": "cor_herztoene",
               "chip": "Arrhythmie",
               "gruppe": "Auskultation",
-              "normal": "Herztöne leise, normofrequent, rein und rhythmisch. ",
+              "normal": "Herztöne rein, rhythmisch und normofrequent, keine pathologischen Nebengeräusche. ",
               "abweichung": "Herztöne arrhythmisch. "
             },
             {
@@ -692,60 +692,12 @@
               "abweichung": "Appendizitiszeichen positiv. "
             },
             {
-              "art": "text",
-              "text": "Unauffällige rektale Untersuchung: kein palpabler Tumor, Sphinktertonus "
-            },
-            {
-              "art": "auswahl",
-              "id": "abd_sphinkter",
-              "label": "Sphinktertonus",
-              "default": 0,
-              "optionen": [
-                "normal",
-                "erhöht",
-                "vermindert"
-              ]
-            },
-            {
-              "art": "text",
-              "text": ", "
-            },
-            {
               "art": "befund",
-              "id": "abd_blutfinger",
-              "chip": "Blut am Fingerling",
-              "gruppe": "Rektal",
-              "normal": "kein Blut, Stuhl oder Schleim am Fingerling. ",
-              "abweichung": "Blut am Fingerling. "
-            },
-            {
-              "art": "befund",
-              "id": "abd_analregion",
-              "chip": "Hämorrhoiden/Fissuren",
-              "gruppe": "Rektal",
-              "normal": "Douglasraum nicht schmerzhaft, keine Fissuren, Fisteln, Hämorrhoiden oder Abszesse. ",
-              "abweichung": "Hämorrhoiden, Fissuren bzw. Fisteln vorhanden. "
-            },
-            {
-              "art": "text",
-              "text": "Prostata "
-            },
-            {
-              "art": "auswahl",
-              "id": "abd_prostata",
-              "label": "Prostata",
-              "default": 0,
-              "optionen": [
-                "normal",
-                "vergrößert",
-                "glatt",
-                "höckerig",
-                "verhärtet"
-              ]
-            },
-            {
-              "art": "text",
-              "text": ". "
+              "id": "abd_rektal",
+              "chip": "Rektale Untersuchung",
+              "gruppe": "Rektal (nur wenn durchgeführt)",
+              "normal": "",
+              "abweichung": "Unauffällige rektale Untersuchung: kein palpabler Tumor, Sphinktertonus normal, kein Blut, Stuhl oder Schleim am Fingerling. Douglasraum nicht schmerzhaft, keine Fissuren, Fisteln, Hämorrhoiden oder Abszesse. Prostata normal. "
             },
             {
               "art": "befund",
@@ -1014,7 +966,22 @@
             },
             {
               "art": "text",
-              "text": " unter 10 L O₂/min über Maske. C – RR "
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "bc_o2",
+              "label": "O₂-Gabe",
+              "default": 0,
+              "optionen": [
+                "unter Raumluft",
+                "unter 2–4 L O₂ über Nasenbrille",
+                "unter 10 L O₂ über Maske"
+              ]
+            },
+            {
+              "art": "text",
+              "text": ". C – RR "
             },
             {
               "art": "platzhalter",
@@ -1030,7 +997,19 @@
             },
             {
               "art": "text",
-              "text": ", Rekapillarisierungszeit 2 Sekunden, periphere Pulse kräftig palpabel, Normotonie, Haut kühl und trocken, keine Blutungen. Thorax, Becken und proximale Extremitäten stabil, FAST ohne pathologischen Befund. D – GCS 15. Patient wach, ansprechbar, 4-fach orientiert. Pupillen isokor, mittelweit, seitengleich und prompt lichtreagibel. BZ "
+              "text": ", Rekapillarisierungszeit 2 Sekunden, periphere Pulse kräftig palpabel, Normotonie, Haut kühl und trocken, keine Blutungen. Thorax, Becken und proximale Extremitäten stabil. "
+            },
+            {
+              "art": "befund",
+              "id": "bc_fast",
+              "chip": "FAST durchgeführt",
+              "gruppe": "C – Circulation (nur wenn durchgeführt)",
+              "normal": "",
+              "abweichung": "FAST-Sonographie ohne freie Flüssigkeit / Perikard-/Pleuraerguss. "
+            },
+            {
+              "art": "text",
+              "text": "D – GCS 15. Patient wach, ansprechbar, 4-fach orientiert. Pupillen isokor, mittelweit, seitengleich und prompt lichtreagibel. BZ "
             },
             {
               "art": "platzhalter",
@@ -1038,7 +1017,15 @@
             },
             {
               "art": "text",
-              "text": ". E – Normothermie, Tetanusschutz aktuell. "
+              "text": ". E – Normothermie. "
+            },
+            {
+              "art": "befund",
+              "id": "bc_tetanus",
+              "chip": "Tetanusschutz aktuell",
+              "gruppe": "E – Exposure",
+              "normal": "Tetanusschutz anamnestisch unklar. ",
+              "abweichung": "Tetanusschutz aktuell. "
             },
             {
               "art": "befund",
