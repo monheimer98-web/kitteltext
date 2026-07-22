@@ -8,7 +8,7 @@
 //
 // >>> CODE ÄNDERN: hier den Wert ersetzen und neu deployen (git push). <<<
 // Am besten etwas, das nur ihr kennt.
-export const ZUGANG_CODE = "kittel25";
+export const ZUGANG_CODE = "FusselTapsi2898";
 
 import { signal } from "@preact/signals";
 
