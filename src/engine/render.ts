@@ -114,6 +114,15 @@ export function renderBaustein(
         out += abweichung ? seg.abweichung : seg.normal;
         break;
       }
+
+      case "messwert": {
+        // ausgeblendet -> gar nichts (nie ein Showstopper)
+        if (fall.versteckt[seg.id]) break;
+        const roh = (fall.werte[seg.id] ?? seg.normal ?? "").trim();
+        const wert = roh || seg.leer || "…";
+        out += seg.vorlage.replace("{w}", wert);
+        break;
+      }
     }
   }
 

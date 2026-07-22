@@ -1,0 +1,283 @@
+{
+  "werte": [
+    {
+      "gelenk": "Schulter",
+      "bewegung": "Abduktion/Adduktion",
+      "normal": "180/0/40",
+      "spanne": "Abduktion 170-180, Adduktion 20-40",
+      "hinweis": "Gesamtwert glenohumeral + Schultergürtel. Abduktion ueber 90 nur mit Schultergürtelbeteiligung. Adduktion nur bei leichter Anteversion messbar.",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html",
+        "https://flexikon.doccheck.com/de/Neutral-Null-Methode",
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html"
+      ]
+    },
+    {
+      "gelenk": "Schulter",
+      "bewegung": "Retroversion/Anteversion (Extension/Flexion)",
+      "normal": "40/0/170",
+      "spanne": "Retroversion (Extension) 40-45, Anteversion (Flexion) 150-170",
+      "hinweis": "NNM-Konvention: rueckwaertige Bewegung (Retroversion) steht als erste Zahl. Anteversion 150 (isoliert) bis 170-180 (mit Schulterguertel).",
+      "quellen": [
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html",
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html"
+      ]
+    },
+    {
+      "gelenk": "Schulter",
+      "bewegung": "Aussenrotation/Innenrotation bei anliegendem Arm (0 Grad Abduktion)",
+      "normal": "60/0/95",
+      "spanne": "Aussenrotation 40-60, Innenrotation 70-95",
+      "hinweis": "Innenrotation bis 95 nur erreichbar, wenn die Hand hinter den Ruecken gefuehrt wird (Schuerzengriff).",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html",
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html"
+      ]
+    },
+    {
+      "gelenk": "Schulter",
+      "bewegung": "Aussenrotation/Innenrotation bei 90 Grad Abduktion",
+      "normal": "70/0/70",
+      "spanne": "60-90 / 0 / 60-70",
+      "hinweis": "Messung mit 90 Grad abduziertem und 90 Grad im Ellenbogen gebeugtem Arm.",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html",
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html"
+      ]
+    },
+    {
+      "gelenk": "Ellenbogen",
+      "bewegung": "Extension/Flexion",
+      "normal": "10/0/150",
+      "spanne": "Extension (Ueberstreckung) 0-10, Flexion 140-150",
+      "hinweis": "Physiologische Ueberstreckung 0-10 Grad, bei Frauen/Kindern haeufiger. Wikipedia und Buckup nennen 10-0-150; einige Quellen 5-0-150 oder 0-0-150.",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Neutral-Null-Methode",
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html",
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html"
+      ]
+    },
+    {
+      "gelenk": "Unterarm",
+      "bewegung": "Supination/Pronation",
+      "normal": "90/0/90",
+      "spanne": "80-90 / 0 / 80-90",
+      "hinweis": "Messung bei 90 Grad gebeugtem Ellenbogen. Supination (Handflaeche nach oben) als erste Zahl.",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html",
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html"
+      ]
+    },
+    {
+      "gelenk": "Handgelenk",
+      "bewegung": "Dorsalextension/Palmarflexion",
+      "normal": "60/0/60",
+      "spanne": "Dorsalextension 40-70, Palmarflexion 50-80",
+      "hinweis": "Deutsche Standardlehrbuecher 60-0-60; Physiotutors/AROM nennt Extension 70-90 und Flexion 80-90 (aktive Werte oft hoeher).",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html",
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html",
+        "https://www.physiotutors.com/de/wiki/wrist-hand-active-range-of-motion/"
+      ]
+    },
+    {
+      "gelenk": "Handgelenk",
+      "bewegung": "Radialabduktion/Ulnarabduktion (Radial-/Ulnardeviation)",
+      "normal": "30/0/40",
+      "spanne": "Radialabduktion 15-30, Ulnarabduktion 30-45",
+      "hinweis": "Ulnarabduktion regelhaft groesser als Radialabduktion. dr-gumpert: radial 20-30 / ulnar 30-40; Physiotutors: radial 15 / ulnar 30-45.",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html",
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html",
+        "https://www.physiotutors.com/de/wiki/wrist-hand-active-range-of-motion/"
+      ]
+    },
+    {
+      "gelenk": "Finger MCP (Fingergrundgelenk)",
+      "bewegung": "Extension/Flexion",
+      "normal": "0/0/90",
+      "spanne": "Extension (Hyperextension) 0-45, Flexion 85-100",
+      "hinweis": "Aktive Hyperextension von 20-45 Grad ist physiologisch (individuell variabel). Flexion 85-90 (Zeigefinger) bis ca. 100 (Kleinfinger).",
+      "quellen": [
+        "https://www.physiotutors.com/de/wiki/wrist-hand-active-range-of-motion/",
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html"
+      ]
+    },
+    {
+      "gelenk": "Finger PIP (proximales Interphalangealgelenk)",
+      "bewegung": "Extension/Flexion",
+      "normal": "0/0/100",
+      "spanne": "Extension 0, Flexion 100-120",
+      "hinweis": "Keine Hyperextension. Flexion 100-115 (Physiotutors).",
+      "quellen": [
+        "https://www.physiotutors.com/de/wiki/wrist-hand-active-range-of-motion/"
+      ]
+    },
+    {
+      "gelenk": "Finger DIP (distales Interphalangealgelenk)",
+      "bewegung": "Extension/Flexion",
+      "normal": "0/0/90",
+      "spanne": "Extension (Hyperextension) 0-20, Flexion 80-90",
+      "hinweis": "Geringe Hyperextension (bis ca. 20-30 Grad) physiologisch moeglich.",
+      "quellen": [
+        "https://www.physiotutors.com/de/wiki/wrist-hand-active-range-of-motion/"
+      ]
+    },
+    {
+      "gelenk": "Daumen MCP (Grundgelenk)",
+      "bewegung": "Extension/Flexion",
+      "normal": "0/0/50",
+      "spanne": "Extension 0, Flexion 40-55",
+      "hinweis": "sportgesundheit: Flexion 40; Physiotutors: 50-55.",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html",
+        "https://www.physiotutors.com/de/wiki/wrist-hand-active-range-of-motion/"
+      ]
+    },
+    {
+      "gelenk": "Daumen IP (Endgelenk)",
+      "bewegung": "Extension/Flexion",
+      "normal": "0/0/80",
+      "spanne": "Extension (Hyperextension) 0-20, Flexion 80-90",
+      "hinweis": "Geringe Ueberstreckung (0-5, bis 20) physiologisch.",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html",
+        "https://www.physiotutors.com/de/wiki/wrist-hand-active-range-of-motion/"
+      ]
+    },
+    {
+      "gelenk": "Daumen",
+      "bewegung": "Abduktion/Adduktion (palmar/radial)",
+      "normal": "60/0/0",
+      "spanne": "Abduktion 60-70, Adduktion 0",
+      "hinweis": "Am Daumensattelgelenk (CMC) zusaetzlich Retroposition ca. 60 / Anteposition ca. 40 (sportgesundheit); Opposition wird funktionell (Fingerkuppe zu Kleinfinger) geprueft, nicht in Grad.",
+      "quellen": [
+        "https://www.physiotutors.com/de/wiki/wrist-hand-active-range-of-motion/",
+        "https://www.sportgesundheit.eu/nnm-obere-extremitaeten.html"
+      ]
+    },
+    {
+      "gelenk": "Huefte",
+      "bewegung": "Extension/Flexion",
+      "normal": "10/0/130",
+      "spanne": "Extension 10-15, Flexion 120-140",
+      "hinweis": "Flexion 120 bei gestrecktem Knie, bis 140 bei gebeugtem Knie. Wikipedia/DocCheck: 10-0-120; sportgesundheit: 10-0-130.",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Neutral-Null-Methode",
+        "https://flexikon.doccheck.com/de/Neutral-Null-Methode",
+        "https://www.sportgesundheit.eu/nnm-untere-extremitaeten.html"
+      ]
+    },
+    {
+      "gelenk": "Huefte",
+      "bewegung": "Abduktion/Adduktion",
+      "normal": "45/0/30",
+      "spanne": "Abduktion 30-50, Adduktion 20-30",
+      "hinweis": "Uebereinstimmend in allen Quellen.",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Neutral-Null-Methode",
+        "https://flexikon.doccheck.com/de/Neutral-Null-Methode",
+        "https://www.sportgesundheit.eu/nnm-untere-extremitaeten.html",
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html"
+      ]
+    },
+    {
+      "gelenk": "Huefte",
+      "bewegung": "Aussenrotation/Innenrotation (in Hueftstreckung, Bauch-/Rueckenlage)",
+      "normal": "40/0/40",
+      "spanne": "Aussenrotation 30-50, Innenrotation 30-45",
+      "hinweis": "Wikipedia/DocCheck nennen als Standard 50-0-40; sportgesundheit (in Streckung) 40-0-50. Rotation in Streckung geringer als in Beugung.",
+      "quellen": [
+        "https://de.wikipedia.org/wiki/Neutral-Null-Methode",
+        "https://flexikon.doccheck.com/de/Neutral-Null-Methode",
+        "https://www.sportgesundheit.eu/nnm-untere-extremitaeten.html"
+      ]
+    },
+    {
+      "gelenk": "Huefte",
+      "bewegung": "Aussenrotation/Innenrotation (bei 90 Grad Hueftflexion, sitzend)",
+      "normal": "45/0/45",
+      "spanne": "Aussenrotation 30-50, Innenrotation 40-50",
+      "hinweis": "Rotationsumfang in 90 Grad Flexion groesser als in Streckung. sportgesundheit: 45-0-50.",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-untere-extremitaeten.html"
+      ]
+    },
+    {
+      "gelenk": "Knie",
+      "bewegung": "Extension/Flexion",
+      "normal": "0/0/140",
+      "spanne": "Extension (Hyperextension) 0-10, Flexion 130-150",
+      "hinweis": "5-10 Grad Ueberstreckung (Genu recurvatum) kann physiologisch sein. Aktive Flexion ca. 140, passiv bis 150-160. Task-Beispiel und dr-gumpert bis 150/130.",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-untere-extremitaeten.html",
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html",
+        "https://flexikon.doccheck.com/de/Neutral-Null-Methode"
+      ]
+    },
+    {
+      "gelenk": "Oberes Sprunggelenk (OSG)",
+      "bewegung": "Dorsalextension/Plantarflexion",
+      "normal": "20/0/40",
+      "spanne": "Dorsalextension 20-30, Plantarflexion 40-50",
+      "hinweis": "sportgesundheit 25-0-45; DocCheck 20-30-0-40-50; dr-gumpert 20-0-40.",
+      "quellen": [
+        "https://www.sportgesundheit.eu/nnm-untere-extremitaeten.html",
+        "https://flexikon.doccheck.com/de/Neutral-Null-Methode",
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html"
+      ]
+    },
+    {
+      "gelenk": "Unteres Sprunggelenk (USG)",
+      "bewegung": "Eversion (Pronation)/Inversion (Supination)",
+      "normal": "20/0/35",
+      "spanne": "Eversion 10-20, Inversion 20-35",
+      "hinweis": "In der Praxis meist als Verhaeltnis zur Gegenseite (z. B. 1/1 oder 1/2) dokumentiert, nicht als feste Gradzahl. Ganzer Fuss (mit Fusswurzel) Pronation/Supination ca. 30-0-60. dr-gumpert USG 10-15 Eversion / 20-30 Inversion; Kenhub 20 Eversion / 35 Inversion.",
+      "quellen": [
+        "https://www.dr-gumpert.de/html/normalwerte_gelenke.html",
+        "https://www.kenhub.com/de/library/anatomie/unteres-sprunggelenk-articulatio-talotarsalis"
+      ]
+    },
+    {
+      "gelenk": "HWS",
+      "bewegung": "Rotation (rechts/links)",
+      "normal": "80/0/80",
+      "spanne": "60-80 je Seite",
+      "hinweis": "Aktive Kopfdrehung. Alters-/geschlechtsabhaengig, nimmt mit dem Alter ab.",
+      "quellen": [
+        "https://www.medon.de/beweglichkeit_der_hws.html",
+        "https://link.springer.com/content/pdf/10.1007/s003370070014.pdf"
+      ]
+    },
+    {
+      "gelenk": "HWS",
+      "bewegung": "Seitneigung (rechts/links)",
+      "normal": "45/0/45",
+      "spanne": "30-45 je Seite",
+      "hinweis": "Lateralflexion des Kopfes/der HWS.",
+      "quellen": [
+        "https://www.medon.de/beweglichkeit_der_hws.html"
+      ]
+    },
+    {
+      "gelenk": "HWS",
+      "bewegung": "Extension/Flexion (Reklination/Inklination)",
+      "normal": "45/0/45",
+      "spanne": "Extension (Reklination) 40-70, Flexion (Inklination) 35-45",
+      "hinweis": "Ergaenzend wird oft der Kinn-Sternum-Abstand (Flexion 0-2 cm) dokumentiert. Extension als erste Zahl (Bewegung nach hinten).",
+      "quellen": [
+        "https://www.medon.de/beweglichkeit_der_hws.html",
+        "https://link.springer.com/content/pdf/10.1007/s003370070014.pdf"
+      ]
+    }
+  ],
+  "hinweise": [
+    "Format: erste Zahl = Bewegung vom Koerper weg (Extension/Streckung/Abduktion/Aussenrotation/Retroversion/Dorsalextension/Supination/Eversion), mittlere = Neutralnull, letzte = Gegenrichtung. Alle Werte sind physiologische Normwerte eines gesunden Erwachsenen.",
+    "Es existiert KEIN einheitlicher verbindlicher Standard fuer die Zahlenwerte; deutsche Standardlehrbuecher (Debrunner, Buckup 'Klinische Tests') und die DGUV-Messblaetter weichen leicht voneinander ab. Angegeben ist jeweils der gaengigste Lehrbuchwert plus die in seriosen Quellen gefundene Spanne.",
+    "Alters- und geschlechtsspezifische Schwankungen sind erheblich: Beweglichkeit nimmt mit dem Alter ab; Frauen und Kinder zeigen haeufiger physiologische Hyperextension (Ellenbogen, Knie, Finger). Der klinischen Beurteilung sollten immer alters-/geschlechtsangepasste Werte und der Seitenvergleich zugrunde gelegt werden.",
+    "Schulter-Rotationswerte (v. a. IR bis 95) sind nur mit Ausweichbewegung (Hand hinter den Ruecken) erreichbar; isolierte glenohumerale Werte sind kleiner.",
+    "Unteres Sprunggelenk (USG) und Wirbelsaeulen-Rotation werden klinisch haeufig als Verhaeltnis/Seitenvergleich statt als absolute Gradzahl dokumentiert.",
+    "LWS: bewusst ausgelassen. Die LWS-Beweglichkeit wird nicht als Neutral-Null-Gradwert, sondern ueber Schober-Zeichen, Ott-Zeichen (BWS) und Finger-Boden-Abstand (FBA) dokumentiert - FBA ist wie vom Auftrag angemerkt KEIN NNM-Wert.",
+    "Amtlicher deutscher Referenzstandard sind die DGUV-Messblaetter 'obere Gliedmassen' (F 4222) und 'untere Gliedmassen' (F 4224) nach der Neutral-0-Methode - als PDF unter dguv.de. Sie liessen sich hier maschinell nicht auslesen, decken sich aber inhaltlich mit den verwendeten Quellen."
+  ]
+}

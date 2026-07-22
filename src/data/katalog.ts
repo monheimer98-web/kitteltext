@@ -187,15 +187,7 @@ const CORE: Katalog = {
           id: "knie-untersuchung",
           titel: "Knie – Untersuchung",
           typ: "untersuchung",
-          platzhalter: [
-            {
-              id: "knie_flex",
-              typ: "zahl",
-              label: "Flexion Knie (E/F 0/0/…)",
-              einheit: "°",
-              required: true,
-            },
-          ],
+          platzhalter: [],
           segmente: [
             { art: "text", text: "Knie " },
             { art: "seite" },
@@ -262,12 +254,18 @@ const CORE: Katalog = {
               abweichung:
                 "Apley-Grinding-Zeichen positiv bei Außenrotation. ",
             },
-            { art: "text", text: "Bewegung Extension/Flexion 0/0/" },
-            { art: "platzhalter", ref: "knie_flex" },
+            {
+              art: "messwert",
+              id: "knie_extflex",
+              label: "Extension/Flexion",
+              gruppe: "Beweglichkeit",
+              vorlage: "Bewegung Extension/Flexion {w}. ",
+              normal: "0/0/140",
+            },
             {
               art: "text",
               text:
-                ". Periphere Durchblutung, Motorik und Sensibilität intakt. Patient ist steh- und gehfähig.",
+                "Periphere Durchblutung, Motorik und Sensibilität intakt. Patient ist steh- und gehfähig.",
             },
           ],
         },

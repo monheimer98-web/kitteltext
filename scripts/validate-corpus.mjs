@@ -7,7 +7,7 @@ import { dirname, join } from "node:path";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const dir = join(__dirname, "..", "src", "data", "corpus");
 
-const SEG_ARTEN = ["text", "seite", "platzhalter", "auswahl", "befund"];
+const SEG_ARTEN = ["text", "seite", "platzhalter", "auswahl", "befund", "messwert"];
 const PH_TYPEN = ["zahl", "rom", "zeitraum", "auswahl", "begriff"];
 const B_TYPEN = ["anamnese", "untersuchung", "befund", "procedere", "anordnung"];
 
@@ -74,6 +74,11 @@ for (const datei of dateien) {
         if (s.art === "auswahl") {
           if (!s.id || !Array.isArray(s.optionen) || s.optionen.length === 0)
             err(`Baustein ${b.id}: auswahl unvollständig`);
+        }
+        if (s.art === "messwert") {
+          if (!s.id || !s.label) err(`Baustein ${b.id}: messwert unvollständig`);
+          if (typeof s.vorlage !== "string" || !s.vorlage.includes("{w}"))
+            err(`Baustein ${b.id}/${s.id}: messwert.vorlage ohne {w}`);
         }
       }
       for (const p of b.platzhalter ?? []) {

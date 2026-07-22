@@ -171,7 +171,7 @@
               "typ": "zahl",
               "label": "Enden-Annäherung bei 30° Plantarflexion",
               "einheit": "mm",
-              "required": true,
+              "required": false,
               "leerMarker": "___"
             }
           ],

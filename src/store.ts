@@ -37,8 +37,12 @@ function ladeFall(): Fall {
     const roh = localStorage.getItem(SPEICHER_KEY);
     if (!roh) return leererFall();
     const f = JSON.parse(roh) as Fall;
-    // Minimalvalidierung
+    // Minimalvalidierung + Normalisierung (aeltere Faelle ohne neue Felder)
     if (!Array.isArray(f.bausteinIds)) return leererFall();
+    if (!f.befunde) f.befunde = {};
+    if (!f.werte) f.werte = {};
+    if (!f.auswahl) f.auswahl = {};
+    if (!f.versteckt) f.versteckt = {};
     return f;
   } catch {
     return leererFall();
@@ -63,13 +67,19 @@ function commit(next: Fall) {
   fall.value = { ...next };
 }
 
-/** Setzt Platzhalter-Defaults der angegebenen Bausteine in den Fall. */
+/** Setzt Platzhalter-/Messwert-Defaults der angegebenen Bausteine in den Fall. */
 function seedDefaults(f: Fall, ids: string[]) {
   for (const id of ids) {
     const b = findeBaustein(id);
     if (!b) continue;
     for (const p of b.platzhalter) {
       if (p.default != null && f.werte[p.id] == null) f.werte[p.id] = p.default;
+    }
+    // Messwerte mit ihrem physiologischen Normwert vorbelegen
+    for (const s of b.segmente) {
+      if (s.art === "messwert" && s.normal != null && f.werte[s.id] == null) {
+        f.werte[s.id] = s.normal;
+      }
     }
   }
 }
@@ -129,6 +139,12 @@ export function setWert(id: string, wert: string) {
 export function setAuswahl(id: string, index: number) {
   const auswahl = { ...fall.value.auswahl, [id]: index };
   commit({ ...fall.value, auswahl });
+}
+
+/** Messwert ein-/ausblenden. Ausgeblendet erscheint er nicht im Text. */
+export function toggleVersteckt(id: string) {
+  const versteckt = { ...fall.value.versteckt, [id]: !fall.value.versteckt[id] };
+  commit({ ...fall.value, versteckt });
 }
 
 export function neuerFall() {

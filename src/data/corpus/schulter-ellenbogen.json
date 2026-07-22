@@ -112,29 +112,7 @@
           "id": "schulter-unt-knapp",
           "titel": "Schulter – Untersuchung (knapp)",
           "typ": "untersuchung",
-          "platzhalter": [
-            {
-              "id": "schulter-knapp-rom-abdadd",
-              "typ": "rom",
-              "label": "Abduktion/Adduktion",
-              "leerMarker": "_/0/_",
-              "required": true
-            },
-            {
-              "id": "schulter-knapp-rom-anteretro",
-              "typ": "rom",
-              "label": "Anteversion/Retroversion",
-              "leerMarker": "_/0/_",
-              "required": true
-            },
-            {
-              "id": "schulter-knapp-rom-iroaro",
-              "typ": "rom",
-              "label": "Innenrotation/Außenrotation",
-              "leerMarker": "_/0/_",
-              "required": true
-            }
-          ],
+          "platzhalter": [],
           "segmente": [
             {
               "art": "text",
@@ -145,31 +123,35 @@
             },
             {
               "art": "text",
-              "text": ": Schmerzen bei Bewegung. Bewegung schmerzhaft eingeschränkt: Abduktion/Adduktion "
+              "text": ": Schmerzen bei Bewegung. Bewegung schmerzhaft eingeschränkt. "
             },
             {
-              "art": "platzhalter",
-              "ref": "schulter-knapp-rom-abdadd"
+              "art": "messwert",
+              "id": "schulter-knapp-rom-abdadd",
+              "label": "Abduktion/Adduktion",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Abduktion/Adduktion {w}. ",
+              "leer": "_/0/_"
+            },
+            {
+              "art": "messwert",
+              "id": "schulter-knapp-rom-anteretro",
+              "label": "Anteversion/Retroversion",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Anteversion/Retroversion {w}. ",
+              "leer": "_/0/_"
+            },
+            {
+              "art": "messwert",
+              "id": "schulter-knapp-rom-iroaro",
+              "label": "Innenrotation/Außenrotation",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Innenrotation/Außenrotation {w}. ",
+              "leer": "_/0/_"
             },
             {
               "art": "text",
-              "text": ", Anteversion/Retroversion "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "schulter-knapp-rom-anteretro"
-            },
-            {
-              "art": "text",
-              "text": ", Innenrotation/Außenrotation "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "schulter-knapp-rom-iroaro"
-            },
-            {
-              "art": "text",
-              "text": ". Lift-off-Test (M. subscapularis) kraftvoll, Jobe-Test (M. supraspinatus) kraftvoll. Kein Druckschmerz an den Ansatzpunkten der proximalen Bizepssehne. M. biceps brachii kraftvoll einsetzbar, M. triceps brachii kraftvoll einsetzbar. Periphere Durchblutung, Motorik und Sensibilität intakt. Schürzen- und Nackengriff sind möglich."
+              "text": "Lift-off-Test (M. subscapularis) kraftvoll, Jobe-Test (M. supraspinatus) kraftvoll. Kein Druckschmerz an den Ansatzpunkten der proximalen Bizepssehne. M. biceps brachii kraftvoll einsetzbar, M. triceps brachii kraftvoll einsetzbar. Periphere Durchblutung, Motorik und Sensibilität intakt. Schürzen- und Nackengriff sind möglich."
             }
           ]
         },
@@ -242,22 +224,7 @@
           "id": "ellb-unt",
           "titel": "Ellenbogen – Untersuchung",
           "typ": "untersuchung",
-          "platzhalter": [
-            {
-              "id": "ellb-rom-extflex",
-              "typ": "rom",
-              "label": "Extension/Flexion",
-              "leerMarker": "_/0/_",
-              "required": true
-            },
-            {
-              "id": "ellb-rom-prosup",
-              "typ": "rom",
-              "label": "Pronation/Supination",
-              "leerMarker": "_/0/_",
-              "required": true
-            }
-          ],
+          "platzhalter": [],
           "segmente": [
             {
               "art": "text",
@@ -288,23 +255,23 @@
             },
             {
               "art": "text",
-              "text": "Ellenbogengelenk endgradig ohne Schmerzen beweglich (Extension/Flexion "
+              "text": "Ellenbogengelenk endgradig ohne Schmerzen beweglich. "
             },
             {
-              "art": "platzhalter",
-              "ref": "ellb-rom-extflex"
+              "art": "messwert",
+              "id": "ellb-rom-extflex",
+              "label": "Extension/Flexion",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Extension/Flexion {w}. ",
+              "normal": "10/0/150"
             },
             {
-              "art": "text",
-              "text": ", Pronation/Supination "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "ellb-rom-prosup"
-            },
-            {
-              "art": "text",
-              "text": "). "
+              "art": "messwert",
+              "id": "ellb-rom-prosup",
+              "label": "Pronation/Supination",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Pronation/Supination {w}. ",
+              "normal": "90/0/90"
             },
             {
               "art": "befund",

@@ -15,28 +15,32 @@
               "typ": "zahl",
               "label": "Größe",
               "einheit": "cm",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "allg_gewicht",
               "typ": "zahl",
               "label": "Gewicht",
               "einheit": "kg",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "allg_bmi",
               "typ": "zahl",
               "label": "BMI",
               "einheit": "kg/m²",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "allg_temp",
               "typ": "zahl",
               "label": "Temperatur",
               "einheit": "°C",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             }
           ],
           "segmente": [
@@ -282,33 +286,38 @@
               "typ": "zahl",
               "label": "Herzfrequenz",
               "einheit": "/min",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "cor_rr_re_sys",
               "typ": "zahl",
               "label": "RR rechter Arm systolisch",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "cor_rr_re_dia",
               "typ": "zahl",
               "label": "RR rechter Arm diastolisch",
               "einheit": "mmHg",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "cor_rr_li_sys",
               "typ": "zahl",
               "label": "RR linker Arm systolisch",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "cor_rr_li_dia",
               "typ": "zahl",
               "label": "RR linker Arm diastolisch",
               "einheit": "mmHg",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             }
           ],
           "segmente": [
@@ -411,7 +420,8 @@
               "typ": "zahl",
               "label": "Leber unterhalb Rippenbogen",
               "einheit": "cm",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             }
           ],
           "segmente": [
@@ -553,7 +563,8 @@
               "typ": "zahl",
               "label": "Vibrationssinn (Rydel-Seiffer)",
               "einheit": "/8",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             }
           ],
           "segmente": [
@@ -620,35 +631,40 @@
               "typ": "zahl",
               "label": "Atemfrequenz",
               "einheit": "/min",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "bc_spo2",
               "typ": "zahl",
               "label": "SpO2",
               "einheit": "%",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "bc_rr",
               "typ": "zahl",
               "label": "Blutdruck",
               "einheit": "mmHg",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "bc_hf",
               "typ": "zahl",
               "label": "Herzfrequenz",
               "einheit": "/min",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             },
             {
               "id": "bc_bz",
               "typ": "zahl",
               "label": "Blutzucker",
               "einheit": "mg/dl",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             }
           ],
           "segmente": [

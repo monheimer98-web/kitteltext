@@ -34,6 +34,7 @@ type BausteinPayload = [
   number[], // aktive befund-Indizes (lokal)
   Array<[number, number]>, // auswahl: [lokalIdx, gewaehlt]
   Array<[number, string]>, // werte: [lokalPhIdx, Wert]
+  Array<[number, number, string]>?, // messwerte: [lokalIdx, versteckt(0/1), Wert]
 ];
 type Payload = [number, string, number, BausteinPayload[]];
 
@@ -51,6 +52,11 @@ function befundIds(b: Baustein): string[] {
 function auswahlIds(b: Baustein): string[] {
   return b.segmente.filter((s) => s.art === "auswahl").map((s: any) => s.id);
 }
+function messwertSegs(b: Baustein): Array<{ id: string; normal?: string }> {
+  return b.segmente
+    .filter((s) => s.art === "messwert")
+    .map((s: any) => ({ id: s.id, normal: s.normal }));
+}
 
 /**
  * Struktureller Fingerprint des Katalogs: haengt an der Reihenfolge/IDs aller
@@ -65,6 +71,7 @@ export function fingerprint(katalog: Katalog): string {
     teile.push("f:" + befundIds(b).join(","));
     teile.push("a:" + auswahlIds(b).join(","));
     teile.push("p:" + b.platzhalter.map((p) => p.id).join(","));
+    teile.push("m:" + messwertSegs(b).map((m) => m.id).join(","));
   }
   const sig = teile.join("|");
   // 6-stelliger Base36-Rolling-Hash
@@ -146,7 +153,18 @@ export function encode(fall: Fall, katalog: Katalog): string {
       if (w != null && w !== "") werte.push([i, w]);
     });
 
-    bp.push([g, aktiveBefunde, auswahl, werte]);
+    // Messwerte nur kodieren, wenn vom Normwert abweichend oder ausgeblendet
+    const messwerte: Array<[number, number, string]> = [];
+    messwertSegs(b).forEach((m, i) => {
+      const versteckt = fall.versteckt[m.id] ? 1 : 0;
+      const cur = fall.werte[m.id] ?? m.normal ?? "";
+      const abweichend = cur !== (m.normal ?? "");
+      if (versteckt || abweichend) {
+        messwerte.push([i, versteckt, versteckt ? "" : cur]);
+      }
+    });
+
+    bp.push([g, aktiveBefunde, auswahl, werte, messwerte]);
   }
 
   const payload: Payload = [
@@ -208,9 +226,10 @@ export function decode(codeRaw: string, katalog: Katalog): DecodeErgebnis {
     befunde: {},
     werte: {},
     auswahl: {},
+    versteckt: {},
   };
 
-  for (const [g, aktiveBefunde, auswahl, werte] of bp) {
+  for (const [g, aktiveBefunde, auswahl, werte, messwerte] of bp) {
     const b = bausteine[g];
     if (!b) return { ok: false, grund: "format", meldung: "Unbekannter Baustein im Code." };
     fall.bausteinIds.push(b.id);
@@ -222,6 +241,14 @@ export function decode(codeRaw: string, katalog: Katalog): DecodeErgebnis {
     for (const [i, wahl] of auswahl) if (aIds[i]) fall.auswahl[aIds[i]] = wahl;
 
     for (const [i, wert] of werte) if (b.platzhalter[i]) fall.werte[b.platzhalter[i].id] = wert;
+
+    const mSegs = messwertSegs(b);
+    for (const [i, versteckt, wert] of messwerte ?? []) {
+      const m = mSegs[i];
+      if (!m) continue;
+      if (versteckt) fall.versteckt[m.id] = true;
+      else if (wert !== "") fall.werte[m.id] = wert;
+    }
   }
 
   return { ok: true, fall };

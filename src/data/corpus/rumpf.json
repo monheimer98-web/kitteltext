@@ -39,11 +39,15 @@
               "typ": "zahl",
               "label": "Schmerzintensität (NRS)",
               "einheit": "/10",
-              "required": true
+              "required": false,
+              "leerMarker": "…"
             }
           ],
           "segmente": [
-            { "art": "text", "text": "Der Patient wird " },
+            {
+              "art": "text",
+              "text": "Der Patient wird "
+            },
             {
               "art": "auswahl",
               "id": "ws-vorstellung",
@@ -55,13 +59,34 @@
                 "mit Einweisung"
               ]
             },
-            { "art": "text", "text": " vorstellig, mit Rückenschmerzen der " },
-            { "art": "platzhalter", "ref": "ws-lokalisation" },
-            { "art": "text", "text": " seit " },
-            { "art": "platzhalter", "ref": "ws-zeitraum" },
-            { "art": "text", "text": ". Kein vorausgegangenes Trauma. Die Schmerzen seien " },
-            { "art": "platzhalter", "ref": "ws-qualitaet" },
-            { "art": "text", "text": ", " },
+            {
+              "art": "text",
+              "text": " vorstellig, mit Rückenschmerzen der "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "ws-lokalisation"
+            },
+            {
+              "art": "text",
+              "text": " seit "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "ws-zeitraum"
+            },
+            {
+              "art": "text",
+              "text": ". Kein vorausgegangenes Trauma. Die Schmerzen seien "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "ws-qualitaet"
+            },
+            {
+              "art": "text",
+              "text": ", "
+            },
             {
               "art": "auswahl",
               "id": "ws-ausstrahlung",
@@ -72,8 +97,14 @@
                 "ohne Ausstrahlung"
               ]
             },
-            { "art": "platzhalter", "ref": "ws-ausstrahlungsort" },
-            { "art": "text", "text": ". Die Schmerzen seien seit Beginn " },
+            {
+              "art": "platzhalter",
+              "ref": "ws-ausstrahlungsort"
+            },
+            {
+              "art": "text",
+              "text": ". Die Schmerzen seien seit Beginn "
+            },
             {
               "art": "auswahl",
               "id": "ws-verlauf",
@@ -85,7 +116,10 @@
                 "verringert"
               ]
             },
-            { "art": "text", "text": " und " },
+            {
+              "art": "text",
+              "text": " und "
+            },
             {
               "art": "auswahl",
               "id": "ws-rhythmus",
@@ -97,9 +131,18 @@
                 "im Tagesrhythmus"
               ]
             },
-            { "art": "text", "text": ". Aktuelle Schmerzintensität " },
-            { "art": "platzhalter", "ref": "ws-schmerzintensitaet" },
-            { "art": "text", "text": " auf der numerischen Schmerzskala. Gutes Allgemeinbefinden. " },
+            {
+              "art": "text",
+              "text": ". Aktuelle Schmerzintensität "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "ws-schmerzintensitaet"
+            },
+            {
+              "art": "text",
+              "text": " auf der numerischen Schmerzskala. Gutes Allgemeinbefinden. "
+            },
             {
               "art": "befund",
               "id": "ws-bsymptomatik",
@@ -132,7 +175,10 @@
           "typ": "untersuchung",
           "platzhalter": [],
           "segmente": [
-            { "art": "text", "text": "Der Patient ist steh- und gehfähig. " },
+            {
+              "art": "text",
+              "text": "Der Patient ist steh- und gehfähig. "
+            },
             {
               "art": "befund",
               "id": "ws-klopfschmerz",
@@ -149,7 +195,10 @@
               "normal": "Kein Beckenkompressionsschmerz, kein Druckschmerz in der Leiste. ",
               "abweichung": "Beckenkompressionsschmerz. "
             },
-            { "art": "text", "text": "Hüfte frei und schmerzfrei beweglich. " },
+            {
+              "art": "text",
+              "text": "Hüfte frei und schmerzfrei beweglich. "
+            },
             {
               "art": "befund",
               "id": "ws-lasegue",
@@ -330,17 +379,26 @@
     {
       "id": "stapel-lumbago",
       "name": "Lumbago",
-      "bausteinIds": ["ws-rueckenschmerzen-untersuchung", "ws-lumbago-proc"]
+      "bausteinIds": [
+        "ws-rueckenschmerzen-untersuchung",
+        "ws-lumbago-proc"
+      ]
     },
     {
       "id": "stapel-lws-prellung",
       "name": "LWS-Prellung",
-      "bausteinIds": ["ws-rueckenschmerzen-untersuchung", "ws-lws-prellung-proc"]
+      "bausteinIds": [
+        "ws-rueckenschmerzen-untersuchung",
+        "ws-lws-prellung-proc"
+      ]
     },
     {
       "id": "stapel-thoraxprellung",
       "name": "Thoraxprellung",
-      "bausteinIds": ["thorax-untersuchung", "thorax-prellung-proc"]
+      "bausteinIds": [
+        "thorax-untersuchung",
+        "thorax-prellung-proc"
+      ]
     }
   ]
 }

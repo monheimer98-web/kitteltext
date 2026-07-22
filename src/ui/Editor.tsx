@@ -437,6 +437,12 @@ function SegmentEditor({
       {seg.art === "platzhalter" && (
         <div class="hinweis">Platzhalter-Verweis: {seg.ref}</div>
       )}
+      {seg.art === "messwert" && (
+        <div class="hinweis">
+          Messwert „{seg.label}" – Normwert {seg.normal ?? "—"}, ausblendbar (im
+          Volleditor bearbeitbar).
+        </div>
+      )}
     </div>
   );
 }
@@ -453,6 +459,8 @@ function segLabel(seg: Segment): string {
       return "Auswahl";
     case "platzhalter":
       return "Platzhalter";
+    case "messwert":
+      return "Messwert";
   }
 }
 

@@ -8,6 +8,7 @@ import {
   setAuswahl,
   setWert,
   toggleBefund,
+  toggleVersteckt,
 } from "../store.ts";
 import { MARKER_OFFEN, renderFall } from "../engine/render.ts";
 import { BausteinPicker, pickerOffen } from "./BausteinPicker.tsx";
@@ -106,6 +107,41 @@ function Felder({ baustein }: { baustein: Baustein }) {
           </select>
         </div>
       ))}
+
+      {baustein.segmente
+        .filter(
+          (s): s is Extract<Segment, { art: "messwert" }> =>
+            s.art === "messwert",
+        )
+        .map((seg) => {
+          const versteckt = !!f.versteckt[seg.id];
+          return (
+            <div class="feld" key={seg.id}>
+              <label class="mess-label">
+                <span>{seg.label}</span>
+                <label class="mess-aus">
+                  <input
+                    type="checkbox"
+                    checked={versteckt}
+                    onChange={() => toggleVersteckt(seg.id)}
+                  />
+                  ausblenden
+                </label>
+              </label>
+              {!versteckt && (
+                <input
+                  type="text"
+                  inputMode="decimal"
+                  placeholder={seg.normal ?? "…"}
+                  value={f.werte[seg.id] ?? seg.normal ?? ""}
+                  onInput={(e) =>
+                    setWert(seg.id, (e.target as HTMLInputElement).value)
+                  }
+                />
+              )}
+            </div>
+          );
+        })}
 
       {baustein.platzhalter.map((p) => {
         const wert = f.werte[p.id] ?? p.default ?? "";

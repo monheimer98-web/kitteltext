@@ -78,6 +78,23 @@ export type Segment =
       abweichung: string;
       /** optische Gruppierung der Chips im Composer */
       gruppe?: string;
+    }
+  // Messwert (z.B. Bewegungsausmass nach Neutral-Null): mit physiologischem
+  // Normwert vorbelegt und per Kaestchen ausblendbar. Blockiert NIE den Export –
+  // wer keinen Wert misst, blendet ihn aus oder laesst den Normwert stehen.
+  | {
+      art: "messwert";
+      id: string;
+      /** Beschriftung im Composer, z.B. "Extension/Flexion" */
+      label: string;
+      /** Textvorlage mit {w} als Platz fuer den Wert, z.B. "Extension/Flexion {w}. " */
+      vorlage: string;
+      /** physiologischer Normwert, vorbelegt (z.B. "0/0/150") */
+      normal?: string;
+      /** Anzeige, wenn sichtbar aber leer (Default "…") */
+      leer?: string;
+      /** optische Gruppierung im Composer */
+      gruppe?: string;
     };
 
 export type BausteinTyp =
@@ -146,12 +163,21 @@ export interface Fall {
   seite: Seite | null;
   /** segmentId -> Abweichung aktiv? (Negativ-Default: fehlend = normal) */
   befunde: Record<string, boolean>;
-  /** platzhalterId -> eingegebener Wert */
+  /** platzhalter-/messwert-Id -> eingegebener Wert */
   werte: Record<string, string>;
   /** auswahl-Segment-id -> gewaehlter Index */
   auswahl: Record<string, number>;
+  /** messwert-Id -> ausgeblendet? (fehlend = sichtbar) */
+  versteckt: Record<string, boolean>;
 }
 
 export function leererFall(): Fall {
-  return { bausteinIds: [], seite: null, befunde: {}, werte: {}, auswahl: {} };
+  return {
+    bausteinIds: [],
+    seite: null,
+    befunde: {},
+    werte: {},
+    auswahl: {},
+    versteckt: {},
+  };
 }
