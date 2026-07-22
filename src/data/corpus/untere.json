@@ -1,0 +1,549 @@
+{
+  "regionen": [
+    {
+      "id": "huefte",
+      "name": "Hüfte & Oberschenkel",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "huefte-untersuchung",
+          "titel": "Hüfte & Oberschenkel – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Untere Extremität "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "huefte_fehlstellung",
+              "chip": "Verkürzung/Außenrotation",
+              "gruppe": "Inspektion",
+              "normal": "Keine sichtbare Fehlstellung. ",
+              "abweichung": "Bein verkürzt und außenrotiert. "
+            },
+            {
+              "art": "text",
+              "text": "Geschlossene, reizlose Weichteile. Keine Rötung, Schwellung oder Überwärmung. Oberschenkel weich, kein Hinweis auf ein Kompartmentsyndrom. Becken stabil. "
+            },
+            {
+              "art": "befund",
+              "id": "huefte_ds_trochanter",
+              "chip": "DS Trochanter/Leiste",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Trochanter major oder in der Leiste. ",
+              "abweichung": "Druckschmerz über dem Trochanter major bzw. in der Leiste. "
+            },
+            {
+              "art": "befund",
+              "id": "huefte_ds_schaft_knie",
+              "chip": "DS Oberschenkelschaft/Knie",
+              "gruppe": "Palpation",
+              "normal": "Oberschenkelschaft und Knie ohne Druckschmerz. ",
+              "abweichung": "Druckschmerz über Oberschenkelschaft bzw. Knie. "
+            },
+            {
+              "art": "text",
+              "text": "Periphere Durchblutung, Motorik und Sensibilität intakt. "
+            },
+            {
+              "art": "befund",
+              "id": "huefte_bein_anheben",
+              "chip": "Bein nicht aktiv anhebbar",
+              "gruppe": "Funktion",
+              "normal": "Das Bein kann aktiv von der Unterlage angehoben werden. ",
+              "abweichung": "Das Bein kann nicht aktiv von der Unterlage angehoben werden. "
+            },
+            {
+              "art": "befund",
+              "id": "huefte_gehfaehig",
+              "chip": "nicht steh-/gehfähig",
+              "gruppe": "Funktion",
+              "normal": "Patient ist steh- und gehfähig. ",
+              "abweichung": "Patient ist nicht steh- und gehfähig. "
+            },
+            {
+              "art": "befund",
+              "id": "huefte_antikoag",
+              "chip": "Antikoagulation",
+              "gruppe": "Anamnese",
+              "normal": "Keine gerinnungshemmende Medikation. ",
+              "abweichung": "Gerinnungshemmende Medikation (Präparat und letzte Gabe im KIS ergänzen). "
+            },
+            {
+              "art": "text",
+              "text": "Der Patient war bisher "
+            },
+            {
+              "art": "auswahl",
+              "id": "huefte_mobilitaet",
+              "label": "bisherige Mobilität",
+              "default": 0,
+              "optionen": [
+                "selbstständig",
+                "an Gehhilfen",
+                "eingeschränkt",
+                "bettlägerig"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " mobil."
+            }
+          ]
+        },
+        {
+          "id": "huefte-femur-proc",
+          "titel": "Proximale Femurfraktur – Procedere",
+          "typ": "procedere",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Untersuchung und Beratung, Röntgen Beckenübersicht, Hüfte axial und Thorax, chirurgische Aufklärung, Abstrich MRSA und SARS-CoV-2, Blutentnahme inklusive Blutgruppe/Kreuzblut, Venenverweilkanüle, EKG, Röntgen Thorax, Anmeldung zur Prämedikation, DK-Anlage, Ruhigstellung in Lagerungsschiene. Die Therapieentscheidung (Osteosynthese vs. Endoprothese) erfolgt anhand von Alter, Dislokationsgrad und Begleitfaktoren gemäß Therapiealgorithmus."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unterschenkel",
+      "name": "Unterschenkel",
+      "kuerzel": "🦿",
+      "bausteine": [
+        {
+          "id": "unterschenkel-proc",
+          "titel": "Unterschenkel – Procedere",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "unterschenkel_wv_termin",
+              "typ": "begriff",
+              "label": "Wiedervorstellung (Termin)",
+              "required": true,
+              "leerMarker": "___"
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Anlage einer gespaltenen Unterschenkelgipsschiene, Röntgenkontrolle im Gips, Wiedereinbestellung in unsere Ambulanz zur Verlaufskontrolle. Befundkontrolle, regelmäßige Hochlagerung und Kühlung. Ruhigstellung im Unterschenkelgips. Wiedervorstellung zur Verlaufskontrolle und befundabhängigen Zirkulierung des Gipses am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "unterschenkel_wv_termin"
+            },
+            {
+              "art": "text",
+              "text": ". Bei Beschwerdepersistenz ggf. weiterführende Diagnostik. Bedarfsgerechte Analgesie."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "achillessehne",
+      "name": "Achillessehne",
+      "kuerzel": "🦶",
+      "bausteine": [
+        {
+          "id": "achilles-untersuchung",
+          "titel": "Achillessehne – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [
+            {
+              "id": "achilles_sono_bereich",
+              "typ": "begriff",
+              "label": "Rupturlokalisation (Sonographie)",
+              "required": true,
+              "leerMarker": "___"
+            },
+            {
+              "id": "achilles_sono_mm",
+              "typ": "zahl",
+              "label": "Enden-Annäherung bei 30° Plantarflexion",
+              "einheit": "mm",
+              "required": true,
+              "leerMarker": "___"
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Achillessehne "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": Reizlos geschlossene Weichteile. "
+            },
+            {
+              "art": "befund",
+              "id": "achilles_delle",
+              "chip": "Delle über der Sehne",
+              "gruppe": "Palpation",
+              "normal": "Keine tastbare Delle über der Achillessehne. ",
+              "abweichung": "Tastbare Delle über der Achillessehne. "
+            },
+            {
+              "art": "befund",
+              "id": "achilles_thompson",
+              "chip": "Thompson-Test pathologisch",
+              "gruppe": "Funktion",
+              "normal": "Thompson-Test negativ. ",
+              "abweichung": "Thompson-Test pathologisch. "
+            },
+            {
+              "art": "text",
+              "text": "Fußpulse tastbar, periphere Durchblutung, Motorik und Sensibilität intakt. Kein Anhalt für ein Kompartmentsyndrom. Sonographie: Nachweis einer Achillessehnenruptur im Bereich "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "achilles_sono_bereich"
+            },
+            {
+              "art": "text",
+              "text": ", bei 30° Plantarflexion Annäherung der beiden Enden bis auf "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "achilles_sono_mm"
+            },
+            {
+              "art": "text",
+              "text": ", kein größeres Hämatom nachweisbar."
+            }
+          ]
+        },
+        {
+          "id": "achilles-ruptur-proc",
+          "titel": "Achillessehnenruptur – Procedere",
+          "typ": "procedere",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Untersuchung und Beratung, sonographische Untersuchung, ausführliche Aufklärung über die Therapieoptionen (konservativ vs. operativ) und die möglichen Risiken (fehlende Heilung / verbleibende Insuffizienz / Re-Ruptur bei konservativer Therapie; OP-Risiken / Wundheilungsstörung / Infektgefahr bei operativer Therapie), Anlage Vacoped-Achill, Rezeptieren von Unterarmgehstützen und Clexane, Aushändigen des Nachbehandlungskonzeptes."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fuss",
+      "name": "Fuß",
+      "kuerzel": "👣",
+      "bausteine": [
+        {
+          "id": "fuss-untersuchung",
+          "titel": "Fuß – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [
+            {
+              "id": "fuss_schwellung_ort",
+              "typ": "begriff",
+              "label": "Lokalisation der Schwellung",
+              "required": true,
+              "leerMarker": "___"
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Fuß "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": Reizlos geschlossene Weichteile. Keine Wunde. Schwellung über "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "fuss_schwellung_ort"
+            },
+            {
+              "art": "text",
+              "text": " mit lokalem Druckschmerz. Fußpulse tastbar. "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_vorfusskompression",
+              "chip": "Vorfußkompressionsschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Vorfußkompressionsschmerz. ",
+              "abweichung": "Vorfußkompressionsschmerz. "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_ds_calcaneus",
+              "chip": "DS Calcaneus",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Calcaneus. ",
+              "abweichung": "Druckschmerz über dem Calcaneus. "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_thompson",
+              "chip": "Thompson-Test pathologisch",
+              "gruppe": "Funktion",
+              "normal": "Thompson-Test nicht pathologisch. ",
+              "abweichung": "Thompson-Test pathologisch. "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_ds_naviculare",
+              "chip": "DS Os naviculare",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Os naviculare. ",
+              "abweichung": "Druckschmerz über dem Os naviculare. "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_stauchung_zehen",
+              "chip": "Stauchungsschmerz Zehen",
+              "gruppe": "Palpation",
+              "normal": "Kein Stauchungsschmerz der Zehen. ",
+              "abweichung": "Stauchungsschmerz der Zehen. "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_subungual",
+              "chip": "subunguales Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein subunguales Hämatom. ",
+              "abweichung": "Subunguales Hämatom. "
+            },
+            {
+              "art": "text",
+              "text": "Kein Hinweis auf ein Kompartmentsyndrom. Periphere Durchblutung, Motorik und Sensibilität intakt."
+            }
+          ]
+        },
+        {
+          "id": "fuss-proc",
+          "titel": "Fuß – Procedere",
+          "typ": "procedere",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Anamnese, Untersuchung, Beratung, Röntgen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mittelfuss",
+      "name": "Mittelfuß",
+      "kuerzel": "🦶",
+      "bausteine": [
+        {
+          "id": "mittelfuss-untersuchung",
+          "titel": "Mittelfuß – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [
+            {
+              "id": "mittelfuss_schwellung_ort",
+              "typ": "begriff",
+              "label": "Lokalisation der Schwellung",
+              "required": true,
+              "leerMarker": "___"
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Mittelfuß "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": Reizlos geschlossene Weichteile. Keine Wunde, kein subunguales Hämatom. Schwellung über "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "mittelfuss_schwellung_ort"
+            },
+            {
+              "art": "text",
+              "text": " mit lokalem Druckschmerz. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_vorfusskompression",
+              "chip": "Vorfußkompressionsschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Vorfußkompressionsschmerz. ",
+              "abweichung": "Vorfußkompressionsschmerz. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_ds_umgebung",
+              "chip": "DS Schaft/Knöchel/Calcaneus",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Unterschenkelschaft, dem Außen- oder Innenknöchel oder dem Calcaneus. ",
+              "abweichung": "Druckschmerz über dem Unterschenkelschaft, dem Außen- oder Innenknöchel bzw. dem Calcaneus. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_gabel",
+              "chip": "Gabelkompression",
+              "gruppe": "Palpation",
+              "normal": "Kein Gabelkompressionsschmerz. ",
+              "abweichung": "Gabelkompressionsschmerz. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_ds_naviculare",
+              "chip": "DS Os naviculare",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Os naviculare. ",
+              "abweichung": "Druckschmerz über dem Os naviculare. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_stauchung_zehen",
+              "chip": "Stauchungsschmerz Zehen",
+              "gruppe": "Palpation",
+              "normal": "Kein Stauchungsschmerz der Zehen. ",
+              "abweichung": "Stauchungsschmerz der Zehen. "
+            },
+            {
+              "art": "text",
+              "text": "Kein Hinweis auf ein Kompartmentsyndrom. Periphere Durchblutung, Motorik und Sensibilität intakt. Patient ist stehfähig und unter Schmerzen gehfähig."
+            }
+          ]
+        },
+        {
+          "id": "mittelfuss-proc",
+          "titel": "Mittelfuß – Procedere",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "mittelfuss_schuh_wochen",
+              "typ": "zeitraum",
+              "label": "Tragedauer Vorfußentlastungsschuh",
+              "einheit": "Wochen",
+              "default": "4",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Schonung, regelmäßige Hochlagerung und Kühlung. Schmerzadaptierte Vollbelastung im Vorfußentlastungsschuh für "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "mittelfuss_schuh_wochen"
+            },
+            {
+              "art": "text",
+              "text": " empfohlen. Anschließend Tragen einer steifen Sohle im Verlauf, Rezeptierung durch einen niedergelassenen Kollegen oder eine niedergelassene Kollegin. Ambulante klinische Befundkontrollen. Begleitende bedarfsgerechte Analgesie."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zehen",
+      "name": "Zehen",
+      "kuerzel": "🦶",
+      "bausteine": [
+        {
+          "id": "zehen-fraktur-proc",
+          "titel": "Zehenfraktur – Procedere",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "zehen_strahl",
+              "typ": "begriff",
+              "label": "betroffener Strahl (z. B. D1)",
+              "required": true,
+              "leerMarker": "___"
+            },
+            {
+              "id": "zehen_schuh_wochen",
+              "typ": "zeitraum",
+              "label": "Tragedauer Vorfußentlastungsschuh",
+              "einheit": "Wochen",
+              "default": "2–4",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Nicht dislozierte Grundgliedfraktur "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "zehen_strahl"
+            },
+            {
+              "art": "text",
+              "text": ": Schonung, Hochlagerung und Kühlung. Schmerzadaptierte Vollbelastung im Vorfußentlastungsschuh für "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "zehen_schuh_wochen"
+            },
+            {
+              "art": "text",
+              "text": " empfohlen. Anschließend Tragen einer steifen Sohle im Verlauf, Rezeptierung durch einen niedergelassenen Kollegen oder durch eine niedergelassene Kollegin. Ambulante klinische Befundkontrollen. Begleitende bedarfsadaptierte Analgesie."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stapel": [
+    {
+      "id": "stapel-huefte-femur",
+      "name": "Proximale Femurfraktur",
+      "bausteinIds": [
+        "huefte-untersuchung",
+        "huefte-femur-proc"
+      ]
+    },
+    {
+      "id": "stapel-achilles-ruptur",
+      "name": "Achillessehnenruptur",
+      "bausteinIds": [
+        "achilles-untersuchung",
+        "achilles-ruptur-proc"
+      ]
+    },
+    {
+      "id": "stapel-fuss",
+      "name": "Fuß",
+      "bausteinIds": [
+        "fuss-untersuchung",
+        "fuss-proc"
+      ]
+    },
+    {
+      "id": "stapel-mittelfuss",
+      "name": "Mittelfuß",
+      "bausteinIds": [
+        "mittelfuss-untersuchung",
+        "mittelfuss-proc"
+      ]
+    }
+  ]
+}

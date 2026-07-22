@@ -1,0 +1,346 @@
+{
+  "regionen": [
+    {
+      "id": "wirbelsaeule",
+      "name": "Wirbelsäule",
+      "kuerzel": "🦴",
+      "bausteine": [
+        {
+          "id": "ws-rueckenschmerzen-anamnese",
+          "titel": "Rückenschmerzen – Anamnese",
+          "typ": "anamnese",
+          "platzhalter": [
+            {
+              "id": "ws-lokalisation",
+              "typ": "begriff",
+              "label": "Lokalisation der Schmerzen",
+              "required": true
+            },
+            {
+              "id": "ws-zeitraum",
+              "typ": "zeitraum",
+              "label": "Beschwerdedauer",
+              "required": true
+            },
+            {
+              "id": "ws-qualitaet",
+              "typ": "begriff",
+              "label": "Schmerzqualität",
+              "required": true
+            },
+            {
+              "id": "ws-ausstrahlungsort",
+              "typ": "begriff",
+              "label": "Ausstrahlungsort",
+              "required": true
+            },
+            {
+              "id": "ws-schmerzintensitaet",
+              "typ": "zahl",
+              "label": "Schmerzintensität (NRS)",
+              "einheit": "/10",
+              "required": true
+            }
+          ],
+          "segmente": [
+            { "art": "text", "text": "Der Patient wird " },
+            {
+              "art": "auswahl",
+              "id": "ws-vorstellung",
+              "label": "Vorstellung",
+              "default": 0,
+              "optionen": [
+                "in Begleitung des Rettungsdienstes",
+                "in Begleitung des Notarztes",
+                "mit Einweisung"
+              ]
+            },
+            { "art": "text", "text": " vorstellig, mit Rückenschmerzen der " },
+            { "art": "platzhalter", "ref": "ws-lokalisation" },
+            { "art": "text", "text": " seit " },
+            { "art": "platzhalter", "ref": "ws-zeitraum" },
+            { "art": "text", "text": ". Kein vorausgegangenes Trauma. Die Schmerzen seien " },
+            { "art": "platzhalter", "ref": "ws-qualitaet" },
+            { "art": "text", "text": ", " },
+            {
+              "art": "auswahl",
+              "id": "ws-ausstrahlung",
+              "label": "Ausstrahlung",
+              "default": 0,
+              "optionen": [
+                "mit Ausstrahlung in ",
+                "ohne Ausstrahlung"
+              ]
+            },
+            { "art": "platzhalter", "ref": "ws-ausstrahlungsort" },
+            { "art": "text", "text": ". Die Schmerzen seien seit Beginn " },
+            {
+              "art": "auswahl",
+              "id": "ws-verlauf",
+              "label": "Verlauf",
+              "default": 0,
+              "optionen": [
+                "unverändert",
+                "verstärkt",
+                "verringert"
+              ]
+            },
+            { "art": "text", "text": " und " },
+            {
+              "art": "auswahl",
+              "id": "ws-rhythmus",
+              "label": "Zeitliches Muster",
+              "default": 0,
+              "optionen": [
+                "dauernd",
+                "intermittierend",
+                "im Tagesrhythmus"
+              ]
+            },
+            { "art": "text", "text": ". Aktuelle Schmerzintensität " },
+            { "art": "platzhalter", "ref": "ws-schmerzintensitaet" },
+            { "art": "text", "text": " auf der numerischen Schmerzskala. Gutes Allgemeinbefinden. " },
+            {
+              "art": "befund",
+              "id": "ws-bsymptomatik",
+              "chip": "B-Symptomatik",
+              "gruppe": "Red Flags",
+              "normal": "Kein Fieber, kein Schüttelfrost, kein Nachtschweiß, kein Gewichtsverlust. ",
+              "abweichung": "Fieber, Nachtschweiß und/oder Gewichtsverlust angegeben. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-infiltration",
+              "chip": "Infiltration / i.v.-Drogen",
+              "gruppe": "Red Flags",
+              "normal": "Keine vorausgehende Infiltrationsbehandlung, kein i.v. Drogenkonsum. ",
+              "abweichung": "Vorausgegangene Infiltrationsbehandlung oder i.v. Drogenkonsum. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-miktion",
+              "chip": "Blasen-/Mastdarmstörung",
+              "gruppe": "Red Flags",
+              "normal": "Keine Miktions- oder Defäkationsstörungen.",
+              "abweichung": "Miktions- und/oder Defäkationsstörungen."
+            }
+          ]
+        },
+        {
+          "id": "ws-rueckenschmerzen-untersuchung",
+          "titel": "Rückenschmerzen – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            { "art": "text", "text": "Der Patient ist steh- und gehfähig. " },
+            {
+              "art": "befund",
+              "id": "ws-klopfschmerz",
+              "chip": "Klopfschmerz Dornfortsätze",
+              "gruppe": "Palpation",
+              "normal": "Kein Klopfschmerz über den Dornfortsätzen der gesamten Wirbelsäule. ",
+              "abweichung": "Klopfschmerz über den Dornfortsätzen. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-beckenkompression",
+              "chip": "Beckenkompressionsschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Beckenkompressionsschmerz, kein Druckschmerz in der Leiste. ",
+              "abweichung": "Beckenkompressionsschmerz. "
+            },
+            { "art": "text", "text": "Hüfte frei und schmerzfrei beweglich. " },
+            {
+              "art": "befund",
+              "id": "ws-lasegue",
+              "chip": "Lasègue positiv",
+              "gruppe": "Nervendehnung",
+              "normal": "Lasègue-Zeichen negativ. ",
+              "abweichung": "Lasègue-Zeichen positiv. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-bragard",
+              "chip": "Bragard positiv",
+              "gruppe": "Nervendehnung",
+              "normal": "Bragard-Zeichen negativ. ",
+              "abweichung": "Bragard-Zeichen positiv. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-paresen",
+              "chip": "Parese untere Extremität",
+              "gruppe": "Neurologie",
+              "normal": "Keine Paresen, Kraftgrad der Hüftbeuger und -strecker sowie der Kniebeuger und -strecker beidseits uneingeschränkt 5/5. ",
+              "abweichung": "Parese der unteren Extremität. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-fussheber",
+              "chip": "Fußheberparese",
+              "gruppe": "Neurologie",
+              "normal": "Zehenhebung und -senkung uneingeschränkt, insbesondere kein Hinweis auf eine Fußheberparese. Zehenspitzen- und Hackengang möglich. ",
+              "abweichung": "Hinweis auf eine Fußheberparese, Zehenspitzen-/Hackengang eingeschränkt. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-sensibilitaet",
+              "chip": "Sensibilitätsminderung",
+              "gruppe": "Neurologie",
+              "normal": "Keine Sensibilitätsminderung. ",
+              "abweichung": "Sensibilitätsminderung. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-reithose",
+              "chip": "Reithosenanästhesie",
+              "gruppe": "Red Flags",
+              "normal": "Keine Reithosenanästhesie. ",
+              "abweichung": "Reithosenanästhesie. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-blasenmastdarm",
+              "chip": "Blasen-/Mastdarmstörung",
+              "gruppe": "Red Flags",
+              "normal": "Keine Blasen- oder Mastdarmstörung.",
+              "abweichung": "Blasen- und/oder Mastdarmstörung."
+            }
+          ]
+        },
+        {
+          "id": "ws-lumbago-proc",
+          "titel": "Lumbago – Procedere",
+          "typ": "procedere",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Rückenschonendes Verhalten und Rückenschule empfohlen, keine körperliche Schonung. Bedarfsadaptierte Analgesie für eine Woche. Klinische Befundkontrolle bei einem niedergelassenen Kollegen. Bei Beschwerdepersistenz oder -progredienz ist eine weiterführende Diagnostik empfohlen. Sofortige Wiedervorstellung im nächstgelegenen Krankenhaus bei Neuauftreten akuter neurologischer Symptome (z. B. Lähmungserscheinungen, Sensibilitätsstörungen)."
+            }
+          ]
+        },
+        {
+          "id": "ws-lws-prellung-proc",
+          "titel": "LWS-Prellung – Procedere",
+          "typ": "procedere",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Maßnahmen in der ZNA: Untersuchung und Beratung, Analgesie, Handlungsanweisung für zunehmende Beschwerden. Empfehlungen: Befundkontrolle und Weiterbehandlung durch einen niedergelassenen Kollegen. Bei anhaltenden Beschwerden empfehlen wir weiterführende Diagnostik. Sofortige Wiedervorstellung im nächstgelegenen Krankenhaus bei akuten neurologischen Beschwerden."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thorax",
+      "name": "Thorax",
+      "kuerzel": "🫁",
+      "bausteine": [
+        {
+          "id": "thorax-untersuchung",
+          "titel": "Thorax – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "thorax-prellmarken",
+              "chip": "Prellmarke/Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Reizlos geschlossene Weichteile, keine offenen Wunden oder Prellmarken. ",
+              "abweichung": "Prellmarke bzw. Hämatom der Thoraxwand. "
+            },
+            {
+              "art": "befund",
+              "id": "thorax-belueftung",
+              "chip": "Atemgeräusch/Exkursion",
+              "gruppe": "Auskultation",
+              "normal": "Lungen seitengleich belüftet, Atemexkursion seitengleich normal. ",
+              "abweichung": "Abgeschwächtes Atemgeräusch, schmerzbedingt eingeschränkte Atemexkursion. "
+            },
+            {
+              "art": "befund",
+              "id": "thorax-ws-klopf",
+              "chip": "Klopfschmerz BWS",
+              "gruppe": "Wirbelsäule",
+              "normal": "Kein Klopfschmerz über der gesamten Wirbelsäule, insbesondere kein Klopfschmerz über der Brustwirbelsäule. ",
+              "abweichung": "Klopfschmerz über der Brustwirbelsäule. "
+            },
+            {
+              "art": "befund",
+              "id": "thorax-sternum",
+              "chip": "DS Sternum",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Sternum. ",
+              "abweichung": "Druckschmerz über dem Sternum. "
+            },
+            {
+              "art": "befund",
+              "id": "thorax-druckschmerz",
+              "chip": "Thorax druckschmerzhaft",
+              "gruppe": "Palpation",
+              "normal": "Thorax nicht druckschmerzhaft, stabil. ",
+              "abweichung": "Thorax lokal druckschmerzhaft, aber stabil. "
+            },
+            {
+              "art": "befund",
+              "id": "thorax-abdomen",
+              "chip": "Abdomen DS/Abwehrspannung",
+              "gruppe": "Abdomen",
+              "normal": "Bauch weich, ohne Druckschmerz oder Abwehrspannung. ",
+              "abweichung": "Druckschmerz und/oder Abwehrspannung des Abdomens. "
+            },
+            {
+              "art": "befund",
+              "id": "thorax-nierenlager",
+              "chip": "Nierenlagerklopfschmerz",
+              "gruppe": "Abdomen",
+              "normal": "Nierenlager frei. ",
+              "abweichung": "Nierenlagerklopfschmerz. "
+            },
+            {
+              "art": "befund",
+              "id": "thorax-becken",
+              "chip": "Beckeninstabilität",
+              "gruppe": "Becken",
+              "normal": "Becken stabil.",
+              "abweichung": "Beckeninstabilität."
+            }
+          ]
+        },
+        {
+          "id": "thorax-prellung-proc",
+          "titel": "Thoraxprellung – Procedere",
+          "typ": "procedere",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Maßnahmen in der ZNA: Untersuchung und Beratung, Blutentnahme, Urinkontrolle, Sonographie des Abdomens (FAST), Handlungsanweisung für zunehmende Beschwerden. Empfehlungen: Atemtraining zur Pneumonieprophylaxe. Bedarfsgerechte Analgesie. Schonung und Sportkarenz bis zur Beschwerdefreiheit. Bei Dyspnoe oder ausgeprägter Schmerzexazerbation sofortige Vorstellung im nächstgelegenen Krankenhaus. Bei Beschwerdepersistenz oder -progredienz Vorstellung beim niedergelassenen Kollegen und ggf. weitere Diagnostik."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stapel": [
+    {
+      "id": "stapel-lumbago",
+      "name": "Lumbago",
+      "bausteinIds": ["ws-rueckenschmerzen-untersuchung", "ws-lumbago-proc"]
+    },
+    {
+      "id": "stapel-lws-prellung",
+      "name": "LWS-Prellung",
+      "bausteinIds": ["ws-rueckenschmerzen-untersuchung", "ws-lws-prellung-proc"]
+    },
+    {
+      "id": "stapel-thoraxprellung",
+      "name": "Thoraxprellung",
+      "bausteinIds": ["thorax-untersuchung", "thorax-prellung-proc"]
+    }
+  ]
+}

@@ -1,0 +1,962 @@
+{
+  "regionen": [
+    {
+      "id": "handgelenk",
+      "name": "Handgelenk",
+      "kuerzel": "🖐️",
+      "bausteine": [
+        {
+          "id": "hand-untersuchung",
+          "titel": "Handgelenk – Untersuchung (Erwachsener)",
+          "typ": "untersuchung",
+          "platzhalter": [
+            {
+              "id": "hand-us-rom-extflex",
+              "typ": "rom",
+              "label": "Extension/Flexion",
+              "leerMarker": "_/0/_"
+            },
+            {
+              "id": "hand-us-rom-radulnar",
+              "typ": "rom",
+              "label": "Radial-/Ulnardeviation",
+              "leerMarker": "_/0/_"
+            },
+            {
+              "id": "hand-us-rom-prosup",
+              "typ": "rom",
+              "label": "Pronation/Supination",
+              "leerMarker": "_/0/_"
+            }
+          ],
+          "segmente": [
+            { "art": "text", "text": "Handgelenk " },
+            { "art": "seite" },
+            { "art": "text", "text": ": Reizlos geschlossene Weichteile. " },
+            {
+              "art": "befund",
+              "id": "hand-us-entzuendung",
+              "chip": "Rötung/Schwellung/Überwärmung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, keine Schwellung, keine Überwärmung. ",
+              "abweichung": "Rötung, Schwellung und Überwärmung. "
+            },
+            {
+              "art": "befund",
+              "id": "hand-us-ds-styloid",
+              "chip": "DS Proc. styloideus / Handwurzel",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Proc. styloideus radii oder ulnae, der Tabatière oder über der restlichen Handwurzel. ",
+              "abweichung": "Druckschmerz über dem Proc. styloideus radii oder ulnae, der Tabatière oder über der restlichen Handwurzel. "
+            },
+            {
+              "art": "befund",
+              "id": "hand-us-ds-mittelhand",
+              "chip": "DS Mittelhand / Kompression",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über der Mittelhand, kein Mittelhandkompressionsschmerz. ",
+              "abweichung": "Druckschmerz über der Mittelhand, Mittelhandkompressionsschmerz. "
+            },
+            {
+              "art": "befund",
+              "id": "hand-us-ds-langfinger",
+              "chip": "DS Langfinger",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz der Langfinger. ",
+              "abweichung": "Druckschmerz der Langfinger. "
+            },
+            {
+              "art": "befund",
+              "id": "hand-us-stauchung-d1",
+              "chip": "Stauchungsschmerz 1. Strahl",
+              "gruppe": "Palpation",
+              "normal": "Kein Stauchungsschmerz des 1. Strahls. ",
+              "abweichung": "Stauchungsschmerz des 1. Strahls. "
+            },
+            {
+              "art": "text",
+              "text": "Extension, Flexion, Ulnar- und Radialabduktion sowie Pro- und Supination endgradig ohne Schmerzen ausführbar (Extension/Flexion: "
+            },
+            { "art": "platzhalter", "ref": "hand-us-rom-extflex" },
+            { "art": "text", "text": ", Radial-/Ulnardeviation: " },
+            { "art": "platzhalter", "ref": "hand-us-rom-radulnar" },
+            { "art": "text", "text": ", Pronation/Supination: " },
+            { "art": "platzhalter", "ref": "hand-us-rom-prosup" },
+            {
+              "art": "text",
+              "text": "). Periphere Durchblutung, Motorik und Sensibilität intakt, A. radialispuls und A. ulnarispuls tastbar."
+            }
+          ]
+        },
+        {
+          "id": "hand-mittelhandfraktur",
+          "titel": "Mittelhandfraktur – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [
+            {
+              "id": "hand-mhf-knochen",
+              "typ": "begriff",
+              "label": "Mittelhandknochen (Nr., z. B. 2.)",
+              "required": true,
+              "leerMarker": "XXX."
+            },
+            {
+              "id": "hand-mhf-roentgen",
+              "typ": "begriff",
+              "label": "Röntgenbefund Mittelhand in 3 Ebenen",
+              "required": true,
+              "leerMarker": "___"
+            }
+          ],
+          "segmente": [
+            { "art": "text", "text": "Lokale Rötung und Schwellung in Projektion auf den " },
+            { "art": "platzhalter", "ref": "hand-mhf-knochen" },
+            { "art": "text", "text": " Mittelhandknochen, mit lokalem Druckschmerz. Rotationsabweichung des Fingers " },
+            {
+              "art": "auswahl",
+              "id": "hand-mhf-finger",
+              "label": "betroffener Finger",
+              "optionen": ["D1", "D2", "D3", "D4", "D5"]
+            },
+            { "art": "text", "text": " nach " },
+            {
+              "art": "auswahl",
+              "id": "hand-mhf-richtung",
+              "label": "Rotationsrichtung",
+              "optionen": ["radial", "ulnar"]
+            },
+            { "art": "text", "text": " bei Faustschluss. Röntgen Mittelhand in 3 Ebenen: " },
+            { "art": "platzhalter", "ref": "hand-mhf-roentgen" },
+            { "art": "text", "text": "." }
+          ]
+        },
+        {
+          "id": "hand-karpaltunnelsyndrom",
+          "titel": "Karpaltunnelsyndrom – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Sichtbare Atrophie der Thenarmuskulatur mit begleitender Abspreiz- und Oppositionsschwäche. Flaschenzeichen positiv. "
+            },
+            {
+              "art": "befund",
+              "id": "hand-kts-tinel",
+              "chip": "Hoffmann-Tinel positiv",
+              "gruppe": "Provokationstests",
+              "normal": "Hoffmann-Tinel-Zeichen negativ. ",
+              "abweichung": "Hoffmann-Tinel-Zeichen positiv. "
+            },
+            {
+              "art": "befund",
+              "id": "hand-kts-phalen",
+              "chip": "Phalen positiv",
+              "gruppe": "Provokationstests",
+              "normal": "Phalen-Test negativ. ",
+              "abweichung": "Phalen-Test positiv. "
+            },
+            {
+              "art": "befund",
+              "id": "hand-kts-durkan",
+              "chip": "Durkan positiv",
+              "gruppe": "Provokationstests",
+              "normal": "Durkan-Test negativ.",
+              "abweichung": "Durkan-Test positiv."
+            }
+          ]
+        },
+        {
+          "id": "hand-de-quervain",
+          "titel": "Tendovaginitis de Quervain – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Sichtbare Schwellung im Bereich des radialen Handgelenkes, in Projektion auf die Sehnen der Mm. extensor pollicis brevis und abductor pollicis longus, mit lokalem Druckschmerz. Schmerzen bei Bewegungen des Daumens mit Schmerzausstrahlung bis zum Processus styloideus radii / Unterarm, mit palpablem Reiben im Bereich der 1. Sehnenscheide. Schmerzverstärkung beim festen Halten und Greifen. "
+            },
+            {
+              "art": "befund",
+              "id": "hand-dq-finkelstein",
+              "chip": "Finkelstein positiv",
+              "gruppe": "Provokationstests",
+              "normal": "Finkelstein-Test negativ.",
+              "abweichung": "Finkelstein-Test positiv."
+            }
+          ]
+        },
+        {
+          "id": "hand-schnellender-finger",
+          "titel": "Schnellender Finger / Ringbandstenose – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            { "art": "text", "text": "Fixierter Finger in " },
+            {
+              "art": "auswahl",
+              "id": "hand-sf-stellung",
+              "label": "Stellung",
+              "optionen": ["Flexion", "Extension"]
+            },
+            { "art": "text", "text": ". Sichtbare und tastbare Verdickung der Sehne von " },
+            {
+              "art": "auswahl",
+              "id": "hand-sf-finger",
+              "label": "betroffener Finger",
+              "optionen": ["D1", "D2", "D3", "D4", "D5"]
+            },
+            { "art": "text", "text": " mit Druckdolenz über dem A1-Ringband. " },
+            {
+              "art": "befund",
+              "id": "hand-sf-trigger",
+              "chip": "Triggerphänomen",
+              "gruppe": "Funktion",
+              "normal": "Kein Triggerphänomen.",
+              "abweichung": "Sichtbares Triggerphänomen."
+            }
+          ]
+        },
+        {
+          "id": "hand-rhizarthrose",
+          "titel": "Rhizarthrose – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Periartikuläre Weichteilschwellung in Projektion auf das Daumensattelgelenk, Adduktionsfehlstellung / -kontraktur des Os metacarpale. Lokaler Druckschmerz an palmar-radialer Ecke des Daumensattelgelenks. "
+            },
+            {
+              "art": "befund",
+              "id": "hand-rhiz-grind",
+              "chip": "Grind-Test positiv",
+              "gruppe": "Provokationstests",
+              "normal": "Grind-Test negativ. ",
+              "abweichung": "Grind-Test positiv. "
+            },
+            {
+              "art": "text",
+              "text": "Kraft vermindert bei Opposition (z. B. Pinzettengriff) und Drehbewegungen."
+            }
+          ]
+        },
+        {
+          "id": "hand-radiusfraktur-op",
+          "titel": "Distale Radiusfraktur – Procedere (OP)",
+          "typ": "procedere",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Der Patient wurde über die Therapieoptionen (operativ vs. konservativ) und deren Vor- und Nachteile aufgeklärt und wünscht ein operatives Procedere: 1) Ruhigstellung in Unterarmgipsschiene bis auf Weiteres. 2) Kühlung, Schonung, Hochlagern, bedarfsgerechte Analgesie. 3) Wiedervorstellung am Folgetag in der ZNA zur Gipskontrolle und Besprechung des weiteren Procedere. 4) Sofortige Wiedervorstellung bei Komplikationen."
+            }
+          ]
+        },
+        {
+          "id": "hand-radiusfraktur-konservativ",
+          "titel": "Distale Radiusfraktur – Procedere (konservativ)",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "hand-drf-kons-woche1",
+              "typ": "zeitraum",
+              "label": "Ruhigstellung Unterarmgipsschiene",
+              "einheit": "Woche",
+              "default": "1",
+              "required": true
+            },
+            {
+              "id": "hand-drf-kons-woche2",
+              "typ": "zeitraum",
+              "label": "Weiterführung Ruhigstellung (zirkulärer Gips)",
+              "einheit": "Wochen",
+              "default": "5",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Der Patient wurde über die Therapieoptionen (operativ vs. konservativ) und deren Vor- und Nachteile aufgeklärt und wünscht ein konservatives Procedere. Die weitere Behandlung erfolgt daher durch den niedergelassenen Kollegen. 1) Ruhigstellung in Unterarmgipsschiene für "
+            },
+            { "art": "platzhalter", "ref": "hand-drf-kons-woche1" },
+            {
+              "art": "text",
+              "text": ". 2) Kühlung, Schonung, Hochlagern, bedarfsgerechte Analgesie. 3) Hiernach Röntgenkontrolle und Wechsel auf einen zirkulären Gips. 4) Weiterführen der Ruhigstellung für weitere "
+            },
+            { "art": "platzhalter", "ref": "hand-drf-kons-woche2" },
+            { "art": "text", "text": ". 5) Sofortige Wiedervorstellung bei Komplikationen." }
+          ]
+        },
+        {
+          "id": "hand-skaphoidfraktur-konservativ",
+          "titel": "Skaphoidfraktur – Procedere (konservativ)",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "hand-skaph-ct",
+              "typ": "zeitraum",
+              "label": "Verlaufs-CT",
+              "einheit": "Wochen",
+              "default": "9",
+              "required": true
+            },
+            {
+              "id": "hand-skaph-vollbelastung",
+              "typ": "zeitraum",
+              "label": "Vollbelastung frühestens nach",
+              "einheit": "Wochen",
+              "default": "12",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Indikation: Alle stabilen Skaphoidfrakturen können konservativ therapiert werden. Ruhigstellung in anliegender Unterarm-Gipsschiene mit Daumeneinschluss für "
+            },
+            {
+              "art": "auswahl",
+              "id": "hand-skaph-dauer",
+              "label": "Ruhigstellungsdauer",
+              "optionen": ["4 Wochen (A1-Frakturen)", "6–8 Wochen (A2-Frakturen)"],
+              "default": 0
+            },
+            { "art": "text", "text": ". Bedarfsgerechte Analgesie. Verlaufs-CT in " },
+            { "art": "platzhalter", "ref": "hand-skaph-ct" },
+            {
+              "art": "text",
+              "text": ", davon abhängig wird über einen Bewegungsaufbau unter physio- und ergotherapeutischer Anleitung entschieden. Vollbelastung frühestens nach "
+            },
+            { "art": "platzhalter", "ref": "hand-skaph-vollbelastung" },
+            { "art": "text", "text": "." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mittelhand",
+      "name": "Mittelhand",
+      "kuerzel": "✋",
+      "bausteine": [
+        {
+          "id": "mittelhand-untersuchung",
+          "titel": "Mittelhand – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            { "art": "text", "text": "Mittelhand " },
+            { "art": "seite" },
+            { "art": "text", "text": ": " },
+            {
+              "art": "befund",
+              "id": "mittelhand-us-bewegung",
+              "chip": "schmerzhafte Bewegungseinschränkung",
+              "gruppe": "Beweglichkeit",
+              "normal": "Freie, schmerzfreie Beweglichkeit. ",
+              "abweichung": "Schmerzhafte Bewegungseinschränkung. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelhand-us-entzuendung",
+              "chip": "Rötung/Schwellung/Infektzeichen",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, keine Schwellung, keine Infektzeichen. ",
+              "abweichung": "Rötung, Schwellung und Infektzeichen. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelhand-us-ds-tabatiere",
+              "chip": "DS Tabatière",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über der Tabatière. ",
+              "abweichung": "Druckschmerz über der Tabatière. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelhand-us-ds-handwurzel",
+              "chip": "DS restliche Handwurzel",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über der restlichen Handwurzel. ",
+              "abweichung": "Druckschmerz über der restlichen Handwurzel. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelhand-us-kompression",
+              "chip": "Mittelhandkompressionsschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Mittelhandkompressionsschmerz. ",
+              "abweichung": "Mittelhandkompressionsschmerz. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelhand-us-fehlstellung",
+              "chip": "Fehlstellung MCP-Köpfchen",
+              "gruppe": "Inspektion",
+              "normal": "Keine Fehlstellung der MCP-Köpfchen sichtbar. ",
+              "abweichung": "Fehlstellung der MCP-Köpfchen sichtbar. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelhand-us-rotation",
+              "chip": "Rotationsfehlstellung Langfinger",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rotationsfehlstellung der Langfinger im Vergleich zur gesunden Gegenseite. ",
+              "abweichung": "Rotationsfehlstellung der Langfinger im Vergleich zur gesunden Gegenseite. "
+            },
+            {
+              "art": "text",
+              "text": "Periphere Durchblutung, Motorik und Sensibilität intakt, A. radialispuls und A. ulnarispuls tastbar. 2-Punkt-Diskriminierung aller Langfinger < 5 mm."
+            }
+          ]
+        },
+        {
+          "id": "mittelhand-mhk-fraktur-konservativ",
+          "titel": "MHK-Fraktur – Procedere (konservativ)",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "mhk-kons-gips",
+              "typ": "zeitraum",
+              "label": "Intrinsic-Plus-Gipsschiene mit Buddy-Tape",
+              "einheit": "Wochen",
+              "default": "3",
+              "required": true
+            },
+            {
+              "id": "mhk-kons-buddy",
+              "typ": "zeitraum",
+              "label": "Buddy-Tape nach Gipsabnahme",
+              "einheit": "Wochen",
+              "default": "3",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Ausführliche Aufklärung des Patienten über den Befund und die Therapiemöglichkeiten erfolgt. Generell ist bei mehrfragmentären Schaftfrakturen des Grundgliedes eine operative Versorgung zu empfehlen. Aufgrund der nicht-dislozierten Stellung ist in diesem Fall aber auch ein konservatives Procedere möglich. Dieses wünscht der Patient. 1) Ruhigstellung in Intrinsic-Plus-Gipsschiene mit Buddy-Tape für "
+            },
+            { "art": "platzhalter", "ref": "mhk-kons-gips" },
+            { "art": "text", "text": ". 2) Nach Gipsabnahme weitere " },
+            { "art": "platzhalter", "ref": "mhk-kons-buddy" },
+            {
+              "art": "text",
+              "text": " Buddy-Tape. 3) Initial regelmäßige Röntgenkontrollen zur Kontrolle der Stellung. 4) Kühlung, Schonung, Hochlagern. 5) Bedarfsgerechte Analgesie."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "finger",
+      "name": "Finger",
+      "kuerzel": "👆",
+      "bausteine": [
+        {
+          "id": "finger-untersuchung",
+          "titel": "Finger – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "finger-us-strahl",
+              "label": "betroffener Finger",
+              "optionen": ["D1", "D2", "D3", "D4", "D5"],
+              "default": 1
+            },
+            { "art": "text", "text": " " },
+            { "art": "seite" },
+            { "art": "text", "text": ": Reizlos geschlossene Weichteile, keine Wunden. " },
+            {
+              "art": "befund",
+              "id": "finger-us-subungual",
+              "chip": "subunguales Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein subunguales Hämatom. ",
+              "abweichung": "Subunguales Hämatom. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-us-achse",
+              "chip": "Rotations-/Achsabweichung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rotations- oder Achsabweichung des Fingers. ",
+              "abweichung": "Rotations- oder Achsabweichung des Fingers. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-us-entzuendung",
+              "chip": "Schwellung/Rötung/Überwärmung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung, keine Rötung, keine Überwärmung. ",
+              "abweichung": "Schwellung, Rötung und Überwärmung. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-us-ds-phalanx",
+              "chip": "DS Phalanx",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über der Phalanx proximalis, medialis oder distalis. ",
+              "abweichung": "Druckschmerz über der Phalanx proximalis, medialis oder distalis. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-us-ds-gelenk",
+              "chip": "DS MCP/PIP/DIP",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem MCP-, PIP- oder DIP-Gelenk. ",
+              "abweichung": "Druckschmerz über dem MCP-, PIP- oder DIP-Gelenk. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-us-seitenband",
+              "chip": "Seitenbandinstabilität",
+              "gruppe": "Stabilität",
+              "normal": "Seitenbandführung im proximalen und distalen Interphalangealgelenk stabil. ",
+              "abweichung": "Seitenbandführung im proximalen und distalen Interphalangealgelenk instabil. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-us-bewegung",
+              "chip": "schmerzhafte Bewegungseinschränkung",
+              "gruppe": "Beweglichkeit",
+              "normal": "Freie, schmerzfreie Beweglichkeit. ",
+              "abweichung": "Schmerzhafte Bewegungseinschränkung. "
+            },
+            {
+              "art": "auswahl",
+              "id": "finger-us-richtung",
+              "label": "eingeschränkte Bewegungsrichtung",
+              "optionen": ["", "Insbesondere die Beugung ist schmerzbedingt eingeschränkt. ", "Insbesondere die Streckung ist schmerzbedingt eingeschränkt. "],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": "Beugung mittels oberflächlicher und tiefer Beugesehnen kraftvoll gegen Widerstand möglich, Streckung im PIP und DIP kraftvoll möglich. Periphere Durchblutung, Motorik und Sensibilität intakt."
+            }
+          ]
+        },
+        {
+          "id": "finger-daumen-untersuchung",
+          "titel": "Daumen – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            { "art": "text", "text": "Daumen (D1) " },
+            { "art": "seite" },
+            { "art": "text", "text": ": " },
+            {
+              "art": "befund",
+              "id": "daumen-us-bewegung",
+              "chip": "schmerzhafte Bewegungseinschränkung",
+              "gruppe": "Beweglichkeit",
+              "normal": "Freie, schmerzfreie Beweglichkeit. ",
+              "abweichung": "Schmerzhafte Bewegungseinschränkung. "
+            },
+            {
+              "art": "befund",
+              "id": "daumen-us-schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung. ",
+              "abweichung": "Schwellung. "
+            },
+            {
+              "art": "befund",
+              "id": "daumen-us-seitenband",
+              "chip": "Seitenbandinstabilität",
+              "gruppe": "Stabilität",
+              "normal": "Ulnare und radiale Seitenbandführung stabil. ",
+              "abweichung": "Ulnare oder radiale Seitenbandführung instabil. "
+            },
+            {
+              "art": "text",
+              "text": "Endgelenk und Grundgelenk kraftvoll beuge- und streckfähig. 2-Punkt-Diskriminierung < 5 mm. "
+            },
+            {
+              "art": "befund",
+              "id": "daumen-us-subungual",
+              "chip": "subunguales Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein subunguales Hämatom. ",
+              "abweichung": "Subunguales Hämatom. "
+            },
+            {
+              "art": "befund",
+              "id": "daumen-us-ds-sattelgelenk",
+              "chip": "DS Daumensattelgelenk",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Daumensattelgelenk. ",
+              "abweichung": "Druckschmerz über dem Daumensattelgelenk. "
+            },
+            {
+              "art": "befund",
+              "id": "daumen-us-entzuendung",
+              "chip": "Rötung/Überwärmung/Infektzeichen",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, keine Überwärmung, keine Infektzeichen.",
+              "abweichung": "Rötung, Überwärmung und Infektzeichen."
+            }
+          ]
+        },
+        {
+          "id": "finger-strecksehnenruptur-proc",
+          "titel": "Strecksehnenruptur (ohne knöchernen Ausriss) – Procedere",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "finger-ssr-zone",
+              "typ": "begriff",
+              "label": "Zone",
+              "default": "1",
+              "required": true
+            },
+            {
+              "id": "finger-ssr-schiene",
+              "typ": "zeitraum",
+              "label": "Stack-Schiene 24 h/täglich",
+              "einheit": "Wochen",
+              "default": "8",
+              "required": true
+            },
+            {
+              "id": "finger-ssr-abtrainieren",
+              "typ": "zeitraum",
+              "label": "Abtrainieren der Schiene (nur nachts)",
+              "einheit": "Wochen",
+              "default": "4",
+              "required": true
+            }
+          ],
+          "segmente": [
+            { "art": "text", "text": "Strecksehnenruptur " },
+            {
+              "art": "auswahl",
+              "id": "finger-ssr-strahl",
+              "label": "betroffener Finger",
+              "optionen": ["D1", "D2", "D3", "D4", "D5"],
+              "default": 4
+            },
+            { "art": "text", "text": " " },
+            { "art": "seite" },
+            { "art": "text", "text": " (Zone " },
+            { "art": "platzhalter", "ref": "finger-ssr-zone" },
+            { "art": "text", "text": "). Konsequentes Tragen der anliegenden Stack-Schiene für " },
+            { "art": "platzhalter", "ref": "finger-ssr-schiene" },
+            { "art": "text", "text": " 24 h/täglich, anschließend Abtrainieren der Schiene (z. B. Tragen nur nachts) für weitere " },
+            { "art": "platzhalter", "ref": "finger-ssr-abtrainieren" },
+            {
+              "art": "text",
+              "text": ". Konsequentes Beibehalten der Streckung während der Weichteilpflege; der Patient wurde entsprechend instruiert und das Abnehmen der Schiene wurde demonstriert. Bedarfsgerechte Analgesie. Weiterbehandlung durch den niedergelassenen Kollegen. Wiedervorstellung in unserer Handsprechstunde nach vorheriger telefonischer Terminvereinbarung bei nicht erfolgreicher konservativer Therapie."
+            }
+          ]
+        },
+        {
+          "id": "finger-palmare-platte-proc",
+          "titel": "Knöcherner Ausriss palmare Platte – Procedere",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "finger-pp-kontrolle",
+              "typ": "zeitraum",
+              "label": "Befund-/Röntgenkontrolle beim Niedergelassenen",
+              "einheit": "Tagen",
+              "default": "7",
+              "required": true
+            },
+            {
+              "id": "finger-pp-ruhig",
+              "typ": "zeitraum",
+              "label": "Ruhigstellung Stack-Schiene",
+              "einheit": "Tage",
+              "default": "5",
+              "required": true
+            }
+          ],
+          "segmente": [
+            { "art": "text", "text": "V. a. knöchernen Ausriss der palmaren Platte Mittelglied-Basis " },
+            {
+              "art": "auswahl",
+              "id": "finger-pp-strahl",
+              "label": "betroffener Finger",
+              "optionen": ["D1", "D2", "D3", "D4", "D5"]
+            },
+            { "art": "text", "text": " " },
+            { "art": "seite" },
+            { "art": "text", "text": ", Beteiligung von " },
+            {
+              "art": "auswahl",
+              "id": "finger-pp-beteiligung",
+              "label": "Beteiligung der Gelenkfläche",
+              "optionen": ["< 30 %", "30–50 %", "> 50 %"]
+            },
+            {
+              "art": "text",
+              "text": " der Gelenkfläche. Röntgenkontrolle nach Anlage der PIP-Stack-Schiene: gute Anlagerung des Fragmentes. Befund- und Röntgenkontrolle beim niedergelassenen Kollegen nach "
+            },
+            { "art": "platzhalter", "ref": "finger-pp-kontrolle" },
+            { "art": "text", "text": ". Ruhigstellung in Stack-Schiene für " },
+            { "art": "platzhalter", "ref": "finger-pp-ruhig" },
+            {
+              "art": "text",
+              "text": ". Anschließend nach klinisch-radiologischer Befundkontrolle Bewegungsfreigabe im Buddy-Tape zur aktiven funktionellen Nachbehandlung. Bedarfsgerechte Analgesie. Weiterbehandlung durch den niedergelassenen Kollegen."
+            }
+          ]
+        },
+        {
+          "id": "finger-skidaumen-proc",
+          "titel": "Skidaumen – Procedere",
+          "typ": "procedere",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Zum Ausschluss einer Stener-Läsion ist eine MRT-Untersuchung des Daumens empfohlen; diese wurde durch uns angemeldet. Nach Durchführung bitten wir um Wiedervorstellung in unserer Sprechstunde zur Planung des weiteren Procedere. Bis dahin Ruhigstellung in Grundgelenks-Fixationsschiene und bedarfsgerechte Analgesie."
+            }
+          ]
+        },
+        {
+          "id": "finger-nagelkranzfraktur-proc",
+          "titel": "Nagelkranzfraktur – Procedere",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "finger-nagelkranz-ruhig",
+              "typ": "zeitraum",
+              "label": "Ruhigstellung Stack-Schiene",
+              "einheit": "Wochen",
+              "default": "2",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Entlastung des subungualen Hämatoms unter sterilen Kautelen, steriler Wundverband, Anlage einer Stack-Schiene, Auffrischung des Tetanusschutzes. Regelmäßige Befundkontrollen beim niedergelassenen Durchgangsarzt / Kollegen, Kühlung, Schonung, Hochlagerung. Ruhigstellung mittels Stack-Schiene für "
+            },
+            { "art": "platzhalter", "ref": "finger-nagelkranz-ruhig" },
+            {
+              "art": "text",
+              "text": ". Bei Befundverschlechterung sofortige Wiedervorstellung. Bei Beschwerdepersistenz ggf. weitere Diagnostik."
+            }
+          ]
+        },
+        {
+          "id": "finger-panaritium-proc",
+          "titel": "Panaritium – Untersuchung und Procedere",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "finger-pan-kontrolle",
+              "typ": "zeitraum",
+              "label": "Kontrolle beim Hausarzt",
+              "einheit": "Tagen",
+              "default": "2",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "finger-pan-strahl",
+              "label": "betroffener Finger",
+              "optionen": ["D1", "D2", "D3", "D4", "D5"],
+              "default": 1
+            },
+            { "art": "text", "text": " " },
+            { "art": "seite" },
+            {
+              "art": "text",
+              "text": ": Schwellung und Rötung im Bereich des radialseitigen Nagelwalles. Röntgen: kein Fremdkörper, kein Anhalt für Osteitis. Nach 15-minütiger Desinfektion in einem Octenisept-Bad erfolgt eine Spaltung des Panaritium am Punctum maximum; es entleert sich seröse Flüssigkeit und minimal Eiter. Procedere: keine Antibiose. Kühlung und Schonung. Wund- und Befundkontrollen beim niedergelassenen Kollegen; unmittelbare Wiedervorstellung bei klinischen Zeichen einer progredienten Infektion. 3× tägliches Fingerbad in Octenisept über 10–15 Minuten (Rezeptierung Octenisept 250 ml). Kontrolle beim Hausarzt in "
+            },
+            { "art": "platzhalter", "ref": "finger-pan-kontrolle" },
+            { "art": "text", "text": "." }
+          ]
+        },
+        {
+          "id": "finger-fingerdistorsion",
+          "titel": "Fingerdistorsion – Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "finger-dist-strahl",
+              "label": "betroffener Finger",
+              "optionen": ["D1", "D2", "D3", "D4", "D5"],
+              "default": 1
+            },
+            { "art": "text", "text": " " },
+            { "art": "seite" },
+            { "art": "text", "text": ": " },
+            {
+              "art": "befund",
+              "id": "finger-dist-haematom",
+              "chip": "Hämatom / subunguales Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Keine Hämatomverfärbung, kein subunguales Hämatom. ",
+              "abweichung": "Hämatomverfärbung und subunguales Hämatom. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-dist-entzuendung",
+              "chip": "Schwellung/Rötung/Überwärmung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung, Rötung oder Überwärmung. ",
+              "abweichung": "Schwellung, Rötung und Überwärmung. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-dist-ds-gelenk",
+              "chip": "DS MCP/PIP/DIP",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem MCP-, PIP- oder DIP-Gelenk. ",
+              "abweichung": "Druckschmerz über dem MCP-, PIP- oder DIP-Gelenk. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-dist-ds-phalanx",
+              "chip": "DS Phalanx",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz der Grund-, Mittel- oder Endphalanx. ",
+              "abweichung": "Druckschmerz der Grund-, Mittel- oder Endphalanx. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-dist-seitenband",
+              "chip": "Seitenbandinstabilität",
+              "gruppe": "Stabilität",
+              "normal": "Seitenbandführung im proximalen und distalen Interphalangealgelenk stabil. ",
+              "abweichung": "Seitenbandführung im proximalen und distalen Interphalangealgelenk instabil. "
+            },
+            {
+              "art": "text",
+              "text": "Beugung mittels oberflächlicher und tiefer Beugesehnen kraftvoll gegen Widerstand möglich, Streckung im PIP und DIP kraftvoll möglich. 2-Punkt-Diskriminierung < 5 mm. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-dist-bewegung",
+              "chip": "schmerzhafte Bewegungseinschränkung",
+              "gruppe": "Beweglichkeit",
+              "normal": "Freie, schmerzfreie Beweglichkeit. ",
+              "abweichung": "Schmerzhafte Bewegungseinschränkung. "
+            },
+            {
+              "art": "text",
+              "text": "Periphere Durchblutung, Motorik und Sensibilität intakt."
+            }
+          ]
+        },
+        {
+          "id": "finger-schnittverletzung-d1-proc",
+          "titel": "Schnittverletzung D1 / Okklusivverband – Procedere",
+          "typ": "procedere",
+          "platzhalter": [
+            {
+              "id": "finger-schnitt-antibiose",
+              "typ": "zeitraum",
+              "label": "Antibiose Unacid PD 375 mg 1-0-1",
+              "einheit": "Tage",
+              "default": "3",
+              "required": true
+            }
+          ],
+          "segmente": [
+            { "art": "text", "text": "Schnittverletzung D1 " },
+            { "art": "seite" },
+            {
+              "art": "text",
+              "text": " mit knöcherner Avulsion des radialseitigen Endgliedes. Wundexploration unter sterilen Kautelen: nach Applikation einer mit Adrenalin getränkten Kompresse Blutstillung möglich, Anlage eines Okklusiv- und Spatelverbandes. Regelmäßige Befundkontrollen und Weiterbehandlung beim niedergelassenen Kollegen. Hochlagerung, Kühlung und Schonung. Belassen des Okklusiv-Verbandes initial bis zur ersten Wundkontrolle, dann wöchentlicher Wechsel. Antibiose mittels Unacid PD 375 mg oral 1-0-1 für "
+            },
+            { "art": "platzhalter", "ref": "finger-schnitt-antibiose" },
+            { "art": "text", "text": ". Bedarfsgerechte Analgesie." }
+          ]
+        },
+        {
+          "id": "finger-verbrennung-hand-proc",
+          "titel": "Verbrennung (Hand) – Procedere",
+          "typ": "procedere",
+          "platzhalter": [],
+          "segmente": [
+            { "art": "text", "text": "Verbrennungen Grad IIa der Fingerkuppen " },
+            { "art": "seite" },
+            {
+              "art": "text",
+              "text": ". Keine perifokale Rötung, Überwärmung oder Schwellung, keine fortgeleiteten Entzündungszeichen. Ausgiebige Wunddesinfektion und Anlage eines Lavanid-Handschuhs. Wund- und Befundkontrolle beim niedergelassenen D-Arzt, die nächste am Folgetag. Fortführung der Lavanid-Behandlung mit konsequenter Bewegung der Langfinger empfohlen. Bedarfsgerechte Analgesie. Unmittelbare Wiedervorstellung bei klinischen Zeichen einer Infektion."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stapel": [
+    {
+      "id": "stapel-radiusfraktur-konservativ",
+      "name": "Distale Radiusfraktur konservativ",
+      "bausteinIds": ["hand-untersuchung", "hand-radiusfraktur-konservativ"]
+    },
+    {
+      "id": "stapel-radiusfraktur-op",
+      "name": "Distale Radiusfraktur OP",
+      "bausteinIds": ["hand-untersuchung", "hand-radiusfraktur-op"]
+    },
+    {
+      "id": "stapel-skaphoidfraktur-konservativ",
+      "name": "Skaphoidfraktur konservativ",
+      "bausteinIds": ["hand-untersuchung", "hand-skaphoidfraktur-konservativ"]
+    },
+    {
+      "id": "stapel-karpaltunnelsyndrom",
+      "name": "Karpaltunnelsyndrom",
+      "bausteinIds": ["hand-untersuchung", "hand-karpaltunnelsyndrom"]
+    },
+    {
+      "id": "stapel-mhk-fraktur-konservativ",
+      "name": "MHK-Fraktur konservativ",
+      "bausteinIds": ["hand-mittelhandfraktur", "mittelhand-untersuchung", "mittelhand-mhk-fraktur-konservativ"]
+    },
+    {
+      "id": "stapel-strecksehnenruptur",
+      "name": "Strecksehnenruptur (Mallet)",
+      "bausteinIds": ["finger-untersuchung", "finger-strecksehnenruptur-proc"]
+    },
+    {
+      "id": "stapel-palmare-platte",
+      "name": "Knöcherner Ausriss palmare Platte",
+      "bausteinIds": ["finger-untersuchung", "finger-palmare-platte-proc"]
+    },
+    {
+      "id": "stapel-skidaumen",
+      "name": "Skidaumen",
+      "bausteinIds": ["finger-daumen-untersuchung", "finger-skidaumen-proc"]
+    },
+    {
+      "id": "stapel-nagelkranzfraktur",
+      "name": "Nagelkranzfraktur",
+      "bausteinIds": ["finger-untersuchung", "finger-nagelkranzfraktur-proc"]
+    },
+    {
+      "id": "stapel-panaritium",
+      "name": "Panaritium",
+      "bausteinIds": ["finger-panaritium-proc"]
+    },
+    {
+      "id": "stapel-fingerdistorsion",
+      "name": "Fingerdistorsion",
+      "bausteinIds": ["finger-fingerdistorsion"]
+    },
+    {
+      "id": "stapel-schnittverletzung-d1",
+      "name": "Schnittverletzung D1",
+      "bausteinIds": ["finger-untersuchung", "finger-schnittverletzung-d1-proc"]
+    },
+    {
+      "id": "stapel-verbrennung-hand",
+      "name": "Verbrennung Hand",
+      "bausteinIds": ["finger-untersuchung", "finger-verbrennung-hand-proc"]
+    }
+  ]
+}

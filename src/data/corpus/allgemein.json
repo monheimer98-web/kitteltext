@@ -1,0 +1,801 @@
+{
+  "regionen": [
+    {
+      "id": "allgemeinbefund",
+      "name": "Allgemeinbefund",
+      "kuerzel": "🩺",
+      "bausteine": [
+        {
+          "id": "allg-allgemein",
+          "titel": "Allgemeiner Befund",
+          "typ": "untersuchung",
+          "platzhalter": [
+            {
+              "id": "allg_groesse",
+              "typ": "zahl",
+              "label": "Größe",
+              "einheit": "cm",
+              "required": true
+            },
+            {
+              "id": "allg_gewicht",
+              "typ": "zahl",
+              "label": "Gewicht",
+              "einheit": "kg",
+              "required": true
+            },
+            {
+              "id": "allg_bmi",
+              "typ": "zahl",
+              "label": "BMI",
+              "einheit": "kg/m²",
+              "required": true
+            },
+            {
+              "id": "allg_temp",
+              "typ": "zahl",
+              "label": "Temperatur",
+              "einheit": "°C",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "allg_bewusstsein",
+              "chip": "Intubiert/sediert",
+              "gruppe": "Bewusstsein",
+              "normal": "Patient wach, ansprechbar und zu allen vier Qualitäten orientiert. ",
+              "abweichung": "Patient intubiert und sediert. "
+            },
+            {
+              "art": "text",
+              "text": "Altersentsprechend guter Allgemein- und Ernährungszustand bei einer Größe von "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "allg_groesse"
+            },
+            {
+              "art": "text",
+              "text": " und einem Gewicht von "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "allg_gewicht"
+            },
+            {
+              "art": "text",
+              "text": " (BMI "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "allg_bmi"
+            },
+            {
+              "art": "text",
+              "text": "). Guter Pflegezustand. Kein Fieber (Temperatur "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "allg_temp"
+            },
+            {
+              "art": "text",
+              "text": ")."
+            }
+          ]
+        },
+        {
+          "id": "allg-haut",
+          "titel": "Haut/Schleimhaut",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Normaler Hautturgor, normales Hautkolorit, nicht ikterisch, kein Sklerenikterus. "
+            },
+            {
+              "art": "befund",
+              "id": "haut_zyanose",
+              "chip": "Zyanose",
+              "gruppe": "Haut",
+              "normal": "Keine Zyanose. ",
+              "abweichung": "Zyanose. "
+            },
+            {
+              "art": "befund",
+              "id": "haut_narben",
+              "chip": "Narben",
+              "gruppe": "Haut",
+              "normal": "Keine Narben. ",
+              "abweichung": "Narben (Punktionsnarben). "
+            },
+            {
+              "art": "befund",
+              "id": "haut_blutung",
+              "chip": "Blutungszeichen",
+              "gruppe": "Haut",
+              "normal": "Keine Blutungszeichen (Hämatome, Petechien). ",
+              "abweichung": "Blutungszeichen (Hämatome, Petechien). "
+            },
+            {
+              "art": "befund",
+              "id": "haut_efflor",
+              "chip": "Effloreszenzen",
+              "gruppe": "Haut",
+              "normal": "Keine Effloreszenzen. ",
+              "abweichung": "Effloreszenzen. "
+            },
+            {
+              "art": "text",
+              "text": "Körperbehaarung altersentsprechend unauffällig. "
+            },
+            {
+              "art": "befund",
+              "id": "haut_leberhaut",
+              "chip": "Leberhautzeichen",
+              "gruppe": "Haut",
+              "normal": "Keine Leberhautzeichen. ",
+              "abweichung": "Leberhautzeichen vorhanden. "
+            },
+            {
+              "art": "text",
+              "text": "Mamma inspektorisch beidseits unauffällig. Keine Seitendifferenz. "
+            },
+            {
+              "art": "befund",
+              "id": "haut_mamille",
+              "chip": "Mamillenretraktion",
+              "gruppe": "Mamma",
+              "normal": "Keine Mamillenretraktion oder -sekretion. ",
+              "abweichung": "Mamillenretraktion oder -sekretion. "
+            },
+            {
+              "art": "text",
+              "text": "Kein Plateau-Phänomen. Jackson-Test negativ."
+            }
+          ]
+        },
+        {
+          "id": "allg-kopf",
+          "titel": "Kopf/Hals",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Pupillen beidseits rund, mittelweit und isokor bei prompter direkter und indirekter Lichtreaktion. Die Fingerfolgebewegungen sind glatt, es tritt kein Nystagmus auf. "
+            },
+            {
+              "art": "befund",
+              "id": "kopf_brille",
+              "chip": "Brillenträger",
+              "gruppe": "Visus",
+              "normal": "Kein Brillenträger. ",
+              "abweichung": "Patient ist Brillenträger. "
+            },
+            {
+              "art": "befund",
+              "id": "kopf_hoeren",
+              "chip": "Presbyakusis",
+              "gruppe": "Gehör",
+              "normal": "Normakusis beidseits. ",
+              "abweichung": "Presbyakusis beidseits. "
+            },
+            {
+              "art": "text",
+              "text": "Rachenring und Tonsillen reizlos. Zunge und Schleimhäute nicht belegt, normal feucht und reizlos. "
+            },
+            {
+              "art": "auswahl",
+              "id": "kopf_zahnstatus",
+              "label": "Zahnstatus",
+              "default": 0,
+              "optionen": [
+                "Zahnstatus altersentsprechend unauffällig. ",
+                "Zahnstatus marode. "
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kopf_prothese",
+              "chip": "Prothese",
+              "gruppe": "Gebiss",
+              "normal": "Eigenbezahnung ohne Prothese. ",
+              "abweichung": "Gebiss saniert bei Prothese. "
+            },
+            {
+              "art": "befund",
+              "id": "kopf_foetor",
+              "chip": "Foetor",
+              "gruppe": "Mund",
+              "normal": "Kein Foetor. ",
+              "abweichung": "Foetor. "
+            },
+            {
+              "art": "text",
+              "text": "Schädelkalotte stabil. Sinus frontalis und maxillaris sowie Nervenaustrittspunkte nicht druck- oder klopfschmerzhaft. Schilddrüse klinisch von normaler Konsistenz und Größe und ohne tastbare Knoten. Normale Schluckverschieblichkeit. Kein Schwirren. "
+            },
+            {
+              "art": "befund",
+              "id": "kopf_lymphknoten",
+              "chip": "Lymphknoten vergrößert",
+              "gruppe": "Lymphknoten",
+              "normal": "Zervikal, axillär, nuchal, prä- und retroaurikulär, submandibulär, entlang des M. sternocleidomastoideus sowie inguinal keine vergrößerten Lymphknoten palpabel.",
+              "abweichung": "Vergrößerte Lymphknoten palpabel."
+            }
+          ]
+        },
+        {
+          "id": "allg-pulmo",
+          "titel": "Pulmo",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "pulmo_uhrglas",
+              "chip": "Uhrglasnägel/Trommelschlägelfinger",
+              "gruppe": "Inspektion",
+              "normal": "Keine Uhrglasnägel oder Trommelschlägelfinger. ",
+              "abweichung": "Uhrglasnägel und Trommelschlägelfinger. "
+            },
+            {
+              "art": "text",
+              "text": "Thoraxform unauffällig (kein Fassthorax, keine Kachexie). Atmung normofrequent (15–20 Atemzüge/min). Atemexkursion symmetrisch bei normalen Atemphasen. Kein Einsatz der Atemhilfsmuskulatur. Über ventralen und dorsalen Lungenabschnitten jeweils seitengleich sonorer Klopfschall. Inspiratorische Atemverschieblichkeit der basalen Lungengrenzen seitengleich um ca. 5 cm. "
+            },
+            {
+              "art": "befund",
+              "id": "pulmo_atemgeraeusch",
+              "chip": "pathologisches Atemgeräusch",
+              "gruppe": "Auskultation",
+              "normal": "Über ventralen und dorsalen Lungenabschnitten vesikuläres Atemgeräusch seitengleich. ",
+              "abweichung": "Feuchte Rasselgeräusche über den Lungenabschnitten. "
+            },
+            {
+              "art": "text",
+              "text": "Recessus beidseits ohne pathologischen Befund. "
+            },
+            {
+              "art": "befund",
+              "id": "pulmo_nebengeraeusch",
+              "chip": "Nebengeräusche",
+              "gruppe": "Auskultation",
+              "normal": "Keine Nebengeräusche. ",
+              "abweichung": "Nebengeräusche (feuchte Rasselgeräusche, Giemen/Brummen, Pleurareiben, Knarren). "
+            },
+            {
+              "art": "text",
+              "text": "Inspiration und Exspiration nicht verkürzt oder verlängert."
+            }
+          ]
+        },
+        {
+          "id": "allg-cor",
+          "titel": "Cor",
+          "typ": "untersuchung",
+          "platzhalter": [
+            {
+              "id": "cor_hf",
+              "typ": "zahl",
+              "label": "Herzfrequenz",
+              "einheit": "/min",
+              "required": true
+            },
+            {
+              "id": "cor_rr_re_sys",
+              "typ": "zahl",
+              "label": "RR rechter Arm systolisch",
+              "required": true
+            },
+            {
+              "id": "cor_rr_re_dia",
+              "typ": "zahl",
+              "label": "RR rechter Arm diastolisch",
+              "einheit": "mmHg",
+              "required": true
+            },
+            {
+              "id": "cor_rr_li_sys",
+              "typ": "zahl",
+              "label": "RR linker Arm systolisch",
+              "required": true
+            },
+            {
+              "id": "cor_rr_li_dia",
+              "typ": "zahl",
+              "label": "RR linker Arm diastolisch",
+              "einheit": "mmHg",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "cor_stauung",
+              "chip": "Halsvenenstauung/Ödeme",
+              "gruppe": "Rechtsherz",
+              "normal": "Keine Halsvenenstauung, keine peripheren Ödeme. ",
+              "abweichung": "Halsvenenstauung und periphere Ödeme. "
+            },
+            {
+              "art": "text",
+              "text": "Herzspitzenstoß im 5. ICR medioclaviculär links tastbar, nicht hebend oder verbreitert. Herztöne leise, normofrequent, rein und rhythmisch. Keine Herzgeräusche. Kein Pulsdefizit. Keine Strömungsgeräusche über den Karotiden beidseits, keine Fortleitung in die Axilla. Herzfrequenz "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "cor_hf"
+            },
+            {
+              "art": "text",
+              "text": ", Blutdruck rechter Arm "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "cor_rr_re_sys"
+            },
+            {
+              "art": "text",
+              "text": "/"
+            },
+            {
+              "art": "platzhalter",
+              "ref": "cor_rr_re_dia"
+            },
+            {
+              "art": "text",
+              "text": ", linker Arm "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "cor_rr_li_sys"
+            },
+            {
+              "art": "text",
+              "text": "/"
+            },
+            {
+              "art": "platzhalter",
+              "ref": "cor_rr_li_dia"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "allg-puls",
+          "titel": "Pulsstatus",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Periphere Pulse der A. carotis, A. subclavia, A. axillaris, A. brachialis, A. radialis, A. ulnaris, A. femoralis, A. poplitea, A. tibialis posterior sowie A. dorsalis pedis beidseits seitengleich tastbar. Extremitäten "
+            },
+            {
+              "art": "auswahl",
+              "id": "puls_temperatur",
+              "label": "Extremitäten",
+              "default": 0,
+              "optionen": [
+                "warm",
+                "kalt",
+                "blass"
+              ]
+            },
+            {
+              "art": "text",
+              "text": ". Rekapillarisierungszeit nicht verlängert. Allen-Test beidseits negativ. "
+            },
+            {
+              "art": "befund",
+              "id": "puls_varikosis",
+              "chip": "Varikosis",
+              "gruppe": "Venen",
+              "normal": "Keine Varikosis.",
+              "abweichung": "Varikosis vorhanden."
+            }
+          ]
+        },
+        {
+          "id": "allg-abdomen",
+          "titel": "Abdomen",
+          "typ": "untersuchung",
+          "platzhalter": [
+            {
+              "id": "abd_leber",
+              "typ": "zahl",
+              "label": "Leber unterhalb Rippenbogen",
+              "einheit": "cm",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Abdomen inspektorisch unauffällig, keine Hernien, keine Striae, kein Ikterus oder portokavale Umgehungskreisläufe. Kein Grey-Turner- oder Cullen-Zeichen. "
+            },
+            {
+              "art": "befund",
+              "id": "abd_peristaltik",
+              "chip": "Peristaltik vermindert",
+              "gruppe": "Auskultation",
+              "normal": "Lebhafte Peristaltik über allen vier Quadranten auskultatorisch. ",
+              "abweichung": "Spärliche Peristaltik über allen vier Quadranten. "
+            },
+            {
+              "art": "text",
+              "text": "Perkussion "
+            },
+            {
+              "art": "auswahl",
+              "id": "abd_klopfschall",
+              "label": "Perkussion",
+              "default": 0,
+              "optionen": [
+                "tympanitischer Klopfschall",
+                "Schenkelschall"
+              ]
+            },
+            {
+              "art": "text",
+              "text": ". "
+            },
+            {
+              "art": "befund",
+              "id": "abd_palpation",
+              "chip": "Abwehrspannung/Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Abdomen weich, kein Druckschmerz, kein Peritonismus, keine Abwehrspannung, keine Resistenzen, kein Aszites. ",
+              "abweichung": "Abdomen druckschmerzhaft mit Abwehrspannung und Peritonismus. "
+            },
+            {
+              "art": "text",
+              "text": "Leber ca. "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "abd_leber"
+            },
+            {
+              "art": "text",
+              "text": " unterhalb des Rippenbogens medioklavikulär palpabel. Milz nicht palpabel. "
+            },
+            {
+              "art": "befund",
+              "id": "abd_appendizitis",
+              "chip": "Appendizitiszeichen positiv",
+              "gruppe": "Appendizitis",
+              "normal": "Appendizitiszeichen (McBurney-Punkt, Lanz-Punkt, Blumberg-Zeichen, Rovsing-Zeichen, Psoas-Zeichen) negativ. Courvoisier-Zeichen und Murphy-Zeichen negativ. ",
+              "abweichung": "Appendizitiszeichen positiv. "
+            },
+            {
+              "art": "text",
+              "text": "Unauffällige rektale Untersuchung: kein palpabler Tumor, Sphinktertonus "
+            },
+            {
+              "art": "auswahl",
+              "id": "abd_sphinkter",
+              "label": "Sphinktertonus",
+              "default": 0,
+              "optionen": [
+                "normal",
+                "erhöht",
+                "vermindert"
+              ]
+            },
+            {
+              "art": "text",
+              "text": ", kein Blut, Stuhl oder Schleim am Fingerling. Douglasraum nicht schmerzhaft, keine Fissuren, Fisteln, Hämorrhoiden oder Abszesse. Prostata "
+            },
+            {
+              "art": "auswahl",
+              "id": "abd_prostata",
+              "label": "Prostata",
+              "default": 0,
+              "optionen": [
+                "normal",
+                "vergrößert",
+                "glatt",
+                "höckerig",
+                "verhärtet"
+              ]
+            },
+            {
+              "art": "text",
+              "text": ". Nierenlager nicht klopfschmerzhaft."
+            }
+          ]
+        },
+        {
+          "id": "allg-we",
+          "titel": "Wirbelsäule & Extremitäten",
+          "typ": "untersuchung",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "we_dornfortsatz",
+              "chip": "DS Dornfortsätze",
+              "gruppe": "Wirbelsäule",
+              "normal": "Wirbelsäule lotgerecht. Schulter- und Beckengeradstand. Keine Hyperlordose oder Hyperkyphose. Keine Skoliose. Kein Druck- oder Klopfschmerz über den Dornfortsätzen. ",
+              "abweichung": "Druck- und Klopfschmerz über den Dornfortsätzen. "
+            },
+            {
+              "art": "text",
+              "text": "HWS im üblichen Bewegungsumfang frei beweglich. Inklination und Reklination der LWS nicht schmerzhaft eingeschränkt. Ott- und Schober-Maß regelrecht. Finger-Boden-Abstand und Kinn-Jugulum-Abstand regelrecht. "
+            },
+            {
+              "art": "befund",
+              "id": "we_extremitaeten",
+              "chip": "Deformität/Atrophie",
+              "gruppe": "Extremitäten",
+              "normal": "Inspektorisch keine Deformitäten oder Atrophien der Extremitäten. Alle großen Gelenke inspektorisch und palpatorisch unauffällig sowie in ihren altersentsprechenden Bewegungsumfängen schmerzfrei. ",
+              "abweichung": "Deformitäten und Atrophien der Extremitäten. "
+            },
+            {
+              "art": "text",
+              "text": "Obere Extremität: Gaenslen-Handgriff nicht schmerzhaft, Schürzen- und Nackengriff unauffällig. Untere Extremität: Mennell-Zeichen negativ, Kreuzbänder intakt, Menisken nicht schmerzhaft. Keine periphere Zyanose, Rekapillarisierungszeit regelrecht (< 2 Sekunden). Kein Hinweis auf Hypoxie in Form von Uhrglasnägeln oder Trommelschlägelfingern."
+            }
+          ]
+        },
+        {
+          "id": "allg-neuro",
+          "titel": "Orientierende neurologische Untersuchung",
+          "typ": "untersuchung",
+          "platzhalter": [
+            {
+              "id": "neuro_vibration",
+              "typ": "zahl",
+              "label": "Vibrationssinn (Rydel-Seiffer)",
+              "einheit": "/8",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "neuro_defizit",
+              "chip": "fokales Defizit",
+              "gruppe": "Orientierung",
+              "normal": "Patient wach, ansprechbar, zu allen vier Qualitäten orientiert. Grob orientierend kein Hinweis auf ein fokal neurologisches Defizit. ",
+              "abweichung": "Fokal neurologisches Defizit. "
+            },
+            {
+              "art": "text",
+              "text": "Kein Meningismus. Lasègue und Bragard negativ. Hirnnerven unauffällig. "
+            },
+            {
+              "art": "befund",
+              "id": "neuro_motorik",
+              "chip": "Tonus/Kraft pathologisch",
+              "gruppe": "Motorik",
+              "normal": "Motorik: Muskeltonus regelrecht und seitengleich, keine Spastik, kein Rigor, kein Tremor, keine Atrophie. Kraftgrade an den Extremitäten 5/5. ",
+              "abweichung": "Motorik: pathologischer Muskeltonus, Kraftminderung. "
+            },
+            {
+              "art": "text",
+              "text": "Muskeleigenreflexe: Bizepssehnenreflex, Trizepssehnenreflex, Patellasehnenreflex und Achillessehnenreflex seitengleich mittellebhaft auslösbar, keine verbreiterten Reflexzonen. "
+            },
+            {
+              "art": "befund",
+              "id": "neuro_babinski",
+              "chip": "Babinski positiv",
+              "gruppe": "Reflexe",
+              "normal": "Babinski-Zeichen beidseits negativ. ",
+              "abweichung": "Babinski-Zeichen positiv. "
+            },
+            {
+              "art": "text",
+              "text": "Sensibilität: Oberflächensensibilität seitengleich erhalten. Lagesinn und Vibrationssinn unauffällig ("
+            },
+            {
+              "art": "platzhalter",
+              "ref": "neuro_vibration"
+            },
+            {
+              "art": "text",
+              "text": "). Keine Dysästhesie. Koordination: Gangbild unauffällig. Finger-Nase- und Knie-Hacke-Versuch unauffällig. Romberg-Stehversuch und Unterberger-Tretversuch regelrecht. Trendelenburg-Zeichen negativ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "body-check",
+      "name": "Body-Check",
+      "kuerzel": "🚑",
+      "bausteine": [
+        {
+          "id": "bc-abcde",
+          "titel": "Body-Check (ABCDE)",
+          "typ": "befund",
+          "platzhalter": [
+            {
+              "id": "bc_af",
+              "typ": "zahl",
+              "label": "Atemfrequenz",
+              "einheit": "/min",
+              "required": true
+            },
+            {
+              "id": "bc_spo2",
+              "typ": "zahl",
+              "label": "SpO2",
+              "einheit": "%",
+              "required": true
+            },
+            {
+              "id": "bc_rr",
+              "typ": "zahl",
+              "label": "Blutdruck",
+              "einheit": "mmHg",
+              "required": true
+            },
+            {
+              "id": "bc_hf",
+              "typ": "zahl",
+              "label": "Herzfrequenz",
+              "einheit": "/min",
+              "required": true
+            },
+            {
+              "id": "bc_bz",
+              "typ": "zahl",
+              "label": "Blutzucker",
+              "einheit": "mg/dl",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "bc_a_atemweg",
+              "chip": "Atemweg verlegt",
+              "gruppe": "A – Airway",
+              "normal": "A – Atemwege frei, Stabilisierung der HWS mittels Cervikalstütze. Patient antwortet auf Fragen. Kein Giemen, Schnarchen oder Pfeifen. ",
+              "abweichung": "A – Atemweg verlegt, Atemwegssicherung erforderlich. "
+            },
+            {
+              "art": "text",
+              "text": "B – Patient atmet selbstständig, regelmäßige AF von "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "bc_af"
+            },
+            {
+              "art": "text",
+              "text": ". Vesikuläres Atemgeräusch beidseits, Thorax stabil, SpO2 "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "bc_spo2"
+            },
+            {
+              "art": "text",
+              "text": " unter 10 L O₂/min über Maske. C – RR "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "bc_rr"
+            },
+            {
+              "art": "text",
+              "text": ", HF "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "bc_hf"
+            },
+            {
+              "art": "text",
+              "text": ", Rekapillarisierungszeit 2 Sekunden, periphere Pulse kräftig palpabel, Normotonie, Haut kühl und trocken, keine Blutungen. Thorax, Becken und proximale Extremitäten stabil, FAST ohne pathologischen Befund. D – GCS 15. Patient wach, ansprechbar, 4-fach orientiert. Pupillen isokor, mittelweit, seitengleich und prompt lichtreagibel. BZ "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "bc_bz"
+            },
+            {
+              "art": "text",
+              "text": ". E – Normothermie, Tetanusschutz aktuell. "
+            },
+            {
+              "art": "befund",
+              "id": "bc_schaedel",
+              "chip": "Schädelverletzung",
+              "gruppe": "Ausführlich – Schädel",
+              "normal": "Keine Riss-Quetsch-Wunden, Prellmarken oder Hämatome des Schädels. Keine Deformitäten oder tastbare Stufen des Schädels. Kein Flüssigkeitsaustritt aus Mund, Nase oder Ohren. Kein knöcherner Druckschmerz im Bereich der HWS. ",
+              "abweichung": "Verletzungszeichen am Schädel. "
+            },
+            {
+              "art": "befund",
+              "id": "bc_rumpf",
+              "chip": "Rumpf instabil",
+              "gruppe": "Ausführlich – Rumpf",
+              "normal": "Thorax und Becken stabil. Abdomen weich. ",
+              "abweichung": "Thorax/Becken instabil, Abdomen abwehrgespannt. "
+            },
+            {
+              "art": "befund",
+              "id": "bc_extremitaeten",
+              "chip": "Extremitätenverletzung",
+              "gruppe": "Ausführlich – Extremitäten",
+              "normal": "Keine sichtbaren Deformitäten der oberen und unteren Extremitäten. Keine aktiven Blutungen, keine offenen Wunden, keine Prellmarken. Keine tastbaren Stufen oder Krepitationen. Kein Druckschmerz im Bereich des Schultergürtels, der Ellenbogengelenke, Handgelenke oder Hände. Kein Druckschmerz der Hüftgelenke, Kniegelenke, oberen Sprunggelenke und Füße. Keine Druckschmerzen der Langknochen. Orientierende Untersuchung der peripheren Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "Verletzungszeichen an den Extremitäten. "
+            },
+            {
+              "art": "befund",
+              "id": "bc_wirbelsaeule",
+              "chip": "Wirbelsäulenverletzung",
+              "gruppe": "Ausführlich – Wirbelsäule",
+              "normal": "Keine offenen Verletzungen oder tastbaren Stufen über der gesamten Wirbelsäule. Kein Druck- oder Klopfschmerz. Analsphinktertonus regelrecht.",
+              "abweichung": "Verletzungszeichen der Wirbelsäule."
+            }
+          ]
+        },
+        {
+          "id": "bc-fast",
+          "titel": "FAST-Sono",
+          "typ": "befund",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "fast_perikard",
+              "chip": "Perikard-/Pleuraerguss",
+              "gruppe": "FAST",
+              "normal": "FAST-Sono: Kein Hinweis auf Perikard- oder Pleuraerguss. ",
+              "abweichung": "Perikard-/Pleuraerguss nachweisbar. "
+            },
+            {
+              "art": "befund",
+              "id": "fast_morison",
+              "chip": "freie Flüssigkeit Morison",
+              "gruppe": "FAST",
+              "normal": "Keine freie Flüssigkeit im Morison-Pouch und Koller-Pouch. ",
+              "abweichung": "Freie Flüssigkeit im Morison-/Koller-Pouch. "
+            },
+            {
+              "art": "befund",
+              "id": "fast_douglas",
+              "chip": "freie Flüssigkeit Douglas",
+              "gruppe": "FAST",
+              "normal": "Keine freie Flüssigkeit im Douglas-/Proust-Raum.",
+              "abweichung": "Freie Flüssigkeit im Douglas-/Proust-Raum."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "stapel": [
+    {
+      "id": "stapel-ganzkoerper",
+      "name": "Ganzkörper-Normalbefund",
+      "bausteinIds": [
+        "allg-allgemein",
+        "allg-haut",
+        "allg-kopf",
+        "allg-pulmo",
+        "allg-cor",
+        "allg-puls",
+        "allg-abdomen",
+        "allg-we",
+        "allg-neuro"
+      ]
+    },
+    {
+      "id": "stapel-bodycheck",
+      "name": "Body-Check (Trauma)",
+      "bausteinIds": [
+        "bc-abcde",
+        "bc-fast"
+      ]
+    }
+  ]
+}
