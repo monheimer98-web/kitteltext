@@ -102,22 +102,30 @@ export function App() {
     );
   }
 
-  switch (screen.value) {
-    case "gate":
-      return <SeitenGate />;
-    case "composer":
-      return <Composer />;
-    case "review":
-      return <Review />;
-    case "uebergabe":
-      return <Uebergabe />;
-    case "settings":
-      return <Settings />;
-    case "editor":
-      return <Editor />;
-    case "pc-empfang":
-      return <PcEmpfang />;
-    default:
-      return <Home />;
-  }
+  const inhalt = () => {
+    switch (screen.value) {
+      case "gate":
+        return <SeitenGate />;
+      case "composer":
+        return <Composer />;
+      case "review":
+        return <Review />;
+      case "uebergabe":
+        return <Uebergabe />;
+      case "settings":
+        return <Settings />;
+      case "editor":
+        return <Editor />;
+      case "pc-empfang":
+        return <PcEmpfang />;
+      default:
+        return <Home />;
+    }
+  };
+  // key = screen -> frischer Mount pro Screen -> Einblend-Animation
+  return (
+    <div class="screen" key={screen.value}>
+      {inhalt()}
+    </div>
+  );
 }

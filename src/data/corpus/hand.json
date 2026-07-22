@@ -63,8 +63,12 @@
               "abweichung": "Stauchungsschmerz des 1. Strahls. "
             },
             {
-              "art": "text",
-              "text": "Extension, Flexion, Ulnar- und Radialabduktion sowie Pro- und Supination endgradig ohne Schmerzen ausführbar. "
+              "art": "befund",
+              "id": "hand-us-rom-schmerz",
+              "chip": "Bewegung schmerzhaft/eingeschränkt",
+              "gruppe": "Beweglichkeit",
+              "normal": "Extension, Flexion, Ulnar- und Radialabduktion sowie Pro- und Supination endgradig ohne Schmerzen ausführbar. ",
+              "abweichung": "Extension, Flexion, Ulnar- und Radialabduktion sowie Pro- und Supination schmerzhaft eingeschränkt. "
             },
             {
               "art": "messwert",
@@ -91,8 +95,20 @@
               "normal": "90/0/90"
             },
             {
-              "art": "text",
-              "text": "Periphere Durchblutung, Motorik und Sensibilität intakt, A. radialispuls und A. ulnarispuls tastbar."
+              "art": "befund",
+              "id": "hand-us-pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt, ",
+              "abweichung": "Periphere Durchblutung, Motorik und/oder Sensibilität gestört, "
+            },
+            {
+              "art": "befund",
+              "id": "hand-us-puls",
+              "chip": "Puls nicht tastbar",
+              "gruppe": "pDMS",
+              "normal": "A. radialispuls und A. ulnarispuls tastbar.",
+              "abweichung": "A. radialispuls und/oder A. ulnarispuls nicht tastbar."
             }
           ]
         },
@@ -494,8 +510,28 @@
               "abweichung": "Rotationsfehlstellung der Langfinger im Vergleich zur gesunden Gegenseite. "
             },
             {
-              "art": "text",
-              "text": "Periphere Durchblutung, Motorik und Sensibilität intakt, A. radialispuls und A. ulnarispuls tastbar. 2-Punkt-Diskriminierung aller Langfinger < 5 mm."
+              "art": "befund",
+              "id": "mittelhand-us-pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt, ",
+              "abweichung": "Periphere Durchblutung, Motorik und/oder Sensibilität gestört, "
+            },
+            {
+              "art": "befund",
+              "id": "mittelhand-us-puls",
+              "chip": "Puls nicht tastbar",
+              "gruppe": "pDMS",
+              "normal": "A. radialispuls und A. ulnarispuls tastbar. ",
+              "abweichung": "A. radialispuls und/oder A. ulnarispuls nicht tastbar. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelhand-us-2pd",
+              "chip": "2-PD vermindert",
+              "gruppe": "pDMS",
+              "normal": "2-Punkt-Diskriminierung aller Langfinger < 5 mm.",
+              "abweichung": "2-Punkt-Diskriminierung aller Langfinger vermindert (> 5 mm)."
             }
           ]
         },
@@ -649,8 +685,28 @@
               "default": 0
             },
             {
-              "art": "text",
-              "text": "Beugung mittels oberflächlicher und tiefer Beugesehnen kraftvoll gegen Widerstand möglich, Streckung im PIP und DIP kraftvoll möglich. Periphere Durchblutung, Motorik und Sensibilität intakt."
+              "art": "befund",
+              "id": "finger-us-beugesehnen",
+              "chip": "Beugesehnenfunktion eingeschränkt",
+              "gruppe": "Funktion",
+              "normal": "Beugung mittels oberflächlicher und tiefer Beugesehnen kraftvoll gegen Widerstand möglich, ",
+              "abweichung": "Beugung mittels oberflächlicher und/oder tiefer Beugesehnen abgeschwächt, "
+            },
+            {
+              "art": "befund",
+              "id": "finger-us-strecksehnen",
+              "chip": "Strecksehnenfunktion eingeschränkt",
+              "gruppe": "Funktion",
+              "normal": "Streckung im PIP und DIP kraftvoll möglich. ",
+              "abweichung": "Streckung im PIP und/oder DIP nicht kraftvoll möglich. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-us-pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt.",
+              "abweichung": "Periphere Durchblutung, Motorik und/oder Sensibilität gestört."
             }
           ]
         },
@@ -696,8 +752,20 @@
               "abweichung": "Ulnare oder radiale Seitenbandführung instabil. "
             },
             {
-              "art": "text",
-              "text": "Endgelenk und Grundgelenk kraftvoll beuge- und streckfähig. 2-Punkt-Diskriminierung < 5 mm. "
+              "art": "befund",
+              "id": "daumen-us-funktion",
+              "chip": "Beuge-/Streckfunktion eingeschränkt",
+              "gruppe": "Funktion",
+              "normal": "Endgelenk und Grundgelenk kraftvoll beuge- und streckfähig. ",
+              "abweichung": "Endgelenk und/oder Grundgelenk abgeschwächt beuge-/streckfähig. "
+            },
+            {
+              "art": "befund",
+              "id": "daumen-us-2pd",
+              "chip": "2-PD vermindert",
+              "gruppe": "pDMS",
+              "normal": "2-Punkt-Diskriminierung < 5 mm. ",
+              "abweichung": "2-Punkt-Diskriminierung vermindert (> 5 mm). "
             },
             {
               "art": "befund",
@@ -1052,8 +1120,28 @@
               "abweichung": "Seitenbandführung im proximalen und distalen Interphalangealgelenk instabil. "
             },
             {
-              "art": "text",
-              "text": "Beugung mittels oberflächlicher und tiefer Beugesehnen kraftvoll gegen Widerstand möglich, Streckung im PIP und DIP kraftvoll möglich. 2-Punkt-Diskriminierung < 5 mm. "
+              "art": "befund",
+              "id": "finger-dist-beugesehnen",
+              "chip": "Beugesehnenfunktion eingeschränkt",
+              "gruppe": "Funktion",
+              "normal": "Beugung mittels oberflächlicher und tiefer Beugesehnen kraftvoll gegen Widerstand möglich, ",
+              "abweichung": "Beugung mittels oberflächlicher und/oder tiefer Beugesehnen abgeschwächt, "
+            },
+            {
+              "art": "befund",
+              "id": "finger-dist-strecksehnen",
+              "chip": "Strecksehnenfunktion eingeschränkt",
+              "gruppe": "Funktion",
+              "normal": "Streckung im PIP und DIP kraftvoll möglich. ",
+              "abweichung": "Streckung im PIP und/oder DIP nicht kraftvoll möglich. "
+            },
+            {
+              "art": "befund",
+              "id": "finger-dist-2pd",
+              "chip": "2-PD vermindert",
+              "gruppe": "pDMS",
+              "normal": "2-Punkt-Diskriminierung < 5 mm. ",
+              "abweichung": "2-Punkt-Diskriminierung vermindert (> 5 mm). "
             },
             {
               "art": "befund",
@@ -1064,8 +1152,12 @@
               "abweichung": "Schmerzhafte Bewegungseinschränkung. "
             },
             {
-              "art": "text",
-              "text": "Periphere Durchblutung, Motorik und Sensibilität intakt."
+              "art": "befund",
+              "id": "finger-dist-pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt.",
+              "abweichung": "Periphere Durchblutung, Motorik und/oder Sensibilität gestört."
             }
           ]
         },

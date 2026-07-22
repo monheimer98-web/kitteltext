@@ -77,7 +77,19 @@
             },
             {
               "art": "text",
-              "text": ". Kein vorausgegangenes Trauma. Die Schmerzen seien "
+              "text": ". "
+            },
+            {
+              "art": "befund",
+              "id": "ws-anam-trauma",
+              "chip": "Trauma",
+              "gruppe": "Unfallmechanismus",
+              "normal": "Kein vorausgegangenes Trauma. ",
+              "abweichung": "Vorausgegangenes Trauma. "
+            },
+            {
+              "art": "text",
+              "text": "Die Schmerzen seien "
             },
             {
               "art": "platzhalter",
@@ -141,7 +153,15 @@
             },
             {
               "art": "text",
-              "text": " auf der numerischen Schmerzskala. Gutes Allgemeinbefinden. "
+              "text": " auf der numerischen Schmerzskala. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-anam-az",
+              "chip": "Reduziertes Allgemeinbefinden",
+              "gruppe": "Allgemeinzustand",
+              "normal": "Gutes Allgemeinbefinden. ",
+              "abweichung": "Reduziertes Allgemeinbefinden. "
             },
             {
               "art": "befund",
@@ -176,8 +196,12 @@
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Der Patient ist steh- und gehfähig. "
+              "art": "befund",
+              "id": "ws-stehgehfaehig",
+              "chip": "Steh-/Gehunfähigkeit",
+              "gruppe": "Funktion",
+              "normal": "Der Patient ist steh- und gehfähig. ",
+              "abweichung": "Der Patient ist nicht steh- und gehfähig. "
             },
             {
               "art": "befund",
@@ -196,8 +220,12 @@
               "abweichung": "Beckenkompressionsschmerz. "
             },
             {
-              "art": "text",
-              "text": "Hüfte frei und schmerzfrei beweglich. "
+              "art": "befund",
+              "id": "ws-huefte",
+              "chip": "Hüfte schmerzhaft/eingeschränkt",
+              "gruppe": "Hüfte",
+              "normal": "Hüfte frei und schmerzfrei beweglich. ",
+              "abweichung": "Hüfte schmerzhaft und/oder bewegungseingeschränkt. "
             },
             {
               "art": "befund",

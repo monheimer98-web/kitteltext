@@ -103,8 +103,20 @@
               "abweichung": "Außenrotation abgeschwächt. "
             },
             {
-              "art": "text",
-              "text": "M. deltoideus, M. biceps brachii und M. triceps brachii kraftvoll einsetzbar. Periphere Durchblutung, Motorik und Sensibilität intakt."
+              "art": "befund",
+              "id": "schulter-kraft-muskeln",
+              "chip": "Muskulatur abgeschwächt",
+              "gruppe": "Funktion",
+              "normal": "M. deltoideus, M. biceps brachii und M. triceps brachii kraftvoll einsetzbar. ",
+              "abweichung": "M. deltoideus, M. biceps brachii oder M. triceps brachii abgeschwächt. "
+            },
+            {
+              "art": "befund",
+              "id": "schulter-pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt.",
+              "abweichung": "Periphere Durchblutung, Motorik oder Sensibilität gestört."
             }
           ]
         },
@@ -150,8 +162,52 @@
               "leer": "_/0/_"
             },
             {
-              "art": "text",
-              "text": "Lift-off-Test (M. subscapularis) kraftvoll, Jobe-Test (M. supraspinatus) kraftvoll. Kein Druckschmerz an den Ansatzpunkten der proximalen Bizepssehne. M. biceps brachii kraftvoll einsetzbar, M. triceps brachii kraftvoll einsetzbar. Periphere Durchblutung, Motorik und Sensibilität intakt. Schürzen- und Nackengriff sind möglich."
+              "art": "befund",
+              "id": "schulter-knapp-liftoff",
+              "chip": "Lift-off positiv",
+              "gruppe": "Tests",
+              "normal": "Lift-off-Test (M. subscapularis) kraftvoll. ",
+              "abweichung": "Lift-off-Test (M. subscapularis) abgeschwächt. "
+            },
+            {
+              "art": "befund",
+              "id": "schulter-knapp-jobe",
+              "chip": "Jobe positiv",
+              "gruppe": "Tests",
+              "normal": "Jobe-Test (M. supraspinatus) kraftvoll. ",
+              "abweichung": "Jobe-Test (M. supraspinatus) abgeschwächt. "
+            },
+            {
+              "art": "befund",
+              "id": "schulter-knapp-ds-bizeps",
+              "chip": "DS proximale Bizepssehne",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz an den Ansatzpunkten der proximalen Bizepssehne. ",
+              "abweichung": "Druckschmerz an den Ansatzpunkten der proximalen Bizepssehne. "
+            },
+            {
+              "art": "befund",
+              "id": "schulter-knapp-kraft-muskeln",
+              "chip": "Muskulatur abgeschwächt",
+              "gruppe": "Funktion",
+              "normal": "M. biceps brachii und M. triceps brachii kraftvoll einsetzbar. ",
+              "abweichung": "M. biceps brachii oder M. triceps brachii abgeschwächt. "
+            },
+            {
+              "art": "befund",
+              "id": "schulter-knapp-pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "Periphere Durchblutung, Motorik oder Sensibilität gestört. "
+            },
+            {
+              "art": "befund",
+              "id": "schulter-knapp-griffe",
+              "chip": "Schürzen-/Nackengriff eingeschränkt",
+              "gruppe": "Funktion",
+              "normal": "Schürzen- und Nackengriff sind möglich.",
+              "abweichung": "Schürzen- und Nackengriff schmerzhaft eingeschränkt."
             }
           ]
         },
@@ -254,8 +310,12 @@
               "abweichung": "Druckschmerz über dem Oberarmschaft, dem Epicondylus lateralis und medialis humeri, dem Olecranon, dem Radiuskopf oder dem Unterarmschaft. "
             },
             {
-              "art": "text",
-              "text": "Ellenbogengelenk endgradig ohne Schmerzen beweglich. "
+              "art": "befund",
+              "id": "ellb-bewegung",
+              "chip": "Bewegung schmerzhaft eingeschränkt",
+              "gruppe": "Beweglichkeit",
+              "normal": "Ellenbogengelenk endgradig ohne Schmerzen beweglich. ",
+              "abweichung": "Ellenbogengelenk schmerzhaft eingeschränkt beweglich. "
             },
             {
               "art": "messwert",
@@ -282,8 +342,12 @@
               "abweichung": "Instabilität im Bereich des Gelenkes. "
             },
             {
-              "art": "text",
-              "text": "Periphere Durchblutung, Motorik und Sensibilität regelrecht."
+              "art": "befund",
+              "id": "ellb-pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität regelrecht.",
+              "abweichung": "Periphere Durchblutung, Motorik oder Sensibilität gestört."
             }
           ]
         },
@@ -302,7 +366,23 @@
             },
             {
               "art": "text",
-              "text": ": Reizlos geschlossene Weichteile, keine offenen Wunden oder Prellmarken. ROM Handgelenk und Ellenbogen frei und schmerzfrei. Keine Bandinstabilität. "
+              "text": ": Reizlos geschlossene Weichteile, keine offenen Wunden oder Prellmarken. "
+            },
+            {
+              "art": "befund",
+              "id": "ellb-epi-rom",
+              "chip": "ROM eingeschränkt",
+              "gruppe": "Funktion",
+              "normal": "ROM Handgelenk und Ellenbogen frei und schmerzfrei. ",
+              "abweichung": "ROM Handgelenk und Ellenbogen schmerzhaft eingeschränkt. "
+            },
+            {
+              "art": "befund",
+              "id": "ellb-epi-instabil",
+              "chip": "Bandinstabilität",
+              "gruppe": "Stabilität",
+              "normal": "Keine Bandinstabilität. ",
+              "abweichung": "Bandinstabilität. "
             },
             {
               "art": "befund",
@@ -329,8 +409,20 @@
               "abweichung": "Druckschmerz im Verlauf der Strecksehnen. "
             },
             {
-              "art": "text",
-              "text": "Kein Druckschmerz über dem distalen Radius und der distalen Ulna. Kein knöcherner Druckschmerz. "
+              "art": "befund",
+              "id": "ellb-epi-ds-distal",
+              "chip": "DS distaler Radius/Ulna",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem distalen Radius und der distalen Ulna. ",
+              "abweichung": "Druckschmerz über dem distalen Radius und der distalen Ulna. "
+            },
+            {
+              "art": "befund",
+              "id": "ellb-epi-ds-knoechern",
+              "chip": "knöcherner Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein knöcherner Druckschmerz. ",
+              "abweichung": "Knöcherner Druckschmerz. "
             },
             {
               "art": "befund",
@@ -341,8 +433,12 @@
               "abweichung": "Cozen-Test positiv, inverser Cozen-Test negativ. "
             },
             {
-              "art": "text",
-              "text": "Periphere Durchblutung, Motorik und Sensibilität regelrecht."
+              "art": "befund",
+              "id": "ellb-epi-pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität regelrecht.",
+              "abweichung": "Periphere Durchblutung, Motorik oder Sensibilität gestört."
             }
           ]
         },
@@ -397,7 +493,19 @@
             },
             {
               "art": "text",
-              "text": ": Reizlos geschlossene Weichteile, kein Hämatom, keine Schwellung. Kein Druckschmerz über dem Oberarm- und Unterarmschaft, kein Druckschmerz über dem Epicondylus radialis und ulnaris. Schmerzhafte Bewegungseinschränkung bei Schonhaltung in Pronationsstellung. Schulter und Handgelenk frei. Keine lokalen oder fortgeleiteten Entzündungszeichen. Kein knöcherner Druckschmerz. pDMS intakt. Nach Reposition freie und schmerzfreie Beweglichkeit, kein knöcherner Druckschmerz, Ellenbogengelenk stabil. Keine weiteren Beschwerden, subjektives Wohlbefinden."
+              "text": ": Reizlos geschlossene Weichteile, kein Hämatom, keine Schwellung. Kein Druckschmerz über dem Oberarm- und Unterarmschaft, kein Druckschmerz über dem Epicondylus radialis und ulnaris. Schmerzhafte Bewegungseinschränkung bei Schonhaltung in Pronationsstellung. Schulter und Handgelenk frei. Keine lokalen oder fortgeleiteten Entzündungszeichen. Kein knöcherner Druckschmerz. "
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "pDMS intakt. ",
+              "abweichung": "pDMS gestört. "
+            },
+            {
+              "art": "text",
+              "text": "Nach Reposition freie und schmerzfreie Beweglichkeit, kein knöcherner Druckschmerz, Ellenbogengelenk stabil. Keine weiteren Beschwerden, subjektives Wohlbefinden."
             }
           ]
         },

@@ -32,7 +32,31 @@
             },
             {
               "art": "text",
-              "text": "Geschlossene, reizlose Weichteile. Keine Rötung, Schwellung oder Überwärmung. Oberschenkel weich, kein Hinweis auf ein Kompartmentsyndrom. Becken stabil. "
+              "text": "Geschlossene, reizlose Weichteile. "
+            },
+            {
+              "art": "befund",
+              "id": "huefte_weichteile",
+              "chip": "Rötung/Schwellung/Überwärmung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, Schwellung oder Überwärmung. ",
+              "abweichung": "Rötung, Schwellung und Überwärmung. "
+            },
+            {
+              "art": "befund",
+              "id": "huefte_kompartment",
+              "chip": "V.a. Kompartmentsyndrom",
+              "gruppe": "Palpation",
+              "normal": "Oberschenkel weich, kein Hinweis auf ein Kompartmentsyndrom. ",
+              "abweichung": "Oberschenkel prall gespannt, Verdacht auf ein Kompartmentsyndrom. "
+            },
+            {
+              "art": "befund",
+              "id": "huefte_becken",
+              "chip": "Becken instabil",
+              "gruppe": "Stabilität",
+              "normal": "Becken stabil. ",
+              "abweichung": "Becken instabil. "
             },
             {
               "art": "befund",
@@ -51,8 +75,12 @@
               "abweichung": "Druckschmerz über Oberschenkelschaft bzw. Knie. "
             },
             {
-              "art": "text",
-              "text": "Periphere Durchblutung, Motorik und Sensibilität intakt. "
+              "art": "befund",
+              "id": "huefte_pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "Periphere Durchblutung, Motorik und/oder Sensibilität gestört. "
             },
             {
               "art": "befund",
@@ -185,7 +213,15 @@
             },
             {
               "art": "text",
-              "text": ": Reizlos geschlossene Weichteile. "
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "achilles_weichteile",
+              "chip": "Weichteile gereizt",
+              "gruppe": "Inspektion",
+              "normal": "Reizlos geschlossene Weichteile. ",
+              "abweichung": "Gereizte, geschwollene Weichteile. "
             },
             {
               "art": "befund",
@@ -204,8 +240,32 @@
               "abweichung": "Thompson-Test pathologisch. "
             },
             {
+              "art": "befund",
+              "id": "achilles_fusspulse",
+              "chip": "Fußpulse nicht tastbar",
+              "gruppe": "pDMS",
+              "normal": "Fußpulse tastbar, ",
+              "abweichung": "Fußpulse nicht tastbar, "
+            },
+            {
+              "art": "befund",
+              "id": "achilles_pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "periphere Durchblutung, Motorik und/oder Sensibilität gestört. "
+            },
+            {
+              "art": "befund",
+              "id": "achilles_kompartment",
+              "chip": "V.a. Kompartmentsyndrom",
+              "gruppe": "Palpation",
+              "normal": "Kein Anhalt für ein Kompartmentsyndrom. ",
+              "abweichung": "Anhalt für ein Kompartmentsyndrom. "
+            },
+            {
               "art": "text",
-              "text": "Fußpulse tastbar, periphere Durchblutung, Motorik und Sensibilität intakt. Kein Anhalt für ein Kompartmentsyndrom. Sonographie: Nachweis einer Achillessehnenruptur im Bereich "
+              "text": "Sonographie: Nachweis einer Achillessehnenruptur im Bereich "
             },
             {
               "art": "platzhalter",
@@ -267,7 +327,27 @@
             },
             {
               "art": "text",
-              "text": ": Reizlos geschlossene Weichteile. Keine Wunde. Schwellung über "
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_weichteile",
+              "chip": "Weichteile gereizt",
+              "gruppe": "Inspektion",
+              "normal": "Reizlos geschlossene Weichteile. ",
+              "abweichung": "Gereizte, geschwollene Weichteile. "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_wunde",
+              "chip": "Wunde",
+              "gruppe": "Inspektion",
+              "normal": "Keine Wunde. ",
+              "abweichung": "Offene Wunde. "
+            },
+            {
+              "art": "text",
+              "text": "Schwellung über "
             },
             {
               "art": "platzhalter",
@@ -275,7 +355,15 @@
             },
             {
               "art": "text",
-              "text": " mit lokalem Druckschmerz. Fußpulse tastbar. "
+              "text": " mit lokalem Druckschmerz. "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_fusspulse",
+              "chip": "Fußpulse nicht tastbar",
+              "gruppe": "pDMS",
+              "normal": "Fußpulse tastbar. ",
+              "abweichung": "Fußpulse nicht tastbar. "
             },
             {
               "art": "befund",
@@ -326,8 +414,20 @@
               "abweichung": "Subunguales Hämatom. "
             },
             {
-              "art": "text",
-              "text": "Kein Hinweis auf ein Kompartmentsyndrom. Periphere Durchblutung, Motorik und Sensibilität intakt."
+              "art": "befund",
+              "id": "fuss_kompartment",
+              "chip": "V.a. Kompartmentsyndrom",
+              "gruppe": "Palpation",
+              "normal": "Kein Hinweis auf ein Kompartmentsyndrom. ",
+              "abweichung": "Verdacht auf ein Kompartmentsyndrom. "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt.",
+              "abweichung": "Periphere Durchblutung, Motorik und/oder Sensibilität gestört."
             }
           ]
         },
@@ -373,7 +473,35 @@
             },
             {
               "art": "text",
-              "text": ": Reizlos geschlossene Weichteile. Keine Wunde, kein subunguales Hämatom. Schwellung über "
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_weichteile",
+              "chip": "Weichteile gereizt",
+              "gruppe": "Inspektion",
+              "normal": "Reizlos geschlossene Weichteile. ",
+              "abweichung": "Gereizte, geschwollene Weichteile. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_wunde",
+              "chip": "Wunde",
+              "gruppe": "Inspektion",
+              "normal": "Keine Wunde. ",
+              "abweichung": "Offene Wunde. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_subungual",
+              "chip": "subunguales Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein subunguales Hämatom. ",
+              "abweichung": "Subunguales Hämatom. "
+            },
+            {
+              "art": "text",
+              "text": "Schwellung über "
             },
             {
               "art": "platzhalter",
@@ -424,8 +552,28 @@
               "abweichung": "Stauchungsschmerz der Zehen. "
             },
             {
-              "art": "text",
-              "text": "Kein Hinweis auf ein Kompartmentsyndrom. Periphere Durchblutung, Motorik und Sensibilität intakt. Patient ist stehfähig und unter Schmerzen gehfähig."
+              "art": "befund",
+              "id": "mittelfuss_kompartment",
+              "chip": "V.a. Kompartmentsyndrom",
+              "gruppe": "Palpation",
+              "normal": "Kein Hinweis auf ein Kompartmentsyndrom. ",
+              "abweichung": "Verdacht auf ein Kompartmentsyndrom. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_pdms",
+              "chip": "pDMS gestört",
+              "gruppe": "pDMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "Periphere Durchblutung, Motorik und/oder Sensibilität gestört. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_gehfaehig",
+              "chip": "nicht steh-/gehfähig",
+              "gruppe": "Funktion",
+              "normal": "Patient ist stehfähig und unter Schmerzen gehfähig.",
+              "abweichung": "Patient ist nicht steh- und gehfähig."
             }
           ]
         },

@@ -19,6 +19,12 @@
   --panel-bg: rgba(23, 30, 46, 0.97);
   --radius: 14px;
   --tap: 56px;
+  /* Motion & Tiefe */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur: 0.2s;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.22);
+  --shadow-2: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --accent-grad: linear-gradient(165deg, #4f9bff, #2b7fd4 60%, #1e5fa8);
 }
 
 /* Light-Palette: als Systemwunsch (ohne manuelle Wahl) … */
@@ -41,6 +47,8 @@
     --chip-on-text: #7a1720;
     --bar-bg: rgba(243, 245, 249, 0.9);
     --panel-bg: rgba(255, 255, 255, 0.97);
+    --shadow-1: 0 1px 2px rgba(20, 40, 80, 0.06), 0 4px 14px rgba(20, 40, 80, 0.08);
+    --shadow-2: 0 10px 34px rgba(20, 40, 80, 0.14);
   }
 }
 /* … und als manuelle Wahl (überschreibt System) */
@@ -62,6 +70,8 @@
   --chip-on-text: #7a1720;
   --bar-bg: rgba(243, 245, 249, 0.9);
   --panel-bg: rgba(255, 255, 255, 0.97);
+  --shadow-1: 0 1px 2px rgba(20, 40, 80, 0.06), 0 4px 14px rgba(20, 40, 80, 0.08);
+  --shadow-2: 0 10px 34px rgba(20, 40, 80, 0.14);
 }
 
 * {
@@ -849,4 +859,232 @@ body {
 }
 .overlay li {
   margin-bottom: 6px;
+}
+
+/* ============================================================================
+   Premium-Politur: Motion, Tiefe, Mikro-Interaktionen, Feinschliff
+   ========================================================================== */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* dünne, dezente Scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 8px;
+}
+
+/* Screen-Einblendung */
+.screen {
+  display: contents;
+}
+@keyframes screenIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.screen > * .content,
+.content {
+  animation: screenIn 0.32s var(--ease) both;
+}
+.topbar {
+  animation: screenIn 0.26s var(--ease) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001s !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+/* Interaktive Elemente: weiche Übergänge + taktiles Drücken */
+.chip,
+.kachel,
+.stapel,
+.zeile,
+.cta,
+.gate-btn,
+.btn-back,
+.fall-add,
+.seg-opt,
+.fall-chip-x {
+  transition:
+    transform 0.12s var(--ease),
+    background 0.2s var(--ease),
+    border-color 0.2s var(--ease),
+    box-shadow 0.2s var(--ease),
+    color 0.2s var(--ease);
+}
+.chip:active,
+.zeile:active,
+.kachel:active,
+.gate-btn:active,
+.seg-opt:active {
+  transform: scale(0.97);
+}
+.stapel:active,
+.cta:not(:disabled):active {
+  transform: translateY(1px) scale(0.99);
+}
+
+/* Kacheln & Karten: mehr Tiefe */
+.kachel {
+  box-shadow: var(--shadow-1);
+}
+.kachel:hover {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
+}
+.kachel .emoji {
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+  transition: transform 0.18s var(--ease);
+}
+.kachel:active .emoji {
+  transform: scale(1.08);
+}
+
+/* Stapel & CTA: Marken-Gradient + Glow */
+.stapel {
+  background: var(--accent-grad);
+  box-shadow: 0 4px 16px rgba(43, 127, 212, 0.28);
+}
+.cta {
+  background: var(--accent-grad);
+  box-shadow: 0 6px 20px rgba(43, 127, 212, 0.32);
+  letter-spacing: 0.01em;
+}
+.cta:disabled {
+  background: var(--bg-3);
+  box-shadow: none;
+}
+.cta.gruen {
+  background: linear-gradient(165deg, #45e0a8, #24b483 65%, #159068);
+  box-shadow: 0 6px 20px rgba(37, 180, 130, 0.32);
+}
+
+/* Chips: aktiver Zustand mit sanftem Glow + Puls beim Aktivieren */
+.chip.on {
+  box-shadow: 0 0 0 1px var(--chip-on-border) inset,
+    0 4px 14px rgba(208, 43, 57, 0.18);
+  animation: chipPop 0.22s var(--ease);
+}
+@keyframes chipPop {
+  0% {
+    transform: scale(0.94);
+  }
+  60% {
+    transform: scale(1.03);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Kopfzeile: feinere Typografie */
+.topbar h1 {
+  letter-spacing: -0.02em;
+}
+.label {
+  font-weight: 650;
+}
+
+/* Live-Vorschau: edler Rahmen + weicher Textwechsel */
+.vorschau {
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.18);
+}
+.vorschau .v-text {
+  transition: opacity 0.2s var(--ease);
+}
+
+/* Review-Text: Papier-Anmutung */
+.review-text {
+  box-shadow: var(--shadow-1);
+  line-height: 1.6;
+}
+
+/* Overlays & Modals: sanftes Erscheinen */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.overlay {
+  animation: fadeIn 0.2s var(--ease) both;
+}
+.overlay .karte {
+  animation: popIn 0.3s var(--ease) both;
+  box-shadow: var(--shadow-2);
+}
+
+/* Toast: von unten einschweben */
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+.toast {
+  animation: toastIn 0.3s var(--ease) both;
+}
+
+/* Seiten-Gate: großzügiger, edler */
+.gate-btn {
+  box-shadow: var(--shadow-1);
+}
+.gate-btn:active {
+  background: var(--accent-grad);
+  border-color: transparent;
+  color: #fff;
+}
+
+/* Eingabefelder: ruhiger Fokus-Ring */
+.feld input:focus,
+.feld select:focus,
+.suchfeld:focus,
+.seg-input:focus,
+.seg-text:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
 }

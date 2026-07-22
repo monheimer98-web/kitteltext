@@ -53,8 +53,16 @@
               "abweichung": "Patient intubiert und sediert. "
             },
             {
+              "art": "befund",
+              "id": "allg_azez",
+              "chip": "Reduzierter AZ/EZ",
+              "gruppe": "Allgemeinzustand",
+              "normal": "Altersentsprechend guter Allgemein- und Ernährungszustand",
+              "abweichung": "Reduzierter Allgemein- und Ernährungszustand"
+            },
+            {
               "art": "text",
-              "text": "Altersentsprechend guter Allgemein- und Ernährungszustand bei einer Größe von "
+              "text": " bei einer Größe von "
             },
             {
               "art": "platzhalter",
@@ -78,7 +86,27 @@
             },
             {
               "art": "text",
-              "text": "). Guter Pflegezustand. Kein Fieber (Temperatur "
+              "text": "). "
+            },
+            {
+              "art": "befund",
+              "id": "allg_pflege",
+              "chip": "Reduzierter Pflegezustand",
+              "gruppe": "Allgemeinzustand",
+              "normal": "Guter Pflegezustand. ",
+              "abweichung": "Reduzierter Pflegezustand. "
+            },
+            {
+              "art": "befund",
+              "id": "allg_fieber",
+              "chip": "Fieber",
+              "gruppe": "Vitalstatus",
+              "normal": "Kein Fieber",
+              "abweichung": "Febril"
+            },
+            {
+              "art": "text",
+              "text": " (Temperatur "
             },
             {
               "art": "platzhalter",
@@ -97,8 +125,20 @@
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Normaler Hautturgor, normales Hautkolorit, nicht ikterisch, kein Sklerenikterus. "
+              "art": "befund",
+              "id": "haut_turgor",
+              "chip": "Turgor/Kolorit",
+              "gruppe": "Haut",
+              "normal": "Normaler Hautturgor, normales Hautkolorit. ",
+              "abweichung": "Reduzierter Hautturgor (stehende Hautfalten), blasses Hautkolorit. "
+            },
+            {
+              "art": "befund",
+              "id": "haut_ikterus",
+              "chip": "Ikterus",
+              "gruppe": "Haut",
+              "normal": "Nicht ikterisch, kein Sklerenikterus. ",
+              "abweichung": "Ikterus mit Sklerenikterus. "
             },
             {
               "art": "befund",
@@ -133,8 +173,12 @@
               "abweichung": "Effloreszenzen. "
             },
             {
-              "art": "text",
-              "text": "Körperbehaarung altersentsprechend unauffällig. "
+              "art": "befund",
+              "id": "haut_behaarung",
+              "chip": "Behaarungsmuster",
+              "gruppe": "Haut",
+              "normal": "Körperbehaarung altersentsprechend unauffällig. ",
+              "abweichung": "Auffälliges Behaarungsmuster. "
             },
             {
               "art": "befund",
@@ -145,8 +189,12 @@
               "abweichung": "Leberhautzeichen vorhanden. "
             },
             {
-              "art": "text",
-              "text": "Mamma inspektorisch beidseits unauffällig. Keine Seitendifferenz. "
+              "art": "befund",
+              "id": "haut_mamma",
+              "chip": "Mamma auffällig",
+              "gruppe": "Mamma",
+              "normal": "Mamma inspektorisch beidseits unauffällig. Keine Seitendifferenz. ",
+              "abweichung": "Mamma mit Seitendifferenz und Auffälligkeiten. "
             },
             {
               "art": "befund",
@@ -157,8 +205,12 @@
               "abweichung": "Mamillenretraktion oder -sekretion. "
             },
             {
-              "art": "text",
-              "text": "Kein Plateau-Phänomen. Jackson-Test negativ."
+              "art": "befund",
+              "id": "haut_jackson",
+              "chip": "Plateau/Jackson positiv",
+              "gruppe": "Mamma",
+              "normal": "Kein Plateau-Phänomen. Jackson-Test negativ.",
+              "abweichung": "Plateau-Phänomen positiv. Jackson-Test positiv."
             }
           ]
         },
@@ -169,8 +221,20 @@
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Pupillen beidseits rund, mittelweit und isokor bei prompter direkter und indirekter Lichtreaktion. Die Fingerfolgebewegungen sind glatt, es tritt kein Nystagmus auf. "
+              "art": "befund",
+              "id": "kopf_pupillen",
+              "chip": "Anisokorie",
+              "gruppe": "Pupillen",
+              "normal": "Pupillen beidseits rund, mittelweit und isokor bei prompter direkter und indirekter Lichtreaktion. ",
+              "abweichung": "Anisokorie mit verzögerter Lichtreaktion. "
+            },
+            {
+              "art": "befund",
+              "id": "kopf_nystagmus",
+              "chip": "Nystagmus",
+              "gruppe": "Augenmotilität",
+              "normal": "Die Fingerfolgebewegungen sind glatt, es tritt kein Nystagmus auf. ",
+              "abweichung": "Sakkadierte Fingerfolgebewegungen mit Nystagmus. "
             },
             {
               "art": "befund",
@@ -189,8 +253,20 @@
               "abweichung": "Presbyakusis beidseits. "
             },
             {
-              "art": "text",
-              "text": "Rachenring und Tonsillen reizlos. Zunge und Schleimhäute nicht belegt, normal feucht und reizlos. "
+              "art": "befund",
+              "id": "kopf_rachen",
+              "chip": "Rachen/Tonsillen gereizt",
+              "gruppe": "Mund/Rachen",
+              "normal": "Rachenring und Tonsillen reizlos. ",
+              "abweichung": "Rachenring gerötet, Tonsillen geschwollen und belegt. "
+            },
+            {
+              "art": "befund",
+              "id": "kopf_zunge",
+              "chip": "Zunge belegt/trocken",
+              "gruppe": "Mund/Rachen",
+              "normal": "Zunge und Schleimhäute nicht belegt, normal feucht und reizlos. ",
+              "abweichung": "Zunge belegt, Schleimhäute trocken. "
             },
             {
               "art": "auswahl",
@@ -219,8 +295,28 @@
               "abweichung": "Foetor. "
             },
             {
-              "art": "text",
-              "text": "Schädelkalotte stabil. Sinus frontalis und maxillaris sowie Nervenaustrittspunkte nicht druck- oder klopfschmerzhaft. Schilddrüse klinisch von normaler Konsistenz und Größe und ohne tastbare Knoten. Normale Schluckverschieblichkeit. Kein Schwirren. "
+              "art": "befund",
+              "id": "kopf_kalotte",
+              "chip": "Kalotte instabil",
+              "gruppe": "Schädel",
+              "normal": "Schädelkalotte stabil. ",
+              "abweichung": "Schädelkalotte instabil mit tastbarer Stufenbildung. "
+            },
+            {
+              "art": "befund",
+              "id": "kopf_sinus",
+              "chip": "NNH/NAP druckschmerzhaft",
+              "gruppe": "Schädel",
+              "normal": "Sinus frontalis und maxillaris sowie Nervenaustrittspunkte nicht druck- oder klopfschmerzhaft. ",
+              "abweichung": "Druck- und Klopfschmerz über den Nasennebenhöhlen und Nervenaustrittspunkten. "
+            },
+            {
+              "art": "befund",
+              "id": "kopf_schilddruese",
+              "chip": "Struma/Knoten",
+              "gruppe": "Schilddrüse",
+              "normal": "Schilddrüse klinisch von normaler Konsistenz und Größe und ohne tastbare Knoten. Normale Schluckverschieblichkeit. Kein Schwirren. ",
+              "abweichung": "Schilddrüse vergrößert mit tastbaren Knoten. "
             },
             {
               "art": "befund",
@@ -247,8 +343,36 @@
               "abweichung": "Uhrglasnägel und Trommelschlägelfinger. "
             },
             {
-              "art": "text",
-              "text": "Thoraxform unauffällig (kein Fassthorax, keine Kachexie). Atmung normofrequent (15–20 Atemzüge/min). Atemexkursion symmetrisch bei normalen Atemphasen. Kein Einsatz der Atemhilfsmuskulatur. Über ventralen und dorsalen Lungenabschnitten jeweils seitengleich sonorer Klopfschall. Inspiratorische Atemverschieblichkeit der basalen Lungengrenzen seitengleich um ca. 5 cm. "
+              "art": "befund",
+              "id": "pulmo_thoraxform",
+              "chip": "Fassthorax",
+              "gruppe": "Inspektion",
+              "normal": "Thoraxform unauffällig (kein Fassthorax, keine Kachexie). ",
+              "abweichung": "Fassthorax. "
+            },
+            {
+              "art": "befund",
+              "id": "pulmo_atmung",
+              "chip": "Dyspnoe/Atemhilfsmuskulatur",
+              "gruppe": "Inspektion",
+              "normal": "Atmung normofrequent (15–20 Atemzüge/min). Atemexkursion symmetrisch bei normalen Atemphasen. Kein Einsatz der Atemhilfsmuskulatur. ",
+              "abweichung": "Tachypnoe mit Einsatz der Atemhilfsmuskulatur. "
+            },
+            {
+              "art": "befund",
+              "id": "pulmo_klopfschall",
+              "chip": "Klopfschall gedämpft",
+              "gruppe": "Perkussion",
+              "normal": "Über ventralen und dorsalen Lungenabschnitten jeweils seitengleich sonorer Klopfschall. ",
+              "abweichung": "Gedämpfter Klopfschall über den Lungenabschnitten. "
+            },
+            {
+              "art": "befund",
+              "id": "pulmo_atemverschieb",
+              "chip": "Atemverschieblichkeit aufgehoben",
+              "gruppe": "Perkussion",
+              "normal": "Inspiratorische Atemverschieblichkeit der basalen Lungengrenzen seitengleich um ca. 5 cm. ",
+              "abweichung": "Aufgehobene Atemverschieblichkeit der basalen Lungengrenzen. "
             },
             {
               "art": "befund",
@@ -259,8 +383,12 @@
               "abweichung": "Feuchte Rasselgeräusche über den Lungenabschnitten. "
             },
             {
-              "art": "text",
-              "text": "Recessus beidseits ohne pathologischen Befund. "
+              "art": "befund",
+              "id": "pulmo_recessus",
+              "chip": "Recessus Erguss",
+              "gruppe": "Erguss",
+              "normal": "Recessus beidseits ohne pathologischen Befund. ",
+              "abweichung": "Recessus mit Pleuraerguss. "
             },
             {
               "art": "befund",
@@ -271,8 +399,12 @@
               "abweichung": "Nebengeräusche (feuchte Rasselgeräusche, Giemen/Brummen, Pleurareiben, Knarren). "
             },
             {
-              "art": "text",
-              "text": "Inspiration und Exspiration nicht verkürzt oder verlängert."
+              "art": "befund",
+              "id": "pulmo_atemphase",
+              "chip": "Exspiration verlängert",
+              "gruppe": "Auskultation",
+              "normal": "Inspiration und Exspiration nicht verkürzt oder verlängert.",
+              "abweichung": "Exspiration verlängert (obstruktiv)."
             }
           ]
         },
@@ -330,8 +462,48 @@
               "abweichung": "Halsvenenstauung und periphere Ödeme. "
             },
             {
+              "art": "befund",
+              "id": "cor_spitzenstoss",
+              "chip": "Herzspitzenstoß verbreitert",
+              "gruppe": "Palpation",
+              "normal": "Herzspitzenstoß im 5. ICR medioclaviculär links tastbar, nicht hebend oder verbreitert. ",
+              "abweichung": "Herzspitzenstoß nach lateral verlagert, hebend und verbreitert. "
+            },
+            {
+              "art": "befund",
+              "id": "cor_herztoene",
+              "chip": "Arrhythmie",
+              "gruppe": "Auskultation",
+              "normal": "Herztöne leise, normofrequent, rein und rhythmisch. ",
+              "abweichung": "Herztöne arrhythmisch. "
+            },
+            {
+              "art": "befund",
+              "id": "cor_geraeusch",
+              "chip": "Herzgeräusch",
+              "gruppe": "Auskultation",
+              "normal": "Keine Herzgeräusche. ",
+              "abweichung": "Systolikum bzw. Diastolikum auskultierbar. "
+            },
+            {
+              "art": "befund",
+              "id": "cor_pulsdefizit",
+              "chip": "Pulsdefizit",
+              "gruppe": "Auskultation",
+              "normal": "Kein Pulsdefizit. ",
+              "abweichung": "Pulsdefizit. "
+            },
+            {
+              "art": "befund",
+              "id": "cor_karotiden",
+              "chip": "Karotiden-Strömungsgeräusch",
+              "gruppe": "Auskultation",
+              "normal": "Keine Strömungsgeräusche über den Karotiden beidseits, keine Fortleitung in die Axilla. ",
+              "abweichung": "Strömungsgeräusch über den Karotiden mit Fortleitung. "
+            },
+            {
               "art": "text",
-              "text": "Herzspitzenstoß im 5. ICR medioclaviculär links tastbar, nicht hebend oder verbreitert. Herztöne leise, normofrequent, rein und rhythmisch. Keine Herzgeräusche. Kein Pulsdefizit. Keine Strömungsgeräusche über den Karotiden beidseits, keine Fortleitung in die Axilla. Herzfrequenz "
+              "text": "Herzfrequenz "
             },
             {
               "art": "platzhalter",
@@ -382,8 +554,16 @@
           "platzhalter": [],
           "segmente": [
             {
+              "art": "befund",
+              "id": "puls_pulse",
+              "chip": "Pulsdefizit peripher",
+              "gruppe": "Palpation",
+              "normal": "Periphere Pulse der A. carotis, A. subclavia, A. axillaris, A. brachialis, A. radialis, A. ulnaris, A. femoralis, A. poplitea, A. tibialis posterior sowie A. dorsalis pedis beidseits seitengleich tastbar. ",
+              "abweichung": "Peripheres Pulsdefizit (Puls abgeschwächt bzw. nicht tastbar). "
+            },
+            {
               "art": "text",
-              "text": "Periphere Pulse der A. carotis, A. subclavia, A. axillaris, A. brachialis, A. radialis, A. ulnaris, A. femoralis, A. poplitea, A. tibialis posterior sowie A. dorsalis pedis beidseits seitengleich tastbar. Extremitäten "
+              "text": "Extremitäten "
             },
             {
               "art": "auswahl",
@@ -398,7 +578,15 @@
             },
             {
               "art": "text",
-              "text": ". Rekapillarisierungszeit nicht verlängert. Allen-Test beidseits negativ. "
+              "text": ". "
+            },
+            {
+              "art": "befund",
+              "id": "puls_reka",
+              "chip": "Rekap.-Zeit/Allen path.",
+              "gruppe": "Perfusion",
+              "normal": "Rekapillarisierungszeit nicht verlängert. Allen-Test beidseits negativ. ",
+              "abweichung": "Rekapillarisierungszeit verlängert. Allen-Test positiv. "
             },
             {
               "art": "befund",
@@ -426,8 +614,20 @@
           ],
           "segmente": [
             {
-              "art": "text",
-              "text": "Abdomen inspektorisch unauffällig, keine Hernien, keine Striae, kein Ikterus oder portokavale Umgehungskreisläufe. Kein Grey-Turner- oder Cullen-Zeichen. "
+              "art": "befund",
+              "id": "abd_inspektion",
+              "chip": "Abdomen inspekt. auffällig",
+              "gruppe": "Inspektion",
+              "normal": "Abdomen inspektorisch unauffällig, keine Hernien, keine Striae, kein Ikterus oder portokavale Umgehungskreisläufe. ",
+              "abweichung": "Vorgewölbtes Abdomen mit Hernien und portokavalen Umgehungskreisläufen. "
+            },
+            {
+              "art": "befund",
+              "id": "abd_ekchymose",
+              "chip": "Grey-Turner/Cullen",
+              "gruppe": "Inspektion",
+              "normal": "Kein Grey-Turner- oder Cullen-Zeichen. ",
+              "abweichung": "Grey-Turner- und Cullen-Zeichen positiv. "
             },
             {
               "art": "befund",
@@ -473,7 +673,15 @@
             },
             {
               "art": "text",
-              "text": " unterhalb des Rippenbogens medioklavikulär palpabel. Milz nicht palpabel. "
+              "text": " unterhalb des Rippenbogens medioklavikulär palpabel. "
+            },
+            {
+              "art": "befund",
+              "id": "abd_milz",
+              "chip": "Splenomegalie",
+              "gruppe": "Palpation",
+              "normal": "Milz nicht palpabel. ",
+              "abweichung": "Splenomegalie (Milz palpabel). "
             },
             {
               "art": "befund",
@@ -500,7 +708,27 @@
             },
             {
               "art": "text",
-              "text": ", kein Blut, Stuhl oder Schleim am Fingerling. Douglasraum nicht schmerzhaft, keine Fissuren, Fisteln, Hämorrhoiden oder Abszesse. Prostata "
+              "text": ", "
+            },
+            {
+              "art": "befund",
+              "id": "abd_blutfinger",
+              "chip": "Blut am Fingerling",
+              "gruppe": "Rektal",
+              "normal": "kein Blut, Stuhl oder Schleim am Fingerling. ",
+              "abweichung": "Blut am Fingerling. "
+            },
+            {
+              "art": "befund",
+              "id": "abd_analregion",
+              "chip": "Hämorrhoiden/Fissuren",
+              "gruppe": "Rektal",
+              "normal": "Douglasraum nicht schmerzhaft, keine Fissuren, Fisteln, Hämorrhoiden oder Abszesse. ",
+              "abweichung": "Hämorrhoiden, Fissuren bzw. Fisteln vorhanden. "
+            },
+            {
+              "art": "text",
+              "text": "Prostata "
             },
             {
               "art": "auswahl",
@@ -517,7 +745,15 @@
             },
             {
               "art": "text",
-              "text": ". Nierenlager nicht klopfschmerzhaft."
+              "text": ". "
+            },
+            {
+              "art": "befund",
+              "id": "abd_nierenlager",
+              "chip": "Nierenlager klopfschmerzhaft",
+              "gruppe": "Palpation",
+              "normal": "Nierenlager nicht klopfschmerzhaft.",
+              "abweichung": "Nierenlager klopfschmerzhaft."
             }
           ]
         },
@@ -536,8 +772,20 @@
               "abweichung": "Druck- und Klopfschmerz über den Dornfortsätzen. "
             },
             {
-              "art": "text",
-              "text": "HWS im üblichen Bewegungsumfang frei beweglich. Inklination und Reklination der LWS nicht schmerzhaft eingeschränkt. Ott- und Schober-Maß regelrecht. Finger-Boden-Abstand und Kinn-Jugulum-Abstand regelrecht. "
+              "art": "befund",
+              "id": "we_hws",
+              "chip": "HWS eingeschränkt",
+              "gruppe": "Beweglichkeit",
+              "normal": "HWS im üblichen Bewegungsumfang frei beweglich. ",
+              "abweichung": "HWS-Beweglichkeit schmerzhaft eingeschränkt. "
+            },
+            {
+              "art": "befund",
+              "id": "we_lws",
+              "chip": "LWS eingeschränkt",
+              "gruppe": "Beweglichkeit",
+              "normal": "Inklination und Reklination der LWS nicht schmerzhaft eingeschränkt. Ott- und Schober-Maß regelrecht. Finger-Boden-Abstand und Kinn-Jugulum-Abstand regelrecht. ",
+              "abweichung": "LWS-Beweglichkeit schmerzhaft eingeschränkt, Ott- und Schober-Maß vermindert. "
             },
             {
               "art": "befund",
@@ -548,8 +796,24 @@
               "abweichung": "Deformitäten und Atrophien der Extremitäten. "
             },
             {
+              "art": "befund",
+              "id": "we_obereextr",
+              "chip": "Obere Extr. Funktion",
+              "gruppe": "Funktionstests",
+              "normal": "Obere Extremität: Gaenslen-Handgriff nicht schmerzhaft, Schürzen- und Nackengriff unauffällig. ",
+              "abweichung": "Obere Extremität: Gaenslen-Handgriff schmerzhaft, Schürzen- und Nackengriff eingeschränkt. "
+            },
+            {
+              "art": "befund",
+              "id": "we_untereextr",
+              "chip": "Untere Extr. Funktion",
+              "gruppe": "Funktionstests",
+              "normal": "Untere Extremität: Mennell-Zeichen negativ, Kreuzbänder intakt, Menisken nicht schmerzhaft. ",
+              "abweichung": "Untere Extremität: Mennell-Zeichen positiv, Meniskuszeichen positiv. "
+            },
+            {
               "art": "text",
-              "text": "Obere Extremität: Gaenslen-Handgriff nicht schmerzhaft, Schürzen- und Nackengriff unauffällig. Untere Extremität: Mennell-Zeichen negativ, Kreuzbänder intakt, Menisken nicht schmerzhaft. Keine periphere Zyanose, Rekapillarisierungszeit regelrecht (< 2 Sekunden). Kein Hinweis auf Hypoxie in Form von Uhrglasnägeln oder Trommelschlägelfingern."
+              "text": "Keine periphere Zyanose, Rekapillarisierungszeit regelrecht (< 2 Sekunden). Kein Hinweis auf Hypoxie in Form von Uhrglasnägeln oder Trommelschlägelfingern."
             }
           ]
         },
@@ -577,8 +841,28 @@
               "abweichung": "Fokal neurologisches Defizit. "
             },
             {
-              "art": "text",
-              "text": "Kein Meningismus. Lasègue und Bragard negativ. Hirnnerven unauffällig. "
+              "art": "befund",
+              "id": "neuro_meningismus",
+              "chip": "Meningismus",
+              "gruppe": "Meningeal",
+              "normal": "Kein Meningismus. ",
+              "abweichung": "Meningismus. "
+            },
+            {
+              "art": "befund",
+              "id": "neuro_lasegue",
+              "chip": "Lasègue/Bragard positiv",
+              "gruppe": "Nervendehnung",
+              "normal": "Lasègue und Bragard negativ. ",
+              "abweichung": "Lasègue und Bragard positiv. "
+            },
+            {
+              "art": "befund",
+              "id": "neuro_hirnnerven",
+              "chip": "Hirnnervenausfall",
+              "gruppe": "Hirnnerven",
+              "normal": "Hirnnerven unauffällig. ",
+              "abweichung": "Hirnnervenausfall. "
             },
             {
               "art": "befund",
@@ -589,8 +873,12 @@
               "abweichung": "Motorik: pathologischer Muskeltonus, Kraftminderung. "
             },
             {
-              "art": "text",
-              "text": "Muskeleigenreflexe: Bizepssehnenreflex, Trizepssehnenreflex, Patellasehnenreflex und Achillessehnenreflex seitengleich mittellebhaft auslösbar, keine verbreiterten Reflexzonen. "
+              "art": "befund",
+              "id": "neuro_mer",
+              "chip": "MER seitendifferent",
+              "gruppe": "Reflexe",
+              "normal": "Muskeleigenreflexe: Bizepssehnenreflex, Trizepssehnenreflex, Patellasehnenreflex und Achillessehnenreflex seitengleich mittellebhaft auslösbar, keine verbreiterten Reflexzonen. ",
+              "abweichung": "Muskeleigenreflexe seitendifferent (gesteigert bzw. abgeschwächt) mit verbreiterten Reflexzonen. "
             },
             {
               "art": "befund",
@@ -601,8 +889,16 @@
               "abweichung": "Babinski-Zeichen positiv. "
             },
             {
+              "art": "befund",
+              "id": "neuro_sensibilitaet",
+              "chip": "Sensibilitätsstörung",
+              "gruppe": "Sensibilität",
+              "normal": "Sensibilität: Oberflächensensibilität seitengleich erhalten. ",
+              "abweichung": "Sensibilität: Oberflächensensibilität herabgesetzt. "
+            },
+            {
               "art": "text",
-              "text": "Sensibilität: Oberflächensensibilität seitengleich erhalten. Lagesinn und Vibrationssinn unauffällig ("
+              "text": "Lagesinn und Vibrationssinn unauffällig ("
             },
             {
               "art": "platzhalter",
@@ -610,7 +906,31 @@
             },
             {
               "art": "text",
-              "text": "). Keine Dysästhesie. Koordination: Gangbild unauffällig. Finger-Nase- und Knie-Hacke-Versuch unauffällig. Romberg-Stehversuch und Unterberger-Tretversuch regelrecht. Trendelenburg-Zeichen negativ."
+              "text": "). "
+            },
+            {
+              "art": "befund",
+              "id": "neuro_dysaesthesie",
+              "chip": "Dysästhesie",
+              "gruppe": "Sensibilität",
+              "normal": "Keine Dysästhesie. ",
+              "abweichung": "Dysästhesien und Parästhesien. "
+            },
+            {
+              "art": "befund",
+              "id": "neuro_koordination",
+              "chip": "Koordinationsstörung",
+              "gruppe": "Koordination",
+              "normal": "Koordination: Gangbild unauffällig. Finger-Nase- und Knie-Hacke-Versuch unauffällig. Romberg-Stehversuch und Unterberger-Tretversuch regelrecht. ",
+              "abweichung": "Koordination: unsicheres Gangbild, Finger-Nase- und Knie-Hacke-Versuch dysmetrisch, Romberg-Stehversuch positiv. "
+            },
+            {
+              "art": "befund",
+              "id": "neuro_trendelenburg",
+              "chip": "Trendelenburg positiv",
+              "gruppe": "Koordination",
+              "normal": "Trendelenburg-Zeichen negativ.",
+              "abweichung": "Trendelenburg-Zeichen positiv."
             }
           ]
         }
