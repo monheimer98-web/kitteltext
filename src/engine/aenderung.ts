@@ -106,7 +106,8 @@ function alleNamen(namen: readonly string[]): string {
 export function zurueckgenommenText(vorFall: Fall | null, nachFall: Fall | null, brief: (f: Fall) => BriefAnsicht | null): string {
   if (!vorFall || !nachFall || vorFall.id !== nachFall.id) return "";
   if (vorFall.vorlageId !== nachFall.vorlageId) return "Vorlage";
-  const eintraege: { name: string; stand: string }[] = [];
+  // `zitat`: Name einer Stelle aus dem Katalog; Seite, Person und Alter sind Wörter der Oberfläche.
+  const eintraege: { name: string; stand: string; zitat?: true }[] = [];
   if (vorFall.seite !== nachFall.seite) eintraege.push({ name: "Seite", stand: nachFall.seite ? SEITE_WORT[nachFall.seite] : "nicht gewählt" });
   if (vorFall.geschlecht !== nachFall.geschlecht) eintraege.push({ name: "Person", stand: nachFall.geschlecht ? PERSON_WORT[nachFall.geschlecht] : "nicht gewählt" });
   if (vorFall.alter !== nachFall.alter) eintraege.push({ name: "Alter", stand: nachFall.alter.trim() || "leer" });
@@ -126,10 +127,11 @@ export function zurueckgenommenText(vorFall: Fall | null, nachFall: Fall | null,
     const jetzt = neu.get(k);
     const stand = !jetzt ? "nicht mehr im Brief" : (STAND_WORT[jetzt.zustand] ?? `„${kurz(jetzt.text)}“`);
     const name = (jetzt ?? ohneKopf.get(k) ?? alt.get(k))!.label;
-    if (!eintraege.some((e) => e.name === name && e.stand === stand)) eintraege.push({ name, stand });
+    if (!eintraege.some((e) => e.name === name && e.stand === stand)) eintraege.push({ name, stand, zitat: true });
   }
   const staende = [...new Set(eintraege.map((e) => e.stand))];
-  const text = staende.map((s) => `${alleNamen(eintraege.filter((e) => e.stand === s).map((e) => e.name))} (jetzt: ${s})`).join("; ");
+  // Namen der Stellen in Anführungszeichen: Viele enthalten selbst ein Komma oder „und“ (CR-TS20).
+  const text = staende.map((s) => `${alleNamen(eintraege.filter((e) => e.stand === s).map((e) => (e.zitat ? `„${e.name}“` : e.name)))} (jetzt: ${s})`).join("; ");
   return eintraege.length >= 4 ? `${eintraege.length} Stellen: ${text}` : text;
 }
 

@@ -369,9 +369,9 @@
             {
               "art": "messwert",
               "id": "schulter-knapp-rom-iroaro",
-              "label": "Innenrotation/Außenrotation",
+              "label": "Außenrotation/Innenrotation",
               "gruppe": "Beweglichkeit",
-              "vorlage": "Innenrotation/Außenrotation {w}°. ",
+              "vorlage": "Außenrotation/Innenrotation {w}°. ",
               "leer": "_/0/_"
             },
             {

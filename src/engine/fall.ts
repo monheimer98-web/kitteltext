@@ -12,7 +12,7 @@ import type {
 } from "../model/types.ts";
 import { abschnittVon, schluessel } from "../model/types.ts";
 import { gueltigerIndex } from "./render.ts";
-import type { KatalogIndex } from "./render.ts";
+import type { BriefAnsicht, KatalogIndex } from "./render.ts";
 import { weggelasseneStellen } from "./vorlage.ts";
 
 function neueId(): string {
@@ -194,9 +194,12 @@ export function mitBaustein(fall: Fall, bausteinId: string, index: KatalogIndex,
  * in den Abschnitt auf oder lässt die Stelle bewusst leer (`null`).
  */
 export function mitWahl(fall: Fall, key: string, bausteinId: string | null, index: KatalogIndex): Fall {
-  const [art, abschnitt] = key.split("/");
+  const [art, abschnitt, nr] = key.split("/");
   if (art !== "wahl" || !abschnitt) return fall;
-  if (bausteinId === null) return { ...fall, versteckt: { ...fall.versteckt, [key]: true } };
+  if (bausteinId === null) {
+    if (index.vorlagen.get(fall.vorlageId ?? "")?.wahl?.[Number(nr)]?.pflicht) return fall;
+    return { ...fall, versteckt: { ...fall.versteckt, [key]: true } };
+  }
   return mitBaustein(fall, bausteinId, index, abschnitt as AbschnittId);
 }
 
@@ -443,6 +446,63 @@ export function schritteZuruecknehmen(jetzt: Fall, schritte: readonly { vorher: 
   let aus = jetzt;
   for (let i = schritte.length - 1; i >= 0; i--) aus = schrittZuruecknehmen(aus, schritte[i].vorher, schritte[i].nachher);
   return aus;
+}
+
+// Felder, deren Einträge eine Aussage des Arztes tragen. Fehlt der Eintrag, ist die Stelle offen oder grau.
+const AUSSAGE_FELDER = ["befund", "slots", "werte", "auswahl", "versteckt", "optionen", "spaeter"] as const;
+
+export interface SichereRuecknahme {
+  fall: Fall;
+  /** Zusätze des Zugs, die stehen bleiben, mit Namen oder Wortlaut (PS-N13). */
+  behalten: string[];
+}
+
+/**
+ * Nimmt Schritte nur in die sichere Richtung zurück (E-48, CR-TS13): Eine Stelle, die vor dem Schritt eine Aussage trug,
+ * wird offen oder grau statt wieder diese Aussage. Sonst käme eine Aussage schwarz und kopierbar zurück, die der Arzt
+ * eben verworfen hatte. Was vorher offen oder grau war, geht wie bei `schritteZuruecknehmen` zurück.
+ * Mit `brief` bleibt ein angefügter Zusatz stehen und wird genannt, statt still zu verschwinden: ein Satz („+ …“), der
+ * vor dem Zug nicht im Brief stand und durch die Rücknahme wieder verschwände. Seine offenen Angaben bleiben offen und
+ * halten das Kopieren auf. Die Wahl an einer Entweder-oder-Stelle ist kein Zusatz, sondern eine Aussage: Sie geht zurück.
+ */
+export function sicherZuruecknehmen(jetzt: Fall, schritte: readonly { vorher: Fall; nachher: Fall }[], brief?: (f: Fall) => BriefAnsicht | null): SichereRuecknahme {
+  const normal = schritteZuruecknehmen(jetzt, schritte);
+  if (normal === jetzt) return { fall: jetzt, behalten: [] };
+  let aus = normal;
+  for (const feld of AUSSAGE_FELDER) {
+    const n = normal[feld] as Record<string, unknown>;
+    const j = jetzt[feld] as Record<string, unknown>;
+    const zurueck = Object.keys(n).filter((k) => !gleich(n[k], j[k]));
+    if (zurueck.length === 0) continue;
+    const neu = { ...n };
+    for (const k of zurueck) delete neu[k];
+    aus = { ...aus, [feld]: neu };
+  }
+  for (const feld of ["seite", "geschlecht"] as const) {
+    if (normal[feld] !== jetzt[feld] && normal[feld] !== null) aus = { ...aus, [feld]: null };
+  }
+  const behalten: string[] = [];
+  if (brief) {
+    const vorher = brief(jetzt);
+    const nachher = brief(aus);
+    const tokens = (b: BriefAnsicht | null) => b?.abschnitte.flatMap((a) => a.tokens) ?? [];
+    const danach = new Set(tokens(nachher).map((t) => t.key).filter(Boolean));
+    const optionen = { ...aus.optionen };
+    for (const k of Object.keys(jetzt.optionen)) {
+      if (jetzt.optionen[k] !== true || normal.optionen[k] === true || danach.has(k)) continue;
+      const t = tokens(vorher).find((x) => x.key === k);
+      if (!t) continue;
+      optionen[k] = true;
+      behalten.push(t.label ?? kurzerText(t.t));
+    }
+    aus = { ...aus, optionen };
+  }
+  return { fall: gleich(aus, jetzt) ? jetzt : aus, behalten };
+}
+
+function kurzerText(t: string, max = 60): string {
+  const s = t.replace(/\s+/g, " ").trim();
+  return s.length > max ? `${s.slice(0, max - 1)}…` : s;
 }
 
 /**

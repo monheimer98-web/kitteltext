@@ -40,7 +40,6 @@
           "th-st-weitere"
         ],
         "anamnese": [
-          "ana-st-unfall",
           "ana-st-periprothetisch",
           "ana-st-kopfanprall"
         ],
@@ -90,6 +89,18 @@
           "med-st-entlassung-dauer-procedere"
         ]
       },
+      "wahl": [
+        {
+          "abschnitt": "anamnese",
+          "label": "Unfall oder Beschwerden ohne Unfall?",
+          "bausteine": [
+            "ana-st-unfall",
+            "ana-st-beschwerden"
+          ],
+          "vor": "ana-st-periprothetisch",
+          "pflicht": true
+        }
+      ],
       "entscheiden": [
         "bef-st-allgemein/bewusstsein",
         "bef-st-periprothetisch-huefte/fehlstellung",
@@ -107,12 +118,15 @@
       "vorgaben": {
         "an": [
           "dx-st-neben/osteoporose",
-          "dx-st-neben/sturzursache",
           "th-st-weitere/physio",
           "ana-st-unfall/wohnen",
           "ana-st-unfall/versorgung",
           "ana-st-unfall/mobilitaet",
           "ana-st-unfall/pflegegrad",
+          "ana-st-beschwerden/wohnen",
+          "ana-st-beschwerden/versorgung",
+          "ana-st-beschwerden/mobilitaet",
+          "ana-st-beschwerden/pflegegrad",
           "bef-st-allgemein/haut",
           "dgn-st-labor/hb-entlassung",
           "verl-st-besonderheiten/delir",
@@ -138,6 +152,11 @@
           "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 12,
           "proc-st-periprothetisch-kontrolle/roentgen/region": 1
         }
+      },
+      "weglassen": {
+        "ana-st-unfall/kopf": [
+          "ana-st-kopfanprall/kopf"
+        ]
       },
       "schnellwerte": {
         "ana-st-unfall/hergang": [
@@ -188,7 +207,6 @@
           "th-st-weitere"
         ],
         "anamnese": [
-          "ana-st-unfall",
           "ana-st-periprothetisch-knie",
           "ana-st-kopfanprall"
         ],
@@ -240,6 +258,18 @@
           "med-st-entlassung-dauer-procedere"
         ]
       },
+      "wahl": [
+        {
+          "abschnitt": "anamnese",
+          "label": "Unfall oder Beschwerden ohne Unfall?",
+          "bausteine": [
+            "ana-st-unfall",
+            "ana-st-beschwerden"
+          ],
+          "vor": "ana-st-periprothetisch-knie",
+          "pflicht": true
+        }
+      ],
       "entscheiden": [
         "bef-st-allgemein/bewusstsein",
         "bef-st-periprothetisch-knie/fehlstellung",
@@ -265,12 +295,15 @@
       "vorgaben": {
         "an": [
           "dx-st-neben/osteoporose",
-          "dx-st-neben/sturzursache",
           "th-st-weitere/physio",
           "ana-st-unfall/wohnen",
           "ana-st-unfall/versorgung",
           "ana-st-unfall/mobilitaet",
           "ana-st-unfall/pflegegrad",
+          "ana-st-beschwerden/wohnen",
+          "ana-st-beschwerden/versorgung",
+          "ana-st-beschwerden/mobilitaet",
+          "ana-st-beschwerden/pflegegrad",
           "bef-st-allgemein/haut",
           "dgn-st-labor/hb-entlassung",
           "verl-st-besonderheiten/delir",
@@ -292,6 +325,11 @@
           "verl-st-aufnahme-operation/aufnahme/anlass": 1,
           "proc-st-sicherheitsnetz-periprothetisch-knie/sicherheitsnetz/zeichen": 1
         }
+      },
+      "weglassen": {
+        "ana-st-unfall/kopf": [
+          "ana-st-kopfanprall/kopf"
+        ]
       },
       "schnellwerte": {
         "ana-st-unfall/hergang": [

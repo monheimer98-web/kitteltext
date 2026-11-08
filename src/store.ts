@@ -58,6 +58,8 @@ let zaehler = Math.max(sitzung.zaehler, 0, ...geladen.map((f) => f.nr));
  * "wechseln" ersetzt die Vorlage des aktiven Falls.
  */
 export const sucheOffen = signal<"neu" | "wechseln" | null>(null);
+/** Seitenleiste „Anleitung“: zu, von selbst beim ersten Start geöffnet (ohne den Fokus zu nehmen) oder per Knopf (D-05). */
+export const anleitungOffen = signal<"selbst" | "knopf" | null>(null);
 
 /** Einsatzort, der gilt, solange kein Fall offen ist. */
 export const setting = signal<Setting>(faelle.value.find((f) => f.id === aktivId.value)?.setting ?? "zna");

@@ -77,7 +77,8 @@
             "ana-st-unfall",
             "ana-st-elektiv",
             "ana-st-beschwerden"
-          ]
+          ],
+          "pflicht": true
         },
         {
           "abschnitt": "diagnostik",
@@ -162,7 +163,8 @@
           "bausteine": [
             "ana-st-unfall",
             "ana-st-beschwerden"
-          ]
+          ],
+          "pflicht": true
         },
         {
           "abschnitt": "diagnostik",

@@ -560,7 +560,8 @@
           "bausteine": [
             "ana-st-unfall",
             "ana-st-beschwerden"
-          ]
+          ],
+          "pflicht": true
         }
       ],
       "entscheiden": [

@@ -226,7 +226,7 @@
         },
         {
           "id": "ana-st-periprothetisch",
-          "titel": "Anamnese periprothetische Fraktur: Beschwerden der Prothese vor dem Unfall, Voroperationen",
+          "titel": "Anamnese periprothetische Fraktur: frühere Beschwerden der Prothese, Voroperationen",
           "typ": "anamnese",
           "status": "entwurf",
           "platzhalter": [],
@@ -234,14 +234,14 @@
             {
               "art": "option",
               "id": "vorher",
-              "label": "Beschwerden vor dem Unfall",
-              "text": "Vor dem Unfall habe {er} {wie}. ",
+              "label": "Beschwerden vorher",
+              "text": "Vor Beginn der jetzigen Beschwerden habe {er} {wie}. ",
               "an": true,
               "slots": [
                 {
                   "art": "auswahl",
                   "id": "wie",
-                  "label": "Beschwerden vor dem Unfall",
+                  "label": "Beschwerden vorher",
                   "optionen": [
                     "",
                     "keine Beschwerden an Hüfte und Oberschenkel gehabt",
@@ -519,7 +519,9 @@
                     "",
                     "Lage der Prothese vor dem Unfall unverändert.",
                     "Lockerungszeichen schon vor dem Unfall erkennbar.",
-                    "nicht vorhanden."
+                    "nicht vorhanden.",
+                    "Lage der Prothese vor der Fraktur unverändert.",
+                    "Lockerungszeichen schon vor der Fraktur erkennbar."
                   ],
                   "required": true
                 }
@@ -1344,7 +1346,7 @@
         },
         {
           "id": "ana-st-periprothetisch-knie",
-          "titel": "Anamnese periprothetische Fraktur am Knie: Beschwerden der Prothese vor dem Unfall, Voroperationen",
+          "titel": "Anamnese periprothetische Fraktur am Knie: frühere Beschwerden der Prothese, Voroperationen",
           "typ": "anamnese",
           "status": "entwurf",
           "platzhalter": [],
@@ -1352,14 +1354,14 @@
             {
               "art": "option",
               "id": "vorher",
-              "label": "Beschwerden vor dem Unfall",
-              "text": "Vor dem Unfall habe {er} {wie}. ",
+              "label": "Beschwerden vorher",
+              "text": "Vor Beginn der jetzigen Beschwerden habe {er} {wie}. ",
               "an": true,
               "slots": [
                 {
                   "art": "auswahl",
                   "id": "wie",
-                  "label": "Beschwerden vor dem Unfall",
+                  "label": "Beschwerden vorher",
                   "optionen": [
                     "",
                     "keine Beschwerden am Knie gehabt",
@@ -1703,7 +1705,9 @@
                     "",
                     "Lage der Prothese vor dem Unfall unverändert.",
                     "Lockerungszeichen schon vor dem Unfall erkennbar.",
-                    "nicht vorhanden."
+                    "nicht vorhanden.",
+                    "Lage der Prothese vor der Fraktur unverändert.",
+                    "Lockerungszeichen schon vor der Fraktur erkennbar."
                   ],
                   "required": true
                 }

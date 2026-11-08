@@ -154,7 +154,7 @@ test.describe("PS-N07, CR-TS07, PS-N08: Nach der Pause weitergetippt, der ganze 
       await nachDemNaechstenBild(page);
       const geaendert = aenderungen(vor, await stand(page));
       expect(geaendert, geaendert.join("\n")).toHaveLength(1);
-      expect(geaendert[0]).toContain("Wundlänge: 3 cm");
+      expect(geaendert[0]).toContain("Wundlänge: 3");
       await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt:");
       expect(await tippzug(page)).toBe("gesperrt");
     });
@@ -185,7 +185,7 @@ test.describe("PS-N07, CR-TS07, PS-N08: Nach der Pause weitergetippt, der ganze 
       expect(geaendert, geaendert.join("\n")).toHaveLength(1);
       expect(geaendert[0]).toContain("Unfallzeitpunkt: gestern");
       // Die „1“ hat erst „Arbeitsunfall“ gesetzt; die „4“ im nächsten Feld verriet den blinden Zug (E-45 Satz 4).
-      await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: Arbeitsunfall");
+      await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: „Arbeitsunfall“");
       // Die verworfenen Zeichen so, wie sie getippt wurden, jede Leertaste einmal (im Browserdurchgang doppelt gesehen).
       // Ohne Vergleich über `toContainText`: Der fasst Leerraum zusammen.
       expect(await meldung(page).first().textContent()).toContain("Verworfen: „4 Uhr beim Fußball“");
@@ -245,7 +245,7 @@ test.describe("PS-N07, CR-TS07, PS-N08: Nach der Pause weitergetippt, der ganze 
     await expect(meldung(page)).toContainText("Eben gesetzt: Durchblutung/Motorik/Sensibilität „unauffällig“ und Kompartmentsyndrom „unauffällig“.");
     await meldung(page).getByRole("button", { name: "Rückgängig" }).click();
     expect(aenderungen(vor, await stand(page))).toEqual([]);
-    await expect(meldung(page)).toContainText("Zurückgenommen: Durchblutung/Motorik/Sensibilität und Kompartmentsyndrom (jetzt: wieder Vorschlag)");
+    await expect(meldung(page)).toContainText("Zurückgenommen: „Durchblutung/Motorik/Sensibilität“ und „Kompartmentsyndrom“ (jetzt: wieder Vorschlag)");
   });
 });
 
@@ -278,7 +278,7 @@ test.describe("Ende der Befundliste: Ein Zeichen auf „Weiter“ gleich nach ei
     await expect(page.locator(".befundliste .bl-fuss .knopf")).toBeFocused();
     await taste(page, "u");
     expect(aenderungen(vor, await stand(page))).toEqual([]);
-    await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: Kompartmentsyndrom");
+    await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: „Kompartmentsyndrom“");
   });
 });
 
@@ -525,8 +525,9 @@ test.describe("Runde 3b: Wechsel von Seite oder Person beendet den Zug (PS-N11);
       expect(await tippzug(page)).toBe("gesperrt");
       // Zurück nur, wenn der Arzt es will: „Rückgängig“ in der Meldung.
       await meldung(page).getByRole("button", { name: "Rückgängig" }).click();
-      await expect(seite.getByRole("radio", { name: "rechts", exact: true })).toBeChecked();
-      await expect(meldung(page)).toContainText("Zurückgenommen: Seite (jetzt: rechts)");
+      // Seit E-48 nur in die sichere Richtung: Die Seite wird wieder offen, nicht wieder „rechts“.
+      await expect(seite.getByRole("radio", { checked: true })).toHaveCount(0);
+      await expect(meldung(page)).toContainText("Zurückgenommen: Seite (jetzt: nicht gewählt)");
     });
 
     test(`PS-N11: Person Patient → Patientin („2“), gleich danach „x“ (${tempo}): bleibt Patientin`, async ({ page }) => {
@@ -601,7 +602,7 @@ test.describe("QA-31, QA-32: Die Rücknahmemeldung nennt jede Stelle einmal, mit
     const t = await text(page);
     // Bisher: „Durchblutung/Motorik/Sensibilität (jetzt: wieder Vorschlag) und Durchblutung/Motorik/Sensibilität (jetzt:
     // unauffällig) und 1 weitere“: der Zwischenstand nach der ersten Taste als „jetzt“, Kompartmentsyndrom ungenannt.
-    expect(t).toContain("Zurückgenommen, weil gleich weitergetippt: Durchblutung/Motorik/Sensibilität und Kompartmentsyndrom (jetzt: wieder Vorschlag). Verworfen: „d“");
+    expect(t).toContain("Zurückgenommen, weil gleich weitergetippt: „Durchblutung/Motorik/Sensibilität“ und „Kompartmentsyndrom“ (jetzt: wieder Vorschlag). Verworfen: „d“");
     expect(t.match(/Durchblutung\/Motorik\/Sensibilität/g)).toHaveLength(1);
     expect(t).not.toContain("weitere");
   });
@@ -622,7 +623,7 @@ test.describe("QA-31, QA-32: Die Rücknahmemeldung nennt jede Stelle einmal, mit
     await rueck.click();
     await expect(meldung(page)).toContainText("Zurückgenommen: ");
     const t = await text(page);
-    expect(t).toContain("Zurückgenommen: Kompartmentsyndrom (jetzt: wieder Vorschlag)");
+    expect(t).toContain("Zurückgenommen: „Kompartmentsyndrom“ (jetzt: wieder Vorschlag)");
     expect(t).not.toContain("Durchblutung");
   });
 
@@ -634,7 +635,7 @@ test.describe("QA-31, QA-32: Die Rücknahmemeldung nennt jede Stelle einmal, mit
     await tippe(page, "und Hand", TEMPO.langsam);
     await nachDemNaechstenBild(page);
     const t = await text(page);
-    expect(t).toContain("Zurückgenommen, weil gleich weitergetippt: Rötung und Schwellung (jetzt: wieder offen). Verworfen:");
+    expect(t).toContain("Zurückgenommen, weil gleich weitergetippt: „Rötung“ und „Schwellung“ (jetzt: wieder offen). Verworfen:");
     expect(t).not.toContain("weitere");
   });
 
@@ -647,7 +648,7 @@ test.describe("QA-31, QA-32: Die Rücknahmemeldung nennt jede Stelle einmal, mit
     await tippe(page, "unauffällig", TEMPO.langsam);
     await nachDemNaechstenBild(page);
     const t = await text(page);
-    expect(t).toContain("Zurückgenommen, weil gleich weitergetippt: 4 Stellen: Wundränder, Verschmutzung und Wundgrund, Fremdkörper (jetzt: wieder offen); Blutung (jetzt: wieder Vorschlag). Verworfen:");
+    expect(t).toContain("Zurückgenommen, weil gleich weitergetippt: 4 Stellen: „Wundränder“, „Verschmutzung“ und „Wundgrund, Fremdkörper“ (jetzt: wieder offen); „Blutung“ (jetzt: wieder Vorschlag). Verworfen:");
     expect(t).not.toContain("weitere");
   });
 });

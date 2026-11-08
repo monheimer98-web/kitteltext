@@ -37,7 +37,6 @@
           "th-st-weitere"
         ],
         "anamnese": [
-          "ana-st-unfall",
           "ana-st-kopfanprall"
         ],
         "befund": [
@@ -86,6 +85,16 @@
             "dgn-st-becken-mrt",
             "dgn-st-becken-verzicht"
           ]
+        },
+        {
+          "abschnitt": "anamnese",
+          "label": "Unfall oder Beschwerden ohne Unfall?",
+          "bausteine": [
+            "ana-st-unfall",
+            "ana-st-beschwerden"
+          ],
+          "vor": "ana-st-kopfanprall",
+          "pflicht": true
         }
       ],
       "entscheiden": [
@@ -104,12 +113,15 @@
       "vorgaben": {
         "an": [
           "dx-st-neben/osteoporose",
-          "dx-st-neben/sturzursache",
           "th-st-weitere/physio",
           "ana-st-unfall/wohnen",
           "ana-st-unfall/versorgung",
           "ana-st-unfall/mobilitaet",
           "ana-st-unfall/pflegegrad",
+          "ana-st-beschwerden/wohnen",
+          "ana-st-beschwerden/versorgung",
+          "ana-st-beschwerden/mobilitaet",
+          "ana-st-beschwerden/pflegegrad",
           "bef-st-allgemein/haut",
           "verl-st-besonderheiten/delir",
           "verl-st-beckenring-konservativ/osteologie",
@@ -123,6 +135,11 @@
           "verl-st-besonderheiten/anaemie/wann": 1,
           "verl-st-besonderheiten/gerinnungshemmung/seit": 1
         }
+      },
+      "weglassen": {
+        "ana-st-unfall/kopf": [
+          "ana-st-kopfanprall/kopf"
+        ]
       },
       "schnellwerte": {
         "ana-st-unfall/hergang": [
@@ -220,7 +237,8 @@
             "ana-st-unfall",
             "ana-st-beschwerden",
             "ana-st-elektiv"
-          ]
+          ],
+          "pflicht": true
         },
         {
           "abschnitt": "diagnostik",

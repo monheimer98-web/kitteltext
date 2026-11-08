@@ -646,7 +646,7 @@ test("Rückgängig nennt die Stelle und ihren neuen Stand und hebt sie hervor", 
   let briefVor = store.brief.value;
   assert.equal(store.zurueck(), true);
   // Der Befund kippt von auffällig auf unauffällig: Das darf nicht unbemerkt geschehen.
-  assert.equal(aktionen.unterschied(fallVor, briefVor), "Druckschmerz (jetzt: unauffällig)");
+  assert.equal(aktionen.unterschied(fallVor, briefVor), "„Druckschmerz“ (jetzt: unauffällig)");
   assert.deepEqual([...aktionen.frischeStellen.value], ["t-befund/n1"]);
   store.zurueck();
   fallVor = aktiv();
@@ -1178,6 +1178,20 @@ test("Verwerfen nach langer Ruhe nimmt den Auszug „Zuletzt kopiert“ des verw
   // Länger als jede Ablaufzeit: Fall und Auszug sind weg.
   assert.equal(aktionen.verwerfeAlte(Date.now() + 13 * 3600_000), 1);
   assert.equal(aktionen.letzteKopie.value, null);
+});
+
+test("Eigene Vorlage behält `pflicht` an der Stelle, Formatstand 4 (PS-T1-01)", () => {
+  frisch();
+  const v = vorlage("t-v-pflicht-format", { diagnostik: ["t-ct"] }, { wahl: [{ ...WAHL_DG, vor: "t-ct", pflicht: true }] });
+  store.INDEX.vorlagen.set(v.id, v);
+  store.fallNeu(v);
+  assert.equal(store.eigeneVorlageSpeichern("Mit Pflicht"), true);
+  const roh = JSON.parse(speicher.eigenesAlsText(store.eigenes.value));
+  assert.equal(roh.vorlagen[0].wahl[0].pflicht, true);
+  assert.equal(roh.format, 4);
+  // Gelesen bleibt die Pflicht; ein älterer Stand (Format 3) weist den Text ab, statt sie still fallen zu lassen.
+  assert.equal(speicher.pruefeEigenes(roh, store.INDEX)?.vorlagen[0].wahl?.[0].pflicht, true);
+  store.INDEX.vorlagen.delete(v.id);
 });
 
 test("Eigene Inhalte als Text: Formatstand 3 nur, wenn eine Stelle `vor` trägt (CR-T1-06)", () => {

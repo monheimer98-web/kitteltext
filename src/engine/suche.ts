@@ -132,3 +132,20 @@ export function sucheVorlagen(
       a.vorlage.titel.localeCompare(b.vorlage.titel, "de"),
   );
 }
+
+/** Höchstens so viele Treffer zeigt die Liste. */
+export const TREFFER_MAX = 8;
+
+/**
+ * Teilt die Treffer für die Liste: Treffer des eigenen Bereichs zuerst, in der Reihenfolge der Suche; freie Plätze
+ * bekommen Treffer des anderen Bereichs, die die Liste darunter mit eigener Überschrift zeigt. Findet der eigene Bereich
+ * nichts oder wenig, ist so auch eine Vorlage des anderen Bereichs zu sehen (Runde 4, Teil C).
+ */
+export function trefferNachBereich(treffer: readonly Treffer[], setting: Setting, max = TREFFER_MAX): { eigene: Vorlage[]; andere: Vorlage[] } {
+  const eigene = treffer.filter((t) => t.vorlage.setting === setting).slice(0, max).map((t) => t.vorlage);
+  const andere = treffer
+    .filter((t) => t.vorlage.setting !== setting)
+    .slice(0, max - eigene.length)
+    .map((t) => t.vorlage);
+  return { eigene, andere };
+}

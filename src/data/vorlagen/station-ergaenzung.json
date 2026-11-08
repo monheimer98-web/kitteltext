@@ -388,19 +388,27 @@
           "verl-st-konservativ/roentgen",
           "proc-st-osteoporose/abklaerung",
           "dx-st-neben/sturzursache",
-          "verl-st-besonderheiten/delir"
+          "verl-st-besonderheiten/delir",
+          "proc-st-belastung/arm",
+          "proc-st-verhalten/finger",
+          "proc-st-kontrollen/roentgen"
         ],
         "aus": [
           "verl-st-konservativ/aufnahme",
           "verl-st-konservativ/konservativ",
           "proc-st-kontrollen/klinisch",
           "verl-st-konservativ/mobilisation",
-          "eb-st-mobilitaet/gehen"
+          "eb-st-mobilitaet/gehen",
+          "proc-st-belastung/bein",
+          "proc-st-belastung/hilfsmittel"
         ],
         "auswahl": {
           "dgn-st-roentgen/region": 6
         },
-        "slots": {}
+        "slots": {
+          "proc-st-kontrollen/roentgen/region": 7,
+          "proc-st-kontrollen/roentgen/anker": 1
+        }
       },
       "schnellwerte": {
         "ana-st-unfall/hergang": [
@@ -524,7 +532,10 @@
           "proc-st-osteoporose/abklaerung",
           "proc-st-metall/metall",
           "dx-st-neben/sturzursache",
-          "verl-st-besonderheiten/delir"
+          "verl-st-besonderheiten/delir",
+          "proc-st-belastung/arm",
+          "proc-st-verhalten/finger",
+          "proc-st-kontrollen/roentgen"
         ],
         "aus": [
           "verl-st-operativ/mobilisation",
@@ -534,7 +545,9 @@
           "verl-st-operativ/wunde",
           "verl-st-operativ/aufnahme",
           "verl-st-operativ/operation",
-          "eb-st-mobilitaet/gehen"
+          "eb-st-mobilitaet/gehen",
+          "proc-st-belastung/bein",
+          "proc-st-belastung/hilfsmittel"
         ],
         "auswahl": {
           "dgn-st-roentgen/region": 6,
@@ -543,7 +556,8 @@
         "slots": {
           "th-st-weitere/physio/inhalt": 2,
           "proc-st-sicherheitsnetz-schulter-operativ/sicherheitsnetz/zeichen": 1,
-          "verl-st-aufnahme-operation/aufnahme/anlass": 1
+          "verl-st-aufnahme-operation/aufnahme/anlass": 1,
+          "proc-st-kontrollen/roentgen/region": 7
         }
       },
       "schnellwerte": {
@@ -666,7 +680,10 @@
           "ana-st-unfall/mobilitaet",
           "proc-st-osteoporose/abklaerung",
           "dx-st-neben/sturzursache",
-          "verl-st-besonderheiten/delir"
+          "verl-st-besonderheiten/delir",
+          "proc-st-belastung/arm",
+          "proc-st-verhalten/finger",
+          "proc-st-kontrollen/roentgen"
         ],
         "aus": [
           "verl-st-operativ/mobilisation",
@@ -676,7 +693,9 @@
           "verl-st-operativ/wunde",
           "verl-st-operativ/aufnahme",
           "verl-st-operativ/operation",
-          "eb-st-mobilitaet/gehen"
+          "eb-st-mobilitaet/gehen",
+          "proc-st-belastung/bein",
+          "proc-st-belastung/hilfsmittel"
         ],
         "auswahl": {
           "dgn-st-roentgen/region": 6,
@@ -686,7 +705,8 @@
           "th-st-weitere/physio/inhalt": 2,
           "proc-st-sicherheitsnetz-schulter-operativ/sicherheitsnetz/zeichen": 2,
           "th-st-weitere/implantat/hinweis": 1,
-          "verl-st-aufnahme-operation/aufnahme/anlass": 1
+          "verl-st-aufnahme-operation/aufnahme/anlass": 1,
+          "proc-st-kontrollen/roentgen/region": 7
         }
       },
       "schnellwerte": {

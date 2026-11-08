@@ -30,8 +30,11 @@ import {
   vor,
   vorlageAnwenden,
   zurueck,
+  anleitungOffen,
 } from "../store.ts";
-import { loescheFaelle } from "../speicher.ts";
+import { dauerspeicherGeht, loescheFaelle } from "../speicher.ts";
+import { anleitungVonSelbst } from "../engine/einfuehrung.ts";
+import { Anleitung, schalteAnleitung } from "./Anleitung.tsx";
 import { freigeschaltet, pruefeCode } from "../access.ts";
 import { Brief, STATUS_TEXT } from "./Brief.tsx";
 import { Feldfenster, PersonWahl, PillenText, SEITEN, SEITE_NAME, enterWaehltNur } from "./Feldfenster.tsx";
@@ -175,6 +178,15 @@ function Kopf({ onEinstellungen }: { onEinstellungen: () => void }) {
               Arbeitsplatz räumen
             </button>
           ))}
+        <button
+          type="button"
+          class={anleitungOffen.value ? "knopf leise aktiv" : "knopf leise"}
+          aria-expanded={anleitungOffen.value !== null}
+          aria-controls={anleitungOffen.value ? "anleitung" : undefined}
+          onClick={schalteAnleitung}
+        >
+          Anleitung
+        </button>
         <button type="button" class="knopf leise" onClick={onEinstellungen}>
           Einstellungen
         </button>
@@ -813,6 +825,14 @@ function Anwendung() {
     };
   }, []);
 
+  // D-05: Beim allerersten Start geht die Anleitung einmal von selbst auf, nach dem Hinweis zum Zweck der App.
+  const bereitFuerAnleitung = freigeschaltet.value && einstellungen.value.hinweisGelesen;
+  useEffect(() => {
+    if (!bereitFuerAnleitung || !anleitungVonSelbst(einstellungen.peek().anleitungGezeigt, dauerspeicherGeht())) return;
+    setzeEinstellung("anleitungGezeigt", true);
+    anleitungOffen.value = "selbst";
+  }, [bereitFuerAnleitung]);
+
   if (!freigeschaltet.value) {
     return (
       <div class="dialog-flaeche">
@@ -831,7 +851,7 @@ function Anwendung() {
   const fall = aktiverFall.value;
   const zeigeStart = !fall || sucheOffen.value !== null;
   return (
-    <div class="app">
+    <div class={anleitungOffen.value ? "app mit-anleitung" : "app"}>
       <Kopf onEinstellungen={() => setZeigeEinstellungen(true)} />
       {!speichernMoeglich.value && <div class="banner">Dieser Browser speichert nichts: Beim Schließen oder Neuladen geht der Brief verloren.</div>}
       {katalogGeaendert.value > 0 && (
@@ -860,6 +880,7 @@ function Anwendung() {
       )}
       {zeigeStart && <Meldung />}
       <Handkopie />
+      {anleitungOffen.value && <Anleitung />}
       {zeigeEinstellungen && <Einstellungen onZu={() => setZeigeEinstellungen(false)} />}
     </div>
   );

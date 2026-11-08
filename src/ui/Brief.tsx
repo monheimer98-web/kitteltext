@@ -49,6 +49,7 @@ import { nachDemZeichnen } from "./fokus.ts";
 import { EigenerWortlaut, Eingabe, Pillen, Slots, anzeige } from "./Feldfenster.tsx";
 import { entwurfEigenerBaustein } from "../engine/eigen.ts";
 import { aufzaehlen } from "../engine/aenderung.ts";
+import { NormwertInfo } from "./Normwert.tsx";
 
 export const STATUS_TEXT: Record<Pruefstatus, string> = {
   hausstandard: "Standardtext",
@@ -254,6 +255,7 @@ function BefundZeile({ b, seg, entscheiden, ohne, a }: { b: Baustein; seg: Befun
         </span>
         <span class="bz-label">
           {seg.chip}
+          <NormwertInfo k={k} label={seg.chip} />
           {stand === "offen" && <em> {wahl ? "angeben" : "entscheiden"}</em>}
           {luecke && <em> Angabe fehlt</em>}
         </span>
@@ -309,6 +311,7 @@ function MesswertZeile({ b, seg, entscheiden }: { b: Baustein; seg: MesswertSeg;
         </span>
         <span class="bz-label">
           {seg.label}
+          <NormwertInfo k={k} label={seg.label} />
           {stand === "offen" && <em> eintragen</em>}
         </span>
         <div class="bz-wahl">
@@ -467,7 +470,10 @@ function Befundliste({ b, a }: { b: Baustein; a: AbschnittAnsicht }) {
     if (e.key.length === 1 && e.key !== " ") {
       e.preventDefault();
       // Ziffern auch mit dem Fokus auf einem Zustandsknopf: Sie wählen in der Angabe der Zeile (QA-26).
-      if (!zugErlaubt(e, `123456789ü${seg ? "uan" : ""}`)) return;
+      const g0 = gruppen.find((x) => x.name === (zeile.dataset.gruppe ?? ""));
+      const stand = seg ? fall.befund[k] : undefined;
+      const gueltig = `${"123456789".slice(0, zeilenZiffern(zeile).length)}${g0 && vorschlaegeIn(g0).length > 0 ? "ü" : ""}${seg ? `a${stand !== "abw" ? "n" : ""}${stand !== "abw" && seg.normal.trim() ? "u" : ""}` : ""}`;
+      if (!zugErlaubt(e, `123456789ü${seg ? "uan" : ""}`, false, "", gueltig)) return;
       const buchstabe = e.key.toLowerCase();
       if (/^[1-9]$/.test(e.key)) {
         const knopf = zeilenZiffern(zeile)[Number(e.key) - 1];

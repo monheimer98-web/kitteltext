@@ -6,12 +6,12 @@ import { KATALOG } from "../src/data/katalog.ts";
 import { ALLE_ABSCHNITTE, abschnittVon } from "../src/model/types.ts";
 import type { Baustein, BefundSlot, Fall, Vorlage } from "../src/model/types.ts";
 import { BEZUG, briefText, indexiere, renderBrief } from "../src/engine/render.ts";
-import { mitAngabe, mitAuswahl, mitBaustein, mitOption, mitPerson, mitSeite, mitVorlage, mitWahl, neuerFall } from "../src/engine/fall.ts";
+import { mitAngabe, mitAuswahl, mitBaustein, mitOption, mitPerson, mitSeite, mitVorlage, mitWahl, neuerFall, uebernehmen } from "../src/engine/fall.ts";
 import { mitSammelangabe, sammelSchritte } from "../src/engine/sammel.ts";
 import { findeAbgleichhinweise } from "../src/engine/abgleich.ts";
 import { ABGLEICHREGELN } from "../src/data/abgleich.ts";
 import { istKisSicher } from "../src/engine/text.ts";
-import { schnellwerteFehler, wahlPlatzFehler, weglassenFehler } from "../src/engine/vorlage.ts";
+import { istFragesatz, schnellwerteFehler, wahlPlatzFehler, weglassenFehler } from "../src/engine/vorlage.ts";
 
 const index = indexiere(KATALOG);
 const alle: Baustein[] = KATALOG.regionen.flatMap((r) => r.bausteine);
@@ -149,11 +149,69 @@ test("Vorlagen und Entweder-oder-Stellen haben nur bekannte Felder (CR-T1-03)", 
   // Ein falsch geschriebenes Feld („Vor“, „nach“, „vor “) wirkt nicht, und kein anderer Test sähe es: Die Stelle stünde
   // still am Ende des Abschnitts. Die Listen folgen `Vorlage` und `Wahlstelle` in `src/model/types.ts`.
   const VORLAGE = new Set(["id", "titel", "suchbegriffe", "kuerzel", "region", "setting", "abschnitte", "entscheiden", "ohne", "vorgaben", "weglassen", "schnellwerte", "wahl", "status", "quelle"]);
-  const STELLE = new Set(["abschnitt", "label", "bausteine", "vor"]);
+  const STELLE = new Set(["abschnitt", "label", "bausteine", "vor", "pflicht"]);
   const fehler: string[] = [];
   for (const v of KATALOG.vorlagen) {
     for (const k of Object.keys(v)) if (!VORLAGE.has(k)) fehler.push(`${v.id}: unbekanntes Feld „${k}“`);
     for (const w of v.wahl ?? []) for (const k of Object.keys(w)) if (!STELLE.has(k)) fehler.push(`${v.id}: Stelle „${w.label}“: unbekanntes Feld „${k}“`);
+  }
+  melde(fehler);
+});
+
+test("Pflichtstelle (PS-T1-01): jede Entweder-oder-Stelle, deren Baustein die Gerinnungshemmung fragt, ist `pflicht`", () => {
+  // Sonst nähme „nichts davon“ Gerinnungshemmung, Allergien und Art der Vorstellung mit einem Klick aus dem Brief, und
+  // die übrigen Bausteine des Abschnitts ließen ihn vollständig aussehen.
+  const GERINNUNG = /gerinnung|antikoag/i;
+  // Nur die Anamnese fragt; Bausteine im Procedere nennen die Gerinnungshemmung als Anweisung (pausieren, wieder beginnen).
+  const fragtGerinnung = (bid: string) =>
+    index.bausteine.get(bid)?.typ === "anamnese" &&
+    (index.bausteine.get(bid)?.segmente ?? []).some(
+      (s) =>
+        "id" in s &&
+        GERINNUNG.test(`${s.id} ${"label" in s ? s.label : ""}`) &&
+        ((s.art === "option" && istFragesatz(`${bid}/${s.id}`, index)) || (s.art === "auswahl" && s.pflicht === true)),
+    );
+  const fehler: string[] = [];
+  const gefunden: string[] = [];
+  for (const v of KATALOG.vorlagen) {
+    for (const w of v.wahl ?? []) {
+      if (!w.bausteine.some(fragtGerinnung)) continue;
+      gefunden.push(v.id);
+      if (w.pflicht !== true) fehler.push(`${v.id}: Stelle „${w.label}“ fragt die Gerinnungshemmung und ist nicht pflicht`);
+    }
+  }
+  // Gegenprobe gegen einen Test ohne Aussage: Die Stationsanamnese fragt die Gerinnungshemmung.
+  assert.ok(gefunden.includes("station-frei") && gefunden.includes("station-kyphoplastie"), `gefunden: ${gefunden.join(", ")}`);
+  melde(fehler);
+});
+
+test("Vorgaben gespiegelt (PS-T1-03): gleichnamige Sätze und Auswahlen der Bausteine einer Anamnese-Stelle haben in der Vorlage dieselben Vorgaben", () => {
+  // Sonst fehlt auf einem Weg still, was die Vorlage auf dem anderen vorschlägt (Wohnsituation, Mobilität, Pflegegrad).
+  const fehler: string[] = [];
+  for (const v of KATALOG.vorlagen) {
+    const g = v.vorgaben ?? {};
+    const stand = (bid: string, id: string): string => {
+      const k = `${bid}/${id}`;
+      const slots = Object.entries(g.slots ?? {})
+        .filter(([s]) => s.startsWith(`${k}/`))
+        .map(([s, i]) => `${s.slice(k.length + 1)}=${i}`)
+        .sort();
+      return [g.an?.includes(k) ? "an" : "", g.aus?.includes(k) ? "aus" : "", g.auswahl?.[k] ?? "", ...slots].join("|");
+    };
+    // Nur die Anamnese: Im Procedere heißen Sätze verschiedener Wege gleich, sagen aber je Weg anderes (MRT ambulant oder
+    // stationär, Belastung mit oder ohne Operation); dort sind verschiedene Vorgaben gewollt.
+    for (const w of (v.wahl ?? []).filter((x) => x.abschnitt === "anamnese")) {
+      const ids = w.bausteine.map((bid) => new Set((index.bausteine.get(bid)?.segmente ?? []).flatMap((s) => ("id" in s && (s.art === "option" || s.art === "auswahl") ? [s.id] : []))));
+      w.bausteine.forEach((a, i) =>
+        w.bausteine.forEach((b, j) => {
+          if (j <= i) return;
+          for (const id of ids[i]) {
+            if (!ids[j].has(id)) continue;
+            if (stand(a, id) !== stand(b, id)) fehler.push(`${v.id}: ${a}/${id} „${stand(a, id)}“, ${b}/${id} „${stand(b, id)}“`);
+          }
+        }),
+      );
+    }
   }
   melde(fehler);
 });
@@ -163,39 +221,33 @@ test("Platz einer Entweder-oder-Stelle: `vor` zeigt auf einen festen Baustein im
   melde(KATALOG.vorlagen.flatMap((v) => wahlPlatzFehler(v, index)));
 });
 
-test("Probelauf T1 (Kopien, Katalog unverändert): Unfall oder Beschwerden an erster Stelle, der Einleitungssatz steht vorn", () => {
-  // Wie die Redaktion die drei Stationsvorlagen umbauen will (Redaktion 15, Teil A): `ana-st-unfall` aus `abschnitte`, dafür eine Stelle.
+test("T1 in Becken, Hüfte, Knie: Pflichtstelle zuerst in der Anamnese, Einleitungssatz auf beiden Wegen vorn (CR-T1-05)", () => {
+  // Ersetzt den Probelauf mit Kopien: Die Redaktion hat `ana-st-unfall` durch die Stelle ersetzt (Prüfliste PS-T1, Punkte 4 bis 6).
   const fehler: string[] = [];
   for (const id of ["station-beckenringfraktur-konservativ", "station-periprothetische-femurfraktur-huefte", "station-periprothetische-fraktur-knie"]) {
-    const orig = index.vorlagen.get(id);
-    assert.ok(orig, id);
-    const rest = (orig.abschnitte.anamnese ?? []).filter((b) => b !== "ana-st-unfall");
-    assert.ok(rest.length > 0 && rest.length < (orig.abschnitte.anamnese ?? []).length, `${id}: Ausgangslage hat sich geändert`);
-    const nr = (orig.wahl ?? []).length;
+    const v = index.vorlagen.get(id);
+    assert.ok(v, id);
+    const nr = (v.wahl ?? []).findIndex((w) => w.abschnitt === "anamnese");
+    const w = v.wahl?.[nr];
+    if (!w) {
+      fehler.push(`${id}: keine Stelle in der Anamnese`);
+      continue;
+    }
+    if (w.bausteine.join() !== "ana-st-unfall,ana-st-beschwerden") fehler.push(`${id}: Bausteine ${w.bausteine.join()}, erwartet Unfall als Option 1`);
+    if (!w.pflicht) fehler.push(`${id}: Stelle ist nicht pflicht`);
+    if ((v.abschnitte.anamnese ?? []).includes("ana-st-unfall")) fehler.push(`${id}: ana-st-unfall steht noch fest in der Anamnese`);
+    if (w.vor !== v.abschnitte.anamnese?.[0]) fehler.push(`${id}: vor ${w.vor}, erwartet ${v.abschnitte.anamnese?.[0]}`);
     const key = `wahl/anamnese/${nr}`;
-    const kopie = (vor?: string): Vorlage => ({
-      ...orig,
-      id: `${id}-t1${vor ? "" : "-ende"}`,
-      abschnitte: { ...orig.abschnitte, anamnese: rest },
-      wahl: [...(orig.wahl ?? []), { abschnitt: "anamnese", label: "Unfall oder Beschwerden ohne Unfall?", bausteine: ["ana-st-unfall", "ana-st-beschwerden"], ...(vor ? { vor } : {}) }],
-    });
-    const mit = kopie(rest[0]);
-    const ohne = kopie();
-    const idx = indexiere({ ...KATALOG, vorlagen: [...KATALOG.vorlagen, mit, ohne] });
-    if (wahlPlatzFehler(mit, idx).length) fehler.push(...wahlPlatzFehler(mit, idx));
-    const start = (v: Vorlage) => mitPerson(mitSeite(mitVorlage(neuerFall("station", idx), v, idx), "links"), "w", "82");
-    const anamnese = (f: Fall) => renderBrief(f, idx).abschnitte.find((a) => a.id === "anamnese")!;
-    const offen = anamnese(start(mit));
+    const start = mitPerson(mitSeite(mitVorlage(neuerFall("station", index), v, index), "links"), "w", "82");
+    const anamnese = (f: Fall) => renderBrief(f, index).abschnitte.find((a) => a.id === "anamnese")!;
+    const offen = anamnese(start);
     if (offen.tokens[0]?.key !== key) fehler.push(`${id}: offene Stelle steht nicht am Anfang: ${offen.text.slice(0, 80)}`);
-    for (const bid of ["ana-st-unfall", "ana-st-beschwerden"]) {
-      const a = anamnese(mitWahl(start(mit), key, bid, idx));
+    if (mitWahl(start, key, null, index) !== start) fehler.push(`${id}: „nichts davon“ wirkt`);
+    for (const bid of w.bausteine) {
+      const a = anamnese(mitWahl(start, key, bid, index));
       if (a.tokens[0]?.bausteinId !== bid || !a.text.startsWith("Die 82-jährige Patientin stellte sich ‹Art der Vorstellung› in unserer Notaufnahme vor.")) {
         fehler.push(`${id} mit ${bid}: Einleitungssatz nicht am Anfang: ${a.text.slice(0, 80)}`);
       }
-      // Gegenprobe ohne `vor`: das alte Verhalten, das die Redaktion blockiert hat.
-      const alt = anamnese(mitWahl(start(ohne), key, bid, idx));
-      if (alt.tokens[0]?.bausteinId === bid) fehler.push(`${id} ohne vor: Gegenprobe greift nicht`);
-      if (alt.text.split("\n").filter((z) => z.startsWith("Die 82-jährige Patientin stellte sich")).length !== 1) fehler.push(`${id} ohne vor: Einleitungssatz fehlt`);
     }
   }
   melde(fehler);
@@ -450,6 +502,157 @@ test("Abgleich im echten Katalog: zwei Tetanusaussagen werden gemeldet; jede Opt
   assert.deepEqual(tetanus(fall), ["Tetanus: Therapie und Procedere nennen je eine Tetanusaussage."]);
 });
 
+test("Abgleich im echten Katalog (PS-T1-02): jeder Weg der Anamnese-Stelle allein meldet nichts; Sturz, Sturzursache, Unfallanker und beide Wege zugleich werden gemeldet", () => {
+  const UNFALL = ["ana-st-unfall", "ana-trauma"];
+  const BESCHWERDEN = ["ana-st-beschwerden", "ana-beschwerden"];
+  const unfall = (f: Fall) =>
+    findeAbgleichhinweise(renderBrief(f, index), ABGLEICHREGELN)
+      .map((h) => h.text)
+      .filter((t) => t.startsWith("Unfall:"));
+  // Wie „Übernehmen ✓“ überall: Der Abgleich liest nur, was der Arzt zu seiner Aussage gemacht hat.
+  const alles = (f: Fall) =>
+    uebernehmen(f, renderBrief(f, index).abschnitte.flatMap((a) => a.tokens.filter((t) => t.zustand === "vorschlag" && t.key).map((t) => t.key!)), index);
+  const fehler: string[] = [];
+  let wege = 0;
+  let proben = 0;
+  for (const v of KATALOG.vorlagen) {
+    (v.wahl ?? []).forEach((w, nr) => {
+      if (w.abschnitt !== "anamnese") return;
+      const key = `wahl/anamnese/${nr}`;
+      const start = () => mitPerson(mitSeite(mitVorlage(neuerFall(v.setting, index), v, index), "links"), "w", "82");
+      for (const bid of w.bausteine) {
+        wege++;
+        const h = unfall(alles(mitWahl(start(), key, bid, index)));
+        if (h.length) fehler.push(`${v.id} ${bid} allein: ${h.join(" ")}`);
+      }
+      const ohne = w.bausteine.find((b) => BESCHWERDEN.includes(b));
+      const mit = w.bausteine.find((b) => UNFALL.includes(b));
+      if (!ohne) return;
+      const weg = alles(mitWahl(start(), key, ohne, index));
+      // Beschwerdeweg auch ohne den grauen Satz „Ein Unfall sei nicht erinnerlich.“: Dann trägt „Beginn der Beschwerden:“.
+      for (const [name, f] of [["mit Satz", weg], ["ohne Satz", mitOption(weg, `${ohne}/kein-unfall`, false)]] as const) {
+        const meldet = (g: Fall, was: string, soll: boolean) => {
+          proben++;
+          const h = unfall(g);
+          if (soll && !h.length) fehler.push(`${v.id} ${name}: ${was} meldet nichts`);
+          if (!soll && h.length) fehler.push(`${v.id} ${name}: ${was} meldet ${h.join(" ")}`);
+        };
+        for (const bid of Object.values(v.abschnitte).flat()) {
+          const b = index.bausteine.get(bid)!;
+          for (const seg of b.segmente) {
+            // Ereignis in der Diagnose: jede Option mit Sturz oder Unfall meldet, „ohne erinnerlich…“ und leer nicht.
+            if (b.typ === "diagnose" && seg.art === "auswahl" && seg.id === "ereignis") {
+              seg.optionen.forEach((o, i) => meldet(mitAuswahl(f, `${bid}/ereignis`, i), `Ereignis „${o}“`, /Sturz|[Uu]nfall/.test(o) && !/ohne erinnerlich/.test(o)));
+            }
+            if (seg.art !== "option") continue;
+            for (const sl of seg.slots ?? []) {
+              if (sl.art !== "auswahl") continue;
+              sl.optionen.forEach((o, i) => {
+                // Sturzursache in den Diagnosen, Zeitanker in Diagnostik und Procedere: jede Option mit Unfall meldet, „nach der Aufnahme“ und „vor der Fraktur“ nicht.
+                const sturz = bid === "dx-st-neben" && seg.id === "sturzursache" && o !== "";
+                const satz = seg.text.replace(`{${sl.id}}`, o);
+                const anker = (b.typ === "procedere" || b.typ === "diagnostik") && /(nach|vor) (dem Unfall|der Aufnahme|der Fraktur)/.test(satz);
+                if (!sturz && !anker) return;
+                // Ein Satz mit offener Angabe zählt im Abgleich noch nicht; die übrigen Angaben des Satzes werden gefüllt.
+                let g = mitAngabe(f, `${bid}/${seg.id}`, `${bid}/${seg.id}/${sl.id}`, String(i));
+                for (const x of seg.slots ?? []) {
+                  if (x.id === sl.id) continue;
+                  const wert = x.art === "auswahl" ? String(x.optionen.findIndex((y) => y !== "")) : x.art === "zahl" ? "6" : x.art === "detail" ? "Probe" : "rechts";
+                  g = mitAngabe(g, `${bid}/${seg.id}`, `${bid}/${seg.id}/${x.id}`, wert);
+                }
+                meldet(g, `${bid}/${seg.id} „${o}“`, sturz || /(nach|vor) dem Unfall/.test(satz));
+              });
+            }
+          }
+        }
+        if (mit) meldet(mitBaustein(f, mit, index, "anamnese"), `beide Wege (${mit} dazu)`, true);
+      }
+    });
+  }
+  assert.ok(wege >= 9 && proben > 100, `nur ${wege} Wege, ${proben} Proben`);
+  melde(fehler);
+});
+
+test("Abgleich im echten Katalog: Gehhilfe im Entlassbefund und im Procedere, jede Kombination; spätere Ziele im Procedere zählen nicht", () => {
+  // Eigene Einteilung des Tests, unabhängig von den Mustern der Regel.
+  const art = (o: string) =>
+    /ohne (Hilfsmittel|Gehhilfe)/.test(o) ? "ohne" : /Unterarmgehstützen/.test(o) ? "Stützen" : /Rollator/.test(o) ? "Rollator" : /Gehwagen/.test(o) ? "Gehwagen" : /Gehstock/.test(o) ? "Gehstock" : null;
+  const gehhilfe = (f: Fall) =>
+    findeAbgleichhinweise(renderBrief(f, index), ABGLEICHREGELN)
+      .map((h) => h.text)
+      .filter((t) => t.startsWith("Gehhilfe:"));
+  type Stelle = { bid: string; seg: Extract<Baustein["segmente"][number], { art: "option" }>; slot: string };
+  // Ein Satz mit offener Angabe zählt im Abgleich noch nicht; die übrigen Angaben des Satzes werden gefüllt.
+  const setze = (f: Fall, st: Stelle, slot: string, i: number) => {
+    let g = mitAngabe(f, `${st.bid}/${st.seg.id}`, `${st.bid}/${st.seg.id}/${slot}`, String(i));
+    for (const x of st.seg.slots ?? []) {
+      if (x.id === slot) continue;
+      const wert = x.art === "auswahl" ? String(x.optionen.findIndex((y) => y !== "")) : x.art === "zahl" ? "6" : x.art === "detail" ? "Probe" : "rechts";
+      g = mitAngabe(g, `${st.bid}/${st.seg.id}`, `${st.bid}/${st.seg.id}/${x.id}`, wert);
+    }
+    return g;
+  };
+  const optionen = (st: Stelle) => {
+    const sl = (st.seg.slots ?? []).find((x) => x.id === st.slot);
+    return sl?.art === "auswahl" ? sl.optionen : [];
+  };
+  const stellen = (bids: string[]) =>
+    bids.flatMap((bid) =>
+      index.bausteine.get(bid)!.segmente.flatMap((seg) => {
+        if (seg.art !== "option" || !/Gehen ?\{/.test(seg.text)) return [];
+        const sl = (seg.slots ?? []).find((x) => ["hilfsmittel", "womit", "gehhilfe"].includes(x.id));
+        return sl ? [{ bid, seg, slot: sl.id }] : [];
+      }),
+    );
+  const fehler: string[] = [];
+  let paare = 0;
+  let ziele = 0;
+  for (const v of KATALOG.vorlagen) {
+    const eb = stellen(v.abschnitte.entlassbefund ?? []);
+    const pr = stellen(v.abschnitte.procedere ?? []);
+    if (!eb.length || !pr.length) continue;
+    const start = () => mitPerson(mitSeite(mitVorlage(neuerFall(v.setting, index), v, index), "rechts"), "w", "82");
+    for (const e of eb) {
+      for (const p of pr) {
+        optionen(e).forEach((oe, i) => {
+          if (oe === "") return;
+          if (!art(oe)) fehler.push(`${e.bid}: Gehhilfe „${oe}“ hat keine Einteilung im Test`);
+          optionen(p).forEach((op, j) => {
+            if (op === "") return;
+            if (!art(op)) fehler.push(`${p.bid}: Gehhilfe „${op}“ hat keine Einteilung im Test`);
+            paare++;
+            const h = gehhilfe(setze(setze(start(), e, e.slot, i), p, p.slot, j));
+            const soll = art(oe) !== art(op);
+            if (soll && !h.length) fehler.push(`${v.id}: „${oe}“ gegen „${op}“ meldet nichts`);
+            if (!soll && h.length) fehler.push(`${v.id}: „${oe}“ und „${op}“ melden ${h.join(" ")}`);
+          });
+        });
+      }
+      // Spätere Ziele im Procedere („…, Gehen ohne Gehhilfe bis zum Ende der 6. Woche“, „Gehstützen abtrainieren“) sind
+      // keine Gehhilfe zur Entlassung: Mit jeder Gehhilfe im Entlassbefund und ohne Gehen-Satz im Procedere meldet keins.
+      for (const bid of v.abschnitte.procedere ?? []) {
+        for (const seg of index.bausteine.get(bid)!.segmente) {
+          if (seg.art !== "option" || pr.some((p) => p.bid === bid && p.seg.id === seg.id)) continue;
+          for (const sl of seg.slots ?? []) {
+            if (sl.art !== "auswahl") continue;
+            sl.optionen.forEach((o, k) => {
+              if (!/Gehhilfe|[Gg]ehstützen|Rollator|Gehwagen|Gehstock|ohne Hilfsmittel/.test(o)) return;
+              optionen(e).forEach((oe, i) => {
+                if (oe === "") return;
+                ziele++;
+                const h = gehhilfe(setze(setze(start(), e, e.slot, i), { bid, seg, slot: sl.id }, sl.id, k));
+                if (h.length) fehler.push(`${v.id}: „${oe}“ mit ${bid}/${seg.id} „${o}“ meldet ${h.join(" ")}`);
+              });
+            });
+          }
+        }
+      }
+    }
+  }
+  assert.ok(paare > 300 && ziele >= 20, `nur ${paare} Paare, ${ziele} Ziele`);
+  melde(fehler);
+});
+
 test("Jede Vorlage ergibt einen sauberen Text", () => {
   const fehler: string[] = [];
   for (const v of KATALOG.vorlagen) {
@@ -639,4 +842,68 @@ test("R2-03: vorbelegte Angaben hinter der letzten Pflichtangabe halten den Satz
   assert.equal(vorbelegt.size, 28, `vorbelegt: ${[...vorbelegt].join(", ")}`);
   assert.ok(freiwillig.size > 0);
   console.log(`R2-03: ${vorbelegt.size} Sätze mit vorbelegter Angabe hinter der letzten Pflichtangabe, ${freiwillig.size} mit nur freiwilligen`);
+});
+
+// --- Normalwerte am Messfeld (E-48 (10)) -------------------------------------------------------------------------
+
+test("Normalwerte: jede Fundstelle gibt es im Katalog, in der genannten Datei, mit Feld und gegebenenfalls Slot", async () => {
+  const { readFileSync } = await import("node:fs");
+  const { NORMWERTE } = await import("../src/data/normwerte.ts");
+  const fehler: string[] = [];
+  const stellen = [...NORMWERTE.eintraege.flatMap((e) => e.fundstellen.map((f) => ({ f, wo: e.schluessel }))), ...NORMWERTE.tabelle.map((f) => ({ f, wo: "tabelle" }))];
+  for (const { f, wo } of stellen) {
+    const datei = JSON.parse(readFileSync(new URL(`../src/data/corpus/${f.datei}`, import.meta.url), "utf8")) as { regionen: { bausteine: Baustein[] }[] };
+    const b = datei.regionen.flatMap((r) => r.bausteine).find((x) => x.id === f.baustein);
+    const seg = b?.segmente.find((s) => "id" in s && s.id === f.segment);
+    if (!b) fehler.push(`${wo}: Baustein ${f.baustein} nicht in ${f.datei}`);
+    else if (!seg) fehler.push(`${wo}: Feld ${f.baustein}/${f.segment} fehlt`);
+    else if (f.slot && !("slots" in seg && seg.slots?.some((sl) => sl.id === f.slot))) fehler.push(`${wo}: Slot ${f.slot} fehlt in ${f.baustein}/${f.segment}`);
+  }
+  melde(fehler);
+});
+
+test("Normalwerte: jedes Messfeld mit einem Bewegungspaar im Label hat einen Eintrag (Zuordnung über Fundstellen)", async () => {
+  const { NORMWERTE } = await import("../src/data/normwerte.ts");
+  const { normwertKarte } = await import("../src/engine/normwerte.ts");
+  const karte = normwertKarte(NORMWERTE);
+  const PAAR = /\p{L}+(ion|-)\/\p{L}+/u;
+  const fehler: string[] = [];
+  let geprueft = 0;
+  for (const b of alle) {
+    for (const s of b.segmente) {
+      if (!("id" in s)) continue;
+      const labels = [(s.art === "messwert" || s.art === "option") && PAAR.test(s.label) ? s.label : "", ...("slots" in s ? (s.slots ?? []) : []).filter((sl) => PAAR.test(sl.label)).map((sl) => sl.label)].filter(Boolean);
+      if (labels.length === 0) continue;
+      geprueft++;
+      if (!karte.has(`${b.id}/${s.id}`)) fehler.push(`${b.id}/${s.id}: „${labels[0]}“ ohne Normalwert`);
+    }
+  }
+  assert.ok(geprueft >= 20, `nur ${geprueft} Messfelder gefunden`);
+  melde(fehler);
+});
+
+test("Normalwerte: Entscheidungen der Auftraggeberin vom 08.11.2026 sind umgesetzt", async () => {
+  const { NORMWERTE } = await import("../src/data/normwerte.ts");
+  const eintrag = (s: string) => NORMWERTE.eintraege.find((e) => e.schluessel === s);
+  assert.equal(NORMWERTE.freigegeben, true);
+  assert.equal(NORMWERTE.quelle, "Richtwerte nach Neutral-Null-Methode (deutsches Fachwissen), ärztlich freigegeben 08.11.2026");
+  // Engere deutsche Spanne am Handgelenk; ohne jeden Beleg: Rückneigen beim Kinn-Jugulum-Abstand, Drehung von BWS und LWS.
+  assert.equal(eintrag("handgelenk-ext-flex")?.normal, "35–60/0/50–60°");
+  assert.doesNotMatch(eintrag("kinn-jugulum")?.normal ?? "", /Rückneig/);
+  assert.equal(eintrag("bws-lws-rotation"), undefined);
+  // Der gespiegelte Sondereintrag entfällt; Schulter knapp heißt wie überall „Außenrotation/Innenrotation“.
+  assert.equal(eintrag("schulter-ir-ar"), undefined);
+  const knapp = index.bausteine.get("schulter-unt-knapp")?.segmente.find((s) => "id" in s && s.id === "schulter-knapp-rom-iroaro");
+  assert.ok(knapp?.art === "messwert" && knapp.label === "Außenrotation/Innenrotation" && knapp.vorlage.startsWith("Außenrotation/Innenrotation "));
+  // Rotation von Schulter und Hüfte: Werte je Ausgangsstellung.
+  assert.deepEqual(eintrag("schulter-ar-ir")?.stellungen?.map((s) => s.stellung), ["Oberarm anliegend", "in 90° Abduktion"]);
+  assert.deepEqual(eintrag("huefte-ar-ir")?.stellungen?.map((s) => s.stellung), ["in 90° Hüftbeugung", "in Streckung"]);
+  // Das Eingabebeispiel liegt im Normbereich (vorher 40/0/50 bei der Radial-/Ulnarabduktion).
+  const beispiel = (opt: string) => {
+    const s = index.bausteine.get("hand-untersuchung")?.segmente.find((x) => "id" in x && x.id === opt);
+    return s && "slots" in s ? (s.slots?.[0]?.label ?? "") : "";
+  };
+  const [radial, , ulnar] = (/(\d+)\/0\/(\d+)/.exec(beispiel("hand-us-rom-radulnar")) ?? []).slice(1).flatMap((x) => [Number(x), 0]);
+  assert.ok(radial >= 25 && radial <= 30 && ulnar >= 30 && ulnar <= 40, beispiel("hand-us-rom-radulnar"));
+  assert.match(beispiel("hand-us-rom-prosup"), /80\/0\/80/);
 });

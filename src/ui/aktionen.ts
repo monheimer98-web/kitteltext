@@ -2,12 +2,12 @@
 // Stelle oder zum nächsten Vorschlag springen, kopieren.
 
 import { effect, signal, untracked } from "@preact/signals";
-import type { AbschnittId, Fall, Seite } from "../model/types.ts";
+import type { AbschnittId, Fall, Geschlecht, Seite } from "../model/types.ts";
 import type { TokenArt } from "../engine/text.ts";
 import { fuerZwischenablage, unsichereZeichen } from "../engine/text.ts";
 import { briefText, renderBrief, sichtbareAbschnitte } from "../engine/render.ts";
 import type { AbschnittAnsicht, BriefAnsicht } from "../engine/render.ts";
-import { alsKopiert, beendetZug, fallName, mitSeite, schritteZuruecknehmen, uebernehmen } from "../engine/fall.ts";
+import { alsKopiert, beendetZug, fallName, mitPerson, mitSeite, sicherZuruecknehmen, uebernehmen } from "../engine/fall.ts";
 import {
   BILD_ERSATZ_MS,
   EBEN_MS,
@@ -30,7 +30,7 @@ import {
   verworfenWort,
 } from "../engine/tippzug.ts";
 import type { Kette, Urteil, Zug } from "../engine/tippzug.ts";
-import { aenderungJetzt, aufzaehlen, geaenderteStellen, gesetztText, kurz, zurueckgenommenText } from "../engine/aenderung.ts";
+import { PERSON_WORT, aenderungJetzt, aufzaehlen, geaenderteStellen, gesetztText, kurz, zurueckgenommenText } from "../engine/aenderung.ts";
 import { SPERRE } from "../data/tastatur.ts";
 import { bausteinStand, mitSammelangabe, ohneSammelangabe, sammelAussagen } from "../engine/sammel.ts";
 import type { SammelSetzung } from "../engine/sammel.ts";
@@ -70,9 +70,11 @@ export function hebeHervor(keys: string[]) {
  * damit kein Befund unbemerkt kippt.
  */
 export function unterschied(vorFall: Fall | null, vorBrief: BriefAnsicht | null): string {
-  const { text, keys } = aenderungJetzt(vorFall, vorBrief, aktiverFall.value, brief.value);
+  const { keys } = aenderungJetzt(vorFall, vorBrief, aktiverFall.value, brief.value);
   hebeHervor(keys);
-  return text;
+  // Dieselbe Aufzählung wie nach einer Rücknahme: jede Stelle einmal, alle genannt (H-R3b-1).
+  const art = { listen: einstellungen.peek().listen };
+  return zurueckgenommenText(vorFall, aktiverFall.peek(), (f) => renderBrief(f, INDEX, art));
 }
 
 let letzterHalt: string | null = null;
@@ -195,6 +197,20 @@ export function seiteDesBriefs(neu: Seite) {
   }
 }
 
+/** Wählt die Person. Ändert das eine schon gewählte Person, meldet es sich wie ein Wechsel der Seite (QA-34). */
+export function personDesBriefs(neu: Geschlecht) {
+  const fall = aktiverFall.peek();
+  if (!fall || fall.geschlecht === neu) return;
+  const alt = fall.geschlecht;
+  aendere((f) => mitPerson(f, neu, f.alter));
+  if (alt) {
+    melde(
+      { text: `Person: ${PERSON_WORT[neu]} (vorher ${PERSON_WORT[alt]})`, art: "warnung", fallId: fall.id, aktion: { label: "Rückgängig", ausfuehren: () => aendereFall(fall.id, (f) => mitPerson(f, alt, f.alter)) } },
+      8000,
+    );
+  }
+}
+
 /** Macht die Vorschläge der genannten Textstellen zur Aussage des Arztes. */
 export function uebernimm(keys: string[]) {
   if (keys.length > 0) aendere((f) => uebernehmen(f, keys, INDEX));
@@ -238,6 +254,8 @@ interface Sperre {
   verworfen: string;
   /** Was zurückgenommen wurde, weil der Zug blind war. */
   zurueck: string;
+  /** Zusätze des blinden Zugs, die stehen bleiben (PS-N13). */
+  behalten: string;
   /** Befehle kurz vor der Sperre, die die Meldung mit „Rückgängig“ nennt. */
   eben: readonly Befehl[];
   /** Folge am Knopf („Fall bleibt offen“): „Enter verworfen, Fall bleibt offen.“ (MT-04). */
@@ -374,6 +392,8 @@ if (typeof document !== "undefined" && typeof document.addEventListener === "fun
     "keydown",
     (e) => {
       if (NUR_SONDERTASTE.has(e.key)) return;
+      // Das „i“ der Normalwerte ist kein Halt (E-48 (10)): Seine Tasten gehören nicht zum Tippen im Brief.
+      if ((e.target as HTMLElement | null)?.closest?.("[data-normwert]")) return;
       befehlAufgeloest(true);
       const zeit = e.timeStamp;
       const r = nachTaste(kette, zeit);
@@ -473,7 +493,7 @@ export function blindesZeichen(e: KeyboardEvent): boolean {
 function verwirf(u: Urteil, zeichen: string, zeit: number, folge = "", textImFeld = false) {
   zeigeZug();
   const neu = !sperre;
-  if (!sperre) sperre = { grund: GRUND[u] ?? "", verworfen: "", zurueck: "", eben: [], folge, seit: zeit, fallId: aktivId.peek() };
+  if (!sperre) sperre = { grund: GRUND[u] ?? "", verworfen: "", zurueck: "", behalten: "", eben: [], folge, seit: zeit, fallId: aktivId.peek() };
   sperre.verworfen += zeichen;
   const verraet = zeichen.trim() !== "" && zeichen !== "↵";
   if (verraet && (textImFeld || blind(kette, "verworfen", zeit, false))) {
@@ -508,12 +528,17 @@ function zurueckText(befehle: readonly Befehl[], vorher: Fall, nachher: Fall): s
   return text || aufzaehlen(befehle.map((b) => b.text));
 }
 
-/** Nimmt die Befehle eines blinden Zugs zurück und hält fest, was die Meldung nennt. */
+/**
+ * Nimmt die Befehle eines blinden Zugs zurück, nur in die sichere Richtung (E-48): Eine Stelle, die vorher eine Aussage
+ * trug, wird offen oder grau; ein angefügter Zusatz bleibt und wird genannt. Hält fest, was die Meldung nennt.
+ */
 function nimmKetteZurueck(befehle: readonly Befehl[]) {
   const fallId = befehle[0].fallId;
   const jetzt = faelle.peek().find((f) => f.id === fallId);
   if (!jetzt || !sperre) return;
-  const zurueck = schritteZuruecknehmen(jetzt, befehle);
+  const art = { listen: einstellungen.peek().listen };
+  const { fall: zurueck, behalten } = sicherZuruecknehmen(jetzt, befehle, (f) => renderBrief(f, INDEX, art));
+  sperre.behalten = aufzaehlen(behalten.map((name) => `„${name}“`), Infinity);
   if (zurueck === jetzt) return;
   const vorBrief = brief.peek();
   aendereFall(fallId, () => zurueck);
@@ -566,7 +591,8 @@ function zeigeSperre() {
   const verworfen = s.folge ? `${zeichen} verworfen, ${s.folge}.` : `Verworfen: ${zeichen}${s.grund ? ` (${s.grund})` : ""}.`;
   const eben = s.eben.length > 0 ? ` Eben gesetzt: ${aufzaehlen(s.eben.map((b) => b.text))}.` : "";
   const zurueck = s.zurueck ? `Zurückgenommen, weil gleich weitergetippt: ${s.zurueck}. ` : "";
-  const text = `${k ? `${k.text} · ` : ""}${zurueck}${verworfen} ${SPERRE}${eben}`;
+  const behalten = s.behalten ? `Im Brief geblieben: ${s.behalten} (angefügt, bitte prüfen). ` : "";
+  const text = `${k ? `${k.text} · ` : ""}${zurueck}${behalten}${verworfen} ${SPERRE}${eben}`;
   const befehle = s.eben;
   const m: Meldung = {
     text,
@@ -632,7 +658,8 @@ function nimmZurueck(befehle: readonly Befehl[]) {
   const fallId = befehle[0]?.fallId;
   const jetzt = faelle.peek().find((f) => f.id === fallId);
   if (!fallId || !jetzt) return melde({ text: "Nichts zurückzunehmen: Der Fall ist geschlossen.", art: "ok" });
-  const zurueck = schritteZuruecknehmen(jetzt, befehle);
+  // Auch hier nur in die sichere Richtung (E-48); einen Zusatz entfernt dieses Rückgängig, weil der Arzt es verlangt.
+  const zurueck = sicherZuruecknehmen(jetzt, befehle).fall;
   if (zurueck === jetzt) return melde({ text: "Nichts zurückzunehmen: Die Stelle ist inzwischen geändert.", art: "ok" });
   const vorBrief = brief.peek();
   aendereFall(fallId, () => zurueck);
@@ -648,17 +675,20 @@ function nimmZurueck(befehle: readonly Befehl[]) {
  * die dort etwas setzen. `aktivierung`: Enter und Leertaste lösen dort einen Knopf aus und zählen als Befehl; `folge`
  * nennt dann, was ausbleibt („Fall bleibt offen“). true: Die Taste darf wirken (auch jede neutrale Taste). false:
  * verworfen und gemeldet, oder eine Wiederholung. Je Tastendruck gilt das erste Urteil, auch wenn mehrere Hörer fragen.
+ * `gueltig`: die Zeichen aus `befehle`, die hier gerade etwas bewirken (Ziffern bis zur Zahl der Knöpfe, U nur mit
+ * Normalbefund). Eine andere Befehlstaste verrät einen blinden Zug wie ein Zeichen ohne Bedeutung (CR-TS15); sonst
+ * darf der Halt seinen Hinweis geben, und sie zählt nicht als Befehl.
  */
-export function zugErlaubt(e: KeyboardEvent, befehle: string, aktivierung = false, folge = ""): boolean {
+export function zugErlaubt(e: KeyboardEvent, befehle: string, aktivierung = false, folge = "", gueltig?: string): boolean {
   const alt = urteile.get(e);
   if (alt !== undefined) return alt;
-  const ok = pruefeTaste(e, befehle, aktivierung, folge);
+  const ok = pruefeTaste(e, befehle, aktivierung, folge, gueltig);
   urteile.set(e, ok);
   return ok;
 }
 const urteile = new WeakMap<Event, boolean>();
 
-function pruefeTaste(e: KeyboardEvent, befehle: string, aktivierung: boolean, folge: string): boolean {
+function pruefeTaste(e: KeyboardEvent, befehle: string, aktivierung: boolean, folge: string, gueltig?: string): boolean {
   const sonder = e.ctrlKey || e.metaKey || e.altKey;
   // Ü ohne deutsche Tastenbelegung liefert an derselben Taste „[“ (PS-N04): nichts setzen, nichts sperren, Grund nennen.
   if (!sonder && befehle.includes("ü") && e.code === "BracketLeft" && e.key.toLowerCase() !== "ü") {
@@ -670,6 +700,10 @@ function pruefeTaste(e: KeyboardEvent, befehle: string, aktivierung: boolean, fo
   if (art === "neutral") return true;
   if (e.repeat) return false;
   const u = urteil(zug, art, e.timeStamp);
+  if (u === "wirkt" && art === "befehl" && !knopf && gueltig !== undefined && !gueltig.includes(e.key.toLowerCase())) {
+    if (blindesZeichen(e)) return false;
+    return true;
+  }
   if (u === "wirkt") {
     kette = mitBefehl(kette, null, e.timeStamp);
     merkeBefehl(e.timeStamp);
@@ -722,11 +756,19 @@ export function meldeErsetzt(label: string, alt: string, neu: string, noch: (f: 
 
 // Eine Meldung mit „Rückgängig“ gilt dem Fall, in dem sie entstand: Sobald sein Brief nicht mehr zu sehen ist (anderer
 // Fall, Vorlagensuche für einen neuen Fall), verschwindet sie (PS-N09).
+// Sperre und Sperrmeldung enden mit dem Fallwechsel (CR-TS17): Ein neuer Fall ist ein bewusster Schritt, und die
+// Meldung nennte sonst im neuen Fall, was im alten zurückgenommen wurde.
+let gezeigterFall: string | null = null;
 effect(() => {
   const id = aktivId.value;
   const suche = sucheOffen.value;
   const m = meldung.peek();
   if (m?.fallId && (m.fallId !== id || suche === "neu")) meldung.value = null;
+  if (id !== gezeigterFall) {
+    const vorher = gezeigterFall;
+    gezeigterFall = id;
+    if (vorher !== null && (sperre || zug.gesperrt)) untracked(() => loeseZug());
+  }
 });
 
 type Halt = { rang: number } & (

@@ -1,6 +1,6 @@
 // Regeln für den Abgleich zwischen Abschnitten. Sie hängen am Wortlaut des
 // Katalogs und stehen deshalb bei den Daten. Wer Sätze zu Belastung,
-// Nahtmaterial oder Thromboseprophylaxe umformuliert, prüft diese Muster mit.
+// Gehhilfe, Nahtmaterial, Thromboseprophylaxe, Unfall oder Sturz umformuliert, prüft diese Muster mit.
 
 import type { Abgleichregel } from "../engine/abgleich.ts";
 
@@ -11,9 +11,24 @@ const BELASTUNG: Record<string, RegExp> = {
   Entlastung: /\bEntlastung\b/i,
 };
 
+// Gehhilfe zur Entlassung: Gezählt wird nur ein Satz, der mit „Gehen“ beginnt („Gehen selbstständig am Rollator“,
+// „Gehen ohne Gehhilfe“). Spätere Ziele im Procedere („…, Gehen ohne Gehhilfe bis zum Ende der 6. Woche“,
+// „Gehstützen abtrainieren“) stehen mitten im Satz und zählen nicht. Die Fundstelle ist das Hilfsmittel selbst,
+// damit im selben Satz das zuerst genannte gilt.
+const GEHEN = String.raw`(?<=(?:^|[.:]\s|\n(?:[-•]\s)?)Gehen [^.\n]*?)`;
+const GEHHILFE: Record<string, RegExp> = {
+  "ohne Hilfsmittel": new RegExp(GEHEN + String.raw`\bohne (Hilfsmittel|Gehhilfe)\b`),
+  Unterarmgehstützen: new RegExp(GEHEN + "(Unterarmgehstützen|Gehstützen)"),
+  Rollator: new RegExp(GEHEN + "Rollator"),
+  Gehwagen: new RegExp(GEHEN + "Gehwagen"),
+  Gehstock: new RegExp(GEHEN + "Gehstock"),
+  Gehbock: new RegExp(GEHEN + "Gehbock"),
+};
+
 export const ABGLEICHREGELN: Abgleichregel[] = [
   { art: "gleich", name: "Belastung", abschnitte: ["entlassbefund", "procedere"], werte: BELASTUNG },
   { art: "gleich", name: "Belastung", abschnitte: ["verlauf", "entlassbefund"], werte: BELASTUNG },
+  { art: "gleich", name: "Gehhilfe", abschnitte: ["entlassbefund", "procedere"], werte: GEHHILFE },
   {
     art: "nichtBeide",
     abschnitte: ["entlassbefund", "procedere"],
@@ -1674,5 +1689,66 @@ export const ABGLEICHREGELN: Abgleichregel[] = [
     a: /Ein Unfall sei nicht erinnerlich/,
     b: /: Sturz auf (das Knie|den Ellenbogen)\./,
     hinweis: "Unfall: Die Anamnese verneint einen Unfall und nennt einen Sturz.",
+  },
+  // T1 Becken, Hüfte, Knie (patientensicherheit-t1-2026-11-07.md, PS-T1-02 Punkt 4): Anker, die nur ein Weg erzeugt.
+  // „Beginn der Beschwerden:“ ist fester Text des Beschwerdewegs und bleibt, auch wenn der Arzt den grauen Satz
+  // „Ein Unfall sei nicht erinnerlich.“ herausnimmt. Wo dieser Satz steht, melden schon die Regeln der Redaktion 15
+  // (oben); `ausser` verhindert den doppelten Hinweis.
+  {
+    art: "nichtBeide",
+    abschnitte: ["anamnese","diagnose"],
+    a: /Beginn der Beschwerden:|Ein Unfall sei nicht erinnerlich/,
+    b: /Sturzneigung|Stolpersturz|Sturz bei Synkope/,
+    hinweis: "Unfall: Die Anamnese nennt Beschwerden ohne Unfall, die Diagnosen eine Sturzursache.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["anamnese","diagnose"],
+    a: /Beginn der Beschwerden:/,
+    ausser: /Ein Unfall sei nicht erinnerlich/,
+    b: /, (häuslicher Sturz|Sturz aus dem Stand|Sturz aus der Höhe|Sturz in der Pflegeeinrichtung|Sturz im Freien|Verkehrsunfall)|bei Fraktur nach Sturz aus dem Stand|nach dem Unfall/,
+    hinweis: "Unfall: Die Anamnese nennt Beschwerden ohne Unfall, die Diagnosen einen Sturz oder Unfall.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["anamnese","procedere"],
+    a: /Beginn der Beschwerden:/,
+    ausser: /Ein Unfall sei nicht erinnerlich/,
+    b: /nach dem Unfall/,
+    hinweis: "Unfall: Die Anamnese nennt Beschwerden ohne Unfall, das Procedere zählt ab dem Unfall.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["anamnese","verlauf"],
+    a: /Beginn der Beschwerden:/,
+    ausser: /Ein Unfall sei nicht erinnerlich/,
+    b: /nach dem Unfall|Die Fraktur nach (Sturz aus dem Stand|geringfügigem Unfall)/,
+    hinweis: "Unfall: Die Anamnese nennt Beschwerden ohne Unfall, der Verlauf einen Unfall oder Sturz.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["anamnese","diagnostik"],
+    a: /Beginn der Beschwerden:|Ein Unfall sei nicht erinnerlich/,
+    b: /(vor|nach) dem Unfall/,
+    hinweis: "Unfall: Die Anamnese nennt Beschwerden ohne Unfall, die Diagnostik bezieht sich auf einen Unfall.",
+  },
+  // Beide Wege zugleich in der Anamnese (PS-T1-04: die zweite Alternative über „+ Baustein“).
+  {
+    art: "nichtBeide",
+    abschnitte: ["anamnese","anamnese"],
+    a: /Beginn der Beschwerden:/,
+    b: /Unfallzeitpunkt:|Vor dem Unfall|nach dem Unfall/,
+    hinweis: "Unfall: Die Anamnese nennt zugleich Beschwerden ohne Unfall und einen Unfall.",
+  },
+  // Unfallweg. Nicht gegen „ohne erinnerlichen Unfall“ in der Diagnose: „Unfallzeitpunkt:“ steht auch neben einem
+  // frei geschriebenen Auffindesatz (P4 der Fachdurchsicht Redaktion 15). Ein nicht bekannter oder nicht umschriebener
+  // Zeitpunkt passt zu „Ein Unfall sei nicht erinnerlich“ (Schnellwert der Mittelfußfraktur).
+  {
+    art: "nichtBeide",
+    abschnitte: ["anamnese","anamnese"],
+    a: /Unfallzeitpunkt:/,
+    ausser: /Beginn der Beschwerden:|Unfallzeitpunkt: (nicht bekannt|kein umschriebenes Ereignis erinnerlich)/,
+    b: /Ein Unfall sei nicht erinnerlich/,
+    hinweis: "Unfall: Die Anamnese nennt einen Unfallzeitpunkt und verneint zugleich einen Unfall.",
   },
 ];

@@ -1,10 +1,10 @@
 # Kitteltext · Anleitung
 
-Für den Dienst in der Notaufnahme und auf Station. Lesezeit zwei Minuten.
+Für den Dienst in der Notaufnahme und auf Station. Lesezeit zwei Minuten. Die Kurzfassung steht in der App unter „Anleitung“ oben rechts; beim allerersten Start geht sie einmal von selbst auf.
 
 ## Ein Brief in sechs Schritten
 
-1. **Tippen, was der Patient hat:** „osg re", „drf li", „Platzwunde". Enter. Der Brief steht da.
+1. **Tippen, was der Patient hat:** „osg re", „drf li", „Platzwunde". Enter. Der Brief steht da. Findet der eigene Bereich nichts oder wenig, stehen darunter Vorlagen des anderen („Auf Station:“, „In der Notaufnahme:“); eine davon öffnet den Fall dort.
 2. **F2 führt durch den Brief**, von oben nach unten (Umschalt+F2 zurück). Nach dem Öffnen einer Vorlage startet auch Enter auf „Nächste Stelle“. An jeder Stelle hat das Fenster oder der Block den Fokus, nie ein Knopf darin:
    - **Gelb mit ●** fehlt noch: tippen oder wählen. Gewählt wird mit der **Ziffer** am Knopf; Nummern hat nur die Reihe, in der gerade gewählt wird. **Enter allein wählt nie etwas:** erst mit Pfeiltaste markieren, dann Enter. Hat ein Satz mehrere Angaben, rücken die Nummern nach jeder Ziffer zur nächsten, auch zu einer vorbelegten; ist der Satz vollständig, geht es weiter. Eine freiwillige Angabe dahinter (Orthese: „danach …“) bleibt so und lässt sich anklicken. Schnellwerte mit Pfeil ab. Einzeiliges Feld: Enter oder Tab geht weiter. Mehrzeiliges (Unfallhergang): Enter macht eine neue Zeile, weiter mit Strg+Enter, Tab oder F2.
    - **Grau** ist ein Vorschlag der Vorlage. Lesen, dann **Ü** („Übernehmen ✓“). Stimmt er nicht: Satz anklicken und ändern oder entfernen.
@@ -44,11 +44,11 @@ Für den Dienst in der Notaufnahme und auf Station. Lesezeit zwei Minuten.
 | Strg+Z, Strg+Y | rückgängig, wiederholen |
 | Esc | Fenster oder Liste schließen |
 
-Damit weitergetippter Text an der nächsten Stelle nichts auswählt, wirken dort Ziffer, U, A, N und Ü erst, wenn die Stelle 0,3 Sekunden zu sehen war; ebenso Enter und Leertaste auf einem Knopf. Das gilt nach jedem Weiterspringen, auch eine Zeile tiefer in der Befundliste. Zu frühe Tasten setzen nichts, ebenso Text dort, wo gewählt wird. Die Meldung zeigt sie; danach sind diese Tasten gesperrt bis Pfeiltaste, Tab, F2 oder Klick. Die erste Pfeiltaste oder Tab danach löst nur und markiert nichts. Kam die Taste gleich nach einer Wahl, oder landet Text gleich im Feld danach, nimmt die App alle Wahlen dieses Tippens zurück und nennt sie. Hat eine Taste kurz davor etwas gesetzt, nennt die Meldung das, mit Rückgängig.
+Damit weitergetippter Text an der nächsten Stelle nichts auswählt, wirken dort Ziffer, U, A, N und Ü erst, wenn die Stelle 0,3 Sekunden zu sehen war; ebenso Enter und Leertaste auf einem Knopf. Das gilt nach jedem Weiterspringen, auch eine Zeile tiefer in der Befundliste. Zu frühe Tasten setzen nichts, ebenso Text dort, wo gewählt wird. Die Meldung zeigt sie; danach sind diese Tasten gesperrt bis Pfeiltaste, Tab, F2 oder Klick. Die erste Pfeiltaste oder Tab danach löst nur und markiert nichts. Kam die Taste gleich nach einer Wahl, oder landet Text gleich im Feld danach, nimmt die App alle Wahlen dieses Tippens zurück und nennt sie; das gilt auch für eine Ziffer oder einen Buchstaben, der an der Stelle nichts bewirkt (etwa eine 4, wo es nur 1 und 2 gibt). Zurück heißt immer offen oder grau: Stand an einer Stelle vorher schon eine eigene Aussage, kommt sie nicht wieder, die Stelle wird offen und hält das Kopieren auf. Einen eben angefügten Satz („+ …“) lässt die App stehen und nennt ihn („Im Brief geblieben“). Hat eine Taste kurz davor etwas gesetzt, nennt die Meldung das, mit Rückgängig; auch dieses Rückgängig macht die Stelle offen, statt eine alte Aussage herzustellen.
 
 **Ü geht nicht?** Ohne deutsche Tastaturbelegung liefert die Taste ein anderes Zeichen; die App setzt dann nichts und sagt es. Übernehmen geht immer auch per Klick auf den Knopf mit „Ü“.
 
-**Seite des ganzen Briefs** ändert sich nie mit einem einzigen Tastendruck: Im Fallkopf und im Seitenfenster dieselbe Seite zweimal wählen; die Meldung nennt alte und neue Seite und bietet Rückgängig an. Einen Wechsel der Seite oder der schon gewählten Person nimmt die App nie von selbst zurück, auch wenn gleich danach eine verirrte Taste kommt; zurück geht er nur mit Rückgängig. Im Seitenfenster einer Textstelle gelten die Ziffern der Zeile „Nur dieser Baustein“.
+**Seite des ganzen Briefs** ändert sich nie mit einem einzigen Tastendruck: Im Fallkopf und im Seitenfenster dieselbe Seite zweimal wählen; die Meldung nennt alte und neue Seite und bietet Rückgängig an. Ein Wechsel der schon gewählten Person meldet sich ebenso („Person: Patientin (vorher Patient)“, mit Rückgängig). Einen Wechsel der Seite oder der Person nimmt die App nie von selbst zurück, auch wenn gleich danach eine verirrte Taste kommt; zurück geht er nur mit Rückgängig. Ein neuer oder anderer Fall löst eine Tastensperre. Im Seitenfenster einer Textstelle gelten die Ziffern der Zeile „Nur dieser Baustein“.
 
 ## Gut zu wissen
 
@@ -58,6 +58,7 @@ Damit weitergetippter Text an der nächsten Stelle nichts auswählt, wirken dort
 - **Seite ändern** braucht zwei Klicks (der zweite bestätigt). **Andere Seite für eine zweite Verletzung:** auf die Seitenangabe im Text klicken, „Nur dieser Baustein". **Keine Seite** (Kopf, Wirbelsäule): „ohne Seite".
 - **Eigene Schnellwerte:** Die App liefert keine Medikamente mit Dosis mit. Tippe deine Formulierung einmal ins Feld („Ibuprofen 600 mg bei Bedarf, höchstens 3-mal täglich"), dann „als Schnellwert merken". Ab da ist sie an jedem Feld mit derselben Bezeichnung ein Knopf. Das kleine × daneben vergisst sie wieder. Geht an jedem Freitextfeld, auch beim Unfallhergang. Nur Allgemeines merken, nichts zu einem Patienten.
 - **Eigene Bausteine:** Im Menü „⋯" eines Abschnitts „Als eigenen Baustein speichern …". Er bleibt an diesem Arbeitsplatz und erscheint in jedem Fall als grauer Vorschlag. Eigene Vorlagen: im Fallkopf „als eigene Vorlage speichern"; gespeichert wird der Aufbau, nichts vom Patienten.
+- **Normalwerte:** Das kleine „i“ neben einem Messfeld des Bewegungsausmaßes zeigt Richtwerte nach Neutral-Null (Zeigen, Klick oder Enter; Esc schließt). Nichts davon kommt in den Brief. Bei der Rotation von Schulter und Hüfte hängt der Wert an der Ausgangsstellung; nenn sie im Befund.
 - **Vertan?** Strg+Z, bis zu 100 Schritte.
 - **Fälle verschwinden**, wenn du das Browserfenster schließt, sonst in der Notaufnahme nach 4 Stunden, auf Station nach 12 Stunden ohne Änderung. Die App ist kein Ablageort.
 - **„Entwurf, ungeprüft"** an einer Vorlage heißt: Diesen Text hat noch kein Arzt freigegeben. Lies ihn beim ersten Mal ganz.

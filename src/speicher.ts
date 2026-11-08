@@ -71,6 +71,13 @@ export function sitzungsspeicherGeht(): boolean {
   return true;
 }
 
+/** Ob der dauerhafte Speicher beschreibbar ist; ohne ihn ginge die Anleitung bei jedem Start von selbst auf (D-05). */
+export function dauerspeicherGeht(): boolean {
+  if (!schreib(true, "check", 1)) return false;
+  entferne(true, "check");
+  return true;
+}
+
 export type Farbmodus = "system" | "hell" | "dunkel";
 
 export interface Einstellungen {
@@ -85,6 +92,8 @@ export interface Einstellungen {
   hinweisGelesen: boolean;
   /** Kurzanleitung über dem ersten Brief gesehen oder den ersten Abschnitt kopiert */
   tippGesehen: boolean;
+  /** Die Anleitung in der Seitenleiste ist einmal von selbst aufgegangen (D-05) */
+  anleitungGezeigt: boolean;
 }
 
 export const STANDARD_EINSTELLUNGEN: Einstellungen = {
@@ -95,6 +104,7 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   listen: "striche",
   hinweisGelesen: false,
   tippGesehen: false,
+  anleitungGezeigt: false,
 };
 
 export function ladeEinstellungen(): Einstellungen {
@@ -205,21 +215,23 @@ const EIGEN_ID = /^eigen-[a-z0-9]+$/;
 /**
  * Formatstand der eigenen Inhalte im kopierten Text. 2: Vorlagen mit
  * Entweder-oder-Stellen und `weglassen` mit Ersatzstellen. 3: Platz einer
- * Entweder-oder-Stelle (`vor`). Ein älterer Stand
+ * Entweder-oder-Stelle (`vor`). 4: Pflichtstelle ohne „nichts davon“
+ * (`pflicht`, PS-T1-01). Ein älterer Stand
  * kennt neue Felder nicht und würde sie beim Einfügen still fallen lassen;
  * deshalb weist er Text mit höherer Nummer ab (G-58). Text ohne Nummer stammt
  * aus der Zeit vor dem 04.11.2026 und bleibt einfügbar.
  */
-export const EIGENES_FORMAT = 3;
+export const EIGENES_FORMAT = 4;
 
 /**
- * Die eigenen Inhalte als Text für „Als Text kopieren“, mit dem niedrigsten Formatstand, der alles enthält: 3 nur, wenn
- * eine Stelle `vor` trägt. Sonst liest auch ein Stand mit Format 2 (etwa die Einzeldatei auf einem anderen Rechner) den
+ * Die eigenen Inhalte als Text für „Als Text kopieren“, mit dem niedrigsten Formatstand, der alles enthält: 4 nur, wenn
+ * eine Stelle `pflicht` trägt, 3 nur, wenn eine Stelle `vor` trägt. Sonst liest auch ein Stand mit Format 2 (etwa die Einzeldatei auf einem anderen Rechner) den
  * Text vollständig, statt ihn abzuweisen (CR-T1-06).
  */
 export function eigenesAlsText(e: Eigenes): string {
-  const mitPlatz = e.vorlagen.some((v) => (v.wahl ?? []).some((w) => w.vor !== undefined));
-  return JSON.stringify({ format: mitPlatz ? EIGENES_FORMAT : 2, ...e });
+  const stellen = e.vorlagen.flatMap((v) => v.wahl ?? []);
+  const format = stellen.some((w) => w.pflicht) ? 4 : stellen.some((w) => w.vor !== undefined) ? 3 : 2;
+  return JSON.stringify({ format, ...e });
 }
 
 /** Stammt der eingefügte Text aus einer neueren Fassung, als dieser Stand lesen kann? */
@@ -286,7 +298,7 @@ export function pruefeEigenes(x: unknown, index: KatalogIndex): Eigenes | null {
       if (w.bausteine.some((id) => gesehen.has(id) || (gesehen.add(id), false))) return null;
       // Ein Platz, der auf keinen festen Baustein des Abschnitts zeigt, entfällt: Die Stelle steht dann am Ende, ihr Inhalt bleibt.
       const vor = typeof w.vor === "string" && (abschnitte[w.abschnitt as AbschnittId] ?? []).includes(w.vor) ? w.vor : undefined;
-      wahl.push({ abschnitt: w.abschnitt as AbschnittId, label: w.label, bausteine: w.bausteine, ...(vor ? { vor } : {}) });
+      wahl.push({ abschnitt: w.abschnitt as AbschnittId, label: w.label, bausteine: w.bausteine, ...(vor ? { vor } : {}), ...(w.pflicht === true ? { pflicht: true } : {}) });
     }
     const g = v.vorgaben ?? {};
     if (typeof g !== "object" || (g.an !== undefined && !istTextliste(g.an)) || (g.aus !== undefined && !istTextliste(g.aus))) return null;

@@ -2,7 +2,7 @@
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "preact/hooks";
 import type { Seite, Vorlage } from "../model/types.ts";
-import { sucheVorlagen } from "../engine/suche.ts";
+import { sucheVorlagen, trefferNachBereich } from "../engine/suche.ts";
 import { INDEX, katalogStand, nutzung, setting } from "../store.ts";
 import { STATUS_TEXT } from "./Brief.tsx";
 
@@ -47,20 +47,48 @@ export function Vorlagensuche({ onWahl, onLeer }: { onWahl: Wahl; onLeer: () => 
   useLayoutEffect(() => ref.current?.focus(), []);
 
   const { frage, seite } = trenneSeite(eingabe);
-  const treffer = useMemo(
-    () => (frage.trim() ? sucheVorlagen(INDEX.katalog.vorlagen, frage, setting.value, nutzung.value.anzahl).slice(0, 8).map((t) => t.vorlage) : []),
+  // Eigener Bereich zuerst; darunter, unter eigener Überschrift, was nur der andere Bereich hat. Pfeiltasten und Enter
+  // laufen über beide Gruppen wie über eine Liste. Ein Treffer des anderen Bereichs öffnet den Fall dort (`fallNeu`).
+  const gruppen = useMemo(
+    () => (frage.trim() ? trefferNachBereich(sucheVorlagen(INDEX.katalog.vorlagen, frage, setting.value, nutzung.value.anzahl), setting.value) : { eigene: [], andere: [] }),
     [frage, setting.value, katalogStand.value],
   );
+  const treffer = useMemo(() => [...gruppen.eigene, ...gruppen.andere], [gruppen]);
 
   // Die Markierung springt beim Tippen im selben Ereignis auf den ersten Treffer, nicht erst nach dem nächsten Bild:
   // Sonst setzte ein späteres Zurücksetzen eine sofort gedrückte Pfeiltaste zurück, und Enter öffnete einen anderen
   // Treffer als den markierten (CR-K06, PS-K09). Die Grenze gilt auch, wenn die Liste ohne Tippen kürzer wird.
   const markiert = Math.max(0, Math.min(aktiv, treffer.length - 1));
+  const zeiger = useRef<{ x: number; y: number } | null>(null);
   useEffect(() => {
     listeRef.current?.querySelector(".aktiv")?.scrollIntoView({ block: "nearest" });
   }, [aktiv]);
 
   const sucht = frage.trim().length > 0;
+  const option = (v: Vorlage, i: number) => (
+    <button
+      type="button"
+      role="option"
+      aria-selected={i === markiert}
+      class={i === markiert ? "suche-treffer aktiv" : "suche-treffer"}
+      onMouseMove={(e) => {
+        // Nur echte Bewegung markiert (QA-35): Baut sich die Liste unter einem ruhenden Zeiger neu auf, meldet der
+        // Browser ein Hineinfahren ohne Bewegung; Enter öffnete sonst den Treffer unter dem Zeiger statt den ersten.
+        const vorher = zeiger.current;
+        zeiger.current = { x: e.clientX, y: e.clientY };
+        if (vorher && (vorher.x !== e.clientX || vorher.y !== e.clientY)) setAktiv(i);
+      }}
+      onClick={() => onWahl(v, seite)}
+    >
+      <span class="st-titel">{v.titel}</span>
+      {v.kuerzel?.[0] && <kbd>{v.kuerzel[0]}</kbd>}
+      <span class="st-meta">
+        {regionName(v.region)}
+        {v.setting !== setting.value && ` · ${v.setting === "zna" ? "Notaufnahme" : "Station"}`}
+      </span>
+      <span class={`st-status s-${v.status}`}>{STATUS_TEXT[v.status]}</span>
+    </button>
+  );
 
   return (
     <div class="suche">
@@ -99,24 +127,15 @@ export function Vorlagensuche({ onWahl, onLeer }: { onWahl: Wahl; onLeer: () => 
       </div>
       {sucht && (
         <div class="suche-liste" id="suche-liste" role="listbox" ref={listeRef}>
-          {treffer.map((v, i) => (
-            <button
-              type="button"
-              role="option"
-              aria-selected={i === markiert}
-              class={i === markiert ? "suche-treffer aktiv" : "suche-treffer"}
-              onMouseEnter={() => setAktiv(i)}
-              onClick={() => onWahl(v, seite)}
-            >
-              <span class="st-titel">{v.titel}</span>
-              {v.kuerzel?.[0] && <kbd>{v.kuerzel[0]}</kbd>}
-              <span class="st-meta">
-                {regionName(v.region)}
-                {v.setting !== setting.value && ` · ${v.setting === "zna" ? "Notaufnahme" : "Station"}`}
-              </span>
-              <span class={`st-status s-${v.status}`}>{STATUS_TEXT[v.status]}</span>
-            </button>
-          ))}
+          {gruppen.eigene.map((v, i) => option(v, i))}
+          {gruppen.andere.length > 0 && (
+            <div role="group" aria-labelledby="suche-anderer-bereich" class="suche-gruppe">
+              <div id="suche-anderer-bereich" class="suche-gruppe-titel">
+                {setting.value === "zna" ? "Auf Station:" : "In der Notaufnahme:"}
+              </div>
+              {gruppen.andere.map((v, i) => option(v, gruppen.eigene.length + i))}
+            </div>
+          )}
           {treffer.length === 0 && (
             <button type="button" class="suche-treffer aktiv" onClick={onLeer}>
               <span class="st-titel">Keine Vorlage für „{frage}" · Leeren Brief beginnen</span>

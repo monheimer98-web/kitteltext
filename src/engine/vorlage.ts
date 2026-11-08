@@ -14,6 +14,14 @@ export function schnellwerteVon(vorlage: Vorlage | undefined, key: string, katal
   return vorlage?.schnellwerte?.[key] ?? katalogwerte;
 }
 
+/**
+ * Hat der Arzt die Stelle bewusst leer gelassen? Eine Pflichtstelle nie, auch nicht mit einem Eintrag aus einem
+ * älteren Fall: Entfernt er den gewählten Baustein, steht sie wieder als Lücke da (PS-T1-01).
+ */
+export function stelleLeer(fall: Fall, w: Wahlstelle, key: string): boolean {
+  return !w.pflicht && !!fall.versteckt[key];
+}
+
 /** Bausteine, die die Vorlage anbietet: fest in ihren Abschnitten oder an einer Entweder-oder-Stelle. */
 export function bausteineDerVorlage(v: Vorlage): Set<string> {
   return new Set([...Object.values(v.abschnitte).flatMap((l) => l ?? []), ...(v.wahl ?? []).flatMap((w) => w.bausteine)]);
@@ -149,7 +157,7 @@ export function weggelasseneStellen(fall: Fall, vorlage: Vorlage | undefined, in
     const traeger = new Set(ersatz.filter((e) => !keineErsatzstelle(vorlage, satz, e, index)).map((e) => e.split("/")[0]));
     const offeneStelle = (vorlage.wahl ?? []).some(
       (w, nr) =>
-        zaehlt(w.abschnitt) && !fall.versteckt[wahlSchluessel(w.abschnitt, nr)] && !w.bausteine.some((bid) => (fall.bausteine[w.abschnitt] ?? []).includes(bid)) && w.bausteine.some((bid) => traeger.has(bid)),
+        zaehlt(w.abschnitt) && !stelleLeer(fall, w, wahlSchluessel(w.abschnitt, nr)) &&!w.bausteine.some((bid) => (fall.bausteine[w.abschnitt] ?? []).includes(bid)) && w.bausteine.some((bid) => traeger.has(bid)),
     );
     if (offeneStelle || [...traeger].some((bid) => imFall.has(bid))) weg.add(satz);
   }

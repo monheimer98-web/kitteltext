@@ -1,0 +1,383 @@
+{
+  "_herkunft": "Entwurf Medical Lead O&U vom 08.11.2026, Entscheidungen der Auftraggeberin (Ärztin) vom 08.11.2026, E-48 (10). Nur zur Anzeige am Messfeld, nie im Brief. Zuordnung über fundstellen (Datei, Baustein-ID, Feld-ID, bei Slots Slot-ID), nicht über das Label.",
+  "freigegeben": true,
+  "quelle": "Richtwerte nach Neutral-Null-Methode (deutsches Fachwissen), ärztlich freigegeben 08.11.2026",
+  "eintraege": [
+    {
+      "schluessel": "schulter-abd-add",
+      "gelenk": "Schultergelenk",
+      "bewegung": "Abduktion/Adduktion",
+      "normal": "150–180/0/20–40°",
+      "hinweis": "Über etwa 90° nur mit Mitbewegung des Schulterblatts; im Seitenvergleich messen.",
+      "fundstellen": [
+        {
+          "datei": "schulter-ellenbogen.json",
+          "baustein": "schulter-unt-knapp",
+          "segment": "schulter-knapp-rom-abdadd"
+        },
+        {
+          "datei": "station-arthroskopie.json",
+          "baustein": "bef-st-schulter-rm",
+          "segment": "abdadd"
+        },
+        {
+          "datei": "zna-ergaenzung-3.json",
+          "baustein": "bef-schulterluxation-spontan",
+          "segment": "abduktion"
+        },
+        {
+          "datei": "zna-schulter-ellenbogen.json",
+          "baustein": "bef-schulterprellung",
+          "segment": "beweglichkeit",
+          "slot": "detail"
+        }
+      ]
+    },
+    {
+      "schluessel": "schulter-ante-retro",
+      "gelenk": "Schultergelenk",
+      "bewegung": "Anteversion/Retroversion",
+      "normal": "150–180/0/40–50°",
+      "hinweis": "Volle Elevation über Kopf nur mit Schulterblatt und Rumpf; im Seitenvergleich messen.",
+      "fundstellen": [
+        {
+          "datei": "schulter-ellenbogen.json",
+          "baustein": "schulter-unt-knapp",
+          "segment": "schulter-knapp-rom-anteretro"
+        },
+        {
+          "datei": "station-arthroskopie.json",
+          "baustein": "bef-st-schulter-rm",
+          "segment": "anteretro"
+        },
+        {
+          "datei": "zna-ergaenzung-3.json",
+          "baustein": "bef-schulterluxation-spontan",
+          "segment": "anteversion"
+        },
+        {
+          "datei": "zna-schulter-ellenbogen.json",
+          "baustein": "bef-schulterprellung",
+          "segment": "beweglichkeit",
+          "slot": "detail"
+        }
+      ]
+    },
+    {
+      "schluessel": "schulter-ar-ir",
+      "gelenk": "Schultergelenk",
+      "bewegung": "Außenrotation/Innenrotation",
+      "stellungen": [
+        {
+          "stellung": "Oberarm anliegend",
+          "normal": "40–60/0/90–95°"
+        },
+        {
+          "stellung": "in 90° Abduktion",
+          "normal": "70–90/0/60–70°"
+        }
+      ],
+      "hinweis": "Ausgangsstellung im Befund nennen; Innenrotation am anliegenden Arm durch den Rumpf begrenzt, Schürzengriff ergänzend.",
+      "fundstellen": [
+        {
+          "datei": "station-arthroskopie.json",
+          "baustein": "bef-st-schulter-rm",
+          "segment": "rotation"
+        },
+        {
+          "datei": "zna-schulter-ellenbogen.json",
+          "baustein": "bef-schulterprellung",
+          "segment": "beweglichkeit",
+          "slot": "detail"
+        },
+        {
+          "datei": "schulter-ellenbogen.json",
+          "baustein": "schulter-unt-knapp",
+          "segment": "schulter-knapp-rom-iroaro"
+        }
+      ]
+    },
+    {
+      "schluessel": "ellenbogen-ext-flex",
+      "gelenk": "Ellenbogengelenk",
+      "bewegung": "Extension/Flexion",
+      "normal": "0–10/0/140–150°",
+      "hinweis": "Überstreckung bis 10° bei Frauen und Kindern häufig normal; im Seitenvergleich messen.",
+      "fundstellen": [
+        {
+          "datei": "schulter-ellenbogen.json",
+          "baustein": "ellb-unt",
+          "segment": "ellb-rom-extflex"
+        },
+        {
+          "datei": "zna-ergaenzung-3.json",
+          "baustein": "bef-bursa-olecrani-offen",
+          "segment": "extflex"
+        },
+        {
+          "datei": "zna-schulter-ellenbogen.json",
+          "baustein": "bef-radiuskopffraktur",
+          "segment": "beweglichkeit",
+          "slot": "detail"
+        }
+      ]
+    },
+    {
+      "schluessel": "unterarm-pro-sup",
+      "gelenk": "Unterarm (Ellenbogen und Handgelenk)",
+      "bewegung": "Pronation/Supination",
+      "normal": "80–90/0/80–90°",
+      "hinweis": "Ellenbogen 90° gebeugt und am Rumpf, Daumen oben als Nullstellung; Schulterausgleich vermeiden.",
+      "fundstellen": [
+        {
+          "datei": "schulter-ellenbogen.json",
+          "baustein": "ellb-unt",
+          "segment": "ellb-rom-prosup"
+        },
+        {
+          "datei": "hand.json",
+          "baustein": "hand-untersuchung",
+          "segment": "hand-us-rom-prosup"
+        },
+        {
+          "datei": "zna-schulter-ellenbogen.json",
+          "baustein": "bef-radiuskopffraktur",
+          "segment": "beweglichkeit",
+          "slot": "detail"
+        }
+      ]
+    },
+    {
+      "schluessel": "handgelenk-ext-flex",
+      "gelenk": "Handgelenk",
+      "bewegung": "Extension/Flexion",
+      "normal": "35–60/0/50–60°",
+      "hinweis": "Im Seitenvergleich messen.",
+      "fundstellen": [
+        {
+          "datei": "hand.json",
+          "baustein": "hand-untersuchung",
+          "segment": "hand-us-rom-extflex"
+        }
+      ]
+    },
+    {
+      "schluessel": "handgelenk-rad-ulnar",
+      "gelenk": "Handgelenk",
+      "bewegung": "Radial-/Ulnarabduktion",
+      "normal": "25–30/0/30–40°",
+      "hinweis": "Ulnarabduktion ist normal größer als Radialabduktion; im Seitenvergleich messen.",
+      "fundstellen": [
+        {
+          "datei": "hand.json",
+          "baustein": "hand-untersuchung",
+          "segment": "hand-us-rom-radulnar"
+        }
+      ]
+    },
+    {
+      "schluessel": "huefte-ext-flex",
+      "gelenk": "Hüftgelenk",
+      "bewegung": "Extension/Flexion",
+      "normal": "0–10/0/120–140°",
+      "hinweis": "Streckung in Seit- oder Bauchlage bzw. mit Thomas-Handgriff prüfen; im Alter oft geringer.",
+      "fundstellen": [
+        {
+          "datei": "station-zusatz.json",
+          "baustein": "bef-st-huefte-elektiv",
+          "segment": "extflex"
+        }
+      ]
+    },
+    {
+      "schluessel": "huefte-abd-add",
+      "gelenk": "Hüftgelenk",
+      "bewegung": "Abduktion/Adduktion",
+      "normal": "30–45/0/20–30°",
+      "hinweis": "Becken fixieren, sonst täuscht Beckenkippung mehr Bewegung vor.",
+      "fundstellen": []
+    },
+    {
+      "schluessel": "huefte-ar-ir",
+      "gelenk": "Hüftgelenk",
+      "bewegung": "Außenrotation/Innenrotation",
+      "stellungen": [
+        {
+          "stellung": "in 90° Hüftbeugung",
+          "normal": "40–50/0/30–45°"
+        },
+        {
+          "stellung": "in Streckung",
+          "normal": "30–40/0/30–40°"
+        }
+      ],
+      "hinweis": "Ausgangsstellung im Befund nennen; eingeschränkte Innenrotation ist früher Arthrosehinweis.",
+      "fundstellen": [
+        {
+          "datei": "station-zusatz.json",
+          "baustein": "bef-st-huefte-elektiv",
+          "segment": "rotation"
+        }
+      ]
+    },
+    {
+      "schluessel": "knie-ext-flex",
+      "gelenk": "Kniegelenk",
+      "bewegung": "Extension/Flexion",
+      "normal": "0–10/0/120–150°",
+      "hinweis": "Überstreckung bis 10° häufig normal, 0° ebenso; Beugung weichteilabhängig, im Seitenvergleich messen.",
+      "fundstellen": [
+        {
+          "datei": "kern-untere.json",
+          "baustein": "knie-untersuchung",
+          "segment": "knie_extflex"
+        },
+        {
+          "datei": "station-arthroskopie.json",
+          "baustein": "bef-st-knie-arthroskopie",
+          "segment": "extflex"
+        },
+        {
+          "datei": "station-arthroskopie.json",
+          "baustein": "eb-st-knie-arthroskopie",
+          "segment": "extflex"
+        },
+        {
+          "datei": "station-unterschenkel.json",
+          "baustein": "eb-st-unterschenkel",
+          "segment": "knie"
+        },
+        {
+          "datei": "station-zusatz.json",
+          "baustein": "bef-st-knie-elektiv",
+          "segment": "extflex"
+        },
+        {
+          "datei": "zna-ergaenzung-3.json",
+          "baustein": "bef-bursa-praepatellaris-offen",
+          "segment": "extflex"
+        }
+      ]
+    },
+    {
+      "schluessel": "osg-dext-pflex",
+      "gelenk": "Oberes Sprunggelenk",
+      "bewegung": "Dorsalextension/Plantarflexion",
+      "normal": "20–30/0/40–50°",
+      "hinweis": "Dorsalextension bei gebeugtem Knie größer als bei gestrecktem; Kniestellung gleich halten, Seitenvergleich.",
+      "fundstellen": [
+        {
+          "datei": "station-unterschenkel.json",
+          "baustein": "eb-st-unterschenkel",
+          "segment": "osg"
+        }
+      ]
+    },
+    {
+      "schluessel": "hws-inkl-rekl",
+      "gelenk": "Halswirbelsäule",
+      "bewegung": "Inklination/Reklination (Vor-/Rückneigen)",
+      "normal": "35–45/0/35–45°",
+      "hinweis": "Altersabhängig geringer; nach Trauma erst nach Ausschluss einer Verletzung prüfen.",
+      "fundstellen": []
+    },
+    {
+      "schluessel": "hws-seitneigung",
+      "gelenk": "Halswirbelsäule",
+      "bewegung": "Seitneigung rechts/links",
+      "normal": "30–45/0/30–45°",
+      "hinweis": "Altersabhängig geringer; im Seitenvergleich (rechts gegen links) beurteilen.",
+      "fundstellen": []
+    },
+    {
+      "schluessel": "hws-rotation",
+      "gelenk": "Halswirbelsäule",
+      "bewegung": "Rotation rechts/links",
+      "normal": "60–80/0/60–80°",
+      "hinweis": "Altersabhängig geringer; im Seitenvergleich beurteilen.",
+      "fundstellen": []
+    },
+    {
+      "schluessel": "kinn-jugulum",
+      "gelenk": "Halswirbelsäule",
+      "bewegung": "Kinn-Jugulum-Abstand",
+      "normal": "Vorneigen 0 cm (Kinn erreicht das Brustbein)",
+      "hinweis": "Bei geschlossenem Mund messen.",
+      "fundstellen": [
+        {
+          "datei": "allgemein.json",
+          "baustein": "allg-we",
+          "segment": "we_masse"
+        }
+      ]
+    },
+    {
+      "schluessel": "bws-lws-seitneigung",
+      "gelenk": "Brust- und Lendenwirbelsäule",
+      "bewegung": "Seitneigung rechts/links",
+      "normal": "30–40/0/30–40°",
+      "hinweis": "Im Stand, Becken gerade; im Seitenvergleich beurteilen.",
+      "fundstellen": []
+    },
+    {
+      "schluessel": "finger-boden-abstand",
+      "gelenk": "Wirbelsäule und Hüfte",
+      "bewegung": "Finger-Boden-Abstand",
+      "normal": "0–10 cm",
+      "hinweis": "Mischmaß aus Wirbelsäule, Hüftbeugung und Dehnbarkeit der hinteren Oberschenkelmuskeln; im Verlauf vergleichen.",
+      "fundstellen": [
+        {
+          "datei": "rumpf.json",
+          "baustein": "ws-rueckenschmerzen-untersuchung",
+          "segment": "ws-fba"
+        },
+        {
+          "datei": "allgemein.json",
+          "baustein": "allg-we",
+          "segment": "we_masse"
+        }
+      ]
+    },
+    {
+      "schluessel": "schober",
+      "gelenk": "Lendenwirbelsäule",
+      "bewegung": "Schober-Maß",
+      "normal": "10/14–16 cm (Vorneigen)",
+      "hinweis": "Dornfortsatz S1 (manche Autoren L5) und 10 cm kranial markieren, Abstand beim maximalen Vorneigen messen.",
+      "fundstellen": [
+        {
+          "datei": "allgemein.json",
+          "baustein": "allg-we",
+          "segment": "we_masse"
+        }
+      ]
+    },
+    {
+      "schluessel": "ott",
+      "gelenk": "Brustwirbelsäule",
+      "bewegung": "Ott-Maß",
+      "normal": "30/32–34 cm (Vorneigen)",
+      "hinweis": "Dornfortsatz C7 und 30 cm kaudal markieren, Abstand beim maximalen Vorneigen messen.",
+      "fundstellen": [
+        {
+          "datei": "allgemein.json",
+          "baustein": "allg-we",
+          "segment": "we_masse"
+        }
+      ]
+    }
+  ],
+  "tabelle": [
+    {
+      "datei": "zna-ergaenzung-5.json",
+      "baustein": "bef-monarthritis",
+      "segment": "extflex"
+    },
+    {
+      "datei": "station-me-ws.json",
+      "baustein": "bef-st-metall",
+      "segment": "beweglichkeit",
+      "slot": "was"
+    }
+  ]
+}

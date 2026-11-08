@@ -4,6 +4,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { SPERRE, TASTATUR, TASTENSPERRE } from "../src/data/tastatur.ts";
+import * as HILFE from "../src/data/anleitung.ts";
 import { SCHRECKZEIT_MS } from "../src/engine/tippzug.ts";
 
 const ANLEITUNG = readFileSync(new URL("../ANLEITUNG.md", import.meta.url), "utf8");
@@ -40,4 +41,24 @@ test("Tastaturtabelle lehrt E-43 und E-44: Enter setzt nichts Unmarkiertes, Ü �
   // Tab im Eingabefeld heißt weiter, nie „zum nächsten Bedienelement“ (PS-N05).
   assert.match(taste("Tab"), /^im Eingabefeld: weiter/);
   assert.doesNotMatch(ANLEITUNG, /Tastenkappe|Knopfreihe|der Zeiger|Vertippt\?/, "Werkstattwörter in der Anleitung (MT-06, MT-14 bis MT-16)");
+});
+
+test("Anleitung in der App: Wortwahl nach dem Prüfbericht marke-text-tastatur (D-05)", () => {
+  const texte: string[] = [];
+  const sammle = (x: unknown): void => {
+    if (typeof x === "string") texte.push(x);
+    else if (typeof x === "function") sammle(x({ zna: 4, station: 12 }));
+    else if (x && typeof x === "object") Object.values(x).forEach(sammle);
+  };
+  sammle(HILFE);
+  const alles = [...texte, ...TASTATUR.flatMap((r) => [r.taste, r.wirkt]), TASTENSPERRE].join("\n");
+  assert.ok(alles.length > 1000, "zu wenig Text gesammelt");
+  assert.doesNotMatch(alles, /!/, "kein Ausrufezeichen");
+  // Produktgrenze 3 und Wörter, die nicht in die Oberfläche gehören.
+  for (const wort of [/empfohlen/i, /Leitlinie/i, /Assistent/i, /\bKI\b/, /\bHalt\b/, /Tipp-Zug/i, /Schreckzeit/i, /Befehlstaste/i]) {
+    assert.doesNotMatch(alles, wort, `„${wort.source}“ gehört nicht in die Anleitung`);
+  }
+  // Die Grundregel steht wortgleich wie im Hinweis beim Start.
+  assert.ok(HILFE.GRUNDREGEL.saetze.includes("Grau ist ein Vorschlag der Vorlage, schwarz ist deine Aussage."));
+  assert.equal(HILFE.VIER_SCHRITTE.schritte.length, 4);
 });

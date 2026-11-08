@@ -19,7 +19,7 @@ import type {
 } from "../model/types.ts";
 import { abschnittVon, schluessel, wahlSchluessel } from "../model/types.ts";
 import { personText } from "./person.ts";
-import { stelleVor, weggelasseneStellen } from "./vorlage.ts";
+import { stelleLeer, stelleVor, weggelasseneStellen } from "./vorlage.ts";
 import { LUECKE, glaetten, kisPlatzhalter, luecke, tokensZuText } from "./text.ts";
 import type { Token } from "./text.ts";
 
@@ -252,7 +252,7 @@ function fuelleSlots(
       else if (slot.required) val = offen();
     } else if (slot.art === "zahl") {
       const v = (wert ?? "").trim();
-      if (v) val = slot.einheit ? `${v} ${slot.einheit}` : v;
+      if (v) val = slot.einheit ? `${ohneDoppelteEinheit(v, slot.einheit)} ${slot.einheit}` : v;
       else if (slot.required) val = offen();
       else val = slot.leerMarker ?? "";
     } else {
@@ -370,7 +370,7 @@ function bausteinTokens(b: Baustein, fall: Fall, opt: RenderOptionen, s: Sammler
         const def = b.platzhalter.find((p) => p.id === seg.ref);
         if (!def) break;
         const key = schluessel(b.id, def.id);
-        const mitEinheit = (w: string) => (def.einheit ? `${w} ${def.einheit}` : w);
+        const mitEinheit = (w: string) => (def.einheit ? `${ohneDoppelteEinheit(w, def.einheit)} ${def.einheit}` : w);
         if (fall.spaeter[key]) {
           s.spaeter.push({ key, label: def.label });
           aktuell.push({ t: kisPlatzhalter(def.label), art: "feld", key, zustand: "spaeter", label: def.label });
@@ -492,7 +492,8 @@ function bausteinTokens(b: Baustein, fall: Fall, opt: RenderOptionen, s: Sammler
         }
         const [vor, nach = ""] = seg.vorlage.split("{w}");
         aktuell.push({ t: vor, art: "fix" });
-        aktuell.push({ t: wert, art: "messwert", key, zustand: "gesetzt", label: seg.label, frei: true });
+        // Die Einheit steht in der Vorlage hinter dem Wert („Wunde von {w} cm Länge.“); getippt mit Einheit nicht doppelt.
+        aktuell.push({ t: ohneDoppelteEinheit(wert, /^\s+([^\s.,;:]+)/.exec(nach)?.[1]), art: "messwert", key, zustand: "gesetzt", label: seg.label, frei: true });
         aktuell.push({ t: nach, art: "fix" });
         break;
       }
@@ -612,7 +613,7 @@ function anordnung(
     if (w.abschnitt !== id) return;
     const key = wahlSchluessel(id, nr);
     // Solange keiner der Bausteine im Abschnitt steht und der Arzt die Stelle nicht leer gelassen hat, bleibt dort eine Lücke.
-    const offen = !fall.versteckt[key] && !w.bausteine.some((bid) => ids.includes(bid));
+    const offen = !stelleLeer(fall, w, key) && !w.bausteine.some((bid) => ids.includes(bid));
     const vor = vorlage ? stelleVor(vorlage, w, vorhanden) : undefined;
     const eigene = folge.filter((t) => "b" in t && w.bausteine.includes(t.b.id));
     const rest = folge.filter((t) => !eigene.includes(t));
@@ -764,3 +765,13 @@ export function briefText(brief: BriefAnsicht, ueberschriften = true): string {
 
 /** Abschnitt eines Bausteins, wie er im Brief einsortiert wird. */
 export { abschnittVon };
+
+/**
+ * Ein Wert, den der Arzt mit Einheit getippt hat („3 cm“), obwohl der Text die Einheit selbst dahinter schreibt: ohne
+ * die Einheit, sonst stünde „3 cm cm“ im Brief (H-R3-1). Nur wenn vor der Einheit eine Zahl steht.
+ */
+export function ohneDoppelteEinheit(wert: string, einheit: string | undefined): string {
+  if (!einheit) return wert;
+  const e = einheit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`^(.*\\d)\\s*${e}\\.?\\s*$`, "iu").exec(wert)?.[1] ?? wert;
+}

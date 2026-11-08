@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { ZUGANG_SCHLUESSEL } from "../../src/access.ts";
 import { abschnitt, oeffneApp, oeffneVorlage, setzeSeiteUndPerson, stelle, tastenSalve, zugangscode } from "./hilfen.ts";
 
 test("Zugang: falscher Code wird abgewiesen, der richtige schaltet frei und gilt nach dem Neuladen weiter", async ({ page }) => {
@@ -8,6 +9,12 @@ test("Zugang: falscher Code wird abgewiesen, der richtige schaltet frei und gilt
   await feld.fill("falsch");
   await feld.press("Enter");
   await expect(page.getByText("Der Code stimmt nicht.")).toBeVisible();
+  // Ein Merker eines früheren Codes schaltet nicht frei (E-51).
+  await page.evaluate(([k]) => window.localStorage.setItem(k!, "frueherer-code"), [ZUGANG_SCHLUESSEL]);
+  await page.reload();
+  await expect(feld).toBeVisible();
+  // Den richtigen Code kennt der Test nur über KITTELTEXT_ZUGANG (E-51).
+  test.skip(!zugangscode, "KITTELTEXT_ZUGANG nicht gesetzt: nur Abweisung geprüft");
   // Groß- und Kleinschreibung und Leerraum am Rand zählen nicht.
   await feld.fill(` ${zugangscode.toUpperCase()} `);
   await page.getByRole("button", { name: "Freischalten" }).click();
@@ -104,4 +111,31 @@ test("Seite und Person setzen: erste Wahl ein Klick, Seitenwechsel braucht die B
   await expect(stelle(abschnitt(page, "anamnese"), "Patient/Patientin: Die 47-jährige Patientin")).toBeVisible();
   await page.getByRole("radiogroup", { name: "Patient oder Patientin" }).getByRole("radio", { name: "Patient", exact: true }).click();
   await expect(stelle(abschnitt(page, "anamnese"), "Patient/Patientin: Der 47-jährige Patient")).toBeVisible();
+});
+
+test("QA-35: ein ruhender Mauszeiger über der Trefferliste verschiebt die Markierung nicht; echte Bewegung schon", async ({ page }) => {
+  await oeffneApp(page);
+  const suche = page.getByRole("combobox", { name: "Diagnose oder Kürzel" });
+  const vp = page.viewportSize()!;
+  // Zeiger ruht dort, wo die Liste gleich erscheint (wie nach einem Klick auf ein „i“).
+  await page.mouse.move(vp.width / 2, vp.height / 2);
+  await suche.fill("osg re");
+  const treffer = page.getByRole("listbox").getByRole("option");
+  await expect(treffer.first()).toContainText("OSG-Distorsion");
+  await page.waitForTimeout(150);
+  await expect(treffer.first()).toHaveAttribute("aria-selected", "true");
+  await suche.press("Enter");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("OSG-Distorsion RECHTS");
+});
+
+test("QA-35: echte Mausbewegung über einem Treffer markiert ihn", async ({ page }) => {
+  await oeffneApp(page);
+  const suche = page.getByRole("combobox", { name: "Diagnose oder Kürzel" });
+  await suche.fill("osg re");
+  const treffer = page.getByRole("listbox").getByRole("option");
+  await expect(treffer.nth(1)).toBeVisible();
+  const box = (await treffer.nth(1).boundingBox())!;
+  await page.mouse.move(box.x + 10, box.y + box.height / 2);
+  await page.mouse.move(box.x + 30, box.y + box.height / 2, { steps: 3 });
+  await expect(treffer.nth(1)).toHaveAttribute("aria-selected", "true");
 });

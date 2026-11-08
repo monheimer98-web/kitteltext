@@ -528,6 +528,16 @@ kbd {
   font-weight: 600;
   font-size: 15px;
 }
+/* Treffer des anderen Bereichs: deutlich abgesetzt, damit niemand aus Versehen im falschen Bereich beginnt. */
+.suche-gruppe {
+  border-top: 1px solid var(--linie-stark);
+}
+.suche-gruppe-titel {
+  padding: 8px 14px 2px;
+  color: var(--text-leise);
+  font-size: 13px;
+  font-weight: 600;
+}
 .st-meta {
   margin-left: auto;
   color: var(--text-leise);
@@ -1617,6 +1627,189 @@ kbd.taste {
   grid-template-columns: max-content 1fr;
   gap: 6px 14px;
   align-items: center;
+}
+
+/* ---------- Normalwerte am Messfeld (E-48 (10)) ---------- */
+
+.nw {
+  position: relative;
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: baseline;
+}
+.nw-knopf {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: 1px solid var(--linie-stark);
+  border-radius: 50%;
+  background: var(--papier);
+  color: var(--text-leise);
+  font: italic 600 11px/16px Georgia, "Times New Roman", serif;
+  cursor: help;
+}
+.nw-knopf:hover,
+.nw-knopf[aria-expanded="true"] {
+  border-color: var(--akzent);
+  color: var(--akzent);
+}
+/* In der Befundliste schwebt die Box unter dem „i“, links von der Eingabe der Zeile. */
+.nw-box {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -6px;
+  z-index: 45;
+  display: block;
+  width: max-content;
+  max-width: 320px;
+  padding: 8px 10px;
+  border: 1px solid var(--linie-stark);
+  border-radius: 8px;
+  background: var(--karte);
+  box-shadow: var(--schatten);
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.45;
+  white-space: normal;
+  text-align: left;
+}
+.nw-box {
+  overflow-y: auto;
+}
+.nw-box.nw-oben {
+  top: auto;
+  bottom: calc(100% + 4px);
+}
+/* Im Fenster steht sie im Fluss unter dem Titel und schiebt den Inhalt, statt die Eingabe zu verdecken. */
+.ff-titel .nw-box {
+  position: static;
+  width: auto;
+  max-width: none;
+  /* Die Höhengrenze aus der Lage gilt nur für die schwebende Box; im Fenster scrollt das Fenster selbst. */
+  max-height: none !important;
+  margin: 6px 0 2px;
+  box-shadow: none;
+}
+.ff-titel .nw {
+  position: static;
+  display: inline;
+}
+.nw-zeile,
+.nw-gruppe,
+.nw-gelenk {
+  display: block;
+}
+.nw-titel,
+.nw-gelenk {
+  font-weight: 600;
+}
+.nw-wert {
+  white-space: nowrap;
+}
+/* Die ganze Tabelle in zwei Spalten; reicht der Platz nicht, scrollt sie (Mausrad oder Tab in die Box, dann Pfeiltasten). */
+.nw-box.nw-tabelle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 18px;
+  row-gap: 4px;
+  align-content: start;
+  width: min(600px, calc(100vw - 48px));
+  max-width: none;
+}
+.nw-tabelle .nw-titel,
+.nw-tabelle .nw-quelle {
+  grid-column: 1 / -1;
+}
+.nw-tabelle .nw-gruppe + .nw-gruppe {
+  margin-top: 0;
+}
+.nw-gruppe + .nw-gruppe {
+  margin-top: 4px;
+}
+.nw-hinweis,
+.nw-quelle {
+  display: block;
+  color: var(--text-leise);
+  font-size: 11.5px;
+}
+.nw-quelle {
+  margin-top: 4px;
+  text-transform: none;
+}
+
+/* ---------- Anleitung (Seitenleiste, D-05) ---------- */
+
+/* Die Leiste schiebt die Arbeitsfläche zur Seite, statt sie zu verdecken: Der Brief bleibt bedienbar. */
+.app {
+  --anleitung-breite: min(360px, 42vw);
+}
+.app.mit-anleitung {
+  padding-right: var(--anleitung-breite);
+}
+.app.mit-anleitung > .kopf {
+  margin-right: calc(-1 * var(--anleitung-breite));
+}
+.knopf.leise.aktiv {
+  background: var(--akzent-flaeche);
+  color: var(--text);
+}
+.anleitung {
+  position: fixed;
+  top: 44px;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  width: var(--anleitung-breite);
+  overflow-y: auto;
+  padding: 0 16px 24px;
+  background: var(--papier);
+  border-left: 1px solid var(--linie-stark);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.al-kopf {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 0 8px;
+  background: var(--papier);
+  border-bottom: 1px solid var(--linie);
+}
+.al-kopf h2 {
+  margin: 0;
+  font-size: 15px;
+}
+.al-gruppe h3 {
+  margin: 16px 0 6px;
+  font-size: 13.5px;
+}
+.al-gruppe p {
+  margin: 0 0 6px;
+}
+.al-gruppe ol {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+}
+.al-tasten {
+  margin: 0 0 8px;
+}
+.al-tasten dt {
+  margin-top: 6px;
+}
+.al-tasten dd {
+  margin: 2px 0 0;
+}
+.anleitung .al-leise {
+  margin: 8px 0 0;
+  color: var(--text-leise);
+  font-size: 12.5px;
 }
 
 /* ---------- Schmale Fenster (angedockt neben dem KIS) ---------- */

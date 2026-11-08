@@ -4602,7 +4602,8 @@
                   "label": "Gezählt ab",
                   "optionen": [
                     "der Operation",
-                    "dem Unfall"
+                    "dem Unfall",
+                    "der Aufnahme"
                   ]
                 },
                 {
@@ -4672,7 +4673,8 @@
                   "default": 1,
                   "optionen": [
                     "der Operation",
-                    "dem Unfall"
+                    "dem Unfall",
+                    "der Aufnahme"
                   ]
                 },
                 {

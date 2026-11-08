@@ -306,6 +306,11 @@ export interface Wahlstelle {
    * sie am Ende des Abschnitts.
    */
   vor?: string;
+  /**
+   * Die Stelle verlangt einen der Bausteine: kein „nichts davon“. Für Stellen, deren
+   * Bausteine Stammangaben fragen (Gerinnungshemmung, Allergien), PS-T1-01.
+   */
+  pflicht?: boolean;
 }
 
 /** Zustandsschlüssel einer Entweder-oder-Stelle; steht in `Fall.versteckt`, wenn der Arzt die Stelle bewusst leer lässt. */

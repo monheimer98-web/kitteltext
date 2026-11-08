@@ -3,7 +3,7 @@
 // den Tasten, nicht nur die Zielstelle. Tests mit „langsamer Rechner“ drosseln die CPU und schicken die Tasten ohne Pause.
 import { expect, test } from "@playwright/test";
 import type { Page } from "@playwright/test";
-import { abschnitt, aenderungen, bereit, feldfenster, meldung, nachDemNaechstenBild, oeffneApp, oeffneVorlage, setzeSeiteUndPerson, stand, stelle, tastenSalve, tippe } from "./hilfen.ts";
+import { abschnitt, aenderungen, bereit, feldfenster, meldung, nachDemNaechstenBild, oeffneApp, oeffneVorlage, setzeSeiteUndPerson, stand, stelle, tastenSalve, tippe, warte } from "./hilfen.ts";
 import { gewohnheitZifferEnter, hauptweg, lage, taste, vorlageMitKopf } from "./durchlauf.ts";
 
 async function wunde(page: Page) {
@@ -135,7 +135,10 @@ test("PS-K03 auffälliger Befund kippt nicht per U auf den Normalsatz", async ({
   await osg(page);
   await abschnitt(page, "befund").locator("[data-pruefen]").first().click();
   await expect(page.locator(".befundliste")).toBeVisible();
-  for (const k of ["u", "a", "1", "u"]) await taste(page, k);
+  for (const k of ["u", "a", "1"]) await taste(page, k);
+  // Erst nach dem Ende des Zugs: Gleich danach wäre das U eine Taste ohne Bedeutung und nähme den Zug zurück (CR-TS15).
+  await warte(page, 1600);
+  await taste(page, "u");
   expect(await befundZustand(page, 0)).toBe("z-ok");
   // Zeile 2 bleibt auffällig (dem Satz fehlt noch der Ort, deshalb ist die Stelle offen, nicht unauffällig).
   const zeile2 = page.locator(".befundliste [data-zeile]").nth(1);
@@ -159,7 +162,7 @@ test("PS-K04, E-44 und E-45 langsamer Rechner: die zweite vorausgetippte Ziffer 
   // Die „2“ kam, bevor der nächste Halt (Wundverschluss) zu sehen war: verworfen. Sie verrät, dass auch die „1“ blind
   // getippt war; beide zusammen zurück, in einer Meldung (E-45 Satz 2). Lokalanästhesie ist wieder offen.
   expect(aenderungen(vor, await stand(page))).toEqual([]);
-  await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: Lokalanästhesie (jetzt: wieder offen). Verworfen: „2“ (zu früh nach dem Weiterspringen).");
+  await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: „Lokalanästhesie“ (jetzt: wieder offen). Verworfen: „2“ (zu früh nach dem Weiterspringen).");
   await expect(stelle(th, /^Lokalanästhesie: .*fehlt noch$/)).toBeFocused();
 });
 
@@ -184,7 +187,7 @@ test("PS-K05 langsamer Rechner: Escape direkt nach dem Öffnen schließt; Enter 
   expect(aenderungen(vor, await stand(page))).toEqual([]);
 });
 
-test("PS-K06 und E-45 langsamer Rechner: „+ …“ öffnet im selben Ereignis; die vorausgetippte Ziffer kam vor dem Bild und nimmt den Zusatz zurück", async ({ page }) => {
+test("PS-K06, E-45 und E-48 langsamer Rechner: „+ …“ öffnet im selben Ereignis; die vorausgetippte Ziffer kam vor dem Bild, der Zusatz bleibt und wird genannt", async ({ page }) => {
   await osg(page);
   const plus = page.getByRole("button", { name: "+ Tetanusschutz" });
   await plus.focus();
@@ -192,13 +195,18 @@ test("PS-K06 und E-45 langsamer Rechner: „+ …“ öffnet im selben Ereignis;
   const vor = await stand(page);
   await tastenSalve(page, ["Enter", "2"]);
   // Früher wählte die „2“ im neuen Fenster. Seit E-45 beginnt mit dem Öffnen die Schreckzeit: Die „2“ ist verworfen und
-  // verrät den blinden Zug; der eben eingefügte Zusatz geht mit zurück, das Fenster ist zu.
-  expect(aenderungen(vor, await stand(page))).toEqual([]);
-  await expect(feldfenster(page)).toHaveCount(0);
-  await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: Tetanusschutz");
+  // verrät den blinden Zug. Den angefügten Zusatz nimmt die App seit E-48 nicht still weg (PS-N13): Er bleibt, seine
+  // Angabe ist offen und hält das Kopieren auf, die Meldung nennt ihn.
+  const neu = aenderungen(vor, await stand(page));
+  expect(neu).toHaveLength(1);
+  expect(neu[0]).toContain("Tetanus");
+  expect(neu[0]).toContain("z-offen");
+  await expect(meldung(page)).toContainText("Im Brief geblieben: „Tetanusschutz“ (angefügt, bitte prüfen).");
+  await expect(meldung(page)).not.toContainText("Zurückgenommen");
   await expect(meldung(page)).toContainText("Verworfen: „2“ (zu früh nach dem Weiterspringen).");
-  // Gegenprobe: Wer hinsieht, wählt im Fenster wie bisher.
-  await plus.click();
+  // Gegenprobe: Das Fenster des Zusatzes steht offen; nach dem Lösen mit einer Pfeiltaste wählt die Ziffer wie bisher.
+  await expect(feldfenster(page)).toHaveAttribute("aria-label", /^Tetanusschutz/);
+  await taste(page, "ArrowDown");
   await taste(page, "2");
   await expect(stelle(page, /^Tetanusschutz: .*nach Angabe aktuell/)).toBeVisible();
 });
@@ -423,3 +431,31 @@ test("QA-06 Hauptweg per Tastatur: OSG-Distorsion bis zum Kopieren; am Ende lieg
   console.log(`Hauptweg OSG: ${tasten} Tastendrücke + 6 getippte Zeichen`);
   await expect(meldung(page)).toContainText("Ganzer Brief kopiert");
 });
+
+// Prüfliste PS-T1 Punkte 10 und 13: In Becken, Hüfte und Knie ist die Entweder-oder-Stelle die erste Stelle der
+// Anamnese; nach der Wahl per Ziffer öffnet sich die erste Lücke des gewählten Bausteins, auf beiden Wegen.
+for (const [suche, titel] of [
+  ["beckenring", "Beckenringfraktur konservativ"],
+  ["periprothetische femurfraktur", "Periprothetische Femurfraktur bei Hüftprothese"],
+  ["knieprothese", "Periprothetische Femur- oder Tibiafraktur bei Knieprothese"],
+]) {
+  for (const [ziffer, weg] of [["1", "Unfall"], ["2", "ohne Unfall"]]) {
+    test(`T1 per Tastatur (${titel}, ${weg}): Entweder-oder-Stelle zuerst in der Anamnese, danach die erste Lücke des gewählten Bausteins`, async ({ page }) => {
+      await oeffneApp(page);
+      await page.getByRole("radio", { name: "Station" }).click();
+      await vorlageMitKopf(page, suche, titel);
+      const erster = abschnitt(page, "anamnese").locator("[data-key].tok").first();
+      await expect(erster).toHaveAttribute("aria-label", /^Unfall oder Beschwerden ohne Unfall\?: .*fehlt noch$/);
+      await erster.click();
+      expect((await lage(page)).art).toBe("wahl");
+      const vor = await stand(page);
+      await taste(page, ziffer);
+      const nachher = await stand(page);
+      const neuOffen = Object.keys(nachher).filter((k) => !(k in vor) && nachher[k].startsWith("z-offen"));
+      expect(neuOffen.length).toBeGreaterThan(0);
+      expect(neuOffen[0]).toMatch(ziffer === "1" ? /^ana-st-unfall\// : /^ana-st-beschwerden\//);
+      const erste = await page.locator(`[data-key="${neuOffen[0]}"]`).first().getAttribute("aria-label");
+      await expect(feldfenster(page)).toHaveAttribute("aria-label", erste!.split(": ")[0]);
+    });
+  }
+}

@@ -2,10 +2,11 @@
 // die data-Attribute der App, nicht über CSS-Klassen.
 import { expect } from "@playwright/test";
 import type { Locator, Page } from "@playwright/test";
-// Aus der Quelle gelesen, damit der Code in keiner Testdatei steht.
-import { ZUGANG_CODE, ZUGANG_SCHLUESSEL } from "../../src/access.ts";
+// Im Repository steht nur der Prüfwert des Zugangscodes (E-51). Den Code selbst bekommt nur der
+// Zugangstest, und nur über die Umgebungsvariable KITTELTEXT_ZUGANG; ohne sie prüft er nur die Abweisung.
+import { ZUGANG_PRUEFWERT, ZUGANG_SCHLUESSEL } from "../../src/access.ts";
 
-export const zugangscode = ZUGANG_CODE;
+export const zugangscode = process.env.KITTELTEXT_ZUGANG ?? "";
 
 /**
  * Öffnet die App in einem frischen Browserkontext: freigeschaltet, Hinweis bestätigt, Startseite.
@@ -21,11 +22,15 @@ export async function oeffneApp(page: Page) {
         /* gesperrter Speicher: dann zeigt die App das Schloss, und der Test scheitert sichtbar */
       }
     },
-    [ZUGANG_SCHLUESSEL, ZUGANG_CODE],
+    [ZUGANG_SCHLUESSEL, ZUGANG_PRUEFWERT],
   );
   await page.goto("");
   await page.getByRole("button", { name: "Verstanden" }).click();
   await expect(page.getByRole("heading", { name: "Was hat der Patient?" })).toBeVisible();
+  // Beim allerersten Start geht die Anleitung einmal von selbst auf (D-05); die Klicktests arbeiten ohne sie.
+  await expect(page.getByRole("complementary", { name: "Anleitung" })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("complementary", { name: "Anleitung" })).toHaveCount(0);
 }
 
 /** Sucht eine Vorlage im Suchfeld der Startseite und öffnet den ersten Treffer mit Enter. */

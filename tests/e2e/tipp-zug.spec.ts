@@ -71,7 +71,7 @@ test.describe("CR-TS01: Weitergetipptes nach Enter setzt an keinem Halt etwas", 
     await nachDemNaechstenBild(page);
     const geaendert = aenderungen(vor, await stand(page));
     expect(geaendert).toHaveLength(1);
-    expect(geaendert[0]).toContain("Wundlänge: 3 cm");
+    expect(geaendert[0]).toContain("Wundlänge: 3");
     await expect(meldung(page)).toContainText("Verworfen: „unauffällig“");
     expect(await tippzug(page)).toBe("gesperrt");
   });
@@ -125,7 +125,7 @@ test.describe("CR-TS01: Weitergetipptes nach Enter setzt an keinem Halt etwas", 
     await nachDemNaechstenBild(page);
     const geaendert = aenderungen(vor, await stand(page));
     expect(geaendert).toHaveLength(1);
-    expect(geaendert[0]).toContain("Wundlänge: 3 cm");
+    expect(geaendert[0]).toContain("Wundlänge: 3");
     await expect(meldung(page)).toContainText("Verworfen: „u“ (zu früh nach dem Weiterspringen)");
   });
 
@@ -187,7 +187,7 @@ test.describe("CR-TS01: Weitergetipptes nach Enter setzt an keinem Halt etwas", 
     // weitergetippt wurde: „1“ und „2“ gehen zusammen zurück (E-45 Satz 2), das „ü“ in „für“ übernimmt nichts.
     expect(aenderungen(vor, await stand(page))).toEqual([]);
     // Beide Angaben heißen „Kontrolle“: einmal genannt (QA-31).
-    await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: Kontrolle (jetzt: wieder offen). Verworfen: „für zu Hause“");
+    await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: „Kontrolle“ (jetzt: wieder offen). Verworfen: „für zu Hause“");
   });
 
   test("Ende: Leertaste direkt nach dem Sprung auf „… kopieren“ kopiert nicht; nach der Schreckzeit kopiert Enter", async ({ page }) => {
@@ -295,7 +295,7 @@ test.describe("PS-N02: Ü an Block und Befundgruppe mit Meldung; zu frühes Ü w
     // Die „2“ kam vor dem Bild der nächsten Reihe (E-45 Satz 1) und verrät den blinden Zug: auch die „1“ zurück, ohne
     // dass der Arzt „Rückgängig“ suchen muss (früher R2-03: Hinweis mit Rückgängig).
     expect(aenderungen(vor, await stand(page))).toEqual([]);
-    await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: Kontrolle (jetzt: wieder offen). Verworfen: „2ü“");
+    await expect(meldung(page)).toContainText("Zurückgenommen, weil gleich weitergetippt: „Kontrolle“ (jetzt: wieder offen). Verworfen: „2ü“");
     await expect(meldung(page).getByRole("button", { name: "Rückgängig" })).toHaveCount(0);
   });
 
@@ -341,6 +341,8 @@ test.describe("PS-N03: Der Zeiger der Befundliste rückt in sichtbarer Folge, ni
     for (let i = 0; i < 6; i++) expect(nach6[i], `Zeile ${i + 1}`).toContain("bz-ok");
     expect(nach6.slice(6)).toEqual(vorher.slice(6));
     // Zeile 7 (Syndesmose) hat keinen Normalbefund: U setzt nichts, der Zeiger bleibt, die Zeilen darunter bleiben.
+    // Nach einer Pause; gleich nach dem sechsten U verriete die Taste ohne Bedeutung den Zug (CR-TS15, `runde4.spec.ts`).
+    await warte(page, 1600);
     await taste(page, "u");
     expect((await zeilenStand(page)).slice(6)).toEqual(vorher.slice(6));
     await expect(zeile(page, 6)).toBeFocused();

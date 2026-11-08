@@ -26,10 +26,11 @@ import { INDEX, aendere, aktiverFall, brief, schnellwertMerken, schnellwertVerge
 import { gueltigerSchnellwert } from "../speicher.ts";
 import { melde } from "./kopieren.ts";
 import { PERSON_WORT } from "../engine/aenderung.ts";
-import { meldeErsetzt, offenesFeld, schliesseFeld, seiteDesBriefs, stellenZustand, tokenElement, uebernimm, weiter, zugErlaubt, zugNachEingabe, zugStand } from "./aktionen.ts";
+import { meldeErsetzt, offenesFeld, personDesBriefs, schliesseFeld, seiteDesBriefs, stellenZustand, tokenElement, uebernimm, weiter, zugErlaubt, zugNachEingabe, zugStand } from "./aktionen.ts";
 import { SPERRE } from "../data/tastatur.ts";
 import { naechsteAngabe } from "../engine/ziffernreihe.ts";
 import { nachDemZeichnen } from "./fokus.ts";
+import { NormwertInfo } from "./Normwert.tsx";
 
 export const SEITEN: Seite[] = ["rechts", "links", "beidseits"];
 export const SEITE_NAME: Record<Seite, string> = { rechts: "rechts", links: "links", beidseits: "beidseits", ohne: "ohne Seite" };
@@ -79,10 +80,11 @@ export function Pillen<T extends string | number>(p: {
       melde({ text: enterWaehltNur(p.optionen.length), art: "ok" });
       return;
     }
-    // Text auf einer Gruppe außerhalb eines Fensters (Fallkopf) sperrt wie an jedem Halt; im Fenster sperrt das Fenster.
-    if (e.target === gruppe && e.key.length === 1 && !gruppe.closest(".feldfenster")) {
+    // Text in einer Gruppe außerhalb eines Fensters (Fallkopf) sperrt wie an jedem Halt, auch mit dem Fokus auf einem
+    // Knopf wie bei der Seite (QA-34); im Fenster sperrt das Fenster. Eine Ziffer ohne Knopf wählt nichts (CR-TS15).
+    if (e.key.length === 1 && e.key !== " " && !gruppe.closest(".feldfenster")) {
       e.preventDefault();
-      zugErlaubt(e, "123456789");
+      zugErlaubt(e, "123456789", false, "", "");
       return;
     }
     // Nur links und rechts: Auf und Ab gehört den Zeilen der Befundliste.
@@ -662,7 +664,7 @@ export function PersonWahl({ imKopf = false }: { imKopf?: boolean }) {
       wert={fall.geschlecht ?? undefined}
       optionen={(["m", "w", "k", "n"] as const).map((wert) => ({ wert, label: PERSON_WORT[wert] }))}
       onWahl={(g, _perTaste, vomRahmen) => {
-        aendere((f) => mitPerson(f, g, f.alter));
+        personDesBriefs(g);
         if (imKopf && vomRahmen) weiter();
       }}
     />
@@ -703,11 +705,14 @@ function WahlEditor({ k, stelle }: { k: string; stelle: Wahlstelle }) {
           </button>
         ))}
       </div>
-      <div class="ff-fuss">
-        <button type="button" class="knopf leise klein" onClick={() => nimm(null)} title="Die Stelle bleibt leer; der Abschnitt nennt dazu nichts">
-          nichts davon, Stelle leer lassen
-        </button>
-      </div>
+      {/* Pflichtstelle: kein „nichts davon“; einzelne Sätze des gewählten Bausteins bleiben entfernbar (PS-T1-01). */}
+      {!stelle.pflicht && (
+        <div class="ff-fuss">
+          <button type="button" class="knopf leise klein" onClick={() => nimm(null)} title="Die Stelle bleibt leer; der Abschnitt nennt dazu nichts">
+            nichts davon, Stelle leer lassen
+          </button>
+        </div>
+      )}
     </>
   );
 }
@@ -1009,7 +1014,7 @@ export function Feldfenster() {
       e.preventDefault();
       const uebernehmen = el.querySelector<HTMLElement>("[data-taste='ü']");
       const knoepfe = zifferKnoepfe(el);
-      if (!zugErlaubt(e, `${knoepfe.length ? "123456789" : ""}${uebernehmen ? "ü" : ""}`)) return;
+      if (!zugErlaubt(e, `${knoepfe.length ? "123456789" : ""}${uebernehmen ? "ü" : ""}`, false, "", `${"123456789".slice(0, knoepfe.length)}${uebernehmen ? "ü" : ""}`)) return;
       if (e.key === "ü" || e.key === "Ü") {
         uebernehmen?.click();
         return;
@@ -1061,7 +1066,12 @@ export function Feldfenster() {
       onFocusIn={() => markiereZiffern(ref.current)}
       onFocusOut={() => markiereZiffern(ref.current)}
     >
-      {titel && <div class="ff-titel">{titel}</div>}
+      {titel && (
+        <div class="ff-titel">
+          {titel}
+          <NormwertInfo k={feld.key} label={titel} />
+        </div>
+      )}
       {inhalt}
       {text && (
         <p class={gesperrt || hinweis?.key === feld.key ? "ff-tipp ff-tastenhinweis aktiv" : "ff-tipp ff-tastenhinweis"} role="status">

@@ -4,7 +4,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { BRIEFTYPEN } from "../src/data/katalog.ts";
-import { briefText, indexiere, renderBrief } from "../src/engine/render.ts";
+import { briefText, indexiere, ohneDoppelteEinheit, renderBrief } from "../src/engine/render.ts";
 import type { BriefAnsicht, KatalogIndex } from "../src/engine/render.ts";
 import {
   alsKopiert,
@@ -33,6 +33,7 @@ import {
   uebernehmen,
   beendetZug,
   enthaeltNoch,
+  sicherZuruecknehmen,
 } from "../src/engine/fall.ts";
 import {
   BILD_ERSATZ_MS,
@@ -65,9 +66,12 @@ import { ABGLEICHREGELN } from "../src/data/abgleich.ts";
 import { personText } from "../src/engine/person.ts";
 import { fuerZwischenablage, glaetten, istKisSicher, tokensZuText, unsichereZeichen } from "../src/engine/text.ts";
 import type { Token } from "../src/engine/text.ts";
-import { abstand, sucheVorlagen } from "../src/engine/suche.ts";
+import { TREFFER_MAX, abstand, sucheVorlagen, trefferNachBereich } from "../src/engine/suche.ts";
 import { schnellwerteFehler, schnellwerteVon, stelleVor, wahlPlatzFehler, weglassenFehler } from "../src/engine/vorlage.ts";
 import type { AbschnittId, Baustein, Fall, Platzhalter, Segment, Vorlage } from "../src/model/types.ts";
+import { anleitungVonSelbst } from "../src/engine/einfuehrung.ts";
+import { normTitel, normwertKarte, normZeile } from "../src/engine/normwerte.ts";
+import type { Normwerte } from "../src/engine/normwerte.ts";
 
 function testIndex(bausteine: Baustein[], vorlagen: Vorlage[] = [], version = 3): KatalogIndex {
   return indexiere({ version, regionen: [{ id: "t", name: "T", kuerzel: "t", bausteine }], vorlagen, brieftypen: BRIEFTYPEN });
@@ -1135,6 +1139,38 @@ test("Entweder-oder-Stelle: nichts steht vorab im Brief, die Lücke bleibt bis z
   assert.equal(ab(ohneBaustein(leer, "labor"), index, "diagnostik").text, "");
 });
 
+test("Pflichtstelle (PS-T1-01): kein „nichts davon“, entfernter Baustein lässt die Lücke wieder stehen, einzelne Sätze bleiben entfernbar", () => {
+  const unfall = baustein("unfall", "anamnese", [
+    { art: "text", text: "Sturz. " },
+    { art: "option", id: "gerinnung", label: "Gerinnungshemmung", an: true, text: "Gerinnungshemmende Medikamente: {was}. ", slots: [{ art: "auswahl", id: "was", label: "Gerinnungshemmung", required: true, optionen: ["", "keine", "Apixaban"] }] },
+    { art: "text", text: "Allergien: " },
+    { art: "platzhalter", ref: "allergien" },
+    { art: "text", text: ". " },
+  ], [{ id: "allergien", typ: "freitext", label: "Allergien", required: true }]);
+  const ohne = baustein("ohne", "anamnese", [{ art: "text", text: "Kein Unfall. " }]);
+  const kopf = baustein("kopf", "anamnese", [{ art: "text", text: "Kopfanprall: nein." }]);
+  const v = vorlage("v-pflicht", { anamnese: ["kopf"] }, { wahl: [{ abschnitt: "anamnese", label: "Unfall oder ohne Unfall?", bausteine: ["unfall", "ohne"], vor: "kopf", pflicht: true }] });
+  const index = testIndex([unfall, ohne, kopf], [v]);
+  const start = mitVorlage(neuerFall("station", index), v, index);
+  const key = "wahl/anamnese/0";
+  // „nichts davon“ ändert nichts: Die Lücke bleibt und sperrt.
+  assert.equal(mitWahl(start, key, null, index), start);
+  assert.equal(ab(start, index, "anamnese").offen, 1);
+  // Auch ein Eintrag aus einem älteren Fall (vor `pflicht`) lässt die Stelle nicht leer.
+  const alt = { ...start, versteckt: { [key]: true } };
+  assert.match(ab(alt, index, "anamnese").text, /^‹Unfall oder ohne Unfall\?›/);
+  // Gewählt, dann entfernt: wieder Lücke, an ihrem Platz.
+  const gewaehlt = mitWahl(start, key, "unfall", index);
+  assert.match(ab(ohneBaustein(gewaehlt, "unfall"), index, "anamnese").text, /^‹Unfall oder ohne Unfall\?›\nKopfanprall/);
+  // Einzelne Sätze des gewählten Bausteins nimmt der Arzt wie überall heraus (Leitlinie der Auftraggeberin, 08.11.2026).
+  assert.equal(ab(gewaehlt, index, "anamnese").offen, 2);
+  const ohneSatz = ab(mitOption(gewaehlt, "unfall/gerinnung", false), index, "anamnese");
+  assert.doesNotMatch(ohneSatz.text, /Gerinnungshemmende/);
+  assert.equal(ohneSatz.offen, 1);
+  // Ein Feld wie die Allergien bleibt als Platzhalter fürs KIS stehen: keine Lücke mehr, der Abschnitt ist abschließbar.
+  assert.equal(ab(mitSpaeter(mitOption(gewaehlt, "unfall/gerinnung", false), "unfall/allergien", true), index, "anamnese").offen, 0);
+});
+
 test("Entweder-oder-Stelle: „nichts davon“ gilt nicht für die Stelle gleicher Nummer einer anderen Vorlage", () => {
   // Die Nummern zählen je Vorlage; nach dem Wechsel muss der Arzt die neue Frage sehen (CR-02).
   const roentgen = baustein("roentgen", "diagnostik", [{ art: "text", text: "Röntgen." }]);
@@ -1971,27 +2007,27 @@ test("zurueckgenommenText: jede Stelle einmal, mit dem Stand nach der Rücknahme
     { vorher: f1, nachher: f2 },
   ]);
   const stand = ab(f0, index, "befund").tokens.find((t) => t.key === "t-osg/ds")?.zustand === "offen" ? "wieder offen" : "wieder Vorschlag";
-  assert.equal(satz(f2, zurueck), `Haut und Druckschmerz Außenknöchel (jetzt: ${stand})`);
+  assert.equal(satz(f2, zurueck), `„Haut“ und „Druckschmerz Außenknöchel“ (jetzt: ${stand})`);
   // Dieselbe Stelle zweimal geändert (erst unauffällig, dann auffällig): einmal genannt.
   const g1 = mitBefund(f0, "t-osg/ds", "ok");
   const g2 = mitBefund(g1, "t-osg/ds", "abw");
-  assert.equal(satz(g2, f0), `Druckschmerz Außenknöchel (jetzt: ${stand})`);
+  assert.equal(satz(g2, f0), `„Druckschmerz Außenknöchel“ (jetzt: ${stand})`);
   // Zwei Stellen unter demselben Namen mit demselben Stand (wie „Kontrolle“ in zwei Sätzen): einmal genannt.
   const gleicherName = (f: Fall) => {
     const b = brief(f)!;
     return { ...b, abschnitte: b.abschnitte.map((a) => ({ ...a, tokens: a.tokens.map((t) => (t.key === "t-osg/ds" || t.key === "t-osg/haut" ? { ...t, label: "Kontrolle" } : t)) })) };
   };
-  assert.equal(zurueckgenommenText(f2, zurueck, gleicherName), `Kontrolle (jetzt: ${stand})`);
+  assert.equal(zurueckgenommenText(f2, zurueck, gleicherName), `„Kontrolle“ (jetzt: ${stand})`);
   // Verschiedene Stände durch Semikolon; der Fallkopf zuerst.
   const k1 = mitPerson(f0, "w", "");
   const k2 = mitBefund(k1, "t-osg/ds", "ok");
-  assert.equal(satz(k2, f0), `Person (jetzt: nicht gewählt); Druckschmerz Außenknöchel (jetzt: ${stand})`);
+  assert.equal(satz(k2, f0), `Person (jetzt: nicht gewählt); „Druckschmerz Außenknöchel“ (jetzt: ${stand})`);
   // Ab vier Stellen die Zahl davor; jede Stelle mit Namen, kein „und N weitere“.
   let viele = f0;
   for (const id of ["schwellung", "haut", "ds", "schublade"]) viele = mitBefund(viele, `t-osg/${id}`, "ok");
   const text = satz(viele, f0);
   assert.match(text, /^4 Stellen: /);
-  for (const name of ["Schwellung", "Haut", "Druckschmerz Außenknöchel", "Talusvorschub"]) assert.ok(text.includes(name), `${name} fehlt: ${text}`);
+  for (const name of ["Schwellung", "Haut", "Druckschmerz Außenknöchel", "Talusvorschub"]) assert.ok(text.includes(`„${name}“`), `${name} fehlt: ${text}`);
   assert.doesNotMatch(text, /weitere/);
   // Nichts geändert, anderer Fall, Stellen, die sich nur im Leerraum unterscheiden.
   assert.equal(satz(f0, f0), "");
@@ -2004,5 +2040,133 @@ test("zurueckgenommenText: jede Stelle einmal, mit dem Stand nach der Rücknahme
   const ohneSeite = mitSeite(f2, null);
   assert.equal(satz(f2, ohneSeite), "Seite (jetzt: nicht gewählt)");
   // Seite und ein Befund zusammen zurück: beide, der Befund mit dem Stand danach.
-  assert.equal(satz(f1, mitBefund(mitSeite(f1, null), "t-osg/ds", undefined)), `Seite (jetzt: nicht gewählt); Druckschmerz Außenknöchel (jetzt: ${stand})`);
+  assert.equal(satz(f1, mitBefund(mitSeite(f1, null), "t-osg/ds", undefined)), `Seite (jetzt: nicht gewählt); „Druckschmerz Außenknöchel“ (jetzt: ${stand})`);
+  // Ein Name mit Komma und „und“ bleibt als ein Name erkennbar (CR-TS20).
+  const kommaName = (f: Fall) => {
+    const b = brief(f)!;
+    return { ...b, abschnitte: b.abschnitte.map((a) => ({ ...a, tokens: a.tokens.map((t) => (t.key === "t-osg/ds" ? { ...t, label: "Wundgrund, Fremdkörper und Tiefe" } : t)) })) };
+  };
+  assert.equal(zurueckgenommenText(f2, zurueck, kommaName), `„Haut“ und „Wundgrund, Fremdkörper und Tiefe“ (jetzt: ${stand})`);
+});
+
+test("sicherZuruecknehmen: eine Aussage von vorher wird offen, nicht wieder schwarz (E-48, CR-TS13); Zusätze bleiben (PS-N13)", () => {
+  const brief = (f: Fall) => renderBrief(f, index, { listen: "striche" });
+  const f0 = mitSeite(neu(V_ENTSCHEIDEN), "links");
+  // CR-TS13: „DS Außenknöchel“ war unauffällig (Aussage), der Zug setzt „nicht untersucht“. Zurück heißt offen.
+  const a0 = mitBefund(f0, "t-osg/ds", "ok");
+  const a1 = mitBefund(a0, "t-osg/ds", "weg");
+  assert.equal(schritteZuruecknehmen(a1, [{ vorher: a0, nachher: a1 }]).befund["t-osg/ds"], "ok", "bisher: alte Aussage zurück");
+  const r = sicherZuruecknehmen(a1, [{ vorher: a0, nachher: a1 }], brief);
+  assert.equal(r.fall.befund["t-osg/ds"], undefined);
+  assert.deepEqual(r.behalten, []);
+  // Vorher offen: wie bisher zurück auf offen; eine spätere eigene Änderung an anderer Stelle bleibt.
+  const b1 = mitBefund(f0, "t-osg/haut", "ok");
+  const b2 = mitBefund(b1, "t-osg/schwellung", "abw");
+  const rb = sicherZuruecknehmen(b2, [{ vorher: f0, nachher: b1 }], brief);
+  assert.equal(rb.fall.befund["t-osg/haut"], undefined);
+  assert.equal(rb.fall.befund["t-osg/schwellung"], "abw");
+  // Feld, Angabe und Auswahl mit einer Aussage von vorher: leer statt alter Wert.
+  const c0 = mitAuswahl(mitSlot(mitWert(f0, "allergien", "Penicillin"), "t-osg/x/y", "3"), "t-osg/w", 0);
+  const c1 = mitAuswahl(mitSlot(mitWert(c0, "allergien", "keine bekannt"), "t-osg/x/y", "4"), "t-osg/w", 1);
+  const rc = sicherZuruecknehmen(c1, [{ vorher: c0, nachher: c1 }]).fall;
+  assert.equal(rc.werte.allergien, undefined);
+  assert.equal(rc.slots["t-osg/x/y"], undefined);
+  assert.equal(rc.auswahl["t-osg/w"], undefined);
+  // Seite: eine gewählte Seite kommt nicht wieder, die Rücknahme führt zu „nicht gewählt“.
+  const s1 = mitSeite(f0, "rechts");
+  assert.equal(sicherZuruecknehmen(s1, [{ vorher: f0, nachher: s1 }]).fall.seite, null);
+  // Zusatz als Satz („+ Kein Sturz auf den Kopf“): Mit `brief` bleibt er und wird genannt, ohne wird er entfernt.
+  const o0 = mitSeite(neu(V), "links");
+  const o1 = mitOption(o0, "t-ana/kopf", true);
+  const o2 = mitBefund(o1, "t-osg/haut", "ok");
+  const ro = sicherZuruecknehmen(o2, [{ vorher: o0, nachher: o1 }, { vorher: o1, nachher: o2 }], brief);
+  assert.deepEqual(ro.behalten, ["Kein Sturz auf den Kopf"]);
+  assert.equal(ro.fall.optionen["t-ana/kopf"], true);
+  assert.equal(ro.fall.befund["t-osg/haut"], undefined);
+  assert.equal(sicherZuruecknehmen(o1, [{ vorher: o0, nachher: o1 }]).fall.optionen["t-ana/kopf"], undefined);
+  // Nur ein Zusatz im Zug: Der Fall bleibt derselbe, gemeldet wird der Zusatz.
+  const nur = sicherZuruecknehmen(o1, [{ vorher: o0, nachher: o1 }], brief);
+  assert.equal(nur.fall, o1);
+  assert.deepEqual(nur.behalten, ["Kein Sturz auf den Kopf"]);
+  // Ein grauer Satz, den Ü bestätigt hat, ist kein Zusatz: Er geht zurück auf grau.
+  const g0 = mitSeite(neu(V), "links");
+  const g1 = mitOption(g0, "t-proc/kuehlen", true);
+  const rg = sicherZuruecknehmen(g1, [{ vorher: g0, nachher: g1 }], brief);
+  assert.deepEqual(rg.behalten, []);
+  assert.equal(rg.fall.optionen["t-proc/kuehlen"], undefined);
+  // Ein angefügter Baustein (auch die Wahl an einer Entweder-oder-Stelle) ist kein Satz-Zusatz: Er geht zurück.
+  const z1 = mitBaustein(f0, "t-th2", index, "therapie");
+  const rz = sicherZuruecknehmen(z1, [{ vorher: f0, nachher: z1 }], brief);
+  assert.deepEqual(rz.behalten, []);
+  assert.ok(!rz.fall.bausteine.therapie?.includes("t-th2"));
+  // Nichts zurückzunehmen: derselbe Fall.
+  assert.equal(sicherZuruecknehmen(f0, [{ vorher: f0, nachher: b1 }], brief).fall, f0);
+});
+
+test("ohneDoppelteEinheit: „3 cm“ in einem Feld, hinter dem der Text „cm“ schreibt, wird „3“ (H-R3-1)", () => {
+  assert.equal(ohneDoppelteEinheit("3 cm", "cm"), "3");
+  assert.equal(ohneDoppelteEinheit("3cm", "cm"), "3");
+  assert.equal(ohneDoppelteEinheit("3,5 CM", "cm"), "3,5");
+  assert.equal(ohneDoppelteEinheit("ca. 3 cm.", "cm"), "ca. 3");
+  assert.equal(ohneDoppelteEinheit("38,5 °C", "°C"), "38,5");
+  assert.equal(ohneDoppelteEinheit("3", "cm"), "3");
+  assert.equal(ohneDoppelteEinheit("3 cm", undefined), "3 cm");
+  assert.equal(ohneDoppelteEinheit("cm", "cm"), "cm", "ohne Zahl bleibt alles");
+  assert.equal(ohneDoppelteEinheit("3 mm", "cm"), "3 mm", "andere Einheit bleibt");
+});
+
+test("anleitungVonSelbst: nur beim allerersten Start und nur mit dauerhaftem Speicher (D-05)", () => {
+  assert.equal(anleitungVonSelbst(false, true), true);
+  assert.equal(anleitungVonSelbst(true, true), false);
+  // Gesperrter Speicher: Sie ginge sonst bei jedem Start auf.
+  assert.equal(anleitungVonSelbst(false, false), false);
+  assert.equal(anleitungVonSelbst(true, false), false);
+});
+
+test("trefferNachBereich: eigener Bereich zuerst in unveränderter Reihenfolge, freie Plätze für den anderen (Runde 4, C)", () => {
+  const t = (id: string, setting: "zna" | "station", punkte: number) => ({ vorlage: { id, setting } as Vorlage, punkte });
+  const ids = (vs: Vorlage[]) => vs.map((v) => v.id);
+  // Nur der andere Bereich findet etwas: Er bekommt die Liste, unter eigener Überschrift.
+  const nurAndere = trefferNachBereich([t("station-hueft-tep", "station", 30)], "zna");
+  assert.deepEqual(ids(nurAndere.eigene), []);
+  assert.deepEqual(ids(nurAndere.andere), ["station-hueft-tep"]);
+  // Reihenfolge der eigenen bleibt die der Suche; andere füllen nur, was frei ist.
+  const gemischt = trefferNachBereich([t("a", "zna", 1030), t("b", "zna", 1010), t("x", "station", 50), t("y", "station", 40)], "zna", 3);
+  assert.deepEqual(ids(gemischt.eigene), ["a", "b"]);
+  assert.deepEqual(ids(gemischt.andere), ["x"]);
+  // Volle Liste aus dem eigenen Bereich: nichts vom anderen.
+  const voll = trefferNachBereich(Array.from({ length: TREFFER_MAX + 2 }, (_, i) => t(`z${i}`, "zna", 1100 - i)).concat([t("s", "station", 90)]), "zna");
+  assert.equal(voll.eigene.length, TREFFER_MAX);
+  assert.deepEqual(voll.andere, []);
+  // Andersherum auf Station.
+  assert.deepEqual(ids(trefferNachBereich([t("s1", "station", 1020), t("z1", "zna", 20)], "station").andere), ["z1"]);
+});
+
+test("Normalwerte: Karte über Fundstellen, mehrere Einträge je Feld, ganze Tabelle nach Gelenk; Zeile und Überschrift", () => {
+  const f = (baustein: string, segment: string, slot?: string) => ({ datei: "x.json", baustein, segment, ...(slot ? { slot } : {}) });
+  const n: Normwerte = {
+    freigegeben: true,
+    quelle: "q",
+    eintraege: [
+      { schluessel: "s-abd", gelenk: "Schultergelenk", bewegung: "Abduktion/Adduktion", normal: "150–180/0/20–40°", hinweis: "h1", fundstellen: [f("sch", "abd"), f("prell", "bew", "detail")] },
+      { schluessel: "s-rot", gelenk: "Schultergelenk", bewegung: "Außenrotation/Innenrotation", stellungen: [{ stellung: "Oberarm anliegend", normal: "40–60/0/90–95°" }, { stellung: "in 90° Abduktion", normal: "70–90/0/60–70°" }], hinweis: "h2", fundstellen: [f("prell", "bew", "detail")] },
+      { schluessel: "knie", gelenk: "Kniegelenk", bewegung: "Extension/Flexion", normal: "0–10/0/120–150°", hinweis: "h3", fundstellen: [f("k", "extflex")] },
+      { schluessel: "fba", gelenk: "Wirbelsäule und Hüfte", bewegung: "Finger-Boden-Abstand", normal: "0–10 cm", hinweis: "h4", fundstellen: [] },
+    ],
+    tabelle: [f("mono", "extflex")],
+  };
+  const k = normwertKarte(n);
+  // Zuordnung über Baustein und Feld, nicht über das Label; ein Slot hängt an seinem Feld.
+  assert.deepEqual(k.get("sch/abd"), { art: "einzeln", eintraege: [n.eintraege[0]] });
+  const prell = k.get("prell/bew");
+  assert.ok(prell?.art === "einzeln");
+  assert.deepEqual(prell.eintraege.map((e) => e.schluessel), ["s-abd", "s-rot"]);
+  assert.equal(k.has("knie/extflex"), false);
+  const mono = k.get("mono/extflex");
+  assert.ok(mono?.art === "tabelle");
+  assert.deepEqual(mono.gruppen.map((g) => [g.gelenk, g.eintraege.length]), [["Schultergelenk", 2], ["Kniegelenk", 1], ["Wirbelsäule und Hüfte", 1]]);
+  assert.equal(normZeile(n.eintraege[2]), "Extension/Flexion 0–10/0/120–150°");
+  assert.equal(normZeile(n.eintraege[1]), "Außenrotation/Innenrotation: Oberarm anliegend 40–60/0/90–95°; in 90° Abduktion 70–90/0/60–70°");
+  assert.equal(normTitel(n.eintraege.slice(0, 3)), "Normalwerte (Neutral-Null)");
+  assert.equal(normTitel(n.eintraege), "Normalwerte");
 });

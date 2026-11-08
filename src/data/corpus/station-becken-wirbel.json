@@ -1069,7 +1069,9 @@
                     "",
                     "nach Schmerzen steigern bis zur Vollbelastung, die Gehhilfe bei sicherem Gang weglassen",
                     "nach Schmerzen steigern bis zur Vollbelastung bis zum Ende der 2. Woche nach dem Unfall, Gehen ohne Gehhilfe bis zum Ende der 6. Woche",
-                    "wie bei Entlassung bis zur Röntgenkontrolle 6 Wochen nach dem Unfall, über die weitere Steigerung entscheidet die weiterbehandelnde unfallchirurgische oder orthopädische Praxis anhand des Röntgenbilds"
+                    "wie bei Entlassung bis zur Röntgenkontrolle 6 Wochen nach dem Unfall, über die weitere Steigerung entscheidet die weiterbehandelnde unfallchirurgische oder orthopädische Praxis anhand des Röntgenbilds",
+                    "nach Schmerzen steigern bis zur Vollbelastung bis zum Ende der 2. Woche nach der Aufnahme, Gehen ohne Gehhilfe bis zum Ende der 6. Woche",
+                    "wie bei Entlassung bis zur Röntgenkontrolle 6 Wochen nach der Aufnahme, über die weitere Steigerung entscheidet die weiterbehandelnde unfallchirurgische oder orthopädische Praxis anhand des Röntgenbilds"
                   ],
                   "required": true
                 }
@@ -1113,7 +1115,8 @@
                   "optionen": [
                     "",
                     "mit geringer Stoßbelastung, z. B. Radfahren und Schwimmen, ab dem 4. Monat, mit hoher Stoßbelastung ab dem 6. Monat nach dem Unfall",
-                    "nach ärztlicher Freigabe"
+                    "nach ärztlicher Freigabe",
+                    "mit geringer Stoßbelastung, z. B. Radfahren und Schwimmen, ab dem 4. Monat, mit hoher Stoßbelastung ab dem 6. Monat nach der Aufnahme"
                   ],
                   "required": true
                 }
@@ -1168,7 +1171,9 @@
                     "2 Wochen nach dem Unfall",
                     "6 Wochen nach dem Unfall",
                     "2 und 6 Wochen nach dem Unfall",
-                    "6 Wochen nach der Aufnahme"
+                    "6 Wochen nach der Aufnahme",
+                    "2 Wochen nach der Aufnahme",
+                    "2 und 6 Wochen nach der Aufnahme"
                   ],
                   "required": true
                 },
