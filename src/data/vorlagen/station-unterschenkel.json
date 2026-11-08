@@ -1,0 +1,405 @@
+{
+  "vorlagen": [
+    {
+      "id": "station-tibiakopffraktur-osteosynthese",
+      "titel": "Tibiakopffraktur, Osteosynthese",
+      "suchbegriffe": [
+        "Tibiakopffraktur",
+        "Tibiaplateaufraktur",
+        "Schienbeinkopfbruch",
+        "Schienbeinkopffraktur",
+        "Schatzker",
+        "Impressionsfraktur Tibiakopf",
+        "bikondyläre Tibiakopffraktur",
+        "proximale Tibiafraktur",
+        "Kniegelenkfraktur",
+        "Plattenosteosynthese Tibiakopf",
+        "winkelstabile Platte Tibiakopf",
+        "Schraubenosteosynthese Tibiakopf",
+        "Tibiakopf operiert"
+      ],
+      "kuerzel": [
+        "tkf",
+        "tkf platte",
+        "tibiakopf"
+      ],
+      "region": "knie",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-tibiakopf",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-tibiakopf-osteosynthese",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-tibiakopf",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen",
+          "dgn-st-tibiakopf-ct",
+          "dgn-st-roentgen-postop",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-aufnahme-operation",
+          "verl-st-unterschenkel-operativ",
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-unterschenkel",
+          "eb-st-gehen-bein",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-tibiakopf-osteosynthese",
+          "proc-st-wunde",
+          "proc-st-thrombose-bein",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose",
+          "proc-st-metall",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-unterschenkel"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-tibiakopf/fehlstellung",
+        "bef-st-tibiakopf/haut",
+        "bef-st-tibiakopf/schwellung",
+        "bef-st-tibiakopf/ds",
+        "bef-st-tibiakopf/beweglichkeit",
+        "bef-st-tibiakopf/kompartment",
+        "bef-st-tibiakopf/dms",
+        "bef-st-tibiakopf/peroneus",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/schwellung",
+        "eb-st-unterschenkel/kompartment",
+        "eb-st-unterschenkel/dms",
+        "eb-st-unterschenkel/peroneus",
+        "eb-st-unterschenkel/knie"
+      ],
+      "ohne": [
+        "eb-st-wunde/dms"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/implantat",
+          "th-st-weitere/physio",
+          "proc-st-wunde/hochlagern",
+          "proc-st-metall/metall",
+          "med-st-entlassung/thrombose",
+          "proc-st-tibiakopf-osteosynthese/steigerung"
+        ],
+        "aus": [
+          "verl-st-operativ/aufnahme",
+          "verl-st-operativ/operation",
+          "verl-st-operativ/op-verlauf",
+          "verl-st-operativ/roentgen",
+          "verl-st-operativ/mobilisation",
+          "verl-st-operativ/wunde",
+          "proc-st-kontrollen/klinisch",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "auswahl": {
+          "dgn-st-roentgen/region": 2,
+          "dgn-st-roentgen-postop/region": 2
+        },
+        "slots": {
+          "th-st-weitere/physio/inhalt": 1,
+          "verl-st-aufnahme-operation/aufnahme/anlass": 1,
+          "proc-st-sicherheitsnetz-unterschenkel/sicherheitsnetz/zeichen": 3
+        }
+      },
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz aus dem Stand gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Skifahren sei das Knie verdreht worden.",
+          "Es sei zu einem Sturz von der Leiter gekommen.",
+          "Beim Überqueren der Straße sei es zu einem Zusammenstoß mit einem Auto gekommen.",
+          "Es sei zu einem Sturz mit dem Motorrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026; fachliche Grundlage R2 Skizze S13 und R5 Abschnitt 2.4.2 (DGOU-Nachbehandlungsempfehlungen 2025 und S2k-Leitlinie Tibiakopffrakturen 2021, Werte nur als Einzeloptionen). Hausregel ohne Quelle: Beugegrenzen 60° und 90° in der Bewegung des Kniegelenks (in R5 2.4.2 und DGOU 2025 nicht enthalten, Fachdurchsicht NU vom 18.10.2026)"
+    },
+    {
+      "id": "station-tibiakopffraktur-konservativ",
+      "titel": "Tibiakopffraktur konservativ",
+      "suchbegriffe": [
+        "Tibiakopffraktur",
+        "Tibiaplateaufraktur",
+        "Schienbeinkopfbruch",
+        "Schienbeinkopffraktur",
+        "Schatzker",
+        "Impressionsfraktur Tibiakopf",
+        "bikondyläre Tibiakopffraktur",
+        "proximale Tibiafraktur",
+        "Kniegelenkfraktur",
+        "Tibiakopffraktur konservativ",
+        "nicht verschobene Tibiakopffraktur",
+        "Knieorthese"
+      ],
+      "kuerzel": [
+        "tkf kons",
+        "tibiakopf konservativ"
+      ],
+      "region": "knie",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-tibiakopf-konservativ",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-tibiakopf-konservativ",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-tibiakopf",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen",
+          "dgn-st-tibiakopf-ct",
+          "dgn-st-tibiakopf-verlauf",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-tibiakopf-konservativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-tibiakopf-konservativ",
+          "eb-st-unterschenkel",
+          "eb-st-gehen-bein",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-tibiakopf-konservativ",
+          "proc-st-thrombose-bein-konservativ",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-unterschenkel"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-allgemein/bewusstsein",
+        "bef-st-tibiakopf/haut",
+        "bef-st-tibiakopf/schwellung",
+        "bef-st-tibiakopf/ds",
+        "bef-st-tibiakopf/beweglichkeit",
+        "bef-st-tibiakopf/kompartment",
+        "bef-st-tibiakopf/dms",
+        "bef-st-tibiakopf/peroneus",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-allgemein/allgemein",
+        "eb-st-tibiakopf-konservativ/schwellung",
+        "eb-st-unterschenkel/kompartment",
+        "eb-st-unterschenkel/dms",
+        "eb-st-unterschenkel/peroneus",
+        "eb-st-unterschenkel/knie"
+      ],
+      "vorgaben": {
+        "an": [
+          "dx-st-tibiakopf-konservativ/stellung",
+          "th-st-weitere/physio",
+          "med-st-entlassung/thrombose",
+          "proc-st-tibiakopf-konservativ/steigerung"
+        ],
+        "aus": [
+          "proc-st-kontrollen/klinisch",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "auswahl": {
+          "dgn-st-roentgen/region": 2
+        },
+        "slots": {
+          "th-st-weitere/physio/inhalt": 1
+        }
+      },
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz aus dem Stand gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Skifahren sei das Knie verdreht worden.",
+          "Es sei zu einem Sturz von der Leiter gekommen.",
+          "Beim Überqueren der Straße sei es zu einem Zusammenstoß mit einem Auto gekommen.",
+          "Es sei zu einem Sturz mit dem Motorrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026; fachliche Grundlage R2 Skizze S13 und R5 Abschnitt 2.4.2 (S2k-Leitlinie Tibiakopffrakturen 2021, konservative Behandlung; Werte nur als Einzeloptionen). Hausregel ohne Quelle: Beugegrenzen 60° und 90° in der Bewegung des Kniegelenks (in R5 2.4.2 und DGOU 2025 nicht enthalten, Fachdurchsicht NU vom 18.10.2026)"
+    },
+    {
+      "id": "station-unterschenkelschaftfraktur-marknagel",
+      "titel": "Unterschenkelschaftfraktur, Marknagel",
+      "suchbegriffe": [
+        "Unterschenkelschaftfraktur",
+        "Unterschenkelfraktur",
+        "Tibiaschaftfraktur",
+        "Tibiafraktur",
+        "Schienbeinbruch",
+        "Unterschenkelbruch",
+        "Marknagel Tibia",
+        "Tibianagel",
+        "Marknagelosteosynthese",
+        "offene Unterschenkelfraktur",
+        "distale Unterschenkelfraktur",
+        "Unterschenkelschaft"
+      ],
+      "kuerzel": [
+        "usf",
+        "usf nagel",
+        "tibianagel"
+      ],
+      "region": "unterschenkel",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-unterschenkelschaft",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-unterschenkel-marknagel",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-unterschenkelschaft",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen",
+          "dgn-st-roentgen-postop",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-aufnahme-operation",
+          "verl-st-unterschenkel-operativ",
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-unterschenkel",
+          "eb-st-gehen-bein",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-unterschenkel-marknagel",
+          "proc-st-wunde",
+          "proc-st-thrombose-bein",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-metall",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-unterschenkel"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-unterschenkelschaft/fehlstellung",
+        "bef-st-unterschenkelschaft/haut",
+        "bef-st-unterschenkelschaft/schwellung",
+        "bef-st-unterschenkelschaft/kompartment",
+        "bef-st-unterschenkelschaft/dms",
+        "bef-st-unterschenkelschaft/peroneus",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/schwellung",
+        "eb-st-unterschenkel/kompartment",
+        "eb-st-unterschenkel/dms",
+        "eb-st-unterschenkel/peroneus"
+      ],
+      "ohne": [
+        "eb-st-wunde/dms"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/implantat",
+          "th-st-weitere/physio",
+          "proc-st-wunde/hochlagern",
+          "proc-st-metall/metall",
+          "med-st-entlassung/thrombose",
+          "proc-st-unterschenkel-marknagel/steigerung",
+          "ana-st-unfall/tetanus"
+        ],
+        "aus": [
+          "verl-st-operativ/aufnahme",
+          "verl-st-operativ/operation",
+          "verl-st-operativ/op-verlauf",
+          "verl-st-operativ/roentgen",
+          "verl-st-operativ/mobilisation",
+          "verl-st-operativ/wunde",
+          "proc-st-kontrollen/klinisch",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "auswahl": {
+          "dgn-st-roentgen/region": 3,
+          "dgn-st-roentgen-postop/region": 3
+        },
+        "slots": {
+          "th-st-weitere/physio/inhalt": 1,
+          "verl-st-aufnahme-operation/aufnahme/anlass": 1,
+          "proc-st-sicherheitsnetz-unterschenkel/sicherheitsnetz/zeichen": 3
+        }
+      },
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Beim Sport sei es zu einem Tritt gegen den Unterschenkel gekommen.",
+          "Beim Skifahren sei es zu einem Sturz mit Verdrehen des Beins gekommen.",
+          "Es sei zu einem Sturz mit dem Motorrad gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Überqueren der Straße sei es zu einem Zusammenstoß mit einem Auto gekommen.",
+          "Es sei zu einem Sturz von der Leiter gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026; fachliche Grundlage R2 Skizze S14 und R5 Abschnitt 2.4.3 (DGOU-Nachbehandlungsempfehlungen 2025, Werte nur als Einzeloptionen)"
+    }
+  ]
+}

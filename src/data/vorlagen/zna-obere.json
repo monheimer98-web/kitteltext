@@ -1,0 +1,1425 @@
+{
+  "vorlagen": [
+    {
+      "id": "zna-distale-radiusfraktur-konservativ",
+      "titel": "Distale Radiusfraktur konservativ",
+      "suchbegriffe": [
+        "Handgelenksfraktur",
+        "Colles",
+        "Smith",
+        "Radius",
+        "Speichenbruch",
+        "Handgelenk gebrochen"
+      ],
+      "kuerzel": [
+        "drf",
+        "drfk"
+      ],
+      "region": "handgelenk",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-distale-radiusfraktur-konservativ"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "hand-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-distaler-radius-konservativ"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Reposition oder Ruhigstellung ohne Reposition?",
+          "bausteine": [
+            "th-radius-reposition-konservativ",
+            "th-radius-ohne-reposition"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Konservative Behandlung, Operation geplant oder stationäre Aufnahme?",
+          "bausteine": [
+            "hand-radiusfraktur-konservativ",
+            "hand-radiusfraktur-op",
+            "hand-radiusfraktur-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "hand-untersuchung/hand-us-weichteile",
+        "hand-untersuchung/hand-us-schwellung",
+        "hand-untersuchung/hand-us-fehlstellung",
+        "hand-untersuchung/hand-us-ds-styloid",
+        "hand-untersuchung/hand-us-rom-schmerz",
+        "hand-untersuchung/hand-us-faustschluss",
+        "hand-untersuchung/hand-us-pdms"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "hand-radiusfraktur-konservativ/verschiebung"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf die ausgestreckte Hand gekommen.",
+          "Es sei zu einem Stolpersturz im häuslichen Umfeld gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz auf die Hand gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Sport sei es zu einem Sturz auf die Hand gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt",
+      "ohne": [
+        "hand-untersuchung/hand-us-ds-tabatiere",
+        "hand-untersuchung/hand-us-stauchung-d1",
+        "hand-untersuchung/hand-us-ds-tuberculum",
+        "hand-untersuchung/hand-us-druj"
+      ]
+    },
+    {
+      "id": "zna-distale-radiusfraktur-op",
+      "titel": "Distale Radiusfraktur OP",
+      "suchbegriffe": [
+        "geplante Operation",
+        "Handgelenksfraktur",
+        "Colles",
+        "Smith",
+        "Radius",
+        "Speichenbruch",
+        "operativ",
+        "Plattenosteosynthese"
+      ],
+      "kuerzel": [
+        "drfop"
+      ],
+      "region": "handgelenk",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-distale-radiusfraktur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "hand-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-distaler-radius"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand",
+          "th-radius-op-aufklaerung"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Reposition oder Ruhigstellung ohne Reposition?",
+          "bausteine": [
+            "th-radius-reposition",
+            "th-radius-ohne-reposition"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Entlassung bis zur Operation oder stationäre Aufnahme?",
+          "bausteine": [
+            "hand-radiusfraktur-op",
+            "hand-radiusfraktur-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "hand-untersuchung/hand-us-weichteile",
+        "hand-untersuchung/hand-us-schwellung",
+        "hand-untersuchung/hand-us-fehlstellung",
+        "hand-untersuchung/hand-us-ds-styloid",
+        "hand-untersuchung/hand-us-rom-schmerz",
+        "hand-untersuchung/hand-us-faustschluss",
+        "hand-untersuchung/hand-us-pdms"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit"
+        ],
+        "slots": {
+          "hand-radiusfraktur-aufnahme/aufnahme/zweck": 1
+        },
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf die ausgestreckte Hand gekommen.",
+          "Es sei zu einem Stolpersturz im häuslichen Umfeld gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz auf die Hand gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Sport sei es zu einem Sturz auf die Hand gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt",
+      "ohne": [
+        "hand-untersuchung/hand-us-ds-tabatiere",
+        "hand-untersuchung/hand-us-stauchung-d1",
+        "hand-untersuchung/hand-us-ds-tuberculum",
+        "hand-untersuchung/hand-us-druj"
+      ]
+    },
+    {
+      "id": "zna-skaphoidfraktur-konservativ",
+      "titel": "Skaphoidfraktur konservativ",
+      "suchbegriffe": [
+        "Kahnbein",
+        "Kahnbeinbruch",
+        "Scaphoid",
+        "Verdacht auf Skaphoidfraktur",
+        "Tabatière",
+        "Os scaphoideum"
+      ],
+      "region": "handgelenk",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-skaphoidfraktur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "hand-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-skaphoid"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Gesicherte Fraktur, Verdacht oder Vorstellung zur Operation?",
+          "bausteine": [
+            "hand-skaphoidfraktur-konservativ",
+            "hand-skaphoid-verdacht-schnittbild",
+            "hand-skaphoid-verdacht-kontrolle",
+            "hand-skaphoid-handsprechstunde"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "hand-untersuchung/hand-us-schwellung",
+        "hand-untersuchung/hand-us-ds-styloid",
+        "hand-untersuchung/hand-us-ds-tabatiere",
+        "hand-untersuchung/hand-us-stauchung-d1",
+        "hand-untersuchung/hand-us-rom-schmerz",
+        "hand-untersuchung/hand-us-ds-tuberculum"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-hand/schiene",
+          "dgn-skaphoid/schnittbild"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf die ausgestreckte Hand gekommen.",
+          "Beim Sport sei es zu einem Sturz auf die Hand gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz auf die Hand gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt",
+      "ohne": [
+        "hand-untersuchung/hand-us-druj"
+      ]
+    },
+    {
+      "id": "zna-karpaltunnelsyndrom",
+      "titel": "Karpaltunnelsyndrom",
+      "suchbegriffe": [
+        "KTS",
+        "CTS",
+        "Medianuskompression",
+        "eingeschlafene Hand",
+        "Brachialgia paraesthetica nocturna",
+        "Nervenengpass"
+      ],
+      "kuerzel": [
+        "kts",
+        "cts"
+      ],
+      "region": "handgelenk",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-karpaltunnelsyndrom"
+        ],
+        "anamnese": [
+          "ana-beschwerden"
+        ],
+        "befund": [
+          "hand-karpaltunnelsyndrom"
+        ],
+        "diagnostik": [
+          "dgn-hand-keine-bildgebung"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ],
+        "procedere": [
+          "proc-karpaltunnelsyndrom"
+        ]
+      },
+      "entscheiden": [
+        "hand-karpaltunnelsyndrom/hand-kts-thenar",
+        "hand-karpaltunnelsyndrom/hand-kts-tinel",
+        "hand-karpaltunnelsyndrom/hand-kts-phalen",
+        "hand-karpaltunnelsyndrom/hand-kts-kraft",
+        "hand-karpaltunnelsyndrom/hand-kts-sens",
+        "hand-karpaltunnelsyndrom/hand-kts-sens-ulnar"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-beschwerden/haendigkeit",
+          "proc-karpaltunnelsyndrom/handchirurgie"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Die Hand schlafe nachts ein.",
+          "In Daumen, Zeige- und Mittelfinger bestehe ein Kribbeln.",
+          "In Daumen, Zeige- und Mittelfinger bestehe ein Taubheitsgefühl.",
+          "Das Ausschütteln der Hand lindere das Kribbeln.",
+          "Beim Greifen falle gelegentlich ein Gegenstand aus der Hand."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Befund: Standardtexte ZNA 04/2026; übrige Abschnitte Redaktion 10/2026"
+    },
+    {
+      "id": "zna-mhk-fraktur-konservativ",
+      "titel": "MHK-Fraktur konservativ",
+      "suchbegriffe": [
+        "Mittelhandfraktur",
+        "Mittelhandknochen",
+        "Metakarpale",
+        "Boxerfraktur",
+        "Mittelhand gebrochen",
+        "subkapital"
+      ],
+      "kuerzel": [
+        "mhk"
+      ],
+      "region": "mittelhand",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-mhk-fraktur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "mittelhand-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-mittelhand"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand",
+          "th-mittelhand-wunde"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Reposition oder Ruhigstellung ohne Reposition?",
+          "bausteine": [
+            "th-mhk-reposition",
+            "th-mhk-ohne-reposition"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Konservative Behandlung oder Vorstellung in der Handsprechstunde?",
+          "bausteine": [
+            "mittelhand-mhk-fraktur-konservativ",
+            "mittelhand-mhk-handsprechstunde"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Wunde im Bereich der Fraktur?",
+          "bausteine": [
+            "proc-fraktur-hand-keine-wunde",
+            "proc-fraktur-hand-offen-antibiotikum",
+            "proc-fraktur-hand-offen-ohne-antibiotikum"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "mittelhand-untersuchung/mittelhand-us-weichteile",
+        "mittelhand-untersuchung/mittelhand-us-schwellung",
+        "mittelhand-untersuchung/mittelhand-us-fehlstellung",
+        "mittelhand-untersuchung/mittelhand-us-rotation",
+        "mittelhand-untersuchung/mittelhand-us-ds-mhk",
+        "mittelhand-untersuchung/mittelhand-us-bewegung"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "mittelhand-mhk-fraktur-konservativ/verschiebung"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "proc-fraktur-hand-offen-antibiotikum/tetanus",
+          "proc-fraktur-hand-offen-ohne-antibiotikum/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Faustschlag gegen einen harten Gegenstand gekommen.",
+          "Es sei zu einem Faustschlag gegen eine andere Person gekommen.",
+          "Es sei zu einem Sturz auf die Hand gekommen.",
+          "Ein schwerer Gegenstand sei auf die Hand gefallen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt",
+      "ohne": [
+        "mittelhand-untersuchung/mittelhand-us-kompression"
+      ]
+    },
+    {
+      "id": "zna-strecksehnenruptur-mallet",
+      "titel": "Strecksehnenruptur am Endglied (Mallet)",
+      "suchbegriffe": [
+        "Malletfinger",
+        "Hammerfinger",
+        "Strecksehnenabriss",
+        "Endglied hängt",
+        "Stack-Schiene",
+        "Zone 1"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-mallet"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "finger-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-finger-mallet"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Konservative Behandlung oder Vorstellung in der Handsprechstunde?",
+          "bausteine": [
+            "finger-strecksehnenruptur-proc",
+            "finger-mallet-handsprechstunde"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "finger-untersuchung/finger-us-weichteile",
+        "finger-untersuchung/finger-us-schwellung",
+        "finger-untersuchung/finger-us-ds-gelenk",
+        "finger-untersuchung/finger-us-bewegung",
+        "finger-untersuchung/finger-us-strecksehnen"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-hand/schiene",
+          "finger-strecksehnenruptur-proc/kontrolle"
+        ],
+        "slots": {
+          "th-hand/schiene/was": 3
+        },
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Ballsport sei ein Ball gegen die Fingerspitze geprallt.",
+          "Beim Bettenmachen sei die Fingerspitze an der Matratze umgebogen worden.",
+          "Beim Anziehen eines Strumpfs sei die Fingerspitze umgebogen worden.",
+          "Bei einer alltäglichen Bewegung sei die Fingerspitze angestoßen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt",
+      "ohne": [
+        "finger-untersuchung/finger-us-nagel"
+      ]
+    },
+    {
+      "id": "zna-knoecherner-ausriss-palmare-platte",
+      "titel": "Knöcherner Ausriss der palmaren Platte",
+      "suchbegriffe": [
+        "palmare Platte",
+        "volare Platte",
+        "Hyperextensionstrauma",
+        "Mittelgelenk",
+        "Fingerüberstreckung",
+        "Ausrissfraktur Mittelgliedbasis",
+        "Verletzung der palmaren Platte"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "finger-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-finger-palmare-platte"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ],
+        "procedere": [
+          "finger-palmare-platte-proc"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnose",
+          "label": "Knöcherner Ausriss oder Verletzung ohne Ausriss?",
+          "bausteine": [
+            "dx-palmare-platte",
+            "dx-palmare-platte-ohne-ausriss"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "finger-untersuchung/finger-us-schwellung",
+        "finger-untersuchung/finger-us-haematom",
+        "finger-untersuchung/finger-us-ds-gelenk",
+        "finger-untersuchung/finger-us-bewegung",
+        "finger-untersuchung/finger-us-strecksehnen",
+        "finger-untersuchung/finger-us-seitenband"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-hand/schiene"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Ballsport sei ein Ball gegen den gestreckten Finger geprallt.",
+          "Bei einem Sturz sei der Finger überstreckt worden.",
+          "Der Finger sei an einem Gegenstand hängen geblieben und überstreckt worden."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt",
+      "ohne": [
+        "finger-untersuchung/finger-us-nagel"
+      ]
+    },
+    {
+      "id": "zna-skidaumen",
+      "titel": "Skidaumen",
+      "suchbegriffe": [
+        "ulnares Seitenband",
+        "UCL",
+        "Stener-Läsion",
+        "Daumengrundgelenk",
+        "Seitenbandruptur Daumen",
+        "Skifahrerdaumen"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-skidaumen"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "finger-daumen-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-daumen-skidaumen"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Bildgebung, Operation oder konservative Behandlung?",
+          "bausteine": [
+            "finger-skidaumen-proc",
+            "proc-skidaumen-operation",
+            "proc-skidaumen-konservativ"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "finger-daumen-untersuchung/daumen-us-schwellung",
+        "finger-daumen-untersuchung/daumen-us-haematom",
+        "finger-daumen-untersuchung/daumen-us-ds-grundgelenk",
+        "finger-daumen-untersuchung/daumen-us-seitenband",
+        "finger-daumen-untersuchung/daumen-us-bewegung"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-hand/schiene"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Skifahren sei es zu einem Sturz mit dem Stock in der Hand gekommen.",
+          "Es sei zu einem Sturz auf den abgespreizten Daumen gekommen.",
+          "Beim Ballsport sei der Daumen von der Hand weggedrückt worden.",
+          "Der Daumen sei an einem Gegenstand hängen geblieben und von der Hand weggedrückt worden."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt",
+      "ohne": [
+        "finger-daumen-untersuchung/daumen-us-funktion"
+      ]
+    },
+    {
+      "id": "zna-nagelkranzfraktur",
+      "titel": "Nagelkranzfraktur",
+      "suchbegriffe": [
+        "Endgliedfraktur",
+        "Tuft",
+        "Fingerkuppe gequetscht",
+        "subunguales Hämatom",
+        "Quetschverletzung Finger",
+        "Nageltrepanation"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-nagelkranzfraktur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "finger-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-finger-nagelkranz"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "finger-nagelkranzfraktur-proc"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Geschlossene Fraktur oder offene Verletzung mit Nagelbett?",
+          "bausteine": [
+            "th-finger-nagelkranz",
+            "th-finger-nagelbett"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "finger-untersuchung/finger-us-weichteile",
+        "finger-untersuchung/finger-us-schwellung",
+        "finger-untersuchung/finger-us-subungual",
+        "finger-untersuchung/finger-us-nagel",
+        "finger-untersuchung/finger-us-ds-phalanx",
+        "finger-untersuchung/finger-us-bewegung",
+        "finger-untersuchung/finger-us-pdms"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "ana-trauma/tetanus"
+        ],
+        "aus": [
+          "th-finger-nagelkranz/verband",
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Der Finger sei in einer Tür eingeklemmt worden.",
+          "Beim Hämmern sei der Finger vom Hammer getroffen worden.",
+          "Ein schwerer Gegenstand sei auf den Finger gefallen.",
+          "Der Finger sei bei der Arbeit zwischen zwei Gegenständen eingeklemmt worden."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt",
+      "ohne": [
+        "finger-untersuchung/finger-us-haematom"
+      ]
+    },
+    {
+      "id": "zna-panaritium",
+      "titel": "Panaritium",
+      "suchbegriffe": [
+        "Nagelbettentzündung",
+        "Paronychie",
+        "Umlauf",
+        "Nagelwallentzündung",
+        "Fingerinfekt",
+        "eitriger Finger"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-panaritium"
+        ],
+        "anamnese": [
+          "ana-beschwerden",
+          "ana-finger-infekt"
+        ],
+        "befund": [
+          "bef-finger-panaritium"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-finger-infekt",
+            "dgn-hand-keine-bildgebung"
+          ]
+        },
+        {
+          "abschnitt": "therapie",
+          "label": "Spaltung oder konservative Behandlung?",
+          "bausteine": [
+            "th-finger-panaritium",
+            "th-finger-panaritium-konservativ"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Behandlung oder Operation?",
+          "bausteine": [
+            "finger-panaritium-proc",
+            "proc-panaritium-aufnahme",
+            "proc-panaritium-aufnahme-abgelehnt"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-finger-panaritium/nagelwall",
+        "bef-finger-panaritium/eiter",
+        "bef-finger-panaritium/ausdehnung",
+        "bef-finger-panaritium/kuppe",
+        "bef-finger-panaritium/beugesehnenscheide",
+        "bef-finger-panaritium/gelenk",
+        "bef-finger-panaritium/lymph"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-beschwerden/haendigkeit",
+          "ana-beschwerden/tetanus",
+          "bef-finger-panaritium/temperatur"
+        ],
+        "aus": [
+          "ana-beschwerden/kein-unfall",
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-finger-panaritium/tetanus",
+          "th-finger-panaritium-konservativ/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Der Finger schmerze pochend.",
+          "Der Finger sei am Nagelrand geschwollen.",
+          "Die Fingerkuppe sei geschwollen.",
+          "Der Nachtschlaf sei durch den Schmerz gestört.",
+          "Das Beugen des Fingers sei schmerzhaft."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt"
+    },
+    {
+      "id": "zna-fingerdistorsion",
+      "titel": "Fingerdistorsion",
+      "suchbegriffe": [
+        "Finger verstaucht",
+        "Kapselverletzung",
+        "Fingerprellung",
+        "Seitenbandzerrung",
+        "Finger umgeknickt",
+        "Ballsportverletzung"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-fingerdistorsion"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "finger-fingerdistorsion"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ],
+        "procedere": [
+          "proc-fingerdistorsion"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-finger-distorsion",
+            "dgn-verzicht"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "finger-fingerdistorsion/finger-dist-schwellung",
+        "finger-fingerdistorsion/finger-dist-haematom",
+        "finger-fingerdistorsion/finger-dist-ds-gelenk",
+        "finger-fingerdistorsion/finger-dist-ds-phalanx",
+        "finger-fingerdistorsion/finger-dist-seitenband",
+        "finger-fingerdistorsion/finger-dist-bewegung",
+        "finger-fingerdistorsion/finger-dist-beugesehnen",
+        "finger-fingerdistorsion/finger-dist-strecksehnen"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-hand/schiene",
+          "proc-fingerdistorsion/persistenz"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Ballsport sei ein Ball gegen den gestreckten Finger geprallt.",
+          "Der Finger sei an einem Gegenstand hängen geblieben und verdreht worden.",
+          "Bei einem Sturz sei der Finger überstreckt worden.",
+          "Es sei zu einem Anprall des Fingers gegen eine Kante gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Befund: Standardtexte ZNA 04/2026; übrige Abschnitte Redaktion 10/2026"
+    },
+    {
+      "id": "zna-schnittverletzung-d1",
+      "titel": "Schnittverletzung am Finger",
+      "suchbegriffe": [
+        "Schnittwunde",
+        "Schnitt",
+        "Fingerwunde",
+        "Messer",
+        "Wundversorgung Finger",
+        "Okklusivverband",
+        "Fingerkuppe"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-schnittverletzung-finger"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-hand-wunde"
+        ],
+        "befund": [
+          "bef-finger-wunde"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-finger-wundversorgung"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-finger-wunde",
+            "dgn-hand-keine-bildgebung"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Wunde ohne tiefe Verletzung, Handsprechstunde oder Operation?",
+          "bausteine": [
+            "finger-schnittverletzung-d1-proc",
+            "proc-schnittverletzung-handsprechstunde",
+            "proc-schnittverletzung-operation"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-finger-wunde/beugesehnen",
+        "bef-finger-wunde/strecksehne",
+        "bef-finger-wunde/sens-radial",
+        "bef-finger-wunde/sens-ulnar",
+        "bef-finger-wunde/durchblutung",
+        "bef-finger-wunde/wundgrund"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "ana-trauma/tetanus"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-finger-wundversorgung/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Schneiden von Lebensmitteln sei das Messer abgerutscht.",
+          "Beim Öffnen eines Pakets sei das Cuttermesser abgerutscht.",
+          "Beim Abwaschen sei ein Glas zerbrochen.",
+          "Bei der Arbeit sei es zu einem Kontakt mit einer scharfen Blechkante gekommen.",
+          "Beim Sägen mit einer Handsäge sei die Säge abgerutscht."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt"
+    },
+    {
+      "id": "zna-verbrennung-hand",
+      "titel": "Verbrennung der Hand",
+      "suchbegriffe": [
+        "Verbrühung",
+        "Brandwunde",
+        "Brandblase",
+        "Hand verbrannt",
+        "Finger verbrannt",
+        "Handschuhverband"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-verbrennung-hand"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-hand-verbrennung"
+        ],
+        "befund": [
+          "bef-hand-verbrennung"
+        ],
+        "diagnostik": [
+          "dgn-hand-keine-bildgebung"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand-verbrennung"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulant, Fachvorstellung oder Verlegung?",
+          "bausteine": [
+            "finger-verbrennung-hand-proc",
+            "proc-verbrennung-fachvorstellung",
+            "proc-verbrennung-verlegung"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-hand-verbrennung/blasen",
+        "bef-hand-verbrennung/wundgrund",
+        "bef-hand-verbrennung/zirkulaer",
+        "bef-hand-verbrennung/schwellung",
+        "bef-hand-verbrennung/bewegung",
+        "bef-hand-verbrennung/pdms"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "ana-trauma/tetanus",
+          "th-hand-verbrennung/blasen",
+          "finger-verbrennung-hand-proc/hochlagern"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-hand-verbrennung/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Kochen sei heißes Wasser über die Hand gelaufen.",
+          "Beim Kochen sei heißes Fett auf die Hand gespritzt.",
+          "Es sei zu einem Kontakt der Hand mit einer heißen Oberfläche gekommen.",
+          "Beim Öffnen eines Topfs sei heißer Dampf an die Hand gelangt.",
+          "Beim Grillen sei es zu einer Verpuffung gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion gegliedert und ergänzt",
+      "ohne": [
+        "bef-hand-verbrennung/infekt"
+      ]
+    },
+    {
+      "id": "zna-handgelenksdistorsion",
+      "titel": "Handgelenksdistorsion/-prellung",
+      "suchbegriffe": [
+        "Handgelenk verstaucht",
+        "Handgelenkprellung",
+        "Handprellung",
+        "Sturz auf die Hand",
+        "Zerrung Handgelenk",
+        "Distorsion Handgelenk"
+      ],
+      "region": "handgelenk",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-handgelenksdistorsion"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "hand-untersuchung"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ],
+        "procedere": [
+          "proc-handgelenksdistorsion"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-handgelenk",
+            "dgn-verzicht"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "hand-untersuchung/hand-us-weichteile",
+        "hand-untersuchung/hand-us-schwellung",
+        "hand-untersuchung/hand-us-ds-styloid",
+        "hand-untersuchung/hand-us-ds-tabatiere",
+        "hand-untersuchung/hand-us-stauchung-d1",
+        "hand-untersuchung/hand-us-ds-handwurzel",
+        "hand-untersuchung/hand-us-ds-mittelhand",
+        "hand-untersuchung/hand-us-rom-schmerz",
+        "hand-untersuchung/hand-us-druj"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-hand/schiene"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf die ausgestreckte Hand gekommen.",
+          "Beim Sport sei es zu einem Sturz auf die Hand gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz auf die Hand gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Abstützen sei das Handgelenk verdreht worden."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion 10/2026",
+      "ohne": [
+        "hand-untersuchung/hand-us-ds-tuberculum"
+      ]
+    },
+    {
+      "id": "zna-fingerfraktur-konservativ",
+      "titel": "Fingerfraktur konservativ",
+      "suchbegriffe": [
+        "Phalanxfraktur",
+        "Finger gebrochen",
+        "Grundgliedfraktur",
+        "Mittelgliedfraktur",
+        "Endgliedfraktur",
+        "Fingerbruch"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-fingerfraktur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "finger-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-finger-fraktur"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand",
+          "th-fingerfraktur-wunde"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Reposition oder Ruhigstellung ohne Reposition?",
+          "bausteine": [
+            "th-finger-reposition",
+            "th-finger-ohne-reposition"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Konservative Behandlung oder Vorstellung in der Handsprechstunde?",
+          "bausteine": [
+            "proc-fingerfraktur",
+            "proc-fingerfraktur-handsprechstunde"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Wunde im Bereich der Fraktur?",
+          "bausteine": [
+            "proc-fraktur-hand-keine-wunde",
+            "proc-fraktur-hand-offen-antibiotikum",
+            "proc-fraktur-hand-offen-ohne-antibiotikum"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "finger-untersuchung/finger-us-weichteile",
+        "finger-untersuchung/finger-us-schwellung",
+        "finger-untersuchung/finger-us-achse",
+        "finger-untersuchung/finger-us-ds-phalanx",
+        "finger-untersuchung/finger-us-bewegung",
+        "finger-untersuchung/finger-us-beugesehnen",
+        "finger-untersuchung/finger-us-strecksehnen"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "proc-fingerfraktur/verschiebung"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "proc-fraktur-hand-offen-antibiotikum/tetanus",
+          "proc-fraktur-hand-offen-ohne-antibiotikum/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Der Finger sei in einer Tür eingeklemmt worden.",
+          "Beim Ballsport sei ein Ball gegen den gestreckten Finger geprallt.",
+          "Es sei zu einem Sturz auf die Hand gekommen.",
+          "Der Finger sei an einem Gegenstand hängen geblieben und verdreht worden.",
+          "Ein schwerer Gegenstand sei auf den Finger gefallen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion 10/2026",
+      "ohne": [
+        "finger-untersuchung/finger-us-subungual",
+        "finger-untersuchung/finger-us-ds-gelenk",
+        "finger-untersuchung/finger-us-nagel"
+      ]
+    },
+    {
+      "id": "zna-tendovaginitis-de-quervain",
+      "titel": "Tendovaginitis de Quervain",
+      "suchbegriffe": [
+        "de Quervain",
+        "Sehnenscheidenentzündung",
+        "Finkelstein",
+        "1. Strecksehnenfach",
+        "Daumenschmerz",
+        "Hausfrauendaumen"
+      ],
+      "region": "handgelenk",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-de-quervain"
+        ],
+        "anamnese": [
+          "ana-beschwerden"
+        ],
+        "befund": [
+          "hand-de-quervain"
+        ],
+        "diagnostik": [
+          "dgn-hand-keine-bildgebung"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ],
+        "procedere": [
+          "proc-de-quervain"
+        ]
+      },
+      "entscheiden": [
+        "hand-de-quervain/hand-dq-schwellung",
+        "hand-de-quervain/hand-dq-ds",
+        "hand-de-quervain/hand-dq-bewegung",
+        "hand-de-quervain/hand-dq-finkelstein"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-beschwerden/haendigkeit"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Der Schmerz bestehe am Handgelenk auf der Daumenseite.",
+          "Der Schmerz nehme beim Greifen zu.",
+          "Die Bewegung des Daumens sei schmerzhaft.",
+          "Der Schmerz habe nach vermehrter Belastung der Hand begonnen.",
+          "Der Schmerz nehme beim Hochheben eines Kindes zu."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Befund: Standardtexte ZNA 04/2026; übrige Abschnitte Redaktion 10/2026"
+    },
+    {
+      "id": "zna-schnellender-finger",
+      "titel": "Schnellender Finger",
+      "suchbegriffe": [
+        "Ringbandstenose",
+        "Triggerfinger",
+        "Schnappfinger",
+        "Tendovaginitis stenosans",
+        "A1-Ringband",
+        "schnellender Daumen"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-schnellender-finger"
+        ],
+        "anamnese": [
+          "ana-beschwerden"
+        ],
+        "befund": [
+          "hand-schnellender-finger"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-schnellender-finger"
+        ],
+        "procedere": [
+          "proc-schnellender-finger"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-roentgen",
+            "dgn-hand-keine-bildgebung"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "hand-schnellender-finger/hand-sf-stellung",
+        "hand-schnellender-finger/hand-sf-infekt",
+        "hand-schnellender-finger/hand-sf-knoten",
+        "hand-schnellender-finger/hand-sf-ds",
+        "hand-schnellender-finger/hand-sf-sehnenscheide",
+        "hand-schnellender-finger/hand-sf-trigger"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-beschwerden/haendigkeit"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Der Finger schnappe beim Beugen und Strecken.",
+          "Der Finger bleibe in gebeugter Stellung hängen.",
+          "Der Finger lasse sich nur mit Hilfe der anderen Hand strecken.",
+          "Das Schnappen sei morgens am stärksten.",
+          "In der Handfläche bestehe ein Schmerz am Ansatz des Fingers."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Befund: Standardtexte ZNA 04/2026; übrige Abschnitte Redaktion 10/2026"
+    },
+    {
+      "id": "zna-rhizarthrose",
+      "titel": "Rhizarthrose",
+      "suchbegriffe": [
+        "Daumensattelgelenksarthrose",
+        "Sattelgelenk",
+        "Daumenarthrose",
+        "Grind-Test",
+        "Schmerz am Daumenballen"
+      ],
+      "region": "handgelenk",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-rhizarthrose"
+        ],
+        "anamnese": [
+          "ana-beschwerden",
+          "ana-hand-fieber"
+        ],
+        "befund": [
+          "hand-rhizarthrose"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ],
+        "procedere": [
+          "proc-rhizarthrose"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-daumensattelgelenk",
+            "dgn-hand-keine-bildgebung"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "hand-rhizarthrose/hand-rhiz-schwellung",
+        "hand-rhizarthrose/hand-rhiz-fehlstellung",
+        "hand-rhizarthrose/hand-rhiz-entzuendung",
+        "hand-rhizarthrose/hand-rhiz-ds",
+        "hand-rhizarthrose/hand-rhiz-grind",
+        "hand-rhizarthrose/hand-rhiz-kraft"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-beschwerden/haendigkeit"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/seit": [
+          "heute",
+          "gestern",
+          "vor 3 Tagen",
+          "vor 1 Woche",
+          "vor mehreren Wochen",
+          "vor mehreren Monaten",
+          "vor mehreren Jahren"
+        ],
+        "ana-beschwerden/beschwerden": [
+          "Der Schmerz bestehe am Daumenansatz.",
+          "Der Schmerz habe in den letzten Tagen deutlich zugenommen.",
+          "Der Schmerz nehme beim Greifen zu.",
+          "Der Schmerz nehme beim Öffnen eines Schraubglases oder beim Drehen eines Schlüssels zu.",
+          "Die Kraft im Daumen habe nachgelassen.",
+          "Der Schmerz bestehe auch in Ruhe."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Befund: Standardtexte ZNA 04/2026; übrige Abschnitte Redaktion 10/2026"
+    }
+  ]
+}

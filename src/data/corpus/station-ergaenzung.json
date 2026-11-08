@@ -1,0 +1,1915 @@
+{
+  "regionen": [
+    {
+      "id": "huefte",
+      "name": "Hüfte & Oberschenkel",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "dx-st-schenkelhals",
+          "titel": "Diagnose Schenkelhalsfraktur",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "typ",
+              "label": "Frakturtyp",
+              "optionen": [
+                "Mediale Schenkelhalsfraktur",
+                "Laterale Schenkelhalsfraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "klassifikation",
+              "label": "Klassifikation",
+              "optionen": [
+                "",
+                " (Garden I)",
+                " (Garden II)",
+                " (Garden III)",
+                " (Garden IV)",
+                " (Pauwels I)",
+                " (Pauwels II)",
+                " (Pauwels III)",
+                " (AO 31-B1)",
+                " (AO 31-B2)",
+                " (AO 31-B3)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", häuslicher Sturz",
+                ", Sturz aus dem Stand",
+                ", Sturz in der Pflegeeinrichtung",
+                ", Sturz im Freien",
+                ", Verkehrsunfall"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "pathologisch",
+              "label": "Pathologische Fraktur",
+              "text": ", pathologische Fraktur"
+            }
+          ]
+        },
+        {
+          "id": "th-st-schenkelhals-prothese",
+          "titel": "Operation: Prothese bei Schenkelhalsfraktur",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Implantation einer "
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Prothese",
+              "optionen": [
+                "zementierten Duokopfprothese der Hüfte",
+                "zementfreien Duokopfprothese der Hüfte",
+                "zementierten Hüft-Totalendoprothese",
+                "zementfreien Hüft-Totalendoprothese",
+                "teilzementierten Hüft-Totalendoprothese"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "text",
+              "text": "\nZugang: "
+            },
+            {
+              "art": "auswahl",
+              "id": "zugang",
+              "label": "Zugang",
+              "optionen": [
+                "anterolateral",
+                "direkt anterior",
+                "lateral",
+                "dorsal"
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "th-st-schenkelhals-osteosynthese",
+          "titel": "Operation: Osteosynthese bei Schenkelhalsfraktur",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Osteosynthese des Schenkelhalses "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "reposition",
+              "label": "Reposition",
+              "optionen": [
+                "nach geschlossener Reposition",
+                "nach offener Reposition",
+                "ohne Reposition"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " mit "
+            },
+            {
+              "art": "auswahl",
+              "id": "implantat",
+              "label": "Implantat",
+              "optionen": [
+                "3 kanülierten Schrauben",
+                "2 kanülierten Schrauben",
+                "dynamischer Hüftschraube",
+                "dynamischer Hüftschraube und Antirotationsschraube",
+                "kurzem proximalem Femurnagel",
+                "langem proximalem Femurnagel",
+                "winkelstabilem Schenkelhalsimplantat aus Gleitbolzen und Antirotationsschraube"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            }
+          ]
+        },
+        {
+          "id": "bef-st-schenkelhals",
+          "titel": "Aufnahmebefund Hüfte bei Schenkelhalsfraktur",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Hüfte und Bein "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Verkürzung, Außenrotation",
+              "gruppe": "Inspektion",
+              "normal": "Keine Verkürzung, keine Drehfehlstellung. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Fehlstellung",
+                  "optionen": [
+                    "Verkürzt und nach außen gedreht",
+                    "Nach außen gedreht, nicht verkürzt",
+                    "Verkürzt, keine Drehfehlstellung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut, Weichteile",
+              "gruppe": "Inspektion",
+              "normal": "Haut intakt, kein Hämatom. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Hämatom",
+                    "Prellmarke",
+                    "Schürfwunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort, z. B. über dem Trochanter major",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds-leiste",
+              "chip": "Druckschmerz Leiste",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz in der Leiste. ",
+              "abweichung": "Druckschmerz in der Leiste{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds-trochanter",
+              "chip": "Druckschmerz Trochanter major",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Trochanter major. ",
+              "abweichung": "Druckschmerz über dem Trochanter major. "
+            },
+            {
+              "art": "befund",
+              "id": "ds-schaft",
+              "chip": "Druckschmerz Oberschenkel, Knie",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über Oberschenkelschaft und Knie. ",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "über dem Oberschenkelschaft",
+                    "am Knie",
+                    "über Oberschenkelschaft und Knie"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bewegungsschmerz",
+              "chip": "Stauchungs-, Rotationsschmerz",
+              "gruppe": "Funktion",
+              "normal": "Kein Stauchungsschmerz, kein Rotationsschmerz der Hüfte. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Rotationsschmerz der Hüfte",
+                    "Stauchungs- und Rotationsschmerz der Hüfte",
+                    "Schmerz bei jeder Bewegung der Hüfte",
+                    "Hüftrotation bei Frakturverdacht nicht geprüft"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "anheben",
+              "chip": "Bein gestreckt anheben",
+              "gruppe": "Funktion",
+              "normal": "Gestrecktes Bein wird aktiv von der Unterlage angehoben. ",
+              "abweichung": "Gestrecktes Bein kann {wie} von der Unterlage angehoben werden. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "nicht",
+                    "nur unter starken Schmerzen"
+                  ]
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußpulse tastbar, Fußhebung und Fußsenkung kräftig, Sensibilität am Fuß intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fußpulse nicht tastbar",
+                    "Fuß kühl und blass",
+                    "Fußhebung abgeschwächt",
+                    "Fußsenkung abgeschwächt",
+                    "Sensibilität vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort oder Zusatz, z. B. am Fußrücken, vorbestehend",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-schenkelhals-roentgen",
+          "titel": "Röntgen Becken und Hüfte (Schenkelhalsfraktur)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Beckenübersicht und Hüfte "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " axial "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "bei Aufnahme",
+                "vor der Operation"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund",
+              "optionen": [
+                "mediale Schenkelhalsfraktur, disloziert.",
+                "mediale Schenkelhalsfraktur, nicht disloziert.",
+                "mediale Schenkelhalsfraktur, in Valgusstellung eingestaucht.",
+                "laterale Schenkelhalsfraktur, disloziert.",
+                "laterale Schenkelhalsfraktur, nicht disloziert.",
+                "Fraktur wie unter Diagnosen beschrieben."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "keine-weitere",
+              "label": "Keine weitere Fraktur",
+              "text": " Kein Nachweis einer weiteren Fraktur."
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "",
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "schnittbild",
+              "label": "CT oder MRT der Hüfte",
+              "text": "\n{verfahren} Hüfte {seite}: {befund}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verfahren",
+                  "label": "Verfahren",
+                  "optionen": [
+                    "",
+                    "CT",
+                    "MRT"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "nicht dislozierte mediale Schenkelhalsfraktur.",
+                    "Fraktur wie unter Diagnosen beschrieben.",
+                    "kein Nachweis einer weiteren Fraktur."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-schenkelhals",
+          "titel": "Procedere Hüfte nach Osteosynthese des Schenkelhalses",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung-grund",
+              "label": "Grund der begrenzten Belastung",
+              "text": "Die Begrenzung der Belastung ist wegen {grund} nötig. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "der Frakturform",
+                    "verminderter Knochenqualität",
+                    "der in der Operation erreichten Stabilität"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "beweglichkeit",
+              "label": "Beweglichkeit der Hüfte",
+              "text": "Beweglichkeit der Hüfte {seite}: {regel}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regel",
+                  "label": "Beweglichkeit",
+                  "optionen": [
+                    "",
+                    "keine Bewegungsgrenze, Bewegung nach Schmerzen",
+                    "nach Maßgabe des Operateurs, siehe Operationsbericht"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nekrose",
+              "label": "Leistenschmerz: Röntgenkontrolle",
+              "text": "Bei neuen oder zunehmenden Leistenschmerzen {seite}, auch Monate nach der Operation, Röntgenkontrolle der Hüfte in der unfallchirurgischen oder orthopädischen Praxis. Hintergrund: Risiko einer Verschiebung der Fraktur und einer Durchblutungsstörung des Hüftkopfs. "
+            }
+          ]
+        },
+        {
+          "id": "proc-st-hueftprothese-luxation",
+          "titel": "Bewegungsregeln nach Hüftprothese bei Fraktur (mit Dauer)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Hüfte "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "regeln",
+              "label": "Bewegungsregeln nach Hüftprothese",
+              "optionen": [
+                "keine Einschränkung der Beweglichkeit.",
+                "zur Vorbeugung einer Luxation (dorsaler Zugang) für 6 Wochen nach der Operation nicht über 90° beugen, Beine nicht übereinanderschlagen, das Bein nicht nach innen drehen.",
+                "zur Vorbeugung einer Luxation (dorsaler Zugang) für 12 Wochen nach der Operation nicht über 90° beugen, Beine nicht übereinanderschlagen, das Bein nicht nach innen drehen.",
+                "zur Vorbeugung einer Luxation (vorderer oder seitlicher Zugang) für 6 Wochen nach der Operation nicht überstrecken, das Bein nicht nach außen drehen.",
+                "zur Vorbeugung einer Luxation (vorderer oder seitlicher Zugang) für 12 Wochen nach der Operation nicht überstrecken, das Bein nicht nach außen drehen.",
+                "zur Vorbeugung einer Luxation für 6 Wochen nach der Operation tiefes Sitzen und Hocken vermeiden, Beine nicht übereinanderschlagen.",
+                "zur Vorbeugung einer Luxation für 12 Wochen nach der Operation tiefes Sitzen und Hocken vermeiden, Beine nicht übereinanderschlagen.",
+                "Bewegungsregeln zur Vorbeugung einer Luxation und ihre Dauer nach Maßgabe des Operateurs, siehe Operationsbericht."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "proc-st-belastung-hueftfraktur",
+          "titel": "Belastung des Beins nach Operation einer hüftgelenknahen Fraktur",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bein",
+              "label": "Belastung Bein",
+              "an": true,
+              "text": "{stufe} des Beins {seite}{dauer}{danach}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Vollbelastung",
+                    "Schmerzadaptierte Vollbelastung",
+                    "Minimalbelastung",
+                    "Entlastung",
+                    "Teilbelastung mit 15 kg",
+                    "Teilbelastung mit 20 kg"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    " ab sofort",
+                    " für 2 Wochen nach der Operation",
+                    " für 4 Wochen nach der Operation",
+                    " für 6 Wochen nach der Operation",
+                    " für 8 Wochen nach der Operation",
+                    " für 12 Wochen nach der Operation",
+                    " bis zur Röntgenkontrolle"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "danach",
+                  "label": "Danach",
+                  "optionen": [
+                    "",
+                    ", danach Vollbelastung",
+                    ", danach schrittweise Steigerung bis zur Vollbelastung",
+                    ", danach Steigerung nach Röntgenkontrolle",
+                    ", weitere Belastung nach Maßgabe des Operateurs"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oberarm",
+      "name": "Oberarm",
+      "kuerzel": "💪",
+      "bausteine": [
+        {
+          "id": "dx-st-humerus-proximal",
+          "titel": "Diagnose proximale Humerusfraktur (operativ)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Proximale Humerusfraktur "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "typ",
+              "label": "Frakturtyp",
+              "optionen": [
+                ", subkapital",
+                ", 2-Fragment-Fraktur",
+                ", 3-Fragment-Fraktur",
+                ", 4-Fragment-Fraktur",
+                ", isolierte Fraktur des Tuberculum majus",
+                ", Luxationsfraktur",
+                ", Kopfspaltungsfraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "dislokation",
+              "label": "Dislokation",
+              "optionen": [
+                ", nicht disloziert",
+                ", gering disloziert",
+                ", disloziert"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "klassifikation",
+              "label": "Klassifikation",
+              "optionen": [
+                "",
+                " (Neer I)",
+                " (Neer II)",
+                " (Neer III)",
+                " (Neer IV)",
+                " (Neer V)",
+                " (Neer VI)",
+                " (AO 11-A)",
+                " (AO 11-B)",
+                " (AO 11-C)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", häuslicher Sturz",
+                ", Sturz aus dem Stand",
+                ", Sturz in der Pflegeeinrichtung",
+                ", Sturz im Freien",
+                ", Verkehrsunfall"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "pathologisch",
+              "label": "Pathologische Fraktur",
+              "text": ", pathologische Fraktur"
+            }
+          ]
+        },
+        {
+          "id": "dx-st-humerus-proximal-prothese",
+          "titel": "Diagnose proximale Humerusfraktur (Prothese)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Proximale Humerusfraktur "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "typ",
+              "label": "Frakturtyp",
+              "optionen": [
+                ", 2-Fragment-Fraktur",
+                ", 3-Fragment-Fraktur",
+                ", 4-Fragment-Fraktur",
+                ", Luxationsfraktur",
+                ", Kopfspaltungsfraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "dislokation",
+              "label": "Dislokation",
+              "optionen": [
+                ", gering disloziert",
+                ", disloziert"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "klassifikation",
+              "label": "Klassifikation",
+              "optionen": [
+                "",
+                " (Neer I)",
+                " (Neer II)",
+                " (Neer III)",
+                " (Neer IV)",
+                " (Neer V)",
+                " (Neer VI)",
+                " (AO 11-A)",
+                " (AO 11-B)",
+                " (AO 11-C)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", häuslicher Sturz",
+                ", Sturz aus dem Stand",
+                ", Sturz in der Pflegeeinrichtung",
+                ", Sturz im Freien",
+                ", Verkehrsunfall"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "pathologisch",
+              "label": "Pathologische Fraktur",
+              "text": ", pathologische Fraktur"
+            }
+          ]
+        },
+        {
+          "id": "th-st-humerus-konservativ",
+          "titel": "Konservative Behandlung: Ruhigstellung der Schulter",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Konservative Behandlung mit Ruhigstellung der Schulter "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "worin",
+              "label": "Ruhigstellung",
+              "optionen": [
+                "im Gilchrist-Verband",
+                "in der Schulterorthese",
+                "in der Armschlinge",
+                "in der Schulterabduktionsorthese",
+                "in der Schulterorthese mit Axillarrolle"
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "th-st-humerus-osteosynthese",
+          "titel": "Operation: Osteosynthese am proximalen Humerus",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "verfahren",
+              "label": "Verfahren",
+              "optionen": [
+                "Offene Reposition und winkelstabile Plattenosteosynthese des proximalen Humerus",
+                "Geschlossene Reposition und Marknagelosteosynthese des proximalen Humerus",
+                "Offene Reposition und Marknagelosteosynthese des proximalen Humerus",
+                "Offene Reposition und Schraubenosteosynthese des Tuberculum majus",
+                "Refixation des Tuberculum majus mit Fadenankern",
+                "Offene Reposition und Fadencerclage des Tuberculum majus"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "zugang",
+              "label": "Zugang",
+              "text": "\nZugang: {zugang}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zugang",
+                  "label": "Zugang",
+                  "optionen": [
+                    "",
+                    "deltoideopektoral",
+                    "transdeltoidal"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "zement",
+              "label": "Zementaugmentation",
+              "text": "\nZementaugmentation der Kopfschrauben"
+            },
+            {
+              "art": "option",
+              "id": "cerclagen",
+              "label": "Zusätzliche Fadencerclagen der Rotatorenmanschette",
+              "text": "\nZusätzliche Fadencerclagen der Rotatorenmanschette"
+            }
+          ]
+        },
+        {
+          "id": "th-st-humerus-prothese",
+          "titel": "Operation: inverse Schulterprothese bei Fraktur",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Implantation einer inversen Schulterprothese "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "schaft",
+              "label": "Prothesenschaft",
+              "text": "\nProthesenschaft {wie}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Verankerung",
+                  "optionen": [
+                    "",
+                    "zementiert",
+                    "zementfrei"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "text",
+              "text": "\n"
+            },
+            {
+              "art": "auswahl",
+              "id": "tubercula",
+              "label": "Tubercula",
+              "optionen": [
+                "Refixation der Tubercula mit Fadencerclagen",
+                "Tubercula nicht refixiert"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "zugang",
+              "label": "Zugang",
+              "text": "\nZugang: {zugang}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zugang",
+                  "label": "Zugang",
+                  "optionen": [
+                    "",
+                    "deltoideopektoral",
+                    "transdeltoidal"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "verl-st-humerus-konservativ",
+          "titel": "Verlauf: konservative Behandlung der proximalen Humerusfraktur",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahme und Grund",
+              "text": "Wir nahmen {person-akk} wegen der oben genannten Fraktur stationär auf, weil {grund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund der stationären Aufnahme",
+                  "optionen": [
+                    "",
+                    "die Versorgung zu Hause nicht gesichert war",
+                    "die Schmerzen ambulant nicht ausreichend zu behandeln waren",
+                    "eine selbstständige Versorgung mit einem Arm nicht möglich war",
+                    "die Gehfähigkeit nach dem Sturz eingeschränkt war"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "entscheidung",
+              "label": "Einwilligung und Grund der konservativen Behandlung",
+              "text": "{einwilligung} behandelten wir die Fraktur konservativ, weil {grund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "einwilligung",
+                  "label": "Aufklärung und Einwilligung",
+                  "optionen": [
+                    "",
+                    "Nach Aufklärung und Einwilligung",
+                    "Nach Aufklärung und Einwilligung der bevollmächtigten Person",
+                    "Nach Aufklärung und Einwilligung der gesetzlichen Betreuung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "die Stellung der Fraktur keine Operation erforderte",
+                    "das Risiko einer Operation wegen der Begleiterkrankungen zu hoch war",
+                    "von einer Operation kein besseres Ergebnis zu erwarten war",
+                    "eine Operation nach Aufklärung nicht gewünscht war"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung",
+              "label": "Inhalt der Aufklärung",
+              "text": "Die Aufklärung umfasste Diagnose, konservative Behandlung und {risiko}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "risiko",
+                  "label": "Aufgeklärt über",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "das Risiko einer nachträglichen Verschiebung der Fraktur",
+                    "die Möglichkeit einer Operation",
+                    "den zu erwartenden Verlauf"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "uebung",
+              "label": "Bewegungsübungen",
+              "text": "{ab} übte {person} mit Physiotherapie {was}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Beginn",
+                  "optionen": [
+                    "",
+                    "Ab dem Aufnahmetag",
+                    "Ab dem 1. Tag nach der Aufnahme",
+                    "Ab dem 2. Tag nach der Aufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Übungen",
+                  "optionen": [
+                    "",
+                    "die Beweglichkeit von Ellenbogen, Handgelenk und Fingern",
+                    "die Beweglichkeit von Ellenbogen, Handgelenk und Fingern sowie Pendelbewegungen der Schulter",
+                    "die Beweglichkeit von Ellenbogen, Handgelenk und Fingern sowie geführte Bewegungen der Schulter"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mobilisation",
+              "label": "Mobilisation",
+              "text": "{ab} mobilisierten wir {person-akk} mit Physiotherapie{hilfsmittel}{erreicht}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Beginn",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Ab dem Aufnahmetag",
+                    "Ab dem 1. Tag nach der Aufnahme",
+                    "Ab dem 2. Tag nach der Aufnahme",
+                    "Nach Abklingen der Schmerzen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "hilfsmittel",
+                  "label": "Hilfsmittel",
+                  "optionen": [
+                    "",
+                    " ohne Hilfsmittel",
+                    " am Gehstock in der Hand der Gegenseite",
+                    " mit Hilfe einer Person",
+                    " in den Rollstuhl",
+                    " an die Bettkante"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "erreicht",
+                  "label": "Erreichte Mobilität",
+                  "optionen": [
+                    "",
+                    ", zuletzt selbstständig auf Stationsebene",
+                    ", zuletzt selbstständig auf Stationsebene und auf der Treppe",
+                    ", zuletzt unter Aufsicht",
+                    ", zuletzt mit Hilfe einer Person"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-humerus",
+          "titel": "Entlassbefund Schulter und Oberarm (konservativ)",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Schulter und Oberarm "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "haematom",
+              "chip": "Schwellung, Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung, kein Hämatom am Oberarm. ",
+              "abweichung": "{was}{ausdehnung}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Hämatom am Oberarm",
+                    "Schwellung und Hämatom am Oberarm"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ausdehnung",
+                  "label": "Ausdehnung",
+                  "optionen": [
+                    "",
+                    ", bis zum Ellenbogen abgesunken",
+                    ", bis zur Brustwand"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ruhigstellung",
+              "chip": "Ruhigstellung, Haut",
+              "gruppe": "Inspektion",
+              "normal": "Ruhigstellung sitzt, keine Druckstellen, Haut in der Achsel intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Druckstelle unter der Ruhigstellung",
+                    "Haut in der Achsel gerötet",
+                    "Haut in der Achsel aufgeweicht"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort oder Zusatz",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "axillaris",
+              "chip": "Sensibilität seitlicher Oberarm",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Sensibilität am seitlichen Oberarm intakt. ",
+              "abweichung": "Sensibilität am seitlichen Oberarm {art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "vermindert",
+                    "aufgehoben",
+                    "nicht sicher beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität Hand",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität an der Hand {seite} intakt. ",
+              "abweichung": "{was} an der Hand {seite} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kribbeln",
+                    "Kraft vermindert",
+                    "Durchblutung vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz, z. B. Daumen bis Mittelfinger",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-gehen-armfraktur",
+          "titel": "Entlassbefund Gehen bei Fraktur am Arm (ohne Stütze auf den verletzten Arm)",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "gehen",
+              "label": "Gehen",
+              "an": true,
+              "text": "Gehen {wie}{hilfsmittel}{strecke}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Selbstständigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "selbstständig",
+                    "unter Aufsicht",
+                    "mit Hilfe einer Person"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "hilfsmittel",
+                  "label": "Hilfsmittel",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    " ohne Hilfsmittel",
+                    " am Gehstock in der Hand der Gegenseite"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "strecke",
+                  "label": "Strecke",
+                  "optionen": [
+                    "",
+                    " auf Stationsebene",
+                    " auf Stationsebene und auf der Treppe",
+                    " im Zimmer",
+                    " über wenige Schritte"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-schulter-axillaris",
+          "titel": "Entlassbefund Schulter nach Operation: N. axillaris und Deltamuskel",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Schulter "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "axillaris",
+              "chip": "N. axillaris, Deltamuskel",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Sensibilität am seitlichen Oberarm intakt, Anspannung des Deltamuskels tastbar. ",
+              "abweichung": "{befund}{wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Sensibilität am seitlichen Oberarm vermindert",
+                    "Sensibilität am seitlichen Oberarm aufgehoben",
+                    "Keine tastbare Anspannung des Deltamuskels",
+                    "Funktion des N. axillaris nicht sicher beurteilbar"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Seit wann",
+                  "optionen": [
+                    "",
+                    ", wie bei Aufnahme",
+                    ", neu nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-sicherheitsnetz-schulter-konservativ",
+          "titel": "Wiedervorstellung bei Warnzeichen (Schulter, konservativ)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen trotz Schmerzmitteln, zunehmender Schwellung von Arm oder Hand, Taubheitsgefühl oder Kribbeln in Arm oder Hand, kalter, blasser oder blauer Hand, drückendem Verband oder drückender Orthese, erneutem Sturz. ",
+              "an": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": "Die Warnzeichen haben wir mit {person-dat} besprochen. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "merkblatt",
+              "label": "Merkblatt mitgegeben",
+              "text": "Ein Merkblatt haben wir mitgegeben. "
+            }
+          ]
+        },
+        {
+          "id": "proc-st-sicherheitsnetz-schulter-operativ",
+          "titel": "Wiedervorstellung bei Warnzeichen (Schulter, nach Operation)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "",
+                    "Rötung, Schwellung oder Nässen der Wunde, Fieber über 38,5 °C, zunehmenden Schmerzen trotz Schmerzmitteln, Taubheitsgefühl oder Kribbeln in Arm oder Hand, kalter, blasser oder blauer Hand, erneutem Sturz",
+                    "Rötung, Schwellung oder Nässen der Wunde, Fieber über 38,5 °C, plötzlichem Schmerz mit Verlust der Beweglichkeit der Schulter, Taubheitsgefühl oder Kribbeln in Arm oder Hand, kalter, blasser oder blauer Hand, erneutem Sturz"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": "Die Warnzeichen haben wir mit {person-dat} besprochen. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "merkblatt",
+              "label": "Merkblatt mitgegeben",
+              "text": "Ein Merkblatt haben wir mitgegeben. "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brief-station",
+      "name": "Entlassbrief",
+      "kuerzel": "🏥",
+      "bausteine": [
+        {
+          "id": "proc-st-alterstrauma",
+          "titel": "Aufträge nach Sturz im Alter",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sturzabklaerung",
+              "label": "Sturzursache abklären",
+              "text": "Abklärung der Sturzursache in der Hausarztpraxis: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was abklären",
+                  "optionen": [
+                    "",
+                    "Herzrhythmus und Blutdruck",
+                    "Schwindel",
+                    "Gangunsicherheit und Muskelkraft",
+                    "Sehvermögen",
+                    "Medikamente mit Sturzrisiko",
+                    "Ursache der Bewusstlosigkeit"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "osteoporose-therapie",
+              "label": "Osteoporosetherapie begonnen",
+              "text": "Spezifische Osteoporosetherapie mit {wirkstoff} begonnen, siehe Medikation. Fortführung und Kontrolle in der Hausarztpraxis. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hueftprotektor",
+              "label": "Hüftprotektoren",
+              "text": "Hüftprotektoren zum Schutz bei erneutem Sturz tragen. {verordnung} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verordnung",
+                  "label": "Verordnung",
+                  "optionen": [
+                    "",
+                    "Eine Verordnung haben wir mitgegeben.",
+                    "Verordnung durch die Hausarztpraxis."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "verl-st-aufnahme-operation",
+          "titel": "Verlauf: Aufnahme, Operation und Verlauf der Operation (Pflichtangabe)",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahmeanlass",
+              "an": true,
+              "text": "Wir nahmen {person-akk} {anlass} stationär auf. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anlass",
+                  "label": "Aufnahmeanlass",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "wegen der oben genannten Fraktur",
+                    "wegen der oben genannten Verletzung",
+                    "wegen der oben genannten Erkrankung",
+                    "zur geplanten Operation",
+                    "zur Operation nach ambulanter Vorbereitung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "operation",
+              "label": "Aufklärung und Operation",
+              "an": true,
+              "text": "{einwilligung} operierten wir{wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "einwilligung",
+                  "label": "Aufklärung und Einwilligung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Nach Aufklärung und schriftlicher Einwilligung",
+                    "Nach Aufklärung und Einwilligung der bevollmächtigten Person",
+                    "Nach Aufklärung und Einwilligung der gesetzlichen Betreuung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Zeitpunkt der Operation",
+                  "optionen": [
+                    "",
+                    " am Aufnahmetag",
+                    " am Tag nach der Aufnahme",
+                    " am 2. Tag nach der Aufnahme",
+                    " nach Abschwellung der Weichteile",
+                    " nach Pause der gerinnungshemmenden Medikation"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "op-verlauf",
+              "label": "Verlauf von Operation und Narkose",
+              "optionen": [
+                "Operation und Narkose verliefen ohne Komplikationen. ",
+                "Bei Operation oder Narkose traten Besonderheiten auf, Einzelheiten siehe Operationsbericht. "
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "ana-st-kopfanprall",
+          "titel": "Anamnese: Kopfanprall (Pflichtangabe)",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Kopfanprall: "
+            },
+            {
+              "art": "auswahl",
+              "id": "kopf",
+              "label": "Kopfanprall",
+              "optionen": [
+                "nein",
+                "ja, Befund siehe Aufnahmebefund",
+                "nicht sicher auszuschließen"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ". "
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-hueftprothese",
+          "titel": "Thromboseprophylaxe nach Hüftprothese bei Fraktur",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "pflicht": true,
+              "optionen": [
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 28. Tag nach der Operation.",
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 35. Tag nach der Operation.",
+                "Vorbestehende gerinnungshemmende Medikation fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wirkstoff",
+              "label": "Wirkstoff und Dosis",
+              "text": " Wirkstoff: {wirkstoff} {dosis}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff der Thromboseprophylaxe",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "Enoxaparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Certoparin",
+                    "Nadroparin",
+                    "Fondaparinux"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Schema, z. B. 40 mg 1-mal täglich subkutan",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "siehe-medikation",
+              "label": "Verweis auf Medikation",
+              "text": " Wirkstoff und Dosis siehe Medikation."
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Kontrolle der Thrombozytenzahl",
+              "text": " Kontrolle der Thrombozytenzahl {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche",
+                    "1 Woche nach der Entlassung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation ab dem {tag}. Tag nach der Operation.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "tag",
+                  "label": "Tag nach der Operation",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-huefte-osteosynthese",
+          "titel": "Thromboseprophylaxe nach Osteosynthese einer hüftgelenknahen Fraktur",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "pflicht": true,
+              "optionen": [
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 10. Tag nach der Operation.",
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 14. Tag nach der Operation.",
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 28. Tag nach der Operation.",
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 35. Tag nach der Operation.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung.",
+                "Medikamentöse Thromboseprophylaxe bis zur ausreichenden Mobilität (überwiegender Teil des Tages außerhalb des Betts).",
+                "Medikamentöse Thromboseprophylaxe mit der Entlassung beendet bei ausreichender Mobilität.",
+                "Vorbestehende gerinnungshemmende Medikation fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wirkstoff",
+              "label": "Wirkstoff und Dosis",
+              "text": " Wirkstoff: {wirkstoff} {dosis}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff der Thromboseprophylaxe",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "Enoxaparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Certoparin",
+                    "Nadroparin",
+                    "Fondaparinux"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Schema, z. B. 40 mg 1-mal täglich subkutan",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "siehe-medikation",
+              "label": "Verweis auf Medikation",
+              "text": " Wirkstoff und Dosis siehe Medikation."
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Kontrolle der Thrombozytenzahl",
+              "text": " Kontrolle der Thrombozytenzahl {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche",
+                    "1 Woche nach der Entlassung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation ab dem {tag}. Tag nach der Operation.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "tag",
+                  "label": "Tag nach der Operation",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

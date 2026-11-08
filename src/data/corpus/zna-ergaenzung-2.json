@@ -1,0 +1,4501 @@
+{
+  "regionen": [
+    {
+      "id": "finger",
+      "name": "Finger",
+      "kuerzel": "👆",
+      "bausteine": [
+        {
+          "id": "dx-luxationsfraktur-mittelgelenk",
+          "titel": "Diagnose Luxationsfraktur des Mittelgelenks (palmares Fragment ab etwa 30 % der Gelenkfläche)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "offen",
+              "label": "Geschlossen oder offen",
+              "optionen": [
+                "Geschlossene",
+                "Offene"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Art",
+              "optionen": [
+                "dorsale Luxationsfraktur des Mittelgelenks",
+                "Fraktur der Mittelgliedbasis ohne Subluxation"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "finger",
+              "label": "Finger",
+              "optionen": [
+                "am Zeigefinger",
+                "am Mittelfinger",
+                "am Ringfinger",
+                "am Kleinfinger"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ", palmares Kantenfragment mit "
+            },
+            {
+              "art": "auswahl",
+              "id": "anteil",
+              "label": "Anteil der Gelenkfläche",
+              "optionen": [
+                "etwa 30 bis 40 %",
+                "etwa 40 bis 50 %",
+                "über 50 %"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " der Gelenkfläche"
+            },
+            {
+              "art": "option",
+              "id": "reponiert",
+              "label": "In der Notaufnahme reponiert",
+              "an": false,
+              "text": ", in der Notaufnahme reponiert"
+            }
+          ]
+        },
+        {
+          "id": "bef-mittelgelenk-luxationsfraktur",
+          "titel": "Finger – Untersuchung bei Luxationsfraktur des Mittelgelenks",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "finger",
+              "label": "betroffener Finger",
+              "optionen": [
+                "Zeigefinger",
+                "Mittelfinger",
+                "Ringfinger",
+                "Kleinfinger"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "wunde",
+              "chip": "Wunde",
+              "gruppe": "Inspektion",
+              "normal": "Haut geschlossen, keine Wunde. ",
+              "abweichung": "Wunde{ort}{tiefe} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " beugeseitig über dem Mittelgelenk",
+                    " streckseitig über dem Mittelgelenk",
+                    " seitlich über dem Mittelgelenk",
+                    " am Mittelglied",
+                    " am Grundglied"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "tiefe",
+                  "label": "Tiefe",
+                  "optionen": [
+                    "",
+                    ", Gelenk eröffnet",
+                    ", Knochen sichtbar",
+                    ", Beugesehne sichtbar"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz (Länge, Verschmutzung)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung des Fingers. ",
+              "abweichung": "Schwellung{ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " über dem Mittelgelenk",
+                    " des gesamten Fingers"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haematom",
+              "chip": "Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein Hämatom. ",
+              "abweichung": "Hämatom{ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " palmar über dem Mittelgelenk",
+                    " streckseitig über dem Mittelgelenk",
+                    " an Grund- und Mittelglied"
+                  ]
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Fehlstellung im Mittelgelenk",
+              "gruppe": "Inspektion",
+              "normal": "Keine sichtbare Fehlstellung im Mittelgelenk. ",
+              "abweichung": "{art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art",
+                  "optionen": [
+                    "",
+                    "Sichtbare Stufe über dem Mittelgelenk, Mittelglied nach dorsal verschoben",
+                    "Sichtbare Fehlstellung im Mittelgelenk",
+                    "Mittelgelenk federnd fixiert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "drehfehler",
+              "chip": "Drehfehler",
+              "gruppe": "Inspektion",
+              "normal": "Kein Drehfehler des Fingers. ",
+              "abweichung": "{erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "Drehfehler des Fingers",
+                    "Drehfehler schmerzbedingt nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "ds",
+              "chip": "Druckschmerz Mittelgelenk",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Mittelgelenk. ",
+              "abweichung": "Druckschmerz über dem Mittelgelenk{ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " palmar",
+                    " dorsal",
+                    " radial",
+                    " ulnar",
+                    " zirkulär"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "nachbar",
+              "chip": "Druckschmerz Grund-/Endgelenk",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über Grund- und Endgelenk. ",
+              "abweichung": "Druckschmerz über dem {gelenk}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "gelenk",
+                  "label": "Gelenk",
+                  "optionen": [
+                    "",
+                    "Grundgelenk",
+                    "Endgelenk",
+                    "Grund- und Endgelenk"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bewegung",
+              "chip": "Beweglichkeit Mittelgelenk",
+              "gruppe": "Beweglichkeit",
+              "normal": "",
+              "abweichung": "{erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Beweglichkeit",
+                  "optionen": [
+                    "",
+                    "Beweglichkeit im Mittelgelenk schmerzbedingt aufgehoben",
+                    "Beweglichkeit im Mittelgelenk schmerzhaft eingeschränkt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "seitenband",
+              "chip": "Seitenbänder Mittelgelenk",
+              "gruppe": "Stabilität",
+              "normal": "Seitenbandführung im Mittelgelenk stabil. ",
+              "abweichung": "Seitenbandführung im Mittelgelenk {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "radial vermehrt aufklappbar",
+                    "ulnar vermehrt aufklappbar",
+                    "schmerzbedingt nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "endgelenk",
+              "chip": "Endgelenk aktiv",
+              "gruppe": "Funktion",
+              "normal": "Endgelenk aktiv beugbar und streckbar. ",
+              "abweichung": "Aktive {was} im Endgelenk {art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Bewegung",
+                  "optionen": [
+                    "",
+                    "Beugung",
+                    "Streckung",
+                    "Beugung und Streckung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art",
+                  "optionen": [
+                    "",
+                    "abgeschwächt",
+                    "aufgehoben",
+                    "schmerzbedingt nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "Durchblutung/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Durchblutung und Sensibilität des Fingers intakt. ",
+              "abweichung": "{was} des Fingers{ort} gestört {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "was",
+                  "optionen": [
+                    "",
+                    "Durchblutung",
+                    "Sensibilität",
+                    "Durchblutung und Sensibilität"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    " radialseitig",
+                    " ulnarseitig",
+                    " an der Fingerkuppe"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-mittelgelenk-roentgen",
+          "titel": "Röntgen Finger (Luxationsfraktur des Mittelgelenks)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "auswahl",
+              "id": "finger",
+              "label": "Finger",
+              "optionen": [
+                "Zeigefinger",
+                "Mittelfinger",
+                "Ringfinger",
+                "Kleinfinger"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen: Fraktur der palmaren Kante der Mittelgliedbasis, Fragment mit "
+            },
+            {
+              "art": "auswahl",
+              "id": "anteil",
+              "label": "Anteil der Gelenkfläche",
+              "optionen": [
+                "etwa 30 bis 40 %",
+                "etwa 40 bis 50 %",
+                "über 50 %"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " der Gelenkfläche"
+            },
+            {
+              "art": "auswahl",
+              "id": "fragment",
+              "label": "Fragment",
+              "optionen": [
+                ", nicht verschoben",
+                ", verschoben",
+                ", mehrfragmentär"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "stellung",
+              "label": "Stellung im Mittelgelenk",
+              "optionen": [
+                ", Mittelglied nach dorsal subluxiert.",
+                ", Mittelglied nach dorsal luxiert.",
+                ", Mittelgelenk kongruent."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "stufe",
+              "label": "Gelenkstufe (mm)",
+              "an": false,
+              "text": " Gelenkstufe etwa {mm}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Millimeter",
+                  "einheit": "mm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "seitlich",
+              "label": "Streng seitliche Aufnahme",
+              "an": false,
+              "text": " Streng seitliche Aufnahme des Mittelgelenks: {erg}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "V-förmige Aufweitung des dorsalen Gelenkspalts",
+                    "Gelenkflächen parallel"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "an": false,
+              "text": " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "th-mittelgelenk-massnahmen",
+          "titel": "Luxationsfraktur des Mittelgelenks: Ringe, Aufklärung",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ring",
+              "label": "Ringe entfernt",
+              "an": false,
+              "text": "Ringe von der Hand {seite} entfernt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung",
+              "label": "Aufklärung über die Behandlung",
+              "an": false,
+              "text": "Über die Verletzung und die Behandlungsmöglichkeiten (operativ und konservativ) haben wir {person-akk} aufgeklärt."
+            }
+          ]
+        },
+        {
+          "id": "th-mittelgelenk-reposition",
+          "titel": "Luxationsfraktur des Mittelgelenks: geschlossene Reposition und Ruhigstellung",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "reposition",
+              "label": "Geschlossene Reposition",
+              "an": true,
+              "text": "Mittelgelenk in {betaeubung} geschlossen reponiert.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "betaeubung",
+                  "label": "Betäubung",
+                  "optionen": [
+                    "",
+                    "Leitungsanästhesie nach Oberst",
+                    "Leitungsanästhesie",
+                    "Analgosedierung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "stabilitaet",
+              "label": "Stabilität nach Reposition",
+              "an": true,
+              "text": "Stabilität nach Reposition: {erg}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "Mittelgelenk auch in Streckung stabil",
+                    "Mittelgelenk erst in Beugung stabil, Reluxation bei Streckung",
+                    "Mittelgelenk auch in Beugung instabil"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "an": true,
+              "text": "Ruhigstellung des Fingers {seite} in der {was}{beugung}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ruhigstellung",
+                  "optionen": [
+                    "",
+                    "dorsalen Streckblockschiene",
+                    "Fingerschiene in Beugung des Mittelgelenks",
+                    "Unterarmgipsschiene mit Einschluss des Fingers in Beugung des Mittelgelenks"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "beugung",
+                  "label": "Beugung des Mittelgelenks",
+                  "optionen": [
+                    "",
+                    ", Mittelgelenk in etwa 20° Beugung",
+                    ", Mittelgelenk in etwa 30° Beugung",
+                    ", Mittelgelenk in etwa 45° Beugung",
+                    ", Mittelgelenk in etwa 60° Beugung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle nach Reposition",
+              "an": true,
+              "text": "Röntgenkontrolle nach Reposition in der Schiene: {stellung}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stellung",
+                  "label": "Stellung",
+                  "optionen": [
+                    "",
+                    "Mittelgelenk kongruent",
+                    "Mittelglied weiter nach dorsal subluxiert",
+                    "Mittelgelenk kongruent, Fragment weiter verschoben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dms",
+              "label": "Durchblutung und Sensibilität danach",
+              "an": true,
+              "text": "Danach Durchblutung und Sensibilität des Fingers {erg} {detail}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "intakt",
+                    "gestört"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz bei Störung (was, wo)",
+                  "maxLen": 80
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-mittelgelenk-ohne-reposition",
+          "titel": "Luxationsfraktur des Mittelgelenks: Ruhigstellung ohne Reposition",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verzicht",
+              "label": "Verzicht auf Reposition",
+              "an": true,
+              "text": "Auf eine Reposition haben wir verzichtet, weil {grund}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "grund",
+                  "label": "Grund für den Verzicht",
+                  "maxLen": 160,
+                  "required": true,
+                  "vorschlaege": [
+                    "das Mittelgelenk im Röntgen kongruent steht",
+                    "die Reposition bei der Operation erfolgen soll"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "an": true,
+              "text": "Ruhigstellung des Fingers {seite} in der {was}{beugung}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ruhigstellung",
+                  "optionen": [
+                    "",
+                    "dorsalen Streckblockschiene",
+                    "Fingerschiene in Beugung des Mittelgelenks",
+                    "Unterarmgipsschiene mit Einschluss des Fingers in Beugung des Mittelgelenks"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "beugung",
+                  "label": "Beugung des Mittelgelenks",
+                  "optionen": [
+                    "",
+                    ", Mittelgelenk in etwa 20° Beugung",
+                    ", Mittelgelenk in etwa 30° Beugung",
+                    ", Mittelgelenk in etwa 45° Beugung",
+                    ", Mittelgelenk in etwa 60° Beugung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dms",
+              "label": "Durchblutung und Sensibilität danach",
+              "an": true,
+              "text": "Danach Durchblutung und Sensibilität des Fingers {erg} {detail}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "intakt",
+                    "gestört"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz bei Störung (was, wo)",
+                  "maxLen": 80
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-mittelgelenk-handsprechstunde",
+          "titel": "Luxationsfraktur des Mittelgelenks – Procedere: Vorstellung in der Handsprechstunde zur Operation",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "handsprechstunde",
+              "label": "Vorstellung in der Handsprechstunde",
+              "an": true,
+              "text": "Vorstellung in unserer Handsprechstunde {wann} {zweck}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "zweck",
+                  "label": "Zweck",
+                  "optionen": [
+                    "",
+                    "zur Entscheidung über eine Operation",
+                    "zur Planung der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Bis dahin Ruhigstellung",
+              "an": true,
+              "text": "Bis dahin Ruhigstellung des {finger} {seite} in der angelegten Schiene, ohne sie abzunehmen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "finger",
+                  "label": "Finger",
+                  "optionen": [
+                    "",
+                    "Zeigefingers",
+                    "Mittelfingers",
+                    "Ringfingers",
+                    "Kleinfingers"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle der Ruhigstellung am Folgetag",
+              "an": true,
+              "text": "Kontrolle der Ruhigstellung am Folgetag {wo}: Sitz, Schwellung, Durchblutung und Gefühl des Fingers.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in unserer Handsprechstunde",
+                    "in unserer Notaufnahme",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in der Hausarztpraxis"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Kühlung, Schonung, Hochlagern",
+              "an": true,
+              "text": "Kühlung, Schonung und Hochlagern der Hand {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegen",
+              "label": "Freie Finger bewegen",
+              "an": true,
+              "text": "Nicht ruhiggestellte Finger der Hand {seite} mehrmals täglich bewegen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmung bis zur Vorstellung",
+              "an": false,
+              "text": "Gerinnungshemmende Medikamente bis zur Vorstellung in der Handsprechstunde: {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Vorgehen",
+                  "optionen": [
+                    "",
+                    "unverändert weiter einnehmen",
+                    "Festlegung in der Handsprechstunde"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "an": false,
+              "text": "Medikamentöse Thromboseprophylaxe wegen zusätzlicher Risikofaktoren: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "default": 1,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen oder zunehmender Schwellung, erneut sichtbarer Fehlstellung des Fingers, Taubheitsgefühl oder Kribbeln im Finger, kaltem, blassem oder blauem Finger, Druckstellen oder offenen Hautstellen unter der Schiene, gelockerter oder verrutschter Schiene{infekt}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "infekt",
+                  "label": "Zeichen einer Infektion",
+                  "optionen": [
+                    "",
+                    ", Rötung, Eiter, pochendem Schmerz oder Fieber"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-mittelgelenk-aufnahme",
+          "titel": "Luxationsfraktur des Mittelgelenks – Procedere: stationäre Aufnahme oder Verlegung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme oder Verlegung",
+              "an": true,
+              "text": "{wie} {zweck} der Fraktur am {finger} {seite}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Aufnahme oder Verlegung",
+                  "optionen": [
+                    "",
+                    "Stationäre Aufnahme",
+                    "Verlegung in eine handchirurgische Klinik"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "zweck",
+                  "label": "Zweck",
+                  "optionen": [
+                    "",
+                    "zur notfallmäßigen operativen Versorgung",
+                    "zur operativen Versorgung",
+                    "zur Abschwellung und operativen Versorgung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "finger",
+                  "label": "Finger",
+                  "optionen": [
+                    "",
+                    "Zeigefinger",
+                    "Mittelfinger",
+                    "Ringfinger",
+                    "Kleinfinger"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "klinik",
+              "label": "Aufnehmende Klinik",
+              "an": false,
+              "text": " Aufnehmende Klinik: {klinik}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Aufnehmende Klinik",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "grund",
+              "label": "Anlass der Aufnahme",
+              "an": false,
+              "text": "Anlass: {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Anlass",
+                  "optionen": [
+                    "",
+                    "offene Fraktur",
+                    "Reposition nicht haltbar",
+                    "Störung der Durchblutung",
+                    "Störung der Sensibilität",
+                    "Weichteilschaden"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Ruhigstellung und Hochlagerung bis zur Operation",
+              "an": false,
+              "text": "Bis zur Operation Ruhigstellung und Hochlagerung der Hand {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern seit",
+              "an": false,
+              "text": "Nüchtern seit {zeit}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "zeit",
+                  "label": "Uhrzeit oder Angabe",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmung bis zur Operation",
+              "an": false,
+              "text": "Gerinnungshemmende Medikamente bis zur Operation: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, letzte Einnahme, Vorgehen",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dx-veraetzung-hand",
+          "titel": "Diagnose Verätzung der Hand",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Verätzung "
+            },
+            {
+              "art": "auswahl",
+              "id": "tiefe",
+              "label": "Tiefe",
+              "optionen": [
+                "Grad 1",
+                "Grad 2a",
+                "Grad 2b",
+                "Grad 3",
+                "unklarer Tiefe"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "lok",
+              "label": "Lokalisation",
+              "optionen": [
+                "der Fingerkuppen",
+                "der Finger",
+                "der Hohlhand",
+                "des Handrückens",
+                "der gesamten Hand",
+                "von Hand und Handgelenk"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " durch "
+            },
+            {
+              "art": "auswahl",
+              "id": "stoff",
+              "label": "Art der Substanz",
+              "optionen": [
+                "Säure",
+                "Lauge",
+                "eine Substanz unbekannter Art",
+                "eine andere Chemikalie"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "name",
+              "label": "Name der Substanz",
+              "an": false,
+              "text": " ({name})",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "name",
+                  "label": "Substanz",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "flaeche",
+              "label": "Anteil der Körperoberfläche",
+              "an": false,
+              "text": ", ca. {kof} der Körperoberfläche",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "kof",
+                  "label": "Körperoberfläche",
+                  "einheit": "%",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ana-veraetzung-hand",
+          "titel": "Anamnese Verätzung: Substanz, Spülung, weitere Kontaktstellen",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "substanz",
+              "label": "Substanz",
+              "an": true,
+              "text": "Substanz: {name}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "name",
+                  "label": "Substanz (Name, Produkt)",
+                  "maxLen": 80,
+                  "required": true,
+                  "vorschlaege": [
+                    "nicht bekannt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "konzentration",
+              "label": "Konzentration oder Zusammensetzung",
+              "an": false,
+              "text": "Konzentration oder Zusammensetzung laut Etikett: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Konzentration oder Zusammensetzung",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "etikett",
+              "label": "Etikett oder Sicherheitsdatenblatt",
+              "an": false,
+              "text": "Etikett oder Sicherheitsdatenblatt: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Etikett",
+                  "optionen": [
+                    "",
+                    "liegt vor",
+                    "liegt nicht vor",
+                    "wird nachgereicht"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "spuelung",
+              "label": "Erste Spülung",
+              "an": true,
+              "text": "Die Hand sei {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Erste Spülung",
+                  "optionen": [
+                    "",
+                    "sofort mit Wasser gespült worden",
+                    "erst nach einigen Minuten mit Wasser gespült worden",
+                    "vor der Vorstellung nicht gespült worden"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "spueldauer",
+              "label": "Dauer der Spülung vor der Vorstellung",
+              "an": false,
+              "text": "Dauer der Spülung vor der Vorstellung nach Angabe: {dauer}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kontakt",
+              "label": "Kontakt mit Augen, Gesicht, Atemwegen",
+              "an": true,
+              "text": "Kontakt mit Augen, Gesicht oder Atemwegen: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Weitere Kontaktstellen",
+                  "optionen": [
+                    "",
+                    "nach Angabe nein",
+                    "ja, Augen",
+                    "ja, Gesicht",
+                    "ja, Dämpfe eingeatmet",
+                    "unklar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "handschuhe",
+              "label": "Schutzhandschuhe",
+              "an": false,
+              "text": "Schutzhandschuhe: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Schutzhandschuhe",
+                  "optionen": [
+                    "",
+                    "getragen",
+                    "nicht getragen",
+                    "von der Substanz durchdrungen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "beruf",
+              "label": "Berufliche Tätigkeit",
+              "an": false,
+              "text": "Berufliche Tätigkeit: {art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Tätigkeit",
+                  "optionen": [
+                    "",
+                    "handwerklich",
+                    "Bau",
+                    "Reinigung",
+                    "Labor oder Industrie",
+                    "Küche oder Gastronomie",
+                    "nicht berufstätig"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-veraetzung-hand",
+          "titel": "Hand – Verätzung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Hand "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "option",
+              "id": "flaeche",
+              "label": "Verätzte Hautfläche",
+              "an": true,
+              "text": "Verätzte Hautfläche {ort}, Ausdehnung ca. {laenge} x {breite}. ",
+              "gruppe": "Inspektion",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "an den Fingerkuppen",
+                    "an den Fingern beugeseitig",
+                    "an den Fingern streckseitig",
+                    "in der Hohlhand",
+                    "am Handrücken",
+                    "an Hand und Handgelenk"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "laenge",
+                  "label": "Länge in cm",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "breite",
+                  "label": "Breite",
+                  "einheit": "cm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Hautbefund und Tiefe",
+              "gruppe": "Inspektion",
+              "normal": "",
+              "abweichung": "{art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Hautbefund",
+                  "optionen": [
+                    "",
+                    "Rötung, Haut geschlossen, keine Blasen",
+                    "Blasenbildung, Wundgrund rosig, feucht und schmerzhaft",
+                    "Wundgrund blass und trocken, Schmerzempfindung vermindert",
+                    "Haut grau-weiß und lederartig, schmerzlos",
+                    "Haut erweicht und schmierig belegt, Tiefe nicht sicher beurteilbar",
+                    "Fester Schorf, Tiefe nicht sicher beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "zirkulaer",
+              "chip": "zirkuläre Verätzung",
+              "gruppe": "Inspektion",
+              "normal": "Keine zirkuläre Verätzung. ",
+              "abweichung": "Zirkuläre Verätzung {detail}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Ort",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung der Hand und der Finger. ",
+              "abweichung": "Schwellung {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "der Finger",
+                    "des Handrückens",
+                    "der gesamten Hand"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)"
+                  ]
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "reste",
+              "chip": "Reste der Substanz",
+              "gruppe": "Inspektion",
+              "normal": "Keine sichtbaren Reste der Substanz auf der Haut und unter den Nägeln. ",
+              "abweichung": "Reste der Substanz {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "auf der Haut",
+                    "unter den Nägeln",
+                    "auf der Haut und unter den Nägeln"
+                  ],
+                  "required": true
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "infekt",
+              "chip": "Entzündungszeichen",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, Überwärmung oder Schwellung in der Umgebung. ",
+              "abweichung": "Rötung, Überwärmung und Schwellung in der Umgebung {detail}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz",
+                  "maxLen": 60
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "bewegung",
+              "chip": "Beweglichkeit der Finger eingeschränkt",
+              "gruppe": "Beweglichkeit",
+              "normal": "Finger frei beweglich, Faustschluss vollständig. ",
+              "abweichung": "Beweglichkeit der Finger {art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art",
+                  "optionen": [
+                    "",
+                    "schmerzbedingt eingeschränkt",
+                    "eingeschränkt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "Durchblutung/Sensibilität gestört",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Durchblutung und Sensibilität der Finger intakt. ",
+              "abweichung": "{was} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "optionen": [
+                    "",
+                    "Durchblutung der Finger gestört",
+                    "Sensibilität der Finger gestört",
+                    "Durchblutung und Sensibilität der Finger gestört"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-veraetzung-hand",
+          "titel": "Diagnostik bei Verätzung der Hand",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Bildgebung haben wir verzichtet, weil "
+            },
+            {
+              "art": "auswahl",
+              "id": "grund",
+              "label": "Grund für den Verzicht",
+              "optionen": [
+                "die Diagnose klinisch gestellt wurde.",
+                "kein Hinweis auf eine Verletzung tieferer Strukturen besteht."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "labor",
+              "label": "Labor",
+              "an": false,
+              "text": " Labor: {werte}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "werte",
+                  "label": "Werte",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ekg",
+              "label": "EKG",
+              "an": false,
+              "text": " EKG: {befund}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "befund",
+                  "label": "Befund",
+                  "maxLen": 120,
+                  "required": true,
+                  "vorschlaege": [
+                    "Sinusrhythmus, keine Rhythmusstörung"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-veraetzung-hand",
+          "titel": "Maßnahmen bei Verätzung der Hand",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dekontamination",
+              "label": "Kleidung und Schmuck entfernt",
+              "an": false,
+              "text": "Kontaminierte Kleidung, Handschuhe und Schmuck entfernt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "giftinfo",
+              "label": "Rücksprache Giftinformationszentrum",
+              "an": false,
+              "text": "Rücksprache mit dem Giftinformationszentrum: {ergebnis}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "ergebnis",
+                  "label": "Ergebnis der Rücksprache",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "spezifisch",
+              "label": "Substanzspezifische Behandlung",
+              "an": false,
+              "text": "Substanzspezifische Behandlung: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Maßnahme, Wirkstoff, Dosis",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "blasen",
+              "label": "Blasen",
+              "an": false,
+              "text": "Blasen {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Vorgehen",
+                  "optionen": [
+                    "",
+                    "belassen",
+                    "steril eröffnet und abgetragen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "debridement",
+              "label": "Nekrosen abgetragen",
+              "an": false,
+              "text": "Nekrotische Hautanteile abgetragen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "verband",
+              "label": "Verband",
+              "optionen": [
+                "Wundverband mit Fettgaze angelegt.",
+                "Wundverband mit Polihexanid-Wundgel angelegt.",
+                "Handschuhverband mit Polihexanid angelegt.",
+                "Steriler trockener Verband angelegt.",
+                "Kein Verband erforderlich, Hautpflege."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Hand hochgelagert",
+              "an": false,
+              "text": "Hand {seite} hochgelagert."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "kontaktstellen",
+              "label": "Weitere Kontaktstellen",
+              "optionen": [
+                "Keine weiteren Kontaktstellen zu behandeln.",
+                "Augen in der Notaufnahme sofort gespült, augenärztliche Vorstellung veranlasst.",
+                "Augen in der Notaufnahme sofort gespült, augenärztlich mitbehandelt.",
+                "Gesicht in der Notaufnahme gespült.",
+                "Nach Einatmen von Dämpfen Atmung in der Notaufnahme überwacht."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "auge",
+              "label": "Augenärztliche Mitbehandlung",
+              "an": false,
+              "text": "Augenärztliche Mitbehandlung wegen Kontakts mit den Augen: {ergebnis}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "ergebnis",
+                  "label": "Ergebnis",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "optionen": [
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis.",
+                "Keine Tetanusprophylaxe nötig, Haut geschlossen."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "th-veraetzung-spuelung",
+          "titel": "Verätzung der Hand: Spülung in der Notaufnahme",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "spuelung",
+              "label": "Spülung in der Notaufnahme",
+              "an": true,
+              "text": "Spülung der Hand {seite} in der Notaufnahme {womit} {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "womit",
+                  "optionen": [
+                    "",
+                    "mit Wasser",
+                    "mit isotoner Kochsalzlösung",
+                    "mit Ringerlösung",
+                    "mit amphoterer Spüllösung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "über 15 Minuten",
+                    "über 20 Minuten",
+                    "über 30 Minuten",
+                    "über 60 Minuten",
+                    "über mehr als 60 Minuten",
+                    "bis zum neutralen pH-Wert der Haut"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ph",
+              "label": "pH-Wert nach Spülung",
+              "an": false,
+              "text": "pH-Wert der Haut nach der Spülung (Teststreifen): {ph}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "ph",
+                  "label": "pH-Wert",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-veraetzung-keine-spuelung",
+          "titel": "Verätzung der Hand: keine weitere Spülung in der Notaufnahme",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "keine-spuelung",
+              "label": "Keine weitere Spülung",
+              "an": true,
+              "text": "Keine weitere Spülung in der Notaufnahme, weil {grund}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "grund",
+                  "label": "Grund",
+                  "maxLen": 120,
+                  "required": true,
+                  "vorschlaege": [
+                    "vor der Vorstellung ausreichend lange gespült wurde"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ph",
+              "label": "pH-Wert nach Spülung",
+              "an": false,
+              "text": "pH-Wert der Haut nach der Spülung (Teststreifen): {ph}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "ph",
+                  "label": "pH-Wert",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-veraetzung-ambulant",
+          "titel": "Verätzung (Hand) – Procedere: ambulant (oberflächlich, kleine Fläche, nicht zirkulär, Durchblutung intakt)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Wund- und Befundkontrolle mit Beurteilung der Tiefe",
+              "an": true,
+              "text": "Wund- und Befundkontrolle der Hand {seite} mit erneuter Beurteilung der Tiefe {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in unserer Notaufnahme",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in der Hausarztpraxis"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verbandwechsel",
+              "label": "Verbandwechsel",
+              "an": false,
+              "text": "Verbandwechsel {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "täglich",
+                    "alle 2 Tage"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abheilung",
+              "label": "Vorstellung bei fehlender Abheilung",
+              "an": false,
+              "text": "Bei fehlender Abheilung nach {frist} Vorstellung {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "nach",
+                  "optionen": [
+                    "",
+                    "10 Tagen",
+                    "14 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in unserer Handsprechstunde",
+                    "in der Handchirurgie",
+                    "in der plastischen Chirurgie",
+                    "in der Ambulanz eines Verbrennungszentrums"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegen",
+              "label": "Finger bewegen",
+              "an": true,
+              "text": "Finger der Hand {seite} mehrmals täglich bewegen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Hand hochlagern",
+              "an": false,
+              "text": "Hand {seite} hochlagern."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "blasen",
+              "label": "Blasen nicht eröffnen",
+              "an": false,
+              "text": "Blasen nicht selbst eröffnen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sonne",
+              "label": "Sonnenschutz nach Abheilung",
+              "an": false,
+              "text": "Nach Abheilung die Haut über mehrere Monate vor Sonne schützen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "an": false,
+              "text": "Medikamentöse Thromboseprophylaxe wegen zusätzlicher Risikofaktoren: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "default": 1,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "auge",
+              "label": "Augenärztliche Weiterbehandlung",
+              "an": false,
+              "text": "Augen: {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Augenärztlich",
+                  "optionen": [
+                    "",
+                    "Vorstellung in der Augenklinik sofort im Anschluss an die Notaufnahme",
+                    "augenärztliche Kontrolle am Folgetag",
+                    "weitere Behandlung nach Maßgabe der mitbehandelnden Augenärzte"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen, neuen Blasen oder Verfärbung der Haut, zunehmender Rötung, Schwellung oder Überwärmung, Eiter oder übel riechendem Wundsekret, rotem Streifen in Richtung Arm, Fieber, Taubheitsgefühl oder kalten, blassen Fingern{zusatz}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zusatz",
+                  "label": "Augen oder Atemwege",
+                  "optionen": [
+                    "",
+                    ", Brennen, Rötung oder Sehstörung der Augen",
+                    ", Husten, Atemnot oder Engegefühl in der Brust",
+                    ", Brennen, Rötung oder Sehstörung der Augen, Husten, Atemnot oder Engegefühl in der Brust"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-veraetzung-fachvorstellung",
+          "titel": "Verätzung (Hand) – Procedere: Vorstellung in Handchirurgie, plastischer Chirurgie oder Verbrennungszentrum",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "vorstellung",
+              "label": "Fachvorstellung",
+              "an": true,
+              "text": "Vorstellung {wo} {wann} zur Beurteilung der Tiefe und Entscheidung über die weitere Behandlung.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in unserer Handsprechstunde",
+                    "in der Handchirurgie",
+                    "in der plastischen Chirurgie",
+                    "in der Ambulanz des Verbrennungszentrums"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "klinik",
+              "label": "Name der Klinik",
+              "an": false,
+              "text": " Klinik: {klinik}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Klinik",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "substanz",
+              "label": "Angaben zur Substanz mitgeben",
+              "an": false,
+              "text": "Angaben zur Substanz (Etikett oder Sicherheitsdatenblatt) zur Vorstellung mitbringen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband belassen",
+              "an": false,
+              "text": "Verband bis zur Vorstellung belassen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Hand hochlagern",
+              "an": true,
+              "text": "Hand {seite} hochlagern."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegen",
+              "label": "Finger bewegen",
+              "an": false,
+              "text": "Finger der Hand {seite} mehrmals täglich bewegen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "blasen",
+              "label": "Blasen nicht eröffnen",
+              "an": false,
+              "text": "Blasen nicht selbst eröffnen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "an": false,
+              "text": "Medikamentöse Thromboseprophylaxe wegen zusätzlicher Risikofaktoren: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "default": 1,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "auge",
+              "label": "Augenärztliche Weiterbehandlung",
+              "an": false,
+              "text": "Augen: {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Augenärztlich",
+                  "optionen": [
+                    "",
+                    "Vorstellung in der Augenklinik sofort im Anschluss an die Notaufnahme",
+                    "augenärztliche Kontrolle am Folgetag",
+                    "weitere Behandlung nach Maßgabe der mitbehandelnden Augenärzte"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen, neuen Blasen oder Verfärbung der Haut, zunehmender Rötung, Schwellung oder Überwärmung, Eiter oder übel riechendem Wundsekret, rotem Streifen in Richtung Arm, Fieber, Taubheitsgefühl oder kalten, blassen Fingern{zusatz}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zusatz",
+                  "label": "Augen oder Atemwege",
+                  "optionen": [
+                    "",
+                    ", Brennen, Rötung oder Sehstörung der Augen",
+                    ", Husten, Atemnot oder Engegefühl in der Brust",
+                    ", Brennen, Rötung oder Sehstörung der Augen, Husten, Atemnot oder Engegefühl in der Brust"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-veraetzung-aufnahme",
+          "titel": "Verätzung (Hand) – Procedere: stationäre Aufnahme oder Verlegung (Handchirurgie, Verbrennungszentrum)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahme oder Verlegung",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Aufnahme oder Verlegung",
+                  "optionen": [
+                    "",
+                    "Stationäre Aufnahme zur Wundbehandlung und Beurteilung der Tiefe",
+                    "Stationäre Aufnahme zur handchirurgischen Versorgung",
+                    "Verlegung in eine handchirurgische Klinik nach telefonischer Anmeldung",
+                    "Verlegung in das Verbrennungszentrum nach telefonischer Anmeldung",
+                    "Verlegung in eine Augenklinik nach telefonischer Anmeldung",
+                    "Stationäre Aufnahme zur Überwachung nach Einatmen von Dämpfen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "klinik",
+              "label": "Aufnehmende Klinik",
+              "an": false,
+              "text": " Aufnehmende Klinik: {klinik}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Aufnehmende Klinik",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "grund",
+              "label": "Anlass",
+              "an": false,
+              "text": "Anlass: {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Anlass",
+                  "optionen": [
+                    "",
+                    "tiefe Verätzung",
+                    "Tiefe nicht sicher beurteilbar",
+                    "zirkuläre Verätzung",
+                    "Verätzung an Fingerkuppen, Hohlhand oder über Gelenken",
+                    "Störung von Durchblutung oder Sensibilität",
+                    "mögliche Allgemeinwirkung der Substanz",
+                    "Schmerzen ambulant nicht beherrschbar",
+                    "Verätzung der Augen",
+                    "Einatmen von Dämpfen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "substanz",
+              "label": "Angaben zur Substanz mitgeben",
+              "an": false,
+              "text": "Angaben zur Substanz (Etikett oder Sicherheitsdatenblatt) mitgegeben."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Hochlagerung",
+              "an": false,
+              "text": "Hochlagerung der Hand {seite} bis zur Übernahme."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern seit",
+              "an": false,
+              "text": "Nüchtern seit {zeit}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "zeit",
+                  "label": "Uhrzeit oder Angabe",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmung bis zur Operation",
+              "an": false,
+              "text": "Gerinnungshemmende Medikamente bis zur Operation: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, letzte Einnahme, Vorgehen",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zehen",
+      "name": "Zehen",
+      "kuerzel": "🦶",
+      "bausteine": [
+        {
+          "id": "dx-zehenfraktur-offen",
+          "titel": "Diagnose offene Zehenfraktur (auch mit Nagelbettverletzung, Beteiligung der Wachstumsfuge beim Kind)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Offene "
+            },
+            {
+              "art": "auswahl",
+              "id": "glied",
+              "label": "Glied",
+              "optionen": [
+                "Grundgliedfraktur",
+                "Mittelgliedfraktur",
+                "Endgliedfraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "zehe",
+              "label": "Zehe",
+              "optionen": [
+                "der Großzehe",
+                "der 2. Zehe",
+                "der 3. Zehe",
+                "der 4. Zehe",
+                "der 5. Zehe"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "stellung",
+              "label": "Stellung",
+              "optionen": [
+                ", nicht verschoben",
+                ", gering verschoben",
+                ", verschoben"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "gelenk",
+              "label": "mit Gelenkbeteiligung",
+              "an": false,
+              "text": ", mit Gelenkbeteiligung"
+            },
+            {
+              "art": "option",
+              "id": "nagelbett",
+              "label": "mit Nagelbettverletzung",
+              "an": false,
+              "text": ", mit Nagelbettverletzung"
+            },
+            {
+              "art": "option",
+              "id": "fuge",
+              "label": "Wachstumsfuge beteiligt (Kind)",
+              "an": false,
+              "text": ", Wachstumsfuge der Endgliedbasis beteiligt (Seymour-Fraktur)"
+            }
+          ]
+        },
+        {
+          "id": "ana-zehe-offen",
+          "titel": "Anamnese offene Zehenfraktur: Risiken für Wundinfektion, Schuhwerk",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "risiko",
+              "label": "Diabetes, Durchblutungsstörung, Immunschwäche",
+              "an": true,
+              "text": "Diabetes mellitus, Durchblutungsstörung der Beine oder Immunschwäche: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Risiko",
+                  "optionen": [
+                    "",
+                    "nach Angabe keine",
+                    "Diabetes mellitus",
+                    "Durchblutungsstörung der Beine",
+                    "Immunschwäche",
+                    "siehe Vorerkrankungen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "schuh",
+              "label": "Schuhwerk beim Unfall",
+              "an": false,
+              "text": "Schuhwerk beim Unfall: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Schuhwerk",
+                  "optionen": [
+                    "",
+                    "barfuß",
+                    "Hausschuh",
+                    "Straßenschuh",
+                    "Sicherheitsschuh"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-zehe-offen",
+          "titel": "Zehe – Untersuchung bei offener Fraktur",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "zehe",
+              "label": "betroffene Zehe",
+              "optionen": [
+                "Großzehe",
+                "2. Zehe",
+                "3. Zehe",
+                "4. Zehe",
+                "5. Zehe"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "wunde",
+              "chip": "Wunde",
+              "gruppe": "Inspektion",
+              "normal": "",
+              "abweichung": "Wunde {ort} {ausdehnung}{tiefe}{schmutz}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "am Nagelbett",
+                    "am Nagelwall",
+                    "an der Zehenkuppe",
+                    "streckseitig über dem Grundglied",
+                    "streckseitig über dem Endglied",
+                    "beugeseitig",
+                    "seitlich"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "ausdehnung",
+                  "label": "Ausdehnung (z. B. etwa 1 cm)",
+                  "maxLen": 40
+                },
+                {
+                  "art": "auswahl",
+                  "id": "tiefe",
+                  "label": "Tiefe",
+                  "optionen": [
+                    "",
+                    ", oberflächlich",
+                    ", bis auf den Knochen",
+                    ", Knochen sichtbar",
+                    ", Gelenk eröffnet"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "schmutz",
+                  "label": "Verschmutzung",
+                  "optionen": [
+                    "",
+                    ", sauber",
+                    ", verschmutzt",
+                    ", stark verschmutzt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "nagel",
+              "chip": "Nagelplatte/Nagelbett",
+              "gruppe": "Inspektion",
+              "normal": "Nagelplatte fest, Nagelwall intakt. ",
+              "abweichung": "Nagelplatte {platte}{bett}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "platte",
+                  "label": "Nagelplatte",
+                  "optionen": [
+                    "",
+                    "gelöst",
+                    "aus dem Nagelwall luxiert und auf dem Nagelwall liegend",
+                    "teilweise abgerissen",
+                    "vollständig abgerissen",
+                    "gebrochen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "bett",
+                  "label": "Nagelbett",
+                  "optionen": [
+                    "",
+                    ", Nagelbett eingerissen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "subungual",
+              "chip": "Subunguales Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein subunguales Hämatom. ",
+              "abweichung": "Subunguales Hämatom{ausmass}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ausmass",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (unter der Hälfte der Nagelfläche)",
+                    " (über der Hälfte der Nagelfläche)"
+                  ]
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung der Zehe. ",
+              "abweichung": "Schwellung{wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " der Zehe",
+                    " der Zehe und des Vorfußes"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)"
+                  ]
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Achse/Rotation",
+              "gruppe": "Inspektion",
+              "normal": "Keine Achsabweichung, keine Rotationsfehlstellung der Zehe. ",
+              "abweichung": "{was} der Zehe. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Achsabweichung",
+                    "Rotationsfehlstellung",
+                    "Achsabweichung und Rotationsfehlstellung",
+                    "Verkürzung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "infekt",
+              "chip": "Infektzeichen",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, keine Überwärmung, kein Eiter. ",
+              "abweichung": "{was}{ausdehnung}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Rötung und Überwärmung",
+                    "Rötung, Überwärmung und eitrige Sekretion"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ausdehnung",
+                  "label": "Ausdehnung",
+                  "optionen": [
+                    "",
+                    ", auf die Zehe begrenzt",
+                    ", über die Zehe hinaus auf den Vorfuß"
+                  ]
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss",
+              "chip": "Mittelfuß und übrige Zehen",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Mittelfuß und den übrigen Zehen. ",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "über dem Mittelfuß",
+                    "über weiteren Zehen",
+                    "über dem Mittelfuß und weiteren Zehen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gehen",
+              "chip": "Gehfähigkeit",
+              "gruppe": "Belastbarkeit",
+              "normal": "",
+              "abweichung": "{Person} ist {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehfähigkeit",
+                  "optionen": [
+                    "",
+                    "nur über die Ferse belastend gehfähig",
+                    "unter Schmerzen geh- und stehfähig",
+                    "nicht belastungsfähig"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "Durchblutung/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Durchblutung und Sensibilität der Zehe intakt. ",
+              "abweichung": "{was} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "optionen": [
+                    "",
+                    "Durchblutung der Zehe vermindert",
+                    "Sensibilität der Zehe vermindert",
+                    "Durchblutung und Sensibilität der Zehe vermindert",
+                    "Zehe blass und kühl, Rekapillarisierung verzögert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pulse",
+              "chip": "Fußpulse",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußpulse tastbar. ",
+              "abweichung": "Fußpulse {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "abgeschwächt tastbar",
+                    "nicht tastbar"
+                  ],
+                  "required": true
+                }
+              ],
+              "selten": true
+            }
+          ]
+        },
+        {
+          "id": "dgn-zehe-offen-roentgen",
+          "titel": "Röntgen Zehe (offene Fraktur)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Region",
+              "optionen": [
+                "Vorfuß",
+                "Großzehe",
+                "Zehen"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen: "
+            },
+            {
+              "art": "auswahl",
+              "id": "stellung",
+              "label": "Stellung",
+              "optionen": [
+                "Nicht verschobene",
+                "Gering verschobene",
+                "Verschobene"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "glied",
+              "label": "Glied",
+              "optionen": [
+                "Grundgliedfraktur",
+                "Mittelgliedfraktur",
+                "Endgliedfraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "zehe",
+              "label": "Zehe",
+              "optionen": [
+                "der Großzehe",
+                "der 2. Zehe",
+                "der 3. Zehe",
+                "der 4. Zehe",
+                "der 5. Zehe"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "gelenk",
+              "label": "Gelenkbeteiligung",
+              "optionen": [
+                ", ohne Gelenkbeteiligung",
+                ", mit Gelenkbeteiligung"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "fuge",
+              "label": "Wachstumsfuge beteiligt",
+              "an": false,
+              "text": ", Wachstumsfuge der Endgliedbasis {befund}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund der Wachstumsfuge",
+                  "optionen": [
+                    "",
+                    "erweitert",
+                    "verschoben",
+                    "erweitert und verschoben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "option",
+              "id": "fremdkoerper",
+              "label": "Kein röntgendichter Fremdkörper",
+              "an": false,
+              "text": " Kein röntgendichter Fremdkörper."
+            },
+            {
+              "art": "option",
+              "id": "weitere",
+              "label": "Weitere Fraktur",
+              "an": false,
+              "text": " Zusätzlich {stellung} {glied} {zehe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stellung",
+                  "label": "Stellung",
+                  "optionen": [
+                    "",
+                    "nicht verschobene",
+                    "gering verschobene",
+                    "verschobene"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "glied",
+                  "label": "Glied",
+                  "optionen": [
+                    "",
+                    "Grundgliedfraktur",
+                    "Mittelgliedfraktur",
+                    "Endgliedfraktur"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "zehe",
+                  "label": "Zehe",
+                  "optionen": [
+                    "",
+                    "der Großzehe",
+                    "der 2. Zehe",
+                    "der 3. Zehe",
+                    "der 4. Zehe",
+                    "der 5. Zehe"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "an": false,
+              "text": " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "th-zehe-offen-wunde",
+          "titel": "Offene Zehenfraktur: Wundversorgung, Nagel, Tetanus",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "betaeubung",
+              "label": "Betäubung",
+              "an": true,
+              "text": "Wundversorgung {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Betäubung",
+                  "optionen": [
+                    "",
+                    "in Leitungsanästhesie nach Oberst",
+                    "in Analgosedierung",
+                    "ohne Lokalanästhesie"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lokalanaesthetikum",
+              "label": "Lokalanästhetikum",
+              "an": false,
+              "text": "Lokalanästhetikum: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff und Menge",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "spuelung",
+              "label": "Desinfektion und Spülung",
+              "an": true,
+              "text": "Wunde desinfiziert und gespült."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "debridement",
+              "label": "Débridement",
+              "an": false,
+              "text": "Wundränder ausgeschnitten, avitales Gewebe entfernt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nagel",
+              "label": "Nagelplatte",
+              "an": false,
+              "text": "Nagelplatte {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Vorgehen",
+                  "optionen": [
+                    "",
+                    "entfernt",
+                    "entfernt, gereinigt und als Schiene unter den Nagelwall zurückgelegt",
+                    "belassen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nagelbett",
+              "label": "Naht des Nagelbetts",
+              "an": false,
+              "text": "Nagelbett mit {faden} genäht.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "faden",
+                  "label": "Faden",
+                  "optionen": [
+                    "",
+                    "resorbierbarem Faden",
+                    "nicht resorbierbarem Faden"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verschluss",
+              "label": "Wundverschluss",
+              "an": true,
+              "text": "Wunde {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wundverschluss",
+                  "optionen": [
+                    "",
+                    "mit Einzelknopfnähten adaptiert",
+                    "mit Klammerpflastern adaptiert",
+                    "offen belassen, kein Wundverschluss",
+                    "steril abgedeckt, Versorgung im Operationssaal"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Steriler Verband",
+              "an": true,
+              "text": "Steriler Verband angelegt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ab-erstgabe",
+              "label": "Erste Antibiotikagabe in der Notaufnahme",
+              "an": false,
+              "text": "Erste Gabe des Antibiotikums in der Notaufnahme: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Gabeweg",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "optionen": [
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "proc-zehe-offen-antibiotikum",
+          "titel": "Offene Zehenfraktur – Antibiotikum oder begründeter Verzicht (Pflicht)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "angabe",
+              "typ": "freitext",
+              "label": "Antibiotikum: Wirkstoff, Dosis und Dauer; bei Verzicht: Grund",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "antibiotikum",
+              "label": "Antibiotikum oder Verzicht",
+              "optionen": [
+                "Offene Fraktur: Antibiotikum",
+                "Offene Fraktur: kein Antibiotikum, weil"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "angabe"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "proc-zehe-offen-ambulant",
+          "titel": "Offene Zehenfraktur – Procedere: ambulant mit Wundkontrolle",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wundkontrolle",
+              "label": "Wundkontrolle",
+              "an": true,
+              "text": "Wundkontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 Tagen",
+                    "nach 2 bis 3 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in unserer Notaufnahme",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband trocken halten",
+              "an": true,
+              "text": "Verband bis zur Wundkontrolle belassen und trocken halten."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "faeden",
+              "label": "Fadenzug",
+              "an": false,
+              "text": "Fadenzug {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "nach 10 Tagen",
+                    "nach 12 bis 14 Tagen",
+                    "nach 14 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "resorbierbar",
+              "label": "Resorbierbares Nahtmaterial",
+              "an": false,
+              "text": "Resorbierbares Nahtmaterial, kein Fadenzug nötig."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Belastung des Fußes {seite}: {stufe} {schuh} {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung",
+                    "Entlastung an Unterarmgehstützen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "schuh",
+                  "label": "Schuh",
+                  "optionen": [
+                    "",
+                    "im Vorfußentlastungsschuh",
+                    "im Verbandschuh",
+                    "im festen Schuh mit steifer Sohle"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "bis zur Wundkontrolle",
+                    "für 2 Wochen",
+                    "für 3 Wochen",
+                    "für 4 Wochen",
+                    "für 6 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "zuegel",
+              "label": "Pflasterzügelverband",
+              "an": false,
+              "text": "Pflasterzügelverband an die Nachbarzehe für {dauer}, bei Lockerung erneuern.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "2 Wochen",
+                    "3 Wochen",
+                    "4 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle",
+              "an": true,
+              "text": "Röntgenkontrolle der Zehe {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "nach 1 Woche",
+                    "nach 2 Wochen",
+                    "nach 4 Wochen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kein-roentgen",
+              "label": "Keine Röntgenkontrolle",
+              "an": false,
+              "text": "Keine Röntgenkontrolle geplant, weil {grund}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "grund",
+                  "label": "Grund",
+                  "maxLen": 120,
+                  "required": true,
+                  "vorschlaege": [
+                    "die Fraktur nicht verschoben ist und das Gelenk nicht betrifft"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Hochlagerung, Kühlung",
+              "an": true,
+              "text": "Hochlagerung und Kühlung des Fußes {seite} in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (keine zusätzlichen Risikofaktoren).",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "an": false,
+              "text": "Medikamentöse Thromboseprophylaxe: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "default": 1,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schulsport",
+              "label": "Befreiung vom Schulsport",
+              "an": false,
+              "text": "Befreiung vom Schulsport {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 2 Wochen",
+                    "für 4 Wochen",
+                    "für 6 Wochen",
+                    "bis zur Freigabe in der Kontrolle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmender Rötung, Schwellung oder Überwärmung, Eiter oder übel riechendem Wundsekret, pochendem oder zunehmendem Schmerz, rotem Streifen am Fuß oder Bein, Fieber, Taubheitsgefühl, kalter, blasser oder blauer Zehe{thrombose}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "thrombose",
+                  "label": "Zeichen einer Thrombose",
+                  "optionen": [
+                    "",
+                    ", Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-zehe-offen-sprechstunde",
+          "titel": "Offene Zehenfraktur – Procedere: Vorstellung in der Sprechstunde zur Entscheidung über eine Operation",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sprechstunde",
+              "label": "Vorstellung zur Entscheidung über eine Operation",
+              "an": true,
+              "text": "Vorstellung in unserer Sprechstunde {wann} zur Entscheidung über eine Operation.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wundkontrolle",
+              "label": "Wundkontrolle",
+              "an": true,
+              "text": "Wundkontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "bei der Vorstellung in unserer Sprechstunde",
+                    "in unserer Notaufnahme",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband trocken halten",
+              "an": true,
+              "text": "Verband bis zur Wundkontrolle belassen und trocken halten."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "faeden",
+              "label": "Fadenzug",
+              "an": false,
+              "text": "Fadenzug {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "nach 10 Tagen",
+                    "nach 12 bis 14 Tagen",
+                    "nach 14 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "resorbierbar",
+              "label": "Resorbierbares Nahtmaterial",
+              "an": false,
+              "text": "Resorbierbares Nahtmaterial, kein Fadenzug nötig."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung bis zur Vorstellung",
+              "an": true,
+              "text": "Bis dahin Belastung des Fußes {seite}: {stufe} {schuh}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung",
+                    "Entlastung an Unterarmgehstützen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "schuh",
+                  "label": "Schuh",
+                  "optionen": [
+                    "",
+                    "im Vorfußentlastungsschuh",
+                    "im Verbandschuh",
+                    "im festen Schuh mit steifer Sohle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Hochlagerung, Kühlung",
+              "an": true,
+              "text": "Hochlagerung und Kühlung des Fußes {seite} in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmung bis zur Vorstellung",
+              "an": false,
+              "text": "Gerinnungshemmende Medikamente bis zur Vorstellung: {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Vorgehen",
+                  "optionen": [
+                    "",
+                    "unverändert weiter einnehmen",
+                    "Festlegung in der Sprechstunde"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (keine zusätzlichen Risikofaktoren).",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "an": false,
+              "text": "Medikamentöse Thromboseprophylaxe: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "default": 1,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmender Rötung, Schwellung oder Überwärmung, Eiter oder übel riechendem Wundsekret, pochendem oder zunehmendem Schmerz, rotem Streifen am Fuß oder Bein, Fieber, Taubheitsgefühl, kalter, blasser oder blauer Zehe{thrombose}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "thrombose",
+                  "label": "Zeichen einer Thrombose",
+                  "optionen": [
+                    "",
+                    ", Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-zehe-offen-aufnahme",
+          "titel": "Offene Zehenfraktur – Procedere: stationäre Aufnahme oder Verlegung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme oder Verlegung",
+              "an": true,
+              "text": "{wie} wegen der offenen Zehenfraktur {seite} {zweck}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Aufnahme oder Verlegung",
+                  "optionen": [
+                    "",
+                    "Stationäre Aufnahme",
+                    "Verlegung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "zweck",
+                  "label": "Zweck",
+                  "optionen": [
+                    "",
+                    "zur operativen Wundversorgung",
+                    "zur operativen Wundversorgung und Stabilisierung der Fraktur",
+                    "zur intravenösen Antibiotikatherapie und Wundbeobachtung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "klinik",
+              "label": "Aufnehmende Klinik",
+              "an": false,
+              "text": " Aufnehmende Klinik: {klinik}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Aufnehmende Klinik",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "grund",
+              "label": "Anlass der Aufnahme",
+              "an": false,
+              "text": "Anlass: {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Anlass",
+                  "optionen": [
+                    "",
+                    "ausgedehnter Weichteilschaden",
+                    "starke Verschmutzung der Wunde",
+                    "Störung der Durchblutung der Zehe",
+                    "Infektion der Wunde",
+                    "Beteiligung der Wachstumsfuge beim Kind",
+                    "häusliche Versorgung nicht gesichert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Hochlagerung bis zur Operation",
+              "an": false,
+              "text": "Bis zur Operation Hochlagerung des Fußes {seite} und steriler Verband."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern seit",
+              "an": false,
+              "text": "Nüchtern seit {zeit}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "zeit",
+                  "label": "Uhrzeit oder Angabe",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmung bis zur Operation",
+              "an": false,
+              "text": "Gerinnungshemmende Medikamente bis zur Operation: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, letzte Einnahme, Vorgehen",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,22 +1,23 @@
 import { render } from "preact";
 import { App } from "./ui/App.tsx";
-import "./theme.ts"; // initialisiert das Theme (System/Hell/Dunkel) beim Start
 import "./ui/styles.css";
 
-render(<App />, document.getElementById("app")!);
+const wurzel = document.getElementById("app")!;
+// Der Hinweis für veraltete Browser steht fest in der Seite und weicht der App.
+wurzel.textContent = "";
+render(<App />, wurzel);
 
-// Service Worker registrieren – nur im Produktions-Build (nicht im Dev-Modus,
-// wo er Vites HMR stören würde) und nicht über file://.
-if (
-  import.meta.env.PROD &&
-  "serviceWorker" in navigator &&
-  location.protocol.startsWith("http")
-) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register(`${import.meta.env.BASE_URL}sw.js`)
-      .catch(() => {
-        /* SW optional – App läuft auch ohne */
-      });
-  });
+// Die erste Fassung hat einen Dienstarbeiter mit Zwischenspeicher eingerichtet.
+// Diese Fassung braucht keinen; der alte würde veraltete Dateien ausliefern.
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker
+    .getRegistrations()
+    .then((liste) => liste.forEach((r) => r.unregister()))
+    .catch(() => {});
+}
+if ("caches" in window) {
+  caches
+    .keys()
+    .then((namen) => namen.filter((n) => n.startsWith("kitteltext")).forEach((n) => caches.delete(n)))
+    .catch(() => {});
 }

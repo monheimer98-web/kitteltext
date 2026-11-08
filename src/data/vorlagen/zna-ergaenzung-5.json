@@ -1,0 +1,306 @@
+{
+  "vorlagen": [
+    {
+      "id": "zna-muskelfaserriss-wade",
+      "titel": "Muskelfaserriss der Wade",
+      "suchbegriffe": [
+        "Muskelfaserriss Wade",
+        "Wadenzerrung",
+        "Zerrung Wade",
+        "Muskelzerrung",
+        "Muskelbündelriss",
+        "Wadenmuskel",
+        "Wadenschmerz",
+        "Tennis leg",
+        "Tennisbein",
+        "Gastrocnemius",
+        "Soleus",
+        "Muskelverletzung Unterschenkel",
+        "Peitschenschlag Wade"
+      ],
+      "kuerzel": [
+        "mfr"
+      ],
+      "region": "unterschenkel",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-muskelfaserriss-wade"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-bein-belastung",
+          "ana-muskel-bein"
+        ],
+        "befund": [
+          "bef-muskel-wade"
+        ],
+        "diagnostik": [
+          "dgn-muskel-wade-abgrenzung",
+          "dgn-muskel-labor"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Sonografie oder klinische Diagnose?",
+          "bausteine": [
+            "dgn-muskel-wade-sono",
+            "dgn-muskel-klinisch"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Weiterbehandlung, Abklärung offen, stationäre Aufnahme oder Thrombose nachgewiesen?",
+          "bausteine": [
+            "proc-muskel-wade",
+            "proc-muskel-wade-abklaerung",
+            "proc-muskel-bein-aufnahme",
+            "proc-muskel-wade-thrombose"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-muskel-wade/schwellung",
+        "bef-muskel-wade/ds",
+        "bef-muskel-wade/kompartment",
+        "bef-muskel-wade/dehnung",
+        "bef-muskel-wade/achilles",
+        "bef-muskel-wade/venen",
+        "bef-muskel-wade/kniekehle",
+        "bef-muskel-wade/gehen"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-muskel-bein/beginn"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Antritt habe es plötzlich in der Wade geknallt.",
+          "Beim Laufen habe es plötzlich in der Wade gezogen.",
+          "Bei einem Ausfallschritt sei plötzlich ein Schmerz in der Wade aufgetreten.",
+          "Beim Treppensteigen habe es plötzlich in der Wade gezogen."
+        ],
+        "ana-trauma/zeitpunkt": [
+          "heute",
+          "gestern",
+          "vor 2 Tagen",
+          "vor 3 Tagen",
+          "vor 1 Woche",
+          "kein umschriebenes Ereignis erinnerlich"
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 01.11.2026; Grundlage R2 (Skizze Z14) und Fachdurchsicht UB-21 bis UB-24; Praxiswissen ohne gelesene Leitlinie"
+    },
+    {
+      "id": "zna-muskelfaserriss-oberschenkel",
+      "titel": "Muskelfaserriss des Oberschenkels",
+      "suchbegriffe": [
+        "Muskelfaserriss Oberschenkel",
+        "Oberschenkelzerrung",
+        "Zerrung Oberschenkel",
+        "Muskelzerrung",
+        "Muskelbündelriss",
+        "ischiokrural",
+        "Hamstring",
+        "Adduktorenzerrung",
+        "Leistenzerrung",
+        "Quadrizeps",
+        "Rectus femoris",
+        "Biceps femoris",
+        "Muskelverletzung Oberschenkel",
+        "Apophysenausriss"
+      ],
+      "kuerzel": [
+        "mfr"
+      ],
+      "region": "huefte",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-muskelfaserriss-oberschenkel"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-bein-belastung",
+          "ana-muskel-bein"
+        ],
+        "befund": [
+          "bef-muskel-oberschenkel"
+        ],
+        "diagnostik": [
+          "dgn-muskel-labor"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Sonografie oder klinische Diagnose?",
+          "bausteine": [
+            "dgn-muskel-oberschenkel-sono",
+            "dgn-muskel-klinisch"
+          ]
+        },
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen (Ausriss, beim Jugendlichen Apophysenausriss) oder Verzicht?",
+          "bausteine": [
+            "dgn-muskel-oberschenkel-roentgen",
+            "dgn-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Weiterbehandlung, Verdacht auf Ausriss oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-muskel-oberschenkel",
+            "proc-muskel-oberschenkel-ausriss",
+            "proc-muskel-bein-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-muskel-oberschenkel/schwellung",
+        "bef-muskel-oberschenkel/ds",
+        "bef-muskel-oberschenkel/dehnung",
+        "bef-muskel-oberschenkel/kniestreckung",
+        "bef-muskel-oberschenkel/sitzbein",
+        "bef-muskel-oberschenkel/schambein",
+        "bef-muskel-oberschenkel/spina",
+        "bef-muskel-oberschenkel/kompartment",
+        "bef-muskel-oberschenkel/gehen",
+        "bef-muskel-oberschenkel/ischiadicus"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Sprint habe es plötzlich an der Rückseite des Oberschenkels gezogen.",
+          "Beim Schießen des Balls habe es plötzlich im vorderen Oberschenkel gezogen.",
+          "Bei einem Ausfallschritt zur Seite habe es plötzlich an der Innenseite des Oberschenkels gezogen.",
+          "Beim Antritt habe es plötzlich im Oberschenkel geknallt.",
+          "Beim Sport habe es plötzlich in der Muskulatur gezogen.",
+          "Beim Abfangen eines Sturzes habe es plötzlich oberhalb der Kniescheibe geknallt."
+        ],
+        "ana-trauma/zeitpunkt": [
+          "heute",
+          "gestern",
+          "vor 2 Tagen",
+          "vor 3 Tagen",
+          "vor 1 Woche",
+          "kein umschriebenes Ereignis erinnerlich"
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 01.11.2026; Grundlage R2 (Skizze Z14) und Fachdurchsicht UB-21 bis UB-24; Praxiswissen ohne gelesene Leitlinie"
+    },
+    {
+      "id": "zna-monarthritis",
+      "titel": "Akute Monarthritis, Gichtanfall (außer Knie)",
+      "suchbegriffe": [
+        "Gicht",
+        "Gichtanfall",
+        "Podagra",
+        "Monarthritis",
+        "Arthritis",
+        "Gelenkentzündung",
+        "Großzehe",
+        "Großzehengrundgelenk",
+        "Harnsäure",
+        "Pseudogicht",
+        "Chondrokalzinose",
+        "heißes Gelenk",
+        "septische Arthritis",
+        "Gelenkinfekt",
+        "Gelenkpunktion",
+        "Sprunggelenk Entzündung",
+        "Handgelenk Entzündung",
+        "Ellenbogen Entzündung"
+      ],
+      "kuerzel": [
+        "gicht"
+      ],
+      "region": "gelenke",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-monarthritis"
+        ],
+        "anamnese": [
+          "ana-beschwerden",
+          "ana-monarthritis"
+        ],
+        "befund": [
+          "bef-monarthritis"
+        ],
+        "diagnostik": [
+          "dgn-monarthritis-labor"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Punktion, Punktion ohne Punktat oder Verzicht mit Grund?",
+          "bausteine": [
+            "dgn-monarthritis-punktion",
+            "dgn-monarthritis-punktion-trocken",
+            "dgn-monarthritis-punktion-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-monarthritis-roentgen",
+            "dgn-monarthritis-roentgen-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Weiterbehandlung, stationäre Aufnahme oder Aufnahme abgelehnt?",
+          "bausteine": [
+            "proc-monarthritis",
+            "proc-monarthritis-aufnahme",
+            "proc-monarthritis-aufnahme-abgelehnt"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-monarthritis/haut",
+        "bef-monarthritis/roetung",
+        "bef-monarthritis/schwellung",
+        "bef-monarthritis/druckschmerz",
+        "bef-monarthritis/erguss",
+        "bef-monarthritis/bewegung",
+        "bef-monarthritis/temperatur"
+      ],
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Das Gelenk schmerze und sei geschwollen.",
+          "Der Schmerz habe plötzlich in der Nacht begonnen.",
+          "Schon eine leichte Berührung des Gelenks sei schmerzhaft.",
+          "Das Gelenk lasse sich wegen der Schmerzen kaum bewegen.",
+          "Wegen der Schmerzen sei das Gehen nur mit Mühe möglich."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 01.11.2026; Grundlage R2 (Skizze Z18) und Muster zna-kniegelenkerguss-punktion; Praxiswissen, Leitlinien nicht nachgelesen",
+      "vorgaben": {
+        "an": [
+          "dgn-monarthritis-labor/labor",
+          "dgn-monarthritis-labor/kreatinin",
+          "proc-monarthritis/kein-antibiotikum"
+        ]
+      }
+    }
+  ]
+}

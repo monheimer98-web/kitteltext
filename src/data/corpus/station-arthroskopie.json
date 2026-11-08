@@ -1,0 +1,4180 @@
+{
+  "regionen": [
+    {
+      "id": "knie",
+      "name": "Knie",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "dx-st-meniskus",
+          "titel": "Diagnose Meniskusriss (Station)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "form",
+              "label": "Rissform",
+              "optionen": [
+                "Riss",
+                "Längsriss",
+                "Korbhenkelriss",
+                "Lappenriss",
+                "Radiärriss",
+                "Horizontalriss",
+                "Komplexriss",
+                "Wurzelriss"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " des "
+            },
+            {
+              "art": "auswahl",
+              "id": "meniskus",
+              "label": "Meniskus",
+              "optionen": [
+                "Innenmeniskus",
+                "Außenmeniskus"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "ort",
+              "label": "Lage",
+              "optionen": [
+                "",
+                ", Hinterhorn",
+                ", Hinterhorn bis Pars intermedia",
+                ", Pars intermedia",
+                ", Vorderhorn",
+                ", Hinterhorn bis Vorderhorn",
+                ", Hinterhornwurzel"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "entstehung",
+              "label": "Entstehung",
+              "optionen": [
+                "",
+                ", traumatisch",
+                ", degenerativ"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "eingeklemmt",
+              "label": "Einklemmung mit Streckhemmung",
+              "text": ", mit Einklemmung und Streckhemmung"
+            },
+            {
+              "art": "option",
+              "id": "meniskus2",
+              "label": "Riss eines Meniskus (weitere Zeile)",
+              "text": "\n{form} des {meniskus} {seite}{ort}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "form",
+                  "label": "Rissform",
+                  "optionen": [
+                    "",
+                    "Riss",
+                    "Längsriss",
+                    "Korbhenkelriss",
+                    "Lappenriss",
+                    "Radiärriss",
+                    "Horizontalriss",
+                    "Komplexriss",
+                    "Wurzelriss",
+                    "Rampenläsion"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "meniskus",
+                  "label": "Meniskus",
+                  "optionen": [
+                    "",
+                    "Innenmeniskus",
+                    "Außenmeniskus"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Lage",
+                  "optionen": [
+                    "",
+                    ", Hinterhorn",
+                    ", Hinterhorn bis Pars intermedia",
+                    ", Pars intermedia",
+                    ", Vorderhorn",
+                    ", Hinterhorn bis Vorderhorn",
+                    ", Hinterhornwurzel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "knorpel",
+              "label": "Knorpelschaden",
+              "text": "\nKnorpelschaden {ort} {seite}{grad}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "am medialen Femurkondylus",
+                    "am lateralen Femurkondylus",
+                    "am medialen Tibiaplateau",
+                    "am lateralen Tibiaplateau",
+                    "retropatellar",
+                    "an der Trochlea"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Grad",
+                  "optionen": [
+                    "",
+                    " (Grad 1 nach Outerbridge)",
+                    " (Grad 2 nach Outerbridge)",
+                    " (Grad 3 nach Outerbridge)",
+                    " (Grad 4 nach Outerbridge)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "arthrose",
+              "label": "Gonarthrose",
+              "text": "\n{grad} Gonarthrose {seite}{betont}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    "Beginnende",
+                    "Mäßige"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "betont",
+                  "label": "Betonung",
+                  "optionen": [
+                    "",
+                    ", medial betont",
+                    ", lateral betont",
+                    ", retropatellar betont"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "innenband",
+              "label": "Läsion des Innenbands",
+              "text": "\nLäsion des Innenbands {seite}{grad}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Grad",
+                  "optionen": [
+                    "",
+                    " (Grad I)",
+                    " (Grad II)",
+                    " (Grad III)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "gelenkkoerper",
+              "label": "Freier Gelenkkörper",
+              "text": "\nFreier Gelenkkörper im Kniegelenk {seite}"
+            }
+          ]
+        },
+        {
+          "id": "dx-st-vkb",
+          "titel": "Diagnose vordere Kreuzbandruptur (Station)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Ruptur des vorderen Kreuzbands "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "ausmass",
+              "label": "Ausmaß",
+              "optionen": [
+                "",
+                ", vollständig",
+                ", teilweise mit Instabilität"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "alter",
+              "label": "Alter der Verletzung",
+              "optionen": [
+                "",
+                ", frisch",
+                ", veraltet"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", Sportunfall",
+                ", Arbeitsunfall",
+                ", Wegeunfall"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "meniskus2",
+              "label": "Riss eines Meniskus (weitere Zeile)",
+              "text": "\n{form} des {meniskus} {seite}{ort}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "form",
+                  "label": "Rissform",
+                  "optionen": [
+                    "",
+                    "Riss",
+                    "Längsriss",
+                    "Korbhenkelriss",
+                    "Lappenriss",
+                    "Radiärriss",
+                    "Horizontalriss",
+                    "Komplexriss",
+                    "Wurzelriss",
+                    "Rampenläsion"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "meniskus",
+                  "label": "Meniskus",
+                  "optionen": [
+                    "",
+                    "Innenmeniskus",
+                    "Außenmeniskus"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Lage",
+                  "optionen": [
+                    "",
+                    ", Hinterhorn",
+                    ", Hinterhorn bis Pars intermedia",
+                    ", Pars intermedia",
+                    ", Vorderhorn",
+                    ", Hinterhorn bis Vorderhorn",
+                    ", Hinterhornwurzel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "knorpel",
+              "label": "Knorpelschaden",
+              "text": "\nKnorpelschaden {ort} {seite}{grad}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "am medialen Femurkondylus",
+                    "am lateralen Femurkondylus",
+                    "am medialen Tibiaplateau",
+                    "am lateralen Tibiaplateau",
+                    "retropatellar",
+                    "an der Trochlea"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Grad",
+                  "optionen": [
+                    "",
+                    " (Grad 1 nach Outerbridge)",
+                    " (Grad 2 nach Outerbridge)",
+                    " (Grad 3 nach Outerbridge)",
+                    " (Grad 4 nach Outerbridge)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "arthrose",
+              "label": "Gonarthrose",
+              "text": "\n{grad} Gonarthrose {seite}{betont}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    "Beginnende",
+                    "Mäßige"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "betont",
+                  "label": "Betonung",
+                  "optionen": [
+                    "",
+                    ", medial betont",
+                    ", lateral betont",
+                    ", retropatellar betont"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "innenband",
+              "label": "Läsion des Innenbands",
+              "text": "\nLäsion des Innenbands {seite}{grad}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Grad",
+                  "optionen": [
+                    "",
+                    " (Grad I)",
+                    " (Grad II)",
+                    " (Grad III)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "gelenkkoerper",
+              "label": "Freier Gelenkkörper",
+              "text": "\nFreier Gelenkkörper im Kniegelenk {seite}"
+            }
+          ]
+        },
+        {
+          "id": "th-st-meniskus-resektion",
+          "titel": "Operation: Arthroskopie des Kniegelenks mit Meniskusteilresektion",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Arthroskopie des Kniegelenks "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " mit Teilresektion des "
+            },
+            {
+              "art": "auswahl",
+              "id": "meniskus",
+              "label": "Meniskus",
+              "optionen": [
+                "Innenmeniskus",
+                "Außenmeniskus",
+                "Innen- und Außenmeniskus"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "zusatz",
+              "label": "Zusätzlicher Eingriff",
+              "text": "\nZusätzlich {was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Eingriff",
+                  "optionen": [
+                    "",
+                    "Knorpelglättung",
+                    "Entfernung eines freien Gelenkkörpers",
+                    "Teilsynovektomie",
+                    "Resektion einer Plica mediopatellaris",
+                    "Knorpelglättung und Teilsynovektomie"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-st-meniskus-naht",
+          "titel": "Operation: Arthroskopie des Kniegelenks mit Meniskusnaht",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Arthroskopie des Kniegelenks "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " mit "
+            },
+            {
+              "art": "auswahl",
+              "id": "verfahren",
+              "label": "Verfahren",
+              "optionen": [
+                "Naht",
+                "transtibialer Refixation der Hinterhornwurzel"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " des "
+            },
+            {
+              "art": "auswahl",
+              "id": "meniskus",
+              "label": "Meniskus",
+              "optionen": [
+                "Innenmeniskus",
+                "Außenmeniskus"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "technik",
+              "label": "Technik",
+              "optionen": [
+                "",
+                " in All-inside-Technik",
+                " in Inside-out-Technik",
+                " in Outside-in-Technik",
+                " in kombinierter Technik"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "resektion",
+              "label": "Zusätzliche Teilresektion des anderen Meniskus",
+              "text": "\nZusätzlich Teilresektion des {meniskus}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "meniskus",
+                  "label": "Meniskus",
+                  "optionen": [
+                    "",
+                    "Innenmeniskus",
+                    "Außenmeniskus"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "zusatz",
+              "label": "Zusätzlicher Eingriff",
+              "text": "\nZusätzlich {was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Eingriff",
+                  "optionen": [
+                    "",
+                    "Knorpelglättung",
+                    "Entfernung eines freien Gelenkkörpers",
+                    "Teilsynovektomie",
+                    "Resektion einer Plica mediopatellaris",
+                    "Knorpelglättung und Teilsynovektomie"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-st-vkb-plastik",
+          "titel": "Operation: Ersatzplastik des vorderen Kreuzbands",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Arthroskopisch gestützte Ersatzplastik des vorderen Kreuzbands "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " mit "
+            },
+            {
+              "art": "auswahl",
+              "id": "transplantat",
+              "label": "Transplantat",
+              "optionen": [
+                "autologer Semitendinosussehne",
+                "autologer Semitendinosus- und Gracilissehne",
+                "autologer Quadrizepssehne",
+                "autologer Quadrizepssehne mit Knochenblock",
+                "autologem Transplantat aus dem mittleren Drittel der Patellarsehne mit Knochenblöcken"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "meniskus-naht",
+              "label": "Zusätzliche Meniskusnaht",
+              "text": "\nZusätzlich Naht des {meniskus}{technik}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "meniskus",
+                  "label": "Meniskus",
+                  "optionen": [
+                    "",
+                    "Innenmeniskus",
+                    "Außenmeniskus",
+                    "Innen- und Außenmeniskus"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "technik",
+                  "label": "Technik",
+                  "optionen": [
+                    "",
+                    " in All-inside-Technik",
+                    " in Inside-out-Technik",
+                    " in kombinierter Technik"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "meniskus-resektion",
+              "label": "Zusätzliche Meniskusteilresektion",
+              "text": "\nZusätzlich Teilresektion des {meniskus}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "meniskus",
+                  "label": "Meniskus",
+                  "optionen": [
+                    "",
+                    "Innenmeniskus",
+                    "Außenmeniskus",
+                    "Innen- und Außenmeniskus"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "tenodese",
+              "label": "Laterale extraartikuläre Tenodese",
+              "text": "\nZusätzlich laterale extraartikuläre Tenodese"
+            },
+            {
+              "art": "option",
+              "id": "zusatz",
+              "label": "Zusätzlicher Eingriff",
+              "text": "\nZusätzlich {was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Eingriff",
+                  "optionen": [
+                    "",
+                    "Knorpelglättung",
+                    "Entfernung eines freien Gelenkkörpers",
+                    "Teilsynovektomie",
+                    "Resektion einer Plica mediopatellaris",
+                    "Knorpelglättung und Teilsynovektomie"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ana-st-knie-arthroskopie",
+          "titel": "Anamnese Knie vor Arthroskopie: Zusatzangaben als Kurzzeilen",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "trauma",
+              "label": "Auslöser: Verdrehtrauma",
+              "text": "Auslöser: Verdrehtrauma {wann}{wobei}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann, z. B. vor 6 Wochen oder im März 2026",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wobei",
+                  "label": "Wobei",
+                  "optionen": [
+                    "",
+                    " beim Sport",
+                    " bei der Arbeit",
+                    " im Alltag"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ohne-unfall",
+              "label": "Auslöser: kein Unfall erinnerlich",
+              "text": "Auslöser: kein Unfall erinnerlich. "
+            },
+            {
+              "art": "option",
+              "id": "einklemmung",
+              "label": "Einklemmungen",
+              "text": "Einklemmungen: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Einklemmungen",
+                  "optionen": [
+                    "",
+                    "ja, mit vorübergehender Streckhemmung",
+                    "ja, mit anhaltender Streckhemmung",
+                    "nein"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "instabil",
+              "label": "Instabilität",
+              "text": "Instabilität: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Instabilität",
+                  "optionen": [
+                    "",
+                    "Wegknicken bei Drehbewegungen",
+                    "Wegknicken beim Sport",
+                    "Wegknicken auch im Alltag",
+                    "nein"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "schwellung",
+              "label": "Schwellneigung",
+              "text": "Schwellneigung: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Schwellneigung",
+                  "optionen": [
+                    "",
+                    "nach Belastung",
+                    "auch in Ruhe",
+                    "nein"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Sport",
+              "text": "Sport: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Sportart und Umfang, z. B. Fußball im Verein",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "beruf",
+              "label": "Beruf",
+              "text": "Beruf: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Beruf oder Tätigkeit",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "arbeitsunfall",
+              "label": "Arbeitsunfall",
+              "text": "Arbeitsunfall: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Arbeitsunfall",
+                  "optionen": [
+                    "",
+                    "ja, Behandlung zulasten der gesetzlichen Unfallversicherung",
+                    "nein"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "voroperation",
+              "label": "Frühere Operationen am Knie",
+              "text": "Frühere Operationen am Knie {seite}: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Welche, mit Jahr",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-st-knie-arthroskopie",
+          "titel": "Aufnahmebefund Knie vor Arthroskopie",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Knie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut",
+              "gruppe": "Inspektion",
+              "normal": "Haut im Operationsgebiet intakt und reizlos. ",
+              "abweichung": "{was} im Operationsgebiet. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Schürfwunde",
+                    "Hautrötung",
+                    "Hautinfektion",
+                    "Narbe nach früherer Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "entzuendung",
+              "chip": "Rötung, Überwärmung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, keine Überwärmung des Kniegelenks. ",
+              "abweichung": "{was} des Kniegelenks. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Überwärmung",
+                    "Rötung und Überwärmung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "erguss",
+              "chip": "Gelenkerguss",
+              "gruppe": "Palpation",
+              "normal": "Kein tastbarer Gelenkerguss. ",
+              "abweichung": "Tastbarer Gelenkerguss{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)",
+                    " (prall)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds-medial",
+              "chip": "DS medialer Gelenkspalt",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem medialen Gelenkspalt. ",
+              "abweichung": "Druckschmerz über dem medialen Gelenkspalt{wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    " dorsal",
+                    " ventral"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds-lateral",
+              "chip": "DS lateraler Gelenkspalt",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem lateralen Gelenkspalt. ",
+              "abweichung": "Druckschmerz über dem lateralen Gelenkspalt{wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    " dorsal",
+                    " ventral"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "retropatellar",
+              "chip": "Retropatellar",
+              "gruppe": "Palpation",
+              "normal": "Kein retropatellarer Druck- oder Verschiebeschmerz. ",
+              "abweichung": "Retropatellarer {was}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Druckschmerz",
+                    "Verschiebeschmerz",
+                    "Druck- und Verschiebeschmerz"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "extflex",
+              "label": "Extension/Flexion",
+              "vorlage": "Extension/Flexion {w}°. ",
+              "gruppe": "Beweglichkeit"
+            },
+            {
+              "art": "befund",
+              "id": "meniskuszeichen",
+              "chip": "Meniskuszeichen",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Meniskuszeichen",
+                  "optionen": [
+                    "",
+                    "Meniskuszeichen negativ",
+                    "Meniskuszeichen medial positiv",
+                    "Meniskuszeichen lateral positiv",
+                    "Meniskuszeichen medial und lateral positiv",
+                    "Meniskuszeichen schmerzbedingt nicht beurteilbar",
+                    "Federnde Streckhemmung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "lachman",
+              "chip": "Lachman-Test",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Lachman-Test",
+                  "optionen": [
+                    "",
+                    "Lachman-Test negativ mit festem Anschlag",
+                    "Lachman-Test positiv mit weichem Anschlag",
+                    "Lachman-Test positiv ohne Anschlag",
+                    "Lachman-Test nicht sicher beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pivot",
+              "chip": "Pivot-Shift-Test",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Pivot-Shift-Test",
+                  "optionen": [
+                    "",
+                    "Pivot-Shift-Test negativ",
+                    "Pivot-Shift-Test positiv",
+                    "Pivot-Shift-Test wegen Abwehrspannung nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schublade-hinten",
+              "chip": "Hintere Schublade",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Hintere Schublade",
+                  "optionen": [
+                    "",
+                    "Hintere Schublade negativ",
+                    "Hintere Schublade positiv"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "seitenbaender",
+              "chip": "Seitenbänder",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Seitenbänder",
+                  "optionen": [
+                    "",
+                    "Seitenbänder in Streckung und 30° Beugung stabil",
+                    "Mediale Aufklappbarkeit in 30° Beugung",
+                    "Mediale Aufklappbarkeit in Streckung und 30° Beugung",
+                    "Laterale Aufklappbarkeit in 30° Beugung",
+                    "Seitenbänder schmerzbedingt nicht sicher beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gang",
+              "chip": "Gangbild",
+              "gruppe": "Belastbarkeit",
+              "normal": "Gangbild flüssig ohne Hinken. ",
+              "abweichung": "{wie}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gangbild",
+                  "optionen": [
+                    "",
+                    "Schonhinken",
+                    "Gehen nur an Unterarmgehstützen",
+                    "Gehen mit gebeugtem Knie bei Streckhemmung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "pDMS",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität am Bein {seite} intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Wo",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-knie-bildgebung",
+          "titel": "Röntgen und MRT Knie vor Arthroskopie",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgen Knie",
+              "text": "Röntgen Knie {seite} {ebenen} {wann}: {befund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ebenen",
+                  "label": "Ebenen",
+                  "optionen": [
+                    "",
+                    "in 2 Ebenen",
+                    "in 2 Ebenen und Patella tangential",
+                    "in 2 Ebenen im Stehen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "vor der Aufnahme auswärts",
+                    "vor der Aufnahme in unserem Haus",
+                    "bei Aufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "keine knöcherne Verletzung, keine wesentlichen degenerativen Veränderungen",
+                    "geringe degenerative Veränderungen mit leichter Verschmälerung des Gelenkspalts",
+                    "knöcherner Ausriss am lateralen Tibiakopf (Segond-Fraktur)",
+                    "freier Gelenkkörper"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mrt",
+              "label": "MRT Knie",
+              "text": "\nMRT Knie {seite} {wann}: {befund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "vor der Aufnahme auswärts",
+                    "vor der Aufnahme in unserem Haus",
+                    "bei Aufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Riss des Meniskus wie unter Diagnosen beschrieben",
+                    "Ruptur des vorderen Kreuzbands wie unter Diagnosen beschrieben",
+                    "Ruptur des vorderen Kreuzbands und Riss des Meniskus wie unter Diagnosen beschrieben",
+                    "Ruptur des vorderen Kreuzbands, Knochenmarködem am lateralen Femurkondylus und am lateralen Tibiakopf"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-vkb-roentgen-postop",
+          "titel": "Röntgen Knie nach Kreuzbandplastik",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Knie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen nach der Operation: "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Ergebnis",
+              "optionen": [
+                "Bohrkanäle und Fixationsmaterial in regelrechter Lage.",
+                "Fixationsmaterial in regelrechter Lage, Bohrkanäle im Röntgen nicht sicher abgrenzbar.",
+                "kein röntgendichtes Fixationsmaterial, Bohrkanäle in regelrechter Lage."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-knie-arthroskopie",
+          "titel": "Arthroskopischer Befund Knie",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Arthroskopischer Befund Knie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "im",
+              "chip": "Innenmeniskus",
+              "gruppe": "Arthroskopie",
+              "normal": "Innenmeniskus intakt. ",
+              "abweichung": "Innenmeniskus: {befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Riss wie unter Diagnosen beschrieben",
+                    "Riss wie unter Diagnosen beschrieben, nicht nahtfähig",
+                    "Riss wie unter Diagnosen beschrieben, nahtfähig",
+                    "Auffaserung des freien Randes ohne instabilen Riss",
+                    "stabiler Riss, belassen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "am",
+              "chip": "Außenmeniskus",
+              "gruppe": "Arthroskopie",
+              "normal": "Außenmeniskus intakt. ",
+              "abweichung": "Außenmeniskus: {befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Riss wie unter Diagnosen beschrieben",
+                    "Riss wie unter Diagnosen beschrieben, nicht nahtfähig",
+                    "Riss wie unter Diagnosen beschrieben, nahtfähig",
+                    "Auffaserung des freien Randes ohne instabilen Riss",
+                    "stabiler Riss, belassen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knorpel",
+              "chip": "Knorpel",
+              "gruppe": "Arthroskopie",
+              "normal": "Knorpel in allen Gelenkabschnitten intakt. ",
+              "abweichung": "Knorpelschaden {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "am medialen Femurkondylus",
+                    "am lateralen Femurkondylus",
+                    "am medialen Tibiaplateau",
+                    "am lateralen Tibiaplateau",
+                    "retropatellar",
+                    "an der Trochlea",
+                    "medial femorotibial",
+                    "lateral femorotibial",
+                    "in mehreren Gelenkabschnitten"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Grad",
+                  "optionen": [
+                    "",
+                    " (Grad 1 nach Outerbridge)",
+                    " (Grad 2 nach Outerbridge)",
+                    " (Grad 3 nach Outerbridge)",
+                    " (Grad 4 nach Outerbridge)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kreuzbaender",
+              "chip": "Kreuzbänder",
+              "gruppe": "Arthroskopie",
+              "normal": "Vorderes und hinteres Kreuzband intakt. ",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Vorderes Kreuzband rupturiert, hinteres Kreuzband intakt",
+                    "Vorderes Kreuzband teilrupturiert, hinteres Kreuzband intakt",
+                    "Vorderes Kreuzband elongiert und insuffizient, hinteres Kreuzband intakt",
+                    "Hinteres Kreuzband verletzt, siehe Diagnosen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "synovia",
+              "chip": "Synovialis",
+              "gruppe": "Arthroskopie",
+              "normal": "Synovialis reizlos. ",
+              "abweichung": "{befund}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Synovialitis",
+                    "Hämarthros",
+                    "Synovialitis mit Gelenkerguss"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gelenkkoerper",
+              "chip": "Freier Gelenkkörper",
+              "gruppe": "Arthroskopie",
+              "normal": "",
+              "abweichung": "Nachweis eines freien Gelenkkörpers{wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    " im medialen Rezessus",
+                    " im lateralen Rezessus",
+                    " in der Fossa intercondylaris"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "verl-st-indikation-meniskus",
+          "titel": "Verlauf: Aufnahme und Indikation zur Meniskusoperation (Pflichtangabe)",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahmeweg",
+              "text": "Wir nahmen {person-akk} {anlass} stationär auf. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anlass",
+                  "label": "Aufnahmeweg",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "zur geplanten Operation",
+                    "über unsere Notaufnahme wegen einer Streckhemmung des Kniegelenks",
+                    "über unsere Notaufnahme nach einem Verdrehtrauma"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "text",
+              "text": "Die Indikation zur Operation bestand wegen "
+            },
+            {
+              "art": "auswahl",
+              "id": "indikation",
+              "label": "Indikation",
+              "optionen": [
+                "wiederholter Einklemmungen des Kniegelenks durch den Meniskusriss",
+                "einer Streckhemmung durch einen eingeklemmten Meniskusriss",
+                "anhaltender Schmerzen am Gelenkspalt mit passendem Riss im MRT trotz konservativer Behandlung",
+                "eines frischen traumatischen Meniskusrisses"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ". "
+            }
+          ]
+        },
+        {
+          "id": "verl-st-indikation-vkb",
+          "titel": "Verlauf: Aufnahme und Indikation zur vorderen Kreuzbandplastik (Pflichtangabe)",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahme zur geplanten Operation",
+              "text": "Wir nahmen {person-akk} zur geplanten Operation stationär auf. ",
+              "an": true
+            },
+            {
+              "art": "text",
+              "text": "Die Indikation zur Operation bestand wegen "
+            },
+            {
+              "art": "auswahl",
+              "id": "indikation",
+              "label": "Indikation",
+              "optionen": [
+                "wiederholten Wegknickens des Kniegelenks im Alltag",
+                "einer Instabilität des Kniegelenks bei sportlichem Anspruch mit Dreh- und Stoppbewegungen",
+                "einer Instabilität des Kniegelenks trotz konservativer Behandlung mit Physiotherapie",
+                "einer Instabilität des Kniegelenks mit begleitendem Meniskusriss"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ". "
+            }
+          ]
+        },
+        {
+          "id": "verl-st-knie-arthroskopie",
+          "titel": "Verlauf nach Arthroskopie des Kniegelenks: Mobilisation, Beweglichkeit, Erguss, Wunde",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "mobilisation",
+              "label": "Mobilisation",
+              "text": "{ab} mobilisierten wir {person-akk} mit Physiotherapie{hilfsmittel} unter {belastung} des Beins {seite}{orthese}{erreicht}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Beginn",
+                  "optionen": [
+                    "",
+                    "Ab dem Operationstag",
+                    "Ab dem 1. Tag nach der Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "hilfsmittel",
+                  "label": "Hilfsmittel",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen",
+                    " am Rollator"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "belastung",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Teilbelastung",
+                    "Minimalbelastung",
+                    "Entlastung",
+                    "Vollbelastung",
+                    "schmerzadaptierter Vollbelastung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "orthese",
+                  "label": "Orthese",
+                  "optionen": [
+                    "",
+                    " in der Knieorthese",
+                    " in der Knieorthese mit begrenzter Beugung",
+                    " in der in Streckstellung gesperrten Knieorthese"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "erreicht",
+                  "label": "Erreichte Mobilität",
+                  "optionen": [
+                    "",
+                    ", zuletzt selbstständig auf Stationsebene",
+                    ", zuletzt selbstständig auf Stationsebene und auf der Treppe"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "bewegung",
+              "label": "Bewegungsübungen",
+              "text": "Das Kniegelenk {seite} beübten wir {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wie",
+                  "optionen": [
+                    "",
+                    "aktiv und passiv ohne Bewegungsgrenze",
+                    "aktiv und passiv innerhalb der Bewegungsgrenze",
+                    "auf der Motorschiene und aktiv ohne Bewegungsgrenze",
+                    "auf der Motorschiene und aktiv innerhalb der Bewegungsgrenze"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "drainage",
+              "label": "Drainage entfernt",
+              "text": "Die Drainage entfernten wir {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "am Operationstag",
+                    "am 1. Tag nach der Operation",
+                    "am 2. Tag nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "punktion",
+              "label": "Punktion des Gelenkergusses",
+              "text": "Wegen eines Gelenkergusses punktierten wir das Kniegelenk {seite}{wann}, es entleerte sich {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    " am 1. Tag nach der Operation",
+                    " am 2. Tag nach der Operation",
+                    " am 3. Tag nach der Operation"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Punktat",
+                  "optionen": [
+                    "",
+                    "blutige Flüssigkeit",
+                    "klare, gelbliche Flüssigkeit"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wunde",
+              "label": "Wundheilung",
+              "text": "{wie} ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wundheilung",
+                  "optionen": [
+                    "",
+                    "Die Operationswunden heilten trocken und reizlos.",
+                    "Die Operationswunden sezernierten anfangs und waren bei Entlassung trocken."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-knie-arthroskopie",
+          "titel": "Entlassbefund Kniegelenk nach Arthroskopie: Erguss, Beweglichkeit",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Kniegelenk "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "erguss",
+              "chip": "Gelenkerguss",
+              "gruppe": "Palpation",
+              "normal": "Kein tastbarer Gelenkerguss. ",
+              "abweichung": "Gelenkerguss{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (mäßig)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "extflex",
+              "label": "Kniegelenk Extension/Flexion",
+              "vorlage": "Extension/Flexion {w}°. ",
+              "gruppe": "Beweglichkeit"
+            },
+            {
+              "art": "befund",
+              "id": "infrapatellar",
+              "chip": "Taubheit unterhalb der Kniescheibe",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "",
+              "abweichung": "Umschriebenes Taubheitsgefühl unterhalb der Kniescheibe im Versorgungsgebiet des Ramus infrapatellaris. "
+            }
+          ]
+        },
+        {
+          "id": "proc-st-meniskus-resektion",
+          "titel": "Nachbehandlung nach Meniskusteilresektion",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung bei Entlassung",
+              "text": "Belastung des Beins {seite} bei Entlassung: {stufe}. Gehen{gehhilfe}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Teilbelastung mit 20 kg",
+                    "Teilbelastung mit halbem Körpergewicht",
+                    "Schmerzadaptierte Vollbelastung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen im Dreipunktegang",
+                    " an Unterarmgehstützen, bis das Gehen ohne Hinken gelingt",
+                    " ohne Gehhilfe"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Kniegelenk "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "schema",
+              "label": "Nachbehandlung",
+              "optionen": [
+                "Weitere Nachbehandlung nach Maßgabe des Operateurs, siehe beigefügten Operationsbericht.",
+                "Nachbehandlung nach dem mitgegebenen Schema unserer Klinik.",
+                "Nachbehandlung nach den folgenden Punkten."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "steigerung",
+              "label": "Dauer und Steigerung der Belastung",
+              "text": "Belastung des Beins {seite} {verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Dauer und Steigerung",
+                  "optionen": [
+                    "",
+                    "zunächst wie bei Entlassung, nach Beschwerden Steigerung bis zur Vollbelastung am Ende der 2. Woche nach der Operation",
+                    "wie bei Entlassung bis zum Ende der 1. Woche nach der Operation, danach nach Beschwerden Steigerung bis zur Vollbelastung",
+                    "ohne Begrenzung, wie bei Entlassung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegung",
+              "label": "Einzeln: Bewegung des Kniegelenks",
+              "text": "Kniegelenk {seite}: {regel}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regel",
+                  "label": "Bewegung",
+                  "optionen": [
+                    "",
+                    "Bewegung im schmerzarmen Bereich ohne Bewegungsgrenze, Drehbewegungen unter Belastung bis zum Ende der 2. Woche nach der Operation vermeiden",
+                    "Bewegung im schmerzarmen Bereich ohne Bewegungsgrenze"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "motorschiene",
+              "label": "Einzeln: Motorschiene",
+              "text": "Bewegungsübungen des Kniegelenks {seite} auf der Motorschiene{dauer} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " bis zum Ende der 2. Woche nach der Operation"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "zu Hause, die Verordnung haben wir mitgegeben",
+                    "zu Hause, Verordnung durch die weiterbehandelnde Praxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Einzeln: Sport",
+              "text": "Sport {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Ab wann",
+                  "optionen": [
+                    "",
+                    "mit geringer Belastung des Kniegelenks frühestens ab dem 4. Monat, mit Sprüngen, Stopps und Drehbewegungen frühestens ab dem 6. Monat nach der Operation, jeweils erst nach bestandenem Funktionstest und ärztlicher Freigabe",
+                    "stufenweise nach Abklingen von Schwellung und Schmerz, mit Sprüngen, Stopps und Drehbewegungen frühestens ab der 7. Woche nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "arbeit",
+              "label": "Einzeln: Voraussichtliche Arbeitsfähigkeit",
+              "text": "Voraussichtliche Arbeitsfähigkeit: {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Arbeitsfähigkeit",
+                  "optionen": [
+                    "",
+                    "leichte Tätigkeit im Lauf der ersten 4 Wochen, mittelschwere Tätigkeit ab der 4. Woche, schwere Tätigkeit ab der 6. Woche nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-meniskus-naht",
+          "titel": "Nachbehandlung nach Meniskusnaht",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung bei Entlassung",
+              "text": "Belastung des Beins {seite} bei Entlassung: {stufe}. Gehen{gehhilfe}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Teilbelastung mit 10 kg",
+                    "Teilbelastung mit 15 kg",
+                    "Teilbelastung mit 20 kg",
+                    "Teilbelastung mit halbem Körpergewicht",
+                    "Minimalbelastung (Fuß mit dem Eigengewicht des Beins aufsetzen und abrollen)",
+                    "Entlastung",
+                    "Vollbelastung in der in Streckstellung gesperrten Knieorthese"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen im Dreipunktegang",
+                    " an Unterarmgehstützen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Kniegelenk "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "schema",
+              "label": "Nachbehandlung",
+              "optionen": [
+                "Weitere Nachbehandlung und Orthese nach Maßgabe des Operateurs, siehe beigefügten Operationsbericht.",
+                "Nachbehandlung nach dem mitgegebenen Schema unserer Klinik.",
+                "Nachbehandlung nach den folgenden Punkten."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "steigerung",
+              "label": "Dauer und Steigerung der Belastung",
+              "text": "Belastung des Beins {seite} {verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Dauer und Steigerung",
+                  "optionen": [
+                    "",
+                    "zunächst wie bei Entlassung, schrittweise Steigerung bis zur Vollbelastung in der Knieorthese am Ende der 6. Woche nach der Operation",
+                    "wie bei Entlassung bis zum Ende der 6. Woche nach der Operation, Vollbelastung ab der 7. Woche",
+                    "wie bei Entlassung bis zum Ende der 2. Woche nach der Operation, danach Vollbelastung in der in Streckstellung gesperrten Knieorthese",
+                    "wie bei Entlassung bis zum Ende der 6. Woche nach der Operation, danach Belastung auch ohne Sperre der Knieorthese"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegung",
+              "label": "Bewegung des Kniegelenks",
+              "text": "Kniegelenk {seite}: {regel}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regel",
+                  "label": "Bewegung",
+                  "optionen": [
+                    "",
+                    "Streckung frei, Beugung bis 90° bis zum Ende der 6. Woche nach der Operation, danach schrittweise Steigerung bis zur freien Beweglichkeit am Ende der 12. Woche",
+                    "Streckung frei, Beugung bis 60° bis zum Ende der 6. Woche nach der Operation, danach schrittweise Steigerung bis zur freien Beweglichkeit am Ende der 12. Woche",
+                    "Streckung frei, Beugung bis 60° bis zum Ende der 2. Woche, bis 90° bis zum Ende der 6. Woche nach der Operation, danach schrittweise Steigerung bis zur freien Beweglichkeit am Ende der 12. Woche",
+                    "Bewegung im schmerzarmen Bereich ohne Bewegungsgrenze, für diese Rissform vom Operateur so festgelegt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hocke",
+              "label": "Einzeln: Keine tiefe Hocke",
+              "text": "Keine tiefe Hocke und keine Beugung über 90° unter Belastung {bis}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "bis",
+                  "label": "Bis",
+                  "optionen": [
+                    "",
+                    "bis zum Ende der 12. Woche nach der Operation",
+                    "bis zum Ende der 16. Woche nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Einzeln: Knieorthese",
+              "text": "Knieorthese {seite}: {wann}, {dauer}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Tragen",
+                  "optionen": [
+                    "",
+                    "beim Gehen und nachts tragen",
+                    "beim Gehen tragen",
+                    "Tag und Nacht tragen, zur Körperpflege und für die Übungen abnehmen",
+                    "in Streckstellung gesperrt beim Gehen, nachts und außerhalb der Übungen tragen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "bis zum Ende der 6. Woche nach der Operation",
+                    "solange die Belastung begrenzt ist",
+                    "bis zum Ende der 12. Woche nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "motorschiene",
+              "label": "Einzeln: Motorschiene",
+              "text": "Bewegungsübungen des Kniegelenks {seite} auf der Motorschiene innerhalb der Bewegungsgrenze {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "zu Hause, die Verordnung haben wir mitgegeben",
+                    "zu Hause, Verordnung durch die weiterbehandelnde Praxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Einzeln: Sport",
+              "text": "Sport {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Ab wann",
+                  "optionen": [
+                    "",
+                    "mit geringer Belastung des Kniegelenks frühestens ab dem 6. Monat, mit Sprüngen, Stopps und Drehbewegungen frühestens ab dem 9. Monat nach der Operation, jeweils erst nach bestandenem Funktionstest und ärztlicher Freigabe"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "arbeit",
+              "label": "Einzeln: Voraussichtliche Arbeitsfähigkeit",
+              "text": "Voraussichtliche Arbeitsfähigkeit: {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Arbeitsfähigkeit",
+                  "optionen": [
+                    "",
+                    "leichte Tätigkeit im Lauf der ersten 12 Wochen, mittelschwere bis schwere Tätigkeit im Lauf der ersten 16 Wochen nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-vkb-plastik",
+          "titel": "Nachbehandlung nach vorderer Kreuzbandplastik",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung bei Entlassung",
+              "text": "Belastung des Beins {seite} bei Entlassung: {stufe}. Gehen{gehhilfe}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Teilbelastung mit 10 kg",
+                    "Teilbelastung mit 15 kg",
+                    "Teilbelastung mit 20 kg",
+                    "Teilbelastung mit halbem Körpergewicht",
+                    "Minimalbelastung (Fuß mit dem Eigengewicht des Beins aufsetzen und abrollen)",
+                    "Schmerzadaptierte Vollbelastung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen im Dreipunktegang",
+                    " an Unterarmgehstützen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Kniegelenk "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "schema",
+              "label": "Nachbehandlung",
+              "optionen": [
+                "Bewegungsgrenzen und Orthese nach Maßgabe des Operateurs, siehe beigefügten Operationsbericht.",
+                "Nachbehandlung nach dem mitgegebenen Schema unserer Klinik.",
+                "Nachbehandlung nach den folgenden Punkten."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "steigerung",
+              "label": "Dauer und Steigerung der Belastung",
+              "text": "Belastung des Beins {seite} {verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Dauer und Steigerung",
+                  "optionen": [
+                    "",
+                    "zunächst wie bei Entlassung, schrittweise Steigerung bis zur Vollbelastung am Ende der 4. Woche nach der Operation",
+                    "zunächst wie bei Entlassung, schrittweise Steigerung bis zur Vollbelastung am Ende der 2. Woche nach der Operation",
+                    "wegen der zusätzlichen Meniskusnaht wie bei Entlassung bis zum Ende der 6. Woche nach der Operation, danach Steigerung bis zur Vollbelastung",
+                    "ohne Begrenzung, wie bei Entlassung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegung",
+              "label": "Einzeln: Bewegung des Kniegelenks",
+              "text": "Kniegelenk {seite}: {regel}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regel",
+                  "label": "Bewegung",
+                  "optionen": [
+                    "",
+                    "Streckung frei, Beugung bis 90° bis zum Ende der 2. Woche nach der Operation, danach schrittweise Steigerung bis zur freien Beweglichkeit am Ende der 6. Woche",
+                    "Bewegung im schmerzarmen Bereich ohne Bewegungsgrenze, volle Streckung von Beginn an üben",
+                    "Streckung frei, wegen der zusätzlichen Meniskusnaht Beugung bis 90° bis zum Ende der 6. Woche nach der Operation, danach schrittweise Steigerung bis zur freien Beweglichkeit am Ende der 12. Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Einzeln: Knieorthese",
+              "text": "Knieorthese {seite}: {wann}, {dauer}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Tragen",
+                  "optionen": [
+                    "",
+                    "beim Gehen und nachts tragen",
+                    "beim Gehen tragen",
+                    "Tag und Nacht tragen, zur Körperpflege und für die Übungen abnehmen",
+                    "nachts in Streckstellung tragen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "bis zum Ende der 2. Woche nach der Operation",
+                    "bis zum Ende der 6. Woche nach der Operation",
+                    "solange die Belastung begrenzt ist"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "motorschiene",
+              "label": "Einzeln: Motorschiene",
+              "text": "Bewegungsübungen des Kniegelenks {seite} auf der Motorschiene {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "zu Hause, die Verordnung haben wir mitgegeben",
+                    "zu Hause, Verordnung durch die weiterbehandelnde Praxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Einzeln: Sport",
+              "text": "Sport {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Ab wann",
+                  "optionen": [
+                    "",
+                    "mit geringer Belastung des Kniegelenks frühestens ab dem 6. Monat, mit Sprüngen, Stopps und Drehbewegungen frühestens ab dem 12. Monat nach der Operation, jeweils erst nach bestandenem Funktionstest und ärztlicher Freigabe"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "arbeit",
+              "label": "Einzeln: Voraussichtliche Arbeitsfähigkeit",
+              "text": "Voraussichtliche Arbeitsfähigkeit: {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Arbeitsfähigkeit",
+                  "optionen": [
+                    "",
+                    "leichte Tätigkeit im Lauf der ersten 12 Wochen, mittelschwere bis schwere Tätigkeit im Lauf der ersten 16 Wochen nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-arthroskopie-knie",
+          "titel": "Thromboseprophylaxe nach Arthroskopie des Kniegelenks",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung und bis zur Abnahme der Orthese. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung und der freien Beweglichkeit des Kniegelenks. Wirkstoff und Dosis siehe Medikation.",
+                "Vorbestehende Antikoagulation in therapeutischer Dosis fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe nach der Entlassung: Vollbelastung erreicht, keine Ruhigstellung, keine zusätzlichen Risikofaktoren.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Kontrolle der Thrombozytenzahl",
+              "text": " Kontrolle der Thrombozytenzahl {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche",
+                    "1 Woche nach der Entlassung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann, z. B. am 2. Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-arthroskopie-knie-meniskusnaht",
+          "titel": "Thromboseprophylaxe nach Arthroskopie des Kniegelenks (Meniskusnaht)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung und bis zur Abnahme der Orthese. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung und der freien Beweglichkeit des Kniegelenks. Wirkstoff und Dosis siehe Medikation.",
+                "Vorbestehende Antikoagulation in therapeutischer Dosis fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Kontrolle der Thrombozytenzahl",
+              "text": " Kontrolle der Thrombozytenzahl {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche",
+                    "1 Woche nach der Entlassung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann, z. B. am 2. Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-sicherheitsnetz-arthroskopie-knie",
+          "titel": "Wiedervorstellung bei Warnzeichen (Arthroskopie des Kniegelenks, ohne oder mit Orthese)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "",
+                    "Rötung, Schwellung oder Nässen der Wunden, Fieber über 38,5 °C, zunehmender Schwellung, Überwärmung oder zunehmenden Schmerzen im Kniegelenk trotz Schmerzmitteln, neuem Taubheitsgefühl oder Kribbeln an Unterschenkel oder Fuß, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "Rötung, Schwellung oder Nässen der Wunden, Fieber über 38,5 °C, zunehmender Schwellung, Überwärmung oder zunehmenden Schmerzen im Kniegelenk trotz Schmerzmitteln, neuem Taubheitsgefühl oder Kribbeln an Unterschenkel oder Fuß, Druckstellen unter der Orthese, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": "Die Warnzeichen haben wir mit {person-dat} besprochen. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "merkblatt",
+              "label": "Merkblatt mitgegeben",
+              "text": "Ein Merkblatt haben wir mitgegeben. "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "schulter",
+      "name": "Schultergürtel",
+      "kuerzel": "💪",
+      "bausteine": [
+        {
+          "id": "dx-st-rm",
+          "titel": "Diagnose Rotatorenmanschettenruptur (Station)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "sehnen",
+              "label": "Sehnen",
+              "optionen": [
+                "Ruptur der Supraspinatussehne",
+                "Ruptur der Supraspinatus- und Infraspinatussehne",
+                "Ruptur der Subscapularissehne",
+                "Ruptur der Supraspinatus- und Subscapularissehne",
+                "Ruptur der Supraspinatus-, Infraspinatus- und Subscapularissehne"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "ausmass",
+              "label": "Ausmaß",
+              "optionen": [
+                ", komplett",
+                ", gelenkseitig partiell",
+                ", bursaseitig partiell"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "retraktion",
+              "label": "Retraktion",
+              "optionen": [
+                "",
+                ", Retraktion Grad 1 nach Patte",
+                ", Retraktion Grad 2 nach Patte",
+                ", Retraktion Grad 3 nach Patte"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "entstehung",
+              "label": "Entstehung",
+              "optionen": [
+                "",
+                ", traumatisch",
+                ", degenerativ"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "bizeps",
+              "label": "Lange Bizepssehne",
+              "text": "\n{was} der langen Bizepssehne {seite}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Tendinitis",
+                    "Teilruptur",
+                    "Instabilität",
+                    "Ruptur"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "engpass",
+              "label": "Subakromiales Engpasssyndrom",
+              "text": "\nSubakromiales Engpasssyndrom {seite}"
+            },
+            {
+              "art": "option",
+              "id": "ac",
+              "label": "Arthrose des Schultereckgelenks",
+              "text": "\nArthrose des Schultereckgelenks {seite}"
+            }
+          ]
+        },
+        {
+          "id": "th-st-rm-naht",
+          "titel": "Operation: Arthroskopische Refixation der Rotatorenmanschette",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "verfahren",
+              "label": "Verfahren",
+              "optionen": [
+                "Arthroskopische Refixation",
+                "Arthroskopische Teilrefixation"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " der "
+            },
+            {
+              "art": "auswahl",
+              "id": "sehnen",
+              "label": "Sehnen",
+              "optionen": [
+                "Supraspinatussehne",
+                "Supraspinatus- und Infraspinatussehne",
+                "Subscapularissehne",
+                "Supraspinatus- und Subscapularissehne",
+                "Supraspinatus-, Infraspinatus- und Subscapularissehne"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " mit Fadenankern"
+            },
+            {
+              "art": "auswahl",
+              "id": "technik",
+              "label": "Technik",
+              "optionen": [
+                "",
+                " in einreihiger Technik",
+                " in zweireihiger Technik"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "dekompression",
+              "label": "Subakromiale Dekompression",
+              "text": "\nSubakromiale Dekompression mit Bursektomie und Akromioplastik"
+            },
+            {
+              "art": "option",
+              "id": "bizeps",
+              "label": "Tenotomie oder Tenodese der langen Bizepssehne",
+              "text": "\n{was} der langen Bizepssehne",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Eingriff",
+                  "optionen": [
+                    "",
+                    "Tenotomie",
+                    "Tenodese"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ac",
+              "label": "Resektion des Schultereckgelenks",
+              "text": "\nResektion des lateralen Klavikulaendes"
+            },
+            {
+              "art": "option",
+              "id": "zusatz",
+              "label": "Zusätzlicher Eingriff",
+              "text": "\nZusätzlich {was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Eingriff",
+                  "optionen": [
+                    "",
+                    "Knorpelglättung",
+                    "Teilsynovektomie",
+                    "Entfernung eines Kalkdepots"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ana-st-schulter-arthroskopie",
+          "titel": "Anamnese Schulter vor Arthroskopie: Zusatzangaben als Kurzzeilen",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "ausloeser",
+              "label": "Auslöser: Unfall",
+              "text": "Auslöser: {was} {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Auslöser",
+                  "optionen": [
+                    "",
+                    "Sturz auf den Arm",
+                    "Sturz auf die Schulter",
+                    "Verheben",
+                    "ruckartige Bewegung des Arms"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann, z. B. vor 3 Monaten oder im Mai 2026",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ohne-unfall",
+              "label": "Auslöser: kein Unfall erinnerlich",
+              "text": "Auslöser: kein Unfall erinnerlich. "
+            },
+            {
+              "art": "option",
+              "id": "nacht",
+              "label": "Nachtschmerz",
+              "text": "Nachtschmerz: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Nachtschmerz",
+                  "optionen": [
+                    "",
+                    "ja, Liegen auf der Schulter nicht möglich",
+                    "nein"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kraft",
+              "label": "Kraftminderung",
+              "text": "Kraftminderung: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Kraftminderung",
+                  "optionen": [
+                    "",
+                    "beim Heben des Arms über die Waagerechte",
+                    "beim Drehen des Arms nach außen",
+                    "nein"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Sport",
+              "text": "Sport: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Sportart und Umfang",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "beruf",
+              "label": "Beruf",
+              "text": "Beruf: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Beruf oder Tätigkeit, z. B. Arbeit über Kopf",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "arbeitsunfall",
+              "label": "Arbeitsunfall",
+              "text": "Arbeitsunfall: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Arbeitsunfall",
+                  "optionen": [
+                    "",
+                    "ja, Behandlung zulasten der gesetzlichen Unfallversicherung",
+                    "nein"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "voroperation",
+              "label": "Frühere Operationen an der Schulter",
+              "text": "Frühere Operationen an der Schulter {seite}: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Welche, mit Jahr",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-st-schulter-rm",
+          "titel": "Aufnahmebefund Schulter vor Rekonstruktion der Rotatorenmanschette",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Schulter "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut",
+              "gruppe": "Inspektion",
+              "normal": "Haut im Operationsgebiet intakt und reizlos. ",
+              "abweichung": "{was} im Operationsgebiet. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Schürfwunde",
+                    "Hautrötung",
+                    "Hautinfektion",
+                    "Narbe nach früherer Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "atrophie",
+              "chip": "Muskelatrophie",
+              "gruppe": "Inspektion",
+              "normal": "Keine Muskelatrophie über dem Schulterblatt. ",
+              "abweichung": "Muskelatrophie {wo}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "über der Fossa supraspinata",
+                    "über der Fossa infraspinata",
+                    "über der Fossa supraspinata und infraspinata"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds",
+              "chip": "Druckschmerz Tuberculum",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Tuberculum majus. ",
+              "abweichung": "Druckschmerz über {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "dem Tuberculum majus",
+                    "dem Tuberculum minus",
+                    "dem Tuberculum majus und dem Sulcus bicipitalis"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ac",
+              "chip": "Schultereckgelenk",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Schultereckgelenk. ",
+              "abweichung": "Druckschmerz über dem Schultereckgelenk{grad}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "beweglichkeit",
+              "chip": "Aktiv und passiv",
+              "gruppe": "Beweglichkeit",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Beweglichkeit",
+                  "optionen": [
+                    "",
+                    "Aktive und passive Beweglichkeit frei",
+                    "Passive Beweglichkeit frei, aktive Beweglichkeit schmerzhaft eingeschränkt",
+                    "Passive Beweglichkeit frei, aktive Abduktion und Anteversion kraftgemindert",
+                    "Aktive und passive Beweglichkeit eingeschränkt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "abdadd",
+              "label": "Abduktion/Adduktion",
+              "vorlage": "Abduktion/Adduktion {w}°. ",
+              "gruppe": "Beweglichkeit"
+            },
+            {
+              "art": "messwert",
+              "id": "anteretro",
+              "label": "Anteversion/Retroversion",
+              "vorlage": "Anteversion/Retroversion {w}°. ",
+              "gruppe": "Beweglichkeit"
+            },
+            {
+              "art": "messwert",
+              "id": "rotation",
+              "label": "Außenrotation/Innenrotation",
+              "vorlage": "Außenrotation/Innenrotation {w}°. ",
+              "gruppe": "Beweglichkeit"
+            },
+            {
+              "art": "befund",
+              "id": "jobe",
+              "chip": "Jobe-Test",
+              "gruppe": "Tests",
+              "normal": "Jobe-Test kraftvoll und schmerzfrei. ",
+              "abweichung": "Jobe-Test {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "abgeschwächt",
+                    "schmerzhaft",
+                    "abgeschwächt und schmerzhaft",
+                    "schmerzbedingt nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "aussenrotation",
+              "chip": "Außenrotation gegen Widerstand",
+              "gruppe": "Tests",
+              "normal": "Außenrotation gegen Widerstand kraftvoll. ",
+              "abweichung": "Außenrotation gegen Widerstand {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "abgeschwächt",
+                    "abgeschwächt, Außenrotations-Lag-Zeichen positiv",
+                    "schmerzhaft",
+                    "schmerzbedingt nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "subscapularis",
+              "chip": "Subscapularis-Tests",
+              "gruppe": "Tests",
+              "normal": "Belly-Press-Test kraftvoll. ",
+              "abweichung": "{test} {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "test",
+                  "label": "Test",
+                  "optionen": [
+                    "",
+                    "Belly-Press-Test",
+                    "Lift-off-Test",
+                    "Belly-Press-Test und Lift-off-Test"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "abgeschwächt",
+                    "schmerzbedingt nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "impingement",
+              "chip": "Impingement-Zeichen",
+              "gruppe": "Tests",
+              "normal": "Impingement-Zeichen nach Neer und Hawkins negativ. ",
+              "abweichung": "Impingement-Zeichen {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "nach Neer positiv",
+                    "nach Hawkins positiv",
+                    "nach Neer und Hawkins positiv"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bizeps",
+              "chip": "Lange Bizepssehne",
+              "gruppe": "Tests",
+              "normal": "Kein Druckschmerz über dem Sulcus bicipitalis, Palm-up-Test negativ. ",
+              "abweichung": "{was}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Druckschmerz über dem Sulcus bicipitalis",
+                    "Palm-up-Test positiv",
+                    "Druckschmerz über dem Sulcus bicipitalis, Palm-up-Test positiv"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "pDMS",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität an Arm und Hand {seite} intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Wo",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-schulter-bildgebung",
+          "titel": "Röntgen, MRT und Sonografie Schulter vor Arthroskopie",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgen Schulter",
+              "text": "Röntgen Schulter {seite} {ebenen} {wann}: {befund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ebenen",
+                  "label": "Ebenen",
+                  "optionen": [
+                    "",
+                    "in 2 Ebenen",
+                    "in 3 Ebenen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "vor der Aufnahme auswärts",
+                    "vor der Aufnahme in unserem Haus",
+                    "bei Aufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Humeruskopf zentriert, Abstand zum Schulterdach nicht verschmälert, keine Arthrose",
+                    "Humeruskopfhochstand mit verschmälertem Abstand zum Schulterdach",
+                    "Sporn an der Unterfläche des Akromions",
+                    "Arthrose des Schultereckgelenks",
+                    "Kalkdepot in Projektion auf die Rotatorenmanschette"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mrt",
+              "label": "MRT Schulter",
+              "text": "\nMRT Schulter {seite} {wann}: {befund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "vor der Aufnahme auswärts",
+                    "vor der Aufnahme in unserem Haus",
+                    "bei Aufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Ruptur wie unter Diagnosen beschrieben",
+                    "Ruptur wie unter Diagnosen beschrieben, fettige Degeneration der Muskulatur Grad 0 bis 1 nach Goutallier",
+                    "Ruptur wie unter Diagnosen beschrieben, fettige Degeneration der Muskulatur Grad 2 nach Goutallier",
+                    "Ruptur wie unter Diagnosen beschrieben, fettige Degeneration der Muskulatur Grad 3 bis 4 nach Goutallier"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sono",
+              "label": "Sonografie Schulter",
+              "text": "\nSonografie Schulter {seite} {wann}: {befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "vor der Aufnahme auswärts",
+                    "vor der Aufnahme in unserem Haus",
+                    "bei Aufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Ruptur wie unter Diagnosen beschrieben",
+                    "Verdacht auf Ruptur der Rotatorenmanschette"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-schulter-arthroskopie",
+          "titel": "Arthroskopischer Befund Schulter",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Arthroskopischer Befund Schulter "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "rm",
+              "chip": "Rotatorenmanschette",
+              "gruppe": "Arthroskopie",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Ruptur der Rotatorenmanschette wie unter Diagnosen beschrieben, spannungsfrei refixierbar",
+                    "Ruptur der Rotatorenmanschette wie unter Diagnosen beschrieben, nur unter Spannung refixierbar",
+                    "Ruptur der Rotatorenmanschette wie unter Diagnosen beschrieben, nur teilweise refixierbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "lbs",
+              "chip": "Lange Bizepssehne",
+              "gruppe": "Arthroskopie",
+              "normal": "Lange Bizepssehne intakt und stabil im Sulcus. ",
+              "abweichung": "Lange Bizepssehne {befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "aufgefasert",
+                    "teilrupturiert",
+                    "instabil",
+                    "rupturiert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knorpel",
+              "chip": "Knorpel",
+              "gruppe": "Arthroskopie",
+              "normal": "Knorpel an Humeruskopf und Glenoid intakt. ",
+              "abweichung": "Knorpelschaden {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "am Humeruskopf",
+                    "am Glenoid",
+                    "an Humeruskopf und Glenoid"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Grad",
+                  "optionen": [
+                    "",
+                    " (Grad 1 nach Outerbridge)",
+                    " (Grad 2 nach Outerbridge)",
+                    " (Grad 3 nach Outerbridge)",
+                    " (Grad 4 nach Outerbridge)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "labrum",
+              "chip": "Labrum",
+              "gruppe": "Arthroskopie",
+              "normal": "Labrum intakt. ",
+              "abweichung": "Labrum {befund}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "degenerativ aufgefasert",
+                    "am Bizepsanker abgelöst"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "subakromial",
+              "chip": "Subakromialraum",
+              "gruppe": "Arthroskopie",
+              "normal": "Keine Bursitis subacromialis. ",
+              "abweichung": "{befund}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Bursitis subacromialis",
+                    "Bursitis subacromialis und Sporn an der Unterfläche des Akromions"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "verl-st-indikation-rm",
+          "titel": "Verlauf: Aufnahme und Indikation zur Naht der Rotatorenmanschette (Pflichtangabe)",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahme zur geplanten Operation",
+              "text": "Wir nahmen {person-akk} zur geplanten Operation stationär auf. ",
+              "an": true
+            },
+            {
+              "art": "text",
+              "text": "Die Indikation zur Operation bestand wegen "
+            },
+            {
+              "art": "auswahl",
+              "id": "indikation",
+              "label": "Indikation",
+              "optionen": [
+                "anhaltender Schmerzen und Kraftminderung der Schulter trotz konservativer Behandlung",
+                "einer frischen traumatischen Ruptur mit Kraftminderung",
+                "einer Ruptur mit Kraftminderung bei hohem funktionellem Anspruch"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ". "
+            }
+          ]
+        },
+        {
+          "id": "verl-st-schulter-arthroskopie",
+          "titel": "Verlauf nach Arthroskopie der Schulter: Ruhigstellung, Übungen, Regionalanästhesie, Wunde",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "text": "Die Schulter {seite} stellten wir {worin} ruhig. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "worin",
+                  "label": "Worin",
+                  "optionen": [
+                    "",
+                    "auf einem Schulterabduktionskissen",
+                    "in einer Schulterorthese",
+                    "in einer Armschlinge"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "uebungen",
+              "label": "Übungen",
+              "text": "{ab} beübten wir die Schulter {seite} mit Physiotherapie {wie}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Beginn",
+                  "optionen": [
+                    "",
+                    "Ab dem Operationstag",
+                    "Ab dem 1. Tag nach der Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wie",
+                  "optionen": [
+                    "",
+                    "passiv innerhalb der Bewegungsgrenzen",
+                    "passiv innerhalb der Bewegungsgrenzen und mit Pendelübungen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "regional",
+              "label": "Nach Regionalanästhesie",
+              "text": "Nach Abklingen der Regionalanästhesie {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "waren Motorik und Sensibilität an Arm und Hand vollständig zurückgekehrt",
+                    "bestand eine Störung von Motorik oder Sensibilität, Befund bei Entlassung siehe Entlassbefund"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wunde",
+              "label": "Wundheilung",
+              "text": "{wie} ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wundheilung",
+                  "optionen": [
+                    "",
+                    "Die Operationswunden heilten trocken und reizlos.",
+                    "Die Operationswunden sezernierten anfangs und waren bei Entlassung trocken."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-schulter-rm",
+          "titel": "Entlassbefund Schulter nach Naht der Rotatorenmanschette: Orthese, Ellenbogen und Hand",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Schulter und Arm "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "orthese",
+              "chip": "Sitz der Ruhigstellung",
+              "gruppe": "Inspektion",
+              "normal": "Ruhigstellung sitzt, keine Druckstellen. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Druckstelle unter der Ruhigstellung",
+                    "Hautrötung unter der Ruhigstellung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "nachbar",
+              "chip": "Ellenbogen, Hand",
+              "gruppe": "Beweglichkeit",
+              "normal": "Ellenbogen, Handgelenk und Finger aktiv frei beweglich. ",
+              "abweichung": "{was} eingeschränkt. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Beweglichkeit des Ellenbogens",
+                    "Beweglichkeit von Handgelenk und Fingern",
+                    "Faustschluss"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-rm-naht",
+          "titel": "Nachbehandlung nach Naht der Rotatorenmanschette",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung mit Dauer",
+              "text": "{worin} {seite} {dauer}{tragen}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "worin",
+                  "label": "Was",
+                  "optionen": [
+                    "",
+                    "Schulterabduktionskissen",
+                    "Schulterorthese",
+                    "Armschlinge"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 3 Wochen nach der Operation",
+                    "für 4 Wochen nach der Operation",
+                    "für 5 Wochen nach der Operation",
+                    "für 6 Wochen nach der Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "tragen",
+                  "label": "Tragen",
+                  "optionen": [
+                    "",
+                    ", Tag und Nacht tragen, zum Essen, zur Körperpflege und für die Übungen abnehmen",
+                    ", Tag und Nacht tragen, nur zur Körperpflege abnehmen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nachbar",
+              "label": "Ellenbogen, Hand, Finger bewegen",
+              "text": "Ellenbogen, Handgelenk und Finger {seite} ab sofort mehrmals täglich aktiv bewegen. ",
+              "an": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Schulter "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "schema",
+              "label": "Nachbehandlung",
+              "optionen": [
+                "Weitere Nachbehandlung nach Maßgabe des Operateurs, siehe beigefügten Operationsbericht.",
+                "Nachbehandlung nach dem mitgegebenen Schema unserer Klinik.",
+                "Nachbehandlung nach den folgenden Punkten."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "phasen",
+              "label": "Bewegung der Schulter nach Phasen",
+              "text": "Bewegung der Schulter {seite}: {ablauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ablauf",
+                  "label": "Ablauf",
+                  "optionen": [
+                    "",
+                    "In den ersten 4 Wochen nach der Operation nur passiv bewegen, dabei Außendrehung bis 30°, Vorheben und Abspreizen bis 90°. Nach der 4. Woche zusätzlich assistiv und aktiv nach Schmerzen, dabei bis zum Ende der 6. Woche Vorheben und Abspreizen bis 90°, Außen- und Innendrehung bis 45°. Danach Steigerung bis zur freien Beweglichkeit am Ende der 12. Woche",
+                    "In den ersten 3 Wochen nach der Operation nur passiv bewegen, dabei Außendrehung bis 30°, Vorheben und Abspreizen bis 90°. Nach der 3. Woche zusätzlich assistiv und aktiv nach Schmerzen, dabei bis zum Ende der 6. Woche Vorheben und Abspreizen bis 90°, Außen- und Innendrehung bis 45°. Danach Steigerung bis zur freien Beweglichkeit am Ende der 12. Woche",
+                    "In den ersten 6 Wochen nach der Operation nur passiv bewegen, dabei Außendrehung bis 30°, Vorheben und Abspreizen bis 90°. Nach der 6. Woche zusätzlich assistiv und aktiv nach Schmerzen. Danach Steigerung bis zur freien Beweglichkeit am Ende der 12. Woche",
+                    "In den ersten 6 Wochen nach der Operation nur passiv bewegen, dabei wegen der Naht der Subscapularissehne Außendrehung nur bis zur Neutralstellung, Vorheben und Abspreizen bis 90°. Nach der 6. Woche zusätzlich assistiv und aktiv nach Schmerzen. Danach Steigerung bis zur freien Beweglichkeit am Ende der 12. Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "heranfuehren",
+              "label": "Einzeln: Arm nicht an den Körper heranführen",
+              "text": "Arm {seite} bis zum Ende der {woche} nach der Operation nicht an den Körper heranführen, auch nachts auf dem Kissen lagern. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "woche",
+                  "label": "Bis",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "4. Woche",
+                    "6. Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung des Arms",
+              "text": "Arm {seite}: {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "keine aktive Belastung, nicht abstützen, nichts heben und nichts tragen bis zum Ende der 6. Woche nach der Operation, danach schrittweise Steigerung bis zur vollen Alltagsbelastung am Ende der 12. Woche",
+                    "keine aktive Belastung, nicht abstützen, nichts heben und nichts tragen bis zum Ende der 8. Woche nach der Operation, danach schrittweise Steigerung bis zur vollen Alltagsbelastung am Ende der 12. Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "motorschiene",
+              "label": "Einzeln: Motorschiene",
+              "text": "Passive Bewegungsübungen der Schulter {seite} auf der Motorschiene innerhalb der Bewegungsgrenzen {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "zu Hause, die Verordnung haben wir mitgegeben",
+                    "zu Hause, Verordnung durch die weiterbehandelnde Praxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "tenodese",
+              "label": "Einzeln: Nach Tenodese der Bizepssehne",
+              "text": "Nach Tenodese der langen Bizepssehne keine Beugung des Ellenbogens {seite} gegen Widerstand {bis}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "bis",
+                  "label": "Bis",
+                  "optionen": [
+                    "",
+                    "bis zum Ende der 4. Woche nach der Operation",
+                    "bis zum Ende der 6. Woche nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Einzeln: Sport",
+              "text": "Sport {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Ab wann",
+                  "optionen": [
+                    "",
+                    "mit geringer Belastung der Schulter frühestens ab dem 6. Monat nach der Operation, nach ärztlicher Freigabe",
+                    "mit geringer Belastung der Schulter ab dem 6. Monat nach der Operation, Überkopf-, Wurf- und Kontaktsport erst nach ärztlicher Freigabe"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "arbeit",
+              "label": "Einzeln: Voraussichtliche Arbeitsfähigkeit",
+              "text": "Voraussichtliche Arbeitsfähigkeit: {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Arbeitsfähigkeit",
+                  "optionen": [
+                    "",
+                    "mittelschwere Tätigkeit im Lauf der ersten 12 bis 18 Wochen, schwere Tätigkeit ab dem 6. Monat nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-schulter",
+          "titel": "Thromboseprophylaxe nach Operation an der Schulter",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe nach der Entlassung: Eingriff an der Schulter, volle Gehfähigkeit, keine zusätzlichen Risikofaktoren.",
+                "Vorbestehende Antikoagulation in therapeutischer Dosis fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe wegen zusätzlicher Risikofaktoren bis einschließlich 7. Tag nach der Operation. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe wegen zusätzlicher Risikofaktoren bis einschließlich 14. Tag nach der Operation. Wirkstoff und Dosis siehe Medikation."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "grund",
+              "label": "Risikofaktoren",
+              "text": " Risikofaktoren: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Risikofaktoren, z. B. frühere Thrombose",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann, z. B. am 2. Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-sicherheitsnetz-arthroskopie-schulter",
+          "titel": "Wiedervorstellung bei Warnzeichen (Arthroskopie der Schulter)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Rötung, Schwellung oder Nässen der Wunden, Fieber über 38,5 °C, zunehmender Schwellung oder zunehmenden Schmerzen in der Schulter trotz Schmerzmitteln, neuem Taubheitsgefühl, Kribbeln oder neuer Schwäche in Arm oder Hand, kalter, blasser oder blauer Hand, Schwellung des ganzen Arms, Atemnot oder Brustschmerz. ",
+              "an": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": "Die Warnzeichen haben wir mit {person-dat} besprochen. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "merkblatt",
+              "label": "Merkblatt mitgegeben",
+              "text": "Ein Merkblatt haben wir mitgegeben. "
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

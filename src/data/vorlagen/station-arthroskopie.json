@@ -1,0 +1,559 @@
+{
+  "vorlagen": [
+    {
+      "id": "station-kniearthroskopie-meniskusteilresektion",
+      "titel": "Kniearthroskopie, Meniskusteilresektion",
+      "suchbegriffe": [
+        "Meniskusriss",
+        "Meniskusläsion",
+        "Meniskusschaden",
+        "Innenmeniskusriss",
+        "Außenmeniskusriss",
+        "Innenmeniskushinterhorn",
+        "Korbhenkelriss",
+        "Lappenriss",
+        "Meniskusteilresektion",
+        "Teilmeniskektomie",
+        "partielle Meniskektomie",
+        "Kniearthroskopie",
+        "Arthroskopie Knie",
+        "Kniespiegelung"
+      ],
+      "kuerzel": [
+        "ask",
+        "ask knie",
+        "imhh",
+        "pme"
+      ],
+      "region": "knie",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-meniskus",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-meniskus-resektion",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-elektiv",
+          "ana-st-knie-arthroskopie"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-knie-arthroskopie"
+        ],
+        "diagnostik": [
+          "dgn-st-knie-bildgebung",
+          "dgn-st-knie-arthroskopie",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-indikation-meniskus",
+          "verl-st-aufnahme-operation",
+          "verl-st-knie-arthroskopie",
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-knie-arthroskopie",
+          "eb-st-gehen-bein",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-meniskus-resektion",
+          "proc-st-wunde",
+          "proc-st-thrombose-arthroskopie-knie",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-arthroskopie-knie"
+        ],
+        "medikation": [
+          "med-st-entlassung-dauer-procedere"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-knie-arthroskopie/erguss",
+        "bef-st-knie-arthroskopie/ds-medial",
+        "bef-st-knie-arthroskopie/ds-lateral",
+        "bef-st-knie-arthroskopie/extflex",
+        "bef-st-knie-arthroskopie/meniskuszeichen",
+        "bef-st-knie-arthroskopie/lachman",
+        "bef-st-knie-arthroskopie/seitenbaender",
+        "dgn-st-knie-arthroskopie/im",
+        "dgn-st-knie-arthroskopie/am",
+        "dgn-st-knie-arthroskopie/knorpel",
+        "dgn-st-knie-arthroskopie/kreuzbaender",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/dms",
+        "eb-st-knie-arthroskopie/erguss",
+        "eb-st-knie-arthroskopie/extflex"
+      ],
+      "ohne": [
+        "eb-st-wunde/schwellung"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/physio",
+          "proc-st-wunde/hochlagern",
+          "proc-st-meniskus-resektion/steigerung",
+          "proc-st-meniskus-resektion/bewegung"
+        ],
+        "aus": [
+          "verl-st-aufnahme-operation/aufnahme",
+          "verl-st-operativ/aufnahme",
+          "verl-st-operativ/operation",
+          "verl-st-operativ/op-verlauf",
+          "verl-st-operativ/roentgen",
+          "verl-st-operativ/mobilisation",
+          "verl-st-operativ/wunde",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "slots": {
+          "th-st-weitere/physio/inhalt": 1,
+          "proc-st-sicherheitsnetz-arthroskopie-knie/sicherheitsnetz/zeichen": 1
+        }
+      },
+      "schnellwerte": {
+        "ana-st-elektiv/eingriff": [
+          "Arthroskopie des Kniegelenks",
+          "Operation"
+        ],
+        "ana-st-elektiv/beschwerden": [
+          "Der Schmerz an der Innenseite des Knies nehme beim Drehen und in der Hocke zu.",
+          "Der Schmerz an der Außenseite des Knies nehme beim Drehen und in der Hocke zu.",
+          "Der Schmerz bestehe seit mehreren Monaten und nehme bei Belastung zu.",
+          "Seit dem Verdrehen des Knies bestehe ein Schmerz bei Belastung."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 19.10.2026; fachliche Grundlage R2 Skizze S15 und R5 Abschnitt 2.4.6 (DGOU-Nachbehandlungsempfehlungen 2025, S. 119; Auflage 2020, S. 83, über R2), Thromboseprophylaxe S3-Leitlinie VTE-Prophylaxe 2026, Empfehlung 12.32 (über R2). Praxiswissen ohne Quelle: Kilogrammwerte, Teilbelastung für 1 Woche, Sport ab der 7. Woche, Gehstützen bis zum Gehen ohne Hinken"
+    },
+    {
+      "id": "station-kniearthroskopie-meniskusnaht",
+      "titel": "Kniearthroskopie, Meniskusnaht",
+      "suchbegriffe": [
+        "Meniskusnaht",
+        "Meniskusrefixation",
+        "Meniskuserhalt",
+        "Meniskusriss",
+        "Korbhenkelriss",
+        "Innenmeniskusnaht",
+        "Außenmeniskusnaht",
+        "All-inside",
+        "Inside-out",
+        "Wurzelriss",
+        "Meniskuswurzel",
+        "Rampenläsion",
+        "Kniearthroskopie",
+        "Arthroskopie Knie"
+      ],
+      "kuerzel": [
+        "ask naht",
+        "mnaht",
+        "imnaht"
+      ],
+      "region": "knie",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-meniskus",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-meniskus-naht",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-elektiv",
+          "ana-st-knie-arthroskopie"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-knie-arthroskopie"
+        ],
+        "diagnostik": [
+          "dgn-st-knie-bildgebung",
+          "dgn-st-knie-arthroskopie",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-indikation-meniskus",
+          "verl-st-aufnahme-operation",
+          "verl-st-knie-arthroskopie",
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-knie-arthroskopie",
+          "eb-st-gehen-bein",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-meniskus-naht",
+          "proc-st-wunde",
+          "proc-st-thrombose-arthroskopie-knie-meniskusnaht",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-arthroskopie-knie"
+        ],
+        "medikation": [
+          "med-st-entlassung-dauer-procedere"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-knie-arthroskopie/erguss",
+        "bef-st-knie-arthroskopie/ds-medial",
+        "bef-st-knie-arthroskopie/ds-lateral",
+        "bef-st-knie-arthroskopie/extflex",
+        "bef-st-knie-arthroskopie/meniskuszeichen",
+        "bef-st-knie-arthroskopie/lachman",
+        "bef-st-knie-arthroskopie/seitenbaender",
+        "dgn-st-knie-arthroskopie/im",
+        "dgn-st-knie-arthroskopie/am",
+        "dgn-st-knie-arthroskopie/knorpel",
+        "dgn-st-knie-arthroskopie/kreuzbaender",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/dms",
+        "eb-st-knie-arthroskopie/erguss",
+        "eb-st-knie-arthroskopie/extflex"
+      ],
+      "ohne": [
+        "eb-st-wunde/schwellung"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/implantat",
+          "th-st-weitere/physio",
+          "proc-st-wunde/hochlagern",
+          "proc-st-meniskus-naht/steigerung",
+          "proc-st-meniskus-naht/bewegung",
+          "proc-st-meniskus-naht/orthese"
+        ],
+        "aus": [
+          "verl-st-aufnahme-operation/aufnahme",
+          "verl-st-operativ/aufnahme",
+          "verl-st-operativ/operation",
+          "verl-st-operativ/op-verlauf",
+          "verl-st-operativ/roentgen",
+          "verl-st-operativ/mobilisation",
+          "verl-st-operativ/wunde",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "slots": {
+          "th-st-weitere/physio/inhalt": 1,
+          "proc-st-sicherheitsnetz-arthroskopie-knie/sicherheitsnetz/zeichen": 2
+        }
+      },
+      "schnellwerte": {
+        "ana-st-elektiv/eingriff": [
+          "Arthroskopie des Kniegelenks",
+          "Operation"
+        ],
+        "ana-st-elektiv/beschwerden": [
+          "Seit dem Verdrehen des Knies bestehe ein Schmerz bei Belastung.",
+          "Der Schmerz an der Innenseite des Knies nehme beim Drehen und in der Hocke zu.",
+          "Der Schmerz an der Außenseite des Knies nehme beim Drehen und in der Hocke zu.",
+          "Der Schmerz bestehe seit mehreren Monaten und nehme bei Belastung zu."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 19.10.2026; fachliche Grundlage R2 Skizze S15 und R5 Abschnitte 2.4.6 und 2.10 (DGOU-Nachbehandlungsempfehlungen 2025, S. 120; Gradgrenzen 60° und 90° und Vollbelastung in Streckstellung ab der 3. Woche aus der Auflage 2020, S. 84 bis 85, über R2), Thromboseprophylaxe S3-Leitlinie VTE-Prophylaxe 2026, Empfehlungen 12.32 und 12.33 (über R2). Praxiswissen ohne Quelle: Kilogrammwerte, Vollbelastung in gesperrter Orthese ab sofort, gestufte Beugegrenze, tiefe Hocke, transtibiale Refixation der Wurzel"
+    },
+    {
+      "id": "station-vkb-plastik",
+      "titel": "Vordere Kreuzbandplastik",
+      "suchbegriffe": [
+        "Kreuzbandriss",
+        "vordere Kreuzbandruptur",
+        "VKB-Ruptur",
+        "VKB-Plastik",
+        "Kreuzbandplastik",
+        "Kreuzbandersatz",
+        "Kreuzbandrekonstruktion",
+        "Ersatzplastik vorderes Kreuzband",
+        "Semitendinosussehne",
+        "Hamstring",
+        "Quadrizepssehne",
+        "Patellarsehne",
+        "Instabilität Knie",
+        "Kniearthroskopie"
+      ],
+      "kuerzel": [
+        "vkb",
+        "vkb plastik",
+        "acl",
+        "ask vkb"
+      ],
+      "region": "knie",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-vkb",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-vkb-plastik",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-elektiv",
+          "ana-st-knie-arthroskopie"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-knie-arthroskopie"
+        ],
+        "diagnostik": [
+          "dgn-st-knie-bildgebung",
+          "dgn-st-knie-arthroskopie",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-indikation-vkb",
+          "verl-st-aufnahme-operation",
+          "verl-st-knie-arthroskopie",
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-knie-arthroskopie",
+          "eb-st-gehen-bein",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-vkb-plastik",
+          "proc-st-wunde",
+          "proc-st-thrombose-arthroskopie-knie",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-arthroskopie-knie"
+        ],
+        "medikation": [
+          "med-st-entlassung-dauer-procedere"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-knie-arthroskopie/erguss",
+        "bef-st-knie-arthroskopie/extflex",
+        "bef-st-knie-arthroskopie/meniskuszeichen",
+        "bef-st-knie-arthroskopie/lachman",
+        "bef-st-knie-arthroskopie/pivot",
+        "bef-st-knie-arthroskopie/seitenbaender",
+        "dgn-st-knie-arthroskopie/im",
+        "dgn-st-knie-arthroskopie/am",
+        "dgn-st-knie-arthroskopie/knorpel",
+        "dgn-st-knie-arthroskopie/kreuzbaender",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/dms",
+        "eb-st-knie-arthroskopie/erguss",
+        "eb-st-knie-arthroskopie/extflex"
+      ],
+      "ohne": [
+        "bef-st-knie-arthroskopie/ds-medial",
+        "bef-st-knie-arthroskopie/ds-lateral",
+        "eb-st-wunde/schwellung"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen nach der Operation oder Verzicht?",
+          "bausteine": [
+            "dgn-st-vkb-roentgen-postop",
+            "dgn-st-roentgen-postop-verzicht"
+          ]
+        }
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/implantat",
+          "th-st-weitere/physio",
+          "proc-st-wunde/hochlagern",
+          "proc-st-vkb-plastik/steigerung",
+          "proc-st-vkb-plastik/bewegung"
+        ],
+        "aus": [
+          "verl-st-aufnahme-operation/aufnahme",
+          "verl-st-operativ/aufnahme",
+          "verl-st-operativ/operation",
+          "verl-st-operativ/op-verlauf",
+          "verl-st-operativ/roentgen",
+          "verl-st-operativ/mobilisation",
+          "verl-st-operativ/wunde",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "slots": {
+          "th-st-weitere/physio/inhalt": 1
+        }
+      },
+      "schnellwerte": {
+        "ana-st-elektiv/eingriff": [
+          "Ersatzplastik des vorderen Kreuzbands",
+          "Operation"
+        ],
+        "ana-st-elektiv/beschwerden": [
+          "Seit dem Unfall knicke das Knie bei Drehbewegungen weg.",
+          "Seit dem Unfall bestehe ein Unsicherheitsgefühl im Knie.",
+          "Sport mit Drehbewegungen sei seit dem Unfall nicht mehr möglich.",
+          "Die Schwellung nach dem Unfall habe sich zurückgebildet, das Unsicherheitsgefühl bestehe fort."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 19.10.2026; fachliche Grundlage R2 Skizze S15 und R5 Abschnitt 2.4.7 (DGOU-Nachbehandlungsempfehlungen 2025, S. 122 bis 123), Thromboseprophylaxe S3-Leitlinie VTE-Prophylaxe 2026, Empfehlungen 12.32 und 12.33 (über R2). Praxiswissen ohne Quelle: Kilogrammwerte, Vollbelastung am Ende der 2. Woche, Belastung und Beugegrenze bei zusätzlicher Meniskusnaht, Orthese nachts in Streckstellung, volle Streckung von Beginn an"
+    },
+    {
+      "id": "station-schulterarthroskopie-rotatorenmanschette",
+      "titel": "Schulterarthroskopie, Naht der Rotatorenmanschette",
+      "suchbegriffe": [
+        "Rotatorenmanschettenruptur",
+        "Rotatorenmanschettenrekonstruktion",
+        "Rotatorenmanschettennaht",
+        "Supraspinatussehnenruptur",
+        "Supraspinatussehne",
+        "Infraspinatussehne",
+        "Subscapularissehne",
+        "Sehnenriss Schulter",
+        "Fadenanker",
+        "Schulterarthroskopie",
+        "Arthroskopie Schulter",
+        "Akromioplastik",
+        "subakromiale Dekompression",
+        "Bizepssehnentenodese"
+      ],
+      "kuerzel": [
+        "rm",
+        "rmr",
+        "ssp",
+        "rm naht",
+        "ask schulter"
+      ],
+      "region": "schulter",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-rm",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-rm-naht",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-elektiv",
+          "ana-st-schulter-arthroskopie"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-schulter-rm"
+        ],
+        "diagnostik": [
+          "dgn-st-schulter-bildgebung",
+          "dgn-st-schulter-arthroskopie",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-indikation-rm",
+          "verl-st-aufnahme-operation",
+          "verl-st-schulter-arthroskopie",
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-schulter-rm",
+          "eb-st-gehen-armfraktur",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-rm-naht",
+          "proc-st-wunde",
+          "proc-st-thrombose-schulter",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-arthroskopie-schulter"
+        ],
+        "medikation": [
+          "med-st-entlassung-dauer-procedere"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-schulter-rm/ds",
+        "bef-st-schulter-rm/beweglichkeit",
+        "bef-st-schulter-rm/jobe",
+        "bef-st-schulter-rm/aussenrotation",
+        "bef-st-schulter-rm/subscapularis",
+        "bef-st-schulter-rm/impingement",
+        "dgn-st-schulter-arthroskopie/rm",
+        "dgn-st-schulter-arthroskopie/lbs",
+        "dgn-st-schulter-arthroskopie/knorpel",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/schwellung",
+        "eb-st-wunde/dms"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-st-elektiv/haendigkeit",
+          "th-st-weitere/implantat",
+          "th-st-weitere/physio",
+          "proc-st-rm-naht/phasen",
+          "proc-st-rm-naht/belastung"
+        ],
+        "aus": [
+          "verl-st-aufnahme-operation/aufnahme",
+          "verl-st-operativ/aufnahme",
+          "verl-st-operativ/operation",
+          "verl-st-operativ/op-verlauf",
+          "verl-st-operativ/roentgen",
+          "verl-st-operativ/mobilisation",
+          "verl-st-operativ/wunde",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "slots": {
+          "th-st-weitere/physio/inhalt": 2
+        }
+      },
+      "schnellwerte": {
+        "ana-st-elektiv/eingriff": [
+          "Arthroskopie der Schulter mit Refixation der Rotatorenmanschette",
+          "Arthroskopie der Schulter",
+          "Operation"
+        ],
+        "ana-st-elektiv/beschwerden": [
+          "Der Schmerz in der Schulter bestehe seit mehreren Monaten und nehme beim Heben des Arms zu.",
+          "Seit dem Unfall bestehe beim Heben des Arms ein Schmerz mit Kraftminderung.",
+          "Arbeiten über Kopf sei wegen der Schmerzen nicht mehr möglich."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 19.10.2026; fachliche Grundlage R2 Skizze S16 und R5 Abschnitt 2.1.5 (S2k-Leitlinie Rotatorenmanschettenruptur 2025, AWMF 187-055, Empfehlung 38: Ruhigstellung 3 bis 6 Wochen nach Maßgabe des Operateurs; Gradgrenzen, Phasen, Belastung, Arbeit und Sport aus den DGOU-Nachbehandlungsempfehlungen 2025, S. 60 bis 61), Thromboseprophylaxe S3-Leitlinie VTE-Prophylaxe 2026, Empfehlung 12.13 (über R2). Praxiswissen ohne Quelle: passive Phase 3 und 6 Wochen, Außendrehung bis zur Neutralstellung nach Naht der Subscapularissehne, Belastungspause bis zur 8. Woche, Regeln nach Tenodese, Thromboseprophylaxe 7 oder 14 Tage"
+    }
+  ]
+}

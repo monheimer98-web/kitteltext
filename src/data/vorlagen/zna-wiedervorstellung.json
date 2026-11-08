@@ -1,0 +1,245 @@
+{
+  "vorlagen": [
+    {
+      "id": "zna-wiedervorstellung-wundkontrolle",
+      "titel": "Wundkontrolle, Verbandwechsel",
+      "suchbegriffe": [
+        "Wundkontrolle",
+        "Verbandwechsel",
+        "Verbandswechsel",
+        "VW",
+        "Wiedervorstellung",
+        "Wundinspektion",
+        "Kontrolle Wunde",
+        "Nachkontrolle Naht",
+        "Wundinfekt",
+        "Wundinfektion",
+        "Wundheilungsstörung",
+        "Wunde gerötet",
+        "Wundkontrolle nach Operation",
+        "Stichkanalinfektion"
+      ],
+      "kuerzel": [
+        "vw",
+        "wk"
+      ],
+      "region": "wiedervorstellung",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-wv-wunde"
+        ],
+        "anamnese": [
+          "ana-wv-wunde"
+        ],
+        "befund": [
+          "bef-wv-wunde"
+        ],
+        "diagnostik": [
+          "dgn-wv-wunde"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-wv-wunde"
+        ]
+      },
+      "entscheiden": [
+        "bef-wv-wunde/wundraender",
+        "bef-wv-wunde/roetung",
+        "bef-wv-wunde/schwellung",
+        "bef-wv-wunde/ueberwaermung",
+        "bef-wv-wunde/sekretion"
+      ],
+      "ohne": [
+        "bef-wv-wunde/heilung"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Reizlos, offene Wundbehandlung, Infektzeichen mit oder ohne Antibiotikum, oder Aufnahme?",
+          "bausteine": [
+            "proc-wv-wunde-reizlos",
+            "proc-wv-wunde-offen",
+            "proc-wv-wunde-infekt-ab",
+            "proc-wv-wunde-infekt",
+            "proc-wv-wunde-aufnahme"
+          ]
+        }
+      ],
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026 (Grundlage R1 Abschnitt 2.9, R2 Abschnitt 3.0, R5)",
+      "vorgaben": {
+        "an": [
+          "ana-wv-wunde/fieber"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      }
+    },
+    {
+      "id": "zna-wiedervorstellung-fadenzug",
+      "titel": "Fadenzug, Klammerentfernung",
+      "suchbegriffe": [
+        "Fadenzug",
+        "Fäden ziehen",
+        "Fadenentfernung",
+        "Nahtentfernung",
+        "Klammern entfernen",
+        "Klammerentfernung",
+        "Klammern ziehen",
+        "Hautklammern",
+        "Wiedervorstellung",
+        "Nahtmaterial entfernen"
+      ],
+      "kuerzel": [
+        "fz"
+      ],
+      "region": "wiedervorstellung",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-wv-wunde"
+        ],
+        "anamnese": [
+          "ana-wv-wunde"
+        ],
+        "befund": [
+          "bef-wv-wunde"
+        ],
+        "diagnostik": [
+          "dgn-wv-wunde"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-wv-fadenzug"
+        ]
+      },
+      "entscheiden": [
+        "bef-wv-wunde/heilung",
+        "bef-wv-wunde/roetung",
+        "bef-wv-wunde/schwellung",
+        "bef-wv-wunde/sekretion"
+      ],
+      "ohne": [
+        "bef-wv-wunde/wundraender",
+        "bef-wv-wunde/ueberwaermung"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Verheilt, nicht verheilt, Infektzeichen mit oder ohne Antibiotikum, oder Aufnahme?",
+          "bausteine": [
+            "proc-wv-fadenzug",
+            "proc-wv-fadenzug-rest",
+            "proc-wv-wunde-infekt-ab",
+            "proc-wv-wunde-infekt",
+            "proc-wv-wunde-aufnahme"
+          ]
+        }
+      ],
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026 (Grundlage R1 Abschnitt 2.9, R2 Abschnitt 3.0, R5)",
+      "vorgaben": {
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      }
+    },
+    {
+      "id": "zna-wiedervorstellung-ruhigstellung",
+      "titel": "Kontrolle der Ruhigstellung (Gipskontrolle)",
+      "suchbegriffe": [
+        "Gipskontrolle",
+        "Gips zu eng",
+        "Gips drückt",
+        "Gips gebrochen",
+        "Schienenkontrolle",
+        "Castkontrolle",
+        "Kontrolle Gips",
+        "Gipswechsel",
+        "Gips spalten",
+        "Gips zirkulieren",
+        "Gipsschiene",
+        "Cast",
+        "Druckstelle",
+        "Wiedervorstellung",
+        "Röntgenkontrolle im Gips"
+      ],
+      "kuerzel": [
+        "gips"
+      ],
+      "region": "wiedervorstellung",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-wv-ruhigstellung"
+        ],
+        "anamnese": [
+          "ana-wv-ruhigstellung"
+        ],
+        "befund": [
+          "bef-wv-ruhigstellung"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "entscheiden": [
+        "bef-wv-ruhigstellung/sitz",
+        "bef-wv-ruhigstellung/druckstellen",
+        "bef-wv-ruhigstellung/schwellung",
+        "bef-wv-ruhigstellung/durchblutung",
+        "bef-wv-ruhigstellung/motorik",
+        "bef-wv-ruhigstellung/sensibilitaet",
+        "bef-wv-ruhigstellung/dehnungsschmerz"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgenkontrolle oder kein Röntgen?",
+          "bausteine": [
+            "dgn-wv-ruhigstellung-roentgen",
+            "dgn-wv-ruhigstellung-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "therapie",
+          "label": "Ruhigstellung belassen, gespalten, gewechselt, erweitert oder abgenommen?",
+          "bausteine": [
+            "th-wv-ruhigstellung-belassen",
+            "th-wv-ruhigstellung-gespalten",
+            "th-wv-ruhigstellung-gewechselt",
+            "th-wv-ruhigstellung-erweitert",
+            "th-wv-ruhigstellung-abgenommen"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Weiter konservativ am Arm oder am Bein, Operation, Aufnahme oder Ende der Ruhigstellung?",
+          "bausteine": [
+            "proc-wv-ruhigstellung-arm",
+            "proc-wv-ruhigstellung-bein",
+            "proc-wv-ruhigstellung-operation",
+            "proc-wv-ruhigstellung-aufnahme",
+            "proc-wv-ruhigstellung-ende"
+          ]
+        }
+      ],
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026 (Grundlage R1 Abschnitt 2.9, R2 Abschnitt 3.0, R5)",
+      "vorgaben": {
+        "an": [
+          "proc-wv-ruhigstellung-arm/roentgen",
+          "proc-wv-ruhigstellung-bein/roentgen",
+          "proc-wv-ruhigstellung-operation/belastung"
+        ],
+        "aus": [
+          "proc-wv-ruhigstellung-arm/befund-ok",
+          "proc-wv-ruhigstellung-bein/befund-ok",
+          "th-zna/untersuchung"
+        ]
+      }
+    }
+  ]
+}

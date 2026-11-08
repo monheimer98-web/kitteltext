@@ -1,26 +1,29 @@
-<!DOCTYPE html>
-<html lang="de">
+<!doctype html>
+<html lang="de" translate="no">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Die Seite darf nichts nachladen und nichts senden: kein Netzwerkzugriff, keine Fremdressourcen. -->
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no"
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'"
     />
-    <meta name="theme-color" content="#0f1420" />
-    <link rel="manifest" href="./manifest.webmanifest" />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex, nofollow" />
+    <!-- Eine Seitenübersetzung würde den Brieftext an einen Dienst senden. -->
+    <meta name="google" content="notranslate" />
+    <meta name="theme-color" content="#eef0f3" />
     <link rel="icon" type="image/svg+xml" href="./icon.svg" />
-    <link rel="apple-touch-icon" href="./icon.svg" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Kitteltext" />
-    <meta
-      name="description"
-      content="Textbaustein-Zusammensetzer für Untersuchungs- und Procedere-Texte. Keine Patientendaten."
-    />
+    <meta name="description" content="Formulierungshilfe für Arztbriefe. Keine Patientendaten, keine Datenübertragung." />
     <title>Kitteltext</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <p>
+        Kitteltext braucht einen aktuellen Browser (Edge, Chrome oder Firefox) mit eingeschaltetem JavaScript. Erscheint dieser Text dauerhaft, läuft die Seite
+        vermutlich im Internet-Explorer-Modus: bitte direkt in Edge oder Chrome öffnen.
+      </p>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

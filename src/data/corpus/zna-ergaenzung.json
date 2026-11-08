@@ -1,0 +1,691 @@
+{
+  "regionen": [
+    {
+      "id": "unterarm",
+      "name": "Unterarm",
+      "kuerzel": "💪",
+      "bausteine": [
+        {
+          "id": "dx-kind-unterarmfraktur",
+          "titel": "Diagnose Unterarmfraktur beim Kind",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "pflicht": true,
+              "optionen": [
+                "Wulstfraktur des distalen Radius",
+                "Grünholzfraktur des distalen Radius",
+                "Distale Unterarmfraktur",
+                "Epiphysenlösung des distalen Radius"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "stellung",
+              "label": "Stellung",
+              "optionen": [
+                "",
+                ", ohne Achsabweichung",
+                ", mit Achsabweichung"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-kind-unterarm-roentgen",
+          "titel": "Röntgen Unterarm (Kind)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Unterarm "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " mit Handgelenk in 2 Ebenen: "
+            },
+            {
+              "art": "option",
+              "id": "befund",
+              "label": "Röntgenbefund",
+              "an": true,
+              "text": "{fraktur}{achse} {grad}{fuge}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "fraktur",
+                  "label": "Fraktur",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Wulstfraktur des distalen Radius",
+                    "Grünholzfraktur des distalen Radius",
+                    "vollständige Fraktur des distalen Radius",
+                    "Fraktur von distalem Radius und distaler Ulna",
+                    "Epiphysenlösung des distalen Radius"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "achse",
+                  "label": "Achse",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    ", ohne Achsabweichung",
+                    ", Achsabweichung nach dorsal",
+                    ", Achsabweichung nach palmar",
+                    ", Achsabweichung nach radial"
+                  ]
+                },
+                {
+                  "art": "zahl",
+                  "id": "grad",
+                  "label": "Achsabweichung in Grad (leer, wenn keine)",
+                  "einheit": "°"
+                },
+                {
+                  "art": "auswahl",
+                  "id": "fuge",
+                  "label": "Wachstumsfuge",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    ", Wachstumsfuge nicht beteiligt",
+                    ", Wachstumsfuge beteiligt (Salter-Harris I)",
+                    ", Wachstumsfuge beteiligt (Salter-Harris II)",
+                    ", Wachstumsfuge beteiligt (Salter-Harris III oder IV)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "text": " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "proc-kind-unterarmfraktur",
+          "titel": "Procedere Unterarmfraktur beim Kind",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "an": true,
+              "text": "Ruhigstellung in der {was} {seite} für {dauer}{danach}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Worin",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Unterarmgipsschiene",
+                    "Oberarmgipsschiene",
+                    "Handgelenkorthese"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "2 Wochen",
+                    "3 Wochen",
+                    "4 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "danach",
+                  "label": "Danach",
+                  "optionen": [
+                    "",
+                    ", danach Abnahme ohne Röntgenkontrolle",
+                    ", danach Abnahme nach Röntgenkontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gipskontrolle",
+              "label": "Gipskontrolle am Folgetag",
+              "an": true,
+              "text": "Kontrolle der Gipsschiene am Folgetag {wo}: Sitz, Schwellung, Durchblutung, Gefühl und Beweglichkeit der Finger.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Kinderarztpraxis",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Hochlagern, Finger bewegen",
+              "an": true,
+              "text": "Arm {seite} hochlagern, Finger mehrmals täglich bewegen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel beim Kind (nach Körpergewicht)",
+                  "vorschlaege": [
+                    "Schmerzmittel nach Körpergewicht nach Verordnung der Kinderarztpraxis",
+                    "Schmerzmittel nach Körpergewicht wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Stellungskontrolle im Gips",
+              "an": true,
+              "text": "{regel}{wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regel",
+                  "label": "Stellungskontrolle",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Eine Röntgenkontrolle ist bei stabiler Wulstfraktur nicht nötig",
+                    "Röntgenkontrolle des Unterarms im Gips nach 5 bis 7 Tagen",
+                    "Röntgenkontrolle des Unterarms im Gips nach 7 bis 10 Tagen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    " in der Kinderarztpraxis",
+                    " in der Hausarztpraxis",
+                    " in der unfallchirurgischen oder orthopädischen Praxis",
+                    " in der Durchgangsarztpraxis",
+                    " in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Kein Sport",
+              "an": true,
+              "text": "Kein Sport, auch kein Schulsport, für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "3 Wochen",
+                    "4 Wochen",
+                    "6 Wochen",
+                    "die Dauer der Ruhigstellung und 2 weitere Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bescheinigung",
+              "label": "Bescheinigung für die Schule",
+              "text": "Eine Bescheinigung für die Schule haben wir mitgegeben."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen im Gips, zunehmender Schwellung der Finger, Taubheitsgefühl oder Kribbeln, kalten, blassen oder blauen Fingern, drückendem, gebrochenem oder durchnässtem Gips."
+            }
+          ]
+        },
+        {
+          "id": "ana-kind",
+          "titel": "Anamnese Kind: Gewicht und Begleitung",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "gewicht",
+              "label": "Körpergewicht",
+              "an": true,
+              "text": "Körpergewicht: {kg}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Körpergewicht",
+                  "einheit": "kg",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "begleitung",
+              "label": "Begleitung",
+              "an": true,
+              "text": "Begleitet wurde {person} von {wem}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wem",
+                  "label": "Begleitung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "der Mutter",
+                    "dem Vater",
+                    "beiden Eltern",
+                    "den Großeltern",
+                    "einer Lehrkraft",
+                    "einer Betreuungsperson"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "finger",
+      "name": "Finger",
+      "kuerzel": "☝️",
+      "bausteine": [
+        {
+          "id": "dx-fingerluxation",
+          "titel": "Diagnose Fingerluxation",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "richtung",
+              "label": "Richtung",
+              "pflicht": true,
+              "optionen": [
+                "Dorsale Luxation",
+                "Palmare Luxation",
+                "Seitliche Luxation",
+                "Luxation"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " des "
+            },
+            {
+              "art": "auswahl",
+              "id": "gelenk",
+              "label": "Gelenk",
+              "pflicht": true,
+              "optionen": [
+                "Mittelgelenks",
+                "Endgelenks",
+                "Grundgelenks"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "auswahl",
+              "id": "finger",
+              "label": "Finger",
+              "pflicht": true,
+              "optionen": [
+                "Daumen",
+                "Zeigefinger",
+                "Mittelfinger",
+                "Ringfinger",
+                "Kleinfinger"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "reposition",
+              "label": "Reposition",
+              "pflicht": true,
+              "optionen": [
+                ", geschlossen reponiert",
+                ", spontan reponiert",
+                ", vor der Aufnahme reponiert"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-fingerluxation-roentgen",
+          "titel": "Röntgen Finger (Luxation)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen des Fingers "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "pflicht": true,
+              "optionen": [
+                "vor und nach Reposition",
+                "nach Reposition",
+                "vor Reposition"
+              ]
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund",
+              "pflicht": true,
+              "optionen": [
+                "nach Reposition regelrechte Gelenkstellung, kein Frakturnachweis.",
+                "nach Reposition regelrechte Gelenkstellung, kleiner knöcherner Ausriss palmar an der Basis des Mittelglieds.",
+                "nach Reposition regelrechte Gelenkstellung, knöcherner Ausriss dorsal an der Basis des Mittelglieds.",
+                "Luxation, kein Frakturnachweis."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "text": " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "th-fingerluxation",
+          "titel": "Fingerluxation – Reposition",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "reposition",
+              "label": "Reposition in der Notaufnahme",
+              "an": true,
+              "text": "Gelenk {anaesthesie}{verfahren} geschlossen reponiert{versuch}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anaesthesie",
+                  "label": "Anästhesie",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in Leitungsanästhesie nach Oberst",
+                    "nach Schmerzmittelgabe",
+                    "ohne Anästhesie"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verfahren",
+                  "label": "Verfahren",
+                  "optionen": [
+                    "",
+                    " durch Längszug",
+                    " durch Druck auf die Basis des luxierten Glieds"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "versuch",
+                  "label": "Versuch",
+                  "optionen": [
+                    "",
+                    " beim 1. Versuch",
+                    " nach mehreren Versuchen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nachher",
+              "label": "Befund nach Reposition",
+              "an": true,
+              "text": "Nach Reposition: {streckung}, {seitenband}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "streckung",
+                  "label": "Aktive Streckung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "aktive Streckung und Beugung vollständig",
+                    "aktive Streckung unvollständig",
+                    "aktive Streckung schmerzbedingt nicht beurteilbar"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "seitenband",
+                  "label": "Seitenbandführung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Seitenbandführung stabil",
+                    "Gelenk radial aufklappbar",
+                    "Gelenk ulnar aufklappbar",
+                    "Seitenbandführung schmerzbedingt nicht beurteilbar"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-fingerluxation",
+          "titel": "Fingerluxation – Ruhigstellung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "an": true,
+              "text": "{was} am {finger} {seite} für {dauer}{danach}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Womit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Fingerschiene in leichter Beugung",
+                    "Streckschiene des Mittelgelenks (Tag und Nacht, Endgelenk bleibt frei)",
+                    "Buddy-Tape (Pflasterzügel an den Nachbarfinger)"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "finger",
+                  "label": "Finger",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Daumen",
+                    "Zeigefinger",
+                    "Mittelfinger",
+                    "Ringfinger",
+                    "Kleinfinger"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1 Woche",
+                    "2 Wochen",
+                    "3 Wochen",
+                    "4 Wochen",
+                    "6 Wochen",
+                    "die Zeit bis zur handchirurgischen Vorstellung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "danach",
+                  "label": "Danach",
+                  "optionen": [
+                    "",
+                    ", danach Buddy-Tape für 2 weitere Wochen",
+                    ", danach Bewegungsübungen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "handchirurgie",
+              "label": "Vorstellung Handchirurgie",
+              "text": "Vorstellung in der handchirurgischen Sprechstunde {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb 1 Woche"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

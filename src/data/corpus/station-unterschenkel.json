@@ -1,0 +1,3017 @@
+{
+  "regionen": [
+    {
+      "id": "knie",
+      "name": "Knie",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "dx-st-tibiakopf",
+          "titel": "Diagnose Tibiakopffraktur (Station)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "typ",
+              "label": "Frakturtyp",
+              "optionen": [
+                "Laterale Tibiakopffraktur",
+                "Mediale Tibiakopffraktur",
+                "Bikondyläre Tibiakopffraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "klassifikation",
+              "label": "Klassifikation",
+              "optionen": [
+                "",
+                " (Schatzker I)",
+                " (Schatzker II)",
+                " (Schatzker III)",
+                " (Schatzker IV)",
+                " (Schatzker V)",
+                " (Schatzker VI)",
+                " (AO 41-B1)",
+                " (AO 41-B2)",
+                " (AO 41-B3)",
+                " (AO 41-C1)",
+                " (AO 41-C2)",
+                " (AO 41-C3)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "stellung",
+              "label": "Verschiebung",
+              "text": ", {wie}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Verschiebung",
+                  "optionen": [
+                    "",
+                    "nicht verschoben",
+                    "gering verschoben, ohne wesentliche Stufe der Gelenkfläche",
+                    "verschoben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "fibula",
+              "label": "Fraktur des Fibulaköpfchens",
+              "text": ", mit Fraktur des Fibulaköpfchens"
+            },
+            {
+              "art": "auswahl",
+              "id": "weichteile",
+              "label": "Geschlossen oder offen",
+              "optionen": [
+                ", geschlossen",
+                ", geschlossen, Weichteilschaden Grad 1 nach Tscherne",
+                ", geschlossen, Weichteilschaden Grad 2 nach Tscherne",
+                ", geschlossen, Weichteilschaden Grad 3 nach Tscherne",
+                ", offen, Grad I nach Gustilo-Anderson",
+                ", offen, Grad II nach Gustilo-Anderson",
+                ", offen, Grad IIIA nach Gustilo-Anderson",
+                ", offen, Grad IIIB nach Gustilo-Anderson"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", Sturz aus dem Stand",
+                ", Sturz",
+                ", Sportunfall",
+                ", Verkehrsunfall",
+                ", Sturz mit dem Fahrrad"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "kompartment",
+              "label": "Kompartmentsyndrom",
+              "text": "\nKompartmentsyndrom des Unterschenkels {seite}"
+            },
+            {
+              "art": "option",
+              "id": "peroneus",
+              "label": "Läsion des N. peroneus",
+              "text": "\nLäsion des N. peroneus {seite}"
+            }
+          ]
+        },
+        {
+          "id": "dx-st-tibiakopf-konservativ",
+          "titel": "Diagnose Tibiakopffraktur konservativ (Station)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "typ",
+              "label": "Frakturtyp",
+              "optionen": [
+                "Laterale Tibiakopffraktur",
+                "Mediale Tibiakopffraktur",
+                "Bikondyläre Tibiakopffraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "klassifikation",
+              "label": "Klassifikation",
+              "optionen": [
+                "",
+                " (Schatzker I)",
+                " (Schatzker II)",
+                " (Schatzker III)",
+                " (Schatzker IV)",
+                " (Schatzker V)",
+                " (Schatzker VI)",
+                " (AO 41-B1)",
+                " (AO 41-B2)",
+                " (AO 41-B3)",
+                " (AO 41-C1)",
+                " (AO 41-C2)",
+                " (AO 41-C3)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "stellung",
+              "label": "Verschiebung",
+              "text": ", {wie}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Verschiebung",
+                  "optionen": [
+                    "",
+                    "nicht verschoben",
+                    "gering verschoben, ohne wesentliche Stufe der Gelenkfläche",
+                    "verschoben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "fibula",
+              "label": "Fraktur des Fibulaköpfchens",
+              "text": ", mit Fraktur des Fibulaköpfchens"
+            },
+            {
+              "art": "auswahl",
+              "id": "weichteile",
+              "label": "Weichteilschaden",
+              "optionen": [
+                ", geschlossen",
+                ", geschlossen, Weichteilschaden Grad 1 nach Tscherne",
+                ", geschlossen, Weichteilschaden Grad 2 nach Tscherne",
+                ", geschlossen, Weichteilschaden Grad 3 nach Tscherne"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", Sturz aus dem Stand",
+                ", Sturz",
+                ", Sportunfall",
+                ", Verkehrsunfall",
+                ", Sturz mit dem Fahrrad"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "kompartment",
+              "label": "Kompartmentsyndrom",
+              "text": "\nKompartmentsyndrom des Unterschenkels {seite}"
+            },
+            {
+              "art": "option",
+              "id": "peroneus",
+              "label": "Läsion des N. peroneus",
+              "text": "\nLäsion des N. peroneus {seite}"
+            }
+          ]
+        },
+        {
+          "id": "th-st-tibiakopf-osteosynthese",
+          "titel": "Operation: Osteosynthese des Tibiakopfs",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "verfahren",
+              "label": "Verfahren",
+              "optionen": [
+                "Offene Reposition und winkelstabile Plattenosteosynthese des lateralen Tibiakopfs",
+                "Offene Reposition und winkelstabile Plattenosteosynthese des medialen Tibiakopfs",
+                "Offene Reposition und winkelstabile Plattenosteosynthese des Tibiakopfs von lateral und medial",
+                "Geschlossene Reposition und Schraubenosteosynthese des Tibiakopfs",
+                "Arthroskopisch gestützte Reposition und Schraubenosteosynthese des Tibiakopfs"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "anhebung",
+              "label": "Anhebung und Unterfütterung der Gelenkfläche",
+              "text": "\nAnhebung der eingedrückten Gelenkfläche und Unterfütterung mit {womit}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Unterfütterung",
+                  "optionen": [
+                    "",
+                    "Knochenersatzmaterial",
+                    "Spongiosa vom Beckenkamm",
+                    "Knochenzement"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "meniskus",
+              "label": "Naht des Meniskus",
+              "text": "\nNaht des {welcher}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "welcher",
+                  "label": "Meniskus",
+                  "optionen": [
+                    "",
+                    "Außenmeniskus",
+                    "Innenmeniskus"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "fixateur",
+              "label": "Zweizeitiges Vorgehen",
+              "text": "\nZuvor kniegelenkübergreifender Fixateur externe am {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Datum der ersten Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "fasziotomie",
+              "label": "Spaltung der Muskellogen",
+              "text": "\nDermatofasziotomie des Unterschenkels {seite} bei Kompartmentsyndrom am {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Datum der Spaltung",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "fasziotomie-verschluss",
+              "label": "Verschluss nach Spaltung",
+              "text": "\nSekundärer Verschluss der Fasziotomiewunden am {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Datum des Verschlusses",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-st-tibiakopf-konservativ",
+          "titel": "Konservative Behandlung der Tibiakopffraktur",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Konservative Behandlung der Tibiakopffraktur "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "wie",
+              "label": "Art der Behandlung",
+              "optionen": [
+                "frühfunktionell ohne Ruhigstellung",
+                "frühfunktionell in der Knieorthese",
+                "Ruhigstellung in der Oberschenkelgipsschiene bis zur Abschwellung, danach frühfunktionell in der Knieorthese"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "motorschiene",
+              "label": "Motorschiene",
+              "text": "\nBewegungsübungen auf der Motorschiene"
+            },
+            {
+              "art": "option",
+              "id": "punktion",
+              "label": "Punktion des Kniegelenks",
+              "text": "\nPunktion des Gelenkergusses am {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Datum der Punktion",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-st-tibiakopf",
+          "titel": "Aufnahmebefund Knie und Unterschenkel bei Tibiakopffraktur",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Knie und Unterschenkel "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Achsfehlstellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine sichtbare Achsfehlstellung. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Fehlstellung",
+                  "optionen": [
+                    "Valgusfehlstellung des Kniegelenks",
+                    "Varusfehlstellung des Kniegelenks",
+                    "Sichtbare Fehlstellung des Unterschenkels"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut, Weichteile",
+              "gruppe": "Inspektion",
+              "normal": "Haut geschlossen, keine Spannungsblasen. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Schürfwunde",
+                    "Prellmarke",
+                    "Hautkontusion",
+                    "Spannungsblasen",
+                    "Wunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort, z. B. über dem Tibiakopf lateral",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung, Gelenkerguss",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung, kein tastbarer Gelenkerguss. ",
+              "abweichung": "{was}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Schwellung des Kniegelenks",
+                    "Gelenkerguss",
+                    "Schwellung des Kniegelenks und Gelenkerguss",
+                    "Schwellung von Kniegelenk und proximalem Unterschenkel"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)",
+                    " (prall)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds",
+              "chip": "Druckschmerz Tibiakopf",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Tibiakopf. ",
+              "abweichung": "Druckschmerz über dem Tibiakopf{wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "",
+                    " lateral",
+                    " medial",
+                    " medial und lateral"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "fibula",
+              "chip": "Druckschmerz Fibulaköpfchen",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Fibulaköpfchen. ",
+              "abweichung": "Druckschmerz über dem Fibulaköpfchen. ",
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "beweglichkeit",
+              "chip": "Beweglichkeit Knie",
+              "gruppe": "Beweglichkeit",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Beweglichkeit des Kniegelenks schmerzbedingt eingeschränkt",
+                    "Beweglichkeit des Kniegelenks schmerzbedingt aufgehoben",
+                    "Beweglichkeit wegen der Fraktur nicht geprüft"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "baender",
+              "chip": "Bandstabilität",
+              "gruppe": "Stabilität",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Bandstabilität schmerzbedingt nicht beurteilbar",
+                    "Seitenbänder in Streckung stabil",
+                    "Vermehrte mediale Aufklappbarkeit in Streckung",
+                    "Vermehrte laterale Aufklappbarkeit in Streckung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kompartment",
+              "chip": "Kompartmentsyndrom",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Unterschenkel weich, kein Dehnungsschmerz bei passiver Bewegung der Zehen, kein Hinweis auf ein Kompartmentsyndrom. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Unterschenkel prall gespannt, Verdacht auf ein Kompartmentsyndrom",
+                    "Unterschenkel prall gespannt, Dehnungsschmerz bei passiver Bewegung der Zehen, Verdacht auf ein Kompartmentsyndrom",
+                    "Unterschenkel fest, nicht prall gespannt, kein Dehnungsschmerz"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Fußsenkung, Fußsohle",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußpulse tastbar, Fuß warm, Fußsenkung und Zehenbeugung kräftig, Sensibilität an der Fußsohle intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fußpulse nicht tastbar",
+                    "A. dorsalis pedis nicht tastbar",
+                    "A. tibialis posterior nicht tastbar",
+                    "Fuß kühl und blass",
+                    "Fußsenkung abgeschwächt",
+                    "Sensibilität an der Fußsohle vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Zusatz, z. B. Dopplersignal vorhanden, vorbestehend",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "peroneus",
+              "chip": "N. peroneus",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußhebung und Großzehenhebung kräftig, Sensibilität am Fußrücken und im 1. Zwischenzehenraum intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fußhebung abgeschwächt",
+                    "Fußhebung aufgehoben",
+                    "Großzehenhebung abgeschwächt",
+                    "Sensibilität am Fußrücken vermindert",
+                    "Sensibilität im 1. Zwischenzehenraum vermindert",
+                    "Fußhebung abgeschwächt, Sensibilität am Fußrücken vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Zusatz, z. B. Kraftgrad, vorbestehend",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-tibiakopf-ct",
+          "titel": "CT Knie (mit Seite)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "CT Knie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "bei Aufnahme",
+                "im Verlauf"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "CT-Befund",
+              "optionen": [
+                "Fraktur wie unter Diagnosen beschrieben.",
+                "Fraktur wie unter Diagnosen beschrieben, keine Stufe der Gelenkfläche.",
+                "Fraktur wie unter Diagnosen beschrieben, mit Impression der Gelenkfläche."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "impression",
+              "label": "Ausmaß von Stufe oder Impression",
+              "text": " Gelenkstufe bis {mm}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Gelenkstufe oder Impression in mm",
+                  "einheit": "mm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "",
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-tibiakopf-verlauf",
+          "titel": "Röntgen Knie im Verlauf (konservative Behandlung)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Knie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "nach Mobilisation",
+                "vor Entlassung",
+                "nach Mobilisation und vor Entlassung"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Ergebnis",
+              "optionen": [
+                "unveränderte Stellung der Fraktur, keine nachträgliche Verschiebung.",
+                "geringe nachträgliche Verschiebung der Fraktur, Vorgehen siehe Verlauf."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "verl-st-tibiakopf-konservativ",
+          "titel": "Verlauf: konservative Behandlung der Tibiakopffraktur",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahme und Grund",
+              "text": "Wir nahmen {person-akk} wegen der oben genannten Fraktur stationär auf, weil {grund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund der stationären Aufnahme",
+                  "optionen": [
+                    "",
+                    "die Schmerzen ambulant nicht ausreichend zu behandeln waren",
+                    "eine Mobilisation unter begrenzter Belastung ambulant nicht möglich war",
+                    "die Versorgung zu Hause nicht gesichert war",
+                    "die Weichteile vor der Mobilisation abschwellen mussten"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "entscheidung",
+              "label": "Einwilligung und Grund der konservativen Behandlung",
+              "text": "{einwilligung} behandelten wir die Fraktur konservativ, weil {grund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "einwilligung",
+                  "label": "Aufklärung und Einwilligung",
+                  "optionen": [
+                    "",
+                    "Nach Aufklärung und Einwilligung",
+                    "Nach Aufklärung und Einwilligung der bevollmächtigten Person",
+                    "Nach Aufklärung und Einwilligung der gesetzlichen Betreuung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "sie nicht verschoben war",
+                    "sie nur gering verschoben war, ohne wesentliche Stufe der Gelenkfläche",
+                    "das Risiko einer Operation wegen der Begleiterkrankungen zu hoch war",
+                    "eine Operation nach Aufklärung nicht gewünscht war"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung",
+              "label": "Inhalt der Aufklärung",
+              "text": "Die Aufklärung umfasste Diagnose, konservative Behandlung sowie {risiko}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "risiko",
+                  "label": "Aufgeklärt über",
+                  "optionen": [
+                    "",
+                    "das Risiko einer nachträglichen Verschiebung der Fraktur",
+                    "das Risiko einer nachträglichen Verschiebung der Fraktur und einer späteren Arthrose des Kniegelenks",
+                    "die Möglichkeit einer Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kompartment",
+              "label": "Kompartmentsyndrom im Verlauf",
+              "text": "Am Unterschenkel {seite} {was}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    "ergab sich bei den klinischen Kontrollen kein Hinweis auf ein Kompartmentsyndrom",
+                    "bestätigte sich ein Verdacht auf ein Kompartmentsyndrom im Verlauf nicht"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "nerv",
+              "label": "Durchblutung, Motorik, Sensibilität und N. peroneus im Verlauf",
+              "text": "Am Fuß {seite} {was}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    "waren Durchblutung, Motorik und Sensibilität einschließlich der Funktion des N. peroneus während des gesamten Aufenthalts intakt",
+                    "bestand bereits bei Aufnahme eine Störung von Durchblutung, Motorik oder Sensibilität, Art und Befund bei Entlassung siehe Entlassbefund",
+                    "trat im Verlauf eine neue Störung von Durchblutung, Motorik oder Sensibilität auf, Art und Befund bei Entlassung siehe Entlassbefund"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "uebung",
+              "label": "Bewegungsübungen Knie",
+              "text": "Die Beweglichkeit des Kniegelenks {seite} übten wir {wie}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Übungen",
+                  "optionen": [
+                    "",
+                    "aktiv und passiv mit Physiotherapie",
+                    "mit Physiotherapie und auf der Motorschiene",
+                    "nach Abschwellung und Abnahme der Gipsschiene mit Physiotherapie und auf der Motorschiene"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mobilisation",
+              "label": "Mobilisation",
+              "text": "{ab} mobilisierten wir {person-akk} mit Physiotherapie{hilfsmittel} unter {belastung} des Beins {seite}{erreicht}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Beginn",
+                  "optionen": [
+                    "",
+                    "Ab dem Aufnahmetag",
+                    "Ab dem 1. Tag nach der Aufnahme",
+                    "Ab dem 2. Tag nach der Aufnahme",
+                    "Nach Abschwellung der Weichteile"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "hilfsmittel",
+                  "label": "Hilfsmittel",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen",
+                    " am Rollator",
+                    " am Gehwagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "belastung",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Teilbelastung",
+                    "Minimalbelastung",
+                    "Entlastung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "erreicht",
+                  "label": "Erreichte Mobilität",
+                  "optionen": [
+                    "",
+                    ", zuletzt selbstständig auf Stationsebene",
+                    ", zuletzt selbstständig auf Stationsebene und auf der Treppe",
+                    ", zuletzt unter Aufsicht",
+                    ", zuletzt mit Hilfe einer Person"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "verschiebung",
+              "label": "Nachträgliche Verschiebung im Röntgen",
+              "text": "Die Röntgenkontrolle zeigte eine geringe nachträgliche Verschiebung der Fraktur. {wie} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Vorgehen",
+                  "optionen": [
+                    "",
+                    "Bei weiterhin geringer Stufe der Gelenkfläche setzten wir die konservative Behandlung fort.",
+                    "Eine Operation haben wir empfohlen, sie war nach Aufklärung nicht gewünscht."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "schmerz",
+              "label": "Schmerztherapie",
+              "text": "Die Schmerzen behandelten wir {womit}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Schmerztherapie",
+                  "optionen": [
+                    "nach Stufenschema",
+                    "mit einem Schmerzkatheter und nach Stufenschema",
+                    "mit einer patientengesteuerten Schmerzpumpe und nach Stufenschema"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe im Aufenthalt",
+              "text": "{was} ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Thromboseprophylaxe im Aufenthalt",
+                  "optionen": [
+                    "",
+                    "Während des Aufenthalts gaben wir eine medikamentöse Thromboseprophylaxe.",
+                    "Während des Aufenthalts gaben wir eine medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin.",
+                    "Die vorbestehende gerinnungshemmende Medikation führten wir fort, eine zusätzliche Thromboseprophylaxe gaben wir nicht.",
+                    "Eine medikamentöse Thromboseprophylaxe gaben wir nicht."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-tibiakopf-konservativ",
+          "titel": "Entlassbefund Knie bei konservativ behandelter Tibiakopffraktur",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Knie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung, Gelenkerguss",
+              "gruppe": "Inspektion",
+              "normal": "Keine wesentliche Schwellung, kein tastbarer Gelenkerguss. ",
+              "abweichung": "{was}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Schwellung des Kniegelenks",
+                    "Gelenkerguss",
+                    "Schwellung des Kniegelenks und Gelenkerguss"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (mäßig)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut",
+              "gruppe": "Inspektion",
+              "normal": "Haut intakt, keine Spannungsblasen, keine Druckstellen. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Abheilende Spannungsblasen",
+                    "Druckstelle",
+                    "Abheilende Schürfwunde",
+                    "Hautrötung durch die Orthese"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-tibiakopf-osteosynthese",
+          "titel": "Nachbehandlung Tibiakopffraktur nach Osteosynthese",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung bei Entlassung",
+              "text": "Belastung des Beins {seite} bei Entlassung: {stufe}. Gehen{gehhilfe}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Teilbelastung mit 10 kg",
+                    "Teilbelastung mit 15 kg",
+                    "Teilbelastung mit 20 kg",
+                    "Teilbelastung mit halbem Körpergewicht",
+                    "Minimalbelastung (Fuß mit dem Eigengewicht des Beins aufsetzen und abrollen)",
+                    "Entlastung",
+                    "Schmerzadaptierte Vollbelastung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen im Dreipunktegang",
+                    " am Rollator",
+                    " am Gehwagen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Knie und Bein "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "schema",
+              "label": "Nachbehandlung",
+              "optionen": [
+                "Bewegungsgrenzen und Orthese nach Maßgabe des Operateurs, siehe beigefügten Operationsbericht.",
+                "Nachbehandlung nach dem mitgegebenen Schema unserer Klinik.",
+                "Nachbehandlung nach den folgenden Punkten."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "steigerung",
+              "label": "Dauer und Steigerung der Belastung",
+              "text": "Belastung des Beins {seite} {verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Dauer und Steigerung",
+                  "optionen": [
+                    "",
+                    "zunächst wie bei Entlassung, schrittweise Steigerung bis zur Vollbelastung an Unterarmgehstützen am Ende der 6. Woche nach der Operation. Danach Steigerung bis zur vollen Alltagsbelastung am Ende der 12. Woche",
+                    "wie bei Entlassung für 6 Wochen nach der Operation. Danach Steigerung erst nach Röntgenkontrolle mit Zeichen der knöchernen Heilung",
+                    "wie bei Entlassung für 8 Wochen nach der Operation. Danach Steigerung erst nach Röntgenkontrolle mit Zeichen der knöchernen Heilung",
+                    "wie bei Entlassung für 12 Wochen nach der Operation. Danach Steigerung erst nach Röntgenkontrolle mit Zeichen der knöchernen Heilung",
+                    "wie bei Entlassung bis zur Röntgenkontrolle 6 Wochen nach der Operation. Über die weitere Steigerung entscheidet die weiterbehandelnde unfallchirurgische oder orthopädische Praxis anhand des Röntgenbilds"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegung",
+              "label": "Einzeln: Bewegung des Kniegelenks",
+              "text": "Kniegelenk {seite}: {regel}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regel",
+                  "label": "Bewegung",
+                  "optionen": [
+                    "",
+                    "aktive und passive Bewegung im schmerzarmen Bereich ohne Bewegungsgrenze",
+                    "Beugung bis 90° bis zum Ende der 6. Woche nach der Operation, danach ohne Bewegungsgrenze",
+                    "Beugung bis 60° bis zum Ende der 2. Woche, bis 90° bis zum Ende der 6. Woche nach der Operation, danach ohne Bewegungsgrenze"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Einzeln: Knieorthese",
+              "text": "Knieorthese {seite}: {wann}, {dauer}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Tragen",
+                  "optionen": [
+                    "",
+                    "beim Gehen und nachts tragen",
+                    "beim Gehen tragen",
+                    "Tag und Nacht tragen, zur Körperpflege und für die Übungen abnehmen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 6 Wochen nach der Operation",
+                    "solange die Belastung begrenzt ist",
+                    "bis zur nächsten Röntgenkontrolle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "motorschiene",
+              "label": "Einzeln: Motorschiene",
+              "text": "Bewegungsübungen des Kniegelenks {seite} auf der Motorschiene {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "zu Hause, die Verordnung haben wir mitgegeben",
+                    "zu Hause, Verordnung durch die weiterbehandelnde Praxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle des Kniegelenks {seite} in 2 Ebenen {wann} {wo}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "2 Wochen nach der Operation",
+                    "6 Wochen nach der Operation",
+                    "2 und 6 Wochen nach der Operation",
+                    "6 und 12 Wochen nach der Operation",
+                    "2, 6 und 12 Wochen nach der Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der Durchgangsarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "peroneus",
+              "label": "Bei Fußheberschwäche",
+              "text": "Fußheberschwäche {seite}: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Maßnahme",
+                  "optionen": [
+                    "",
+                    "Peroneusschiene angepasst und mitgegeben",
+                    "neurologische Vorstellung mit Messung der Nervenleitung, Überweisung durch die Hausarztpraxis",
+                    "Peroneusschiene angepasst und mitgegeben, neurologische Vorstellung mit Messung der Nervenleitung, Überweisung durch die Hausarztpraxis"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-tibiakopf-konservativ",
+          "titel": "Nachbehandlung Tibiakopffraktur konservativ",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung bei Entlassung",
+              "text": "Belastung des Beins {seite} bei Entlassung: {stufe}. Gehen{gehhilfe}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Teilbelastung mit 10 kg",
+                    "Teilbelastung mit 15 kg",
+                    "Minimalbelastung (Fuß mit dem Eigengewicht des Beins aufsetzen und abrollen)",
+                    "Entlastung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen im Dreipunktegang",
+                    " am Rollator",
+                    " am Gehwagen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "text": "Ruhigstellung des Kniegelenks {seite}: {was}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ruhigstellung",
+                  "optionen": [
+                    "",
+                    "keine, frühfunktionelle Behandlung",
+                    "Knieorthese beim Gehen und nachts tragen, solange die Belastung begrenzt ist",
+                    "Knieorthese Tag und Nacht tragen, zur Körperpflege und für die Übungen abnehmen, solange die Belastung begrenzt ist"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Hochlagern und Kühlen",
+              "text": "Bein {seite} in der ersten Woche nach der Entlassung mehrmals täglich hochlagern und kühlen. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Knie und Bein "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "schema",
+              "label": "Nachbehandlung",
+              "optionen": [
+                "Steigerung von Belastung und Bewegung nach Maßgabe der weiterbehandelnden unfallchirurgischen oder orthopädischen Praxis anhand der Röntgenkontrollen.",
+                "Nachbehandlung nach dem mitgegebenen Schema unserer Klinik.",
+                "Nachbehandlung nach den folgenden Punkten."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "steigerung",
+              "label": "Dauer und Steigerung der Belastung",
+              "text": "Belastung des Beins {seite} {verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Dauer und Steigerung",
+                  "optionen": [
+                    "",
+                    "wie bei Entlassung für 6 Wochen nach dem Unfall. Danach Steigerung erst nach Röntgenkontrolle mit Zeichen der knöchernen Heilung",
+                    "wie bei Entlassung für 8 Wochen nach dem Unfall. Danach Steigerung erst nach Röntgenkontrolle mit Zeichen der knöchernen Heilung",
+                    "wie bei Entlassung für 12 Wochen nach dem Unfall. Danach Steigerung erst nach Röntgenkontrolle mit Zeichen der knöchernen Heilung",
+                    "wie bei Entlassung bis zur Röntgenkontrolle 6 Wochen nach dem Unfall. Über die weitere Steigerung entscheidet die weiterbehandelnde unfallchirurgische oder orthopädische Praxis anhand des Röntgenbilds"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegung",
+              "label": "Einzeln: Bewegung des Kniegelenks",
+              "text": "Kniegelenk {seite}: {regel}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regel",
+                  "label": "Bewegung",
+                  "optionen": [
+                    "",
+                    "aktive und passive Bewegung im schmerzarmen Bereich ohne Bewegungsgrenze, Ziel volle Streckung und Beugung bis mindestens 90°",
+                    "Beugung bis 90° bis zum Ende der 6. Woche nach dem Unfall, danach ohne Bewegungsgrenze",
+                    "Beugung bis 60° bis zum Ende der 2. Woche, bis 90° bis zum Ende der 6. Woche nach dem Unfall, danach ohne Bewegungsgrenze"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "motorschiene",
+              "label": "Einzeln: Motorschiene",
+              "text": "Bewegungsübungen des Kniegelenks {seite} auf der Motorschiene {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "zu Hause, die Verordnung haben wir mitgegeben",
+                    "zu Hause, Verordnung durch die weiterbehandelnde Praxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle des Kniegelenks {seite} in 2 Ebenen {wann} {wo}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "1 Woche nach dem Unfall",
+                    "1 und 2 Wochen nach dem Unfall",
+                    "1, 2 und 6 Wochen nach dem Unfall",
+                    "2 und 6 Wochen nach dem Unfall"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der Durchgangsarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "op-hinweis",
+              "label": "Bei Verschiebung: Sprechstunde",
+              "text": "Bei nachträglicher Verschiebung der Fraktur in der Röntgenkontrolle umgehende Vorstellung in unserer Sprechstunde zur Entscheidung über eine Operation. ",
+              "an": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "peroneus",
+              "label": "Bei Fußheberschwäche",
+              "text": "Fußheberschwäche {seite}: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Maßnahme",
+                  "optionen": [
+                    "",
+                    "Peroneusschiene angepasst und mitgegeben",
+                    "neurologische Vorstellung mit Messung der Nervenleitung, Überweisung durch die Hausarztpraxis",
+                    "Peroneusschiene angepasst und mitgegeben, neurologische Vorstellung mit Messung der Nervenleitung, Überweisung durch die Hausarztpraxis"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unterschenkel",
+      "name": "Unterschenkel",
+      "kuerzel": "🦿",
+      "bausteine": [
+        {
+          "id": "dx-st-unterschenkelschaft",
+          "titel": "Diagnose Unterschenkelschaftfraktur (Station)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Fraktur",
+              "optionen": [
+                "Unterschenkelschaftfraktur",
+                "Tibiaschaftfraktur bei intakter Fibula",
+                "Distale extraartikuläre Unterschenkelfraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "klassifikation",
+              "label": "Klassifikation",
+              "optionen": [
+                "",
+                " (AO 42-A1)",
+                " (AO 42-A2)",
+                " (AO 42-A3)",
+                " (AO 42-B2)",
+                " (AO 42-B3)",
+                " (AO 42-C2)",
+                " (AO 42-C3)",
+                " (AO 43-A1)",
+                " (AO 43-A2)",
+                " (AO 43-A3)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "weichteile",
+              "label": "Geschlossen oder offen",
+              "optionen": [
+                ", geschlossen",
+                ", geschlossen, Weichteilschaden Grad 1 nach Tscherne",
+                ", geschlossen, Weichteilschaden Grad 2 nach Tscherne",
+                ", geschlossen, Weichteilschaden Grad 3 nach Tscherne",
+                ", offen, Grad I nach Gustilo-Anderson",
+                ", offen, Grad II nach Gustilo-Anderson",
+                ", offen, Grad IIIA nach Gustilo-Anderson",
+                ", offen, Grad IIIB nach Gustilo-Anderson",
+                ", offen, Grad IIIC nach Gustilo-Anderson"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", Sturz",
+                ", Sportunfall",
+                ", Verkehrsunfall",
+                ", Sturz mit dem Fahrrad",
+                ", Sturz aus der Höhe"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "kompartment",
+              "label": "Kompartmentsyndrom",
+              "text": "\nKompartmentsyndrom des Unterschenkels {seite}"
+            },
+            {
+              "art": "option",
+              "id": "peroneus",
+              "label": "Läsion des N. peroneus",
+              "text": "\nLäsion des N. peroneus {seite}"
+            }
+          ]
+        },
+        {
+          "id": "th-st-unterschenkel-marknagel",
+          "titel": "Operation: Marknagelosteosynthese der Tibia",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "reposition",
+              "label": "Reposition",
+              "optionen": [
+                "Geschlossene Reposition",
+                "Offene Reposition"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " und Marknagelosteosynthese der Tibia "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ", "
+            },
+            {
+              "art": "auswahl",
+              "id": "verriegelung",
+              "label": "Verriegelung",
+              "optionen": [
+                "statisch verriegelt",
+                "dynamisch verriegelt"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ", am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "zugang",
+              "label": "Zugang",
+              "text": "\nZugang: {wo}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Zugang",
+                  "optionen": [
+                    "",
+                    "infrapatellar",
+                    "suprapatellar",
+                    "parapatellar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "fibula",
+              "label": "Osteosynthese der Fibula",
+              "text": "\nPlattenosteosynthese der Fibula"
+            },
+            {
+              "art": "option",
+              "id": "debridement",
+              "label": "Débridement bei offener Fraktur",
+              "text": "\nDébridement und Spülung der offenen Fraktur{verschluss}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verschluss",
+                  "label": "Wundverschluss",
+                  "optionen": [
+                    "",
+                    " mit primärem Wundverschluss",
+                    " mit vorübergehendem Unterdruckverband"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "tetanus",
+              "label": "Tetanusimpfung",
+              "text": "\n{was} nach Aufklärung",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Impfung",
+                  "optionen": [
+                    "",
+                    "Auffrischung der Tetanusimpfung",
+                    "Simultanimpfung gegen Tetanus mit Tetanus-Immunglobulin"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wundverschluss",
+              "label": "Sekundärer Wundverschluss",
+              "text": "\nSekundärer Wundverschluss am {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Datum des Wundverschlusses",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "fixateur",
+              "label": "Zweizeitiges Vorgehen",
+              "text": "\nZuvor Fixateur externe am {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Datum der ersten Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "fasziotomie",
+              "label": "Spaltung der Muskellogen",
+              "text": "\nDermatofasziotomie des Unterschenkels {seite} bei Kompartmentsyndrom am {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Datum der Spaltung",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "fasziotomie-verschluss",
+              "label": "Verschluss nach Spaltung",
+              "text": "\nSekundärer Verschluss der Fasziotomiewunden am {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Datum des Verschlusses",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-st-unterschenkelschaft",
+          "titel": "Aufnahmebefund Unterschenkel bei Schaftfraktur",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Unterschenkel "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Fehlstellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine sichtbare Fehlstellung. ",
+              "abweichung": "{was}{reposition}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Fehlstellung",
+                  "optionen": [
+                    "Sichtbare Achsfehlstellung",
+                    "Verkürzung und Achsfehlstellung",
+                    "Achsfehlstellung mit abnormer Beweglichkeit"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "reposition",
+                  "label": "Reposition",
+                  "optionen": [
+                    "",
+                    ", nach Reposition achsgerecht",
+                    ", nach Reposition nicht achsgerecht",
+                    ", nicht reponiert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut, Weichteile",
+              "gruppe": "Inspektion",
+              "normal": "Haut geschlossen, keine Wunde. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Wunde über der Fraktur",
+                    "Durchspießungswunde",
+                    "Schürfwunde",
+                    "Prellmarke",
+                    "Hautkontusion",
+                    "Spannungsblasen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort und Größe, z. B. 2 cm prätibial im distalen Drittel",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine wesentliche Schwellung. ",
+              "abweichung": "{grad} Schwellung{wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    "Geringe",
+                    "Mäßige",
+                    "Deutliche"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " des Unterschenkels",
+                    " des distalen Unterschenkels",
+                    " von Unterschenkel und Fuß"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds",
+              "chip": "Druckschmerz Schaft",
+              "gruppe": "Palpation",
+              "normal": "",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "über dem Tibiaschaft",
+                    "über dem Fibulaschaft",
+                    "über Tibia- und Fibulaschaft"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "nachbar",
+              "chip": "Knie und Sprunggelenk",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über Kniegelenk und oberem Sprunggelenk. ",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "über dem Kniegelenk",
+                    "über dem oberen Sprunggelenk",
+                    "über dem Innenknöchel",
+                    "über dem Außenknöchel"
+                  ],
+                  "required": true
+                }
+              ],
+              "selten": true
+            },
+            {
+              "art": "befund",
+              "id": "kompartment",
+              "chip": "Kompartmentsyndrom",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Unterschenkel weich, kein Dehnungsschmerz bei passiver Bewegung der Zehen, kein Hinweis auf ein Kompartmentsyndrom. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Unterschenkel prall gespannt, Verdacht auf ein Kompartmentsyndrom",
+                    "Unterschenkel prall gespannt, Dehnungsschmerz bei passiver Bewegung der Zehen, Verdacht auf ein Kompartmentsyndrom",
+                    "Unterschenkel fest, nicht prall gespannt, kein Dehnungsschmerz"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Fußsenkung, Fußsohle",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußpulse tastbar, Fuß warm, Fußsenkung und Zehenbeugung kräftig, Sensibilität an der Fußsohle intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fußpulse nicht tastbar",
+                    "A. dorsalis pedis nicht tastbar",
+                    "A. tibialis posterior nicht tastbar",
+                    "Fuß kühl und blass",
+                    "Fußsenkung abgeschwächt",
+                    "Sensibilität an der Fußsohle vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Zusatz, z. B. Dopplersignal vorhanden, vorbestehend",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "peroneus",
+              "chip": "N. peroneus",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußhebung und Großzehenhebung kräftig, Sensibilität am Fußrücken und im 1. Zwischenzehenraum intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fußhebung abgeschwächt",
+                    "Fußhebung aufgehoben",
+                    "Großzehenhebung abgeschwächt",
+                    "Sensibilität am Fußrücken vermindert",
+                    "Sensibilität im 1. Zwischenzehenraum vermindert",
+                    "Fußhebung abgeschwächt, Sensibilität am Fußrücken vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Zusatz, z. B. Kraftgrad, vorbestehend",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "verl-st-unterschenkel-operativ",
+          "titel": "Verlauf nach Osteosynthese an Knie oder Unterschenkel: Weichteile, Nerv, Mobilisation, Wunde",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "antibiotika",
+              "label": "Antibiotika: Prophylaxe oder wegen offener Fraktur",
+              "text": "{anlass} gaben wir {wirkstoff} intravenös {dauer}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anlass",
+                  "label": "Anlass",
+                  "optionen": [
+                    "",
+                    "Nur als Prophylaxe zur Operation",
+                    "Wegen der offenen Fraktur"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "dauer",
+                  "label": "Dauer, z. B. einmalig, für 72 Stunden oder bis zum Wundverschluss",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "fixateur",
+              "label": "Fixateur externe bis zur endgültigen Versorgung",
+              "text": "Bis zur endgültigen Versorgung stabilisierten wir die Fraktur im Fixateur externe, siehe Therapie. "
+            },
+            {
+              "art": "option",
+              "id": "kompartment",
+              "label": "Kompartmentsyndrom im Verlauf",
+              "text": "Am Unterschenkel {seite} {was}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    "ergab sich bei den klinischen Kontrollen kein Hinweis auf ein Kompartmentsyndrom",
+                    "bestätigte sich ein Verdacht auf ein Kompartmentsyndrom im Verlauf nicht",
+                    "bestand ein Kompartmentsyndrom, wir spalteten die Muskellogen, siehe Therapie"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "nerv",
+              "label": "Durchblutung, Motorik, Sensibilität und N. peroneus im Verlauf",
+              "text": "Am Fuß {seite} {was}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    "waren Durchblutung, Motorik und Sensibilität einschließlich der Funktion des N. peroneus während des gesamten Aufenthalts intakt",
+                    "bestand bereits bei Aufnahme eine Störung von Durchblutung, Motorik oder Sensibilität, Art und Befund bei Entlassung siehe Entlassbefund",
+                    "trat nach der Operation eine neue Störung von Durchblutung, Motorik oder Sensibilität auf, Art und Befund bei Entlassung siehe Entlassbefund"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mobilisation",
+              "label": "Mobilisation",
+              "text": "{ab} mobilisierten wir {person-akk} mit Physiotherapie{hilfsmittel} unter {belastung} des Beins {seite}{erreicht}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Beginn",
+                  "optionen": [
+                    "",
+                    "Ab dem Operationstag",
+                    "Ab dem 1. Tag nach der Operation",
+                    "Ab dem 2. Tag nach der Operation",
+                    "Ab dem 3. Tag nach der Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "hilfsmittel",
+                  "label": "Hilfsmittel",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen",
+                    " am Rollator",
+                    " am Gehwagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "belastung",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Teilbelastung",
+                    "Minimalbelastung",
+                    "Entlastung",
+                    "Vollbelastung",
+                    "schmerzadaptierter Vollbelastung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "erreicht",
+                  "label": "Erreichte Mobilität",
+                  "optionen": [
+                    "",
+                    ", zuletzt selbstständig auf Stationsebene",
+                    ", zuletzt selbstständig auf Stationsebene und auf der Treppe",
+                    ", zuletzt unter Aufsicht",
+                    ", zuletzt mit Hilfe einer Person"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wunde",
+              "label": "Wundheilung",
+              "text": "{wie} ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wundheilung",
+                  "optionen": [
+                    "",
+                    "Die Operationswunde heilte trocken und reizlos.",
+                    "Die Operationswunden heilten trocken und reizlos.",
+                    "Die Operationswunden sezernierten anfangs und waren bei Entlassung trocken.",
+                    "Die Operationswunde sezernierte anfangs und war bei Entlassung trocken."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-unterschenkel",
+          "titel": "Entlassbefund Bein: Kompartmentsyndrom, Durchblutung, N. peroneus, Beweglichkeit",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Bein "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "kompartment",
+              "chip": "Kompartmentsyndrom",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Unterschenkel weich, kein Hinweis auf ein Kompartmentsyndrom. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Unterschenkel fest, nicht prall gespannt, kein Dehnungsschmerz",
+                    "Muskellogen gespalten, Wundverhältnisse siehe oben"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Fußsenkung, Fußsohle",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußpulse tastbar, Fuß warm, Fußsenkung und Zehenbeugung kräftig, Sensibilität an der Fußsohle intakt. ",
+              "abweichung": "{was}{wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fußpulse nicht tastbar",
+                    "A. dorsalis pedis nicht tastbar",
+                    "A. tibialis posterior nicht tastbar",
+                    "Fuß kühl und blass",
+                    "Fußsenkung abgeschwächt",
+                    "Sensibilität an der Fußsohle vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Seit wann",
+                  "optionen": [
+                    "",
+                    ", wie bei Aufnahme",
+                    ", neu im Verlauf"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "peroneus",
+              "chip": "N. peroneus",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußhebung und Großzehenhebung kräftig, Sensibilität am Fußrücken und im 1. Zwischenzehenraum intakt. ",
+              "abweichung": "{was}{wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fußhebung abgeschwächt",
+                    "Fußhebung aufgehoben",
+                    "Großzehenhebung abgeschwächt",
+                    "Sensibilität am Fußrücken vermindert",
+                    "Sensibilität im 1. Zwischenzehenraum vermindert",
+                    "Fußhebung abgeschwächt, Sensibilität am Fußrücken vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Seit wann",
+                  "optionen": [
+                    "",
+                    ", wie bei Aufnahme",
+                    ", gebessert gegenüber der Aufnahme",
+                    ", neu im Verlauf"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "knie",
+              "label": "Kniegelenk Extension/Flexion",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Kniegelenk: Extension/Flexion {w}°. ",
+              "normal": ""
+            },
+            {
+              "art": "messwert",
+              "id": "osg",
+              "label": "Oberes Sprunggelenk Dorsalextension/Plantarflexion",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Oberes Sprunggelenk: Dorsalextension/Plantarflexion {w}°. ",
+              "normal": ""
+            }
+          ]
+        },
+        {
+          "id": "eb-st-gehen-bein",
+          "titel": "Entlassbefund Gehen mit Belastungsstufe des Beins",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "gehen",
+              "label": "Gehen",
+              "text": "Gehen {wie}{hilfsmittel} unter {belastung} des Beins {seite}{strecke}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Selbstständigkeit",
+                  "optionen": [
+                    "",
+                    "selbstständig",
+                    "unter Aufsicht",
+                    "mit Hilfe einer Person"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "hilfsmittel",
+                  "label": "Hilfsmittel",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen",
+                    " am Rollator",
+                    " am Gehwagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "belastung",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Teilbelastung",
+                    "Minimalbelastung",
+                    "Entlastung",
+                    "Vollbelastung",
+                    "schmerzadaptierter Vollbelastung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "strecke",
+                  "label": "Strecke",
+                  "optionen": [
+                    "",
+                    " auf Stationsebene",
+                    " auf Stationsebene und auf der Treppe",
+                    " im Zimmer",
+                    " über wenige Schritte"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-unterschenkel-marknagel",
+          "titel": "Nachbehandlung Unterschenkelschaftfraktur nach Marknagelosteosynthese",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung bei Entlassung",
+              "text": "Belastung des Beins {seite} bei Entlassung: {stufe}. Gehen{gehhilfe}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Teilbelastung mit 10 kg",
+                    "Teilbelastung mit 15 kg",
+                    "Teilbelastung mit 20 kg",
+                    "Teilbelastung mit halbem Körpergewicht",
+                    "Minimalbelastung (Fuß mit dem Eigengewicht des Beins aufsetzen und abrollen)",
+                    "Schmerzadaptierte Vollbelastung",
+                    "Vollbelastung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen im Dreipunktegang",
+                    " an Unterarmgehstützen im Zweipunktegang",
+                    " am Rollator",
+                    " am Gehwagen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Unterschenkel "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "schema",
+              "label": "Nachbehandlung",
+              "optionen": [
+                "Bewegungsgrenzen nach Maßgabe des Operateurs, siehe beigefügten Operationsbericht.",
+                "Nachbehandlung nach dem mitgegebenen Schema unserer Klinik.",
+                "Nachbehandlung nach den folgenden Punkten."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "steigerung",
+              "label": "Dauer und Steigerung der Belastung",
+              "text": "Belastung des Beins {seite} {verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Dauer und Steigerung",
+                  "optionen": [
+                    "",
+                    "nach Schmerzen steigern bis zur Vollbelastung im Zweipunktegang am Ende der 6. Woche nach der Operation. Danach Gehstützen abtrainieren",
+                    "wie bei Entlassung für 6 Wochen nach der Operation. Danach Steigerung nach Röntgenkontrolle",
+                    "wie bei Entlassung für 8 Wochen nach der Operation. Danach Steigerung nach Röntgenkontrolle",
+                    "wie bei Entlassung, Gehstützen abtrainieren, sobald das Gangbild sicher ist",
+                    "wie bei Entlassung bis zur Röntgenkontrolle 6 Wochen nach der Operation. Über die weitere Steigerung entscheidet die weiterbehandelnde unfallchirurgische oder orthopädische Praxis anhand des Röntgenbilds"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegung",
+              "label": "Einzeln: Bewegung von Knie und Sprunggelenk",
+              "text": "Kniegelenk und oberes Sprunggelenk {seite}: {regel}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regel",
+                  "label": "Bewegung",
+                  "optionen": [
+                    "",
+                    "aktive und passive Bewegung ohne Bewegungsgrenze",
+                    "aktive und passive Bewegung ohne Bewegungsgrenze, Fuß mehrmals täglich bis zur Neutralstellung anziehen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle des Unterschenkels {seite} mit angrenzenden Gelenken in 2 Ebenen {wann} {wo}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "2 Wochen nach der Operation",
+                    "6 Wochen nach der Operation",
+                    "2 und 6 Wochen nach der Operation",
+                    "6 und 12 Wochen nach der Operation",
+                    "2, 6 und 12 Wochen nach der Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der Durchgangsarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dynamisierung",
+              "label": "Bei verzögerter Heilung: Sprechstunde",
+              "text": "Bei verzögerter knöcherner Heilung in der Röntgenkontrolle Vorstellung in unserer Sprechstunde zur Entscheidung über eine Dynamisierung des Nagels. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum bis wann",
+              "text": "{wirkstoff} bis einschließlich {bis} einnehmen, siehe Medikation. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "bis",
+                  "label": "Bis wann: Datum oder Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "peroneus",
+              "label": "Bei Fußheberschwäche",
+              "text": "Fußheberschwäche {seite}: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Maßnahme",
+                  "optionen": [
+                    "",
+                    "Peroneusschiene angepasst und mitgegeben",
+                    "neurologische Vorstellung mit Messung der Nervenleitung, Überweisung durch die Hausarztpraxis",
+                    "Peroneusschiene angepasst und mitgegeben, neurologische Vorstellung mit Messung der Nervenleitung, Überweisung durch die Hausarztpraxis"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-bein",
+          "titel": "Thromboseprophylaxe bei Verletzung des Beins mit begrenzter Belastung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung und bis zur Abnahme der Orthese.",
+                "Vorbestehende gerinnungshemmende Medikation fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe nach der Entlassung, Vollbelastung erreicht.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "wirkstoff",
+              "label": "Wirkstoff und Dosis",
+              "text": " Wirkstoff: {wirkstoff} {dosis}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff der Thromboseprophylaxe",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "Enoxaparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Certoparin",
+                    "Nadroparin",
+                    "Fondaparinux"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Schema, z. B. 40 mg 1-mal täglich subkutan",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "siehe-medikation",
+              "label": "Verweis auf Medikation",
+              "text": " Wirkstoff und Dosis siehe Medikation."
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Kontrolle der Thrombozytenzahl",
+              "text": " Kontrolle der Thrombozytenzahl {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche",
+                    "1 Woche nach der Entlassung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann, z. B. am 2. Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-bein-konservativ",
+          "titel": "Thromboseprophylaxe bei Verletzung des Beins mit begrenzter Belastung (konservativ, ohne Vollbelastung)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung und bis zur Abnahme der Orthese.",
+                "Vorbestehende gerinnungshemmende Medikation fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "wirkstoff",
+              "label": "Wirkstoff und Dosis",
+              "text": " Wirkstoff: {wirkstoff} {dosis}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff der Thromboseprophylaxe",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "Enoxaparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Certoparin",
+                    "Nadroparin",
+                    "Fondaparinux"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Schema, z. B. 40 mg 1-mal täglich subkutan",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "siehe-medikation",
+              "label": "Verweis auf Medikation",
+              "text": " Wirkstoff und Dosis siehe Medikation."
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Kontrolle der Thrombozytenzahl",
+              "text": " Kontrolle der Thrombozytenzahl {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche",
+                    "1 Woche nach der Entlassung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann, z. B. am 2. Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-sicherheitsnetz-unterschenkel",
+          "titel": "Wiedervorstellung bei Warnzeichen (Knie und Unterschenkel: nach Operation, konservativ mit oder ohne Orthese)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "",
+                    "rasch zunehmenden Schmerzen oder Spannungsgefühl im Unterschenkel trotz Schmerzmitteln, plötzlich stärkeren Schmerzen im Knie, neuem Taubheitsgefühl oder Kribbeln am Fuß, neuer oder zunehmender Schwäche beim Anheben von Fuß oder Zehen, kalten, blassen oder blauen Zehen, Druckstellen unter der Orthese, zunehmender Schwellung des ganzen Beins, Atemnot oder Brustschmerz",
+                    "rasch zunehmenden Schmerzen oder Spannungsgefühl im Unterschenkel trotz Schmerzmitteln, plötzlich stärkeren Schmerzen im Knie, neuem Taubheitsgefühl oder Kribbeln am Fuß, neuer oder zunehmender Schwäche beim Anheben von Fuß oder Zehen, kalten, blassen oder blauen Zehen, zunehmender Schwellung des ganzen Beins, Atemnot oder Brustschmerz",
+                    "Rötung, Schwellung oder Nässen der Wunde, Fieber über 38,5 °C, rasch zunehmenden Schmerzen oder Spannungsgefühl im Unterschenkel trotz Schmerzmitteln, neuem Taubheitsgefühl oder Kribbeln am Fuß, neuer oder zunehmender Schwäche beim Anheben von Fuß oder Zehen, kalten, blassen oder blauen Zehen, zunehmender Schwellung des ganzen Beins, Atemnot oder Brustschmerz",
+                    "Rötung, Schwellung oder Nässen der Wunde, Fieber über 38,5 °C, rasch zunehmenden Schmerzen oder Spannungsgefühl im Unterschenkel trotz Schmerzmitteln, neuem Taubheitsgefühl oder Kribbeln am Fuß, neuer oder zunehmender Schwäche beim Anheben von Fuß oder Zehen, kalten, blassen oder blauen Zehen, Druckstellen unter der Orthese, zunehmender Schwellung des ganzen Beins, Atemnot oder Brustschmerz"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": "Die Warnzeichen haben wir mit {person-dat} besprochen. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "merkblatt",
+              "label": "Merkblatt mitgegeben",
+              "text": "Ein Merkblatt haben wir mitgegeben. "
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

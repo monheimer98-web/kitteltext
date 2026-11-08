@@ -1,0 +1,267 @@
+{
+  "vorlagen": [
+    {
+      "id": "zna-hueftprothese-luxation",
+      "titel": "Luxation einer Hüftprothese",
+      "suchbegriffe": [
+        "Hüft-TEP-Luxation",
+        "TEP-Luxation",
+        "Prothesenluxation",
+        "Luxation Hüftprothese",
+        "Hüftprothese ausgerenkt",
+        "Hüftprothese herausgesprungen",
+        "Endoprothese Luxation",
+        "Duokopf Luxation",
+        "Reposition Hüftprothese",
+        "luxierte Hüft-TEP",
+        "Hüftendoprothese"
+      ],
+      "kuerzel": [
+        "tep",
+        "hep"
+      ],
+      "region": "huefte",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-hueftprothese-luxation"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-hueftprothese-luxation"
+        ],
+        "befund": [
+          "bef-hueftprothese-luxation"
+        ],
+        "diagnostik": [
+          "dgn-hueftprothese-roentgen"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Reposition in der Notaufnahme oder Weg zur Reposition in Narkose?",
+          "bausteine": [
+            "th-hueftprothese-reposition",
+            "th-hueftprothese-ohne-reposition"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Weiterbehandlung oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-hueftprothese-luxation-ambulant",
+            "proc-hueftprothese-luxation-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-hueftprothese-luxation/stellung",
+        "bef-hueftprothese-luxation/narbe",
+        "bef-hueftprothese-luxation/nerv-vor",
+        "bef-hueftprothese-luxation/durchblutung-vor",
+        "bef-hueftprothese-luxation/nerv-nach",
+        "bef-hueftprothese-luxation/durchblutung-nach",
+        "bef-hueftprothese-luxation/stabilitaet",
+        "bef-hueftprothese-luxation/beinlaenge"
+      ],
+      "vorgaben": {
+        "aus": [
+          "th-zna/untersuchung"
+        ],
+        "an": [
+          "ana-hueftprothese-luxation/zugang"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Bücken sei plötzlich ein Schmerz in der Hüfte aufgetreten.",
+          "Beim Aufstehen aus einem tiefen Sitz sei plötzlich ein Schmerz in der Hüfte aufgetreten.",
+          "Beim Anziehen von Schuhen oder Strümpfen sei plötzlich ein Schmerz in der Hüfte aufgetreten.",
+          "Beim Drehen im Bett sei plötzlich ein Schmerz in der Hüfte aufgetreten.",
+          "Beim Übereinanderschlagen der Beine sei plötzlich ein Schmerz in der Hüfte aufgetreten.",
+          "Es sei zu einem Sturz aus dem Stand gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 01.11.2026"
+    },
+    {
+      "id": "zna-verbrennung",
+      "titel": "Verbrennung außerhalb der Hand",
+      "suchbegriffe": [
+        "Verbrühung",
+        "Verbrennung",
+        "Brandwunde",
+        "Brandblase",
+        "Kontaktverbrennung",
+        "Verbrennung Arm",
+        "Verbrennung Bein",
+        "Verbrennung Fuß",
+        "Verbrennung Rumpf",
+        "Verbrennung Gesicht",
+        "Verbrühung Kind",
+        "heißes Wasser",
+        "heißes Fett",
+        "Grillunfall",
+        "Verbrennungszentrum"
+      ],
+      "region": "wunden",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-verbrennung-koerper"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-tetanus-letzte-impfung",
+          "ana-verbrennung-koerper"
+        ],
+        "befund": [
+          "bef-verbrennung-koerper"
+        ],
+        "diagnostik": [
+          "dgn-verbrennung-koerper"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-verbrennung-koerper"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulant, Fachvorstellung oder stationär?",
+          "bausteine": [
+            "proc-verbrennung-koerper-ambulant",
+            "proc-verbrennung-koerper-fachvorstellung",
+            "proc-verbrennung-koerper-verlegung"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-verbrennung-koerper/haut",
+        "bef-verbrennung-koerper/zirkulaer",
+        "bef-verbrennung-koerper/pdms",
+        "bef-verbrennung-koerper/inhalation"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Kochen sei heißes Wasser über die Haut gelaufen.",
+          "Beim Umkippen eines Bechers sei ein heißes Getränk über die Haut gelaufen.",
+          "Beim Herunterziehen eines Gefäßes mit heißer Flüssigkeit sei diese über die Haut gelaufen.",
+          "Beim Kochen sei heißes Fett auf die Haut gespritzt.",
+          "Es sei zu einem Kontakt der Haut mit einer heißen Oberfläche gekommen.",
+          "Beim Grillen sei es zu einer Verpuffung gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 01.11.2026",
+      "vorgaben": {
+        "an": [
+          "ana-verbrennung-koerper/atemwege"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-verbrennung-koerper/tetanus"
+        ]
+      }
+    },
+    {
+      "id": "zna-stromunfall",
+      "titel": "Stromunfall",
+      "suchbegriffe": [
+        "Stromschlag",
+        "Elektrounfall",
+        "elektrischer Schlag",
+        "Stromverletzung",
+        "Strommarke",
+        "Niederspannung",
+        "Hochspannung",
+        "Haushaltsstrom",
+        "Steckdose",
+        "Starkstrom",
+        "Weidezaun",
+        "Monitorüberwachung"
+      ],
+      "region": "weichteile",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-stromunfall"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-tetanus-letzte-impfung",
+          "ana-stromunfall"
+        ],
+        "befund": [
+          "bef-stromunfall"
+        ],
+        "diagnostik": [
+          "dgn-stromunfall"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-stromunfall"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulant oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-stromunfall-ambulant",
+            "proc-stromunfall-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-stromunfall/bewusstsein",
+        "bef-stromunfall/inspektion",
+        "bef-stromunfall/marke",
+        "bef-stromunfall/marke2",
+        "bef-stromunfall/beweglichkeit",
+        "bef-stromunfall/pdms",
+        "bef-stromunfall/kompartment",
+        "bef-stromunfall/hf",
+        "bef-stromunfall/rr",
+        "bef-stromunfall/begleit"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Einstecken eines Steckers sei es zu einem Stromschlag gekommen.",
+          "Beim Berühren eines defekten Elektrogeräts sei es zu einem Stromschlag gekommen.",
+          "Bei Arbeiten an der Hausinstallation sei es zu einem Stromschlag gekommen.",
+          "Beim Wechseln einer Lampe sei es zu einem Stromschlag gekommen.",
+          "Beim Berühren eines Weidezauns sei es zu einem Stromschlag gekommen.",
+          "Beim Hineinstecken eines Gegenstands in eine Steckdose sei es zu einem Stromschlag gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 01.11.2026",
+      "vorgaben": {
+        "an": [
+          "ana-stromunfall/sturz",
+          "ana-stromunfall/schwanger",
+          "dgn-stromunfall/labor"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-stromunfall/tetanus"
+        ]
+      }
+    }
+  ]
+}

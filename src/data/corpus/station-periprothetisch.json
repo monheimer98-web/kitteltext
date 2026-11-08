@@ -1,0 +1,2215 @@
+{
+  "regionen": [
+    {
+      "id": "huefte",
+      "name": "Hüfte & Oberschenkel",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "dx-st-periprothetisch-huefte",
+          "titel": "Diagnose periprothetische Femurfraktur bei Hüftprothese (Vancouver Pflicht)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Periprothetische Femurfraktur "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "vancouver",
+              "label": "Vancouver-Einteilung",
+              "optionen": [
+                " (Vancouver AG, Trochanter major)",
+                " (Vancouver AL, Trochanter minor)",
+                " (Vancouver B1, in Höhe des Schafts oder knapp distal der Schaftspitze, Schaft fest)",
+                " (Vancouver B2, in Höhe des Schafts oder knapp distal der Schaftspitze, Schaft gelockert, Knochensubstanz ausreichend)",
+                " (Vancouver B3, in Höhe des Schafts oder knapp distal der Schaftspitze, Schaft gelockert, Knochensubstanz unzureichend)",
+                " (Vancouver C, deutlich distal der Schaftspitze)"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", häuslicher Sturz",
+                ", Sturz aus dem Stand",
+                ", Sturz in der Pflegeeinrichtung",
+                ", Sturz im Freien",
+                ", Verkehrsunfall",
+                ", ohne erinnerlichen Unfall"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "interprothetisch",
+              "label": "Interprothetische Fraktur",
+              "text": ", interprothetische Fraktur bei zusätzlicher Knieprothese derselben Seite"
+            },
+            {
+              "art": "option",
+              "id": "prothese",
+              "label": "Implantation der Hüftprothese (Art, Jahr)",
+              "text": "\nImplantation {art} {seite} {jahr}",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art der Hüftprothese",
+                  "optionen": [
+                    "",
+                    "einer Hüft-Totalendoprothese",
+                    "einer Duokopfprothese",
+                    "einer Hüft-Revisionsendoprothese",
+                    "einer Hüftprothese unbekannter Art"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "jahr",
+                  "label": "Jahr der Implantation, z. B. 2014 (leer: entfällt)",
+                  "maxLen": 30
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "infektion-verdacht",
+              "label": "Verdacht auf Infektion der Hüftprothese",
+              "text": "\nVerdacht auf Infektion der Hüftprothese {seite}"
+            },
+            {
+              "art": "option",
+              "id": "infektion",
+              "label": "Infektion der Hüftprothese (gesichert)",
+              "text": "\nInfektion der Hüftprothese {seite}, gesichert durch {beleg}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "beleg",
+                  "label": "Gesichert durch",
+                  "optionen": [
+                    "",
+                    "Fistel",
+                    "Keimnachweis"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-st-periprothetisch-huefte",
+          "titel": "Operation: periprothetische Femurfraktur bei Hüftprothese (Osteosynthese oder Wechsel)",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "verfahren",
+              "label": "Verfahren",
+              "optionen": [
+                "Offene Reposition und Osteosynthese der periprothetischen Femurfraktur",
+                "Offene Reposition und Refixation des Trochanter major",
+                "Wechsel des Prothesenschafts auf einen zementfreien Revisionsschaft",
+                "Wechsel des Prothesenschafts auf einen zementierten Revisionsschaft",
+                "Wechsel von Prothesenschaft und Pfanne, zementfreier Revisionsschaft",
+                "Implantation eines proximalen Femurersatzes",
+                "Geschlossene Reposition und Osteosynthese der periprothetischen Femurfraktur",
+                "Ausbau der Prothese, Débridement und Einlage eines Platzhalters (Spacer)"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "osteosynthese",
+              "label": "Osteosynthese (womit)",
+              "text": "\nOsteosynthese mit {womit}",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Osteosynthese",
+                  "optionen": [
+                    "",
+                    "winkelstabiler Platte",
+                    "winkelstabiler Platte und Cerclagen",
+                    "winkelstabiler Platte, Cerclagen und kortikaler Knochenspange",
+                    "Cerclagen",
+                    "Trochanterplatte und Cerclagen",
+                    "Zuggurtung",
+                    "retrogradem Marknagel"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "pfanne",
+              "label": "Pfanne",
+              "text": "\nPfanne: {was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Pfanne",
+                  "optionen": [
+                    "",
+                    "belassen",
+                    "belassen, Kopf und Inlay gewechselt",
+                    "gewechselt",
+                    "neu implantiert, Umwandlung der Duokopfprothese in eine Totalendoprothese"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "zugang",
+              "label": "Zugang",
+              "text": "\nZugang: {wie}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Zugang",
+                  "optionen": [
+                    "",
+                    "lateral",
+                    "anterolateral",
+                    "dorsal",
+                    "transfemoral mit erweiterter Trochanterosteotomie",
+                    "lateral am Oberschenkel, Hüftgelenk nicht eröffnet"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ana-st-periprothetisch",
+          "titel": "Anamnese periprothetische Fraktur: Beschwerden der Prothese vor dem Unfall, Voroperationen",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "vorher",
+              "label": "Beschwerden vor dem Unfall",
+              "text": "Vor dem Unfall habe {er} {wie}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Beschwerden vor dem Unfall",
+                  "optionen": [
+                    "",
+                    "keine Beschwerden an Hüfte und Oberschenkel gehabt",
+                    "beim Gehen Schmerzen im Oberschenkel gehabt",
+                    "beim Gehen Schmerzen in der Hüfte gehabt",
+                    "seit längerer Zeit auch in Ruhe Schmerzen in Hüfte oder Oberschenkel gehabt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "voroperation",
+              "label": "Frühere Operationen an dieser Hüfte",
+              "text": "Frühere Operationen an dieser Hüfte: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Frühere Operationen, z. B. Wechsel der Pfanne 2019",
+                  "maxLen": 120,
+                  "required": true,
+                  "vorschlaege": [
+                    "keine außer der Implantation"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "infekt",
+              "label": "Keine Infektion der Prothese bekannt",
+              "text": "Eine Infektion der Prothese sei nicht bekannt. "
+            }
+          ]
+        },
+        {
+          "id": "bef-st-periprothetisch-huefte",
+          "titel": "Aufnahmebefund Hüfte und Oberschenkel bei periprothetischer Fraktur",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Hüfte und Oberschenkel "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Verkürzung, Fehlstellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Verkürzung, keine Dreh- oder Achsfehlstellung des Beins. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Fehlstellung",
+                  "optionen": [
+                    "Bein verkürzt und nach außen gedreht",
+                    "Bein verkürzt",
+                    "Bein nach außen gedreht",
+                    "Achsfehlstellung des Oberschenkels",
+                    "Bein verkürzt, Achsfehlstellung des Oberschenkels"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "weichteile",
+              "chip": "Schwellung, Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung, kein Hämatom am Oberschenkel. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Schwellung",
+                    "Hämatom",
+                    "Schwellung und Hämatom",
+                    "Prellmarke",
+                    "Schürfwunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort, z. B. am seitlichen Oberschenkel",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "narbe",
+              "chip": "Narbe der Hüftoperation",
+              "gruppe": "Inspektion",
+              "normal": "Narbe der früheren Hüftoperation reizlos, keine Fistel. ",
+              "abweichung": "Narbe der früheren Hüftoperation {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund an der Narbe",
+                  "optionen": [
+                    "gerötet",
+                    "gerötet und überwärmt",
+                    "mit Sekretion",
+                    "mit Fistel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds",
+              "chip": "Druckschmerz Hüfte, Oberschenkel",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über Hüfte und Oberschenkel. ",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "über dem Trochanter major",
+                    "über dem proximalen Oberschenkel",
+                    "über dem Oberschenkelschaft",
+                    "über dem distalen Oberschenkel",
+                    "über dem gesamten Oberschenkel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bewegung",
+              "chip": "Bewegung schmerzbedingt aufgehoben",
+              "gruppe": "Funktion",
+              "normal": "",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Bewegung der Hüfte schmerzbedingt nicht möglich",
+                    "Gestrecktes Bein kann nicht von der Unterlage angehoben werden"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußpulse tastbar, Fußhebung und Fußsenkung kräftig, Sensibilität am Fuß intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fußpulse nicht tastbar",
+                    "Fuß kühl und blass",
+                    "Fußhebung abgeschwächt",
+                    "Fußsenkung abgeschwächt",
+                    "Sensibilität vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort oder Zusatz, z. B. am Fußrücken, vorbestehend",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-periprothetisch-roentgen",
+          "titel": "Röntgen Becken, Hüfte und Oberschenkel bei periprothetischer Fraktur (Befund zum Prothesenschaft Pflicht)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Beckenübersicht sowie Hüfte und Oberschenkel "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "bei Aufnahme",
+                "vor der Operation"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund",
+              "optionen": [
+                "Fraktur wie unter Diagnosen beschrieben, kein Hinweis auf eine Lockerung des Prothesenschafts.",
+                "Fraktur wie unter Diagnosen beschrieben, Zeichen einer Lockerung des Prothesenschafts.",
+                "Fraktur wie unter Diagnosen beschrieben, Festigkeit des Prothesenschafts im Röntgen nicht sicher beurteilbar."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "pfanne",
+              "label": "Pfanne",
+              "text": " Pfanne {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Pfanne",
+                  "optionen": [
+                    "",
+                    "ohne Zeichen einer Lockerung",
+                    "mit Zeichen einer Lockerung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "voraufnahmen",
+              "label": "Vergleich mit Voraufnahmen",
+              "text": " Voraufnahmen zum Vergleich: {was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Voraufnahmen",
+                  "optionen": [
+                    "",
+                    "Lage der Prothese vor dem Unfall unverändert.",
+                    "Lockerungszeichen schon vor dem Unfall erkennbar.",
+                    "nicht vorhanden."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "",
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ct",
+              "label": "CT Hüfte und Oberschenkel",
+              "text": "\nCT Hüfte und Oberschenkel {seite} vor der Operation: {befund}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "CT-Befund",
+                  "optionen": [
+                    "",
+                    "Fraktur wie unter Diagnosen beschrieben, kein Hinweis auf eine Lockerung des Prothesenschafts.",
+                    "Fraktur wie unter Diagnosen beschrieben, Zeichen einer Lockerung des Prothesenschafts.",
+                    "Fraktur wie unter Diagnosen beschrieben, Festigkeit des Prothesenschafts nicht sicher beurteilbar."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-periprothetisch-postop",
+          "titel": "Röntgen Hüfte und Oberschenkel nach Operation einer periprothetischen Fraktur",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Hüfte und Oberschenkel "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "nach der Operation",
+                "am 1. Tag nach der Operation",
+                "am 2. Tag nach der Operation",
+                "vor Entlassung"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Ergebnis der Stellungskontrolle",
+              "optionen": [
+                "Fraktur regelrecht reponiert, Lage von Prothese und Osteosynthesematerial regelrecht.",
+                "Fraktur in achsgerechter Stellung, Lage der Revisionsprothese regelrecht.",
+                "Fraktur in achsgerechter Stellung, Lage von Revisionsprothese und Osteosynthesematerial regelrecht.",
+                "Trochanter major regelrecht refixiert, Lage der Prothese regelrecht.",
+                "Lage der Revisionsprothese regelrecht."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-periprothetisch-infekt",
+          "titel": "Infektdiagnostik bei periprothetischer Fraktur: CRP bei Aufnahme, Gewebeproben (Pflichtangabe)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "crp",
+              "label": "CRP bei Aufnahme",
+              "text": "CRP bei Aufnahme {w}{einheit}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "w",
+                  "label": "Wert",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "einheit",
+                  "label": "Einheit",
+                  "optionen": [
+                    " mg/l",
+                    " mg/dl"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "proben",
+              "label": "Gewebeproben zur Infektdiagnostik",
+              "text": "Gewebeproben aus der Operation zur Infektdiagnostik: {ergebnis}",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "mikrobiologisch nach abgeschlossener Bebrütung kein Keimnachweis.",
+                    "mikrobiologisch nach abgeschlossener Bebrütung kein Keimnachweis, histologisch kein Hinweis auf eine Infektion.",
+                    "Ergebnis bei Entlassung ausstehend, wir senden den Befund nach.",
+                    "nicht entnommen.",
+                    "mikrobiologisch bis zur Entlassung kein Keimnachweis, Bebrütung noch nicht abgeschlossen, wir senden den Endbefund nach.",
+                    "mikrobiologisch Keimnachweis, Erreger und Bewertung siehe Verlauf."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "verl-st-periprothetisch-schaft",
+          "titel": "Verlauf: Befund am Prothesenschaft bei der Operation, bei Lockerung ohne Wechsel mit Grund (Pflichtangabe); Verdacht auf Infektion",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "schaft",
+              "label": "Prothesenschaft bei der Operation",
+              "optionen": [
+                "Bei der Operation fanden wir den Prothesenschaft fest. ",
+                "Bei der Operation fanden wir den Prothesenschaft gelockert und wechselten ihn. ",
+                "Den Prothesenschaft prüften wir bei der Operation nicht, weil die Fraktur ihn nicht erreichte. ",
+                "Bei der Operation fanden wir den Prothesenschaft gelockert. Einen Wechsel nahmen wir nicht vor, weil das Risiko einer Wechseloperation zu hoch war. ",
+                "Bei der Operation fanden wir den Prothesenschaft gelockert. Einen Wechsel nahmen wir nicht vor, weil er nach Aufklärung abgelehnt wurde. "
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "infektion",
+              "label": "Verdacht auf Infektion der Prothese",
+              "text": "Wegen {zeichen} gingen wir von einer Infektion der Prothese aus; das weitere Vorgehen richtet sich nach den Gewebeproben. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Zeichen der Infektion",
+                  "optionen": [
+                    "",
+                    "der Fistel an der Narbe",
+                    "der Sekretion aus der Narbe",
+                    "erhöhter Entzündungswerte"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-periprothetisch-belastung",
+          "titel": "Belastung und Gehhilfe nach Operation einer periprothetischen Fraktur (bei Entlassung und weiter, Pflicht)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "entlassung",
+              "label": "Belastung bei Entlassung",
+              "text": "Belastung des Beins {seite} bei Entlassung: {stufe}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung bei Entlassung",
+                  "optionen": [
+                    "",
+                    "Vollbelastung",
+                    "schmerzadaptierte Vollbelastung",
+                    "Teilbelastung mit 15 kg",
+                    "Teilbelastung mit 20 kg",
+                    "Teilbelastung mit halbem Körpergewicht",
+                    "Minimalbelastung, Fuß nur mit dem Gewicht des Beins aufsetzen",
+                    "Entlastung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "weiter",
+              "label": "Weitere Belastung",
+              "text": "Weitere Belastung: {verlauf}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Weitere Belastung",
+                  "optionen": [
+                    "",
+                    "Vollbelastung wie bei Entlassung beibehalten, die Gehhilfe bei sicherem Gang weglassen",
+                    "wie bei Entlassung bis zum Ende der 6. Woche nach der Operation, danach schrittweise Steigerung bis zur Vollbelastung",
+                    "wie bei Entlassung bis zum Ende der 12. Woche nach der Operation, danach schrittweise Steigerung bis zur Vollbelastung",
+                    "wie bei Entlassung bis zur Röntgenkontrolle 6 Wochen nach der Operation, danach Steigerung je nach Röntgenbefund",
+                    "wie bei Entlassung bis zur Kontrolle in unserer Sprechstunde 6 Wochen nach der Operation, danach nach dem Ergebnis dieser Kontrolle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gehhilfe",
+              "label": "Gehhilfe",
+              "text": "Gehen {womit}{wielange}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Gehhilfe",
+                  "optionen": [
+                    "",
+                    "an Unterarmgehstützen",
+                    "am Rollator",
+                    "am Gehwagen",
+                    "ohne Gehhilfe"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wielange",
+                  "label": "Wie lange",
+                  "optionen": [
+                    "",
+                    ", bis der Gang sicher ist",
+                    ", solange die Teilbelastung gilt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schmerz",
+              "label": "Vorzeitige Vorstellung bei Belastungsschmerz",
+              "text": "Bei neuen Schmerzen im Bein {seite} unter Belastung vorzeitige Vorstellung {wo} zur Röntgenkontrolle. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in unserer Sprechstunde",
+                    "in der unfallchirurgischen oder orthopädischen Praxis"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-periprothetisch-verhalten",
+          "titel": "Bewegungsregeln der Hüfte, Luxation, Orthese, Trochanter, Opioid, Antibiotikum nach periprothetischer Fraktur",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "huefte",
+              "label": "Bewegungsregeln der Hüfte",
+              "text": "Hüfte {seite}: {regeln}",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regeln",
+                  "label": "Bewegungsregeln der Hüfte",
+                  "optionen": [
+                    "",
+                    "keine Einschränkung der Beweglichkeit.",
+                    "zur Vorbeugung einer Luxation (dorsaler Zugang) für 6 Wochen nach der Operation nicht über 90° beugen, Beine nicht übereinanderschlagen, das Bein nicht nach innen drehen.",
+                    "zur Vorbeugung einer Luxation (dorsaler Zugang) für 12 Wochen nach der Operation nicht über 90° beugen, Beine nicht übereinanderschlagen, das Bein nicht nach innen drehen.",
+                    "zur Vorbeugung einer Luxation (vorderer oder seitlicher Zugang) für 6 Wochen nach der Operation nicht überstrecken, das Bein nicht nach außen drehen.",
+                    "zur Vorbeugung einer Luxation (vorderer oder seitlicher Zugang) für 12 Wochen nach der Operation nicht überstrecken, das Bein nicht nach außen drehen."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Hüftorthese zur Vorbeugung einer Luxation",
+              "text": "Hüftorthese {seite} zur Vorbeugung einer Luxation {wann} tragen, {dauer}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Tragezeit",
+                  "optionen": [
+                    "",
+                    "Tag und Nacht",
+                    "beim Gehen und nachts",
+                    "beim Gehen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 6 Wochen nach der Operation",
+                    "für 12 Wochen nach der Operation",
+                    "bis zur Kontrolle in unserer Sprechstunde, danach nach Maßgabe des Operateurs"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sitzen",
+              "label": "Sitzerhöhung, Schlafen in Rückenlage",
+              "text": "Sitzen mit Sitzerhöhung und Schlafen in Rückenlage {dauer}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 6 Wochen nach der Operation",
+                    "für 12 Wochen nach der Operation",
+                    "bis zur Kontrolle in unserer Sprechstunde"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "trochanter",
+              "label": "Keine aktive Abspreizung (Trochanter major)",
+              "text": "Keine aktive Abspreizung des Beins {seite} {dauer}, zum Schutz der Refixation am Trochanter major. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 6 Wochen nach der Operation",
+                    "für 8 Wochen nach der Operation",
+                    "für 12 Wochen nach der Operation",
+                    "bis zur Kontrolle in unserer Sprechstunde, danach nach Maßgabe des Operateurs"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "opioid",
+              "label": "Opioid verringern und absetzen",
+              "text": "{wirkstoff} innerhalb von {frist} nach der Entlassung in der Hausarztpraxis schrittweise verringern und absetzen. Solange {wirkstoff} eingenommen wird, kein Führen von Fahrzeugen. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Opioid (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "7 Tagen",
+                    "14 Tagen",
+                    "4 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum bis wann",
+              "text": "{wirkstoff} bis einschließlich {bis} einnehmen, siehe Medikation. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "bis",
+                  "label": "Bis wann: Datum oder Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-periprothetisch",
+          "titel": "Thromboseprophylaxe nach Operation einer periprothetischen Fraktur (Pflichtwahl, kein Ende am Entlasstag)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 28. Tag nach der Operation. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 35. Tag nach der Operation. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung, mindestens bis einschließlich 28. Tag nach der Operation. Wirkstoff und Dosis siehe Medikation.",
+                "Vorbestehende Antikoagulation in therapeutischer Dosis fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos.",
+                "Keine medikamentöse Thromboseprophylaxe, nach Aufklärung abgelehnt.",
+                "Medikamentöse Thromboseprophylaxe bis zum Wiederbeginn der vorbestehenden Antikoagulation, danach keine zusätzliche Thromboseprophylaxe. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe, bis der INR unter Phenprocoumon im Zielbereich liegt, danach keine zusätzliche Thromboseprophylaxe. Wirkstoff und Dosis siehe Medikation."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Kontrolle der Thrombozytenzahl",
+              "text": " Kontrolle der Thrombozytenzahl {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche",
+                    "1 Woche nach der Entlassung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann, z. B. am 2. Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-periprothetisch-kontrolle",
+          "titel": "Röntgenkontrolle nach periprothetischer Fraktur (Region, Zeitpunkt und Ort Pflicht), Nachricht bei Keimnachweis",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle {region} {seite} in 2 Ebenen {wann} {wo}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "region",
+                  "label": "Region",
+                  "optionen": [
+                    "",
+                    "von Hüfte und Oberschenkel",
+                    "von Knie und Oberschenkel",
+                    "von Knie und Unterschenkel",
+                    "von Knie, Ober- und Unterschenkel",
+                    "von Hüfte, Oberschenkel und Knie"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Zeitpunkt",
+                  "optionen": [
+                    "",
+                    "6 Wochen nach der Operation",
+                    "6 und 12 Wochen nach der Operation",
+                    "2, 6 und 12 Wochen nach der Operation",
+                    "12 Wochen nach der Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "keimnachweis",
+              "label": "Nachricht bei Keimnachweis in den Gewebeproben",
+              "text": "Bei Keimnachweis in den Gewebeproben benachrichtigen wir {person-akk} und die weiterbehandelnde Einrichtung und legen das weitere Vorgehen in unserer Sprechstunde fest. "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "knie",
+      "name": "Knie",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "dx-st-periprothetisch-knie",
+          "titel": "Diagnose periprothetische Fraktur bei Knieprothese (distaler Femur oder proximale Tibia)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Periprothetische "
+            },
+            {
+              "art": "auswahl",
+              "id": "ort",
+              "label": "Fraktur",
+              "optionen": [
+                "distale Femurfraktur",
+                "proximale Tibiafraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "klassifikation",
+              "label": "Klassifikation",
+              "optionen": [
+                "",
+                " (Lewis-Rorabeck I, nicht verschoben, Prothese fest)",
+                " (Lewis-Rorabeck II, verschoben, Prothese fest)",
+                " (Lewis-Rorabeck III, Prothese gelockert)",
+                " (Felix IA, Tibiakopf, Prothese fest)",
+                " (Felix IB, Tibiakopf, Prothese gelockert)",
+                " (Felix IIA, neben dem Stiel, Prothese fest)",
+                " (Felix IIB, neben dem Stiel, Prothese gelockert)",
+                " (Felix IIIA, distal des Stiels, Prothese fest)",
+                " (Felix IIIB, distal des Stiels, Prothese gelockert)",
+                " (Felix IV, Tuberositas tibiae)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", häuslicher Sturz",
+                ", Sturz aus dem Stand",
+                ", Sturz in der Pflegeeinrichtung",
+                ", Sturz im Freien",
+                ", Verkehrsunfall",
+                ", ohne erinnerlichen Unfall"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "interprothetisch",
+              "label": "Interprothetische Fraktur",
+              "text": ", interprothetische Fraktur bei zusätzlicher Hüftprothese derselben Seite"
+            },
+            {
+              "art": "option",
+              "id": "prothese",
+              "label": "Implantation der Knieprothese (Art, Jahr)",
+              "text": "\nImplantation {art} {seite} {jahr}",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art der Knieprothese",
+                  "optionen": [
+                    "",
+                    "einer Knie-Totalendoprothese",
+                    "einer unikondylären Knieprothese",
+                    "einer gekoppelten Knieprothese",
+                    "einer Knie-Revisionsendoprothese",
+                    "einer Knieprothese unbekannter Art"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "jahr",
+                  "label": "Jahr der Implantation, z. B. 2014 (leer: entfällt)",
+                  "maxLen": 30
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-st-periprothetisch-knie",
+          "titel": "Operation: periprothetische Fraktur bei Knieprothese (Osteosynthese oder Wechsel)",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "verfahren",
+              "label": "Verfahren",
+              "optionen": [
+                "Offene Reposition und Osteosynthese der periprothetischen Fraktur",
+                "Geschlossene Reposition und Osteosynthese der periprothetischen Fraktur",
+                "Wechsel der Knieprothese auf eine gekoppelte Revisionsprothese",
+                "Implantation eines distalen Femurersatzes",
+                "Wechsel der Tibiakomponente"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "osteosynthese",
+              "label": "Osteosynthese (womit)",
+              "text": "\nOsteosynthese mit {womit}",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Osteosynthese",
+                  "optionen": [
+                    "",
+                    "winkelstabiler Platte",
+                    "winkelstabiler Platte, minimalinvasiv eingebracht",
+                    "winkelstabilen Platten von lateral und medial",
+                    "winkelstabiler Platte und Cerclagen",
+                    "retrogradem Marknagel",
+                    "retrogradem Marknagel und winkelstabiler Platte",
+                    "Schrauben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "tuberositas",
+              "label": "Osteotomie der Tuberositas tibiae",
+              "text": "\nOsteotomie der Tuberositas tibiae, Refixation mit {womit}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Refixation",
+                  "optionen": [
+                    "",
+                    "Schrauben",
+                    "Cerclagen"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ana-st-periprothetisch-knie",
+          "titel": "Anamnese periprothetische Fraktur am Knie: Beschwerden der Prothese vor dem Unfall, Voroperationen",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "vorher",
+              "label": "Beschwerden vor dem Unfall",
+              "text": "Vor dem Unfall habe {er} {wie}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Beschwerden vor dem Unfall",
+                  "optionen": [
+                    "",
+                    "keine Beschwerden am Knie gehabt",
+                    "beim Gehen Schmerzen im Knie gehabt",
+                    "seit längerer Zeit auch in Ruhe Schmerzen im Knie gehabt",
+                    "ein Unsicherheitsgefühl im Knie bemerkt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "voroperation",
+              "label": "Frühere Operationen an diesem Knie",
+              "text": "Frühere Operationen an diesem Knie: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Frühere Operationen, z. B. Wechsel des Inlays 2019",
+                  "maxLen": 120,
+                  "required": true,
+                  "vorschlaege": [
+                    "keine außer der Implantation"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "infekt",
+              "label": "Keine Infektion der Prothese bekannt",
+              "text": "Eine Infektion der Prothese sei nicht bekannt. "
+            }
+          ]
+        },
+        {
+          "id": "bef-st-periprothetisch-knie",
+          "titel": "Aufnahmebefund Knie und Bein bei periprothetischer Fraktur",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Knie und Bein "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Achs- oder Drehfehlstellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine sichtbare Achs- oder Drehfehlstellung des Beins. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Fehlstellung",
+                  "optionen": [
+                    "Achsfehlstellung oberhalb des Kniegelenks",
+                    "Achsfehlstellung unterhalb des Kniegelenks",
+                    "Bein verkürzt und nach außen gedreht"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut",
+              "gruppe": "Inspektion",
+              "normal": "Haut geschlossen, keine Spannungsblasen. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Schürfwunde",
+                    "Prellmarke",
+                    "Hämatom",
+                    "Spannungsblasen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort, z. B. über dem distalen Oberschenkel",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung, Gelenkerguss",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung, kein tastbarer Gelenkerguss. ",
+              "abweichung": "{was}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Schwellung des Kniegelenks",
+                    "Gelenkerguss",
+                    "Schwellung des Kniegelenks und Gelenkerguss",
+                    "Schwellung von Kniegelenk und distalem Oberschenkel",
+                    "Schwellung von Kniegelenk und proximalem Unterschenkel"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)",
+                    " (prall)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "narbe",
+              "chip": "Narbe der Knieoperation",
+              "gruppe": "Inspektion",
+              "normal": "Narbe der früheren Knieoperation reizlos, keine Fistel. ",
+              "abweichung": "Narbe der früheren Knieoperation {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund an der Narbe",
+                  "optionen": [
+                    "gerötet",
+                    "gerötet und überwärmt",
+                    "mit Sekretion",
+                    "mit Fistel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds",
+              "chip": "Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über distalem Oberschenkel und Tibiakopf. ",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "über dem distalen Oberschenkel",
+                    "über dem Oberschenkelschaft",
+                    "über dem Tibiakopf",
+                    "über dem proximalen Unterschenkel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "beweglichkeit",
+              "chip": "Beweglichkeit Knie",
+              "gruppe": "Beweglichkeit",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "Beweglichkeit des Kniegelenks schmerzbedingt aufgehoben",
+                    "Beweglichkeit wegen der Fraktur nicht geprüft"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kompartment",
+              "chip": "Kompartmentsyndrom",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Unterschenkel weich, kein Dehnungsschmerz bei passiver Bewegung der Zehen, kein Hinweis auf ein Kompartmentsyndrom. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Unterschenkel prall gespannt, Verdacht auf ein Kompartmentsyndrom",
+                    "Unterschenkel prall gespannt, Dehnungsschmerz bei passiver Bewegung der Zehen, Verdacht auf ein Kompartmentsyndrom",
+                    "Unterschenkel fest, nicht prall gespannt, kein Dehnungsschmerz"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußpulse tastbar, Fußhebung und Fußsenkung kräftig, Sensibilität am Fuß intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fußpulse nicht tastbar",
+                    "Fuß kühl und blass",
+                    "Fußhebung abgeschwächt",
+                    "Fußsenkung abgeschwächt",
+                    "Sensibilität vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort oder Zusatz, z. B. am Fußrücken, vorbestehend",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-periprothetisch-knie-roentgen",
+          "titel": "Röntgen Knie mit Ober- oder Unterschenkel bei periprothetischer Fraktur (Befund zur Prothese Pflicht)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Region",
+              "optionen": [
+                "Knie und Oberschenkel",
+                "Knie und Unterschenkel",
+                "Knie, Ober- und Unterschenkel",
+                "Hüfte, Oberschenkel und Knie"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "bei Aufnahme",
+                "vor der Operation"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund",
+              "optionen": [
+                "Fraktur wie unter Diagnosen beschrieben, kein Hinweis auf eine Lockerung der Prothese.",
+                "Fraktur wie unter Diagnosen beschrieben, Zeichen einer Lockerung der Femurkomponente.",
+                "Fraktur wie unter Diagnosen beschrieben, Zeichen einer Lockerung der Tibiakomponente.",
+                "Fraktur wie unter Diagnosen beschrieben, Festigkeit der Prothese im Röntgen nicht sicher beurteilbar."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "kasten",
+              "label": "Kasten der Femurkomponente",
+              "text": " Femurkomponente mit {was} Kasten.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Kasten",
+                  "optionen": [
+                    "",
+                    "offenem",
+                    "geschlossenem"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "voraufnahmen",
+              "label": "Vergleich mit Voraufnahmen",
+              "text": " Voraufnahmen zum Vergleich: {was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Voraufnahmen",
+                  "optionen": [
+                    "",
+                    "Lage der Prothese vor dem Unfall unverändert.",
+                    "Lockerungszeichen schon vor dem Unfall erkennbar.",
+                    "nicht vorhanden."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "",
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ct",
+              "label": "CT Knie",
+              "text": "\nCT Knie {seite} vor der Operation: {befund}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "CT-Befund",
+                  "optionen": [
+                    "",
+                    "Fraktur wie unter Diagnosen beschrieben, kein Hinweis auf eine Lockerung der Prothese.",
+                    "Fraktur wie unter Diagnosen beschrieben, Zeichen einer Lockerung der Femurkomponente.",
+                    "Fraktur wie unter Diagnosen beschrieben, Zeichen einer Lockerung der Tibiakomponente.",
+                    "Fraktur wie unter Diagnosen beschrieben, Festigkeit der Prothese nicht sicher beurteilbar."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-periprothetisch-knie-postop",
+          "titel": "Röntgen des Operationsgebiets nach Operation einer periprothetischen Fraktur am Knie",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen des Operationsgebiets "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "nach der Operation",
+                "am 1. Tag nach der Operation",
+                "am 2. Tag nach der Operation",
+                "vor Entlassung"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Ergebnis der Stellungskontrolle",
+              "optionen": [
+                "Fraktur regelrecht reponiert, Lage von Prothese und Osteosynthesematerial regelrecht.",
+                "Fraktur in achsgerechter Stellung, Lage von Prothese und Osteosynthesematerial regelrecht.",
+                "Lage der Revisionsprothese regelrecht.",
+                "Lage von Revisionsprothese und Osteosynthesematerial regelrecht."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-periprothetisch-knie-punktion",
+          "titel": "Punktion des Kniegelenks vor der Operation bei periprothetischer Fraktur (zuwählbar)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "punktion",
+              "label": "Punktion des Kniegelenks vor der Operation",
+              "text": "Punktion des Kniegelenks {seite} vor der Operation: {ergebnis} {werte}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Ergebnis der Punktion",
+                  "optionen": [
+                    "",
+                    "kein Hinweis auf eine Infektion, kein Keimnachweis.",
+                    "Zellzahl erhöht, kein Keimnachweis.",
+                    "Keimnachweis, siehe Diagnosen.",
+                    "Kultur bei Entlassung ausstehend, wir senden den Befund nach."
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "werte",
+                  "label": "Zellzahl und Granulozytenanteil, z. B. 1200 Leukozyten/µl, 45 % Granulozyten",
+                  "maxLen": 80
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "verl-st-periprothetisch-knie",
+          "titel": "Verlauf: Verankerung der Knieprothese bei der Operation, bei Lockerung ohne Wechsel mit Grund (Pflichtangabe)",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "verankerung",
+              "label": "Verankerung der Prothese bei der Operation",
+              "optionen": [
+                "Bei der Operation fanden wir die Knieprothese fest verankert. ",
+                "Bei der Operation fanden wir die Femurkomponente gelockert, Wechsel siehe Therapie. ",
+                "Bei der Operation fanden wir die Tibiakomponente gelockert, Wechsel siehe Therapie. ",
+                "Die Verankerung der Prothese prüften wir bei der Operation nicht, weil die Fraktur sie nicht erreichte. ",
+                "Bei der Operation fanden wir die Prothese gelockert. Wir versorgten die Fraktur ohne Prothesenwechsel, weil das Risiko einer Wechseloperation zu hoch war. ",
+                "Bei der Operation fanden wir die Prothese gelockert. Wir versorgten die Fraktur ohne Prothesenwechsel, weil ein Wechsel nach Aufklärung abgelehnt wurde. "
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "eb-st-periprothetisch-knie-streckapparat",
+          "titel": "Entlassbefund Streckapparat des Kniegelenks (aktive Streckung)",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Streckapparat des Kniegelenks "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "streckung",
+              "chip": "Aktive Streckung",
+              "gruppe": "Beweglichkeit",
+              "normal": "Bein gestreckt von der Unterlage anhebbar, kein aktives Streckdefizit. ",
+              "abweichung": "{wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Aktive Streckung",
+                  "optionen": [
+                    "Aktives Streckdefizit von 10°",
+                    "Aktives Streckdefizit von 20°",
+                    "Aktives Streckdefizit von mehr als 20°",
+                    "Bein kann nicht gestreckt von der Unterlage angehoben werden"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-periprothetisch-knie-bewegung",
+          "titel": "Bewegung des Kniegelenks, Orthese, Motorschiene, Schutz der Tuberositas nach periprothetischer Fraktur am Knie",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "knie",
+              "label": "Bewegung des Kniegelenks",
+              "text": "Kniegelenk {seite}: {regel}",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regel",
+                  "label": "Bewegung des Kniegelenks",
+                  "optionen": [
+                    "",
+                    "freie Bewegung nach Schmerzen.",
+                    "freie Bewegung nach Schmerzen, Ziel Streckung 0° und Beugung 90° bis zum Ende der 2. Woche nach der Operation.",
+                    "Beugung bis 90° bis zum Ende der 6. Woche nach der Operation, danach freie Bewegung.",
+                    "Beugung bis 60° bis zum Ende der 2. Woche und bis 90° bis zum Ende der 6. Woche nach der Operation, danach freie Bewegung."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Knieorthese",
+              "text": "Knieorthese {seite} {einstellung} {wann} tragen, {dauer}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "einstellung",
+                  "label": "Einstellung",
+                  "optionen": [
+                    "",
+                    "in Streckstellung gesperrt",
+                    "mit der Beugegrenze wie oben angegeben",
+                    "ohne Bewegungsgrenze"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Tragezeit",
+                  "optionen": [
+                    "",
+                    "beim Gehen und nachts",
+                    "beim Gehen",
+                    "Tag und Nacht außer bei den Bewegungsübungen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 6 Wochen nach der Operation",
+                    "bis zur Kontrolle in unserer Sprechstunde 6 Wochen nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "motorschiene",
+              "label": "Motorschiene",
+              "text": "Übungen auf der Motorschiene mehrmals täglich {bis}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "bis",
+                  "label": "Bis wann",
+                  "optionen": [
+                    "",
+                    "bis zum Ende der 2. Woche nach der Operation",
+                    "bis zum Ende der 6. Woche nach der Operation",
+                    "bis zum Erreichen einer Beugung von 90°"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "streckung",
+              "label": "Streckung üben",
+              "text": "Streckung des Kniegelenks {seite} mehrmals täglich üben, kein Kissen unter die Kniekehle legen. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "streckung-widerstand",
+              "label": "Keine aktive Streckung gegen Widerstand (Tuberositas)",
+              "text": "Keine aktive Streckung des Kniegelenks {seite} gegen Widerstand bis zum Ende der {woche} nach der Operation. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "woche",
+                  "label": "Bis zum Ende der",
+                  "optionen": [
+                    "",
+                    "6. Woche",
+                    "8. Woche",
+                    "12. Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "opioid",
+              "label": "Opioid verringern und absetzen",
+              "text": "{wirkstoff} innerhalb von {frist} nach der Entlassung in der Hausarztpraxis schrittweise verringern und absetzen. Solange {wirkstoff} eingenommen wird, kein Führen von Fahrzeugen. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Opioid (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "7 Tagen",
+                    "14 Tagen",
+                    "4 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum bis wann",
+              "text": "{wirkstoff} bis einschließlich {bis} einnehmen, siehe Medikation. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "bis",
+                  "label": "Bis wann: Datum oder Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-periprothetisch-knie",
+          "titel": "Thromboseprophylaxe nach Operation einer periprothetischen Fraktur am Knie (Pflichtwahl, kein Ende am Entlasstag)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 14. Tag nach der Operation. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 28. Tag nach der Operation. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung, mindestens bis einschließlich 14. Tag nach der Operation. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung und bis zur Abnahme der Orthese, mindestens bis einschließlich 14. Tag nach der Operation. Wirkstoff und Dosis siehe Medikation.",
+                "Vorbestehende Antikoagulation in therapeutischer Dosis fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos.",
+                "Keine medikamentöse Thromboseprophylaxe, nach Aufklärung abgelehnt.",
+                "Medikamentöse Thromboseprophylaxe bis zum Wiederbeginn der vorbestehenden Antikoagulation, danach keine zusätzliche Thromboseprophylaxe. Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe, bis der INR unter Phenprocoumon im Zielbereich liegt, danach keine zusätzliche Thromboseprophylaxe. Wirkstoff und Dosis siehe Medikation."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Kontrolle der Thrombozytenzahl",
+              "text": " Kontrolle der Thrombozytenzahl {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche",
+                    "1 Woche nach der Entlassung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann, z. B. am 2. Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-sicherheitsnetz-periprothetisch-knie",
+          "titel": "Wiedervorstellung bei Warnzeichen nach periprothetischer Fraktur am Knie (Femur und Tibia, mit oder ohne Orthese); immer zuletzt",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "",
+                    "Rötung, Schwellung oder Nässen der Wunde, Fieber über 38,5 °C, rasch zunehmenden Schmerzen oder Spannungsgefühl an Ober- oder Unterschenkel trotz Schmerzmitteln, neuem Taubheitsgefühl, Kribbeln oder Schwäche am Fuß, kalten, blassen oder blauen Zehen, plötzlich stärkeren Schmerzen im Knie oder Verlust der Belastbarkeit, erneutem Sturz, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "Rötung, Schwellung oder Nässen der Wunde, Fieber über 38,5 °C, rasch zunehmenden Schmerzen oder Spannungsgefühl an Ober- oder Unterschenkel trotz Schmerzmitteln, neuem Taubheitsgefühl, Kribbeln oder Schwäche am Fuß, kalten, blassen oder blauen Zehen, plötzlich stärkeren Schmerzen im Knie oder Druckstellen unter der Orthese, erneutem Sturz, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": "Die Warnzeichen haben wir mit {person-dat} besprochen. "
+            },
+            {
+              "art": "option",
+              "id": "merkblatt",
+              "label": "Merkblatt mitgegeben",
+              "text": "Ein Merkblatt haben wir mitgegeben. "
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

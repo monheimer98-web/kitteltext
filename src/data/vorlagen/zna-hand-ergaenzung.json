@@ -1,0 +1,290 @@
+{
+  "vorlagen": [
+    {
+      "id": "zna-mhk1-fraktur",
+      "titel": "Fraktur des 1. Mittelhandknochens",
+      "suchbegriffe": [
+        "Bennett-Fraktur",
+        "Rolando-Fraktur",
+        "Winterstein-Fraktur",
+        "Daumenbasisfraktur",
+        "Daumenbasis",
+        "Mittelhandknochen Daumen",
+        "Metakarpale I",
+        "Daumenstrahl",
+        "Mittelhandfraktur Daumen"
+      ],
+      "kuerzel": [
+        "mhk1",
+        "mc1"
+      ],
+      "region": "mittelhand",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-mhk1-fraktur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "bef-daumen-fraktur"
+        ],
+        "diagnostik": [
+          "dgn-mhk1-roentgen"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-daumen-massnahmen",
+          "th-fingerfraktur-wunde"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Reposition oder Ruhigstellung ohne Reposition?",
+          "bausteine": [
+            "th-mhk1-reposition",
+            "th-mhk1-ohne-reposition"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Wunde im Bereich der Fraktur?",
+          "bausteine": [
+            "proc-fraktur-hand-keine-wunde",
+            "proc-fraktur-hand-offen-antibiotikum",
+            "proc-fraktur-hand-offen-ohne-antibiotikum"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Konservativ, Handsprechstunde zur Operation oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-mhk1-konservativ",
+            "proc-mhk1-handsprechstunde",
+            "proc-mhk1-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-daumen-fraktur/wunde",
+        "bef-daumen-fraktur/schwellung",
+        "bef-daumen-fraktur/fehlstellung",
+        "bef-daumen-fraktur/ds-mittelhand",
+        "bef-daumen-fraktur/bewegung-sattel"
+      ],
+      "ohne": [
+        "bef-daumen-fraktur/haematom",
+        "bef-daumen-fraktur/drehfehler",
+        "bef-daumen-fraktur/beugesehne",
+        "bef-daumen-fraktur/strecksehne",
+        "bef-daumen-fraktur/seitenband"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "proc-fraktur-hand-offen-antibiotikum/tetanus",
+          "proc-fraktur-hand-offen-ohne-antibiotikum/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf den abgespreizten Daumen gekommen.",
+          "Es sei zu einem Faustschlag gegen einen harten Gegenstand gekommen.",
+          "Bei einem Sturz mit dem Fahrrad sei der Daumen am Lenker gestaucht worden.",
+          "Beim Ballsport sei der Daumen gestaucht worden."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026"
+    },
+    {
+      "id": "zna-daumenfraktur",
+      "titel": "Daumenfraktur (Grund- und Endglied)",
+      "suchbegriffe": [
+        "Daumen gebrochen",
+        "Daumenbruch",
+        "Grundgliedfraktur Daumen",
+        "Endgliedfraktur Daumen",
+        "Daumengrundglied",
+        "Daumenendglied",
+        "Phalanxfraktur Daumen"
+      ],
+      "kuerzel": [
+        "d1"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-daumenfraktur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "bef-daumen-fraktur"
+        ],
+        "diagnostik": [
+          "dgn-daumen-fraktur"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-daumen-massnahmen",
+          "th-fingerfraktur-wunde"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Reposition oder Ruhigstellung ohne Reposition?",
+          "bausteine": [
+            "th-daumen-reposition",
+            "th-daumen-ohne-reposition"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Wunde im Bereich der Fraktur?",
+          "bausteine": [
+            "proc-fraktur-hand-keine-wunde",
+            "proc-fraktur-hand-offen-antibiotikum",
+            "proc-fraktur-hand-offen-ohne-antibiotikum"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Konservativ, Handsprechstunde zur Operation oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-daumenfraktur-konservativ",
+            "proc-daumenfraktur-handsprechstunde",
+            "proc-daumenfraktur-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-daumen-fraktur/wunde",
+        "bef-daumen-fraktur/schwellung",
+        "bef-daumen-fraktur/fehlstellung",
+        "bef-daumen-fraktur/drehfehler",
+        "bef-daumen-fraktur/ds-glied",
+        "bef-daumen-fraktur/bewegung",
+        "bef-daumen-fraktur/beugesehne",
+        "bef-daumen-fraktur/strecksehne",
+        "bef-daumen-fraktur/pdms",
+        "bef-daumen-fraktur/seitenband"
+      ],
+      "ohne": [
+        "bef-daumen-fraktur/haematom",
+        "bef-daumen-fraktur/ds-grundgelenk",
+        "bef-daumen-fraktur/bewegung-sattel"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "proc-fraktur-hand-offen-antibiotikum/tetanus",
+          "proc-fraktur-hand-offen-ohne-antibiotikum/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf den abgespreizten Daumen gekommen.",
+          "Beim Ballsport sei der Daumen gestaucht worden.",
+          "Der Daumen sei in einer Tür eingeklemmt worden.",
+          "Ein schwerer Gegenstand sei auf den Daumen gefallen.",
+          "Beim Hämmern sei der Daumen vom Hammer getroffen worden."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026"
+    },
+    {
+      "id": "zna-handprellung",
+      "titel": "Prellung der Hand",
+      "suchbegriffe": [
+        "Handprellung",
+        "Mittelhandprellung",
+        "Kontusion Hand",
+        "Handrücken geprellt",
+        "Hand geprellt",
+        "Hand eingeklemmt"
+      ],
+      "region": "mittelhand",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-handprellung"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "bef-handprellung"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-handprellung"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-handgelenk",
+            "dgn-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulant oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-handprellung",
+            "proc-handprellung-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-handprellung/haut",
+        "bef-handprellung/schwellung",
+        "bef-handprellung/haematom",
+        "bef-handprellung/ds-mittelhand",
+        "bef-handprellung/stauchung",
+        "bef-handprellung/faustschluss",
+        "bef-handprellung/pdms",
+        "bef-handprellung/hg-tabatiere"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf die Hand gekommen.",
+          "Die Hand sei in einer Tür eingeklemmt worden.",
+          "Ein schwerer Gegenstand sei auf die Hand gefallen.",
+          "Es sei zu einem Anprall der Hand gegen eine Kante gekommen.",
+          "Es sei zu einem Faustschlag gegen einen harten Gegenstand gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026"
+    }
+  ]
+}

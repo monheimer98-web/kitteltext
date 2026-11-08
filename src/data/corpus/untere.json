@@ -9,8 +9,39 @@
           "id": "huefte-untersuchung",
           "titel": "Hüfte & Oberschenkel – Untersuchung",
           "typ": "untersuchung",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
+            {
+              "art": "befund",
+              "id": "huefte_orientierung",
+              "chip": "Wachheit, Orientierung",
+              "gruppe": "Allgemein",
+              "normal": "Wach, zu Person, Ort und Zeit orientiert. ",
+              "abweichung": "{was} nicht orientiert{vorbestehend}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Orientierung",
+                  "optionen": [
+                    "Zeitlich",
+                    "Örtlich",
+                    "Zeitlich und örtlich",
+                    "In allen Qualitäten"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "vorbestehend",
+                  "label": "vorbestehend",
+                  "optionen": [
+                    "",
+                    ", laut Angehörigen vorbestehend"
+                  ]
+                }
+              ]
+            },
             {
               "art": "text",
               "text": "Untere Extremität "
@@ -28,11 +59,48 @@
               "chip": "Verkürzung/Außenrotation",
               "gruppe": "Inspektion",
               "normal": "Keine sichtbare Fehlstellung. ",
-              "abweichung": "Bein verkürzt und außenrotiert. "
+              "abweichung": "Bein {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Fehlstellung",
+                  "optionen": [
+                    "verkürzt und außenrotiert",
+                    "außenrotiert",
+                    "verkürzt"
+                  ]
+                }
+              ]
             },
             {
-              "art": "text",
-              "text": "Geschlossene, reizlose Weichteile. "
+              "art": "befund",
+              "id": "huefte_haut",
+              "chip": "Wunde/Haut",
+              "gruppe": "Inspektion",
+              "normal": "Geschlossene, reizlose Weichteile. ",
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Schürfwunde",
+                    "Oberflächliche Wunde",
+                    "Prellmarke",
+                    "Spannungsblasen"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
             },
             {
               "art": "befund",
@@ -40,12 +108,31 @@
               "chip": "Rötung/Schwellung/Überwärmung",
               "gruppe": "Inspektion",
               "normal": "Keine Rötung, Schwellung oder Überwärmung. ",
-              "abweichung": "Rötung, Schwellung und Überwärmung. "
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Schwellung",
+                    "Schwellung und Hämatom",
+                    "Hämatom",
+                    "Rötung, Schwellung und Überwärmung"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "huefte_kompartment",
-              "chip": "V.a. Kompartmentsyndrom",
+              "chip": "Kompartmentsyndrom",
               "gruppe": "Palpation",
               "normal": "Oberschenkel weich, kein Hinweis auf ein Kompartmentsyndrom. ",
               "abweichung": "Oberschenkel prall gespannt, Verdacht auf ein Kompartmentsyndrom. "
@@ -53,10 +140,23 @@
             {
               "art": "befund",
               "id": "huefte_becken",
-              "chip": "Becken instabil",
-              "gruppe": "Stabilität",
-              "normal": "Becken stabil. ",
-              "abweichung": "Becken instabil. "
+              "chip": "Becken",
+              "gruppe": "Palpation",
+              "normal": "Becken stabil, kein Kompressionsschmerz, kein Druckschmerz über Schambein und Kreuzbein. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Beckenkompressionsschmerz",
+                    "Druckschmerz über dem Schambein",
+                    "Druckschmerz über dem Kreuzbein",
+                    "Becken instabil"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -64,7 +164,29 @@
               "chip": "DS Trochanter/Leiste",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem Trochanter major oder in der Leiste. ",
-              "abweichung": "Druckschmerz über dem Trochanter major bzw. in der Leiste. "
+              "abweichung": "Druckschmerz {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "über dem Trochanter major",
+                    "in der Leiste",
+                    "über dem Trochanter major und in der Leiste"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -72,71 +194,429 @@
               "chip": "DS Oberschenkelschaft/Knie",
               "gruppe": "Palpation",
               "normal": "Oberschenkelschaft und Knie ohne Druckschmerz. ",
-              "abweichung": "Druckschmerz über Oberschenkelschaft bzw. Knie. "
+              "abweichung": "Druckschmerz über {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "dem Oberschenkelschaft",
+                    "dem Knie",
+                    "Oberschenkelschaft und Knie"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "huefte_pdms",
-              "chip": "pDMS gestört",
-              "gruppe": "pDMS",
-              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
-              "abweichung": "Periphere Durchblutung, Motorik und/oder Sensibilität gestört. "
+              "id": "huefte_stauchung",
+              "chip": "Stauchungs-/Rotationsschmerz",
+              "gruppe": "Beweglichkeit",
+              "normal": "Kein Stauchungsschmerz, kein Rotationsschmerz im Hüftgelenk. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Stauchungs- und Rotationsschmerz im Hüftgelenk",
+                    "Rotationsschmerz im Hüftgelenk",
+                    "Stauchungsschmerz im Hüftgelenk",
+                    "Hüftrotation bei Frakturverdacht nicht geprüft"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "huefte_bein_anheben",
-              "chip": "Bein nicht aktiv anhebbar",
-              "gruppe": "Funktion",
+              "chip": "Bein aktiv anheben",
+              "gruppe": "Beweglichkeit",
               "normal": "Das Bein kann aktiv von der Unterlage angehoben werden. ",
-              "abweichung": "Das Bein kann nicht aktiv von der Unterlage angehoben werden. "
+              "abweichung": "Das Bein kann {wie} von der Unterlage angehoben werden. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "nicht aktiv",
+                    "nur unter starken Schmerzen aktiv"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "huefte_gehfaehig",
-              "chip": "nicht steh-/gehfähig",
-              "gruppe": "Funktion",
-              "normal": "Patient ist steh- und gehfähig. ",
-              "abweichung": "Patient ist nicht steh- und gehfähig. "
+              "chip": "Gehfähigkeit",
+              "gruppe": "Belastbarkeit",
+              "normal": "{Person} ist frei steh- und gehfähig. ",
+              "abweichung": "{Person} ist {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "unter Schmerzen ohne Hilfsmittel gehfähig",
+                    "am Rollator sicher gehfähig",
+                    "an Unterarmgehstützen sicher gehfähig",
+                    "nur mit Hilfe einer Person gehfähig",
+                    "nicht steh- und gehfähig"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "huefte_antikoag",
-              "chip": "Antikoagulation",
-              "gruppe": "Anamnese",
-              "normal": "Keine gerinnungshemmende Medikation. ",
-              "abweichung": "Gerinnungshemmende Medikation (Präparat und letzte Gabe im KIS ergänzen). "
-            },
-            {
-              "art": "text",
-              "text": "Der Patient war bisher "
-            },
-            {
-              "art": "auswahl",
-              "id": "huefte_mobilitaet",
-              "label": "bisherige Mobilität",
-              "default": 0,
-              "optionen": [
-                "selbstständig",
-                "an Gehhilfen",
-                "eingeschränkt",
-                "bettlägerig"
+              "id": "huefte_pdms",
+              "chip": "Durchblutung/Motorik/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
               ]
             },
             {
               "art": "text",
-              "text": " mobil."
+              "text": "Mobilität vor dem Unfall: "
+            },
+            {
+              "art": "auswahl",
+              "id": "huefte_mobilitaet",
+              "label": "Mobilität vor dem Unfall",
+              "optionen": [
+                "selbstständig ohne Hilfsmittel",
+                "mit Gehstock oder Unterarmgehstützen",
+                "am Rollator",
+                "nur innerhalb der Wohnung",
+                "im Rollstuhl",
+                "bettlägerig"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": "."
             }
           ]
         },
         {
           "id": "huefte-femur-proc",
-          "titel": "Proximale Femurfraktur – Procedere",
+          "titel": "Proximale Femurfraktur – Procedere (Aufnahme)",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Untersuchung und Beratung, Röntgen Beckenübersicht, Hüfte axial und Thorax, chirurgische Aufklärung, Abstrich MRSA und SARS-CoV-2, Blutentnahme inklusive Blutgruppe/Kreuzblut, Venenverweilkanüle, EKG, Röntgen Thorax, Anmeldung zur Prämedikation, DK-Anlage, Ruhigstellung in Lagerungsschiene. Die Therapieentscheidung (Osteosynthese vs. Endoprothese) erfolgt anhand von Alter, Dislokationsgrad und Begleitfaktoren gemäß Therapiealgorithmus."
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme",
+              "an": true,
+              "text": "Stationäre Aufnahme zur operativen Versorgung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "verfahren",
+              "label": "Geplantes Verfahren",
+              "optionen": [
+                "Geplant: Osteosynthese mit proximalem Femurnagel.",
+                "Geplant: Osteosynthese mit dynamischer Hüftschraube.",
+                "Geplant: Schraubenosteosynthese.",
+                "Geplant: Duokopfprothese.",
+                "Geplant: Hüft-Totalendoprothese.",
+                "Das Verfahren legt der Operateur fest."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "op-zeitpunkt",
+              "label": "Zeitpunkt der Operation",
+              "optionen": [
+                "Operation geplant am Aufnahmetag.",
+                "Operation geplant am Folgetag.",
+                "Operation geplant innerhalb von 24 Stunden nach Aufnahme.",
+                "Operation später als 24 Stunden nach Aufnahme geplant."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "op-grund",
+              "label": "Späterer Zeitpunkt: frühestens wann, Grund",
+              "text": " Frühester Zeitpunkt: {wann}, Grund: {grund}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "frühestens wann",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "am Folgetag",
+                    "in 2 Tagen"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "grund",
+                  "label": "Grund",
+                  "maxLen": 120,
+                  "required": true,
+                  "vorschlaege": [
+                    "Gerinnungshemmung",
+                    "internistische Vorbereitung",
+                    "Einwilligung steht aus"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchternheit",
+              "an": true,
+              "text": "{ab}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Nüchternheit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Feste Nahrung bis 6 Stunden, klare Flüssigkeit bis 2 Stunden vor der Operation",
+                    "Ab sofort keine feste Nahrung, klare Flüssigkeit weiter erlaubt",
+                    "Nüchternheit nach Anweisung der Anästhesie"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "nuechtern-bis",
+              "label": "Klare Flüssigkeit bis wann",
+              "text": " Klare Flüssigkeit bis {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Klare Flüssigkeit bis (Uhrzeit)",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmer pausiert",
+              "text": "{praeparat} pausiert, letzte Einnahme {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Gerinnungshemmer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Apixaban",
+                    "Rivaroxaban",
+                    "Edoxaban",
+                    "Dabigatran",
+                    "Phenprocoumon",
+                    "Clopidogrel"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "letzte Einnahme",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "heute",
+                    "gestern",
+                    "vor mehr als 48 Stunden",
+                    "unbekannt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ass",
+              "label": "Acetylsalicylsäure läuft weiter",
+              "text": "Acetylsalicylsäure in niedriger Dosis wird weitergegeben."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "inr",
+              "label": "INR bei Aufnahme",
+              "text": "INR bei Aufnahme {wert}; {massnahme}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wert",
+                  "label": "INR",
+                  "maxLen": 10,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "massnahme",
+                  "label": "Maßnahme",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Vitamin K gegeben",
+                    "Kontrolle vor der Operation",
+                    "Vitamin K gegeben, Kontrolle vor der Operation"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin ab dem Aufnahmetag.",
+                "Vorbestehende Gerinnungshemmung pausiert, stattdessen medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat} {dosis} subkutan, 1-mal täglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "maxLen": 20
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombose-beginn",
+              "label": "Thromboseprophylaxe: erste Gabe",
+              "text": " Erste Gabe: {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Erste Gabe der Thromboseprophylaxe",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "am Aufnahmetag",
+                    "am Folgetag"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "Schmerzmittel nach ärztlicher Anordnung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "geriatrie",
+              "label": "Geriatrisches Screening",
+              "optionen": [
+                "Geriatrisches Screening veranlasst.",
+                "Geriatrisches Screening bei Alter unter 70 Jahren nicht nötig.",
+                "Geriatrisches Screening nicht veranlasst."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "angehoerige",
+              "label": "Angehörige informiert",
+              "text": "Angehörige oder Betreuer informiert."
             }
           ]
         }
@@ -149,21 +629,146 @@
       "bausteine": [
         {
           "id": "unterschenkel-proc",
-          "titel": "Unterschenkel – Procedere",
+          "titel": "Unterschenkelfraktur im Gips – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [
             {
               "id": "unterschenkel_wv_termin",
               "typ": "begriff",
               "label": "Wiedervorstellung (Termin)",
-              "required": true,
-              "leerMarker": "___"
+              "required": true
             }
           ],
           "segmente": [
             {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gips",
+              "label": "Ruhigstellung im Gips",
+              "an": true,
+              "text": "Ruhigstellung des Unterschenkels {seite} in der gespaltenen Unterschenkelgipsschiene."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Hochlagerung, Kühlung",
+              "an": true,
+              "text": "Hochlagerung und Kühlung des Beins {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Bein {seite}: {stufe}{gehhilfe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Entlastung",
+                    "Teilbelastung mit 15 kg",
+                    "Teilbelastung mit 20 kg"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe und Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen für 2 Wochen",
+                    " an Unterarmgehstützen für 3 Wochen",
+                    " an Unterarmgehstützen für 4 Wochen",
+                    " an Unterarmgehstützen für 6 Wochen",
+                    " an Unterarmgehstützen bis zur Röntgenkontrolle",
+                    " ohne Gehhilfen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der freien Mobilität.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zur Abnahme der Ruhigstellung.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der Vollbelastung.",
+                "Die vorbestehende Blutverdünnung (Antikoagulation) wird unverändert fortgeführt, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat} {dosis} subkutan, 1-mal täglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "maxLen": 20
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
               "art": "text",
-              "text": "Anlage einer gespaltenen Unterschenkelgipsschiene, Röntgenkontrolle im Gips, Wiedereinbestellung in unsere Ambulanz zur Verlaufskontrolle. Befundkontrolle, regelmäßige Hochlagerung und Kühlung. Ruhigstellung im Unterschenkelgips. Wiedervorstellung zur Verlaufskontrolle und befundabhängigen Zirkulierung des Gipses am "
+              "text": "Wiedervorstellung in unserer Ambulanz zur Verlaufskontrolle und befundabhängigen Zirkulierung des Gipses am "
             },
             {
               "art": "platzhalter",
@@ -171,7 +776,102 @@
             },
             {
               "art": "text",
-              "text": ". Bei Beschwerdepersistenz ggf. weiterführende Diagnostik. Bedarfsgerechte Analgesie."
+              "text": "."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "zunehmenden Schmerzen in der Schiene oder Orthese, zunehmender Schwellung der Zehen, Taubheitsgefühl oder Kribbeln in den Zehen, kalten, blassen oder blauen Zehen, drückender oder zu enger Schiene, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "rasch zunehmenden Schmerzen, die trotz Schmerzmittel und Hochlagern nicht nachlassen, praller Schwellung, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "warnzeichen-besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
             }
           ]
         }
@@ -186,6 +886,7 @@
           "id": "achilles-untersuchung",
           "titel": "Achillessehne – Untersuchung",
           "typ": "untersuchung",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
@@ -202,10 +903,23 @@
             {
               "art": "befund",
               "id": "achilles_weichteile",
-              "chip": "Weichteile gereizt",
+              "chip": "Weichteile",
               "gruppe": "Inspektion",
               "normal": "Reizlos geschlossene Weichteile. ",
-              "abweichung": "Gereizte, geschwollene Weichteile. "
+              "abweichung": "{was} über der Achillessehne. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Schwellung",
+                    "Schwellung und Hämatom",
+                    "Schürfwunde",
+                    "Wunde"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -213,63 +927,149 @@
               "chip": "Delle über der Sehne",
               "gruppe": "Palpation",
               "normal": "Keine tastbare Delle über der Achillessehne. ",
-              "abweichung": "Tastbare Delle über der Achillessehne. "
+              "abweichung": "Tastbare Delle über der Achillessehne{hoehe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "hoehe",
+                  "label": "Höhe",
+                  "optionen": [
+                    "",
+                    " 2 bis 6 cm oberhalb des Ansatzes",
+                    " am Ansatz am Fersenbein",
+                    " am Übergang zum Muskel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "achilles_ds",
+              "chip": "DS Achillessehne",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über der Achillessehne. ",
+              "abweichung": "Druckschmerz über der Achillessehne{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "achilles_thompson",
-              "chip": "Thompson-Test pathologisch",
-              "gruppe": "Funktion",
-              "normal": "Thompson-Test negativ. ",
-              "abweichung": "Thompson-Test pathologisch. "
+              "chip": "Thompson-Test",
+              "gruppe": "Stabilität und Tests",
+              "normal": "Thompson-Test unauffällig (Plantarflexion bei Wadenkompression). ",
+              "abweichung": "Thompson-Test pathologisch (keine Plantarflexion bei Wadenkompression). "
+            },
+            {
+              "art": "befund",
+              "id": "achilles_zehenstand",
+              "chip": "Zehenspitzenstand, Kraft",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Einbeiniger Zehenspitzenstand nicht möglich",
+                    "Einbeiniger Zehenspitzenstand möglich",
+                    "Kraft der Plantarflexion gegen Widerstand deutlich gemindert"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "achilles_gehen",
+              "chip": "Gehfähigkeit",
+              "gruppe": "Belastbarkeit",
+              "normal": "{Person} ist frei geh- und stehfähig. ",
+              "abweichung": "{Person} ist {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "unter Schmerzen geh- und stehfähig",
+                    "unter Schonhinken geh- und stehfähig, kein Abrollen möglich",
+                    "nicht belastungsfähig"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "achilles_fusspulse",
-              "chip": "Fußpulse nicht tastbar",
-              "gruppe": "pDMS",
-              "normal": "Fußpulse tastbar, ",
-              "abweichung": "Fußpulse nicht tastbar, "
+              "chip": "Fußpulse",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußpulse tastbar. ",
+              "abweichung": "{puls} nicht tastbar. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "puls",
+                  "label": "Puls",
+                  "optionen": [
+                    "Fußpulse",
+                    "A. dorsalis pedis",
+                    "A. tibialis posterior"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "achilles_pdms",
-              "chip": "pDMS gestört",
-              "gruppe": "pDMS",
-              "normal": "periphere Durchblutung, Motorik und Sensibilität intakt. ",
-              "abweichung": "periphere Durchblutung, Motorik und/oder Sensibilität gestört. "
+              "chip": "Durchblutung/Motorik/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "achilles_kompartment",
-              "chip": "V.a. Kompartmentsyndrom",
-              "gruppe": "Palpation",
-              "normal": "Kein Anhalt für ein Kompartmentsyndrom. ",
-              "abweichung": "Anhalt für ein Kompartmentsyndrom. "
-            },
-            {
-              "art": "befund",
-              "id": "achilles_sono_ruptur",
-              "chip": "Sono: Ruptur",
-              "gruppe": "Sonographie",
-              "normal": "",
-              "abweichung": "Sonographie: Nachweis einer Achillessehnenruptur im Bereich {bereich}, bei 30° Plantarflexion Annäherung der beiden Enden bis auf {mm}, kein größeres Hämatom nachweisbar.",
-              "slots": [
-                {
-                  "art": "detail",
-                  "id": "bereich",
-                  "label": "Rupturlokalisation (Sonographie)",
-                  "maxLen": 40
-                },
-                {
-                  "art": "zahl",
-                  "id": "mm",
-                  "label": "Enden-Annäherung bei 30° Plantarflexion",
-                  "einheit": "mm",
-                  "required": false,
-                  "leerMarker": "___"
-                }
-              ]
+              "chip": "Kompartmentsyndrom",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Kein Hinweis auf ein Kompartmentsyndrom. ",
+              "abweichung": "Wade prall gespannt, Verdacht auf ein Kompartmentsyndrom. "
             }
           ]
         },
@@ -277,11 +1077,363 @@
           "id": "achilles-ruptur-proc",
           "titel": "Achillessehnenruptur – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
+              "art": "punkt"
+            },
+            {
               "art": "text",
-              "text": "Untersuchung und Beratung, sonographische Untersuchung, ausführliche Aufklärung über die Therapieoptionen (konservativ vs. operativ) und die möglichen Risiken (fehlende Heilung / verbleibende Insuffizienz / Re-Ruptur bei konservativer Therapie; OP-Risiken / Wundheilungsstörung / Infektgefahr bei operativer Therapie), Anlage Vacoped-Achill, Rezeptieren von Unterarmgehstützen und Clexane, Aushändigen des Nachbehandlungskonzeptes."
+              "text": "Achillessehne "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "weg",
+              "label": "Behandlungsweg",
+              "optionen": [
+                "Konservativ-funktionelle Behandlung in der Unterschenkelorthese.",
+                "Operative Versorgung geplant, Vorstellung in unserer Sprechstunde am nächsten Werktag zur Operationsplanung.",
+                "Operative Versorgung geplant, Vorstellung in unserer Sprechstunde innerhalb von 3 Tagen zur Operationsplanung.",
+                "Operative Versorgung geplant, Vorstellung in unserer Sprechstunde innerhalb von 1 Woche zur Operationsplanung.",
+                "Entscheidung über konservative oder operative Behandlung in unserer Sprechstunde am nächsten Werktag.",
+                "Entscheidung über konservative oder operative Behandlung in unserer Sprechstunde innerhalb von 3 Tagen.",
+                "Entscheidung über konservative oder operative Behandlung in unserer Sprechstunde innerhalb von 1 Woche."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese-schema",
+              "label": "Orthese: Schema",
+              "an": true,
+              "text": "Unterschenkelorthese {seite} in {grad}° Spitzfußstellung für {wochen}, danach schrittweise Verringerung der Spitzfußstellung alle {stufe}, Gesamtdauer {gesamt}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "grad",
+                  "label": "Spitzfußstellung in Grad",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "wochen",
+                  "label": "volle Spitzfußstellung",
+                  "einheit": "Wochen",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "stufe",
+                  "label": "Verringerung alle",
+                  "einheit": "Wochen",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "gesamt",
+                  "label": "Gesamtdauer",
+                  "einheit": "Wochen",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Orthese: Tragedauer (ohne Schema)",
+              "text": "Unterschenkelorthese {seite} {dauer} Tag und Nacht tragen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Tragedauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "für 6 Wochen",
+                    "für 8 Wochen",
+                    "bis zur Vorstellung in der Sprechstunde"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese-regeln",
+              "label": "Orthese auch nachts, ohne Orthese nicht belasten",
+              "an": true,
+              "text": "Die Orthese wird auch nachts getragen. Ohne Orthese wird der Fuß {seite} nicht belastet und nicht nach oben gezogen, auch nicht bei der Körperpflege."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Bein {seite}: {stufe}{gehhilfe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung in der Orthese",
+                    "Teilbelastung mit 20 kg in der Orthese",
+                    "Entlastung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe und Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen, solange das Gehen schmerzt",
+                    " an Unterarmgehstützen für 2 Wochen",
+                    " an Unterarmgehstützen bis zur klinischen Kontrolle",
+                    " ohne Gehhilfen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Hochlagerung, Kühlung",
+              "an": true,
+              "text": "Hochlagerung und Kühlung des Unterschenkels {seite} in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der freien Mobilität.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zur Abnahme der Ruhigstellung.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der Vollbelastung.",
+                "Die vorbestehende Blutverdünnung (Antikoagulation) wird unverändert fortgeführt, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat} {dosis} subkutan, 1-mal täglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "maxLen": 20
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische und sonografische Kontrolle der Achillessehne {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Sportpause",
+              "an": true,
+              "text": "Sportpause bis zur ärztlichen Freigabe."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "plötzlichem neuem Schmerz an der Ferse nach einem Fehltritt oder Sturz, zunehmenden Schmerzen oder Druckstellen in der Orthese, Taubheitsgefühl oder Kribbeln im Fuß, kalten, blassen oder blauen Zehen, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "zunehmenden Schmerzen in der Schiene oder Orthese, zunehmender Schwellung der Zehen, Taubheitsgefühl oder Kribbeln in den Zehen, kalten, blassen oder blauen Zehen, drückender oder zu enger Schiene, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "warnzeichen-besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
             }
           ]
         }
@@ -296,15 +1448,8 @@
           "id": "fuss-untersuchung",
           "titel": "Fuß – Untersuchung",
           "typ": "untersuchung",
-          "platzhalter": [
-            {
-              "id": "fuss_schwellung_ort",
-              "typ": "begriff",
-              "label": "Lokalisation der Schwellung",
-              "required": true,
-              "leerMarker": "___"
-            }
-          ],
+          "status": "entwurf",
+          "platzhalter": [],
           "segmente": [
             {
               "art": "text",
@@ -320,10 +1465,31 @@
             {
               "art": "befund",
               "id": "fuss_weichteile",
-              "chip": "Weichteile gereizt",
+              "chip": "Weichteile",
               "gruppe": "Inspektion",
               "normal": "Reizlos geschlossene Weichteile. ",
-              "abweichung": "Gereizte, geschwollene Weichteile. "
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Hämatom",
+                    "Prellmarke",
+                    "Rötung",
+                    "Spannungsblasen"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
             },
             {
               "art": "befund",
@@ -331,27 +1497,125 @@
               "chip": "Wunde",
               "gruppe": "Inspektion",
               "normal": "Keine Wunde. ",
-              "abweichung": "Offene Wunde. "
-            },
-            {
-              "art": "text",
-              "text": "Schwellung über "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "fuss_schwellung_ort"
-            },
-            {
-              "art": "text",
-              "text": " mit lokalem Druckschmerz. "
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Schürfwunde",
+                    "Oberflächliche Wunde"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "fuss_fusspulse",
-              "chip": "Fußpulse nicht tastbar",
-              "gruppe": "pDMS",
-              "normal": "Fußpulse tastbar. ",
-              "abweichung": "Fußpulse nicht tastbar. "
+              "id": "fuss_schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung am Fuß. ",
+              "abweichung": "Schwellung über {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "dem Fußrücken",
+                    "dem Mittelfuß",
+                    "dem Vorfuß",
+                    "dem Fußaußenrand",
+                    "dem Fußinnenrand",
+                    "der Ferse",
+                    "der Fußsohle"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "fuss_subungual",
+              "chip": "Subunguales Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein subunguales Hämatom. ",
+              "abweichung": "Subunguales Hämatom{zehe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zehe",
+                  "label": "Zehe",
+                  "optionen": [
+                    "",
+                    " der Großzehe",
+                    " der 2. Zehe",
+                    " der 3. Zehe",
+                    " der 4. Zehe",
+                    " der 5. Zehe"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "fuss_ds",
+              "chip": "Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz am Fuß. ",
+              "abweichung": "Druckschmerz über {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "dem Fußrücken",
+                    "dem Mittelfuß",
+                    "dem Vorfuß",
+                    "dem Fußaußenrand",
+                    "dem Fußinnenrand",
+                    "der Ferse",
+                    "der Fußsohle",
+                    "den Mittelfußknochen",
+                    "der Basis des Os metatarsale V",
+                    "dem Os naviculare",
+                    "der Fußwurzel"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -359,7 +1623,19 @@
               "chip": "Vorfußkompressionsschmerz",
               "gruppe": "Palpation",
               "normal": "Kein Vorfußkompressionsschmerz. ",
-              "abweichung": "Vorfußkompressionsschmerz. "
+              "abweichung": "Vorfußkompressionsschmerz{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -367,15 +1643,19 @@
               "chip": "DS Calcaneus",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem Calcaneus. ",
-              "abweichung": "Druckschmerz über dem Calcaneus. "
-            },
-            {
-              "art": "befund",
-              "id": "fuss_thompson",
-              "chip": "Thompson-Test pathologisch",
-              "gruppe": "Funktion",
-              "normal": "Thompson-Test nicht pathologisch. ",
-              "abweichung": "Thompson-Test pathologisch. "
+              "abweichung": "Druckschmerz über dem Calcaneus{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -383,7 +1663,63 @@
               "chip": "DS Os naviculare",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem Os naviculare. ",
-              "abweichung": "Druckschmerz über dem Os naviculare. "
+              "abweichung": "Druckschmerz über dem Os naviculare{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "fuss_ds_mt5",
+              "chip": "Basis Os metatarsale V",
+              "gruppe": "Palpation",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Druckschmerz über der Basis des Os metatarsale V",
+                    "Kein Druckschmerz über der Basis des Os metatarsale V"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "fuss_lisfranc",
+              "chip": "Lisfranc-Gelenk, plantares Hämatom",
+              "gruppe": "Palpation",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Kein Druckschmerz über dem Lisfranc-Gelenk, kein plantares Hämatom",
+                    "Druckschmerz über dem Lisfranc-Gelenk",
+                    "Plantares Hämatom am Mittelfuß",
+                    "Druckschmerz über dem Lisfranc-Gelenk und plantares Hämatom am Mittelfuß"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -391,43 +1727,545 @@
               "chip": "Stauchungsschmerz Zehen",
               "gruppe": "Palpation",
               "normal": "Kein Stauchungsschmerz der Zehen. ",
-              "abweichung": "Stauchungsschmerz der Zehen. "
+              "abweichung": "Stauchungsschmerz {zehe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zehe",
+                  "label": "Zehe",
+                  "optionen": [
+                    "der Zehen",
+                    "der Großzehe",
+                    "der 2. Zehe",
+                    "der 3. Zehe",
+                    "der 4. Zehe",
+                    "der 5. Zehe"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "fuss_subungual",
-              "chip": "subunguales Hämatom",
-              "gruppe": "Inspektion",
-              "normal": "Kein subunguales Hämatom. ",
-              "abweichung": "Subunguales Hämatom. "
+              "id": "fuss_thompson",
+              "chip": "Thompson-Test",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Thompson-Test nicht pathologisch",
+                    "Thompson-Test pathologisch"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "fuss_gehen",
+              "chip": "Gehfähigkeit",
+              "gruppe": "Belastbarkeit",
+              "normal": "{Person} ist frei geh- und stehfähig. ",
+              "abweichung": "{Person} ist {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "unter Schmerzen geh- und stehfähig",
+                    "nur auf der Ferse belastend gehfähig",
+                    "nicht belastungsfähig"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "fuss_kompartment",
-              "chip": "V.a. Kompartmentsyndrom",
-              "gruppe": "Palpation",
+              "chip": "Kompartmentsyndrom",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
               "normal": "Kein Hinweis auf ein Kompartmentsyndrom. ",
-              "abweichung": "Verdacht auf ein Kompartmentsyndrom. "
+              "abweichung": "Fuß prall gespannt, Verdacht auf ein Kompartmentsyndrom. "
+            },
+            {
+              "art": "befund",
+              "id": "fuss_fusspulse",
+              "chip": "Fußpulse",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußpulse tastbar. ",
+              "abweichung": "{puls} nicht tastbar. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "puls",
+                  "label": "Puls",
+                  "optionen": [
+                    "Fußpulse",
+                    "A. dorsalis pedis",
+                    "A. tibialis posterior"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "fuss_pdms",
-              "chip": "pDMS gestört",
-              "gruppe": "pDMS",
-              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt.",
-              "abweichung": "Periphere Durchblutung, Motorik und/oder Sensibilität gestört."
+              "chip": "Durchblutung/Motorik/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "fuss_wirbelsaeule",
+              "chip": "Wirbelsäule (nach Sturz aus der Höhe)",
+              "gruppe": "Wirbelsäule",
+              "selten": true,
+              "normal": "Wirbelsäule ohne Klopf- und Druckschmerz. ",
+              "abweichung": "{was} über der Wirbelsäule {hoehe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Klopfschmerz",
+                    "Druckschmerz",
+                    "Klopf- und Druckschmerz"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "hoehe",
+                  "label": "Höhe",
+                  "maxLen": 40
+                }
+              ]
             }
           ]
         },
         {
           "id": "fuss-proc",
-          "titel": "Fuß – Procedere",
+          "titel": "Fußprellung – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Anamnese, Untersuchung, Beratung, Röntgen."
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Fuß {seite}: {stufe}{gehhilfe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung",
+                    "schmerzadaptierte Vollbelastung im festen Schuh",
+                    "schmerzadaptierte Vollbelastung im Vorfußentlastungsschuh",
+                    "Teilbelastung mit 20 kg",
+                    "Entlastung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe und Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    " ohne Gehhilfen",
+                    " an Unterarmgehstützen, solange das Gehen schmerzt",
+                    " an Unterarmgehstützen für 3 bis 5 Tage",
+                    " an Unterarmgehstützen für 1 Woche",
+                    " an Unterarmgehstützen für 2 Wochen",
+                    " an Unterarmgehstützen bis zur klinischen Kontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung, Hochlagerung, Kühlung",
+              "an": true,
+              "text": "Schonung, Hochlagerung und Kühlung des Fußes {seite} in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Elastischer Verband",
+              "text": "Elastischen Verband {seite} für {dauer} tragen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Elastischer Verband",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "3 Tage",
+                    "5 bis 7 Tage",
+                    "die Zeit bis zur klinischen Kontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verbandwechsel",
+              "label": "Verbandwechsel",
+              "text": "Verbandwechsel {abstand} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "abstand",
+                  "label": "Abstand",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "täglich",
+                    "alle 2 Tage",
+                    "alle 2 bis 3 Tage"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "selbstständig zu Hause"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lisfranc",
+              "label": "Lisfranc-Gelenk: Bildgebung, Entlastung",
+              "text": "Bei Verdacht auf eine Verletzung des Lisfranc-Gelenks {verfahren} {wann} {wo}; bis dahin Entlastung des Fußes {seite} an Unterarmgehstützen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verfahren",
+                  "label": "Verfahren",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "CT",
+                    "Röntgen im Stehen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "wo",
+                  "maxLen": 80,
+                  "required": true,
+                  "vorschlaege": [
+                    "in unserer Notaufnahme",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der radiologischen Praxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der freien Mobilität.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der Vollbelastung.",
+                "Die vorbestehende Blutverdünnung (Antikoagulation) wird unverändert fortgeführt, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat} {dosis} subkutan, 1-mal täglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "maxLen": 20
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "text": "Klinische Kontrolle des Fußes {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "erneut",
+              "label": "Kontrolle bei anhaltenden Beschwerden",
+              "an": true,
+              "text": "Bei anhaltenden Beschwerden über {dauer} hinaus ärztliche Kontrolle {wo}, dort Entscheidung über eine erneute Bildgebung.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "7 Tage",
+                    "10 Tage",
+                    "2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "zunehmender Schwellung oder zunehmenden Schmerzen trotz Hochlagern, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "rasch zunehmenden Schmerzen, die trotz Schmerzmittel und Hochlagern nicht nachlassen, praller Schwellung, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "warnzeichen-besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
             }
           ]
         }
@@ -442,15 +2280,8 @@
           "id": "mittelfuss-untersuchung",
           "titel": "Mittelfuß – Untersuchung",
           "typ": "untersuchung",
-          "platzhalter": [
-            {
-              "id": "mittelfuss_schwellung_ort",
-              "typ": "begriff",
-              "label": "Lokalisation der Schwellung",
-              "required": true,
-              "leerMarker": "___"
-            }
-          ],
+          "status": "entwurf",
+          "platzhalter": [],
           "segmente": [
             {
               "art": "text",
@@ -466,10 +2297,31 @@
             {
               "art": "befund",
               "id": "mittelfuss_weichteile",
-              "chip": "Weichteile gereizt",
+              "chip": "Weichteile",
               "gruppe": "Inspektion",
               "normal": "Reizlos geschlossene Weichteile. ",
-              "abweichung": "Gereizte, geschwollene Weichteile. "
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Hämatom",
+                    "Prellmarke",
+                    "Rötung",
+                    "Spannungsblasen"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
             },
             {
               "art": "befund",
@@ -477,27 +2329,123 @@
               "chip": "Wunde",
               "gruppe": "Inspektion",
               "normal": "Keine Wunde. ",
-              "abweichung": "Offene Wunde. "
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Schürfwunde",
+                    "Oberflächliche Wunde"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "mittelfuss_subungual",
-              "chip": "subunguales Hämatom",
+              "chip": "Subunguales Hämatom",
               "gruppe": "Inspektion",
               "normal": "Kein subunguales Hämatom. ",
-              "abweichung": "Subunguales Hämatom. "
+              "abweichung": "Subunguales Hämatom{zehe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zehe",
+                  "label": "Zehe",
+                  "optionen": [
+                    "",
+                    " der Großzehe",
+                    " der 2. Zehe",
+                    " der 3. Zehe",
+                    " der 4. Zehe",
+                    " der 5. Zehe"
+                  ]
+                }
+              ]
             },
             {
-              "art": "text",
-              "text": "Schwellung über "
+              "art": "befund",
+              "id": "mittelfuss_schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung über dem Mittelfuß. ",
+              "abweichung": "Schwellung über {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "dem Os metatarsale I",
+                    "dem Os metatarsale II",
+                    "dem Os metatarsale III",
+                    "dem Os metatarsale IV",
+                    "dem Os metatarsale V",
+                    "der Basis des Os metatarsale V",
+                    "dem Fußrücken",
+                    "dem Lisfranc-Gelenk"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
-              "art": "platzhalter",
-              "ref": "mittelfuss_schwellung_ort"
-            },
-            {
-              "art": "text",
-              "text": " mit lokalem Druckschmerz. "
+              "art": "befund",
+              "id": "mittelfuss_ds",
+              "chip": "Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Mittelfuß. ",
+              "abweichung": "Druckschmerz über {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "dem Os metatarsale I",
+                    "dem Os metatarsale II",
+                    "dem Os metatarsale III",
+                    "dem Os metatarsale IV",
+                    "dem Os metatarsale V",
+                    "der Basis des Os metatarsale V",
+                    "dem Fußrücken",
+                    "dem Lisfranc-Gelenk"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -505,15 +2453,83 @@
               "chip": "Vorfußkompressionsschmerz",
               "gruppe": "Palpation",
               "normal": "Kein Vorfußkompressionsschmerz. ",
-              "abweichung": "Vorfußkompressionsschmerz. "
+              "abweichung": "Vorfußkompressionsschmerz{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "mittelfuss_ds_umgebung",
-              "chip": "DS Schaft/Knöchel/Calcaneus",
+              "chip": "DS Außen-/Innenknöchel",
               "gruppe": "Palpation",
-              "normal": "Kein Druckschmerz über dem Unterschenkelschaft, dem Außen- oder Innenknöchel oder dem Calcaneus. ",
-              "abweichung": "Druckschmerz über dem Unterschenkelschaft, dem Außen- oder Innenknöchel bzw. dem Calcaneus. "
+              "normal": "Kein Druckschmerz über Außen- und Innenknöchel. ",
+              "abweichung": "Druckschmerz über {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "dem Außenknöchel",
+                    "dem Innenknöchel",
+                    "Außen- und Innenknöchel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_ds_calcaneus",
+              "chip": "DS Calcaneus",
+              "gruppe": "Palpation",
+              "selten": true,
+              "normal": "Kein Druckschmerz über dem Calcaneus. ",
+              "abweichung": "Druckschmerz über dem Calcaneus{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_ds_unterschenkel",
+              "chip": "DS Unterschenkelschaft",
+              "gruppe": "Palpation",
+              "selten": true,
+              "normal": "Kein Druckschmerz über dem Unterschenkelschaft. ",
+              "abweichung": "Druckschmerz über dem Unterschenkelschaft{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -529,60 +2545,193 @@
               "chip": "DS Os naviculare",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem Os naviculare. ",
-              "abweichung": "Druckschmerz über dem Os naviculare. "
+              "abweichung": "Druckschmerz über dem Os naviculare{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "mittelfuss_stauchung_zehen",
-              "chip": "Stauchungsschmerz Zehen",
+              "chip": "Stauchungsschmerz Zehen/Strahl",
               "gruppe": "Palpation",
               "normal": "Kein Stauchungsschmerz der Zehen. ",
-              "abweichung": "Stauchungsschmerz der Zehen. "
+              "abweichung": "Stauchungsschmerz {zehe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zehe",
+                  "label": "Zehe",
+                  "optionen": [
+                    "der Zehen",
+                    "der Großzehe",
+                    "der 2. Zehe",
+                    "der 3. Zehe",
+                    "der 4. Zehe",
+                    "der 5. Zehe",
+                    "des 1. Strahls",
+                    "des 2. Strahls",
+                    "des 3. Strahls",
+                    "des 4. Strahls",
+                    "des 5. Strahls"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "mittelfuss_kompartment",
-              "chip": "V.a. Kompartmentsyndrom",
+              "id": "mittelfuss_lisfranc",
+              "chip": "Lisfranc-Gelenk, plantares Hämatom",
               "gruppe": "Palpation",
-              "normal": "Kein Hinweis auf ein Kompartmentsyndrom. ",
-              "abweichung": "Verdacht auf ein Kompartmentsyndrom. "
-            },
-            {
-              "art": "befund",
-              "id": "mittelfuss_pdms",
-              "chip": "pDMS gestört",
-              "gruppe": "pDMS",
-              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
-              "abweichung": "Periphere Durchblutung, Motorik und/oder Sensibilität gestört. "
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Kein Druckschmerz über dem Lisfranc-Gelenk, kein plantares Hämatom",
+                    "Druckschmerz über dem Lisfranc-Gelenk",
+                    "Plantares Hämatom am Mittelfuß",
+                    "Druckschmerz über dem Lisfranc-Gelenk und plantares Hämatom am Mittelfuß"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "mittelfuss_gehfaehig",
-              "chip": "nicht steh-/gehfähig",
-              "gruppe": "Funktion",
-              "normal": "Patient ist stehfähig und unter Schmerzen gehfähig.",
-              "abweichung": "Patient ist nicht steh- und gehfähig."
+              "chip": "Gehfähigkeit",
+              "gruppe": "Belastbarkeit",
+              "normal": "{Person} ist frei steh- und gehfähig. ",
+              "abweichung": "{Person} ist {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "stehfähig und unter Schmerzen gehfähig",
+                    "nur auf der Ferse belastend gehfähig",
+                    "nicht steh- und gehfähig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_kompartment",
+              "chip": "Kompartmentsyndrom",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Kein Hinweis auf ein Kompartmentsyndrom. ",
+              "abweichung": "Fuß prall gespannt, Verdacht auf ein Kompartmentsyndrom. "
+            },
+            {
+              "art": "befund",
+              "id": "mittelfuss_pdms",
+              "chip": "Durchblutung/Motorik/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
             }
           ]
         },
         {
           "id": "mittelfuss-proc",
-          "titel": "Mittelfuß – Procedere",
+          "titel": "Mittelfußfraktur konservativ – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [
             {
               "id": "mittelfuss_schuh_wochen",
               "typ": "zeitraum",
-              "label": "Tragedauer Vorfußentlastungsschuh",
+              "label": "Dauer in Wochen",
               "einheit": "Wochen",
-              "default": "4",
-              "required": true
+              "required": true,
+              "vorschlaege": [
+                "2",
+                "4",
+                "6",
+                "8"
+              ]
             }
           ],
           "segmente": [
             {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "belastung",
+              "label": "Belastung",
+              "optionen": [
+                "Schmerzadaptierte Vollbelastung",
+                "Teilbelastung mit 20 kg an Unterarmgehstützen",
+                "Entlastung an Unterarmgehstützen"
+              ],
+              "pflicht": true
+            },
+            {
               "art": "text",
-              "text": "Schonung, regelmäßige Hochlagerung und Kühlung. Schmerzadaptierte Vollbelastung im Vorfußentlastungsschuh für "
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "hilfsmittel",
+              "label": "Schuh, Orthese oder Gips",
+              "optionen": [
+                "im Vorfußentlastungsschuh",
+                "in der Unterschenkelorthese",
+                "im Unterschenkelgips",
+                "im festen Schuh mit steifer Sohle"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " für "
             },
             {
               "art": "platzhalter",
@@ -590,7 +2739,303 @@
             },
             {
               "art": "text",
-              "text": " empfohlen. Anschließend Tragen einer steifen Sohle im Verlauf, Rezeptierung durch einen niedergelassenen Kollegen oder eine niedergelassene Kollegin. Ambulante klinische Befundkontrollen. Begleitende bedarfsgerechte Analgesie."
+              "text": "."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sohle",
+              "label": "Steife Sohle im Anschluss",
+              "text": "Anschließend Tragen einer steifen Sohle, Verordnung durch die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung, Hochlagerung, Kühlung",
+              "an": true,
+              "text": "Schonung, Hochlagerung und Kühlung des Fußes {seite} in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der freien Mobilität.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der Vollbelastung.",
+                "Die vorbestehende Blutverdünnung (Antikoagulation) wird unverändert fortgeführt, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat} {dosis} subkutan, 1-mal täglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "maxLen": 20
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle des Fußes {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgenkontrolle",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle des Fußes {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nach 1 Woche",
+                    "nach 2 Wochen",
+                    "nach 4 Wochen",
+                    "nach 6 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "keine-roentgenkontrolle",
+              "label": "Keine Röntgenkontrolle nötig",
+              "text": "Eine Röntgenkontrolle des Fußes {seite} ist bei {form} nicht nötig.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "form",
+                  "label": "Frakturform",
+                  "maxLen": 100,
+                  "required": true,
+                  "vorschlaege": [
+                    "der Abrissfraktur der Tuberositas des Os metatarsale V"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sprechstunde",
+              "label": "Sprechstunde: Entscheidung über Operation",
+              "text": "Vorstellung in unserer Sprechstunde {wann} zur Entscheidung über eine Operation.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "zunehmender Schwellung oder zunehmenden Schmerzen trotz Hochlagern, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "rasch zunehmenden Schmerzen, die trotz Schmerzmittel und Hochlagern nicht nachlassen, praller Schwellung, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "warnzeichen-besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
             }
           ]
         }
@@ -605,35 +3050,61 @@
           "id": "zehen-fraktur-proc",
           "titel": "Zehenfraktur – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [
-            {
-              "id": "zehen_strahl",
-              "typ": "begriff",
-              "label": "betroffener Strahl (z. B. D1)",
-              "required": true,
-              "leerMarker": "___"
-            },
             {
               "id": "zehen_schuh_wochen",
               "typ": "zeitraum",
-              "label": "Tragedauer Vorfußentlastungsschuh",
+              "label": "Dauer in Wochen",
               "einheit": "Wochen",
-              "default": "2–4",
-              "required": true
+              "required": true,
+              "vorschlaege": [
+                "2",
+                "2 bis 4",
+                "4",
+                "6"
+              ]
             }
           ],
           "segmente": [
             {
-              "art": "text",
-              "text": "Nicht dislozierte Grundgliedfraktur "
+              "art": "punkt"
             },
             {
-              "art": "platzhalter",
-              "ref": "zehen_strahl"
+              "art": "auswahl",
+              "id": "belastung",
+              "label": "Belastung",
+              "optionen": [
+                "Schmerzadaptierte Vollbelastung",
+                "Teilbelastung mit 20 kg an Unterarmgehstützen",
+                "Entlastung an Unterarmgehstützen"
+              ],
+              "pflicht": true
             },
             {
               "art": "text",
-              "text": ": Schonung, Hochlagerung und Kühlung. Schmerzadaptierte Vollbelastung im Vorfußentlastungsschuh für "
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "hilfsmittel",
+              "label": "Schuh",
+              "optionen": [
+                "im Vorfußentlastungsschuh",
+                "im festen Schuh mit steifer Sohle"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " für "
             },
             {
               "art": "platzhalter",
@@ -641,44 +3112,356 @@
             },
             {
               "art": "text",
-              "text": " empfohlen. Anschließend Tragen einer steifen Sohle im Verlauf, Rezeptierung durch einen niedergelassenen Kollegen oder durch eine niedergelassene Kollegin. Ambulante klinische Befundkontrollen. Begleitende bedarfsadaptierte Analgesie."
+              "text": "."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sohle",
+              "label": "Steife Sohle im Anschluss",
+              "text": "Anschließend Tragen einer steifen Sohle, Verordnung durch die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "zuegel",
+              "label": "Pflasterzügelverband",
+              "text": "Pflasterzügelverband an die Nachbarzehe für {dauer}, bei Lockerung erneuern.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Pflasterzügelverband",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "2 Wochen",
+                    "3 Wochen",
+                    "4 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung, Hochlagerung, Kühlung",
+              "an": true,
+              "text": "Schonung, Hochlagerung und Kühlung des Fußes {seite} in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der freien Mobilität.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der Vollbelastung.",
+                "Die vorbestehende Blutverdünnung (Antikoagulation) wird unverändert fortgeführt, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat} {dosis} subkutan, 1-mal täglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "maxLen": 20
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle des Fußes {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgenkontrolle",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle der Zehe {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nach 1 Woche",
+                    "nach 2 Wochen",
+                    "nach 4 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "keine-roentgenkontrolle",
+              "label": "Keine Röntgenkontrolle nötig",
+              "text": "Eine Röntgenkontrolle der Zehe {seite} ist bei {form} nicht nötig.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "form",
+                  "label": "Frakturform",
+                  "maxLen": 100,
+                  "required": true,
+                  "vorschlaege": [
+                    "unverschobener Fraktur"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sprechstunde",
+              "label": "Sprechstunde: Entscheidung über Operation",
+              "text": "Vorstellung in unserer Sprechstunde {wann} zur Entscheidung über eine Operation.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum",
+              "text": "Antibiotikum: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Antibiotikum (Wirkstoff, Dosis, Dauer)",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kein-antibiotikum",
+              "label": "Kein Antibiotikum",
+              "text": "Kein Antibiotikum."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "zunehmender Schwellung oder zunehmenden Schmerzen trotz Hochlagern, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "rasch zunehmenden Schmerzen, die trotz Schmerzmittel und Hochlagern nicht nachlassen, praller Schwellung, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "zunehmender Schwellung oder zunehmenden Schmerzen trotz Hochlagern, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz, Rötung, Eiter oder pochendem Schmerz an der Zehe, Fieber"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "warnzeichen-besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
             }
           ]
         }
-      ]
-    }
-  ],
-  "stapel": [
-    {
-      "id": "stapel-huefte-femur",
-      "name": "Proximale Femurfraktur",
-      "bausteinIds": [
-        "huefte-untersuchung",
-        "huefte-femur-proc"
-      ]
-    },
-    {
-      "id": "stapel-achilles-ruptur",
-      "name": "Achillessehnenruptur",
-      "bausteinIds": [
-        "achilles-untersuchung",
-        "achilles-ruptur-proc"
-      ]
-    },
-    {
-      "id": "stapel-fuss",
-      "name": "Fuß",
-      "bausteinIds": [
-        "fuss-untersuchung",
-        "fuss-proc"
-      ]
-    },
-    {
-      "id": "stapel-mittelfuss",
-      "name": "Mittelfuß",
-      "bausteinIds": [
-        "mittelfuss-untersuchung",
-        "mittelfuss-proc"
       ]
     }
   ]

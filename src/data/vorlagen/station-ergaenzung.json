@@ -1,0 +1,706 @@
+{
+  "vorlagen": [
+    {
+      "id": "station-schenkelhalsfraktur-prothese",
+      "titel": "Schenkelhalsfraktur, Duokopf- oder Totalendoprothese",
+      "suchbegriffe": [
+        "Schenkelhalsfraktur",
+        "Oberschenkelhalsbruch",
+        "Hüftfraktur",
+        "hüftgelenknahe Fraktur",
+        "mediale Schenkelhalsfraktur",
+        "Duokopfprothese",
+        "Hemiprothese",
+        "Hemiendoprothese",
+        "Hüft-TEP nach Fraktur",
+        "Garden"
+      ],
+      "kuerzel": [
+        "shf",
+        "shf duokopf",
+        "shf tep",
+        "duokopf",
+        "hep"
+      ],
+      "region": "huefte",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-schenkelhals",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-schenkelhals-prothese",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall",
+          "ana-st-kopfanprall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-schenkelhals",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-schenkelhals-roentgen",
+          "dgn-st-roentgen-postop",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-aufnahme-operation",
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-beinlaenge",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung-hueftfraktur",
+          "proc-st-belastung",
+          "proc-st-hueftprothese-luxation",
+          "proc-st-verhalten",
+          "proc-st-wunde",
+          "proc-st-thrombose-hueftprothese",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose",
+          "proc-st-alterstrauma",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-allgemein/bewusstsein",
+        "bef-st-schenkelhals/fehlstellung",
+        "bef-st-schenkelhals/ds-leiste",
+        "bef-st-schenkelhals/bewegungsschmerz",
+        "bef-st-schenkelhals/dms",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-allgemein/allgemein",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/schwellung",
+        "eb-st-wunde/dms",
+        "eb-st-beinlaenge/beinlaenge"
+      ],
+      "ohne": [
+        "bef-st-schenkelhals/ds-trochanter"
+      ],
+      "vorgaben": {
+        "an": [
+          "dx-st-neben/osteoporose",
+          "th-st-weitere/implantat",
+          "th-st-weitere/physio",
+          "ana-st-unfall/wohnen",
+          "ana-st-unfall/versorgung",
+          "ana-st-unfall/mobilitaet",
+          "ana-st-unfall/pflegegrad",
+          "bef-st-allgemein/haut",
+          "dgn-st-labor/hb-entlassung",
+          "verl-st-besonderheiten/delir",
+          "proc-st-kontrollen/roentgen",
+          "proc-st-physio/reha",
+          "proc-st-osteoporose/abklaerung",
+          "med-st-entlassung/thrombose",
+          "dx-st-neben/sturzursache"
+        ],
+        "aus": [
+          "verl-st-operativ/roentgen",
+          "proc-st-kontrollen/klinisch",
+          "verl-st-operativ/op-verlauf",
+          "verl-st-operativ/wunde",
+          "verl-st-operativ/aufnahme",
+          "verl-st-operativ/operation",
+          "proc-st-belastung/bein"
+        ],
+        "auswahl": {
+          "dx-st-schenkelhals/typ": 0,
+          "dgn-st-roentgen-postop/region": 0
+        },
+        "slots": {
+          "th-st-weitere/implantat/hinweis": 1,
+          "th-st-weitere/physio/inhalt": 1,
+          "proc-st-kontrollen/roentgen/region": 1,
+          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 10,
+          "verl-st-aufnahme-operation/aufnahme/anlass": 1
+        }
+      },
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz aus dem Stand gekommen.",
+          "Beim Aufstehen in der Nacht sei es zu einem Sturz gekommen.",
+          "Es sei zu einem Sturz in der Pflegeeinrichtung gekommen.",
+          "Es sei zu einem Sturz im Freien gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026; fachliche Grundlage R2 Skizze S3 und R5 Abschnitt 2.3.2 (DGOU-Nachbehandlungsempfehlungen 2025, S. 92 bis 93); die Bewegungsregeln zur Vorbeugung einer Luxation (Regelsätze, 90°, 12 Wochen) sind Hausregeln aus dem Bestand, nicht Wiedergabe dieser Quelle (R5 2.3.1, 2.10)"
+    },
+    {
+      "id": "station-schenkelhalsfraktur-osteosynthese",
+      "titel": "Schenkelhalsfraktur, Osteosynthese",
+      "suchbegriffe": [
+        "Schenkelhalsfraktur",
+        "Oberschenkelhalsbruch",
+        "Hüftfraktur",
+        "hüftgelenknahe Fraktur",
+        "Schraubenosteosynthese",
+        "kanülierte Schrauben",
+        "dynamische Hüftschraube",
+        "eingestauchte Schenkelhalsfraktur",
+        "Garden"
+      ],
+      "kuerzel": [
+        "shf",
+        "shf dhs",
+        "shf schrauben",
+        "dhs"
+      ],
+      "region": "huefte",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-schenkelhals",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-schenkelhals-osteosynthese",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall",
+          "ana-st-kopfanprall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-schenkelhals",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-schenkelhals-roentgen",
+          "dgn-st-roentgen-postop",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-aufnahme-operation",
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung-hueftfraktur",
+          "proc-st-belastung",
+          "proc-st-schenkelhals",
+          "proc-st-wunde",
+          "proc-st-thrombose-huefte-osteosynthese",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose",
+          "proc-st-alterstrauma",
+          "proc-st-metall",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-allgemein/bewusstsein",
+        "bef-st-schenkelhals/fehlstellung",
+        "bef-st-schenkelhals/ds-leiste",
+        "bef-st-schenkelhals/bewegungsschmerz",
+        "bef-st-schenkelhals/dms",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-allgemein/allgemein",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/schwellung",
+        "eb-st-wunde/dms"
+      ],
+      "ohne": [
+        "bef-st-schenkelhals/ds-trochanter"
+      ],
+      "vorgaben": {
+        "an": [
+          "dx-st-neben/osteoporose",
+          "th-st-weitere/physio",
+          "ana-st-unfall/wohnen",
+          "ana-st-unfall/mobilitaet",
+          "bef-st-allgemein/haut",
+          "verl-st-besonderheiten/delir",
+          "proc-st-schenkelhals/beweglichkeit",
+          "proc-st-schenkelhals/nekrose",
+          "proc-st-kontrollen/roentgen",
+          "proc-st-osteoporose/abklaerung",
+          "proc-st-metall/metall",
+          "med-st-entlassung/thrombose",
+          "dx-st-neben/sturzursache",
+          "ana-st-unfall/versorgung"
+        ],
+        "aus": [
+          "verl-st-operativ/roentgen",
+          "proc-st-kontrollen/klinisch",
+          "verl-st-operativ/op-verlauf",
+          "verl-st-operativ/wunde",
+          "verl-st-operativ/aufnahme",
+          "verl-st-operativ/operation",
+          "proc-st-belastung/bein"
+        ],
+        "auswahl": {
+          "dgn-st-roentgen-postop/region": 0
+        },
+        "slots": {
+          "th-st-weitere/physio/inhalt": 1,
+          "proc-st-kontrollen/roentgen/region": 1,
+          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 10,
+          "verl-st-aufnahme-operation/aufnahme/anlass": 1
+        }
+      },
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz aus dem Stand gekommen.",
+          "Beim Aufstehen in der Nacht sei es zu einem Sturz gekommen.",
+          "Es sei zu einem Sturz in der Pflegeeinrichtung gekommen.",
+          "Es sei zu einem Sturz im Freien gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026; fachliche Grundlage R2 Skizze S4 und R5 Abschnitt 2.3.2 (DGOU-Nachbehandlungsempfehlungen 2025, S. 90 bis 91)"
+    },
+    {
+      "id": "station-proximale-humerusfraktur-konservativ",
+      "titel": "Proximale Humerusfraktur konservativ",
+      "suchbegriffe": [
+        "Oberarmkopfbruch",
+        "Oberarmkopffraktur",
+        "Humeruskopffraktur",
+        "subkapitale Humerusfraktur",
+        "Schulterbruch",
+        "Neer",
+        "Gilchrist",
+        "Schulterorthese",
+        "konservativ stationär"
+      ],
+      "kuerzel": [
+        "phf",
+        "phf konservativ"
+      ],
+      "region": "oberarm",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-humerusfraktur-proximal",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-humerus-konservativ",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-humerusfraktur-proximal",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-humerus-konservativ",
+          "verl-st-konservativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-humerus",
+          "eb-st-arm",
+          "eb-st-gehen-armfraktur",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten",
+          "proc-st-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose",
+          "proc-st-alterstrauma",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-schulter-konservativ"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-allgemein/bewusstsein",
+        "bef-humerusfraktur-proximal/schwellung",
+        "bef-humerusfraktur-proximal/fehlstellung",
+        "bef-humerusfraktur-proximal/ds",
+        "bef-humerusfraktur-proximal/ds-nachbar",
+        "bef-humerusfraktur-proximal/beweglichkeit",
+        "bef-humerusfraktur-proximal/axillaris",
+        "bef-humerusfraktur-proximal/dms",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-allgemein/allgemein",
+        "eb-st-humerus/haematom",
+        "eb-st-humerus/ruhigstellung",
+        "eb-st-humerus/axillaris",
+        "eb-st-humerus/dms",
+        "eb-st-arm/faustschluss"
+      ],
+      "vorgaben": {
+        "an": [
+          "dx-st-neben/osteoporose",
+          "ana-st-unfall/haendigkeit",
+          "ana-st-unfall/wohnen",
+          "ana-st-unfall/versorgung",
+          "ana-st-unfall/mobilitaet",
+          "verl-st-konservativ/roentgen",
+          "proc-st-osteoporose/abklaerung",
+          "dx-st-neben/sturzursache",
+          "verl-st-besonderheiten/delir"
+        ],
+        "aus": [
+          "verl-st-konservativ/aufnahme",
+          "verl-st-konservativ/konservativ",
+          "proc-st-kontrollen/klinisch",
+          "verl-st-konservativ/mobilisation",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "auswahl": {
+          "dgn-st-roentgen/region": 6
+        },
+        "slots": {}
+      },
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz aus dem Stand auf die Schulter gekommen.",
+          "Es sei zu einem Sturz auf den ausgestreckten Arm gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Es sei zu einem Sturz in der Pflegeeinrichtung gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026; fachliche Grundlage R2 Skizzen Z6 und S9 und R5 Abschnitt 2.1.1 (DGOU-Nachbehandlungsempfehlungen 2025, S. 52 bis 53)"
+    },
+    {
+      "id": "station-proximale-humerusfraktur-osteosynthese",
+      "titel": "Proximale Humerusfraktur, Osteosynthese",
+      "suchbegriffe": [
+        "Oberarmkopfbruch",
+        "Oberarmkopffraktur",
+        "Humeruskopffraktur",
+        "subkapitale Humerusfraktur",
+        "Schulterbruch",
+        "Neer",
+        "Plattenosteosynthese Humerus",
+        "winkelstabile Platte",
+        "Humerusnagel",
+        "proximaler Humerusnagel",
+        "Marknagel Humerus"
+      ],
+      "kuerzel": [
+        "phf",
+        "phf platte",
+        "phf nagel"
+      ],
+      "region": "oberarm",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-humerus-proximal",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-humerus-osteosynthese",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-humerusfraktur-proximal",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen",
+          "dgn-st-roentgen-postop",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-aufnahme-operation",
+          "verl-st-operativ",
+          "verl-st-arm",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-schulter-axillaris",
+          "eb-st-arm",
+          "eb-st-gehen-armfraktur",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten",
+          "proc-st-wunde",
+          "proc-st-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose",
+          "proc-st-alterstrauma",
+          "proc-st-metall",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-schulter-operativ"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-allgemein/bewusstsein",
+        "bef-humerusfraktur-proximal/schwellung",
+        "bef-humerusfraktur-proximal/fehlstellung",
+        "bef-humerusfraktur-proximal/ds",
+        "bef-humerusfraktur-proximal/ds-nachbar",
+        "bef-humerusfraktur-proximal/beweglichkeit",
+        "bef-humerusfraktur-proximal/axillaris",
+        "bef-humerusfraktur-proximal/dms",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-allgemein/allgemein",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/schwellung",
+        "eb-st-wunde/dms",
+        "eb-st-schulter-axillaris/axillaris",
+        "eb-st-arm/faustschluss"
+      ],
+      "vorgaben": {
+        "an": [
+          "dx-st-neben/osteoporose",
+          "th-st-weitere/implantat",
+          "th-st-weitere/physio",
+          "ana-st-unfall/haendigkeit",
+          "ana-st-unfall/wohnen",
+          "ana-st-unfall/versorgung",
+          "ana-st-unfall/mobilitaet",
+          "proc-st-osteoporose/abklaerung",
+          "proc-st-metall/metall",
+          "dx-st-neben/sturzursache",
+          "verl-st-besonderheiten/delir"
+        ],
+        "aus": [
+          "verl-st-operativ/mobilisation",
+          "verl-st-operativ/roentgen",
+          "proc-st-kontrollen/klinisch",
+          "verl-st-operativ/op-verlauf",
+          "verl-st-operativ/wunde",
+          "verl-st-operativ/aufnahme",
+          "verl-st-operativ/operation",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "auswahl": {
+          "dgn-st-roentgen/region": 6,
+          "dgn-st-roentgen-postop/region": 6
+        },
+        "slots": {
+          "th-st-weitere/physio/inhalt": 2,
+          "proc-st-sicherheitsnetz-schulter-operativ/sicherheitsnetz/zeichen": 1,
+          "verl-st-aufnahme-operation/aufnahme/anlass": 1
+        }
+      },
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz aus dem Stand auf die Schulter gekommen.",
+          "Es sei zu einem Sturz auf den ausgestreckten Arm gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Es sei zu einem Sturz in der Pflegeeinrichtung gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026; fachliche Grundlage R2 Skizze S9 und R5 Abschnitt 2.1.2 (DGOU-Nachbehandlungsempfehlungen 2025, S. 54 bis 55)"
+    },
+    {
+      "id": "station-proximale-humerusfraktur-inverse-prothese",
+      "titel": "Proximale Humerusfraktur, inverse Prothese",
+      "suchbegriffe": [
+        "Oberarmkopfbruch",
+        "Oberarmkopffraktur",
+        "Humeruskopffraktur",
+        "subkapitale Humerusfraktur",
+        "Schulterbruch",
+        "Neer",
+        "inverse Schulterprothese",
+        "inverse Prothese",
+        "Frakturprothese Schulter",
+        "Schulterprothese nach Fraktur",
+        "Luxationsfraktur Schulter"
+      ],
+      "kuerzel": [
+        "phf",
+        "phf inverse",
+        "inverse"
+      ],
+      "region": "oberarm",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-humerus-proximal-prothese",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-humerus-prothese",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-humerusfraktur-proximal",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen",
+          "dgn-st-roentgen-postop",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-aufnahme-operation",
+          "verl-st-operativ",
+          "verl-st-arm",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-schulter-axillaris",
+          "eb-st-arm",
+          "eb-st-gehen-armfraktur",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten",
+          "proc-st-wunde",
+          "proc-st-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose",
+          "proc-st-alterstrauma",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-schulter-operativ"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-allgemein/bewusstsein",
+        "bef-humerusfraktur-proximal/schwellung",
+        "bef-humerusfraktur-proximal/fehlstellung",
+        "bef-humerusfraktur-proximal/ds",
+        "bef-humerusfraktur-proximal/ds-nachbar",
+        "bef-humerusfraktur-proximal/beweglichkeit",
+        "bef-humerusfraktur-proximal/axillaris",
+        "bef-humerusfraktur-proximal/dms",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-allgemein/allgemein",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/schwellung",
+        "eb-st-wunde/dms",
+        "eb-st-schulter-axillaris/axillaris",
+        "eb-st-arm/faustschluss"
+      ],
+      "vorgaben": {
+        "an": [
+          "dx-st-neben/osteoporose",
+          "th-st-weitere/implantat",
+          "th-st-weitere/physio",
+          "ana-st-unfall/haendigkeit",
+          "ana-st-unfall/wohnen",
+          "ana-st-unfall/versorgung",
+          "ana-st-unfall/mobilitaet",
+          "proc-st-osteoporose/abklaerung",
+          "dx-st-neben/sturzursache",
+          "verl-st-besonderheiten/delir"
+        ],
+        "aus": [
+          "verl-st-operativ/mobilisation",
+          "verl-st-operativ/roentgen",
+          "proc-st-kontrollen/klinisch",
+          "verl-st-operativ/op-verlauf",
+          "verl-st-operativ/wunde",
+          "verl-st-operativ/aufnahme",
+          "verl-st-operativ/operation",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "auswahl": {
+          "dgn-st-roentgen/region": 6,
+          "dgn-st-roentgen-postop/region": 6
+        },
+        "slots": {
+          "th-st-weitere/physio/inhalt": 2,
+          "proc-st-sicherheitsnetz-schulter-operativ/sicherheitsnetz/zeichen": 2,
+          "th-st-weitere/implantat/hinweis": 1,
+          "verl-st-aufnahme-operation/aufnahme/anlass": 1
+        }
+      },
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz aus dem Stand auf die Schulter gekommen.",
+          "Es sei zu einem Sturz auf den ausgestreckten Arm gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Es sei zu einem Sturz in der Pflegeeinrichtung gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026; fachliche Grundlage R2 Skizze S9 und R5 Abschnitt 2.1.4 (DGOU-Nachbehandlungsempfehlungen 2025, S. 58 bis 59)"
+    }
+  ]
+}

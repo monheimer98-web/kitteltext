@@ -1,0 +1,5049 @@
+{
+  "regionen": [
+    {
+      "id": "unterschenkel",
+      "name": "Unterschenkel",
+      "kuerzel": "🦿",
+      "bausteine": [
+        {
+          "id": "ana-muskel-bein",
+          "titel": "Anamnese Muskelverletzung Bein (Zusatz)",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "beginn",
+              "label": "Beginn des Schmerzes",
+              "text": "Der Schmerz habe {wie} begonnen. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Beginn des Schmerzes",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "plötzlich bei einer Bewegung",
+                    "plötzlich mit dem Gefühl eines Schlags oder Tritts",
+                    "allmählich, ohne erinnerliches Ereignis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Sportart",
+              "text": "Sportart: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Sportart",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "Fußball",
+                    "Handball",
+                    "Laufen",
+                    "Tennis",
+                    "Squash"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombose",
+              "label": "Risikofaktoren für eine Thrombose",
+              "an": true,
+              "text": "Risikofaktoren für eine Thrombose: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Risikofaktoren für eine Thrombose",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "keine bekannt",
+                    "frühere Thrombose oder Lungenembolie",
+                    "Einnahme von Hormonen (Verhütung, Hormonersatz)",
+                    "Tumorerkrankung",
+                    "Operation, Ruhigstellung oder lange Reise in den letzten Wochen",
+                    "Schwangerschaft oder Wochenbett",
+                    "starkes Übergewicht"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombose-weitere",
+              "label": "Weiterer Risikofaktor für eine Thrombose",
+              "text": "Weiterer Risikofaktor für eine Thrombose: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Weiterer Risikofaktor für eine Thrombose",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "frühere Thrombose oder Lungenembolie",
+                    "Einnahme von Hormonen (Verhütung, Hormonersatz)",
+                    "Tumorerkrankung",
+                    "Operation, Ruhigstellung oder lange Reise in den letzten Wochen",
+                    "Schwangerschaft oder Wochenbett",
+                    "starkes Übergewicht"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-muskel-klinisch",
+          "titel": "Muskelverletzung: keine Sonografie, klinische Diagnose",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Keine Sonografie der Muskulatur, die Diagnose ist klinisch gestellt."
+            }
+          ]
+        },
+        {
+          "id": "dgn-muskel-labor",
+          "titel": "Muskelverletzung: Labor bei Hämatom oder gerinnungshemmender Medikation",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "labor",
+              "label": "Labor (Hämoglobin, Gerinnung)",
+              "text": "Labor: Hämoglobin {hb}, Gerinnung {gerinnung}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "hb",
+                  "label": "Hämoglobin mit Einheit",
+                  "maxLen": 20,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "gerinnung",
+                  "label": "Gerinnung: Wert mit Einheit (zum Beispiel INR)",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-muskel-bein-aufnahme",
+          "titel": "Muskelverletzung Bein – stationäre Aufnahme (Verdacht auf Kompartmentsyndrom, Operation, ausgedehntes Hämatom, Versorgung nicht gesichert)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme",
+              "an": true,
+              "text": "Stationäre Aufnahme {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "bei Verdacht auf ein Kompartmentsyndrom",
+                    "zur operativen Versorgung",
+                    "bei ausgedehntem Hämatom unter gerinnungshemmender Medikation",
+                    "zur Schmerzbehandlung, Versorgung zu Hause nicht gesichert",
+                    "bei nachgewiesener tiefer Beinvenenthrombose"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "operation",
+              "label": "Geplante Operation",
+              "text": "Geplante Operation am Bein {seite}: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Geplante Operation",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lagerung",
+              "label": "Lagerung bei Verdacht auf Kompartmentsyndrom",
+              "text": "Bein {seite} nur auf Herzhöhe lagern, kein Kompressionsverband, klinische Kontrollen {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Klinische Kontrollen",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "stündlich",
+                    "alle 2 Stunden"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern seit",
+              "text": "Nüchtern seit {zeit}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "zeit",
+                  "label": "Nüchtern seit",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmende Medikation",
+              "text": "Gerinnungshemmende Medikation: Festlegung durch die aufnehmende Station."
+            }
+          ]
+        },
+        {
+          "id": "dx-muskelfaserriss-wade",
+          "titel": "Diagnose Muskelfaserriss der Wade",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "optionen": [
+                "Muskelfaserriss",
+                "Verdacht auf Muskelfaserriss",
+                "Muskelzerrung",
+                "Muskelbündelriss",
+                "Verdacht auf Muskelbündelriss"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " der Wadenmuskulatur "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "option",
+              "id": "ort",
+              "label": "Muskel",
+              "an": true,
+              "text": ", {wo}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Muskel",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "medialer Gastrocnemiuskopf",
+                    "lateraler Gastrocnemiuskopf",
+                    "Muskel-Sehnen-Übergang des medialen Gastrocnemiuskopfs",
+                    "M. soleus"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "verdacht",
+              "label": "Zusätzlich: Verdacht oder Nachweis",
+              "text": "\n{was} {seite}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verdacht oder Nachweis",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Verdacht auf tiefe Beinvenenthrombose",
+                    "Tiefe Beinvenenthrombose",
+                    "Verdacht auf Achillessehnenruptur",
+                    "Verdacht auf rupturierte Baker-Zyste",
+                    "Verdacht auf ein Kompartmentsyndrom"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-muskel-wade",
+          "titel": "Muskelverletzung der Wade – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Unterschenkel "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung/Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung, kein Hämatom. ",
+              "abweichung": "{was}{wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Schwellung",
+                    "Hämatom",
+                    "Schwellung und Hämatom"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "",
+                    " der Wade",
+                    " an der Innenseite der Wade",
+                    " bis zum Knöchel abgesunken"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds",
+              "chip": "Umschriebener Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein umschriebener Druckschmerz in der Wadenmuskulatur. ",
+              "abweichung": "Umschriebener Druckschmerz {wo}{grad}{delle}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "im medialen Gastrocnemiuskopf",
+                    "im lateralen Gastrocnemiuskopf",
+                    "am Muskel-Sehnen-Übergang des medialen Gastrocnemiuskopfs",
+                    "im M. soleus"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "delle",
+                  "label": "Tastbare Delle",
+                  "optionen": [
+                    ", dort keine tastbare Delle",
+                    ", dort tastbare Delle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kompartment",
+              "chip": "Spannung der Wade (Kompartment)",
+              "gruppe": "Palpation",
+              "normal": "Wadenmuskulatur weich, keine pralle Spannung. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Wadenmuskulatur angespannt, aber eindrückbar",
+                    "Wadenmuskulatur prall gespannt, Verdacht auf ein Kompartmentsyndrom"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dehnung",
+              "chip": "Dehnungs-/Anspannungsschmerz",
+              "gruppe": "Beweglichkeit",
+              "normal": "Kein Dehnungsschmerz bei Dorsalextension im oberen Sprunggelenk, kein Schmerz bei Plantarflexion gegen Widerstand. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Dehnungsschmerz bei Dorsalextension im oberen Sprunggelenk und Schmerz bei Plantarflexion gegen Widerstand",
+                    "Dehnungsschmerz bei Dorsalextension im oberen Sprunggelenk",
+                    "Schmerz bei Plantarflexion gegen Widerstand"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "achilles",
+              "chip": "Achillessehne, Thompson-Test",
+              "gruppe": "Abgrenzung",
+              "normal": "Achillessehne durchgängig tastbar, Thompson-Test unauffällig (Plantarflexion bei Kompression der Wade). ",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "Tastbare Delle in der Achillessehne, Thompson-Test pathologisch (keine Plantarflexion bei Kompression der Wade)",
+                    "Thompson-Test pathologisch (keine Plantarflexion bei Kompression der Wade)",
+                    "Druckschmerz über der Achillessehne, Sehne durchgängig tastbar, Thompson-Test unauffällig",
+                    "Thompson-Test schmerzbedingt nicht sicher beurteilbar"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "venen",
+              "chip": "Thrombosezeichen",
+              "gruppe": "Abgrenzung",
+              "normal": "Kein Druckschmerz entlang der tiefen Beinvenen, keine Umfangsdifferenz der Unterschenkel. ",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "Druckschmerz entlang der tiefen Beinvenen",
+                    "Umfangsvermehrung des Unterschenkels",
+                    "Druckschmerz entlang der tiefen Beinvenen und Umfangsvermehrung des Unterschenkels",
+                    "Ödem von Fuß und Unterschenkel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "umfang",
+              "label": "Umfangsdifferenz der Unterschenkel",
+              "vorlage": "Umfangsdifferenz der Unterschenkel {w} cm. ",
+              "gruppe": "Abgrenzung"
+            },
+            {
+              "art": "befund",
+              "id": "kniekehle",
+              "chip": "Kniekehle (Baker-Zyste)",
+              "gruppe": "Abgrenzung",
+              "normal": "Keine Schwellung und kein Druckschmerz in der Kniekehle. ",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "Prall-elastische Schwellung in der Kniekehle",
+                    "Druckschmerz in der Kniekehle",
+                    "Prall-elastische Schwellung in der Kniekehle und Kniegelenkerguss",
+                    "Kniegelenkerguss ohne Schwellung in der Kniekehle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "zehenstand",
+              "chip": "Einbeiniger Zehenspitzenstand",
+              "gruppe": "Belastbarkeit",
+              "normal": "Einbeiniger Zehenspitzenstand möglich. ",
+              "abweichung": "Einbeiniger Zehenspitzenstand {wie}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "nur unter Schmerzen möglich",
+                    "nicht möglich"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gehen",
+              "chip": "Gehfähigkeit",
+              "gruppe": "Belastbarkeit",
+              "normal": "{Person} ist frei geh- und stehfähig. ",
+              "abweichung": "{Person} ist {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehfähigkeit",
+                  "optionen": [
+                    "unter Schmerzen geh- und stehfähig",
+                    "mit Schonhinken geh- und stehfähig",
+                    "nur an Unterarmgehstützen gehfähig",
+                    "nicht belastungsfähig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "Durchblutung/Motorik/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "optionen": [
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert",
+                    "Fußpulse nicht tastbar"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-muskel-wade-sono",
+          "titel": "Sonografie der Wadenmuskulatur",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Sonografie der Wadenmuskulatur "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Sonografiebefund",
+              "optionen": [
+                "Keine Faserunterbrechung, kein Hämatom.",
+                "Umschriebene Faserunterbrechung mit kleinem Hämatom.",
+                "Faserunterbrechung mit ausgedehntem Hämatom.",
+                "Flüssigkeitssaum zwischen medialem Gastrocnemiuskopf und M. soleus.",
+                "Hämatom im Muskel ohne sichere Faserunterbrechung.",
+                "Ausgedehnte Unterbrechung mit Retraktion des medialen Gastrocnemiuskopfs."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "mass-faser",
+              "label": "Ausdehnung der Faserunterbrechung",
+              "text": " Faserunterbrechung über {mm}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Faserunterbrechung",
+                  "required": true,
+                  "einheit": "mm"
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mass-haematom",
+              "label": "Größe des Hämatoms",
+              "text": " Größter Durchmesser des Hämatoms {mm}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Hämatom",
+                  "required": true,
+                  "einheit": "mm"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-muskel-wade-abgrenzung",
+          "titel": "Wade: Abklärung von Thrombose, Achillessehne und Baker-Zyste",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "venen",
+              "label": "Kompressionssonografie der Beinvenen",
+              "text": "\nKompressionssonografie der Beinvenen {seite}: {befund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Kompressionssonografie",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "kein Thrombosenachweis",
+                    "Thrombose nachgewiesen",
+                    "nicht sicher beurteilbar"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ddimer",
+              "label": "D-Dimer",
+              "text": "\nD-Dimer: {wert}, {bewertung}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wert",
+                  "label": "D-Dimer mit Einheit",
+                  "maxLen": 20,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "bewertung",
+                  "label": "D-Dimer: Bewertung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "unter dem Grenzwert",
+                    "über dem Grenzwert"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "achilles",
+              "label": "Sonografie der Achillessehne",
+              "text": "\nSonografie der Achillessehne {seite}: {befund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Sonografie der Achillessehne",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "durchgängig",
+                    "Verdacht auf Teilruptur",
+                    "Kontinuitätsunterbrechung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kniekehle",
+              "label": "Sonografie der Kniekehle",
+              "text": "\nSonografie der Kniekehle {seite}: {befund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Sonografie der Kniekehle",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "keine Baker-Zyste",
+                    "Baker-Zyste ohne Hinweis auf eine Ruptur",
+                    "Verdacht auf rupturierte Baker-Zyste"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-muskel-wade",
+          "titel": "Muskelverletzung der Wade – ambulante Weiterbehandlung (Achillessehne durchgängig, Wade weich, kein Hinweis auf eine Thrombose)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bedingung",
+              "label": "Ambulante Weiterbehandlung: Bedingung",
+              "an": true,
+              "text": "Ambulante Weiterbehandlung: Achillessehne {achilles}, Wadenmuskulatur weich, {thrombose}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "achilles",
+                  "label": "Achillessehne",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "klinisch durchgängig",
+                    "sonografisch durchgängig"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "thrombose",
+                  "label": "Thrombose",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "kein klinischer Hinweis auf eine Thrombose",
+                    "in der Kompressionssonografie kein Thrombosenachweis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Belastung des Beins {seite}: {stufe}{dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung ohne Gehhilfen",
+                    "schmerzadaptierte Vollbelastung an Unterarmgehstützen",
+                    "Teilbelastung mit 10 kg an Unterarmgehstützen",
+                    "Teilbelastung mit 20 kg an Unterarmgehstützen",
+                    "Teilbelastung mit halbem Körpergewicht an Unterarmgehstützen",
+                    "Entlastung an Unterarmgehstützen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Belastung: Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    " ab sofort",
+                    ", bis das Gehen ohne Schmerzen möglich ist",
+                    " für 3 bis 5 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur klinischen Kontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "steigerung",
+              "label": "Danach Steigerung der Belastung",
+              "text": "Danach schrittweise Steigerung der Belastung bis zur Vollbelastung ohne Gehhilfen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ferse",
+              "label": "Fersenerhöhung im Schuh",
+              "text": "Fersenerhöhung im Schuh {seite} für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Fersenerhöhung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1 Woche",
+                    "2 Wochen",
+                    "die Zeit bis zur klinischen Kontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung, Kühlung, Hochlagerung",
+              "an": true,
+              "text": "Schonung, Kühlung und Hochlagerung des Beins {seite} in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kompression",
+              "label": "Elastischer Kompressionsverband",
+              "text": "Elastischer Kompressionsverband am Unterschenkel {seite} für {dauer}, abnehmen bei Taubheitsgefühl oder zunehmenden Schmerzen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Kompressionsverband",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "2 bis 3 Tage",
+                    "5 bis 7 Tage",
+                    "die Zeit bis zur klinischen Kontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "waerme",
+              "label": "Keine Wärme, keine Massage",
+              "text": "In den ersten Tagen keine Wärme und keine Massage an der Wade {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos.",
+                "Keine medikamentöse Thromboseprophylaxe, nach Aufklärung abgelehnt.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zur klinischen Kontrolle, dort Entscheidung über die Fortführung.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Vorbestehende Antikoagulation pausiert bis zur klinischen Kontrolle, dort Entscheidung über den Wiederbeginn."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat}, {dosis}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Anwendung",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-hinweis",
+              "label": "Hinweis bei gerinnungshemmender Medikation",
+              "text": "Unter gerinnungshemmender Medikation kann der Bluterguss an der Wade in den nächsten Tagen zunehmen: Wiedervorstellung bei zunehmender Schwellung, harter Wade oder Schwindel."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hb-kontrolle",
+              "label": "Kontrolle von Hämoglobin und Gerinnung",
+              "text": "Kontrolle von Hämoglobin und Gerinnung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Hämoglobin und Gerinnung: wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "bei der klinischen Kontrolle"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Hämoglobin und Gerinnung: wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in unserer Notaufnahme",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle der Wade {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Notaufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mrt",
+              "label": "MRT, Vorstellung mit dem Befund",
+              "text": "MRT des Unterschenkels {seite} {wann}, Vorstellung mit dem Befund {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche",
+                    "innerhalb von 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "text": "Physiotherapie nach Abklingen der akuten Schmerzen, Verordnung durch die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Sportpause",
+              "an": true,
+              "text": "Sportpause für {dauer}, danach schrittweiser Belastungsaufbau ohne Schmerzen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Sportpause",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1 bis 2 Wochen",
+                    "3 bis 6 Wochen",
+                    "mehr als 6 Wochen",
+                    "die Zeit bis zur ärztlichen Freigabe"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: rasch zunehmender Schwellung oder harter, praller Wade, Schmerzen, die trotz Schmerzmittel und Hochlagern zunehmen, fehlender Kraft beim Abdrücken des Fußes, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schwellung des ganzen Unterschenkels oder Fußes, Atemnot oder Brustschmerz."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-muskel-wade-abklaerung",
+          "titel": "Muskelverletzung der Wade – weitere Abklärung offen (Verdacht auf Thrombose, Achillessehnenruptur oder rupturierte Baker-Zyste)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verdacht",
+              "label": "Offener Verdacht",
+              "an": true,
+              "text": "Noch nicht geklärt: Verdacht auf {was} {seite}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verdacht auf",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "tiefe Beinvenenthrombose",
+                    "Achillessehnenruptur",
+                    "rupturierte Baker-Zyste"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abklaerung",
+              "label": "Abklärung",
+              "an": true,
+              "text": "{was} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Untersuchung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Kompressionssonografie der Beinvenen",
+                    "Sonografie der Achillessehne",
+                    "Sonografie der Kniekehle",
+                    "MRT des Unterschenkels"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "heute",
+                    "am Folgetag"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in unserer Notaufnahme",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der angiologischen Praxis",
+                    "in der radiologischen Praxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "antikoagulation-wahl",
+              "label": "Antikoagulation bis zur Klärung",
+              "optionen": [
+                "Keine Antikoagulation, weil kein Verdacht auf eine Thrombose besteht.",
+                "Bis zur Klärung therapeutische Antikoagulation.",
+                "Keine Antikoagulation bis zur Klärung, weil die Untersuchung der Beinvenen noch heute erfolgt.",
+                "Keine Antikoagulation bis zur Klärung wegen erhöhten Blutungsrisikos.",
+                "Keine zusätzliche Antikoagulation, die vorbestehende Antikoagulation wird fortgeführt."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "antikoagulation",
+              "label": "Antikoagulation: Wirkstoff und Dosis",
+              "text": " Wirkstoff und Dosis: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Antikoagulation: Wirkstoff und Dosis",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Ruhigstellung des Fußes "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " bis zur Klärung: "
+            },
+            {
+              "art": "auswahl",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung bis zur Klärung",
+              "optionen": [
+                "keine, kein Verdacht auf Achillessehnenruptur.",
+                "in Spitzfußstellung in der Unterschenkelgipsschiene.",
+                "in Spitzfußstellung in der Unterschenkelorthese mit Fersenkeilen."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung bis zur Klärung",
+              "an": true,
+              "text": "Belastung des Beins {seite} bis dahin: {stufe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung ohne Gehhilfen",
+                    "schmerzadaptierte Vollbelastung an Unterarmgehstützen",
+                    "Teilbelastung mit 10 kg an Unterarmgehstützen",
+                    "Teilbelastung mit 20 kg an Unterarmgehstützen",
+                    "Teilbelastung mit halbem Körpergewicht an Unterarmgehstützen",
+                    "Entlastung an Unterarmgehstützen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine zusätzliche Thromboseprophylaxe unter therapeutischer Antikoagulation.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zur Klärung.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Vorbestehende Antikoagulation pausiert bis zur Klärung, dort Entscheidung über den Wiederbeginn."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat}, {dosis}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Anwendung",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-hinweis",
+              "label": "Hinweis bei gerinnungshemmender Medikation",
+              "text": "Unter gerinnungshemmender Medikation kann der Bluterguss an der Wade in den nächsten Tagen zunehmen: Wiedervorstellung bei zunehmender Schwellung, harter Wade oder Schwindel."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hb-kontrolle",
+              "label": "Kontrolle von Hämoglobin und Gerinnung",
+              "text": "Kontrolle von Hämoglobin und Gerinnung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Hämoglobin und Gerinnung: wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "bei der klinischen Kontrolle"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Hämoglobin und Gerinnung: wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in unserer Notaufnahme",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: rasch zunehmender Schwellung oder harter, praller Wade, Schmerzen, die trotz Schmerzmittel und Hochlagern zunehmen, fehlender Kraft beim Abdrücken des Fußes, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schwellung des ganzen Unterschenkels oder Fußes, Atemnot oder Brustschmerz."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-muskel-wade-thrombose",
+          "titel": "Muskelverletzung der Wade – tiefe Beinvenenthrombose nachgewiesen, ambulante Antikoagulation",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nachweis",
+              "label": "Nachweis der Thrombose",
+              "an": true,
+              "text": "Nachweis einer tiefen Beinvenenthrombose {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antikoagulation",
+              "label": "Therapeutische Antikoagulation",
+              "an": true,
+              "text": "Therapeutische Antikoagulation: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Antikoagulation: Wirkstoff und Dosis",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "weiterbehandlung",
+              "label": "Weiterbehandlung der Thrombose",
+              "an": true,
+              "text": "Weiterbehandlung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Weiterbehandlung: wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Weiterbehandlung: wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der angiologischen Praxis",
+                    "in der Hausarztpraxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Belastung des Beins {seite}: {stufe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung ohne Gehhilfen",
+                    "schmerzadaptierte Vollbelastung an Unterarmgehstützen",
+                    "Teilbelastung mit 10 kg an Unterarmgehstützen",
+                    "Teilbelastung mit 20 kg an Unterarmgehstützen",
+                    "Teilbelastung mit halbem Körpergewicht an Unterarmgehstützen",
+                    "Entlastung an Unterarmgehstützen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-hinweis",
+              "label": "Hinweis bei gerinnungshemmender Medikation",
+              "an": true,
+              "text": "Unter gerinnungshemmender Medikation kann der Bluterguss an der Wade in den nächsten Tagen zunehmen: Wiedervorstellung bei zunehmender Schwellung, harter Wade oder Schwindel."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hb-kontrolle",
+              "label": "Kontrolle von Hämoglobin und Gerinnung",
+              "text": "Kontrolle von Hämoglobin und Gerinnung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Hämoglobin und Gerinnung: wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "bei der klinischen Kontrolle"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Hämoglobin und Gerinnung: wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in unserer Notaufnahme",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: rasch zunehmender Schwellung oder harter, praller Wade, Schmerzen, die trotz Schmerzmittel und Hochlagern zunehmen, fehlender Kraft beim Abdrücken des Fußes, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schwellung des ganzen Unterschenkels oder Fußes, Atemnot oder Brustschmerz."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "huefte",
+      "name": "Hüfte & Oberschenkel",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "dx-muskelfaserriss-oberschenkel",
+          "titel": "Diagnose Muskelfaserriss des Oberschenkels",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "optionen": [
+                "Muskelfaserriss",
+                "Verdacht auf Muskelfaserriss",
+                "Muskelzerrung",
+                "Muskelbündelriss",
+                "Verdacht auf Muskelbündelriss"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "muskel",
+              "label": "Muskel",
+              "optionen": [
+                "der ischiokruralen Muskulatur",
+                "des M. biceps femoris",
+                "des M. rectus femoris",
+                "der Quadrizepsmuskulatur",
+                "der Adduktoren"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "option",
+              "id": "verdacht",
+              "label": "Zusätzlich: Ausriss oder Sehnenruptur",
+              "text": "\n{was} {seite}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ausriss oder Sehnenruptur",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Verdacht auf Ausriss der ischiokruralen Sehnen am Sitzbeinhöcker",
+                    "Verdacht auf Ruptur der Quadrizepssehne",
+                    "Verdacht auf Ausriss der Adduktorensehnen am Schambein",
+                    "Verdacht auf knöchernen Apophysenausriss am Becken",
+                    "Knöcherner Apophysenausriss am Becken",
+                    "Ruptur der Quadrizepssehne",
+                    "Knöcherner Ausriss am oberen Patellapol",
+                    "Knöcherner Ausriss am Trochanter minor",
+                    "Verdacht auf Ruptur der Patellasehne"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-muskel-oberschenkel",
+          "titel": "Muskelverletzung des Oberschenkels – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Oberschenkel "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung/Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung, kein Hämatom. ",
+              "abweichung": "{was}{wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Schwellung",
+                    "Hämatom",
+                    "Schwellung und Hämatom"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "",
+                    " an der Rückseite",
+                    " an der Vorderseite",
+                    " an der Innenseite",
+                    " in der Leiste",
+                    " bis zur Kniekehle abgesunken"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds",
+              "chip": "Umschriebener Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein umschriebener Druckschmerz in der Oberschenkelmuskulatur. ",
+              "abweichung": "Umschriebener Druckschmerz {wo}{grad}{delle}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "in der ischiokruralen Muskulatur",
+                    "im M. biceps femoris",
+                    "im M. rectus femoris",
+                    "in der Quadrizepsmuskulatur",
+                    "in den Adduktoren"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "delle",
+                  "label": "Tastbare Delle",
+                  "optionen": [
+                    ", dort keine tastbare Delle",
+                    ", dort tastbare Delle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dehnung",
+              "chip": "Dehnungs-/Anspannungsschmerz",
+              "gruppe": "Beweglichkeit",
+              "normal": "Kein Dehnungsschmerz, kein Schmerz bei Anspannung gegen Widerstand. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Dehnungsschmerz und Schmerz bei Anspannung gegen Widerstand",
+                    "Dehnungsschmerz",
+                    "Schmerz bei Anspannung gegen Widerstand"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kniestreckung",
+              "chip": "Aktive Kniestreckung (Quadrizepssehne)",
+              "gruppe": "Abgrenzung",
+              "normal": "Aktive Streckung im Kniegelenk gegen die Schwerkraft möglich. ",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "Aktive Streckung im Kniegelenk nicht möglich",
+                    "Aktive Streckung im Kniegelenk nur unter Schmerzen möglich",
+                    "Aktives Streckdefizit im Kniegelenk",
+                    "Tastbare Delle oberhalb der Patella, aktive Streckung im Kniegelenk nicht möglich"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sitzbein",
+              "chip": "Sitzbeinhöcker (ischiokrurale Sehnen)",
+              "gruppe": "Abgrenzung",
+              "normal": "Kein Druckschmerz am Sitzbeinhöcker. ",
+              "abweichung": "Druckschmerz am Sitzbeinhöcker{grad}{delle}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "delle",
+                  "label": "Tastbare Delle",
+                  "optionen": [
+                    "",
+                    ", tastbare Delle unterhalb des Sitzbeinhöckers"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schambein",
+              "chip": "Schambein (Adduktorensehnen)",
+              "gruppe": "Abgrenzung",
+              "normal": "Kein Druckschmerz am Schambein. ",
+              "abweichung": "Druckschmerz am Schambein{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "spina",
+              "chip": "Vordere Darmbeinstacheln (Apophyse)",
+              "gruppe": "Abgrenzung",
+              "normal": "Kein Druckschmerz an der Spina iliaca anterior superior und inferior. ",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "an der Spina iliaca anterior superior",
+                    "an der Spina iliaca anterior inferior"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kompartment",
+              "chip": "Spannung des Oberschenkels",
+              "gruppe": "Palpation",
+              "normal": "Oberschenkel weich, keine pralle Spannung. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Oberschenkel angespannt, aber eindrückbar",
+                    "Oberschenkel prall gespannt, Verdacht auf ein Kompartmentsyndrom"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "huefte",
+              "chip": "Hüftgelenk",
+              "gruppe": "Beweglichkeit",
+              "normal": "Hüftgelenk frei und schmerzfrei beweglich. ",
+              "abweichung": "Hüftgelenk {wie}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "endgradig schmerzhaft",
+                    "schmerzhaft eingeschränkt beweglich"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gehen",
+              "chip": "Gehfähigkeit",
+              "gruppe": "Belastbarkeit",
+              "normal": "{Person} ist frei geh- und stehfähig. ",
+              "abweichung": "{Person} ist {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehfähigkeit",
+                  "optionen": [
+                    "unter Schmerzen geh- und stehfähig",
+                    "mit Schonhinken geh- und stehfähig",
+                    "nur an Unterarmgehstützen gehfähig",
+                    "nicht belastungsfähig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ischiadicus",
+              "chip": "N. ischiadicus (Fußhebung, Fußsenkung, Sensibilität)",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Fußhebung und Fußsenkung kraftvoll, Sensibilität an Unterschenkel und Fuß seitengleich. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Fußheberschwäche",
+                    "Fußsenkerschwäche",
+                    "Sensibilitätsstörung an Unterschenkel oder Fuß",
+                    "Ausstrahlender Schmerz entlang der Oberschenkelrückseite"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "Durchblutung/Motorik/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "optionen": [
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert",
+                    "Fußpulse nicht tastbar"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-muskel-oberschenkel-sono",
+          "titel": "Sonografie der Oberschenkelmuskulatur",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Sonografie der Oberschenkelmuskulatur "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Sonografiebefund",
+              "optionen": [
+                "Keine Faserunterbrechung, kein Hämatom.",
+                "Umschriebene Faserunterbrechung mit kleinem Hämatom.",
+                "Faserunterbrechung mit ausgedehntem Hämatom.",
+                "Hämatom im Muskel ohne sichere Faserunterbrechung.",
+                "Ausgedehnte Unterbrechung mit Retraktion des Muskels."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "mass-faser",
+              "label": "Ausdehnung der Faserunterbrechung",
+              "text": " Faserunterbrechung über {mm}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Faserunterbrechung",
+                  "required": true,
+                  "einheit": "mm"
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mass-haematom",
+              "label": "Größe des Hämatoms",
+              "text": " Größter Durchmesser des Hämatoms {mm}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Hämatom",
+                  "required": true,
+                  "einheit": "mm"
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sehne",
+              "label": "Sehne mit beurteilt",
+              "text": " {welche}: {befund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "welche",
+                  "label": "Sehne",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Quadrizepssehne",
+                    "Ischiokrurale Sehnen am Sitzbeinhöcker",
+                    "Adduktorensehnen am Schambein"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Sehne: Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "durchgängig",
+                    "nicht sicher beurteilbar",
+                    "Kontinuitätsunterbrechung"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-muskel-oberschenkel-roentgen",
+          "titel": "Röntgen bei Muskelverletzung des Oberschenkels (knöcherner Ausriss)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Röntgen: Region",
+              "optionen": [
+                "Beckenübersicht und Hüftgelenk",
+                "Hüftgelenk",
+                "Oberschenkel",
+                "Kniegelenk"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "befund",
+              "label": "Röntgen: Befund",
+              "optionen": [
+                "Kein Nachweis eines knöchernen Ausrisses.",
+                "Knöcherner Ausriss am Sitzbeinhöcker.",
+                "Knöcherner Ausriss an der Spina iliaca anterior inferior.",
+                "Knöcherner Ausriss an der Spina iliaca anterior superior.",
+                "Knöcherner Ausriss am Trochanter minor.",
+                "Knöcherner Ausriss am oberen Patellapol."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "verschiebung",
+              "label": "Verschiebung des Fragments",
+              "text": " Verschiebung des Fragments {mm}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Verschiebung",
+                  "required": true,
+                  "einheit": "mm"
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "text": " Befundung durch die Notaufnahme, radiologische Befundung ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "proc-muskel-oberschenkel",
+          "titel": "Muskelverletzung des Oberschenkels – ambulante Weiterbehandlung (kein Hinweis auf einen Ausriss)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bedingung",
+              "label": "Ambulante Weiterbehandlung: Bedingung",
+              "an": true,
+              "text": "Ambulante Weiterbehandlung: {bedingung}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "bedingung",
+                  "label": "Bedingung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "kein Hinweis auf einen Sehnenausriss oder knöchernen Ausriss, aktive Kniestreckung möglich",
+                    "im Röntgen kein knöcherner Ausriss, kein Hinweis auf einen Sehnenausriss, aktive Kniestreckung möglich"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Belastung des Beins {seite}: {stufe}{dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung ohne Gehhilfen",
+                    "schmerzadaptierte Vollbelastung an Unterarmgehstützen",
+                    "Teilbelastung mit 10 kg an Unterarmgehstützen",
+                    "Teilbelastung mit 20 kg an Unterarmgehstützen",
+                    "Teilbelastung mit halbem Körpergewicht an Unterarmgehstützen",
+                    "Entlastung an Unterarmgehstützen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Belastung: Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    " ab sofort",
+                    ", bis das Gehen ohne Schmerzen möglich ist",
+                    " für 3 bis 5 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur klinischen Kontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "steigerung",
+              "label": "Danach Steigerung der Belastung",
+              "text": "Danach schrittweise Steigerung der Belastung bis zur Vollbelastung ohne Gehhilfen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung, Kühlung, Hochlagerung",
+              "an": true,
+              "text": "Schonung, Kühlung und Hochlagerung des Beins {seite} in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kompression",
+              "label": "Elastischer Kompressionsverband",
+              "text": "Elastischer Kompressionsverband am Oberschenkel {seite} für {dauer}, abnehmen bei Taubheitsgefühl oder zunehmenden Schmerzen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Kompressionsverband",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "2 bis 3 Tage",
+                    "5 bis 7 Tage",
+                    "die Zeit bis zur klinischen Kontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "waerme",
+              "label": "Keine Wärme, keine Massage",
+              "text": "In den ersten Tagen keine Wärme und keine Massage am Oberschenkel {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos.",
+                "Keine medikamentöse Thromboseprophylaxe, nach Aufklärung abgelehnt.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zur klinischen Kontrolle, dort Entscheidung über die Fortführung.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Vorbestehende Antikoagulation pausiert bis zur klinischen Kontrolle, dort Entscheidung über den Wiederbeginn."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat}, {dosis}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Anwendung",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-hinweis",
+              "label": "Hinweis bei gerinnungshemmender Medikation",
+              "text": "Unter gerinnungshemmender Medikation kann der Bluterguss am Oberschenkel in den nächsten Tagen zunehmen: Wiedervorstellung bei zunehmender Schwellung, praller Spannung oder Schwindel."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hb-kontrolle",
+              "label": "Kontrolle von Hämoglobin und Gerinnung",
+              "text": "Kontrolle von Hämoglobin und Gerinnung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Hämoglobin und Gerinnung: wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "bei der klinischen Kontrolle"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Hämoglobin und Gerinnung: wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in unserer Notaufnahme",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle des Oberschenkels {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Notaufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mrt",
+              "label": "MRT, Vorstellung mit dem Befund",
+              "text": "MRT {was} {seite} {wann}, Vorstellung mit dem Befund {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "MRT",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "des Oberschenkels",
+                    "des Beckens mit Schwerpunkt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche",
+                    "innerhalb von 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "text": "Physiotherapie nach Abklingen der akuten Schmerzen, Verordnung durch die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Sportpause",
+              "an": true,
+              "text": "Sportpause für {dauer}, danach schrittweiser Belastungsaufbau ohne Schmerzen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Sportpause",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1 bis 2 Wochen",
+                    "3 bis 6 Wochen",
+                    "mehr als 6 Wochen",
+                    "die Zeit bis zur ärztlichen Freigabe"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: rasch zunehmender Schwellung oder praller Spannung des Oberschenkels, Schmerzen, die trotz Schmerzmittel und Hochlagern zunehmen, fehlender Kraft beim Strecken des Knies, Taubheitsgefühl oder Kribbeln im Bein, kalten oder blassen Zehen, Schwellung des ganzen Beins, Atemnot oder Brustschmerz."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-muskel-oberschenkel-ausriss",
+          "titel": "Muskelverletzung des Oberschenkels – Verdacht auf Ausriss (Sehne, Apophyse, Muskelriss mit Retraktion): Vorstellung zur Entscheidung über eine Operation",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verdacht",
+              "label": "Verdacht oder Nachweis",
+              "an": true,
+              "text": "{was} {seite}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verdacht oder Nachweis",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Verdacht auf Ausriss der ischiokruralen Sehnen am Sitzbeinhöcker",
+                    "Verdacht auf Ruptur der Quadrizepssehne",
+                    "Verdacht auf Ausriss der Adduktorensehnen am Schambein",
+                    "Verdacht auf knöchernen Apophysenausriss am Becken",
+                    "Verdacht auf Muskelriss mit Retraktion",
+                    "Im Röntgen knöcherner Ausriss",
+                    "Im Röntgen Ausriss des Trochanter minor im Erwachsenenalter, Verdacht auf pathologische Fraktur",
+                    "Verdacht auf Ruptur der Patellasehne"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "metastase",
+              "label": "Abklärung einer Knochenmetastase veranlasst",
+              "text": " Abklärung einer Knochenmetastase veranlasst: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Abklärung einer Knochenmetastase: was und wo",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "vorstellung",
+              "label": "Vorstellung zur Entscheidung über eine Operation",
+              "an": true,
+              "text": "Vorstellung zur Entscheidung über eine operative Versorgung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in der kinderorthopädischen Sprechstunde"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mrt",
+              "label": "MRT bis zur Vorstellung",
+              "text": "MRT {was} {seite} bis zur Vorstellung.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "MRT",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "des Oberschenkels",
+                    "des Beckens mit Schwerpunkt",
+                    "des Kniegelenks"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung bis zur Vorstellung",
+              "an": true,
+              "text": "Belastung des Beins {seite} bis zur Vorstellung: {stufe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung ohne Gehhilfen",
+                    "schmerzadaptierte Vollbelastung an Unterarmgehstützen",
+                    "Teilbelastung mit 10 kg an Unterarmgehstützen",
+                    "Teilbelastung mit 20 kg an Unterarmgehstützen",
+                    "Teilbelastung mit halbem Körpergewicht an Unterarmgehstützen",
+                    "Entlastung an Unterarmgehstützen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Ruhigstellung des Kniegelenks "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " bis zur Vorstellung: "
+            },
+            {
+              "art": "auswahl",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung des Kniegelenks bis zur Vorstellung",
+              "optionen": [
+                "keine.",
+                "in Streckung mit der Kniestreckschiene.",
+                "in Streckung mit der Knieorthese."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Sport bis zur Vorstellung",
+              "an": true,
+              "text": "Keine Teilnahme an Sport bis zur Vorstellung."
+            },
+            {
+              "art": "option",
+              "id": "schulsport",
+              "label": "Auch kein Schulsport",
+              "text": " Das gilt auch für den Schulsport."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos.",
+                "Keine medikamentöse Thromboseprophylaxe, nach Aufklärung abgelehnt.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zur Vorstellung, dort Entscheidung über die Fortführung.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Vorbestehende Antikoagulation pausiert bis zur Vorstellung, dort Entscheidung über den Wiederbeginn."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat}, {dosis}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Anwendung",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-hinweis",
+              "label": "Hinweis bei gerinnungshemmender Medikation",
+              "text": "Unter gerinnungshemmender Medikation kann der Bluterguss am Oberschenkel in den nächsten Tagen zunehmen: Wiedervorstellung bei zunehmender Schwellung, praller Spannung oder Schwindel."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hb-kontrolle",
+              "label": "Kontrolle von Hämoglobin und Gerinnung",
+              "text": "Kontrolle von Hämoglobin und Gerinnung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Hämoglobin und Gerinnung: wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "bei der Vorstellung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Hämoglobin und Gerinnung: wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in unserer Notaufnahme",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: rasch zunehmender Schwellung oder praller Spannung des Oberschenkels, Schmerzen, die trotz Schmerzmittel und Hochlagern zunehmen, fehlender Kraft beim Strecken des Knies, Schwäche beim Anheben des Fußes, Taubheitsgefühl oder Kribbeln im Bein, kalten oder blassen Zehen, Schwellung des ganzen Beins, Atemnot oder Brustschmerz."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gelenke",
+      "name": "Gelenke",
+      "kuerzel": "🦴",
+      "bausteine": [
+        {
+          "id": "dx-monarthritis",
+          "titel": "Diagnose akute Monarthritis, Gichtanfall (außer Knie)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Akute Monarthritis "
+            },
+            {
+              "art": "auswahl",
+              "id": "gelenk",
+              "label": "Gelenk",
+              "optionen": [
+                "des Großzehengrundgelenks",
+                "des oberen Sprunggelenks",
+                "im Mittelfuß",
+                "des Handgelenks",
+                "des Ellenbogengelenks",
+                "des Schultergelenks",
+                "des Hüftgelenks",
+                "eines Fingergelenks",
+                "eines Zehengelenks"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "ursache",
+              "label": "Ursache",
+              "optionen": [
+                ", Verdacht auf Gichtanfall",
+                ", Gichtanfall bei Nachweis von Uratkristallen im Punktat",
+                ", Verdacht auf Pseudogicht (Calciumpyrophosphat-Arthritis)",
+                ", Verdacht auf aktivierte Arthrose",
+                ", Ursache nicht geklärt",
+                ", Verdacht auf Gelenkinfekt (septische Arthritis)",
+                ", Verdacht auf Infekt der Gelenkprothese",
+                ", Gelenkinfekt (septische Arthritis)"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "kein-infekt",
+              "label": "Kein Hinweis auf einen Gelenkinfekt",
+              "text": "\nKein Hinweis auf einen Gelenkinfekt"
+            }
+          ]
+        },
+        {
+          "id": "ana-monarthritis",
+          "titel": "Anamnese akute Monarthritis: Infektrisiko und Gicht",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Fieber oder Schüttelfrost: "
+            },
+            {
+              "art": "auswahl",
+              "id": "fieber",
+              "label": "Fieber oder Schüttelfrost",
+              "optionen": [
+                "nicht aufgetreten",
+                "Fieber",
+                "Fieber und Schüttelfrost"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ". Gelenkprothese oder Eingriff am betroffenen Gelenk: "
+            },
+            {
+              "art": "auswahl",
+              "id": "prothese",
+              "label": "Gelenkprothese oder Eingriff",
+              "optionen": [
+                "keine",
+                "Gelenkprothese",
+                "frühere Operation",
+                "Injektion oder Punktion in den letzten Wochen"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ". Abwehrschwäche oder erhöhtes Infektrisiko: "
+            },
+            {
+              "art": "auswahl",
+              "id": "abwehr",
+              "label": "Abwehrschwäche oder Infektrisiko",
+              "optionen": [
+                "nicht bekannt",
+                "Diabetes mellitus",
+                "immunsuppressive Medikamente (auch Kortison)",
+                "Chemotherapie oder Tumorerkrankung",
+                "Dialyse",
+                "intravenöser Drogenkonsum"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "abwehr-weitere",
+              "label": "Weitere Abwehrschwäche oder weiteres Infektrisiko",
+              "text": ", {was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Weitere Abwehrschwäche oder weiteres Infektrisiko",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Diabetes mellitus",
+                    "immunsuppressive Medikamente (auch Kortison)",
+                    "Chemotherapie oder Tumorerkrankung",
+                    "Dialyse",
+                    "intravenöser Drogenkonsum"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "text",
+              "text": ". "
+            },
+            {
+              "art": "option",
+              "id": "gicht",
+              "label": "Gicht oder rheumatische Erkrankung",
+              "an": true,
+              "text": "Gicht oder rheumatische Erkrankung: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Gicht oder rheumatische Erkrankung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nicht bekannt",
+                    "Gicht bekannt",
+                    "Pseudogicht bekannt",
+                    "rheumatische Erkrankung bekannt",
+                    "Schuppenflechte bekannt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "anfaelle",
+              "label": "Frühere Anfälle",
+              "text": "Frühere gleichartige Anfälle: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Frühere Anfälle",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "keine",
+                    "an diesem Gelenk",
+                    "an anderen Gelenken"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ausloeser",
+              "label": "Mögliche Auslöser",
+              "text": "Möglicher Auslöser: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Möglicher Auslöser",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Alkohol",
+                    "üppige Mahlzeit",
+                    "Fasten",
+                    "neu begonnene Entwässerungstabletten",
+                    "Operation oder akute Erkrankung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "hsm",
+              "label": "Harnsäuresenkende Medikation",
+              "text": "Harnsäuresenkende Medikation: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Harnsäuresenkende Medikation",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "keine",
+                    "dauerhaft",
+                    "kürzlich begonnen oder geändert",
+                    "kürzlich abgesetzt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wunde",
+              "label": "Wunde oder Hautinfektion nahe dem Gelenk",
+              "text": "Wunde, Hautinfektion oder Insektenstich nahe dem Gelenk: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Wunde oder Hautinfektion",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nicht bemerkt",
+                    "bemerkt"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-monarthritis",
+          "titel": "Akute Monarthritis – Untersuchung des betroffenen Gelenks",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "gelenk",
+              "label": "Gelenk",
+              "optionen": [
+                "Großzehengrundgelenk",
+                "Oberes Sprunggelenk",
+                "Mittelfuß",
+                "Handgelenk",
+                "Ellenbogengelenk",
+                "Schultergelenk",
+                "Hüftgelenk",
+                "Fingergelenk",
+                "Zehengelenk"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut über dem Gelenk",
+              "gruppe": "Inspektion",
+              "normal": "Haut über dem Gelenk intakt, keine Wunde. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Wunde über dem Gelenk",
+                    "Hautdefekt nahe dem Gelenk",
+                    "Hautinfektion nahe dem Gelenk",
+                    "Insektenstich nahe dem Gelenk",
+                    "Eiter oder Sekret am Gelenk"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "roetung",
+              "chip": "Rötung/Überwärmung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, keine Überwärmung. ",
+              "abweichung": "{was}{grad}{ausbreitung}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Rötung und Überwärmung",
+                    "Rötung",
+                    "Überwärmung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ausbreitung",
+                  "label": "Ausbreitung",
+                  "optionen": [
+                    "",
+                    ", über das Gelenk hinaus ausgebreitet"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung. ",
+              "abweichung": "Schwellung des Gelenks{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "tophi",
+              "chip": "Tophi",
+              "gruppe": "Inspektion",
+              "normal": "Keine Tophi tastbar. ",
+              "abweichung": "Tophi {wo}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "druckschmerz",
+              "chip": "Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Gelenk. ",
+              "abweichung": "Druckschmerz über dem Gelenk{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)",
+                    " (schon bei leichter Berührung)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "erguss",
+              "chip": "Gelenkerguss",
+              "gruppe": "Palpation",
+              "normal": "Kein tastbarer Gelenkerguss. ",
+              "abweichung": "Gelenkerguss tastbar{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bewegung",
+              "chip": "Beweglichkeit",
+              "gruppe": "Beweglichkeit",
+              "normal": "Bewegung des Gelenks frei und schmerzfrei. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Bewegung endgradig schmerzhaft",
+                    "Bewegung schmerzhaft eingeschränkt",
+                    "Jede passive Bewegung stark schmerzhaft"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "extflex",
+              "label": "Beweglichkeit nach Neutral-Null-Methode",
+              "vorlage": "Beweglichkeit nach Neutral-Null-Methode {w}. ",
+              "gruppe": "Beweglichkeit"
+            },
+            {
+              "art": "befund",
+              "id": "nachbar",
+              "chip": "Übrige Gelenke",
+              "gruppe": "Beweglichkeit",
+              "normal": "Übrige Gelenke unauffällig. ",
+              "abweichung": "Weitere Gelenke betroffen: {wo}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Gelenke",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gehen",
+              "chip": "Gehfähigkeit",
+              "gruppe": "Belastbarkeit",
+              "normal": "{Person} ist frei geh- und stehfähig. ",
+              "abweichung": "{Person} ist {wie}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehfähigkeit",
+                  "optionen": [
+                    "unter Schmerzen geh- und stehfähig",
+                    "mit Schonhinken geh- und stehfähig",
+                    "nur an Unterarmgehstützen gehfähig",
+                    "nicht belastungsfähig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "Durchblutung/Motorik/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "optionen": [
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "temperatur",
+              "label": "Körpertemperatur",
+              "vorlage": "Körpertemperatur {w} °C. ",
+              "gruppe": "Allgemein"
+            },
+            {
+              "art": "messwert",
+              "id": "herzfrequenz",
+              "label": "Herzfrequenz",
+              "vorlage": "Herzfrequenz {w}/min. ",
+              "gruppe": "Allgemein"
+            },
+            {
+              "art": "messwert",
+              "id": "blutdruck",
+              "label": "Blutdruck",
+              "vorlage": "Blutdruck {w} mmHg. ",
+              "gruppe": "Allgemein"
+            },
+            {
+              "art": "messwert",
+              "id": "atemfrequenz",
+              "label": "Atemfrequenz",
+              "vorlage": "Atemfrequenz {w}/min. ",
+              "gruppe": "Allgemein"
+            }
+          ]
+        },
+        {
+          "id": "dgn-monarthritis-labor",
+          "titel": "Labor bei akuter Monarthritis: Leukozyten, CRP, Harnsäure",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "labor",
+              "label": "Labor: Leukozyten und CRP",
+              "text": "Labor: Leukozyten {leuko}, CRP {crp}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "leuko",
+                  "label": "Leukozyten (mit Einheit)",
+                  "maxLen": 20,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "crp",
+                  "label": "CRP (mit Einheit)",
+                  "maxLen": 20,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "harnsaeure",
+              "label": "Harnsäure",
+              "text": "Harnsäure {wert}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wert",
+                  "label": "Harnsäure (mit Einheit)",
+                  "maxLen": 20,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kreatinin",
+              "label": "Kreatinin",
+              "text": "Kreatinin {wert}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wert",
+                  "label": "Kreatinin (mit Einheit)",
+                  "maxLen": 20,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "blutkultur",
+              "label": "Blutkulturen",
+              "text": "Blutkulturen abgenommen, Befund ausstehend. "
+            }
+          ]
+        },
+        {
+          "id": "dgn-monarthritis-punktion",
+          "titel": "Gelenkpunktion mit Befund",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "punktion",
+              "label": "Punktion",
+              "an": true,
+              "text": "Punktion des betroffenen Gelenks {seite}{wie} nach Aufklärung und {einwilligung} Einwilligung unter sterilen Bedingungen. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Sonografisch gestützt",
+                  "optionen": [
+                    "",
+                    " unter Sonografiekontrolle"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "einwilligung",
+                  "label": "Einwilligung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "schriftlicher",
+                    "mündlicher"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "punktat",
+              "label": "Punktat",
+              "an": true,
+              "text": "Punktat: {menge}, {farbe}, {klar}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "menge",
+                  "label": "Menge (mit Einheit)",
+                  "maxLen": 20,
+                  "required": true,
+                  "vorschlaege": [
+                    "wenige Tropfen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "farbe",
+                  "label": "Farbe",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "gelblich",
+                    "bernsteinfarben",
+                    "weißlich",
+                    "blutig",
+                    "eitrig"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "klar",
+                  "label": "Trübung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nicht trüb",
+                    "leicht trüb",
+                    "trüb"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "zellzahl",
+              "label": "Zellzahl",
+              "an": true,
+              "text": "Leukozyten im Punktat: {wert}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wert",
+                  "label": "Leukozyten im Punktat (mit Einheit)",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "Befund ausstehend",
+                    "nicht bestimmt, zu wenig Punktat"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kristalle",
+              "label": "Kristalle",
+              "an": true,
+              "text": "Kristalle: {befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Kristalle",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nicht nachgewiesen",
+                    "Uratkristalle nachgewiesen",
+                    "Calciumpyrophosphatkristalle nachgewiesen",
+                    "Befund ausstehend",
+                    "nicht untersucht"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "gram",
+              "label": "Grampräparat",
+              "text": "Grampräparat: {befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Grampräparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "keine Bakterien nachgewiesen",
+                    "Bakterien nachgewiesen",
+                    "Befund ausstehend"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kultur",
+              "label": "Mikrobiologische Kultur",
+              "an": true,
+              "text": "Mikrobiologische Kultur: {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Kultur",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "angelegt, Befund ausstehend",
+                    "nicht angelegt",
+                    "wegen zu wenig Punktat nicht möglich"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-monarthritis-punktion-trocken",
+          "titel": "Gelenkpunktion ohne Punktat",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Punktion des betroffenen Gelenks "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " nach Aufklärung und "
+            },
+            {
+              "art": "auswahl",
+              "id": "einwilligung",
+              "label": "Einwilligung",
+              "optionen": [
+                "schriftlicher",
+                "mündlicher"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " Einwilligung unter sterilen Bedingungen: kein Punktat gewonnen."
+            }
+          ]
+        },
+        {
+          "id": "dgn-monarthritis-punktion-verzicht",
+          "titel": "Verzicht auf die Gelenkpunktion mit Grund",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Gelenkpunktion haben wir verzichtet, "
+            },
+            {
+              "art": "auswahl",
+              "id": "grund",
+              "label": "Grund für den Verzicht",
+              "optionen": [
+                "weil kein punktierbarer Erguss vorlag",
+                "weil das Bild bei bekannter Gicht eindeutig war und nichts für einen Gelenkinfekt sprach",
+                "weil die Punktion nach der stationären Aufnahme vorgesehen ist",
+                "weil bei Gelenkprothese die Punktion unter Operationsbedingungen vorgesehen ist",
+                "weil die Punktion nach Aufklärung abgelehnt wurde",
+                "weil die Haut über dem Gelenk infiziert ist und die Punktion dort nicht möglich war"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "dgn-monarthritis-roentgen",
+          "titel": "Röntgen bei akuter Monarthritis",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Röntgen: Region",
+              "optionen": [
+                "Vorfuß",
+                "oberes Sprunggelenk",
+                "Fuß",
+                "Handgelenk",
+                "Ellenbogen",
+                "Schultergelenk",
+                "Hüftgelenk",
+                "Hand",
+                "Finger"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "befund",
+              "label": "Röntgen: Befund",
+              "optionen": [
+                "Kein Frakturnachweis, keine Erosionen.",
+                "Kein Frakturnachweis, Weichteilschwellung.",
+                "Kein Frakturnachweis, Gelenkspaltverschmälerung und osteophytäre Anbauten.",
+                "Kein Frakturnachweis, Verkalkungen des Gelenkknorpels.",
+                "Kein Frakturnachweis, gelenknahe Erosionen.",
+                "Kein Frakturnachweis, Prothese ohne sichtbare Lockerungszeichen.",
+                "Lockerungssaum um die Prothese."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "text": " Befundung durch die Notaufnahme, radiologische Befundung ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "dgn-monarthritis-roentgen-verzicht",
+          "titel": "Verzicht auf Röntgen bei akuter Monarthritis",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Röntgenuntersuchung haben wir verzichtet, "
+            },
+            {
+              "art": "auswahl",
+              "id": "grund",
+              "label": "Grund für den Verzicht",
+              "optionen": [
+                "weil kein Unfall vorlag und das Röntgen die Behandlung nicht ändert",
+                "weil das klinische Bild bei bekannter Gicht eindeutig war",
+                "auf ausdrücklichen Wunsch nach Aufklärung"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "proc-monarthritis",
+          "titel": "Akute Monarthritis – ambulante Weiterbehandlung (kein Fieber, keine Prothese, kein Hinweis auf einen Gelenkinfekt)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bedingung",
+              "label": "Ambulante Weiterbehandlung: Bedingung",
+              "an": true,
+              "text": "Ambulante Weiterbehandlung: {bedingung}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "bedingung",
+                  "label": "Bedingung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "kein Fieber, keine Gelenkprothese, klinisch kein Hinweis auf einen Gelenkinfekt",
+                    "kein Fieber, keine Gelenkprothese, Punktat ohne Hinweis auf einen Gelenkinfekt",
+                    "kein Fieber, keine Gelenkprothese, Uratkristalle im Punktat, kein Hinweis auf einen Gelenkinfekt",
+                    "kein Fieber, keine Gelenkprothese, Calciumpyrophosphatkristalle im Punktat, kein Hinweis auf einen Gelenkinfekt",
+                    "trotz erhöhtem Infektrisiko kein Fieber, keine Gelenkprothese, Punktat ohne Hinweis auf einen Gelenkinfekt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Belastung des betroffenen Gelenks {seite}: {stufe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nach Beschwerden",
+                    "schmerzadaptierte Vollbelastung ohne Gehhilfen",
+                    "schmerzadaptierte Vollbelastung an Unterarmgehstützen",
+                    "Teilbelastung mit 20 kg an Unterarmgehstützen",
+                    "Entlastung an Unterarmgehstützen",
+                    "kein schweres Heben und Tragen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "text": "Ruhigstellung des betroffenen Gelenks {seite} mit {womit} {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Ruhigstellung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "der Gipsschiene",
+                    "der Orthese",
+                    "dem Verband"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Ruhigstellung: Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "für 1 bis 3 Tage",
+                    "bis zur klinischen Kontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung, Kühlung, Hochlagerung",
+              "an": true,
+              "text": "Schonung, Kühlung und Hochlagerung des betroffenen Gelenks {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "entzuendung",
+              "label": "Entzündungshemmende Behandlung",
+              "an": true,
+              "text": "Entzündungshemmende Behandlung mit {wirkstoff}, {dosis}, {dauer}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "Colchicin",
+                    "Diclofenac",
+                    "Ibuprofen",
+                    "Naproxen",
+                    "Prednisolon"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nierenfunktion",
+              "label": "Nierenfunktion und Wechselwirkungen geprüft",
+              "text": "Vor der Verordnung Nierenfunktion und Wechselwirkungen mit der Dauermedikation geprüft: {ergebnis}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "ergebnis",
+                  "label": "Prüfung von Nierenfunktion und Wechselwirkungen: Ergebnis",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "colchicin",
+              "label": "Colchicin: absetzen bei Durchfall oder Erbrechen",
+              "text": "Bei Durchfall oder Erbrechen Colchicin absetzen und am selben Tag ärztlich vorstellen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "magenschutz",
+              "label": "Magenschutz",
+              "text": "Magenschutz mit {was} für die Dauer der Behandlung.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Magenschutz: Wirkstoff und Dosis",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "Omeprazol",
+                    "Pantoprazol"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos.",
+                "Keine medikamentöse Thromboseprophylaxe, nach Aufklärung abgelehnt.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zur klinischen Kontrolle, dort Entscheidung über die Fortführung.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat}, {dosis}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Anwendung",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle des betroffenen Gelenks {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Notaufnahme",
+                    "in der rheumatologischen Praxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hsm-weiter",
+              "label": "Harnsäuresenkende Medikation fortführen",
+              "text": "Bestehende harnsäuresenkende Medikation unverändert fortführen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "harnsaeure-kontrolle",
+              "label": "Kontrolle der Harnsäure",
+              "text": "Kontrolle der Harnsäure {wann} in der Hausarztpraxis, dort Entscheidung über eine harnsäuresenkende Dauerbehandlung.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nach Abklingen des Anfalls",
+                    "2 bis 4 Wochen nach dem Anfall"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "rheuma",
+              "label": "Vorstellung Rheumatologie",
+              "text": "Vorstellung in der rheumatologischen Praxis oder Ambulanz {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "innerhalb von 2 Wochen",
+                    "innerhalb von 4 Wochen",
+                    "nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lebensweise",
+              "label": "Kein Alkohol",
+              "text": "In den nächsten Tagen kein Alkohol."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "trinken",
+              "label": "Ausreichend trinken",
+              "text": "Ausreichend trinken."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "ausstehend",
+              "label": "Ausstehende Befunde",
+              "optionen": [
+                "Ausstehende Befunde: keine.",
+                "Ausstehende Befunde des Punktats: Mitteilung auffälliger Befunde telefonisch durch uns.",
+                "Ausstehende Befunde des Punktats: Abfrage durch die weiterbehandelnde Praxis über unsere Notaufnahme."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kein-antibiotikum",
+              "label": "Kein Antibiotikum begonnen",
+              "text": "Ein Antibiotikum haben wir nicht begonnen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Fieber oder Schüttelfrost, zunehmender Schwellung, Rötung oder Schmerzen trotz Behandlung, ausbleibender Besserung trotz Behandlung, Rötung, die sich über das Gelenk hinaus ausbreitet, rotem Streifen am Arm oder Bein, Nässen oder Eiter am Gelenk."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-monarthritis-aufnahme",
+          "titel": "Akute Monarthritis – stationäre Aufnahme (Verdacht auf Gelenkinfekt oder Infekt der Gelenkprothese)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme",
+              "an": true,
+              "text": "Stationäre Aufnahme {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "bei Verdacht auf einen Gelenkinfekt",
+                    "bei Verdacht auf einen Infekt der Gelenkprothese",
+                    "zur Punktion und weiteren Abklärung",
+                    "zur Schmerzbehandlung und weiteren Abklärung",
+                    "bei Verdacht auf einen Gelenkinfekt mit Sepsis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "antibiotikum-wahl",
+              "label": "Antibiotikum und Probengewinnung",
+              "optionen": [
+                "Noch kein Antibiotikum, Beginn nach Gewinnung der Proben.",
+                "Antibiotikum nach Gewinnung der Proben begonnen.",
+                "Antibiotikum wegen Sepsis vor der Probengewinnung begonnen."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum: Wirkstoff und Dosis",
+              "text": " Wirkstoff und Dosis: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Antibiotikum: Wirkstoff und Dosis",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "geplant",
+              "label": "Geplanter Eingriff",
+              "text": "Geplant: {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Geplant",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Punktion des Gelenks",
+                    "Punktion unter Operationsbedingungen",
+                    "arthroskopische Spülung",
+                    "offene Spülung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern seit",
+              "text": "Nüchtern seit {zeit}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "zeit",
+                  "label": "Nüchtern seit",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmende Medikation",
+              "text": "Gerinnungshemmende Medikation: Festlegung durch die aufnehmende Station."
+            }
+          ]
+        },
+        {
+          "id": "proc-monarthritis-aufnahme-abgelehnt",
+          "titel": "Akute Monarthritis – stationäre Aufnahme bei Verdacht auf einen Gelenkinfekt abgelehnt",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abgelehnt",
+              "label": "Aufnahme abgelehnt, Aufklärung",
+              "an": true,
+              "text": "Stationäre Aufnahme bei Verdacht auf einen Gelenkinfekt von {person-dat} abgelehnt. Über das Risiko einer Gelenkzerstörung und einer Blutvergiftung haben wir {person-akk} aufgeklärt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "antibiotikum-wahl",
+              "label": "Antibiotikum",
+              "optionen": [
+                "Antibiotikum begonnen.",
+                "Antibiotikum nach Aufklärung abgelehnt.",
+                "Antibiotikum nicht begonnen."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum: Wirkstoff, Dosis und Dauer",
+              "text": " Wirkstoff, Dosis und Dauer: {wirkstoff}, {dosis}, {dauer}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum: Wirkstoff",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Antibiotikum: Dosis",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "dauer",
+                  "label": "Antibiotikum: Dauer",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum-grund",
+              "label": "Antibiotikum nicht begonnen: Grund",
+              "text": " Grund: {grund}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "grund",
+                  "label": "Antibiotikum nicht begonnen: Grund",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "entzuendung",
+              "label": "Entzündungshemmende Behandlung",
+              "text": "Entzündungshemmende Behandlung mit {wirkstoff}, {dosis}, {dauer}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "Colchicin",
+                    "Diclofenac",
+                    "Ibuprofen",
+                    "Naproxen",
+                    "Prednisolon"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nierenfunktion",
+              "label": "Nierenfunktion und Wechselwirkungen geprüft",
+              "text": "Vor der Verordnung Nierenfunktion und Wechselwirkungen mit der Dauermedikation geprüft: {ergebnis}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "ergebnis",
+                  "label": "Prüfung von Nierenfunktion und Wechselwirkungen: Ergebnis",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "colchicin",
+              "label": "Colchicin: absetzen bei Durchfall oder Erbrechen",
+              "text": "Bei Durchfall oder Erbrechen Colchicin absetzen und am selben Tag ärztlich vorstellen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos.",
+                "Keine medikamentöse Thromboseprophylaxe, nach Aufklärung abgelehnt.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zur klinischen Kontrolle, dort Entscheidung über die Fortführung.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat}, {dosis}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Anwendung",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle des betroffenen Gelenks {seite} {wann} in unserer Notaufnahme.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 Tagen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "ausstehend",
+              "label": "Ausstehende Befunde",
+              "optionen": [
+                "Ausstehende Befunde: keine.",
+                "Ausstehende Befunde des Punktats: Mitteilung auffälliger Befunde telefonisch durch uns.",
+                "Ausstehende Befunde des Punktats: Abfrage durch die weiterbehandelnde Praxis über unsere Notaufnahme."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Fieber oder Schüttelfrost, zunehmender Schwellung, Rötung oder Schmerzen, Schwindel, Verwirrtheit oder Herzrasen, Rötung, die sich über das Gelenk hinaus ausbreitet, rotem Streifen am Arm oder Bein, Nässen oder Eiter am Gelenk."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

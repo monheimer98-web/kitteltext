@@ -1,0 +1,335 @@
+{
+  "vorlagen": [
+    {
+      "id": "zna-bursa-praepatellaris-offen",
+      "titel": "Traumatisch eröffnete Bursa praepatellaris",
+      "suchbegriffe": [
+        "Bursa eröffnet",
+        "eröffnete Bursa",
+        "Bursaeröffnung",
+        "Schleimbeutel eröffnet",
+        "Schleimbeutelverletzung Knie",
+        "Wunde über der Kniescheibe",
+        "Kniewunde",
+        "Riss-Quetschwunde Knie",
+        "präpatellar",
+        "Bursektomie"
+      ],
+      "kuerzel": [
+        "bursa"
+      ],
+      "region": "wunden",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-bursa-praepatellaris-offen"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-tetanus-letzte-impfung",
+          "ana-bursa-offen"
+        ],
+        "befund": [
+          "bef-bursa-praepatellaris-offen"
+        ],
+        "therapie": [
+          "th-bursa-offen",
+          "th-zna"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-bursa-praepatellaris-roentgen",
+            "dgn-wunde-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Weiterbehandlung oder stationäre Aufnahme zur Operation?",
+          "bausteine": [
+            "proc-bursa-praepatellaris-offen",
+            "proc-bursa-praepatellaris-offen-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-bursa-praepatellaris-offen/wunde",
+        "bef-bursa-praepatellaris-offen/bursa",
+        "bef-bursa-praepatellaris-offen/wundgrund",
+        "bef-bursa-praepatellaris-offen/infekt",
+        "bef-bursa-praepatellaris-offen/gelenk",
+        "bef-bursa-praepatellaris-offen/streckapparat",
+        "bef-bursa-praepatellaris-offen/beweglichkeit"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-zna/ruhigstellung",
+          "proc-bursa-praepatellaris-offen/au"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-bursa-offen/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf das Knie gekommen.",
+          "Bei einem Sturz sei das Knie auf eine Kante geprallt.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Es sei zu einem Anprall des Knies gegen eine Kante gekommen.",
+          "Beim Knien sei ein spitzer Gegenstand in die Haut über der Kniescheibe eingedrungen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 20.10.2026"
+    },
+    {
+      "id": "zna-bursa-olecrani-offen",
+      "titel": "Traumatisch eröffnete Bursa olecrani",
+      "suchbegriffe": [
+        "Bursa eröffnet",
+        "eröffnete Bursa",
+        "Bursaeröffnung",
+        "Schleimbeutel eröffnet",
+        "Schleimbeutelverletzung Ellenbogen",
+        "Ellenbogenwunde",
+        "Wunde am Ellenbogen",
+        "Riss-Quetschwunde Ellenbogen",
+        "Olecranon Wunde",
+        "Bursektomie"
+      ],
+      "kuerzel": [
+        "bursa"
+      ],
+      "region": "wunden",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-bursa-olecrani-offen"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-tetanus-letzte-impfung",
+          "ana-bursa-offen"
+        ],
+        "befund": [
+          "bef-bursa-olecrani-offen"
+        ],
+        "therapie": [
+          "th-bursa-offen",
+          "th-zna"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-bursa-olecrani-roentgen",
+            "dgn-wunde-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Weiterbehandlung oder stationäre Aufnahme zur Operation?",
+          "bausteine": [
+            "proc-bursa-olecrani-offen",
+            "proc-bursa-olecrani-offen-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-bursa-olecrani-offen/wunde",
+        "bef-bursa-olecrani-offen/bursa",
+        "bef-bursa-olecrani-offen/wundgrund",
+        "bef-bursa-olecrani-offen/infekt",
+        "bef-bursa-olecrani-offen/gelenk",
+        "bef-bursa-olecrani-offen/trizeps",
+        "bef-bursa-olecrani-offen/beweglichkeit"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-zna/ruhigstellung",
+          "proc-bursa-olecrani-offen/au"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-bursa-offen/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf den Ellenbogen gekommen.",
+          "Bei einem Sturz sei der Ellenbogen auf eine Kante geprallt.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Es sei zu einem Anprall des Ellenbogens gegen eine Kante gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 20.10.2026"
+    },
+    {
+      "id": "zna-schulterluxation-spontan-reponiert",
+      "titel": "Schulterluxation, spontan reponiert",
+      "suchbegriffe": [
+        "spontan reponiert",
+        "Spontanreposition",
+        "Schulter von selbst eingerenkt",
+        "Schulter wieder eingesprungen",
+        "Schulter ausgekugelt",
+        "Schulter ausgerenkt",
+        "Schulterverrenkung",
+        "Rezidivluxation Schulter",
+        "rezidivierende Schulterluxation",
+        "Luxatio humeri",
+        "vor dem Eintreffen eingerenkt",
+        "vom Notarzt eingerenkt"
+      ],
+      "region": "schulter",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-schulterluxation-spontan"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-schulterluxation",
+          "ana-schulterluxation-spontan"
+        ],
+        "befund": [
+          "bef-schulterluxation-spontan"
+        ],
+        "diagnostik": [
+          "dgn-schulter-spontan-roentgen"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "proc-schulterluxation-spontan"
+        ]
+      },
+      "entscheiden": [
+        "bef-schulterluxation-spontan/kontur",
+        "bef-schulterluxation-spontan/druckschmerz",
+        "bef-schulterluxation-spontan/beweglichkeit",
+        "bef-schulterluxation-spontan/axillaris",
+        "bef-schulterluxation-spontan/dms",
+        "bef-schulterluxation-spontan/rm",
+        "bef-schulterluxation-spontan/deltoideus"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-zna/ruhigstellung",
+          "proc-schulterluxation-spontan/roentgenkontrolle",
+          "proc-schulterluxation-spontan/au"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Sport sei der erhobene Arm nach hinten gerissen worden.",
+          "Es sei zu einem Sturz auf den ausgestreckten Arm gekommen.",
+          "Beim Ausholen zum Wurf sei der Arm nach hinten gerissen worden.",
+          "Bei einer Überkopfbewegung im Alltag sei plötzlich ein Schmerz in der Schulter aufgetreten.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 20.10.2026"
+    },
+    {
+      "id": "zna-steissbein-prellung",
+      "titel": "Prellung von Kreuzbein und Steißbein, Steißbeinfraktur",
+      "suchbegriffe": [
+        "Steißbeinfraktur",
+        "Steißbeinprellung",
+        "Kreuzbeinprellung",
+        "Steißbein",
+        "Kreuzbein",
+        "Sakrumprellung",
+        "Os coccygis",
+        "Kokzygodynie",
+        "Sturz auf das Gesäß",
+        "Sturz auf den Po",
+        "Sakrum"
+      ],
+      "region": "wirbelsaeule",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-steissbein-prellung"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "bef-steissbein-prellung"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen, CT oder Verzicht?",
+          "bausteine": [
+            "dgn-steissbein-roentgen",
+            "dgn-lws-ct",
+            "dgn-steissbein-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Weiterbehandlung oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-steissbein-prellung",
+            "proc-steissbein-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-steissbein-prellung/inspektion",
+        "bef-steissbein-prellung/ds",
+        "bef-steissbein-prellung/gehen",
+        "bef-steissbein-prellung/klopfschmerz",
+        "bef-steissbein-prellung/becken",
+        "bef-steissbein-prellung/beine",
+        "bef-steissbein-prellung/reithose",
+        "bef-steissbein-prellung/blase"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf das Gesäß gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz auf das Gesäß gekommen.",
+          "Bei einem Sturz auf der Treppe sei das Gesäß auf eine Stufe aufgeschlagen.",
+          "Beim Hinsetzen sei es zu einem Sturz auf das Gesäß gekommen.",
+          "Beim Rodeln sei es zu einem Aufprall auf das Gesäß gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 20.10.2026",
+      "vorgaben": {
+        "an": [
+          "proc-steissbein-prellung/au"
+        ]
+      }
+    }
+  ]
+}

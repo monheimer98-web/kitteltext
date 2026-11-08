@@ -1,0 +1,732 @@
+{
+  "vorlagen": [
+    {
+      "id": "zna-claviculafraktur",
+      "titel": "Claviculafraktur konservativ",
+      "suchbegriffe": [
+        "Schlüsselbein",
+        "Schlüsselbeinbruch",
+        "Klavikula",
+        "Klavikulafraktur"
+      ],
+      "kuerzel": [
+        "clav"
+      ],
+      "region": "schulter",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-claviculafraktur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "bef-claviculafraktur"
+        ],
+        "diagnostik": [
+          "dgn-clavicula"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-schulterarm-aufklaerung-konservativ"
+        ],
+        "procedere": [
+          "schulter-clavicula-proc"
+        ]
+      },
+      "entscheiden": [
+        "bef-claviculafraktur/schwellung",
+        "bef-claviculafraktur/fehlstellung",
+        "bef-claviculafraktur/haut",
+        "bef-claviculafraktur/ds",
+        "bef-claviculafraktur/beweglichkeit"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-zna/ruhigstellung",
+          "schulter-clavicula-proc/roentgenkontrolle",
+          "schulter-clavicula-proc/op-hinweis",
+          "th-schulterarm-aufklaerung-konservativ/aufklaerung"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Bei einem Sturz mit dem Fahrrad sei die Schulter auf den Boden aufgeschlagen.",
+          "Es sei zu einem Sturz auf die Schulter gekommen.",
+          "Beim Sport sei es zu einem Sturz auf die Schulter gekommen.",
+          "Es sei zu einem Sturz auf den ausgestreckten Arm gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026 (Procedere); Diagnose, Befund und Diagnostik neu",
+      "ohne": [
+        "bef-claviculafraktur/ds-ac",
+        "bef-claviculafraktur/ds-sc",
+        "bef-claviculafraktur/ds-humerus"
+      ]
+    },
+    {
+      "id": "zna-ac-gelenksluxation",
+      "titel": "AC-Gelenksluxation konservativ",
+      "suchbegriffe": [
+        "Schultereckgelenk",
+        "Schultereckgelenksprengung",
+        "ACG-Sprengung",
+        "Tossy",
+        "Rockwood",
+        "Klaviertaste"
+      ],
+      "kuerzel": [
+        "acg"
+      ],
+      "region": "schulter",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-ac-gelenksprengung"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "bef-ac-gelenk"
+        ],
+        "diagnostik": [
+          "dgn-ac-gelenk"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "schulter-ac-proc"
+        ]
+      },
+      "entscheiden": [
+        "bef-ac-gelenk/schwellung",
+        "bef-ac-gelenk/stufe",
+        "bef-ac-gelenk/ds-ac",
+        "bef-ac-gelenk/ds-nachbar",
+        "bef-ac-gelenk/beweglichkeit"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-zna/ruhigstellung"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf die Schulter gekommen.",
+          "Bei einem Sturz mit dem Fahrrad sei die Schulter auf den Boden aufgeschlagen.",
+          "Beim Sport sei es zu einem Sturz auf die Schulter gekommen.",
+          "Beim Sport sei es zu einem Zusammenprall mit einem Gegenspieler gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026 (Procedere); Diagnose, Befund und Diagnostik neu"
+    },
+    {
+      "id": "zna-schulterluxation",
+      "titel": "Schulterluxation nach Reposition",
+      "suchbegriffe": [
+        "Schulter ausgekugelt",
+        "Schulter ausgerenkt",
+        "Schulterverrenkung",
+        "glenohumerale Luxation",
+        "Luxatio humeri",
+        "Hill-Sachs",
+        "Bankart"
+      ],
+      "region": "schulter",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-schulterluxation"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-schulterluxation"
+        ],
+        "befund": [
+          "bef-schulterluxation"
+        ],
+        "diagnostik": [
+          "dgn-schulter-vor-reposition",
+          "dgn-schulter-nach-reposition"
+        ],
+        "therapie": [
+          "th-schulterluxation-reposition",
+          "th-zna"
+        ],
+        "procedere": [
+          "proc-schulterluxation"
+        ]
+      },
+      "entscheiden": [
+        "bef-schulterluxation/kontur",
+        "bef-schulterluxation/federnd",
+        "bef-schulterluxation/axillaris-vor",
+        "bef-schulterluxation/axillaris-nach"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-zna/ruhigstellung",
+          "th-schulterluxation-reposition/ueberwachung",
+          "proc-schulterluxation/nach-sedierung",
+          "proc-schulterluxation/bewegungslimit"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Sport sei der erhobene Arm nach hinten gerissen worden.",
+          "Es sei zu einem Sturz auf den ausgestreckten Arm gekommen.",
+          "Beim Ausholen zum Wurf sei der Arm nach hinten gerissen worden.",
+          "Bei einer Überkopfbewegung im Alltag sei plötzlich ein Schmerz in der Schulter aufgetreten.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Recherche R2, Skizze Z5 (Praxiswissen, kein Hausstandard)"
+    },
+    {
+      "id": "zna-schulterprellung",
+      "titel": "Schulterprellung",
+      "suchbegriffe": [
+        "Schulterkontusion",
+        "Prellung Schulter",
+        "Schulter geprellt",
+        "Sturz auf die Schulter"
+      ],
+      "region": "schulter",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-schulterprellung"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "bef-schulterprellung"
+        ],
+        "diagnostik": [
+          "dgn-schulter"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "proc-schulterprellung"
+        ]
+      },
+      "entscheiden": [
+        "bef-schulterprellung/schwellung",
+        "bef-schulterprellung/ds",
+        "bef-schulterprellung/beweglichkeit",
+        "bef-schulterprellung/kraft"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf die Schulter gekommen.",
+          "Bei einem Sturz mit dem Fahrrad sei die Schulter auf den Boden aufgeschlagen.",
+          "Es sei zu einem Stolpersturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Anprall der Schulter gegen eine Kante gekommen.",
+          "Beim Sport sei es zu einem Zusammenprall mit einem Gegenspieler gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Recherche R2, Skizze Z2 (Praxiswissen, kein Hausstandard)"
+    },
+    {
+      "id": "zna-proximale-humerusfraktur-konservativ",
+      "titel": "Proximale Humerusfraktur konservativ",
+      "suchbegriffe": [
+        "Oberarmkopfbruch",
+        "Oberarmbruch",
+        "subkapitale Humerusfraktur",
+        "Humeruskopffraktur",
+        "Schulterbruch",
+        "Neer"
+      ],
+      "kuerzel": [
+        "phf"
+      ],
+      "region": "oberarm",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-humerusfraktur-proximal"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-humerus-zusatz"
+        ],
+        "befund": [
+          "bef-humerusfraktur-proximal"
+        ],
+        "diagnostik": [
+          "dgn-humerus-proximal",
+          "dgn-humerus-proximal-ct"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-schulterarm-aufklaerung-konservativ"
+        ],
+        "procedere": [
+          "proc-humerusfraktur-proximal"
+        ]
+      },
+      "entscheiden": [
+        "bef-humerusfraktur-proximal/schwellung",
+        "bef-humerusfraktur-proximal/ds",
+        "bef-humerusfraktur-proximal/beweglichkeit",
+        "bef-humerusfraktur-proximal/axillaris"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-zna/ruhigstellung",
+          "th-schulterarm-aufklaerung-konservativ/aufklaerung",
+          "proc-humerusfraktur-proximal/op-hinweis",
+          "proc-humerusfraktur-proximal/knochendichte",
+          "ana-humerus-zusatz/versorgung"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz aus dem Stand auf die Schulter gekommen.",
+          "Es sei zu einem Sturz auf den ausgestreckten Arm gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Es sei zu einem Sturz in der Pflegeeinrichtung gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Recherche R2, Skizze Z6 (Raster der DGOU-Nachbehandlungsempfehlungen 2020, kein Hausstandard)"
+    },
+    {
+      "id": "zna-ellenbogenprellung",
+      "titel": "Ellenbogenprellung",
+      "suchbegriffe": [
+        "Ellenbogenkontusion",
+        "Prellung Ellenbogen",
+        "Ellbogen geprellt",
+        "Sturz auf den Ellenbogen"
+      ],
+      "region": "ellenbogen",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-ellenbogenprellung"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "ellb-unt"
+        ],
+        "diagnostik": [
+          "dgn-ellenbogen"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "ellb-prellung-proc"
+        ]
+      },
+      "entscheiden": [
+        "ellb-unt/ellb-inspektion",
+        "ellb-unt/ellb-schwellung",
+        "ellb-unt/ellb-ds",
+        "ellb-unt/ellb-bewegung"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-zna/ruhigstellung"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf den Ellenbogen gekommen.",
+          "Es sei zu einem Anprall des Ellenbogens gegen eine Kante gekommen.",
+          "Es sei zu einem Sturz auf die ausgestreckte Hand gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026 (Befund, Procedere), überarbeitet; Diagnose und Diagnostik neu"
+    },
+    {
+      "id": "zna-epicondylitis",
+      "titel": "Epicondylitis",
+      "suchbegriffe": [
+        "Tennisellenbogen",
+        "Tennisarm",
+        "Golferellenbogen",
+        "Golferarm",
+        "Epikondylitis",
+        "Epicondylopathie"
+      ],
+      "region": "ellenbogen",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-epicondylitis"
+        ],
+        "anamnese": [
+          "ana-beschwerden"
+        ],
+        "befund": [
+          "ellb-epicondylitis-unt"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-epicondylitis"
+        ],
+        "procedere": [
+          "ellb-epicondylitis-proc"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-epicondylitis-roentgen",
+            "dgn-epicondylitis-verzicht"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "ellb-epicondylitis-unt/ellb-epi-ds-radialis",
+        "ellb-epicondylitis-unt/ellb-epi-ds-ulnaris",
+        "ellb-epicondylitis-unt/ellb-epi-ds-strecksehnen",
+        "ellb-epicondylitis-unt/ellb-epi-cozen"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-beschwerden/haendigkeit"
+        ],
+        "aus": [
+          "ellb-epicondylitis-proc/spange"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Der Schmerz bestehe an der Außenseite des Ellenbogens.",
+          "Der Schmerz bestehe an der Innenseite des Ellenbogens.",
+          "Der Schmerz nehme beim Greifen zu.",
+          "Der Schmerz nehme beim Anheben einer Kaffeetasse zu.",
+          "Der Schmerz strahle in den Unterarm aus.",
+          "Der Schmerz habe nach vermehrter Belastung des Arms begonnen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026 (Befund, Procedere), überarbeitet; Diagnose und Diagnostik neu",
+      "ohne": [
+        "ellb-epicondylitis-unt/ellb-epi-ds-distal"
+      ]
+    },
+    {
+      "id": "zna-radiuskopffraktur",
+      "titel": "Radiuskopffraktur konservativ",
+      "suchbegriffe": [
+        "Radiusköpfchenfraktur",
+        "Radiusköpfchen",
+        "Speichenköpfchen",
+        "Radiushalsfraktur",
+        "Mason"
+      ],
+      "region": "ellenbogen",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-radiuskopffraktur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "bef-radiuskopffraktur"
+        ],
+        "diagnostik": [
+          "dgn-radiuskopf"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-schulterarm-aufklaerung-konservativ"
+        ],
+        "procedere": [
+          "ellb-radiuskopf-proc"
+        ]
+      },
+      "entscheiden": [
+        "bef-radiuskopffraktur/schwellung",
+        "bef-radiuskopffraktur/ds-radiuskopf",
+        "bef-radiuskopffraktur/ds-handgelenk",
+        "bef-radiuskopffraktur/beweglichkeit"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "th-zna/ruhigstellung",
+          "ellb-radiuskopf-proc/roentgenkontrolle",
+          "ellb-radiuskopf-proc/op-hinweis",
+          "th-schulterarm-aufklaerung-konservativ/aufklaerung"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf die ausgestreckte Hand gekommen.",
+          "Beim Sport sei es zu einem Sturz auf die Hand gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz auf die Hand gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Es sei zu einem Sturz auf den Ellenbogen gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026 (Procedere); Diagnose, Befund und Diagnostik neu"
+    },
+    {
+      "id": "zna-chassaignac-luxation",
+      "titel": "Chassaignac-Luxation",
+      "suchbegriffe": [
+        "Pronatio dolorosa",
+        "Radiusköpfchensubluxation",
+        "Radiuskopfsubluxation",
+        "Kindermädchenellenbogen",
+        "Kind",
+        "Arm wird nicht bewegt"
+      ],
+      "region": "ellenbogen",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-chassaignac"
+        ],
+        "anamnese": [
+          "ana-chassaignac"
+        ],
+        "befund": [
+          "ellb-chassaignac"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-chassaignac-aufklaerung"
+        ],
+        "procedere": [
+          "proc-chassaignac"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-chassaignac-roentgen",
+            "dgn-chassaignac-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "therapie",
+          "label": "Reposition gelungen oder ohne Erfolg?",
+          "bausteine": [
+            "th-chassaignac-reposition",
+            "th-chassaignac-versuch"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "ellb-chassaignac/ellb-chass-schonhaltung",
+        "ellb-chassaignac/ellb-chass-ds-knoechern",
+        "ellb-chassaignac/ellb-chass-bewegung",
+        "ellb-chassaignac/ellb-chass-nach-reposition"
+      ],
+      "vorgaben": {
+        "aus": [
+          "th-zna/untersuchung"
+        ],
+        "an": [
+          "th-chassaignac-reposition/beobachtung",
+          "th-zna/aufklaerung-eltern"
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026 (Befund), überarbeitet; Diagnose, Diagnostik, Therapie und Procedere neu",
+      "ohne": [
+        "ellb-chassaignac/ellb-chass-ds-epi",
+        "ellb-chassaignac/ellb-chass-wohlbefinden",
+        "ellb-chassaignac/ellb-chass-pdms"
+      ]
+    },
+    {
+      "id": "zna-bursitis-olecrani",
+      "titel": "Bursitis olecrani",
+      "suchbegriffe": [
+        "Schleimbeutelentzündung",
+        "Schleimbeutel Ellenbogen",
+        "Studentenellenbogen",
+        "Bursa olecrani",
+        "dicker Ellenbogen"
+      ],
+      "region": "ellenbogen",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-bursitis-olecrani"
+        ],
+        "anamnese": [
+          "ana-beschwerden",
+          "ana-bursitis-olecrani"
+        ],
+        "befund": [
+          "bef-bursitis-olecrani"
+        ],
+        "diagnostik": [
+          "dgn-bursitis-olecrani"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-bursitis-olecrani"
+        ],
+        "procedere": [
+          "proc-bursitis-olecrani"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen, Sonografie oder Verzicht auf Bildgebung?",
+          "bausteine": [
+            "dgn-bursitis-olecrani-roentgen",
+            "dgn-bursitis-olecrani-sonografie",
+            "dgn-bursitis-olecrani-verzicht"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-bursitis-olecrani/schwellung",
+        "bef-bursitis-olecrani/roetung",
+        "bef-bursitis-olecrani/haut",
+        "bef-bursitis-olecrani/ds",
+        "bef-bursitis-olecrani/lymphe"
+      ],
+      "vorgaben": {
+        "aus": [
+          "ana-beschwerden/kein-unfall"
+        ],
+        "an": [
+          "bef-bursitis-olecrani/temperatur",
+          "ana-bursitis-olecrani/abwehr"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Über der Ellenbogenspitze sei eine schmerzhafte Schwellung aufgetreten.",
+          "Über der Ellenbogenspitze sei eine schmerzlose Schwellung aufgetreten.",
+          "Das Aufstützen des Ellenbogens sei schmerzhaft.",
+          "Die Schwellung habe rasch zugenommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Recherche R2, Skizze Z13 (Praxiswissen, kein Hausstandard)"
+    },
+    {
+      "id": "zna-paravasat",
+      "titel": "Paravasat",
+      "suchbegriffe": [
+        "Infusion daneben gelaufen",
+        "Extravasat",
+        "Paravasation",
+        "Kontrastmittelparavasat",
+        "Infusionsparavasat"
+      ],
+      "region": "ellenbogen",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-paravasat"
+        ],
+        "anamnese": [
+          "ana-beschwerden",
+          "ana-paravasat"
+        ],
+        "befund": [
+          "bef-paravasat"
+        ],
+        "therapie": [
+          "th-paravasat",
+          "th-zna"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Sonografie oder Verzicht auf Bildgebung?",
+          "bausteine": [
+            "dgn-paravasat-sonografie",
+            "dgn-paravasat-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Entlassung oder stationäre Aufnahme?",
+          "bausteine": [
+            "ellb-paravasat-proc",
+            "proc-paravasat-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-paravasat/schwellung",
+        "bef-paravasat/haut",
+        "bef-paravasat/schmerz",
+        "bef-paravasat/spannung"
+      ],
+      "vorgaben": {
+        "aus": [
+          "ana-beschwerden/kein-unfall",
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "An der Einstichstelle sei eine Schwellung aufgetreten.",
+          "An der Einstichstelle bestehe ein brennender Schmerz.",
+          "An der Einstichstelle bestehe ein Spannungsgefühl."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, in Befund, Therapie und Procedere zerlegt und überarbeitet"
+    }
+  ]
+}

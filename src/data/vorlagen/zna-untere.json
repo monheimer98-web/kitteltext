@@ -1,0 +1,1236 @@
+{
+  "vorlagen": [
+    {
+      "id": "zna-osg-distorsion",
+      "titel": "OSG-Distorsion",
+      "suchbegriffe": [
+        "Sprunggelenk",
+        "Umknicktrauma",
+        "Supinationstrauma",
+        "Bänderdehnung",
+        "Außenband",
+        "Bänderriss",
+        "Außenbandruptur",
+        "umgeknickt",
+        "verstaucht"
+      ],
+      "kuerzel": [
+        "osg"
+      ],
+      "region": "osg",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-osg-distorsion"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "osg-untersuchung"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-osg-distorsion"
+        ],
+        "procedere": [
+          "osg-procedere"
+        ]
+      },
+      "entscheiden": [
+        "osg-untersuchung/osg_schwellung",
+        "osg-untersuchung/osg_ds_aussen",
+        "osg-untersuchung/osg_ds_fibulotalar",
+        "osg-untersuchung/osg_ds_fibula",
+        "osg-untersuchung/osg_beweglichkeit",
+        "osg-untersuchung/osg_geh",
+        "osg-untersuchung/osg_aufklappbar"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Gehen sei der Fuß nach außen umgeknickt.",
+          "Beim Sport sei der Fuß nach außen umgeknickt.",
+          "Beim Verfehlen einer Stufe sei der Fuß nach außen umgeknickt.",
+          "Bei der Landung nach einem Sprung sei der Fuß nach außen umgeknickt.",
+          "Auf unebenem Boden sei der Fuß nach außen umgeknickt.",
+          "Beim Gehen sei der Fuß über die Innenkante umgeknickt."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet",
+      "ohne": [
+        "osg-untersuchung/osg_mittelfuss",
+        "osg-untersuchung/osg_ds_calcaneus",
+        "osg-untersuchung/osg_ds_deltaband",
+        "osg-untersuchung/osg_gabel"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-zna/ruhigstellung"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-osg-distorsion-roentgen",
+            "dgn-osg-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-osg-fraktur-konservativ",
+      "titel": "OSG-Fraktur konservativ",
+      "suchbegriffe": [
+        "Außenknöchelfraktur",
+        "Weber A",
+        "Weber B",
+        "Sprunggelenkfraktur",
+        "Knöchelbruch",
+        "Malleolarfraktur",
+        "Fibulafraktur distal"
+      ],
+      "region": "osg",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-osg-fraktur"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-bein-belastung"
+        ],
+        "befund": [
+          "osg-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-osg-fraktur-roentgen"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-osg-fraktur-konservativ"
+        ],
+        "procedere": [
+          "proc-osg-fraktur"
+        ]
+      },
+      "entscheiden": [
+        "osg-untersuchung/osg_schwellung",
+        "osg-untersuchung/osg_ds_aussen",
+        "osg-untersuchung/osg_ds_innen",
+        "osg-untersuchung/osg_ds_fibula",
+        "osg-untersuchung/osg_beweglichkeit",
+        "osg-untersuchung/osg_geh",
+        "osg-untersuchung/osg_ds_deltaband"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-zna/ruhigstellung"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Gehen sei der Fuß nach außen umgeknickt.",
+          "Beim Sport sei der Fuß nach außen umgeknickt.",
+          "Beim Verfehlen einer Stufe sei der Fuß nach außen umgeknickt.",
+          "Beim Ausrutschen auf glattem Boden sei der Fuß nach außen umgeknickt.",
+          "Bei der Landung nach einem Sprung sei der Fuß nach außen umgeknickt."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion 10/2026 nach Recherche R2",
+      "ohne": [
+        "osg-untersuchung/osg_ds_fibulotalar",
+        "osg-untersuchung/osg_gabel",
+        "osg-untersuchung/osg_mittelfuss",
+        "osg-untersuchung/osg_ds_calcaneus"
+      ]
+    },
+    {
+      "id": "zna-kniedistorsion",
+      "titel": "Kniedistorsion",
+      "suchbegriffe": [
+        "Knie verdreht",
+        "Knieverletzung",
+        "Knie verstaucht",
+        "Kreuzband",
+        "Meniskus",
+        "Innenband",
+        "Kniebinnentrauma"
+      ],
+      "region": "knie",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-kniedistorsion"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-bein-belastung",
+          "ana-knie-zusatz"
+        ],
+        "befund": [
+          "knie-untersuchung"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "knie-procedere"
+        ]
+      },
+      "entscheiden": [
+        "knie-untersuchung/knie_schwellung",
+        "knie-untersuchung/knie_erguss",
+        "knie-untersuchung/knie_ds_medial",
+        "knie-untersuchung/knie_ds_lateral",
+        "knie-untersuchung/knie_ds_umgebung",
+        "knie-untersuchung/knie_streckhebung",
+        "knie-untersuchung/knie_gehen",
+        "knie-untersuchung/knie_extflex",
+        "knie-untersuchung/knie_baender",
+        "knie-untersuchung/knie_lachmann",
+        "knie-untersuchung/knie_apley"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-knie-zusatz/schwellung",
+          "knie-procedere/mrt"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Sport sei das Knie verdreht worden.",
+          "Beim Skifahren sei das Knie verdreht worden.",
+          "Bei der Landung nach einem Sprung sei das Knie weggeknickt.",
+          "Beim Sport sei das Knie von der Seite getroffen worden.",
+          "Beim Aufstehen aus der Hocke sei plötzlich ein Schmerz im Knie aufgetreten.",
+          "Beim Gehen sei das Knie verdreht worden."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet",
+      "ohne": [
+        "knie-untersuchung/knie_ds_langknochen",
+        "knie-untersuchung/knie_ds_tibiakopf"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-knie-roentgen",
+            "dgn-knie-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-knieprellung",
+      "titel": "Knieprellung",
+      "suchbegriffe": [
+        "Knie geprellt",
+        "Sturz auf das Knie",
+        "Kniekontusion",
+        "Anpralltrauma Knie",
+        "Prellung Knie"
+      ],
+      "region": "knie",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-knieprellung"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-bein-belastung"
+        ],
+        "befund": [
+          "knie-untersuchung"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "proc-knie-prellung",
+          "proc-bein-prellung"
+        ]
+      },
+      "entscheiden": [
+        "knie-untersuchung/knie_haut",
+        "knie-untersuchung/knie_schwellung",
+        "knie-untersuchung/knie_erguss",
+        "knie-untersuchung/knie_ds_patella",
+        "knie-untersuchung/knie_streckhebung",
+        "knie-untersuchung/knie_gehen",
+        "knie-untersuchung/knie_ds_tibiakopf",
+        "knie-untersuchung/knie_extflex"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/tetanus"
+        ],
+        "slots": {
+          "proc-bein-prellung/sicherheitsnetz/zeichen": 2
+        }
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf das Knie gekommen.",
+          "Es sei zu einem Anprall des Knies gegen eine Kante gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Sport sei das Knie von einem Gegenspieler getroffen worden."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion 10/2026 nach Recherche R2",
+      "ohne": [
+        "knie-untersuchung/knie_ds_umgebung",
+        "knie-untersuchung/knie_ds_langknochen"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-knie-roentgen",
+            "dgn-knie-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-patellaluxation",
+      "titel": "Patellaluxation",
+      "suchbegriffe": [
+        "Kniescheibe ausgerenkt",
+        "Kniescheibenluxation",
+        "Patella luxiert",
+        "Kniescheibe herausgesprungen",
+        "MPFL"
+      ],
+      "region": "knie",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-patellaluxation"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-knie-zusatz"
+        ],
+        "befund": [
+          "bef-knie-patella",
+          "knie-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-knie-roentgen"
+        ],
+        "therapie": [
+          "th-knie-patella",
+          "th-zna"
+        ],
+        "procedere": [
+          "proc-knie-patellaluxation"
+        ]
+      },
+      "entscheiden": [
+        "bef-knie-patella/stellung",
+        "bef-knie-patella/ds_retinakulum",
+        "knie-untersuchung/knie_schwellung",
+        "knie-untersuchung/knie_erguss",
+        "knie-untersuchung/knie_ds_medial",
+        "knie-untersuchung/knie_streckhebung",
+        "knie-untersuchung/knie_gehen",
+        "bef-knie-patella/nach_reposition",
+        "knie-untersuchung/knie_extflex",
+        "knie-untersuchung/knie_baender",
+        "knie-untersuchung/knie_lachmann"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-knie-zusatz/luxationen",
+          "proc-knie-patellaluxation/mrt"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ],
+        "auswahl": {
+          "dgn-knie-roentgen/ebenen": 1
+        }
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Bei einer Drehbewegung mit leicht gebeugtem Knie sei das Knie plötzlich weggeknickt.",
+          "Beim Sport sei das Knie verdreht worden.",
+          "Beim Tanzen sei das Knie verdreht worden.",
+          "Beim Aufstehen aus der Hocke sei das Knie weggeknickt.",
+          "Es sei zu einem Anprall gegen die Innenseite des Knies gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion 10/2026 nach Recherche R2",
+      "ohne": [
+        "knie-untersuchung/knie_ds_patella",
+        "knie-untersuchung/knie_ds_umgebung",
+        "knie-untersuchung/knie_ds_langknochen",
+        "knie-untersuchung/knie_ds_tibiakopf"
+      ]
+    },
+    {
+      "id": "zna-kniegelenkerguss-punktion",
+      "titel": "Kniegelenkerguss mit Punktion",
+      "suchbegriffe": [
+        "Gelenkerguss",
+        "Kniepunktion",
+        "Gelenkpunktion",
+        "dickes Knie",
+        "Monarthritis",
+        "Gichtanfall",
+        "aktivierte Arthrose",
+        "Knieschwellung"
+      ],
+      "region": "knie",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-knie-erguss"
+        ],
+        "anamnese": [
+          "ana-beschwerden",
+          "ana-knie-atraumatisch"
+        ],
+        "befund": [
+          "knie-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-knie-labor",
+          "dgn-knie-punktat",
+          "dgn-knie-roentgen"
+        ],
+        "therapie": [
+          "th-knie-punktion",
+          "th-zna"
+        ]
+      },
+      "entscheiden": [
+        "knie-untersuchung/knie_schwellung",
+        "knie-untersuchung/knie_ueberwaermung",
+        "knie-untersuchung/knie_erguss",
+        "knie-untersuchung/knie_gehen",
+        "knie-untersuchung/knie_extflex",
+        "knie-untersuchung/knie_bewegungsschmerz",
+        "knie-untersuchung/knie_temperatur"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-knie-atraumatisch/voreingriffe"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Das Knie schmerze und sei geschwollen.",
+          "Das Knie sei geschwollen und schmerze kaum.",
+          "Im Knie bestehe ein Spannungsgefühl.",
+          "Das Knie lasse sich wegen der Schmerzen kaum beugen.",
+          "Wegen der Schmerzen sei das Gehen nur mit Mühe möglich."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet",
+      "ohne": [
+        "knie-untersuchung/knie_ds_medial",
+        "knie-untersuchung/knie_ds_lateral",
+        "knie-untersuchung/knie_ds_patella",
+        "knie-untersuchung/knie_ds_umgebung",
+        "knie-untersuchung/knie_ds_langknochen",
+        "knie-untersuchung/knie_streckhebung",
+        "knie-untersuchung/knie_ds_tibiakopf"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Entlassung, stationäre Aufnahme oder Aufnahme abgelehnt?",
+          "bausteine": [
+            "proc-knie-erguss",
+            "proc-knie-erguss-aufnahme",
+            "proc-knie-erguss-aufnahme-abgelehnt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-bursitis-praepatellaris",
+      "titel": "Bursitis praepatellaris",
+      "suchbegriffe": [
+        "Schleimbeutelentzündung Knie",
+        "Schleimbeutel",
+        "Bursitis Knie",
+        "präpatellar",
+        "Fliesenlegerknie"
+      ],
+      "region": "knie",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-bursitis-praepatellaris"
+        ],
+        "anamnese": [
+          "ana-beschwerden",
+          "ana-knie-atraumatisch"
+        ],
+        "befund": [
+          "bef-knie-bursa"
+        ],
+        "diagnostik": [
+          "dgn-knie-labor",
+          "dgn-knie-bursa-sono"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "entscheiden": [
+        "bef-knie-bursa/schwellung",
+        "bef-knie-bursa/roetung",
+        "bef-knie-bursa/haut",
+        "bef-knie-bursa/ds",
+        "bef-knie-bursa/erguss",
+        "bef-knie-bursa/beweglichkeit",
+        "bef-knie-bursa/lymph",
+        "bef-knie-bursa/temperatur"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-knie-atraumatisch/kniend",
+          "ana-knie-atraumatisch/wunde",
+          "proc-knie-bursitis/ruhigstellung"
+        ],
+        "aus": [
+          "ana-beschwerden/kein-unfall"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Vor der Kniescheibe sei eine schmerzhafte Schwellung aufgetreten.",
+          "Vor der Kniescheibe sei eine schmerzlose Schwellung aufgetreten.",
+          "Das Knien sei schmerzhaft.",
+          "Die Schwellung habe rasch zugenommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion 10/2026 nach Recherche R2",
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Behandlung oder Operation?",
+          "bausteine": [
+            "proc-knie-bursitis",
+            "proc-knie-bursitis-aufnahme",
+            "proc-knie-bursitis-op-abgelehnt"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-achillessehnenruptur",
+      "titel": "Achillessehnenruptur",
+      "suchbegriffe": [
+        "Achillessehne",
+        "Achillessehnenriss",
+        "Sehnenriss Ferse",
+        "Peitschenschlag",
+        "Thompson"
+      ],
+      "kuerzel": [
+        "asr"
+      ],
+      "region": "achillessehne",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-achillessehnenruptur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "achilles-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-achilles-sono",
+          "dgn-achilles-roentgen"
+        ],
+        "therapie": [
+          "th-achilles-ruptur",
+          "th-zna"
+        ],
+        "procedere": [
+          "achilles-ruptur-proc"
+        ]
+      },
+      "entscheiden": [
+        "achilles-untersuchung/achilles_delle",
+        "achilles-untersuchung/achilles_ds",
+        "achilles-untersuchung/achilles_thompson",
+        "achilles-untersuchung/achilles_gehen"
+      ],
+      "vorgaben": {
+        "aus": [
+          "th-zna/untersuchung"
+        ],
+        "an": [
+          "dgn-achilles-sono/hoehe",
+          "dgn-achilles-sono/annaeherung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Antritt habe es plötzlich oberhalb der Ferse geknallt.",
+          "Beim Absprung sei ein Gefühl wie ein Tritt von hinten gegen das Bein aufgetreten.",
+          "Bei der Landung nach einem Sprung habe es plötzlich oberhalb der Ferse geknallt.",
+          "Beim Treppensteigen sei plötzlich ein Schmerz oberhalb der Ferse aufgetreten."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet"
+    },
+    {
+      "id": "zna-proximale-femurfraktur",
+      "titel": "Proximale Femurfraktur (Aufnahme zur Operation)",
+      "suchbegriffe": [
+        "Schenkelhalsfraktur",
+        "pertrochantär",
+        "Hüftfraktur",
+        "Oberschenkelhalsbruch",
+        "hüftgelenknahe Fraktur",
+        "subtrochantär",
+        "stationäre Aufnahme"
+      ],
+      "kuerzel": [
+        "pff",
+        "shf"
+      ],
+      "region": "huefte",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-femurfraktur-proximal"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-huefte-sturz"
+        ],
+        "befund": [
+          "huefte-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-huefte-roentgen"
+        ],
+        "therapie": [
+          "th-femur-aufnahme",
+          "th-zna"
+        ],
+        "procedere": [
+          "huefte-femur-proc"
+        ]
+      },
+      "entscheiden": [
+        "huefte-untersuchung/huefte_orientierung",
+        "huefte-untersuchung/huefte_fehlstellung",
+        "huefte-untersuchung/huefte_weichteile",
+        "huefte-untersuchung/huefte_becken",
+        "huefte-untersuchung/huefte_ds_trochanter",
+        "huefte-untersuchung/huefte_ds_schaft_knie",
+        "huefte-untersuchung/huefte_stauchung",
+        "huefte-untersuchung/huefte_bein_anheben",
+        "huefte-untersuchung/huefte_gehfaehig"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-huefte-sturz/gerinnung-einnahme",
+          "ana-huefte-sturz/liegezeit",
+          "ana-huefte-sturz/wohnen",
+          "th-zna/analgesie"
+        ],
+        "aus": [
+          "th-zna/untersuchung",
+          "dgn-huefte-roentgen/thorax",
+          "th-femur-aufnahme/abstrich"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz aus dem Stand gekommen.",
+          "Beim Aufstehen in der Nacht sei es zu einem Sturz gekommen.",
+          "Es sei zu einem Sturz in der Pflegeeinrichtung gekommen.",
+          "Es sei zu einem Sturz im Freien gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet",
+      "ohne": [
+        "huefte-untersuchung/huefte_kompartment"
+      ]
+    },
+    {
+      "id": "zna-hueftprellung",
+      "titel": "Hüftprellung",
+      "suchbegriffe": [
+        "Beckenprellung",
+        "Sturz im Alter",
+        "Sturz auf die Hüfte",
+        "Hüfte geprellt",
+        "okkulte Fraktur",
+        "kein Frakturnachweis"
+      ],
+      "region": "huefte",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-hueftprellung"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-huefte-sturz"
+        ],
+        "befund": [
+          "huefte-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-huefte-prellung-roentgen"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-huefte-sturz"
+        ]
+      },
+      "entscheiden": [
+        "huefte-untersuchung/huefte_weichteile",
+        "huefte-untersuchung/huefte_becken",
+        "huefte-untersuchung/huefte_ds_trochanter",
+        "huefte-untersuchung/huefte_stauchung",
+        "huefte-untersuchung/huefte_bein_anheben",
+        "huefte-untersuchung/huefte_gehfaehig"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf die Hüfte gekommen.",
+          "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz aus dem Stand gekommen.",
+          "Beim Aufstehen in der Nacht sei es zu einem Sturz gekommen.",
+          "Es sei zu einem Sturz in der Pflegeeinrichtung gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion 10/2026 nach Recherche R2",
+      "ohne": [
+        "huefte-untersuchung/huefte_kompartment",
+        "huefte-untersuchung/huefte_orientierung"
+      ],
+      "vorgaben": {
+        "an": [
+          "proc-huefte-prellung/bildgebung"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Entlassung, Schnittbildgebung vor Belastung oder Aufnahme?",
+          "bausteine": [
+            "proc-huefte-prellung",
+            "proc-huefte-frakturverdacht",
+            "proc-huefte-aufnahme"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-unterschenkelprellung",
+      "titel": "Unterschenkelprellung",
+      "suchbegriffe": [
+        "Schienbeinprellung",
+        "Schienbein",
+        "Tritt gegen das Schienbein",
+        "Wadenprellung",
+        "Prellung Unterschenkel",
+        "Pferdekuss"
+      ],
+      "region": "unterschenkel",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-unterschenkelprellung"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-bein-belastung"
+        ],
+        "befund": [
+          "bef-unterschenkel"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-bein-schuerfwunde"
+        ]
+      },
+      "entscheiden": [
+        "bef-unterschenkel/haut",
+        "bef-unterschenkel/schwellung",
+        "bef-unterschenkel/ds",
+        "bef-unterschenkel/stauchung",
+        "bef-unterschenkel/kompartment",
+        "bef-unterschenkel/gehen"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Sport sei es zu einem Tritt gegen den Unterschenkel gekommen.",
+          "Es sei zu einem Anprall des Unterschenkels gegen eine Kante gekommen.",
+          "Bei einem Sturz auf der Treppe sei der Unterschenkel gegen eine Stufe geprallt.",
+          "Ein schwerer Gegenstand sei auf den Unterschenkel gefallen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion 10/2026 nach Recherche R2",
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-unterschenkel-roentgen",
+            "dgn-unterschenkel-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Entlassung oder stationäre Überwachung?",
+          "bausteine": [
+            "proc-unterschenkel-prellung",
+            "proc-unterschenkel-ueberwachung"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-muskelfaserriss",
+      "titel": "Muskelfaserriss",
+      "suchbegriffe": [
+        "Muskelzerrung",
+        "Zerrung",
+        "Muskelbündelriss",
+        "Wade",
+        "Oberschenkel",
+        "Muskelverletzung",
+        "ischiokrural",
+        "Tennis leg"
+      ],
+      "region": "unterschenkel",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-muskelfaserriss-bein"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-bein-belastung"
+        ],
+        "befund": [
+          "bef-bein-muskel"
+        ],
+        "diagnostik": [
+          "dgn-bein-muskel-roentgen"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "proc-bein-muskel"
+        ]
+      },
+      "entscheiden": [
+        "bef-bein-muskel/haematom",
+        "bef-bein-muskel/ds",
+        "bef-bein-muskel/delle",
+        "bef-bein-muskel/dehnung",
+        "bef-bein-muskel/achilles",
+        "bef-bein-muskel/venen",
+        "bef-bein-muskel/ansatz",
+        "bef-bein-muskel/gehen"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Sport habe es plötzlich in der Muskulatur gezogen.",
+          "Beim Antritt habe es plötzlich in der Wade geknallt.",
+          "Beim Sprint habe es plötzlich an der Rückseite des Oberschenkels gezogen.",
+          "Beim Schießen des Balls habe es plötzlich im vorderen Oberschenkel gezogen.",
+          "Bei einem Ausfallschritt zur Seite habe es plötzlich an der Innenseite des Oberschenkels gezogen."
+        ],
+        "ana-trauma/zeitpunkt": [
+          "heute",
+          "gestern",
+          "vor 2 Tagen",
+          "vor 3 Tagen",
+          "vor 1 Woche",
+          "kein umschriebenes Ereignis erinnerlich"
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion 10/2026 nach Recherche R2",
+      "ohne": [
+        "bef-bein-muskel/kompartment"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Sonografie oder klinische Diagnose?",
+          "bausteine": [
+            "dgn-bein-muskel-sono",
+            "dgn-bein-muskel-klinisch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-fuss",
+      "titel": "Fußprellung",
+      "suchbegriffe": [
+        "Fuß geprellt",
+        "Prellung Fuß",
+        "Fußkontusion",
+        "Vorfußprellung",
+        "Fersenprellung",
+        "Fußdistorsion",
+        "Gegenstand auf den Fuß gefallen"
+      ],
+      "region": "fuss",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-fussprellung"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-bein-belastung",
+          "ana-fuss-sturzhoehe"
+        ],
+        "befund": [
+          "fuss-untersuchung"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-bein-schuerfwunde"
+        ],
+        "procedere": [
+          "fuss-proc"
+        ]
+      },
+      "entscheiden": [
+        "fuss-untersuchung/fuss_weichteile",
+        "fuss-untersuchung/fuss_wunde",
+        "fuss-untersuchung/fuss_schwellung",
+        "fuss-untersuchung/fuss_ds",
+        "fuss-untersuchung/fuss_vorfusskompression",
+        "fuss-untersuchung/fuss_ds_calcaneus",
+        "fuss-untersuchung/fuss_ds_naviculare",
+        "fuss-untersuchung/fuss_ds_mt5",
+        "fuss-untersuchung/fuss_lisfranc",
+        "fuss-untersuchung/fuss_gehen"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Ein schwerer Gegenstand sei auf den Fuß gefallen.",
+          "Beim Gehen sei der Fuß nach außen umgeknickt.",
+          "Es sei zu einem Anprall des Fußes gegen eine Kante gekommen.",
+          "Nach einem Sprung sei es zu einer Landung auf der Ferse gekommen.",
+          "Ein Auto sei über den Fuß gefahren."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet",
+      "ohne": [
+        "fuss-untersuchung/fuss_stauchung_zehen",
+        "fuss-untersuchung/fuss_kompartment"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/tetanus"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-fuss-roentgen",
+            "dgn-fuss-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-mittelfussprellung",
+      "titel": "Mittelfußprellung",
+      "suchbegriffe": [
+        "Prellung Mittelfuß",
+        "Mittelfuß geprellt",
+        "Metatarsale",
+        "Fußrücken"
+      ],
+      "region": "mittelfuss",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-mittelfussprellung"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-bein-belastung"
+        ],
+        "befund": [
+          "mittelfuss-untersuchung"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-bein-schuerfwunde"
+        ],
+        "procedere": [
+          "fuss-proc"
+        ]
+      },
+      "entscheiden": [
+        "mittelfuss-untersuchung/mittelfuss_weichteile",
+        "mittelfuss-untersuchung/mittelfuss_wunde",
+        "mittelfuss-untersuchung/mittelfuss_schwellung",
+        "mittelfuss-untersuchung/mittelfuss_ds",
+        "mittelfuss-untersuchung/mittelfuss_vorfusskompression",
+        "mittelfuss-untersuchung/mittelfuss_ds_naviculare",
+        "mittelfuss-untersuchung/mittelfuss_stauchung_zehen",
+        "mittelfuss-untersuchung/mittelfuss_lisfranc",
+        "mittelfuss-untersuchung/mittelfuss_gehfaehig"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/tetanus"
+        ],
+        "auswahl": {
+          "dgn-fuss-roentgen/region": 2
+        }
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Ein schwerer Gegenstand sei auf den Fuß gefallen.",
+          "Es sei zu einem Anprall des Fußes gegen eine Kante gekommen.",
+          "Beim Sport sei es zu einem Tritt auf den Fuß gekommen.",
+          "Ein Auto sei über den Fuß gefahren.",
+          "Beim Gehen sei der Fuß nach außen umgeknickt."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet",
+      "ohne": [
+        "mittelfuss-untersuchung/mittelfuss_subungual",
+        "mittelfuss-untersuchung/mittelfuss_ds_umgebung",
+        "mittelfuss-untersuchung/mittelfuss_gabel",
+        "mittelfuss-untersuchung/mittelfuss_kompartment"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-fuss-roentgen",
+            "dgn-fuss-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-mittelfuss",
+      "titel": "Mittelfußfraktur konservativ",
+      "suchbegriffe": [
+        "Metatarsale",
+        "Metatarsalefraktur",
+        "Mittelfußbruch",
+        "Mittelfußknochen",
+        "Basis Metatarsale V",
+        "Vorfußentlastungsschuh"
+      ],
+      "kuerzel": [
+        "mfk"
+      ],
+      "region": "mittelfuss",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-mittelfussfraktur"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-bein-belastung"
+        ],
+        "befund": [
+          "mittelfuss-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-mittelfuss-roentgen"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-bein-fraktur-konservativ"
+        ],
+        "procedere": [
+          "mittelfuss-proc"
+        ]
+      },
+      "entscheiden": [
+        "mittelfuss-untersuchung/mittelfuss_weichteile",
+        "mittelfuss-untersuchung/mittelfuss_schwellung",
+        "mittelfuss-untersuchung/mittelfuss_ds",
+        "mittelfuss-untersuchung/mittelfuss_vorfusskompression",
+        "mittelfuss-untersuchung/mittelfuss_ds_umgebung",
+        "mittelfuss-untersuchung/mittelfuss_ds_naviculare",
+        "mittelfuss-untersuchung/mittelfuss_stauchung_zehen",
+        "mittelfuss-untersuchung/mittelfuss_lisfranc",
+        "mittelfuss-untersuchung/mittelfuss_gehfaehig",
+        "mittelfuss-untersuchung/mittelfuss_kompartment"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-zna/ruhigstellung",
+          "mittelfuss-proc/roentgenkontrolle"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Gehen sei der Fuß nach außen umgeknickt.",
+          "Beim Sport sei der Fuß nach außen umgeknickt.",
+          "Beim Verfehlen einer Stufe sei der Fuß nach außen umgeknickt.",
+          "Ein schwerer Gegenstand sei auf den Fuß gefallen.",
+          "Ein Unfall sei nicht erinnerlich. Der Schmerz habe nach vermehrter Laufbelastung begonnen."
+        ],
+        "ana-trauma/zeitpunkt": [
+          "heute",
+          "gestern",
+          "vor 2 Tagen",
+          "vor 3 Tagen",
+          "vor 1 Woche",
+          "kein umschriebenes Ereignis erinnerlich"
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet",
+      "ohne": [
+        "mittelfuss-untersuchung/mittelfuss_subungual",
+        "mittelfuss-untersuchung/mittelfuss_gabel"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "CT des Fußes oder Verzicht darauf?",
+          "bausteine": [
+            "dgn-fuss-ct",
+            "dgn-fuss-ct-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-zehenfraktur",
+      "titel": "Zehenfraktur",
+      "suchbegriffe": [
+        "Zehenbruch",
+        "Zeh gebrochen",
+        "Großzehe",
+        "Grundgliedfraktur",
+        "Zehe angestoßen",
+        "Phalanxfraktur Fuß"
+      ],
+      "region": "zehen",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-zehenfraktur"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "bef-zehen"
+        ],
+        "diagnostik": [
+          "dgn-zehen-roentgen"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-zehen-wunde",
+          "th-bein-fraktur-konservativ"
+        ],
+        "procedere": [
+          "zehen-fraktur-proc"
+        ]
+      },
+      "entscheiden": [
+        "bef-zehen/haut",
+        "bef-zehen/schwellung",
+        "bef-zehen/fehlstellung",
+        "bef-zehen/subungual",
+        "bef-zehen/ds",
+        "bef-zehen/stauchung",
+        "bef-zehen/gehen"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/tetanus",
+          "zehen-fraktur-proc/roentgenkontrolle"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Barfußgehen sei die Zehe an einem Möbelstück angestoßen.",
+          "Ein schwerer Gegenstand sei auf die Zehe gefallen.",
+          "Beim Treppensteigen sei die Zehe an einer Stufe angestoßen.",
+          "Beim Sport sei die Zehe angestoßen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet",
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Nicht verschoben, Reposition oder Verzicht auf Reposition?",
+          "bausteine": [
+            "th-zehen-verband",
+            "th-zehen-reposition",
+            "th-zehen-ohne-reposition"
+          ]
+        }
+      ]
+    }
+  ]
+}

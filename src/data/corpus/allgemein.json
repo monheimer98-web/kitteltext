@@ -9,89 +9,93 @@
           "id": "allg-allgemein",
           "titel": "Allgemeiner Befund",
           "typ": "untersuchung",
-          "platzhalter": [
-            {
-              "id": "allg_groesse",
-              "typ": "zahl",
-              "label": "Größe",
-              "einheit": "cm",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "allg_gewicht",
-              "typ": "zahl",
-              "label": "Gewicht",
-              "einheit": "kg",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "allg_bmi",
-              "typ": "zahl",
-              "label": "BMI",
-              "einheit": "kg/m²",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "allg_temp",
-              "typ": "zahl",
-              "label": "Temperatur",
-              "einheit": "°C",
-              "required": false,
-              "leerMarker": "…"
-            }
-          ],
+          "platzhalter": [],
           "segmente": [
             {
               "art": "befund",
               "id": "allg_bewusstsein",
-              "chip": "Intubiert/sediert",
+              "chip": "Bewusstsein",
               "gruppe": "Bewusstsein",
-              "normal": "Patient wach, ansprechbar und zu allen vier Qualitäten orientiert. ",
-              "abweichung": "Patient intubiert und sediert. "
+              "normal": "Wach, ansprechbar und zu allen vier Qualitäten orientiert. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Bewusstsein",
+                  "optionen": [
+                    "",
+                    "Wach, zeitlich nicht orientiert",
+                    "Schläfrig, auf Ansprache erweckbar",
+                    "Intubiert und sediert"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "allg_azez",
-              "chip": "Reduzierter AZ/EZ",
+              "chip": "Allgemein- und Ernährungszustand",
               "gruppe": "Allgemeinzustand",
-              "normal": "Altersentsprechend guter Allgemein- und Ernährungszustand",
-              "abweichung": "Reduzierter Allgemein- und Ernährungszustand"
+              "normal": "Altersentsprechend guter Allgemein- und Ernährungszustand. ",
+              "abweichung": "Reduzierter {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Zustand",
+                  "optionen": [
+                    "Allgemein- und Ernährungszustand",
+                    "Allgemeinzustand",
+                    "Ernährungszustand"
+                  ]
+                }
+              ]
             },
             {
-              "art": "text",
-              "text": " bei einer Größe von "
+              "art": "option",
+              "id": "allg_masse",
+              "label": "Größe und Gewicht",
+              "gruppe": "Allgemeinzustand",
+              "text": "Größe {allg_groesse}, Gewicht {allg_gewicht}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "allg_groesse",
+                  "label": "Größe",
+                  "einheit": "cm",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "allg_gewicht",
+                  "label": "Gewicht",
+                  "einheit": "kg",
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "platzhalter",
-              "ref": "allg_groesse"
-            },
-            {
-              "art": "text",
-              "text": " und einem Gewicht von "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "allg_gewicht"
-            },
-            {
-              "art": "text",
-              "text": " (BMI "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "allg_bmi"
-            },
-            {
-              "art": "text",
-              "text": "). "
+              "art": "option",
+              "id": "allg_bmi",
+              "label": "Body-Mass-Index",
+              "gruppe": "Allgemeinzustand",
+              "text": "Body-Mass-Index {wert}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "wert",
+                  "label": "Body-Mass-Index",
+                  "einheit": "kg/m²",
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "allg_pflege",
-              "chip": "Reduzierter Pflegezustand",
+              "chip": "Pflegezustand",
               "gruppe": "Allgemeinzustand",
               "normal": "Guter Pflegezustand. ",
               "abweichung": "Reduzierter Pflegezustand. "
@@ -101,22 +105,27 @@
               "id": "allg_fieber",
               "chip": "Fieber",
               "gruppe": "Vitalstatus",
-              "normal": "Kein Fieber",
-              "abweichung": "Febril"
+              "normal": "Kein Fieber. ",
+              "abweichung": "Fieber. "
             },
             {
-              "art": "text",
-              "text": " (Temperatur "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "allg_temp"
-            },
-            {
-              "art": "text",
-              "text": ")."
+              "art": "option",
+              "id": "allg_temp",
+              "label": "Temperatur",
+              "gruppe": "Vitalstatus",
+              "text": "Temperatur {wert}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "wert",
+                  "label": "Temperatur",
+                  "einheit": "°C",
+                  "required": true
+                }
+              ]
             }
-          ]
+          ],
+          "status": "hausstandard"
         },
         {
           "id": "allg-haut",
@@ -127,10 +136,24 @@
             {
               "art": "befund",
               "id": "haut_turgor",
-              "chip": "Turgor/Kolorit",
+              "chip": "Turgor, Kolorit",
               "gruppe": "Haut",
               "normal": "Normaler Hautturgor, normales Hautkolorit. ",
-              "abweichung": "Reduzierter Hautturgor (stehende Hautfalten), blasses Hautkolorit. "
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Reduzierter Hautturgor (stehende Hautfalten)",
+                    "Blasses Hautkolorit",
+                    "Reduzierter Hautturgor, blasses Hautkolorit"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
@@ -150,19 +173,25 @@
             },
             {
               "art": "befund",
-              "id": "haut_narben",
-              "chip": "Narben",
-              "gruppe": "Haut",
-              "normal": "Keine Narben. ",
-              "abweichung": "Narben (Punktionsnarben). "
-            },
-            {
-              "art": "befund",
               "id": "haut_blutung",
               "chip": "Blutungszeichen",
               "gruppe": "Haut",
               "normal": "Keine Blutungszeichen (Hämatome, Petechien). ",
-              "abweichung": "Blutungszeichen (Hämatome, Petechien). "
+              "abweichung": "Blutungszeichen: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Hämatome",
+                    "Petechien",
+                    "Hämatome und Petechien"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
@@ -170,49 +199,128 @@
               "chip": "Effloreszenzen",
               "gruppe": "Haut",
               "normal": "Keine Effloreszenzen. ",
-              "abweichung": "Effloreszenzen. "
+              "abweichung": "Effloreszenzen {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Art und Ort",
+                  "maxLen": 60
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
+              "id": "haut_narben",
+              "label": "Narben",
+              "gruppe": "Haut",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Narben",
+                  "optionen": [
+                    "Keine Narben",
+                    "Narben (Punktionsnarben)",
+                    "Reizlose Operationsnarben"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
               "id": "haut_behaarung",
-              "chip": "Behaarungsmuster",
+              "label": "Behaarungsmuster",
               "gruppe": "Haut",
-              "normal": "Körperbehaarung altersentsprechend unauffällig. ",
-              "abweichung": "Auffälliges Behaarungsmuster. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Behaarungsmuster",
+                  "optionen": [
+                    "Körperbehaarung dem Alter entsprechend",
+                    "Auffälliges Behaarungsmuster"
+                  ]
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "haut_leberhaut",
-              "chip": "Leberhautzeichen",
+              "label": "Leberhautzeichen",
               "gruppe": "Haut",
-              "normal": "Keine Leberhautzeichen. ",
-              "abweichung": "Leberhautzeichen vorhanden. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Leberhautzeichen",
+                  "optionen": [
+                    "Keine Leberhautzeichen",
+                    "Leberhautzeichen vorhanden"
+                  ]
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "haut_mamma",
-              "chip": "Mamma auffällig",
+              "label": "Mamma: Inspektion",
               "gruppe": "Mamma",
-              "normal": "Mamma inspektorisch beidseits unauffällig. Keine Seitendifferenz. ",
-              "abweichung": "Mamma mit Seitendifferenz und Auffälligkeiten. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Mamma: Inspektion",
+                  "optionen": [
+                    "Mammae inspektorisch ohne Seitendifferenz",
+                    "Mammae mit Seitendifferenz"
+                  ]
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "haut_mamille",
-              "chip": "Mamillenretraktion",
+              "label": "Mamma: Mamillen",
               "gruppe": "Mamma",
-              "normal": "Keine Mamillenretraktion oder -sekretion. ",
-              "abweichung": "Mamillenretraktion oder -sekretion. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Mamma: Mamillen",
+                  "optionen": [
+                    "Keine Mamillenretraktion oder -sekretion",
+                    "Mamillenretraktion",
+                    "Mamillensekretion"
+                  ]
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "haut_jackson",
-              "chip": "Plateau-Phänomen/Hauteinziehung",
+              "label": "Mamma: Plateau-Phänomen",
               "gruppe": "Mamma",
-              "normal": "Kein Plateau-Phänomen, keine Hauteinziehung.",
-              "abweichung": "Plateau-Phänomen/Hauteinziehung nachweisbar."
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Mamma: Plateau-Phänomen",
+                  "optionen": [
+                    "Kein Plateau-Phänomen, keine Hauteinziehung",
+                    "Plateau-Phänomen oder Hauteinziehung nachweisbar"
+                  ]
+                }
+              ]
             }
-          ]
+          ],
+          "status": "hausstandard"
         },
         {
           "id": "allg-kopf",
@@ -223,110 +331,243 @@
             {
               "art": "befund",
               "id": "kopf_pupillen",
-              "chip": "Anisokorie",
+              "chip": "Pupillen",
               "gruppe": "Pupillen",
               "normal": "Pupillen beidseits rund, mittelweit und isokor bei prompter direkter und indirekter Lichtreaktion. ",
-              "abweichung": "Anisokorie mit verzögerter Lichtreaktion. "
-            },
-            {
-              "art": "befund",
-              "id": "kopf_nystagmus",
-              "chip": "Nystagmus",
-              "gruppe": "Augenmotilität",
-              "normal": "Die Fingerfolgebewegungen sind glatt, es tritt kein Nystagmus auf. ",
-              "abweichung": "Sakkadierte Fingerfolgebewegungen mit Nystagmus. "
-            },
-            {
-              "art": "befund",
-              "id": "kopf_brille",
-              "chip": "Brillenträger",
-              "gruppe": "Visus",
-              "normal": "Kein Brillenträger. ",
-              "abweichung": "Patient ist Brillenträger. "
-            },
-            {
-              "art": "befund",
-              "id": "kopf_hoeren",
-              "chip": "Presbyakusis",
-              "gruppe": "Gehör",
-              "normal": "Normakusis beidseits. ",
-              "abweichung": "Presbyakusis beidseits. "
-            },
-            {
-              "art": "befund",
-              "id": "kopf_rachen",
-              "chip": "Rachen/Tonsillen gereizt",
-              "gruppe": "Mund/Rachen",
-              "normal": "Rachenring und Tonsillen reizlos. ",
-              "abweichung": "Rachenring gerötet, Tonsillen geschwollen und belegt. "
-            },
-            {
-              "art": "befund",
-              "id": "kopf_zunge",
-              "chip": "Zunge belegt/trocken",
-              "gruppe": "Mund/Rachen",
-              "normal": "Zunge und Schleimhäute nicht belegt, normal feucht und reizlos. ",
-              "abweichung": "Zunge belegt, Schleimhäute trocken. "
-            },
-            {
-              "art": "auswahl",
-              "id": "kopf_zahnstatus",
-              "label": "Zahnstatus",
-              "default": 0,
-              "optionen": [
-                "Zahnstatus altersentsprechend unauffällig. ",
-                "Zahnstatus marode. "
+              "abweichung": "Anisokorie{weiter}{reaktion}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "weitere Pupille",
+                  "optionen": [
+                    "",
+                    ", rechte Pupille weiter",
+                    ", linke Pupille weiter"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "reaktion",
+                  "label": "Lichtreaktion",
+                  "optionen": [
+                    "",
+                    ", Lichtreaktion rechts verzögert",
+                    ", Lichtreaktion links verzögert",
+                    ", Lichtreaktion beidseits verzögert"
+                  ]
+                }
               ]
             },
             {
               "art": "befund",
-              "id": "kopf_prothese",
-              "chip": "Prothese",
-              "gruppe": "Gebiss",
-              "normal": "Eigenbezahnung ohne Prothese. ",
-              "abweichung": "Gebiss saniert bei Prothese. "
-            },
-            {
-              "art": "befund",
-              "id": "kopf_foetor",
-              "chip": "Foetor",
-              "gruppe": "Mund",
-              "normal": "Kein Foetor. ",
-              "abweichung": "Foetor. "
-            },
-            {
-              "art": "befund",
               "id": "kopf_kalotte",
-              "chip": "Kalotte instabil",
+              "chip": "Schädelkalotte",
               "gruppe": "Schädel",
               "normal": "Schädelkalotte stabil. ",
               "abweichung": "Schädelkalotte instabil mit tastbarer Stufenbildung. "
             },
             {
-              "art": "befund",
+              "art": "option",
+              "id": "kopf_nystagmus",
+              "label": "Augenfolgebewegungen",
+              "gruppe": "Augen",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Augenfolgebewegungen",
+                  "optionen": [
+                    "Fingerfolgebewegungen glatt, kein Nystagmus",
+                    "Sakkadierte Fingerfolgebewegungen mit Nystagmus"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kopf_brille",
+              "label": "Sehhilfe",
+              "gruppe": "Augen",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Sehhilfe",
+                  "optionen": [
+                    "Sehhilfe: Brille",
+                    "Sehhilfe: keine"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kopf_hoeren",
+              "label": "Gehör",
+              "gruppe": "Gehör",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Gehör",
+                  "optionen": [
+                    "Normakusis beidseits",
+                    "Presbyakusis beidseits",
+                    "Schwerhörigkeit rechts",
+                    "Schwerhörigkeit links"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kopf_rachen",
+              "label": "Rachen und Tonsillen",
+              "gruppe": "Mund und Rachen",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Rachen und Tonsillen",
+                  "optionen": [
+                    "Rachenring und Tonsillen reizlos",
+                    "Rachenring gerötet",
+                    "Tonsillen geschwollen und belegt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kopf_zunge",
+              "label": "Zunge und Schleimhäute",
+              "gruppe": "Mund und Rachen",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Zunge und Schleimhäute",
+                  "optionen": [
+                    "Zunge und Schleimhäute nicht belegt, normal feucht und reizlos",
+                    "Zunge belegt",
+                    "Schleimhäute trocken"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "kopf_zahnstatus",
+              "label": "Zahnstatus",
+              "optionen": [
+                "",
+                "Zahnstatus altersentsprechend. ",
+                "Zahnstatus sanierungsbedürftig. "
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "kopf_prothese",
+              "label": "Zahnprothese",
+              "gruppe": "Mund und Rachen",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Zahnprothese",
+                  "optionen": [
+                    "Eigenbezahnung ohne Prothese",
+                    "Zahnprothese vorhanden"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kopf_foetor",
+              "label": "Foetor",
+              "gruppe": "Mund und Rachen",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Foetor",
+                  "optionen": [
+                    "Kein Foetor",
+                    "Foetor",
+                    "Foetor alcoholicus"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
               "id": "kopf_sinus",
-              "chip": "NNH/NAP druckschmerzhaft",
+              "label": "Nasennebenhöhlen, Nervenaustrittspunkte",
               "gruppe": "Schädel",
-              "normal": "Sinus frontalis und maxillaris sowie Nervenaustrittspunkte nicht druck- oder klopfschmerzhaft. ",
-              "abweichung": "Druck- und Klopfschmerz über den Nasennebenhöhlen und Nervenaustrittspunkten. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Nasennebenhöhlen, Nervenaustrittspunkte",
+                  "optionen": [
+                    "Sinus frontalis und maxillaris sowie Nervenaustrittspunkte nicht druck- oder klopfschmerzhaft",
+                    "Druck- und Klopfschmerz über den Nasennebenhöhlen",
+                    "Druckschmerz über den Nervenaustrittspunkten"
+                  ]
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "kopf_schilddruese",
-              "chip": "Struma/Knoten",
-              "gruppe": "Schilddrüse",
-              "normal": "Schilddrüse klinisch von normaler Konsistenz und Größe und ohne tastbare Knoten. Normale Schluckverschieblichkeit. Kein Schwirren. ",
-              "abweichung": "Schilddrüse vergrößert mit tastbaren Knoten. "
+              "label": "Schilddrüse",
+              "gruppe": "Hals",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Schilddrüse",
+                  "optionen": [
+                    "Schilddrüse klinisch von normaler Konsistenz und Größe und ohne tastbare Knoten. Normale Schluckverschieblichkeit. Kein Schwirren",
+                    "Schilddrüse vergrößert",
+                    "Schilddrüse mit tastbarem Knoten"
+                  ]
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "kopf_lymphknoten",
-              "chip": "Lymphknoten vergrößert",
-              "gruppe": "Lymphknoten",
-              "normal": "Zervikal, axillär, nuchal, prä- und retroaurikulär, submandibulär, entlang des M. sternocleidomastoideus sowie inguinal keine vergrößerten Lymphknoten palpabel.",
-              "abweichung": "Vergrößerte Lymphknoten palpabel."
+              "label": "Lymphknoten",
+              "gruppe": "Hals",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Lymphknoten",
+                  "optionen": [
+                    "Zervikal, axillär, nuchal, prä- und retroaurikulär, submandibulär, entlang des M. sternocleidomastoideus sowie inguinal keine vergrößerten Lymphknoten palpabel",
+                    "Vergrößerte Lymphknoten palpabel"
+                  ]
+                }
+              ]
             }
-          ]
+          ],
+          "status": "hausstandard"
         },
         {
           "id": "allg-pulmo",
@@ -336,16 +577,8 @@
           "segmente": [
             {
               "art": "befund",
-              "id": "pulmo_uhrglas",
-              "chip": "Uhrglasnägel/Trommelschlägelfinger",
-              "gruppe": "Inspektion",
-              "normal": "Keine Uhrglasnägel oder Trommelschlägelfinger. ",
-              "abweichung": "Uhrglasnägel und Trommelschlägelfinger. "
-            },
-            {
-              "art": "befund",
               "id": "pulmo_thoraxform",
-              "chip": "Fassthorax",
+              "chip": "Thoraxform",
               "gruppe": "Inspektion",
               "normal": "Thoraxform unauffällig (kein Fassthorax, keine Kachexie). ",
               "abweichung": "Fassthorax. "
@@ -353,42 +586,134 @@
             {
               "art": "befund",
               "id": "pulmo_atmung",
-              "chip": "Dyspnoe/Atemhilfsmuskulatur",
+              "chip": "Atmung",
               "gruppe": "Inspektion",
-              "normal": "Atmung normofrequent (15–20 Atemzüge/min). Atemexkursion symmetrisch bei normalen Atemphasen. Kein Einsatz der Atemhilfsmuskulatur. ",
-              "abweichung": "Tachypnoe mit Einsatz der Atemhilfsmuskulatur. "
+              "normal": "Atmung normofrequent. Atemexkursion symmetrisch bei normalen Atemphasen. Kein Einsatz der Atemhilfsmuskulatur. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Tachypnoe",
+                    "Tachypnoe mit Einsatz der Atemhilfsmuskulatur",
+                    "Atemexkursion asymmetrisch"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
+              "id": "pulmo_uhrglas",
+              "label": "Uhrglasnägel, Trommelschlägelfinger",
+              "gruppe": "Inspektion",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Uhrglasnägel, Trommelschlägelfinger",
+                  "optionen": [
+                    "Keine Uhrglasnägel oder Trommelschlägelfinger",
+                    "Uhrglasnägel und Trommelschlägelfinger"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
               "id": "pulmo_klopfschall",
-              "chip": "Klopfschall gedämpft",
+              "label": "Klopfschall",
               "gruppe": "Perkussion",
-              "normal": "Über ventralen und dorsalen Lungenabschnitten jeweils seitengleich sonorer Klopfschall. ",
-              "abweichung": "Gedämpfter Klopfschall über den Lungenabschnitten. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Klopfschall",
+                  "optionen": [
+                    "Über ventralen und dorsalen Lungenabschnitten jeweils seitengleich sonorer Klopfschall",
+                    "Gedämpfter Klopfschall rechts basal",
+                    "Gedämpfter Klopfschall links basal"
+                  ]
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "pulmo_atemverschieb",
-              "chip": "Atemverschieblichkeit aufgehoben",
+              "label": "Atemverschieblichkeit",
               "gruppe": "Perkussion",
-              "normal": "Inspiratorische Atemverschieblichkeit der basalen Lungengrenzen seitengleich um ca. 5 cm. ",
-              "abweichung": "Aufgehobene Atemverschieblichkeit der basalen Lungengrenzen. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Atemverschieblichkeit",
+                  "optionen": [
+                    "Inspiratorische Atemverschieblichkeit der basalen Lungengrenzen seitengleich um ca. 5 cm",
+                    "Aufgehobene Atemverschieblichkeit der basalen Lungengrenzen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "pulmo_recessus",
+              "label": "Recessus",
+              "gruppe": "Perkussion",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Recessus",
+                  "optionen": [
+                    "Recessus beidseits frei",
+                    "Recessus rechts mit Pleuraerguss",
+                    "Recessus links mit Pleuraerguss"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "pulmo_atemgeraeusch",
-              "chip": "pathologisches Atemgeräusch",
+              "chip": "Atemgeräusch",
               "gruppe": "Auskultation",
               "normal": "Über ventralen und dorsalen Lungenabschnitten vesikuläres Atemgeräusch seitengleich. ",
-              "abweichung": "Feuchte Rasselgeräusche über den Lungenabschnitten. "
-            },
-            {
-              "art": "befund",
-              "id": "pulmo_recessus",
-              "chip": "Recessus Erguss",
-              "gruppe": "Erguss",
-              "normal": "Recessus beidseits ohne pathologischen Befund. ",
-              "abweichung": "Recessus mit Pleuraerguss. "
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Abgeschwächtes Atemgeräusch",
+                    "Bronchialatmen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "rechts basal",
+                    "links basal",
+                    "beidseits basal",
+                    "rechts",
+                    "links",
+                    "beidseits"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
@@ -396,86 +721,102 @@
               "chip": "Nebengeräusche",
               "gruppe": "Auskultation",
               "normal": "Keine Nebengeräusche. ",
-              "abweichung": "Nebengeräusche (feuchte Rasselgeräusche, Giemen/Brummen, Pleurareiben, Knarren). "
+              "abweichung": "Nebengeräusche: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "feuchte Rasselgeräusche",
+                    "Giemen und Brummen",
+                    "Pleurareiben",
+                    "Knarren"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "pulmo_atemphase",
-              "chip": "Exspiration verlängert",
+              "chip": "Atemphasen",
               "gruppe": "Auskultation",
-              "normal": "Inspiration und Exspiration nicht verkürzt oder verlängert.",
-              "abweichung": "Exspiration verlängert (obstruktiv)."
+              "normal": "Inspiration und Exspiration nicht verkürzt oder verlängert. ",
+              "abweichung": "Exspiration verlängert. "
             }
-          ]
+          ],
+          "status": "entwurf"
         },
         {
           "id": "allg-cor",
           "titel": "Cor",
           "typ": "untersuchung",
-          "platzhalter": [
-            {
-              "id": "cor_hf",
-              "typ": "zahl",
-              "label": "Herzfrequenz",
-              "einheit": "/min",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "cor_rr_re_sys",
-              "typ": "zahl",
-              "label": "RR rechter Arm systolisch",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "cor_rr_re_dia",
-              "typ": "zahl",
-              "label": "RR rechter Arm diastolisch",
-              "einheit": "mmHg",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "cor_rr_li_sys",
-              "typ": "zahl",
-              "label": "RR linker Arm systolisch",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "cor_rr_li_dia",
-              "typ": "zahl",
-              "label": "RR linker Arm diastolisch",
-              "einheit": "mmHg",
-              "required": false,
-              "leerMarker": "…"
-            }
-          ],
+          "platzhalter": [],
           "segmente": [
             {
               "art": "befund",
               "id": "cor_stauung",
-              "chip": "Halsvenenstauung/Ödeme",
-              "gruppe": "Rechtsherz",
+              "chip": "Halsvenenstauung, Ödeme",
+              "gruppe": "Inspektion",
               "normal": "Keine Halsvenenstauung, keine peripheren Ödeme. ",
-              "abweichung": "Halsvenenstauung und periphere Ödeme. "
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Halsvenenstauung",
+                    "Periphere Ödeme",
+                    "Halsvenenstauung und periphere Ödeme"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "cor_spitzenstoss",
-              "chip": "Herzspitzenstoß verbreitert",
+              "label": "Herzspitzenstoß",
               "gruppe": "Palpation",
-              "normal": "Herzspitzenstoß im 5. ICR medioclaviculär links tastbar, nicht hebend oder verbreitert. ",
-              "abweichung": "Herzspitzenstoß nach lateral verlagert, hebend und verbreitert. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Herzspitzenstoß",
+                  "optionen": [
+                    "Herzspitzenstoß im 5. Interkostalraum medioklavikulär links tastbar, nicht hebend oder verbreitert",
+                    "Herzspitzenstoß nach lateral verlagert, hebend und verbreitert"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "cor_herztoene",
-              "chip": "Arrhythmie",
+              "chip": "Herztöne",
               "gruppe": "Auskultation",
-              "normal": "Herztöne rein, rhythmisch und normofrequent, keine pathologischen Nebengeräusche. ",
-              "abweichung": "Herztöne arrhythmisch. "
+              "normal": "Herztöne rein, rhythmisch und normofrequent. ",
+              "abweichung": "Herztöne {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "arrhythmisch",
+                    "tachykard",
+                    "bradykard",
+                    "arrhythmisch und tachykard"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
@@ -483,69 +824,114 @@
               "chip": "Herzgeräusch",
               "gruppe": "Auskultation",
               "normal": "Keine Herzgeräusche. ",
-              "abweichung": "Systolikum bzw. Diastolikum auskultierbar. "
+              "abweichung": "{was} auskultierbar. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Systolikum",
+                    "Diastolikum"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "cor_pulsdefizit",
-              "chip": "Pulsdefizit",
+              "label": "Pulsdefizit",
               "gruppe": "Auskultation",
-              "normal": "Kein Pulsdefizit. ",
-              "abweichung": "Pulsdefizit. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Pulsdefizit",
+                  "optionen": [
+                    "Kein Pulsdefizit",
+                    "Pulsdefizit"
+                  ]
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "cor_karotiden",
-              "chip": "Karotiden-Strömungsgeräusch",
+              "label": "Karotiden",
               "gruppe": "Auskultation",
-              "normal": "Keine Strömungsgeräusche über den Karotiden beidseits, keine Fortleitung in die Axilla. ",
-              "abweichung": "Strömungsgeräusch über den Karotiden mit Fortleitung. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Karotiden",
+                  "optionen": [
+                    "Keine Strömungsgeräusche über den Karotiden beidseits, keine Fortleitung in die Axilla",
+                    "Strömungsgeräusch über der Karotis rechts",
+                    "Strömungsgeräusch über der Karotis links"
+                  ]
+                }
+              ]
             },
             {
-              "art": "text",
-              "text": "Herzfrequenz "
+              "art": "option",
+              "id": "cor_hf",
+              "label": "Herzfrequenz",
+              "gruppe": "Messwerte",
+              "text": "Herzfrequenz {wert}/min. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "wert",
+                  "label": "Herzfrequenz (pro Minute)",
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "platzhalter",
-              "ref": "cor_hf"
+              "art": "option",
+              "id": "cor_rr",
+              "label": "Blutdruck",
+              "gruppe": "Messwerte",
+              "text": "Blutdruck {wert}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "wert",
+                  "label": "Blutdruck (z. B. 130/80)",
+                  "einheit": "mmHg",
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "text",
-              "text": ", Blutdruck rechter Arm "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "cor_rr_re_sys"
-            },
-            {
-              "art": "text",
-              "text": "/"
-            },
-            {
-              "art": "platzhalter",
-              "ref": "cor_rr_re_dia"
-            },
-            {
-              "art": "text",
-              "text": ", linker Arm "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "cor_rr_li_sys"
-            },
-            {
-              "art": "text",
-              "text": "/"
-            },
-            {
-              "art": "platzhalter",
-              "ref": "cor_rr_li_dia"
-            },
-            {
-              "art": "text",
-              "text": "."
+              "art": "option",
+              "id": "cor_rr_seiten",
+              "label": "Blutdruck an beiden Armen",
+              "gruppe": "Messwerte",
+              "text": "Blutdruck rechter Arm {cor_rr_re}, linker Arm {cor_rr_li}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "cor_rr_re",
+                  "label": "Blutdruck rechter Arm",
+                  "einheit": "mmHg",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "cor_rr_li",
+                  "label": "Blutdruck linker Arm",
+                  "einheit": "mmHg",
+                  "required": true
+                }
+              ]
             }
-          ]
+          ],
+          "status": "entwurf"
         },
         {
           "id": "allg-puls",
@@ -556,158 +942,310 @@
             {
               "art": "befund",
               "id": "puls_pulse",
-              "chip": "Pulsdefizit peripher",
+              "chip": "Periphere Pulse",
               "gruppe": "Palpation",
-              "normal": "Periphere Pulse der A. carotis, A. subclavia, A. axillaris, A. brachialis, A. radialis, A. ulnaris, A. femoralis, A. poplitea, A. tibialis posterior sowie A. dorsalis pedis beidseits seitengleich tastbar. ",
-              "abweichung": "Peripheres Pulsdefizit (Puls abgeschwächt bzw. nicht tastbar). "
-            },
-            {
-              "art": "text",
-              "text": "Extremitäten "
-            },
-            {
-              "art": "auswahl",
-              "id": "puls_temperatur",
-              "label": "Extremitäten",
-              "default": 0,
-              "optionen": [
-                "warm",
-                "kalt",
-                "blass"
+              "normal": "Pulse der A. radialis und der A. dorsalis pedis beidseits seitengleich tastbar. ",
+              "abweichung": "Puls {wo} {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Arterie",
+                  "optionen": [
+                    "",
+                    "der A. radialis rechts",
+                    "der A. radialis links",
+                    "der A. dorsalis pedis rechts",
+                    "der A. dorsalis pedis links",
+                    "der A. tibialis posterior rechts",
+                    "der A. tibialis posterior links"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "abgeschwächt",
+                    "nicht tastbar"
+                  ],
+                  "required": true
+                }
               ]
             },
             {
-              "art": "text",
-              "text": ". "
+              "art": "option",
+              "id": "puls_pulse_alle",
+              "label": "Vollständiger Pulsstatus",
+              "gruppe": "Palpation",
+              "text": "Periphere Pulse der A. carotis, A. subclavia, A. axillaris, A. brachialis, A. radialis, A. ulnaris, A. femoralis, A. poplitea, A. tibialis posterior sowie A. dorsalis pedis beidseits seitengleich tastbar. "
+            },
+            {
+              "art": "befund",
+              "id": "puls_temperatur",
+              "chip": "Hauttemperatur der Extremitäten",
+              "gruppe": "Perfusion",
+              "normal": "Extremitäten warm. ",
+              "abweichung": "Extremitäten {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "kalt",
+                    "blass",
+                    "kalt und blass"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "puls_reka",
-              "chip": "Rekap.-Zeit/Allen path.",
+              "chip": "Rekapillarisierungszeit",
               "gruppe": "Perfusion",
-              "normal": "Rekapillarisierungszeit nicht verlängert. Allen-Test beidseits negativ. ",
-              "abweichung": "Rekapillarisierungszeit verlängert. Allen-Test positiv. "
+              "normal": "Rekapillarisierungszeit nicht verlängert. ",
+              "abweichung": "Rekapillarisierungszeit verlängert. "
+            },
+            {
+              "art": "option",
+              "id": "puls_allen",
+              "label": "Allen-Test",
+              "gruppe": "Perfusion",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Allen-Test",
+                  "optionen": [
+                    "Allen-Test beidseits negativ",
+                    "Allen-Test rechts positiv",
+                    "Allen-Test links positiv"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "puls_varikosis",
               "chip": "Varikosis",
               "gruppe": "Venen",
-              "normal": "Keine Varikosis.",
-              "abweichung": "Varikosis vorhanden."
+              "normal": "Keine Varikosis. ",
+              "abweichung": "Varikosis{wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Seite",
+                  "optionen": [
+                    "",
+                    " rechts",
+                    " links",
+                    " beidseits"
+                  ]
+                }
+              ]
             }
-          ]
+          ],
+          "status": "hausstandard"
         },
         {
           "id": "allg-abdomen",
           "titel": "Abdomen",
           "typ": "untersuchung",
-          "platzhalter": [
-            {
-              "id": "abd_leber",
-              "typ": "zahl",
-              "label": "Leber unterhalb Rippenbogen",
-              "einheit": "cm",
-              "required": false,
-              "leerMarker": "…"
-            }
-          ],
+          "platzhalter": [],
           "segmente": [
             {
               "art": "befund",
               "id": "abd_inspektion",
-              "chip": "Abdomen inspekt. auffällig",
+              "chip": "Inspektion",
               "gruppe": "Inspektion",
-              "normal": "Abdomen inspektorisch unauffällig, keine Hernien, keine Striae, kein Ikterus oder portokavale Umgehungskreisläufe. ",
-              "abweichung": "Vorgewölbtes Abdomen mit Hernien und portokavalen Umgehungskreisläufen. "
+              "normal": "Abdomen inspektorisch: keine Hernien, keine Striae, keine portokavalen Umgehungskreisläufe. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Vorgewölbtes Abdomen",
+                    "Hernie",
+                    "Striae",
+                    "Portokavale Umgehungskreisläufe"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "abd_ekchymose",
-              "chip": "Grey-Turner/Cullen",
+              "label": "Grey-Turner-Zeichen, Cullen-Zeichen",
               "gruppe": "Inspektion",
-              "normal": "Kein Grey-Turner- oder Cullen-Zeichen. ",
-              "abweichung": "Grey-Turner- und Cullen-Zeichen positiv. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Grey-Turner-Zeichen, Cullen-Zeichen",
+                  "optionen": [
+                    "Kein Grey-Turner-Zeichen, kein Cullen-Zeichen",
+                    "Grey-Turner-Zeichen positiv",
+                    "Cullen-Zeichen positiv"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "abd_peristaltik",
-              "chip": "Peristaltik vermindert",
+              "chip": "Peristaltik",
               "gruppe": "Auskultation",
-              "normal": "Lebhafte Peristaltik über allen vier Quadranten auskultatorisch. ",
-              "abweichung": "Spärliche Peristaltik über allen vier Quadranten. "
-            },
-            {
-              "art": "text",
-              "text": "Perkussion "
+              "normal": "Lebhafte Peristaltik über allen vier Quadranten. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Spärliche Peristaltik",
+                    "Keine Peristaltik auskultierbar",
+                    "Hochgestellte, klingende Peristaltik"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "auswahl",
               "id": "abd_klopfschall",
               "label": "Perkussion",
-              "default": 0,
               "optionen": [
-                "tympanitischer Klopfschall",
-                "Schenkelschall"
-              ]
-            },
-            {
-              "art": "text",
-              "text": ". "
+                "",
+                "Perkussion: tympanitischer Klopfschall. ",
+                "Perkussion: Schenkelschall. "
+              ],
+              "default": 0
             },
             {
               "art": "befund",
               "id": "abd_palpation",
-              "chip": "Abwehrspannung/Druckschmerz",
+              "chip": "Druckschmerz, Abwehrspannung",
               "gruppe": "Palpation",
               "normal": "Abdomen weich, kein Druckschmerz, kein Peritonismus, keine Abwehrspannung, keine Resistenzen, kein Aszites. ",
-              "abweichung": "Abdomen druckschmerzhaft mit Abwehrspannung und Peritonismus. "
+              "abweichung": "Abdomen: {was}{wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Druckschmerz",
+                    "Druckschmerz mit Abwehrspannung",
+                    "Druckschmerz mit Abwehrspannung und Peritonismus",
+                    "tastbare Resistenz"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " im rechten Oberbauch",
+                    " im linken Oberbauch",
+                    " im rechten Unterbauch",
+                    " im linken Unterbauch",
+                    " im gesamten Abdomen"
+                  ]
+                }
+              ]
             },
             {
-              "art": "text",
-              "text": "Leber ca. "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "abd_leber"
-            },
-            {
-              "art": "text",
-              "text": " unterhalb des Rippenbogens medioklavikulär palpabel. "
+              "art": "option",
+              "id": "abd_leber",
+              "label": "Leber tastbar",
+              "gruppe": "Palpation",
+              "text": "Leber {cm} unterhalb des Rippenbogens medioklavikulär palpabel. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "cm",
+                  "label": "Leber unterhalb des Rippenbogens",
+                  "einheit": "cm",
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "abd_milz",
-              "chip": "Splenomegalie",
+              "chip": "Milz",
               "gruppe": "Palpation",
               "normal": "Milz nicht palpabel. ",
               "abweichung": "Splenomegalie (Milz palpabel). "
             },
             {
               "art": "befund",
-              "id": "abd_appendizitis",
-              "chip": "Appendizitiszeichen positiv",
-              "gruppe": "Appendizitis",
-              "normal": "Appendizitiszeichen (McBurney-Punkt, Lanz-Punkt, Blumberg-Zeichen, Rovsing-Zeichen, Psoas-Zeichen) negativ. Courvoisier-Zeichen und Murphy-Zeichen negativ. ",
-              "abweichung": "Appendizitiszeichen positiv. "
-            },
-            {
-              "art": "befund",
-              "id": "abd_rektal",
-              "chip": "Rektale Untersuchung",
-              "gruppe": "Rektal (nur wenn durchgeführt)",
-              "normal": "",
-              "abweichung": "Unauffällige rektale Untersuchung: kein palpabler Tumor, Sphinktertonus normal, kein Blut, Stuhl oder Schleim am Fingerling. Douglasraum nicht schmerzhaft, keine Fissuren, Fisteln, Hämorrhoiden oder Abszesse. Prostata normal. "
-            },
-            {
-              "art": "befund",
               "id": "abd_nierenlager",
-              "chip": "Nierenlager klopfschmerzhaft",
+              "chip": "Nierenlager",
               "gruppe": "Palpation",
-              "normal": "Nierenlager nicht klopfschmerzhaft.",
-              "abweichung": "Nierenlager klopfschmerzhaft."
+              "normal": "Nierenlager nicht klopfschmerzhaft. ",
+              "abweichung": "Nierenlager {ls} klopfschmerzhaft. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "abd_appendizitis",
+              "label": "Appendizitiszeichen",
+              "gruppe": "Palpation",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Appendizitiszeichen",
+                  "optionen": [
+                    "Appendizitiszeichen (McBurney-Punkt, Lanz-Punkt, Blumberg-Zeichen, Rovsing-Zeichen, Psoas-Zeichen) negativ. Courvoisier-Zeichen und Murphy-Zeichen negativ",
+                    "Appendizitiszeichen positiv"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "abd_rektal",
+              "label": "Rektale Untersuchung",
+              "gruppe": "Rektal (nur wenn durchgeführt)",
+              "text": "Rektale Untersuchung: kein palpabler Tumor, Sphinktertonus normal, kein Blut, kein Stuhl und kein Schleim am Fingerling. Douglasraum nicht schmerzhaft, keine Fissuren, Fisteln, Hämorrhoiden oder Abszesse. "
+            },
+            {
+              "art": "option",
+              "id": "abd_prostata",
+              "label": "Prostata",
+              "gruppe": "Rektal (nur wenn durchgeführt)",
+              "text": "Prostata nicht vergrößert, glatt begrenzt. "
             }
-          ]
+          ],
+          "status": "hausstandard"
         },
         {
           "id": "allg-we",
@@ -716,149 +1254,311 @@
           "platzhalter": [],
           "segmente": [
             {
+              "art": "option",
+              "id": "we_statik",
+              "label": "Statik der Wirbelsäule",
+              "gruppe": "Wirbelsäule",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Statik der Wirbelsäule",
+                  "optionen": [
+                    "Wirbelsäule lotgerecht. Schulter- und Beckengeradstand. Keine Hyperlordose oder Hyperkyphose. Keine Skoliose",
+                    "Skoliose",
+                    "Hyperkyphose der Brustwirbelsäule",
+                    "Beckenschiefstand"
+                  ]
+                }
+              ]
+            },
+            {
               "art": "befund",
               "id": "we_dornfortsatz",
-              "chip": "DS Dornfortsätze",
+              "chip": "Druck- oder Klopfschmerz Dornfortsätze",
               "gruppe": "Wirbelsäule",
-              "normal": "Wirbelsäule lotgerecht. Schulter- und Beckengeradstand. Keine Hyperlordose oder Hyperkyphose. Keine Skoliose. Kein Druck- oder Klopfschmerz über den Dornfortsätzen. ",
-              "abweichung": "Druck- und Klopfschmerz über den Dornfortsätzen. "
+              "normal": "Kein Druck- oder Klopfschmerz über den Dornfortsätzen. ",
+              "abweichung": "Druck- und Klopfschmerz über den Dornfortsätzen {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Abschnitt",
+                  "optionen": [
+                    "",
+                    "der Halswirbelsäule",
+                    "der Brustwirbelsäule",
+                    "der Lendenwirbelsäule"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "we_hws",
-              "chip": "HWS eingeschränkt",
+              "chip": "Beweglichkeit Halswirbelsäule",
               "gruppe": "Beweglichkeit",
-              "normal": "HWS im üblichen Bewegungsumfang frei beweglich. ",
-              "abweichung": "HWS-Beweglichkeit schmerzhaft eingeschränkt. "
+              "normal": "Halswirbelsäule im üblichen Bewegungsumfang frei beweglich. ",
+              "abweichung": "Beweglichkeit der Halswirbelsäule schmerzhaft eingeschränkt. "
             },
             {
               "art": "befund",
               "id": "we_lws",
-              "chip": "LWS eingeschränkt",
+              "chip": "Beweglichkeit Lendenwirbelsäule",
               "gruppe": "Beweglichkeit",
-              "normal": "Inklination und Reklination der LWS nicht schmerzhaft eingeschränkt. Ott- und Schober-Maß regelrecht. Finger-Boden-Abstand und Kinn-Jugulum-Abstand regelrecht. ",
-              "abweichung": "LWS-Beweglichkeit schmerzhaft eingeschränkt, Ott- und Schober-Maß vermindert. "
+              "normal": "Inklination und Reklination der Lendenwirbelsäule nicht schmerzhaft eingeschränkt. ",
+              "abweichung": "Beweglichkeit der Lendenwirbelsäule schmerzhaft eingeschränkt. "
+            },
+            {
+              "art": "option",
+              "id": "we_masse",
+              "label": "Ott-Maß, Schober-Maß, Abstände",
+              "gruppe": "Beweglichkeit",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ott-Maß, Schober-Maß, Abstände",
+                  "optionen": [
+                    "Ott-Maß und Schober-Maß regelrecht. Finger-Boden-Abstand und Kinn-Jugulum-Abstand regelrecht",
+                    "Ott-Maß und Schober-Maß vermindert"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "we_extremitaeten",
-              "chip": "Deformität/Atrophie",
+              "chip": "Deformität, Atrophie",
               "gruppe": "Extremitäten",
-              "normal": "Inspektorisch keine Deformitäten oder Atrophien der Extremitäten. Alle großen Gelenke inspektorisch und palpatorisch unauffällig sowie in ihren altersentsprechenden Bewegungsumfängen schmerzfrei. ",
-              "abweichung": "Deformitäten und Atrophien der Extremitäten. "
+              "normal": "Inspektorisch keine Deformitäten oder Atrophien der Extremitäten. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Deformität",
+                    "Muskelatrophie"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
             },
             {
               "art": "befund",
+              "id": "we_gelenke",
+              "chip": "Große Gelenke",
+              "gruppe": "Extremitäten",
+              "normal": "Übrige große Gelenke ohne Schwellung und ohne Druckschmerz, schmerzfrei beweglich. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Schwellung",
+                    "Druckschmerz",
+                    "Schmerzhafte Bewegungseinschränkung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Gelenk mit Seite",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "option",
               "id": "we_obereextr",
-              "chip": "Obere Extr. Funktion",
+              "label": "Funktionstests obere Extremität",
               "gruppe": "Funktionstests",
-              "normal": "Obere Extremität: Gaenslen-Handgriff nicht schmerzhaft, Schürzen- und Nackengriff unauffällig. ",
-              "abweichung": "Obere Extremität: Gaenslen-Handgriff schmerzhaft, Schürzen- und Nackengriff eingeschränkt. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Funktionstests obere Extremität",
+                  "optionen": [
+                    "Obere Extremität: Gaenslen-Handgriff nicht schmerzhaft, Schürzen- und Nackengriff frei",
+                    "Obere Extremität: Gaenslen-Handgriff schmerzhaft",
+                    "Obere Extremität: Schürzen- und Nackengriff eingeschränkt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "we_untereextr",
+              "label": "Funktionstests untere Extremität",
+              "gruppe": "Funktionstests",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Funktionstests untere Extremität",
+                  "optionen": [
+                    "Untere Extremität: Mennell-Zeichen negativ, Kreuzbänder intakt, Menisken nicht schmerzhaft",
+                    "Untere Extremität: Mennell-Zeichen positiv",
+                    "Untere Extremität: Meniskuszeichen positiv"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "we_untereextr",
-              "chip": "Untere Extr. Funktion",
-              "gruppe": "Funktionstests",
-              "normal": "Untere Extremität: Mennell-Zeichen negativ, Kreuzbänder intakt, Menisken nicht schmerzhaft. ",
-              "abweichung": "Untere Extremität: Mennell-Zeichen positiv, Meniskuszeichen positiv. "
+              "id": "we_perfusion",
+              "chip": "Periphere Durchblutung",
+              "gruppe": "Durchblutung",
+              "normal": "Keine periphere Zyanose, Rekapillarisierungszeit unter 2 Sekunden. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Periphere Zyanose",
+                    "Rekapillarisierungszeit verlängert"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "text",
-              "text": "Keine periphere Zyanose, Rekapillarisierungszeit regelrecht (< 2 Sekunden). Kein Hinweis auf Hypoxie in Form von Uhrglasnägeln oder Trommelschlägelfingern."
+              "art": "option",
+              "id": "we_hypoxie",
+              "label": "Hypoxiezeichen",
+              "gruppe": "Durchblutung",
+              "text": "Kein Hinweis auf Hypoxie in Form von Uhrglasnägeln oder Trommelschlägelfingern. "
             }
-          ]
+          ],
+          "status": "entwurf"
         },
         {
           "id": "allg-neuro",
           "titel": "Orientierende neurologische Untersuchung",
           "typ": "untersuchung",
-          "platzhalter": [
-            {
-              "id": "neuro_vibration",
-              "typ": "zahl",
-              "label": "Vibrationssinn (Rydel-Seiffer)",
-              "einheit": "/8",
-              "required": false,
-              "leerMarker": "…"
-            }
-          ],
+          "platzhalter": [],
           "segmente": [
             {
               "art": "befund",
               "id": "neuro_defizit",
-              "chip": "fokales Defizit",
-              "gruppe": "Orientierung",
-              "normal": "Patient wach, ansprechbar, zu allen vier Qualitäten orientiert. Grob orientierend kein Hinweis auf ein fokal neurologisches Defizit. ",
-              "abweichung": "Fokal neurologisches Defizit. "
-            },
-            {
-              "art": "befund",
-              "id": "neuro_meningismus",
-              "chip": "Meningismus",
-              "gruppe": "Meningeal",
-              "normal": "Kein Meningismus. ",
-              "abweichung": "Meningismus. "
-            },
-            {
-              "art": "befund",
-              "id": "neuro_lasegue",
-              "chip": "Lasègue/Bragard positiv",
-              "gruppe": "Nervendehnung",
-              "normal": "Lasègue und Bragard negativ. ",
-              "abweichung": "Lasègue und Bragard positiv. "
-            },
-            {
-              "art": "befund",
-              "id": "neuro_hirnnerven",
-              "chip": "Hirnnervenausfall",
-              "gruppe": "Hirnnerven",
-              "normal": "Hirnnerven unauffällig. ",
-              "abweichung": "Hirnnervenausfall. "
+              "chip": "Fokales neurologisches Defizit",
+              "gruppe": "Fokales Defizit",
+              "normal": "Grob orientierend kein Hinweis auf ein fokales neurologisches Defizit. ",
+              "abweichung": "Fokales neurologisches Defizit {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Art und Ort",
+                  "maxLen": 60
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "neuro_motorik",
-              "chip": "Tonus/Kraft pathologisch",
+              "chip": "Kraft",
               "gruppe": "Motorik",
-              "normal": "Motorik: Muskeltonus regelrecht und seitengleich, keine Spastik, kein Rigor, kein Tremor, keine Atrophie. Kraftgrade an den Extremitäten 5/5. ",
-              "abweichung": "Motorik: pathologischer Muskeltonus, Kraftminderung. "
+              "normal": "Motorik: Kraft an den nicht verletzten Extremitäten voll, keine Paresen. ",
+              "abweichung": "Motorik: Kraftminderung {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "des rechten Arms",
+                    "des linken Arms",
+                    "des rechten Beins",
+                    "des linken Beins"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Kraftgrad",
+                  "optionen": [
+                    "",
+                    ", Kraftgrad 4/5",
+                    ", Kraftgrad 3/5",
+                    ", Kraftgrad 2/5"
+                  ]
+                }
+              ]
             },
             {
-              "art": "befund",
-              "id": "neuro_mer",
-              "chip": "MER seitendifferent",
-              "gruppe": "Reflexe",
-              "normal": "Muskeleigenreflexe: Bizepssehnenreflex, Trizepssehnenreflex, Patellasehnenreflex und Achillessehnenreflex seitengleich mittellebhaft auslösbar, keine verbreiterten Reflexzonen. ",
-              "abweichung": "Muskeleigenreflexe seitendifferent (gesteigert bzw. abgeschwächt) mit verbreiterten Reflexzonen. "
+              "art": "option",
+              "id": "neuro_motorik_nb",
+              "label": "Kraft schmerzbedingt nicht prüfbar",
+              "gruppe": "Motorik",
+              "text": "Kraft {ort} schmerzbedingt nicht prüfbar. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort mit Seite (z. B. am rechten Bein)",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "befund",
-              "id": "neuro_babinski",
-              "chip": "Babinski positiv",
-              "gruppe": "Reflexe",
-              "normal": "Babinski-Zeichen beidseits negativ. ",
-              "abweichung": "Babinski-Zeichen positiv. "
+              "art": "option",
+              "id": "neuro_tonus",
+              "label": "Muskeltonus",
+              "gruppe": "Motorik",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Muskeltonus",
+                  "optionen": [
+                    "Muskeltonus regelrecht und seitengleich, keine Spastik, kein Rigor, kein Tremor, keine Atrophie",
+                    "Muskeltonus erhöht",
+                    "Tremor"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "neuro_sensibilitaet",
-              "chip": "Sensibilitätsstörung",
+              "chip": "Sensibilität",
               "gruppe": "Sensibilität",
               "normal": "Sensibilität: Oberflächensensibilität seitengleich erhalten. ",
-              "abweichung": "Sensibilität: Oberflächensensibilität herabgesetzt. "
-            },
-            {
-              "art": "text",
-              "text": "Lagesinn und Vibrationssinn unauffällig ("
-            },
-            {
-              "art": "platzhalter",
-              "ref": "neuro_vibration"
-            },
-            {
-              "art": "text",
-              "text": "). "
+              "abweichung": "Sensibilität: Oberflächensensibilität {wo} herabgesetzt. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
             },
             {
               "art": "befund",
@@ -866,25 +1566,165 @@
               "chip": "Dysästhesie",
               "gruppe": "Sensibilität",
               "normal": "Keine Dysästhesie. ",
-              "abweichung": "Dysästhesien und Parästhesien. "
+              "abweichung": "Dysästhesien und Parästhesien {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
+              "id": "neuro_vibration",
+              "label": "Lagesinn, Vibrationssinn",
+              "gruppe": "Sensibilität",
+              "text": "Lagesinn intakt, Vibrationssinn {wert} von 8. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "wert",
+                  "label": "Vibrationssinn (Rydel-Seiffer, 0 bis 8)",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "neuro_meningismus",
+              "label": "Meningismus",
+              "gruppe": "Weitere Prüfungen",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Meningismus",
+                  "optionen": [
+                    "Kein Meningismus",
+                    "Meningismus"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "neuro_lasegue",
+              "label": "Lasègue-Zeichen, Bragard-Zeichen",
+              "gruppe": "Weitere Prüfungen",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Lasègue-Zeichen, Bragard-Zeichen",
+                  "optionen": [
+                    "Lasègue-Zeichen und Bragard-Zeichen beidseits negativ",
+                    "Lasègue-Zeichen rechts positiv",
+                    "Lasègue-Zeichen links positiv"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "neuro_hirnnerven",
+              "label": "Hirnnerven",
+              "gruppe": "Weitere Prüfungen",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Hirnnerven",
+                  "optionen": [
+                    "Hirnnerven orientierend ohne Ausfall",
+                    "Hirnnervenausfall"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "neuro_mer",
+              "label": "Muskeleigenreflexe",
+              "gruppe": "Reflexe",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Muskeleigenreflexe",
+                  "optionen": [
+                    "Muskeleigenreflexe: Bizepssehnenreflex, Trizepssehnenreflex, Patellarsehnenreflex und Achillessehnenreflex seitengleich mittellebhaft auslösbar, keine verbreiterten Reflexzonen",
+                    "Muskeleigenreflexe seitendifferent"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "neuro_babinski",
+              "label": "Babinski-Zeichen",
+              "gruppe": "Reflexe",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Babinski-Zeichen",
+                  "optionen": [
+                    "Babinski-Zeichen beidseits negativ",
+                    "Babinski-Zeichen rechts positiv",
+                    "Babinski-Zeichen links positiv",
+                    "Babinski-Zeichen beidseits positiv"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
               "id": "neuro_koordination",
-              "chip": "Koordinationsstörung",
+              "label": "Koordination",
               "gruppe": "Koordination",
-              "normal": "Koordination: Gangbild unauffällig. Finger-Nase- und Knie-Hacke-Versuch unauffällig. Romberg-Stehversuch und Unterberger-Tretversuch regelrecht. ",
-              "abweichung": "Koordination: unsicheres Gangbild, Finger-Nase- und Knie-Hacke-Versuch dysmetrisch, Romberg-Stehversuch positiv. "
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Koordination",
+                  "optionen": [
+                    "Koordination: Gangbild sicher. Finger-Nase-Versuch und Knie-Hacke-Versuch zielsicher. Romberg-Stehversuch und Unterberger-Tretversuch regelrecht",
+                    "Koordination: Gangbild unsicher",
+                    "Koordination: Finger-Nase-Versuch dysmetrisch",
+                    "Koordination: Romberg-Stehversuch positiv"
+                  ]
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "neuro_trendelenburg",
-              "chip": "Trendelenburg positiv",
+              "label": "Trendelenburg-Zeichen",
               "gruppe": "Koordination",
-              "normal": "Trendelenburg-Zeichen negativ.",
-              "abweichung": "Trendelenburg-Zeichen positiv."
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Trendelenburg-Zeichen",
+                  "optionen": [
+                    "Trendelenburg-Zeichen negativ",
+                    "Trendelenburg-Zeichen rechts positiv",
+                    "Trendelenburg-Zeichen links positiv"
+                  ]
+                }
+              ]
             }
-          ]
+          ],
+          "status": "entwurf"
         }
       ]
     },
@@ -897,227 +1737,751 @@
           "id": "bc-abcde",
           "titel": "Body-Check (ABCDE)",
           "typ": "befund",
-          "platzhalter": [
-            {
-              "id": "bc_af",
-              "typ": "zahl",
-              "label": "Atemfrequenz",
-              "einheit": "/min",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "bc_spo2",
-              "typ": "zahl",
-              "label": "SpO2",
-              "einheit": "%",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "bc_rr",
-              "typ": "zahl",
-              "label": "Blutdruck",
-              "einheit": "mmHg",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "bc_hf",
-              "typ": "zahl",
-              "label": "Herzfrequenz",
-              "einheit": "/min",
-              "required": false,
-              "leerMarker": "…"
-            },
-            {
-              "id": "bc_bz",
-              "typ": "zahl",
-              "label": "Blutzucker",
-              "einheit": "mg/dl",
-              "required": false,
-              "leerMarker": "…"
-            }
-          ],
+          "platzhalter": [],
           "segmente": [
+            {
+              "art": "punkt"
+            },
             {
               "art": "befund",
               "id": "bc_a_atemweg",
-              "chip": "Atemweg verlegt",
-              "gruppe": "A – Airway",
-              "normal": "A – Atemwege frei, Stabilisierung der HWS mittels Cervikalstütze. Patient antwortet auf Fragen. Kein Giemen, Schnarchen oder Pfeifen. ",
-              "abweichung": "A – Atemweg verlegt, Atemwegssicherung erforderlich. "
+              "chip": "A: Atemweg",
+              "gruppe": "A: Atemweg",
+              "normal": "A: Atemwege frei. Adäquate Antwort auf Fragen. Kein Giemen, kein Schnarchen, kein Pfeifen. ",
+              "abweichung": "A: Atemweg verlegt, Atemwegssicherung erforderlich. "
             },
             {
-              "art": "text",
-              "text": "B – Patient atmet selbstständig, regelmäßige AF von "
+              "art": "option",
+              "id": "bc_hws_stuetze",
+              "label": "Zervikalstütze",
+              "gruppe": "A: Atemweg",
+              "text": "Halswirbelsäule mit Zervikalstütze stabilisiert. "
             },
             {
-              "art": "platzhalter",
-              "ref": "bc_af"
+              "art": "punkt"
             },
             {
-              "art": "text",
-              "text": ". Vesikuläres Atemgeräusch beidseits, Thorax stabil, SpO2 "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "bc_spo2"
-            },
-            {
-              "art": "text",
-              "text": " "
-            },
-            {
-              "art": "auswahl",
-              "id": "bc_o2",
-              "label": "O₂-Gabe",
-              "default": 0,
-              "optionen": [
-                "unter Raumluft",
-                "unter 2–4 L O₂ über Nasenbrille",
-                "unter 10 L O₂ über Maske"
+              "art": "befund",
+              "id": "bc_b_atmung",
+              "chip": "B: Atmung",
+              "gruppe": "B: Atmung",
+              "normal": "B: Spontanatmung, regelmäßig. Vesikuläres Atemgeräusch beidseits. ",
+              "abweichung": "B: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Atemgeräusch rechts abgeschwächt",
+                    "Atemgeräusch links abgeschwächt",
+                    "Tachypnoe",
+                    "Thorax instabil"
+                  ],
+                  "required": true
+                }
               ]
             },
             {
+              "art": "messwert",
+              "id": "bc_af",
+              "label": "Atemfrequenz",
+              "vorlage": "Atemfrequenz {w}/min. ",
+              "gruppe": "B: Atmung"
+            },
+            {
+              "art": "option",
+              "id": "bc_spo2",
+              "label": "Sauerstoffsättigung",
+              "an": true,
+              "gruppe": "B: Atmung",
+              "text": "Sauerstoffsättigung {wert} {bc_o2}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "wert",
+                  "label": "Sauerstoffsättigung",
+                  "einheit": "%",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "bc_o2",
+                  "label": "Sauerstoffgabe",
+                  "optionen": [
+                    "",
+                    "unter Raumluft",
+                    "unter 2 bis 4 l Sauerstoff über Nasenbrille",
+                    "unter 10 l Sauerstoff über Maske"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
               "art": "text",
-              "text": ". C – RR "
+              "text": "C: "
             },
             {
-              "art": "platzhalter",
-              "ref": "bc_rr"
+              "art": "messwert",
+              "id": "bc_rr",
+              "label": "Blutdruck",
+              "vorlage": "Blutdruck {w} mmHg. ",
+              "gruppe": "C: Kreislauf"
             },
             {
-              "art": "text",
-              "text": ", HF "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "bc_hf"
-            },
-            {
-              "art": "text",
-              "text": ", Rekapillarisierungszeit 2 Sekunden, periphere Pulse kräftig palpabel, Normotonie, Haut kühl und trocken, keine Blutungen. Thorax, Becken und proximale Extremitäten stabil. "
+              "art": "messwert",
+              "id": "bc_hf",
+              "label": "Herzfrequenz",
+              "vorlage": "Herzfrequenz {w}/min. ",
+              "gruppe": "C: Kreislauf"
             },
             {
               "art": "befund",
+              "id": "bc_reka",
+              "chip": "Rekapillarisierungszeit",
+              "gruppe": "C: Kreislauf",
+              "normal": "Rekapillarisierungszeit höchstens 2 Sekunden. ",
+              "abweichung": "Rekapillarisierungszeit verlängert. "
+            },
+            {
+              "art": "befund",
+              "id": "bc_pulse",
+              "chip": "Periphere Pulse",
+              "gruppe": "C: Kreislauf",
+              "normal": "Periphere Pulse kräftig palpabel. ",
+              "abweichung": "Periphere Pulse {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "schwach palpabel",
+                    "nicht palpabel"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_haut",
+              "chip": "Haut",
+              "gruppe": "C: Kreislauf",
+              "normal": "Haut kühl und trocken. ",
+              "abweichung": "Haut {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "warm und trocken",
+                    "kaltschweißig",
+                    "blass",
+                    "marmoriert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_blutung",
+              "chip": "Blutung",
+              "gruppe": "C: Kreislauf",
+              "normal": "Keine Blutungen. ",
+              "abweichung": "Blutung {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_stabil",
+              "chip": "Stabilität Thorax, Becken, Oberschenkel",
+              "gruppe": "C: Kreislauf",
+              "normal": "Thorax, Becken und proximale Extremitäten stabil. ",
+              "abweichung": "Instabilität: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "Thorax",
+                    "Becken",
+                    "Oberschenkel rechts",
+                    "Oberschenkel links"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
               "id": "bc_fast",
-              "chip": "FAST durchgeführt",
-              "gruppe": "C – Circulation (nur wenn durchgeführt)",
-              "normal": "",
-              "abweichung": "FAST-Sonographie ohne freie Flüssigkeit / Perikard-/Pleuraerguss. "
+              "label": "FAST-Sonografie",
+              "gruppe": "C: Kreislauf",
+              "text": "FAST-Sonografie: keine freie Flüssigkeit, kein Perikarderguss, kein Pleuraerguss. "
+            },
+            {
+              "art": "punkt"
             },
             {
               "art": "text",
-              "text": "D – GCS 15. Patient wach, ansprechbar, 4-fach orientiert. Pupillen isokor, mittelweit, seitengleich und prompt lichtreagibel. BZ "
+              "text": "D: "
             },
             {
-              "art": "platzhalter",
-              "ref": "bc_bz"
-            },
-            {
-              "art": "text",
-              "text": ". E – Normothermie. "
+              "art": "messwert",
+              "id": "bc_gcs",
+              "label": "Glasgow Coma Scale",
+              "vorlage": "Glasgow Coma Scale {w}. ",
+              "gruppe": "D: Neurologie"
             },
             {
               "art": "befund",
+              "id": "bc_bewusstsein",
+              "chip": "Bewusstsein und Orientierung",
+              "gruppe": "D: Neurologie",
+              "normal": "Wach, ansprechbar, 4-fach orientiert. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Bewusstsein",
+                  "optionen": [
+                    "",
+                    "Wach, zeitlich nicht orientiert",
+                    "Wach, zu Ort und Zeit nicht orientiert",
+                    "Schläfrig, auf Ansprache erweckbar",
+                    "Auf Schmerzreiz erweckbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_pupillen",
+              "chip": "Pupillen",
+              "gruppe": "D: Neurologie",
+              "normal": "Pupillen isokor, mittelweit, seitengleich und prompt lichtreagibel. ",
+              "abweichung": "Anisokorie{weiter}{reaktion}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "weitere Pupille",
+                  "optionen": [
+                    "",
+                    ", rechte Pupille weiter",
+                    ", linke Pupille weiter"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "reaktion",
+                  "label": "Lichtreaktion",
+                  "optionen": [
+                    "",
+                    ", Lichtreaktion rechts verzögert",
+                    ", Lichtreaktion links verzögert",
+                    ", Lichtreaktion beidseits verzögert"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "bc_bz",
+              "label": "Blutzucker",
+              "vorlage": "Blutzucker {w} mg/dl. ",
+              "gruppe": "D: Neurologie"
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "E: "
+            },
+            {
+              "art": "befund",
+              "id": "bc_e_temperatur",
+              "chip": "Körpertemperatur",
+              "gruppe": "E: Umgebung",
+              "normal": "Normothermie. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Hypothermie",
+                    "Fieber"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
               "id": "bc_tetanus",
-              "chip": "Tetanusschutz aktuell",
-              "gruppe": "E – Exposure",
-              "normal": "Tetanusschutz anamnestisch unklar. ",
-              "abweichung": "Tetanusschutz aktuell. "
+              "label": "Tetanusschutz",
+              "optionen": [
+                "Tetanusschutz anamnestisch unklar. ",
+                "Tetanusschutz laut Impfausweis aktuell. ",
+                "Tetanusschutz nach Angabe aktuell. ",
+                "Tetanusschutz nicht aktuell. ",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Kopf und Hals: "
             },
             {
               "art": "befund",
               "id": "bc_schaedel",
-              "chip": "Schädelverletzung",
-              "gruppe": "Ausführlich – Schädel",
-              "normal": "Keine Riss-Quetsch-Wunden, Prellmarken oder Hämatome des Schädels. Keine Deformitäten oder tastbare Stufen des Schädels. Kein Flüssigkeitsaustritt aus Mund, Nase oder Ohren. Kein knöcherner Druckschmerz im Bereich der HWS. ",
-              "abweichung": "Verletzungszeichen am Schädel. "
+              "chip": "Wunden, Prellmarken am Schädel",
+              "gruppe": "Kopf und Hals",
+              "normal": "Keine Riss-Quetschwunden, Prellmarken oder Hämatome des Schädels. ",
+              "abweichung": "{was} am Schädel {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Riss-Quetschwunde",
+                    "Prellmarke",
+                    "Hämatom"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Lage",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_schaedel_stufe",
+              "chip": "Stufe, Deformität des Schädels",
+              "gruppe": "Kopf und Hals",
+              "normal": "Keine Deformitäten oder tastbaren Stufen des Schädels. ",
+              "abweichung": "Tastbare Stufe des Schädels {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Lage",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_liquor",
+              "chip": "Flüssigkeit aus Mund, Nase, Ohren",
+              "gruppe": "Kopf und Hals",
+              "normal": "Kein Flüssigkeitsaustritt aus Mund, Nase oder Ohren. ",
+              "abweichung": "Austritt von {was} aus {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Flüssigkeit",
+                  "optionen": [
+                    "",
+                    "Blut",
+                    "klarer Flüssigkeit"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "der Nase",
+                    "dem rechten Ohr",
+                    "dem linken Ohr",
+                    "dem Mund"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_hws",
+              "chip": "Halswirbelsäule",
+              "gruppe": "Kopf und Hals",
+              "normal": "Kein knöcherner Druckschmerz im Bereich der Halswirbelsäule. ",
+              "abweichung": "Knöcherner Druckschmerz im Bereich der Halswirbelsäule {hoehe}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "hoehe",
+                  "label": "Höhe",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Rumpf: "
             },
             {
               "art": "befund",
               "id": "bc_rumpf",
-              "chip": "Rumpf instabil",
-              "gruppe": "Ausführlich – Rumpf",
-              "normal": "Thorax und Becken stabil. Abdomen weich. ",
-              "abweichung": "Thorax/Becken instabil, Abdomen abwehrgespannt. "
+              "chip": "Thorax und Becken",
+              "gruppe": "Rumpf",
+              "normal": "Thorax und Becken stabil. ",
+              "abweichung": "{was} instabil. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "Thorax",
+                    "Becken",
+                    "Thorax und Becken"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_abdomen",
+              "chip": "Abdomen",
+              "gruppe": "Rumpf",
+              "normal": "Abdomen weich. ",
+              "abweichung": "Abdomen: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Druckschmerz",
+                    "Abwehrspannung",
+                    "Prellmarke"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Extremitäten: "
             },
             {
               "art": "befund",
               "id": "bc_extremitaeten",
-              "chip": "Extremitätenverletzung",
-              "gruppe": "Ausführlich – Extremitäten",
-              "normal": "Keine sichtbaren Deformitäten der oberen und unteren Extremitäten. Keine aktiven Blutungen, keine offenen Wunden, keine Prellmarken. Keine tastbaren Stufen oder Krepitationen. Kein Druckschmerz im Bereich des Schultergürtels, der Ellenbogengelenke, Handgelenke oder Hände. Kein Druckschmerz der Hüftgelenke, Kniegelenke, oberen Sprunggelenke und Füße. Keine Druckschmerzen der Langknochen. Orientierende Untersuchung der peripheren Durchblutung, Motorik und Sensibilität intakt. ",
-              "abweichung": "Verletzungszeichen an den Extremitäten. "
+              "chip": "Deformität",
+              "gruppe": "Extremitäten",
+              "normal": "Keine sichtbaren Deformitäten der oberen und unteren Extremitäten. ",
+              "abweichung": "Sichtbare Deformität {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_extr_wunden",
+              "chip": "Blutung, Wunden, Prellmarken",
+              "gruppe": "Extremitäten",
+              "normal": "Keine aktiven Blutungen, keine offenen Wunden, keine Prellmarken. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Aktive Blutung",
+                    "Offene Wunde",
+                    "Prellmarke"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_extr_stufen",
+              "chip": "Stufen, Krepitation",
+              "gruppe": "Extremitäten",
+              "normal": "Keine tastbaren Stufen oder Krepitationen. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Tastbare Stufe",
+                    "Krepitation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_extr_ds_oben",
+              "chip": "Druckschmerz obere Extremität",
+              "gruppe": "Extremitäten",
+              "normal": "Kein Druckschmerz im Bereich des Schultergürtels, der Ellenbogengelenke, Handgelenke oder Hände. ",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_extr_ds_unten",
+              "chip": "Druckschmerz untere Extremität",
+              "gruppe": "Extremitäten",
+              "normal": "Kein Druckschmerz der Hüftgelenke, Kniegelenke, oberen Sprunggelenke und Füße. ",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_extr_ds_lang",
+              "chip": "Druckschmerz Langknochen",
+              "gruppe": "Extremitäten",
+              "normal": "Keine Druckschmerzen der Langknochen. ",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_extr_dms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Extremitäten",
+              "normal": "Orientierende Untersuchung der peripheren Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Sensibilitätsminderung",
+                    "Kraftminderung",
+                    "Abgeschwächter Puls"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Wirbelsäule: "
             },
             {
               "art": "befund",
               "id": "bc_wirbelsaeule",
-              "chip": "Wirbelsäulenverletzung",
-              "gruppe": "Ausführlich – Wirbelsäule",
-              "normal": "Keine offenen Verletzungen oder tastbaren Stufen über der gesamten Wirbelsäule. Kein Druck- oder Klopfschmerz. Analsphinktertonus regelrecht.",
-              "abweichung": "Verletzungszeichen der Wirbelsäule."
+              "chip": "Offene Verletzung, Stufe",
+              "gruppe": "Wirbelsäule",
+              "normal": "Keine offenen Verletzungen oder tastbaren Stufen über der gesamten Wirbelsäule. ",
+              "abweichung": "{was} über der Wirbelsäule {hoehe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Offene Verletzung",
+                    "Tastbare Stufe"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "hoehe",
+                  "label": "Höhe",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bc_ws_ds",
+              "chip": "Druck- oder Klopfschmerz",
+              "gruppe": "Wirbelsäule",
+              "normal": "Kein Druck- oder Klopfschmerz über der Wirbelsäule. ",
+              "abweichung": "Druck- oder Klopfschmerz über der Wirbelsäule {hoehe}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "hoehe",
+                  "label": "Höhe",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "bc_sphinkter",
+              "label": "Analsphinktertonus",
+              "gruppe": "Wirbelsäule",
+              "text": "Analsphinktertonus regelrecht. "
             }
-          ]
+          ],
+          "status": "entwurf"
         },
         {
           "id": "bc-fast",
-          "titel": "FAST-Sono",
+          "titel": "FAST-Sonografie",
           "typ": "befund",
           "platzhalter": [],
           "segmente": [
             {
               "art": "befund",
               "id": "fast_perikard",
-              "chip": "Perikard-/Pleuraerguss",
+              "chip": "Perikarderguss, Pleuraerguss",
               "gruppe": "FAST",
-              "normal": "FAST-Sono: Kein Hinweis auf Perikard- oder Pleuraerguss. ",
-              "abweichung": "Perikard-/Pleuraerguss nachweisbar. "
+              "normal": "FAST-Sonografie: kein Nachweis eines Perikardergusses oder Pleuraergusses. ",
+              "abweichung": "FAST-Sonografie: {was} nachweisbar. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Perikarderguss",
+                    "Pleuraerguss rechts",
+                    "Pleuraerguss links"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "fast_morison",
-              "chip": "freie Flüssigkeit Morison",
+              "chip": "Freie Flüssigkeit Morison, Koller",
               "gruppe": "FAST",
-              "normal": "Keine freie Flüssigkeit im Morison-Pouch und Koller-Pouch. ",
-              "abweichung": "Freie Flüssigkeit im Morison-/Koller-Pouch. "
+              "normal": "Keine freie Flüssigkeit im Morison-Pouch und im Koller-Pouch. ",
+              "abweichung": "Freie Flüssigkeit im {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "Morison-Pouch",
+                    "Koller-Pouch",
+                    "Morison-Pouch und Koller-Pouch"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "fast_douglas",
-              "chip": "freie Flüssigkeit Douglas",
+              "chip": "Freie Flüssigkeit Douglas",
               "gruppe": "FAST",
-              "normal": "Keine freie Flüssigkeit im Douglas-/Proust-Raum.",
-              "abweichung": "Freie Flüssigkeit im Douglas-/Proust-Raum."
+              "normal": "Keine freie Flüssigkeit im Douglas-Raum bzw. Proust-Raum. ",
+              "abweichung": "Freie Flüssigkeit im Douglas-Raum bzw. Proust-Raum. "
             }
-          ]
+          ],
+          "status": "hausstandard"
         }
-      ]
-    }
-  ],
-  "stapel": [
-    {
-      "id": "stapel-ganzkoerper",
-      "name": "Ganzkörper-Normalbefund",
-      "bausteinIds": [
-        "allg-allgemein",
-        "allg-haut",
-        "allg-kopf",
-        "allg-pulmo",
-        "allg-cor",
-        "allg-puls",
-        "allg-abdomen",
-        "allg-we",
-        "allg-neuro"
-      ]
-    },
-    {
-      "id": "stapel-bodycheck",
-      "name": "Body-Check (Trauma)",
-      "bausteinIds": [
-        "bc-abcde",
-        "bc-fast"
       ]
     }
   ]

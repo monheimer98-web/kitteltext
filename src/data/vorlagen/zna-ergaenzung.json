@@ -1,0 +1,162 @@
+{
+  "vorlagen": [
+    {
+      "id": "zna-kind-unterarmfraktur",
+      "titel": "Unterarmfraktur beim Kind konservativ",
+      "region": "unterarm",
+      "setting": "zna",
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Spielen sei es zu einem Sturz auf die ausgestreckte Hand gekommen.",
+          "Es sei zu einem Sturz vom Klettergerüst gekommen.",
+          "Es sei zu einem Sturz vom Trampolin gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Schulsport sei es zu einem Sturz auf die Hand gekommen.",
+          "Es sei zu einem Sturz mit dem Tretroller gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion nach den Nutzertests vom 08.10.2026",
+      "suchbegriffe": [
+        "Wulstfraktur",
+        "Grünholzfraktur",
+        "Torusfraktur",
+        "kindliche Radiusfraktur",
+        "Unterarmfraktur Kind",
+        "Kind Unterarm",
+        "Kind Handgelenk"
+      ],
+      "kuerzel": [
+        "wulst",
+        "kind drf",
+        "grünholz"
+      ],
+      "abschnitte": {
+        "diagnose": [
+          "dx-kind-unterarmfraktur"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-kind"
+        ],
+        "befund": [
+          "hand-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-kind-unterarm-roentgen"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-hand"
+        ],
+        "procedere": [
+          "proc-kind-unterarmfraktur"
+        ]
+      },
+      "entscheiden": [
+        "hand-untersuchung/hand-us-schwellung",
+        "hand-untersuchung/hand-us-fehlstellung",
+        "hand-untersuchung/hand-us-ds-styloid",
+        "hand-untersuchung/hand-us-rom-schmerz",
+        "hand-untersuchung/hand-us-pdms"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-hand/schiene",
+          "th-zna/aufklaerung-eltern"
+        ],
+        "aus": [
+          "ana-trauma/antikoagulation",
+          "th-zna/untersuchung"
+        ]
+      },
+      "ohne": [
+        "hand-untersuchung/hand-us-haematom",
+        "hand-untersuchung/hand-us-ds-tabatiere",
+        "hand-untersuchung/hand-us-stauchung-d1",
+        "hand-untersuchung/hand-us-ds-handwurzel",
+        "hand-untersuchung/hand-us-ds-mittelhand",
+        "hand-untersuchung/hand-us-ds-langfinger",
+        "hand-untersuchung/hand-us-faustschluss",
+        "hand-untersuchung/hand-us-ds-tuberculum",
+        "hand-untersuchung/hand-us-druj"
+      ]
+    },
+    {
+      "id": "zna-fingerluxation",
+      "titel": "Fingerluxation nach Reposition",
+      "region": "finger",
+      "setting": "zna",
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Ballsport sei ein Ball gegen den gestreckten Finger geprallt.",
+          "Bei einem Sturz sei der Finger überstreckt worden.",
+          "Der Finger sei an einem Gegenstand hängen geblieben und verdreht worden.",
+          "Beim Sport sei der Finger zur Seite weggedrückt worden."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion nach den Nutzertests vom 08.10.2026",
+      "suchbegriffe": [
+        "Fingerluxation",
+        "Finger ausgerenkt",
+        "Finger luxiert",
+        "Mittelgelenkluxation",
+        "PIP-Luxation",
+        "Finger ausgekugelt"
+      ],
+      "kuerzel": [
+        "flux",
+        "pip"
+      ],
+      "abschnitte": {
+        "diagnose": [
+          "dx-fingerluxation"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "finger-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-fingerluxation-roentgen"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-fingerluxation",
+          "th-hand"
+        ],
+        "procedere": [
+          "proc-fingerluxation",
+          "proc-fingerdistorsion"
+        ]
+      },
+      "entscheiden": [
+        "finger-untersuchung/finger-us-schwellung",
+        "finger-untersuchung/finger-us-haematom",
+        "finger-untersuchung/finger-us-achse",
+        "finger-untersuchung/finger-us-ds-gelenk",
+        "finger-untersuchung/finger-us-bewegung",
+        "finger-untersuchung/finger-us-pdms"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-hand/schiene"
+        ],
+        "aus": [
+          "proc-fingerdistorsion/tape",
+          "proc-fingerdistorsion/bewegen",
+          "th-zna/untersuchung"
+        ]
+      },
+      "ohne": [
+        "finger-untersuchung/finger-us-ds-phalanx",
+        "finger-untersuchung/finger-us-strecksehnen",
+        "finger-untersuchung/finger-us-beugesehnen",
+        "finger-untersuchung/finger-us-subungual",
+        "finger-untersuchung/finger-us-nagel"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "vorlagen": [
+    {
+      "id": "zna-luxationsfraktur-mittelgelenk",
+      "titel": "Luxationsfraktur des Mittelgelenks",
+      "suchbegriffe": [
+        "PIP-Luxationsfraktur",
+        "Mittelgelenk",
+        "Luxationsfraktur Finger",
+        "dorsale Luxationsfraktur",
+        "Mittelgliedbasis",
+        "palmare Platte über 30 %",
+        "volare Platte",
+        "Kantenfragment",
+        "Subluxation Mittelgelenk",
+        "Fingerluxationsfraktur"
+      ],
+      "kuerzel": [
+        "pip"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-luxationsfraktur-mittelgelenk"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "befund": [
+          "bef-mittelgelenk-luxationsfraktur"
+        ],
+        "diagnostik": [
+          "dgn-mittelgelenk-roentgen"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-mittelgelenk-massnahmen",
+          "th-fingerfraktur-wunde"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Reposition oder Ruhigstellung ohne Reposition?",
+          "bausteine": [
+            "th-mittelgelenk-reposition",
+            "th-mittelgelenk-ohne-reposition"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Wunde im Bereich der Fraktur?",
+          "bausteine": [
+            "proc-fraktur-hand-keine-wunde",
+            "proc-fraktur-hand-offen-antibiotikum",
+            "proc-fraktur-hand-offen-ohne-antibiotikum"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Handsprechstunde zur Operation oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-mittelgelenk-handsprechstunde",
+            "proc-mittelgelenk-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-mittelgelenk-luxationsfraktur/wunde",
+        "bef-mittelgelenk-luxationsfraktur/schwellung",
+        "bef-mittelgelenk-luxationsfraktur/fehlstellung",
+        "bef-mittelgelenk-luxationsfraktur/ds",
+        "bef-mittelgelenk-luxationsfraktur/bewegung",
+        "bef-mittelgelenk-luxationsfraktur/endgelenk",
+        "bef-mittelgelenk-luxationsfraktur/pdms"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "proc-fraktur-hand-offen-antibiotikum/tetanus",
+          "proc-fraktur-hand-offen-ohne-antibiotikum/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Ballsport sei ein Ball gegen den gestreckten Finger geprallt.",
+          "Bei einem Sturz sei der Finger überstreckt worden.",
+          "Der Finger sei bei einem Sturz gestaucht worden.",
+          "Der Finger sei an einem Gegenstand hängen geblieben und überstreckt worden."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 20.10.2026"
+    },
+    {
+      "id": "zna-zehenfraktur-offen",
+      "titel": "Offene Zehenfraktur",
+      "suchbegriffe": [
+        "offene Fraktur Zehe",
+        "Nagelbettverletzung Zehe",
+        "Zehennagel abgerissen",
+        "Zehe gequetscht",
+        "Quetschung Zehe",
+        "Quetschverletzung Großzehe",
+        "Großzehe offen",
+        "Endgliedfraktur Großzehe",
+        "Seymour-Fraktur Zehe",
+        "Zehenfraktur mit Wunde"
+      ],
+      "region": "zehen",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-zehenfraktur-offen"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-zehe-offen"
+        ],
+        "befund": [
+          "bef-zehe-offen"
+        ],
+        "diagnostik": [
+          "dgn-zehe-offen-roentgen"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-zehe-offen-wunde"
+        ],
+        "procedere": [
+          "proc-zehe-offen-antibiotikum"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "therapie",
+          "label": "Nicht verschoben, Reposition oder Verzicht auf Reposition?",
+          "bausteine": [
+            "th-zehen-verband",
+            "th-zehen-reposition",
+            "th-zehen-ohne-reposition"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulant, Vorstellung zur Operation oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-zehe-offen-ambulant",
+            "proc-zehe-offen-sprechstunde",
+            "proc-zehe-offen-aufnahme"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-zehe-offen/wunde",
+        "bef-zehe-offen/nagel",
+        "bef-zehe-offen/fehlstellung",
+        "bef-zehe-offen/pdms"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/tetanus"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-zehe-offen-wunde/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Ein schwerer Gegenstand sei auf die Zehe gefallen.",
+          "Beim Barfußgehen sei die Zehe an einem Möbelstück angestoßen.",
+          "Die Zehe sei in einer Tür eingeklemmt worden.",
+          "Ein Auto sei über den Fuß gefahren."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 20.10.2026"
+    },
+    {
+      "id": "zna-veraetzung-hand",
+      "titel": "Verätzung der Hand",
+      "suchbegriffe": [
+        "Verätzung",
+        "Säureverätzung",
+        "Laugenverätzung",
+        "Säure",
+        "Lauge",
+        "Chemikalie Hand",
+        "chemische Verletzung",
+        "Zementverätzung",
+        "Reinigungsmittel",
+        "Abflussreiniger"
+      ],
+      "region": "finger",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-veraetzung-hand"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-veraetzung-hand"
+        ],
+        "befund": [
+          "bef-veraetzung-hand"
+        ],
+        "diagnostik": [
+          "dgn-veraetzung-hand"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-veraetzung-hand"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulant, Vorstellung in Handchirurgie oder Verbrennungszentrum, oder Aufnahme?",
+          "bausteine": [
+            "proc-veraetzung-ambulant",
+            "proc-veraetzung-fachvorstellung",
+            "proc-veraetzung-aufnahme"
+          ]
+        },
+        {
+          "abschnitt": "therapie",
+          "label": "Spülung in der Notaufnahme oder Verzicht?",
+          "bausteine": [
+            "th-veraetzung-spuelung",
+            "th-veraetzung-keine-spuelung"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-veraetzung-hand/haut",
+        "bef-veraetzung-hand/zirkulaer",
+        "bef-veraetzung-hand/bewegung",
+        "bef-veraetzung-hand/pdms"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/haendigkeit",
+          "ana-trauma/tetanus"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-veraetzung-hand/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Bei der Reinigung im Haushalt sei Reinigungsmittel auf die Hand gelangt.",
+          "Bei der Arbeit sei eine Chemikalie auf die Hand gelangt.",
+          "Beim Umgang mit Abflussreiniger sei die Flüssigkeit auf die Hand gelangt.",
+          "Bei Arbeiten mit feuchtem Zement habe die Hand längere Zeit Kontakt mit dem Material gehabt."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 20.10.2026"
+    }
+  ]
+}

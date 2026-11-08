@@ -1,0 +1,242 @@
+{
+  "vorlagen": [
+    {
+      "id": "station-metallentfernung",
+      "titel": "Metallentfernung",
+      "suchbegriffe": [
+        "Metallentfernung",
+        "Materialentfernung",
+        "Implantatentfernung",
+        "Osteosynthesematerial",
+        "Plattenentfernung",
+        "Schraubenentfernung",
+        "Nagelentfernung",
+        "Drahtentfernung",
+        "Stellschraube",
+        "Hakenplatte"
+      ],
+      "kuerzel": [
+        "me",
+        "metall"
+      ],
+      "region": "brief-station",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-metallentfernung",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-metallentfernung",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-elektiv"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-metall"
+        ],
+        "diagnostik": [
+          "dgn-st-metall-vorher",
+          "dgn-st-labor"
+        ],
+        "verlauf": [
+          "verl-st-aufnahme-operation",
+          "verl-st-metallentfernung",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-metall-belastung",
+          "proc-st-wunde",
+          "proc-st-metall-antibiotikum",
+          "proc-st-metall-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-metall-sport",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen nach der Operation oder Verzicht?",
+          "bausteine": [
+            "dgn-st-metall-nachher",
+            "dgn-st-metall-verzicht"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-st-metall/narbe",
+        "bef-st-metall/material",
+        "bef-st-metall/beweglichkeit",
+        "bef-st-metall/dms",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/schwellung",
+        "eb-st-wunde/dms"
+      ],
+      "vorgaben": {
+        "aus": [
+          "proc-st-kontrollen/klinisch",
+          "eb-st-mobilitaet/gehen"
+        ],
+        "slots": {
+          "verl-st-aufnahme-operation/aufnahme/anlass": 4
+        }
+      },
+      "schnellwerte": {
+        "ana-st-elektiv/eingriff": [
+          "Metallentfernung",
+          "Entfernung der Stellschraube",
+          "Operation"
+        ],
+        "ana-st-elektiv/beschwerden": [
+          "Das Osteosynthesematerial störe bei Belastung.",
+          "Das Osteosynthesematerial sei unter der Haut tastbar und störe bei Druck.",
+          "Die Entfernung des Implantats sei von Beginn an geplant gewesen.",
+          "Das Osteosynthesematerial verursache keine Beschwerden. Die Entfernung sei auf eigenen Wunsch geplant."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026; fachliche Grundlage R2 Skizze S17; nach R5 Abschnitt 1.3 und 2.11 kein Nachbehandlungsschema und keine gültige Leitlinie, Belastung und Sportpause deshalb nur als Wahl mit der Option nach Maßgabe des Operateurs"
+    },
+    {
+      "id": "station-lumboischialgie-konservativ",
+      "titel": "Lumboischialgie, Bandscheibenvorfall konservativ",
+      "suchbegriffe": [
+        "Lumboischialgie",
+        "Ischialgie",
+        "Ischias",
+        "Bandscheibenvorfall",
+        "Bandscheibenprolaps",
+        "Nucleus-pulposus-Prolaps",
+        "Radikulopathie",
+        "Wurzelreizsyndrom",
+        "Rückenschmerz mit Ausstrahlung",
+        "stationäre Schmerztherapie",
+        "periradikuläre Therapie"
+      ],
+      "kuerzel": [
+        "bsv",
+        "lis",
+        "npp",
+        "prt"
+      ],
+      "region": "wirbelsaeule",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-lumboischialgie",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-lumboischialgie"
+        ],
+        "anamnese": [
+          "ana-st-beschwerden",
+          "ws-rueckenschmerzen-anamnese",
+          "ana-st-lumboischialgie"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "ws-rueckenschmerzen-untersuchung",
+          "bef-st-lumboischialgie-kraft",
+          "bef-st-lumboischialgie-kauda"
+        ],
+        "diagnostik": [
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-lumboischialgie",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-lumboischialgie",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "MRT, CT oder keine Schnittbildgebung?",
+          "bausteine": [
+            "dgn-st-lws-mrt",
+            "dgn-st-lws-ct",
+            "dgn-st-lws-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Weiter konservativ, Vorstellung in der Wirbelsäulenchirurgie oder Verlegung zur Operation?",
+          "bausteine": [
+            "proc-st-lumboischialgie-ambulant",
+            "proc-st-lumboischialgie-sprechstunde",
+            "proc-st-lumboischialgie-verlegung"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "ws-rueckenschmerzen-anamnese/ws-ausstrahlung",
+        "ws-rueckenschmerzen-anamnese/ws-laehmung",
+        "ws-rueckenschmerzen-anamnese/ws-reithose-anam",
+        "ws-rueckenschmerzen-anamnese/ws-miktion",
+        "ws-rueckenschmerzen-anamnese/ws-bsymptomatik",
+        "ws-rueckenschmerzen-anamnese/ws-infiltration",
+        "ws-rueckenschmerzen-anamnese/ws-risiko",
+        "ws-rueckenschmerzen-untersuchung/ws-hartspann",
+        "ws-rueckenschmerzen-untersuchung/ws-klopfschmerz",
+        "ws-rueckenschmerzen-untersuchung/ws-beweglichkeit",
+        "ws-rueckenschmerzen-untersuchung/ws-lasegue",
+        "ws-rueckenschmerzen-untersuchung/ws-stehgehfaehig",
+        "bef-st-lumboischialgie-kraft/kraft-hueftbeuger",
+        "bef-st-lumboischialgie-kraft/kraft-kniestrecker",
+        "bef-st-lumboischialgie-kraft/kraft-fussheber",
+        "bef-st-lumboischialgie-kraft/kraft-grosszehenheber",
+        "bef-st-lumboischialgie-kraft/kraft-fusssenker",
+        "ws-rueckenschmerzen-untersuchung/ws-zehengang",
+        "ws-rueckenschmerzen-untersuchung/ws-sensibilitaet",
+        "ws-rueckenschmerzen-untersuchung/ws-reflexe",
+        "bef-st-lumboischialgie-kauda/reithose",
+        "eb-st-lumboischialgie/lasegue",
+        "eb-st-lumboischialgie/kraft-hueftbeuger",
+        "eb-st-lumboischialgie/kraft-kniestrecker",
+        "eb-st-lumboischialgie/kraft-fussheber",
+        "eb-st-lumboischialgie/kraft-grosszehenheber",
+        "eb-st-lumboischialgie/kraft-fusssenker",
+        "eb-st-lumboischialgie/sensibilitaet",
+        "eb-st-lumboischialgie/reithose",
+        "eb-st-lumboischialgie/blase"
+      ],
+      "ohne": [
+        "ws-rueckenschmerzen-untersuchung/ws-beckenkompression",
+        "ws-rueckenschmerzen-untersuchung/ws-steissbein",
+        "ws-rueckenschmerzen-untersuchung/ws-paresen",
+        "ws-rueckenschmerzen-untersuchung/ws-fussheber"
+      ],
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 18.10.2026; fachliche Grundlage R2 Skizzen S19 und Z17; Begriffe wie zna-lumboischialgie; nach R2 und R5 Abschnitt 2.5.4 keine gültige Leitlinie (NVL Kreuzschmerz nicht gültig, S2k Bandscheibenvorfall 2020 abgelaufen), alles Praxiswissen"
+    }
+  ]
+}

@@ -4,3 +4,10 @@ dist-pc/
 .vite/
 *.log
 .DS_Store
+dist-einzeldatei/
+src/data/dateien.ts
+.claude/worktrees/
+# Ausgaben der Klicktests (Playwright)
+test-results/
+playwright-report/
+blob-report/

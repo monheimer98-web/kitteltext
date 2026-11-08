@@ -1,0 +1,957 @@
+{
+  "regionen": [
+    {
+      "id": "brief-zna",
+      "name": "Brief Notaufnahme",
+      "kuerzel": "✉️",
+      "bausteine": [
+        {
+          "id": "dx-frei",
+          "titel": "Diagnose (frei)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "dx",
+              "typ": "freitext",
+              "label": "Diagnose",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "platzhalter",
+              "ref": "dx"
+            }
+          ]
+        },
+        {
+          "id": "ana-trauma",
+          "titel": "Anamnese Unfall",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "hergang",
+              "typ": "freitext",
+              "label": "Unfallhergang",
+              "required": true,
+              "vorschlaege": [
+                "Es sei zu einem Stolpersturz im häuslichen Umfeld gekommen.",
+                "Es sei zu einem Sturz aus dem Stand gekommen.",
+                "Es sei zu einem Sturz auf die ausgestreckte Hand gekommen.",
+                "Beim Gehen sei der Fuß nach außen umgeknickt.",
+                "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+                "Es sei zu einem Anprall gegen eine Kante gekommen."
+              ]
+            },
+            {
+              "id": "zeitpunkt",
+              "typ": "begriff",
+              "label": "Unfallzeitpunkt",
+              "required": true,
+              "vorschlaege": [
+                "heute",
+                "gestern",
+                "vor 2 Tagen",
+                "vor 3 Tagen",
+                "vor 1 Woche",
+                "nicht bekannt"
+              ]
+            },
+            {
+              "id": "vorerkrankungen",
+              "typ": "freitext",
+              "label": "Vorerkrankungen",
+              "required": true,
+              "vorschlaege": [
+                "keine bekannt"
+              ]
+            },
+            {
+              "id": "medikation",
+              "typ": "freitext",
+              "label": "Dauermedikation",
+              "required": true,
+              "vorschlaege": [
+                "keine"
+              ]
+            },
+            {
+              "id": "allergien",
+              "typ": "freitext",
+              "label": "Allergien",
+              "required": true,
+              "vorschlaege": [
+                "keine bekannt"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "person",
+              "form": "nom",
+              "gross": true,
+              "alter": true
+            },
+            {
+              "art": "text",
+              "text": " stellte sich "
+            },
+            {
+              "art": "auswahl",
+              "id": "vorstellung",
+              "label": "Art der Vorstellung",
+              "optionen": [
+                "selbstständig",
+                "in Begleitung von Angehörigen",
+                "mit dem Rettungsdienst",
+                "mit dem Rettungsdienst in Notarztbegleitung",
+                "mit Einweisung aus der Hausarztpraxis",
+                "nach Zuweisung aus einer Praxis"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " in unserer Notaufnahme vor. "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "hergang"
+            },
+            {
+              "art": "text",
+              "text": ". Unfallzeitpunkt: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "zeitpunkt"
+            },
+            {
+              "art": "text",
+              "text": ". "
+            },
+            {
+              "art": "option",
+              "id": "kopf",
+              "label": "Kein Kopfanprall, keine Bewusstlosigkeit, keine Erinnerungslücke",
+              "text": "Auf den Kopf sei {er} nicht gefallen. Bewusstlosigkeit und Erinnerungslücke hätten nicht bestanden. "
+            },
+            {
+              "art": "option",
+              "id": "arbeitsunfall",
+              "label": "Arbeitsunfall",
+              "an": true,
+              "text": "Arbeitsunfall: {ja}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ja",
+                  "label": "Arbeitsunfall",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nein",
+                    "ja",
+                    "ja, Wegeunfall",
+                    "ja, Schul- oder Kindergartenunfall"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "absatz"
+            },
+            {
+              "art": "text",
+              "text": "Vorerkrankungen: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "vorerkrankungen"
+            },
+            {
+              "art": "text",
+              "text": ". Dauermedikation: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "medikation"
+            },
+            {
+              "art": "text",
+              "text": ". "
+            },
+            {
+              "art": "option",
+              "id": "antikoagulation",
+              "label": "Gerinnungshemmung",
+              "an": true,
+              "text": "Gerinnungshemmende Medikamente: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Gerinnungshemmung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "keine",
+                    "Acetylsalicylsäure 100 mg",
+                    "Apixaban",
+                    "Rivaroxaban",
+                    "Edoxaban",
+                    "Dabigatran",
+                    "Phenprocoumon",
+                    "Clopidogrel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "text",
+              "text": "Allergien: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "allergien"
+            },
+            {
+              "art": "text",
+              "text": ". "
+            },
+            {
+              "art": "option",
+              "id": "tetanus",
+              "label": "Tetanusschutz",
+              "text": "Tetanusschutz: {status}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "status",
+                  "label": "Tetanusschutz",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "laut Impfausweis aktuell",
+                    "nach Angabe aktuell",
+                    "unklar",
+                    "nicht aktuell"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "haendigkeit",
+              "label": "Händigkeit",
+              "text": "Händigkeit: {hand}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "hand",
+                  "label": "Händigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "rechts",
+                    "links"
+                  ]
+                }
+              ]
+            }
+          ],
+          "sammelangabe": {
+            "angaben": [
+              {
+                "ref": "vorerkrankungen",
+                "wert": "keine bekannt",
+                "aussage": "keine Vorerkrankungen"
+              },
+              {
+                "ref": "medikation",
+                "wert": "keine",
+                "aussage": "keine Dauermedikation"
+              },
+              {
+                "ref": "allergien",
+                "wert": "keine bekannt",
+                "aussage": "keine Allergien"
+              }
+            ],
+            "ausblendenBei": [
+              {
+                "ref": "antikoagulation/was",
+                "ausser": [
+                  "keine"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "ana-beschwerden",
+          "titel": "Anamnese ohne Unfall",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "beschwerden",
+              "typ": "freitext",
+              "label": "Beschwerden",
+              "required": true
+            },
+            {
+              "id": "seit",
+              "typ": "begriff",
+              "label": "Beginn der Beschwerden",
+              "required": true,
+              "vorschlaege": [
+                "heute",
+                "gestern",
+                "vor 3 Tagen",
+                "vor 1 Woche",
+                "vor mehreren Wochen",
+                "vor mehreren Monaten"
+              ]
+            },
+            {
+              "id": "vorerkrankungen",
+              "typ": "freitext",
+              "label": "Vorerkrankungen",
+              "required": true,
+              "vorschlaege": [
+                "keine bekannt"
+              ]
+            },
+            {
+              "id": "medikation",
+              "typ": "freitext",
+              "label": "Dauermedikation",
+              "required": true,
+              "vorschlaege": [
+                "keine"
+              ]
+            },
+            {
+              "id": "allergien",
+              "typ": "freitext",
+              "label": "Allergien",
+              "required": true,
+              "vorschlaege": [
+                "keine bekannt"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "person",
+              "form": "nom",
+              "gross": true,
+              "alter": true
+            },
+            {
+              "art": "text",
+              "text": " stellte sich "
+            },
+            {
+              "art": "auswahl",
+              "id": "vorstellung",
+              "label": "Art der Vorstellung",
+              "optionen": [
+                "selbstständig",
+                "in Begleitung von Angehörigen",
+                "mit dem Rettungsdienst",
+                "mit dem Rettungsdienst in Notarztbegleitung",
+                "mit Einweisung aus der Hausarztpraxis",
+                "nach Zuweisung aus einer Praxis"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " in unserer Notaufnahme vor. "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "beschwerden"
+            },
+            {
+              "art": "text",
+              "text": ". Beginn der Beschwerden: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "seit"
+            },
+            {
+              "art": "text",
+              "text": ". "
+            },
+            {
+              "art": "option",
+              "id": "kein-unfall",
+              "label": "Kein Unfall",
+              "an": true,
+              "text": "Ein Unfall sei nicht erinnerlich. "
+            },
+            {
+              "art": "option",
+              "id": "kein-fieber",
+              "label": "Kein Fieber",
+              "text": "Fieber oder Schüttelfrost hätten nicht bestanden. "
+            },
+            {
+              "art": "absatz"
+            },
+            {
+              "art": "text",
+              "text": "Vorerkrankungen: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "vorerkrankungen"
+            },
+            {
+              "art": "text",
+              "text": ". Dauermedikation: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "medikation"
+            },
+            {
+              "art": "text",
+              "text": ". "
+            },
+            {
+              "art": "option",
+              "id": "antikoagulation",
+              "label": "Gerinnungshemmung",
+              "an": true,
+              "text": "Gerinnungshemmende Medikamente: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Gerinnungshemmung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "keine",
+                    "Acetylsalicylsäure 100 mg",
+                    "Apixaban",
+                    "Rivaroxaban",
+                    "Edoxaban",
+                    "Dabigatran",
+                    "Phenprocoumon",
+                    "Clopidogrel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "text",
+              "text": "Allergien: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "allergien"
+            },
+            {
+              "art": "text",
+              "text": ". "
+            },
+            {
+              "art": "option",
+              "id": "tetanus",
+              "label": "Tetanusschutz",
+              "text": "Tetanusschutz: {status}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "status",
+                  "label": "Tetanusschutz",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "laut Impfausweis aktuell",
+                    "nach Angabe aktuell",
+                    "unklar",
+                    "nicht aktuell"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "haendigkeit",
+              "label": "Händigkeit",
+              "text": "Händigkeit: {hand}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "hand",
+                  "label": "Händigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "rechts",
+                    "links"
+                  ]
+                }
+              ]
+            }
+          ],
+          "sammelangabe": {
+            "angaben": [
+              {
+                "ref": "vorerkrankungen",
+                "wert": "keine bekannt",
+                "aussage": "keine Vorerkrankungen"
+              },
+              {
+                "ref": "medikation",
+                "wert": "keine",
+                "aussage": "keine Dauermedikation"
+              },
+              {
+                "ref": "allergien",
+                "wert": "keine bekannt",
+                "aussage": "keine Allergien"
+              }
+            ],
+            "ausblendenBei": [
+              {
+                "ref": "antikoagulation/was",
+                "ausser": [
+                  "keine"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "dgn-roentgen",
+          "titel": "Röntgen",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Röntgen: Region",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "ebenen",
+              "label": "Ebenen",
+              "optionen": [
+                "in 2 Ebenen",
+                "in 3 Ebenen",
+                "in 4 Ebenen",
+                "in 1 Ebene"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund",
+              "pflicht": true,
+              "optionen": [
+                "Kein Frakturnachweis.",
+                "Kein Frakturnachweis, keine Luxation."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "text": " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "dgn-verzicht",
+          "titel": "Verzicht auf Bildgebung",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "grund",
+              "typ": "freitext",
+              "label": "Grund für den Verzicht",
+              "required": true,
+              "vorschlaege": [
+                "weil die klinische Untersuchung keinen Hinweis auf eine knöcherne Verletzung ergab",
+                "auf ausdrücklichen Wunsch nach Aufklärung über das Risiko einer übersehenen Fraktur"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Röntgenuntersuchung haben wir verzichtet, "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "grund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "th-zna",
+          "titel": "Maßnahmen in der Notaufnahme",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "untersuchung",
+              "label": "Untersuchung und Beratung",
+              "an": true,
+              "text": "Klinisch untersucht und beraten."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "text": "{was} {seite} angelegt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ruhigstellung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Unterarmgipsschiene",
+                    "Oberarmgipsschiene",
+                    "Unterschenkelgipsschiene",
+                    "Sprunggelenkorthese",
+                    "Knieorthese",
+                    "Gilchrist-Verband",
+                    "Fingerschiene",
+                    "Elastischer Stützverband",
+                    "Vorfußentlastungsschuh",
+                    "Kniestreckschiene",
+                    "Gespaltener Unterschenkel-Cast",
+                    "Unterschenkelorthese",
+                    "Rucksackverband",
+                    "Armschlinge",
+                    "Schulterorthese",
+                    "Schulterorthese in Neutralrotation"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "dms-nach-anlage",
+              "label": "Durchblutung, Motorik, Sensibilität nach Anlage",
+              "text": " Nach Anlage periphere Durchblutung, Motorik und Sensibilität intakt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gehstuetzen",
+              "label": "Unterarmgehstützen",
+              "text": "Unterarmgehstützen angepasst, Gehen damit eingeübt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel gegeben",
+              "text": "{was} verabreicht.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel gegeben (Wirkstoff, Dosis, Gabeweg)",
+                  "maxLen": 120,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "tetanus",
+              "label": "Tetanusimpfung",
+              "text": "Tetanusschutz nach Aufklärung aufgefrischt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "rezept",
+              "label": "Rezept",
+              "text": "Rezept ausgestellt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung",
+              "label": "Aufklärung",
+              "text": "Über Diagnose und Behandlung haben wir {person-akk} aufgeklärt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung-eltern",
+              "label": "Aufklärung beim Kind",
+              "text": "Über Diagnose und Behandlung haben wir {wen} aufgeklärt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wen",
+                  "label": "Wen",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "die Sorgeberechtigten",
+                    "die Mutter",
+                    "den Vater",
+                    "die Begleitperson"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sorgeberechtigte-informiert",
+              "label": "Sorgeberechtigte telefonisch informiert",
+              "text": " Die Sorgeberechtigten sind telefonisch informiert."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "merkblatt",
+              "label": "Merkblatt",
+              "text": "Merkblatt mit Verhaltenshinweisen mitgegeben."
+            },
+            {
+              "art": "option",
+              "id": "aufnahme-abgelehnt",
+              "label": "Stationäre Aufnahme angeboten, abgelehnt",
+              "text": " Die stationäre Aufnahme haben wir angeboten; {person} lehnt sie nach Aufklärung über das Risiko {risiko} ab.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "risiko",
+                  "label": "Risiko, über das aufgeklärt wurde (im Genitiv: einer …, eines …)",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-allgemein",
+          "titel": "Procedere allgemein",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung, Kühlung, Hochlagerung",
+              "text": "Schonung, Kühlung und Hochlagerung in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {warnzeichen}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "warnzeichen",
+                  "label": "Warnzeichen",
+                  "maxLen": 300,
+                  "required": true,
+                  "vorschlaege": [
+                    "zunehmenden Schmerzen, zunehmender Schwellung, Taubheitsgefühl oder Kribbeln, Fieber",
+                    "zunehmenden Schmerzen, zunehmender Schwellung, Taubheitsgefühl oder Kribbeln, kalten oder blassen Fingern",
+                    "zunehmenden Schmerzen, zunehmender Schwellung, Taubheitsgefühl oder Kribbeln, kalten oder blassen Zehen, Schmerzen in der Wade, Atemnot",
+                    "Rötung, Schwellung, Überwärmung oder pochendem Schmerz der Wunde, Eiter, rotem Streifen von der Wunde in Richtung Körper, Fieber"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

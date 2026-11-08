@@ -1,0 +1,313 @@
+{
+  "vorlagen": [
+    {
+      "id": "station-beckenringfraktur-konservativ",
+      "titel": "Beckenringfraktur konservativ",
+      "suchbegriffe": [
+        "Beckenringfraktur",
+        "Beckenfraktur",
+        "Beckenbruch",
+        "Schambeinastfraktur",
+        "Schambeinfraktur",
+        "vordere Beckenringfraktur",
+        "hintere Beckenringfraktur",
+        "Sakrumfraktur",
+        "Kreuzbeinfraktur",
+        "Sakruminsuffizienzfraktur",
+        "Insuffizienzfraktur Becken",
+        "Fragilitätsfraktur des Beckens",
+        "Alterstrauma Becken",
+        "Sturz im Alter"
+      ],
+      "kuerzel": [
+        "brf",
+        "becken",
+        "ffp",
+        "schambein"
+      ],
+      "region": "becken",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-beckenring",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-beckenring-konservativ",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall",
+          "ana-st-kopfanprall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-becken",
+          "bef-st-becken-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-becken-roentgen",
+          "dgn-st-labor",
+          "dgn-st-osteologie",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-beckenring-konservativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-becken",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-beckenring-konservativ",
+          "proc-st-thrombose-becken",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose-auftrag",
+          "proc-st-alterstrauma",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-becken"
+        ],
+        "medikation": [
+          "med-st-entlassung-dauer-procedere"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "CT, MRT oder keine Schnittbildgebung des Beckens?",
+          "bausteine": [
+            "dgn-st-becken-ct",
+            "dgn-st-becken-mrt",
+            "dgn-st-becken-verzicht"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-st-allgemein/bewusstsein",
+        "bef-st-becken/inspektion",
+        "bef-st-becken/ds-vorne",
+        "bef-st-becken/ds-hinten",
+        "bef-st-becken/huefte",
+        "bef-st-becken/stehen",
+        "bef-st-becken/dms",
+        "bef-st-becken-begleitverletzungen/weitere",
+        "eb-st-allgemein/allgemein",
+        "eb-st-becken/haut",
+        "eb-st-becken/dms"
+      ],
+      "vorgaben": {
+        "an": [
+          "dx-st-neben/osteoporose",
+          "dx-st-neben/sturzursache",
+          "th-st-weitere/physio",
+          "ana-st-unfall/wohnen",
+          "ana-st-unfall/versorgung",
+          "ana-st-unfall/mobilitaet",
+          "ana-st-unfall/pflegegrad",
+          "bef-st-allgemein/haut",
+          "verl-st-besonderheiten/delir",
+          "verl-st-beckenring-konservativ/osteologie",
+          "eb-st-mobilitaet/aufstehen",
+          "proc-st-physio/reha",
+          "proc-st-beckenring-konservativ/steigerung"
+        ],
+        "slots": {
+          "th-st-weitere/physio/inhalt": 1,
+          "dx-st-neben/anaemie/wann": 1,
+          "verl-st-besonderheiten/anaemie/wann": 1,
+          "verl-st-besonderheiten/gerinnungshemmung/seit": 1
+        }
+      },
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz aus dem Stand gekommen.",
+          "Es sei zu einem Sturz auf das Gesäß gekommen.",
+          "Es sei zu einem Sturz in der Pflegeeinrichtung gekommen.",
+          "Es sei zu einem Sturz von der Leiter gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 19.10.2026; fachliche Grundlage R2 Skizze S11 und R5 Abschnitte 2.6 und 2.10 (DGOU-Nachbehandlungsempfehlungen 2025, S. 146; S1-Leitlinie Verletzungen des Beckenrings 2023, Empf. 36, 41 bis 43, 50), beide nur als Einzeloptionen, nichts vorgewählt. Praxiswissen ohne Quelle: Kilogramm der Teilbelastung, Röntgentermine 2 Wochen, Sicherheitsnetz, Satz zur erneuten Bildgebung bei Schmerzzunahme; Thromboseprophylaxe ohne Fristen (S3-Leitlinie 2026, Kapitel Becken nicht gelesen)"
+    },
+    {
+      "id": "station-kyphoplastie",
+      "titel": "Kyphoplastie bei osteoporotischer Wirbelkörperfraktur",
+      "suchbegriffe": [
+        "Kyphoplastie",
+        "Ballonkyphoplastie",
+        "Vertebroplastie",
+        "Zementaugmentation",
+        "osteoporotische Wirbelkörperfraktur",
+        "Wirbelkörperfraktur",
+        "Wirbelbruch",
+        "Sinterungsfraktur",
+        "LWK-Fraktur",
+        "BWK-Fraktur",
+        "Osteoporose Wirbel"
+      ],
+      "kuerzel": [
+        "kypho",
+        "bkp",
+        "vp"
+      ],
+      "region": "wirbelsaeule",
+      "setting": "station",
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-kyphoplastie",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-kyphoplastie",
+          "th-st-weitere"
+        ],
+        "anamnese": [],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-ws-kyphoplastie"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen-ohne-seite",
+          "dgn-st-wirbel-ct",
+          "dgn-st-wirbel-mrt",
+          "dgn-st-labor",
+          "dgn-st-osteologie",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-kyphoplastie",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-neuro",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten-kyphoplastie",
+          "proc-st-kyphoplastie",
+          "proc-st-wunde",
+          "proc-st-thrombose-kyphoplastie",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose-auftrag",
+          "proc-st-alterstrauma",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz-kyphoplastie"
+        ],
+        "medikation": [
+          "med-st-entlassung-dauer-procedere"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "anamnese",
+          "label": "Unfall, Beschwerden ohne Unfall oder geplante Aufnahme?",
+          "bausteine": [
+            "ana-st-unfall",
+            "ana-st-beschwerden",
+            "ana-st-elektiv"
+          ]
+        },
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen nach der Operation oder Verzicht?",
+          "bausteine": [
+            "dgn-st-kyphoplastie-roentgen",
+            "dgn-st-kyphoplastie-verzicht"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-st-allgemein/bewusstsein",
+        "bef-st-ws-kyphoplastie/klopfschmerz",
+        "bef-st-ws-kyphoplastie/inspektion",
+        "bef-st-ws-kyphoplastie/stehen",
+        "bef-st-ws-kyphoplastie/kraft",
+        "bef-st-ws-kyphoplastie/sensibilitaet",
+        "bef-st-ws-kyphoplastie/blase",
+        "eb-st-allgemein/allgemein",
+        "eb-st-wunde/wunde",
+        "eb-st-neuro/neuro"
+      ],
+      "ohne": [
+        "eb-st-wunde/schwellung",
+        "eb-st-wunde/dms"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/physio",
+          "ana-st-unfall/mobilitaet",
+          "proc-st-belastung/ohne-seite",
+          "proc-st-verhalten-kyphoplastie/rumpforthese",
+          "proc-st-verhalten-kyphoplastie/heben",
+          "proc-st-kontrollen/roentgen-ohne-seite",
+          "verl-st-besonderheiten/delir",
+          "ana-st-unfall/wohnen",
+          "ana-st-unfall/versorgung",
+          "ana-st-beschwerden/mobilitaet",
+          "ana-st-beschwerden/wohnen",
+          "ana-st-beschwerden/versorgung",
+          "ana-st-beschwerden/risiko",
+          "ana-st-elektiv/mobilitaet",
+          "ana-st-elektiv/wohnen",
+          "ana-st-elektiv/versorgung",
+          "verl-st-kyphoplastie/zement",
+          "verl-st-kyphoplastie/histologie",
+          "proc-st-entlassmanagement/ausstehend"
+        ],
+        "aus": [
+          "proc-st-belastung/bein",
+          "proc-st-kontrollen/klinisch"
+        ],
+        "slots": {
+          "th-st-weitere/physio/inhalt": 1,
+          "proc-st-kontrollen/roentgen-ohne-seite/stand": 1,
+          "proc-st-kontrollen/roentgen-ohne-seite/anker": 0
+        }
+      },
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz aus dem Stand gekommen.",
+          "Es sei zu einem Stolpersturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz auf das Gesäß gekommen.",
+          "Bei einem Sturz auf der Treppe sei der Rücken auf eine Stufe aufgeschlagen."
+        ],
+        "ana-st-beschwerden/beschwerden": [
+          "Beim Heben einer Last sei plötzlich ein Schmerz im Rücken aufgetreten.",
+          "Bei einer alltäglichen Bewegung sei plötzlich ein Schmerz im Rücken aufgetreten.",
+          "Der Rückenschmerz habe ohne erinnerlichen Auslöser begonnen.",
+          "Der Rückenschmerz nehme beim Aufrichten und Gehen zu.",
+          "Im Liegen lasse der Rückenschmerz nach.",
+          "Wegen der Schmerzen sei das Gehen nur mit Mühe möglich."
+        ],
+        "ana-st-elektiv/eingriff": [
+          "Kyphoplastie",
+          "Ballonkyphoplastie",
+          "Vertebroplastie",
+          "Operation"
+        ],
+        "ana-st-elektiv/beschwerden": [
+          "Der Rückenschmerz bestehe seit mehreren Wochen und nehme beim Aufrichten und Gehen zu.",
+          "Der Rückenschmerz habe nach einem Sturz begonnen.",
+          "Der Rückenschmerz habe ohne erinnerlichen Unfall begonnen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Redaktion, ohne Standardtext, 19.10.2026; fachliche Grundlage R2 Skizzen S10 und Z9 und R5 Abschnitte 2.5.2 und 2.10 (DGOU-Nachbehandlungsempfehlungen 2025, S. 144; S2k-Leitlinie osteoporotische Wirbelfrakturen 2025, Empf. 19 und 29 nach R2/R5), nur als Einzeloptionen, nichts vorgewählt; Begriffe wie station-wirbelkoerperfraktur-konservativ. Praxiswissen ohne Quelle: Dauer der Verhaltensregeln nach Kyphoplastie, Satz zur weiteren Fraktur, Sicherheitsnetz. Hausregel ohne Quelle (Einarbeitung 19.10.2026): Tragedauer der Rumpforthese 4 oder 6 Wochen oder bis zur Röntgenkontrolle (DGOU 2025, S. 144, und S2k-Leitlinie 2025, Empf. 19, nennen keine Dauer)"
+    }
+  ]
+}

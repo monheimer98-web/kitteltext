@@ -1,0 +1,709 @@
+{
+  "vorlagen": [
+    {
+      "setting": "zna",
+      "id": "zna-ganzkoerper-normalbefund",
+      "titel": "Ganzkörper-Normalbefund",
+      "suchbegriffe": [
+        "Ganzkörperstatus",
+        "körperliche Untersuchung",
+        "Aufnahmebefund",
+        "internistischer Status",
+        "Normalbefund"
+      ],
+      "region": "allgemeinbefund",
+      "abschnitte": {
+        "befund": [
+          "allg-allgemein",
+          "allg-haut",
+          "allg-kopf",
+          "allg-pulmo",
+          "allg-cor",
+          "allg-puls",
+          "allg-abdomen",
+          "allg-we",
+          "allg-neuro"
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet 10/2026",
+      "entscheiden": [
+        "allg-haut/haut_blutung",
+        "allg-we/we_extremitaeten",
+        "allg-we/we_gelenke",
+        "allg-neuro/neuro_motorik"
+      ],
+      "ohne": [
+        "allg-allgemein/allg_fieber",
+        "allg-kopf/kopf_kalotte",
+        "allg-abdomen/abd_inspektion",
+        "allg-we/we_hws",
+        "allg-we/we_lws",
+        "allg-we/we_perfusion"
+      ]
+    },
+    {
+      "setting": "zna",
+      "id": "zna-body-check-trauma",
+      "titel": "Body-Check (Trauma)",
+      "suchbegriffe": [
+        "ABCDE",
+        "Schockraum",
+        "Polytrauma",
+        "Traumacheck",
+        "Verkehrsunfall",
+        "Sturz aus der Höhe"
+      ],
+      "kuerzel": [
+        "abcde"
+      ],
+      "region": "body-check",
+      "abschnitte": {
+        "befund": [
+          "bc-abcde"
+        ]
+      },
+      "entscheiden": [
+        "bc-abcde/bc_bewusstsein",
+        "bc-abcde/bc_pupillen",
+        "bc-abcde/bc_pulse",
+        "bc-abcde/bc_rr",
+        "bc-abcde/bc_hf"
+      ],
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet 10/2026",
+      "ohne": [
+        "bc-abcde/bc_e_temperatur",
+        "bc-abcde/bc_rumpf",
+        "bc-abcde/bc_haut"
+      ]
+    },
+    {
+      "setting": "zna",
+      "id": "zna-hws-distorsion",
+      "titel": "HWS-Distorsion",
+      "suchbegriffe": [
+        "Schleudertrauma",
+        "Halswirbelsäule",
+        "Auffahrunfall",
+        "Beschleunigungstrauma",
+        "Nackenzerrung"
+      ],
+      "kuerzel": [
+        "hws"
+      ],
+      "region": "hws",
+      "abschnitte": {
+        "diagnose": [
+          "dx-hws-distorsion"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-hws"
+        ],
+        "befund": [
+          "hws-untersuchung"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "hws-procedere"
+        ]
+      },
+      "entscheiden": [
+        "ana-hws/kopf",
+        "ana-hws/beginn",
+        "ana-hws/kribbeln",
+        "hws-untersuchung/hws_hartspann",
+        "hws-untersuchung/hws_ds_dornfortsatz",
+        "hws-untersuchung/hws_beweglichkeit"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Im Auto sei es zu einem Aufprall von hinten durch ein anderes Fahrzeug gekommen.",
+          "Im Auto sei es zu einem Frontalaufprall gekommen.",
+          "Im Auto sei es zu einem seitlichen Aufprall gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Sport sei es zu einem Zusammenprall mit einem Gegenspieler gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet 10/2026",
+      "ohne": [
+        "hws-untersuchung/hws_stauchung"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Bildgebung der Halswirbelsäule oder Verzicht?",
+          "bausteine": [
+            "dgn-hws",
+            "dgn-hws-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "setting": "zna",
+      "id": "zna-schaedel-hirn-trauma",
+      "titel": "Schädel-Hirn-Trauma",
+      "suchbegriffe": [
+        "leicht",
+        "Schädelprellung",
+        "Kopfprellung",
+        "Commotio cerebri",
+        "Gehirnerschütterung",
+        "Kopfverletzung",
+        "Sturz auf den Kopf",
+        "leichtes SHT"
+      ],
+      "kuerzel": [
+        "sht"
+      ],
+      "region": "sht",
+      "abschnitte": {
+        "diagnose": [
+          "dx-sht-leicht"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "sht-anamnese"
+        ],
+        "befund": [
+          "sht-untersuchung"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-sht"
+        ],
+        "procedere": [
+          "sht-procedere"
+        ]
+      },
+      "entscheiden": [
+        "sht-anamnese/sht_bewusstlos",
+        "sht-anamnese/sht_amnesie",
+        "sht-anamnese/sht_erbrechen",
+        "sht-anamnese/sht_kopfschmerz",
+        "sht-anamnese/sht_alkohol",
+        "sht-untersuchung/sht_bewusstsein",
+        "sht-untersuchung/sht_gcs",
+        "sht-untersuchung/sht_prellmarke",
+        "sht-untersuchung/sht_pupillen",
+        "sht-untersuchung/sht_neuro"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Bei einem Sturz aus dem Stand sei der Kopf auf den Boden aufgeschlagen.",
+          "Beim Aufrichten sei der Kopf gegen eine Kante gestoßen.",
+          "Bei einem Sturz auf der Treppe sei der Kopf auf eine Stufe aufgeschlagen.",
+          "Bei einem Sturz mit dem Fahrrad sei der Kopf auf den Boden aufgeschlagen.",
+          "Ein Gegenstand sei auf den Kopf gefallen.",
+          "Es sei zu einem Schlag gegen den Kopf gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet 10/2026",
+      "ohne": [
+        "sht-anamnese/sht_krampf"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-sht/beobachtung",
+          "sht-procedere/gerinnung",
+          "sht-procedere/keine-ass"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "CT des Schädels oder Verzicht?",
+          "bausteine": [
+            "dgn-sht",
+            "dgn-sht-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "setting": "zna",
+      "id": "zna-lumbago",
+      "titel": "Lumbago",
+      "suchbegriffe": [
+        "Rückenschmerzen",
+        "Hexenschuss",
+        "Lumbalgie",
+        "Kreuzschmerz",
+        "LWS-Syndrom"
+      ],
+      "region": "wirbelsaeule",
+      "abschnitte": {
+        "diagnose": [
+          "dx-lumbago"
+        ],
+        "anamnese": [
+          "ana-beschwerden",
+          "ws-rueckenschmerzen-anamnese"
+        ],
+        "befund": [
+          "ws-rueckenschmerzen-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-kreuzschmerz"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "ws-lumbago-proc"
+        ]
+      },
+      "entscheiden": [
+        "ws-rueckenschmerzen-anamnese/ws-laehmung",
+        "ws-rueckenschmerzen-anamnese/ws-reithose-anam",
+        "ws-rueckenschmerzen-anamnese/ws-miktion",
+        "ws-rueckenschmerzen-anamnese/ws-bsymptomatik",
+        "ws-rueckenschmerzen-anamnese/ws-infiltration",
+        "ws-rueckenschmerzen-anamnese/ws-risiko",
+        "ws-rueckenschmerzen-untersuchung/ws-hartspann",
+        "ws-rueckenschmerzen-untersuchung/ws-klopfschmerz",
+        "ws-rueckenschmerzen-untersuchung/ws-beweglichkeit"
+      ],
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Beim Heben einer Last sei plötzlich ein Schmerz im Rücken aufgetreten.",
+          "Beim Bücken sei plötzlich ein Schmerz im Rücken aufgetreten.",
+          "Bei einer Drehbewegung sei plötzlich ein Schmerz im Rücken aufgetreten.",
+          "Der Rückenschmerz habe ohne erinnerlichen Auslöser begonnen.",
+          "Wegen der Schmerzen sei das Gehen nur mit Mühe möglich.",
+          "Der Schmerz habe sich mit Schmerzmitteln zu Hause nicht ausreichend lindern lassen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet 10/2026",
+      "ohne": [
+        "ws-rueckenschmerzen-untersuchung/ws-beckenkompression",
+        "ws-rueckenschmerzen-untersuchung/ws-steissbein",
+        "ws-rueckenschmerzen-untersuchung/ws-reflexe",
+        "ws-rueckenschmerzen-untersuchung/ws-huefte"
+      ]
+    },
+    {
+      "setting": "zna",
+      "id": "zna-lws-prellung",
+      "titel": "LWS-Prellung",
+      "suchbegriffe": [
+        "Rückenprellung",
+        "Wirbelsäulenprellung",
+        "BWS-Prellung",
+        "Sturz auf den Rücken"
+      ],
+      "kuerzel": [
+        "lws"
+      ],
+      "region": "wirbelsaeule",
+      "abschnitte": {
+        "diagnose": [
+          "dx-lws-prellung"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-fuss-sturzhoehe"
+        ],
+        "befund": [
+          "ws-rueckenschmerzen-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-lws-urin"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "ws-lws-prellung-proc"
+        ]
+      },
+      "entscheiden": [
+        "ws-rueckenschmerzen-untersuchung/ws-inspektion",
+        "ws-rueckenschmerzen-untersuchung/ws-hartspann",
+        "ws-rueckenschmerzen-untersuchung/ws-klopfschmerz",
+        "ws-rueckenschmerzen-untersuchung/ws-steissbein",
+        "ws-rueckenschmerzen-untersuchung/ws-beweglichkeit",
+        "ws-rueckenschmerzen-untersuchung/ws-nierenlager"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-zna/analgesie"
+        ],
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Sturz auf den Rücken gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz auf den Rücken gekommen.",
+          "Bei einem Sturz auf der Treppe sei der Rücken auf eine Stufe aufgeschlagen.",
+          "Es sei zu einem Anprall des Rückens gegen eine Kante gekommen.",
+          "Es sei zu einem Sturz von der Leiter gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet 10/2026",
+      "ohne": [
+        "ws-rueckenschmerzen-untersuchung/ws-lasegue",
+        "ws-rueckenschmerzen-untersuchung/ws-reflexe"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Bildgebung oder Verzicht?",
+          "bausteine": [
+            "dgn-lws",
+            "dgn-lws-ct",
+            "dgn-lws-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "setting": "zna",
+      "id": "zna-thoraxprellung",
+      "titel": "Thoraxprellung",
+      "suchbegriffe": [
+        "Rippenprellung",
+        "Brustkorbprellung",
+        "Brustkorb",
+        "Thoraxtrauma"
+      ],
+      "region": "thorax",
+      "abschnitte": {
+        "diagnose": [
+          "dx-thoraxprellung"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-thorax"
+        ],
+        "befund": [
+          "thorax-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-thorax-weitere"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "thorax-prellung-proc"
+        ]
+      },
+      "entscheiden": [
+        "ana-thorax/atemnot",
+        "thorax-untersuchung/thorax-druckschmerz",
+        "thorax-untersuchung/thorax-kompression",
+        "thorax-untersuchung/thorax-atemexkursion",
+        "thorax-untersuchung/thorax-belueftung",
+        "thorax-untersuchung/thorax-spo2"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Bei einem Sturz sei der Brustkorb gegen eine Kante geprallt.",
+          "Es sei zu einem Sturz auf den Brustkorb gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Bei einem Autounfall sei der Brustkorb gegen den Sicherheitsgurt geprallt.",
+          "Beim Sport sei es zu einem Zusammenprall mit einem Gegenspieler gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Standardtexte ZNA 04/2026, von der Redaktion überarbeitet 10/2026",
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen, CT oder Verzicht?",
+          "bausteine": [
+            "dgn-thorax",
+            "dgn-thorax-ct",
+            "dgn-thorax-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "zna-frei",
+      "titel": "Freier Brief Notaufnahme",
+      "suchbegriffe": [
+        "leer",
+        "ohne Vorlage",
+        "sonstiges"
+      ],
+      "region": "brief-zna",
+      "setting": "zna",
+      "abschnitte": {
+        "diagnose": [
+          "dx-frei"
+        ],
+        "anamnese": [
+          "ana-trauma"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "proc-allgemein"
+        ]
+      },
+      "status": "entwurf",
+      "entscheiden": []
+    },
+    {
+      "setting": "zna",
+      "id": "zna-kopfplatzwunde",
+      "titel": "Kopfplatzwunde",
+      "suchbegriffe": [
+        "Platzwunde Kopf",
+        "Riss-Quetschwunde Kopf",
+        "Stirnplatzwunde",
+        "Augenbraue",
+        "Kinnplatzwunde",
+        "Gesichtswunde"
+      ],
+      "kuerzel": [
+        "kpw"
+      ],
+      "region": "sht",
+      "abschnitte": {
+        "diagnose": [
+          "dx-kopfplatzwunde"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "sht-anamnese"
+        ],
+        "befund": [
+          "bef-kopfplatzwunde",
+          "sht-untersuchung"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-wundversorgung",
+          "th-sht"
+        ],
+        "procedere": [
+          "proc-kopfplatzwunde"
+        ]
+      },
+      "entscheiden": [
+        "sht-anamnese/sht_bewusstlos",
+        "sht-anamnese/sht_amnesie",
+        "sht-anamnese/sht_alkohol",
+        "sht-untersuchung/sht_bewusstsein",
+        "sht-untersuchung/sht_pupillen",
+        "sht-untersuchung/sht_neuro"
+      ],
+      "vorgaben": {
+        "an": [
+          "ana-trauma/tetanus"
+        ],
+        "aus": [
+          "th-sht/entlassung",
+          "th-sht/aufklaerung",
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-wundversorgung/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Bei einem Sturz aus dem Stand sei der Kopf auf den Boden aufgeschlagen.",
+          "Bei einem Sturz sei der Kopf gegen eine Kante geprallt.",
+          "Beim Aufrichten sei der Kopf gegen eine Kante gestoßen.",
+          "Beim Spielen sei der Kopf gegen eine Tischkante geprallt.",
+          "Bei einem Sturz mit dem Fahrrad sei der Kopf auf den Boden aufgeschlagen.",
+          "Es sei zu einem Schlag gegen den Kopf gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion 10/2026 nach Recherche R2",
+      "ohne": [
+        "sht-anamnese/sht_krampf",
+        "sht-untersuchung/sht_wunde"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "CT des Schädels oder Verzicht?",
+          "bausteine": [
+            "dgn-sht",
+            "dgn-sht-verzicht"
+          ]
+        }
+      ]
+    },
+    {
+      "setting": "zna",
+      "id": "zna-rippenfraktur",
+      "titel": "Rippenfraktur, Rippenprellung",
+      "suchbegriffe": [
+        "Rippenbruch",
+        "Rippe gebrochen",
+        "Thoraxtrauma",
+        "Brustkorb"
+      ],
+      "region": "thorax",
+      "abschnitte": {
+        "diagnose": [
+          "dx-rippenfraktur"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-fuss-sturzhoehe",
+          "ana-thorax"
+        ],
+        "befund": [
+          "thorax-untersuchung"
+        ],
+        "diagnostik": [
+          "dgn-thorax-weitere"
+        ],
+        "therapie": [
+          "th-zna"
+        ],
+        "procedere": [
+          "proc-rippenfraktur"
+        ]
+      },
+      "entscheiden": [
+        "ana-thorax/atemnot",
+        "thorax-untersuchung/thorax-druckschmerz",
+        "thorax-untersuchung/thorax-kompression",
+        "thorax-untersuchung/thorax-atemexkursion",
+        "thorax-untersuchung/thorax-belueftung",
+        "thorax-untersuchung/thorax-abdomen",
+        "thorax-untersuchung/thorax-spo2"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Bei einem Sturz sei der Brustkorb gegen eine Kante geprallt.",
+          "Es sei zu einem Sturz auf den Brustkorb gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Bei einem Autounfall sei der Brustkorb gegen den Sicherheitsgurt geprallt.",
+          "Es sei zu einem Sturz von der Leiter gekommen.",
+          "Beim Sport sei es zu einem Zusammenprall mit einem Gegenspieler gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion 10/2026 nach Recherche R2",
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen, CT oder Verzicht?",
+          "bausteine": [
+            "dgn-thorax",
+            "dgn-thorax-ct",
+            "dgn-thorax-verzicht"
+          ]
+        }
+      ],
+      "vorgaben": {
+        "an": [
+          "thorax-untersuchung/thorax-af"
+        ]
+      }
+    },
+    {
+      "setting": "zna",
+      "id": "zna-lumboischialgie",
+      "titel": "Lumboischialgie",
+      "suchbegriffe": [
+        "Ischias",
+        "Ischialgie",
+        "Bandscheibenvorfall",
+        "Rückenschmerz mit Ausstrahlung",
+        "Wurzelreizsyndrom",
+        "Radikulopathie"
+      ],
+      "region": "wirbelsaeule",
+      "abschnitte": {
+        "diagnose": [
+          "dx-lumboischialgie"
+        ],
+        "anamnese": [
+          "ana-beschwerden",
+          "ws-rueckenschmerzen-anamnese"
+        ],
+        "befund": [
+          "ws-rueckenschmerzen-untersuchung"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "entscheiden": [
+        "ws-rueckenschmerzen-anamnese/ws-ausstrahlung",
+        "ws-rueckenschmerzen-anamnese/ws-laehmung",
+        "ws-rueckenschmerzen-anamnese/ws-reithose-anam",
+        "ws-rueckenschmerzen-anamnese/ws-miktion",
+        "ws-rueckenschmerzen-anamnese/ws-bsymptomatik",
+        "ws-rueckenschmerzen-anamnese/ws-infiltration",
+        "ws-rueckenschmerzen-anamnese/ws-risiko",
+        "ws-rueckenschmerzen-untersuchung/ws-hartspann",
+        "ws-rueckenschmerzen-untersuchung/ws-klopfschmerz",
+        "ws-rueckenschmerzen-untersuchung/ws-beweglichkeit",
+        "ws-rueckenschmerzen-untersuchung/ws-lasegue",
+        "ws-rueckenschmerzen-untersuchung/ws-paresen",
+        "ws-rueckenschmerzen-untersuchung/ws-fussheber",
+        "ws-rueckenschmerzen-untersuchung/ws-zehengang",
+        "ws-rueckenschmerzen-untersuchung/ws-sensibilitaet",
+        "ws-rueckenschmerzen-untersuchung/ws-reflexe"
+      ],
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Beim Heben einer Last sei plötzlich ein Schmerz im Rücken aufgetreten.",
+          "Beim Bücken sei plötzlich ein Schmerz im Rücken aufgetreten.",
+          "Der Rückenschmerz habe ohne erinnerlichen Auslöser begonnen.",
+          "Der Schmerz nehme beim Husten oder Niesen zu.",
+          "Der Beinschmerz sei stärker als der Rückenschmerz.",
+          "Wegen der Schmerzen sei das Gehen nur mit Mühe möglich."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion 10/2026 nach Recherche R2",
+      "ohne": [
+        "ws-rueckenschmerzen-untersuchung/ws-beckenkompression",
+        "ws-rueckenschmerzen-untersuchung/ws-steissbein"
+      ],
+      "vorgaben": {
+        "an": [
+          "proc-lumboischialgie/mrt"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Bildgebung oder Verzicht?",
+          "bausteine": [
+            "dgn-lws-mrt",
+            "dgn-lws",
+            "dgn-kreuzschmerz-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Entlassung oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-lumboischialgie",
+            "proc-lumboischialgie-aufnahme"
+          ]
+        }
+      ]
+    }
+  ]
+}

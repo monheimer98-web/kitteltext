@@ -1,0 +1,1462 @@
+{
+  "regionen": [
+    {
+      "id": "hws",
+      "name": "HWS",
+      "kuerzel": "🧣",
+      "bausteine": [
+        {
+          "id": "hws-untersuchung",
+          "titel": "HWS-Distorsion – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Halswirbelsäule: "
+            },
+            {
+              "art": "befund",
+              "id": "hws_hartspann",
+              "chip": "Muskelhartspann",
+              "gruppe": "Palpation",
+              "normal": "Kein muskulärer Hartspann, kein paravertebraler Druckschmerz. ",
+              "abweichung": "Tastbarer muskulärer Hartspann{hws_region} mit regionalem Druckschmerz. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "hws_region",
+                  "label": "Lokalisation Hartspann",
+                  "optionen": [
+                    "",
+                    " zervikal beidseits",
+                    " zervikal rechts betont",
+                    " zervikal links betont",
+                    " zervikothorakal"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hws_ds_dornfortsatz",
+              "chip": "Druck-/Klopfschmerz Dornfortsätze",
+              "gruppe": "Palpation",
+              "normal": "Kein Druck- oder Klopfschmerz über den Dornfortsätzen der Halswirbelsäule. ",
+              "abweichung": "{was} über den Dornfortsätzen der Halswirbelsäule {hoehe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Druckschmerz",
+                    "Klopfschmerz",
+                    "Druck- und Klopfschmerz"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "hoehe",
+                  "label": "Höhe (z. B. in Höhe des 5. und 6. Halswirbels)",
+                  "maxLen": 50
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hws_beweglichkeit",
+              "chip": "Bewegungseinschränkung",
+              "gruppe": "Beweglichkeit",
+              "normal": "Freie Beweglichkeit der Halswirbelsäule. ",
+              "abweichung": "Schmerzabhängige Bewegungseinschränkung der Halswirbelsäule{richtung}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "richtung",
+                  "label": "Richtung",
+                  "optionen": [
+                    "",
+                    " in allen Richtungen",
+                    " bei Rotation nach rechts",
+                    " bei Rotation nach links",
+                    " bei Rotation nach beiden Seiten",
+                    " bei Vor- und Rückneigung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hws_stauchung",
+              "chip": "Stauchungsschmerz",
+              "gruppe": "Tests",
+              "normal": "Kein Stauchungsschmerz der Halswirbelsäule. ",
+              "abweichung": "Stauchungsschmerz der Halswirbelsäule. "
+            },
+            {
+              "art": "befund",
+              "id": "hws_paresen",
+              "chip": "Kraft obere Extremität",
+              "gruppe": "Neurologie",
+              "normal": "Keine Paresen, volle Kraft der oberen Extremität beidseits. ",
+              "abweichung": "Kraftminderung der oberen Extremität {ls}{grad}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Kraftgrad",
+                  "optionen": [
+                    "",
+                    ", Kraftgrad 4/5",
+                    ", Kraftgrad 3/5",
+                    ", Kraftgrad 2/5"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hws_finger",
+              "chip": "Fingerfunktion",
+              "gruppe": "Neurologie",
+              "normal": "Fingerstreckung, Fingerspreizung und Faustschluss uneingeschränkt. ",
+              "abweichung": "{was} {ls} abgeschwächt. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Funktion",
+                  "optionen": [
+                    "",
+                    "Fingerstreckung",
+                    "Fingerspreizung",
+                    "Faustschluss"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hws_sensibilitaet",
+              "chip": "Sensibilitätsminderung",
+              "gruppe": "Neurologie",
+              "normal": "Keine Sensibilitätsminderung an Armen und Händen. ",
+              "abweichung": "Sensibilitätsminderung {ls} {wo}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort (z. B. an Daumen und Zeigefinger)",
+                  "maxLen": 50
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hws_begleit",
+              "chip": "Schwindel, Seh- oder Schluckstörung",
+              "gruppe": "Begleitsymptome",
+              "normal": "Keine Schluckbeschwerden, keine Sehstörungen, kein Schwindel. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Symptom",
+                  "optionen": [
+                    "",
+                    "Schwindel",
+                    "Sehstörungen",
+                    "Schluckbeschwerden",
+                    "Schwindel und Sehstörungen"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "hws-procedere",
+          "titel": "HWS-Distorsion – Procedere",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung oder frühe Bewegung",
+              "pflicht": true,
+              "optionen": [
+                "Keine Ruhigstellung der Halswirbelsäule, frühe Bewegung im schmerzarmen Bereich.",
+                "Weiche Halskrawatte zur Schmerzlinderung für höchstens 2 Tage, danach Bewegung im schmerzarmen Bereich.",
+                "Weiche Halskrawatte zur Schmerzlinderung für höchstens 3 Tage, danach Bewegung im schmerzarmen Bereich.",
+                "Weiche Halskrawatte zur Schmerzlinderung für höchstens 1 Woche, danach Bewegung im schmerzarmen Bereich."
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegung",
+              "label": "Bewegungsübungen",
+              "text": "Tägliche Bewegungsübungen des Schulter- und Nackenbereiches."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "an": true,
+              "text": "Physiotherapie zur Lösung der muskulären Verspannungen, ergänzt durch Wärmeanwendungen oder Massagen, {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "wenn die Beschwerden nach 1 Woche anhalten",
+                    "wenn die Beschwerden nach 2 Wochen anhalten",
+                    "ab sofort"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "Schmerzmittel nach Bedarf für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "3 Tage",
+                    "5 Tage",
+                    "1 Woche",
+                    "2 Wochen"
+                  ],
+                  "required": true,
+                  "default": 3
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "salbe",
+              "label": "Schmerzsalbe",
+              "an": true,
+              "text": "Auftragen schmerzlindernder Salben."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Befundkontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "nach 3 bis 5 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "diagnostik",
+              "label": "Weiterführende Diagnostik",
+              "an": true,
+              "text": "Weiterführende Diagnostik über die weiterbehandelnde Praxis, wenn die Beschwerden nach {frist} anhalten oder zunehmen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "2 Wochen",
+                    "4 Wochen",
+                    "6 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Lähmung oder Kraftverlust in Armen oder Beinen, Taubheitsgefühl oder Kribbeln in Armen oder Beinen, stark zunehmenden Nackenschmerzen, Sehstörungen oder Schwindel, Störung beim Wasserlassen oder beim Stuhlgang."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sht",
+      "name": "Kopf",
+      "kuerzel": "🧠",
+      "bausteine": [
+        {
+          "id": "sht-anamnese",
+          "titel": "Kopfverletzung – Anamnese (Zusatzangaben)",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Zur Kopfverletzung: "
+            },
+            {
+              "art": "befund",
+              "id": "sht_bewusstlos",
+              "chip": "Bewusstlosigkeit",
+              "gruppe": "Ereignis",
+              "normal": "Bewusstlos sei {er} nicht gewesen. ",
+              "abweichung": "{Er} sei{dauer} bewusstlos gewesen. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " wenige Sekunden",
+                    " etwa 1 Minute",
+                    " mehrere Minuten",
+                    " für unbekannte Dauer"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_amnesie",
+              "chip": "Erinnerungslücke",
+              "gruppe": "Ereignis",
+              "normal": "Eine Erinnerungslücke bestehe nicht. ",
+              "abweichung": "An {was} könne {er} sich nicht erinnern. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Erinnerungslücke für",
+                  "optionen": [
+                    "",
+                    "den Unfall",
+                    "die Zeit vor dem Unfall",
+                    "die Zeit nach dem Unfall",
+                    "die Zeit vor und nach dem Unfall"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_erbrechen",
+              "chip": "Übelkeit/Erbrechen",
+              "gruppe": "Symptome",
+              "normal": "Übelkeit bestehe nicht, erbrochen habe {er} nicht. ",
+              "abweichung": "{Er} habe {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Übelkeit/Erbrechen",
+                  "optionen": [
+                    "",
+                    "Übelkeit ohne Erbrechen",
+                    "einmal erbrochen",
+                    "mehrfach erbrochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_kopfschmerz",
+              "chip": "Kopfschmerz",
+              "gruppe": "Symptome",
+              "normal": "Kopfschmerz bestehe nicht. ",
+              "abweichung": "Es bestehe{staerke} Kopfschmerz. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "staerke",
+                  "label": "Stärke",
+                  "optionen": [
+                    "",
+                    " leichter",
+                    " mäßiger",
+                    " starker",
+                    " zunehmender"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_schwindel",
+              "chip": "Schwindel",
+              "gruppe": "Symptome",
+              "normal": "Schwindel bestehe nicht. ",
+              "abweichung": "Schwindel bestehe. "
+            },
+            {
+              "art": "befund",
+              "id": "sht_sehstoerung",
+              "chip": "Sehstörung",
+              "gruppe": "Symptome",
+              "normal": "Eine Sehstörung bestehe nicht. ",
+              "abweichung": "Es bestehe {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Sehstörung",
+                  "optionen": [
+                    "",
+                    "eine Sehstörung",
+                    "Doppeltsehen",
+                    "Verschwommensehen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_krampf",
+              "chip": "Krampfanfall",
+              "gruppe": "Symptome",
+              "normal": "Ein Krampfanfall sei nicht aufgetreten. ",
+              "abweichung": "Ein Krampfanfall sei aufgetreten. "
+            },
+            {
+              "art": "befund",
+              "id": "sht_alkohol",
+              "chip": "Alkohol",
+              "gruppe": "Umstände",
+              "normal": "Alkohol habe {er} nicht getrunken. ",
+              "abweichung": "{Er} habe Alkohol getrunken{folge}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "folge",
+                  "label": "Folge für die Beurteilung",
+                  "optionen": [
+                    "",
+                    "; die neurologische Beurteilbarkeit ist dadurch eingeschränkt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "unbeobachtet",
+              "label": "Sturz nicht beobachtet",
+              "text": "Der Sturz sei nicht beobachtet worden; ob eine Bewusstlosigkeit bestand, ist nicht bekannt. "
+            },
+            {
+              "art": "option",
+              "id": "sht_antikoag",
+              "label": "Gerinnungshemmung: letzte Einnahme",
+              "gruppe": "Umstände",
+              "text": "Letzte Einnahme des gerinnungshemmenden Medikaments: {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "letzte Einnahme",
+                  "optionen": [
+                    "",
+                    "heute",
+                    "gestern",
+                    "vor mehr als 2 Tagen",
+                    "unbekannt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sht_quelle",
+              "label": "Angaben von Dritten",
+              "gruppe": "Umstände",
+              "text": "Die Angaben zum Unfall stammen von {wem}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wem",
+                  "label": "Quelle",
+                  "optionen": [
+                    "",
+                    "Angehörigen",
+                    "Zeugen des Unfalls",
+                    "dem Rettungsdienst",
+                    "dem Pflegepersonal"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sht-untersuchung",
+          "titel": "Kopfverletzung – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "sht_bewusstsein",
+              "chip": "Bewusstsein und Orientierung",
+              "gruppe": "Bewusstsein",
+              "normal": "Wach, ansprechbar und zu allen vier Qualitäten orientiert. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Bewusstsein",
+                  "optionen": [
+                    "",
+                    "Wach, zeitlich nicht orientiert",
+                    "Wach, zu Ort und Zeit nicht orientiert",
+                    "Wach, verlangsamt",
+                    "Schläfrig, auf Ansprache erweckbar",
+                    "Wach, zur Person orientiert, zu Ort und Zeit nicht orientiert, nach Angaben der Begleitperson vorbestehend",
+                    "Wach, nicht orientiert, nach Angaben der Begleitperson bei bekannter Demenz unverändert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "sht_gcs",
+              "label": "Glasgow Coma Scale",
+              "vorlage": "Glasgow Coma Scale {w}. ",
+              "gruppe": "Bewusstsein"
+            },
+            {
+              "art": "befund",
+              "id": "sht_wunde",
+              "chip": "Wunde am Kopf",
+              "gruppe": "Kopf",
+              "normal": "Keine Riss- oder Platzwunden am Kopf. ",
+              "abweichung": "{art} {ls} {ort}, {laenge} lang{tiefe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Wundart",
+                  "optionen": [
+                    "",
+                    "Platzwunde",
+                    "Riss-Quetschwunde",
+                    "Schnittwunde",
+                    "Schürfwunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite (entfällt in der Mittellinie)"
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Lage",
+                  "optionen": [
+                    "",
+                    "frontal",
+                    "parietal",
+                    "temporal",
+                    "okzipital",
+                    "an der Augenbraue",
+                    "am Jochbein",
+                    "an der Nase",
+                    "an der Lippe",
+                    "am Kinn"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "laenge",
+                  "label": "Länge",
+                  "einheit": "cm",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "tiefe",
+                  "label": "Tiefe und Wundgrund",
+                  "optionen": [
+                    "",
+                    ", bis in die Subkutis reichend, Galea intakt",
+                    ", bis auf die Galea reichend, Galea intakt",
+                    ", Galea eröffnet, Knochen ohne tastbare Stufe",
+                    ", bis auf den Knochen reichend, Knochen ohne tastbare Stufe",
+                    ", bis in die Subkutis reichend",
+                    ", oberflächlich"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sht_wundgrund",
+              "label": "Wunde sauber oder verschmutzt, kein Fremdkörper",
+              "gruppe": "Kopf",
+              "text": "Wunde {zustand}, kein Fremdkörper. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zustand",
+                  "label": "Wunde",
+                  "optionen": [
+                    "",
+                    "sauber",
+                    "verschmutzt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_prellmarke",
+              "chip": "Prellmarke/Hämatom am Kopf",
+              "gruppe": "Kopf",
+              "normal": "Keine Prellmarken oder Hämatome des Schädels. ",
+              "abweichung": "{art} {ls} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Prellmarke",
+                    "Hämatom",
+                    "Schwellung",
+                    "Druckschmerz ohne Schwellung",
+                    "Druckschmerzhafte Schwellung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite (entfällt in der Mittellinie)"
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Lage",
+                  "optionen": [
+                    "",
+                    "frontal",
+                    "parietal",
+                    "temporal",
+                    "okzipital",
+                    "an der Augenbraue",
+                    "am Jochbein",
+                    "an der Nase",
+                    "an der Lippe",
+                    "am Kinn"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_stufe",
+              "chip": "Stufe/Deformität des Schädels",
+              "gruppe": "Kopf",
+              "normal": "Keine Deformitäten oder tastbaren Stufen des Schädels. ",
+              "abweichung": "Tastbare Stufe des Schädels {ort}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Lage",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_liquor",
+              "chip": "Flüssigkeit aus Nase, Ohr oder Mund",
+              "gruppe": "Kopf",
+              "normal": "Kein Flüssigkeitsaustritt aus Mund, Nase oder Ohren. ",
+              "abweichung": "Austritt von {was} aus {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Flüssigkeit",
+                  "optionen": [
+                    "",
+                    "Blut",
+                    "klarer Flüssigkeit"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "der Nase",
+                    "dem rechten Ohr",
+                    "dem linken Ohr",
+                    "dem Mund"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sht_brillenhaematom",
+              "label": "Kein Brillenhämatom",
+              "gruppe": "Kopf",
+              "text": "Kein Brillenhämatom, kein Hämatom hinter den Ohren. "
+            },
+            {
+              "art": "befund",
+              "id": "sht_kiefer",
+              "chip": "Kiefer und Mundöffnung",
+              "gruppe": "Gesicht",
+              "selten": true,
+              "normal": "Mundöffnung frei und schmerzlos, Zahnreihenschluss unverändert, kein Druckschmerz über den Kiefergelenken. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Mundöffnung eingeschränkt",
+                    "Zahnreihenschluss verändert",
+                    "Druckschmerz über dem Kiefergelenk rechts",
+                    "Druckschmerz über dem Kiefergelenk links",
+                    "Druckschmerz über beiden Kiefergelenken"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_orbita",
+              "chip": "Augenhöhle und Augenbeweglichkeit",
+              "gruppe": "Gesicht",
+              "selten": true,
+              "normal": "Kein Druckschmerz und keine Stufe am Rand der Augenhöhle, Augenbeweglichkeit frei, keine Doppelbilder. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund an Augenhöhle und Auge",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_pupillen",
+              "chip": "Pupillen",
+              "gruppe": "Neurologie",
+              "normal": "Pupillen isokor und seitengleich lichtreagibel. ",
+              "abweichung": "Anisokorie{pupillenseite}{reaktion}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "pupillenseite",
+                  "label": "weitere Pupille",
+                  "optionen": [
+                    "",
+                    ", rechte Pupille weiter",
+                    ", linke Pupille weiter"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "reaktion",
+                  "label": "Lichtreaktion",
+                  "optionen": [
+                    "",
+                    ", Lichtreaktion rechts verzögert",
+                    ", Lichtreaktion links verzögert",
+                    ", Lichtreaktion beidseits verzögert"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_neuro",
+              "chip": "Kraft und Sensibilität",
+              "gruppe": "Neurologie",
+              "normal": "Kraft und Sensibilität an Armen und Beinen seitengleich intakt. ",
+              "abweichung": "{was}{wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Kraftminderung",
+                    "Sensibilitätsminderung",
+                    "Kraft- und Sensibilitätsminderung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " am rechten Arm",
+                    " am linken Arm",
+                    " am rechten Bein",
+                    " am linken Bein",
+                    " der rechten Körperhälfte",
+                    " der linken Körperhälfte"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sht_gang",
+              "label": "Gang und Koordination",
+              "gruppe": "Neurologie",
+              "text": "Gang {gang}, Finger-Nase-Versuch {fnv}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "gang",
+                  "label": "Gang",
+                  "optionen": [
+                    "sicher",
+                    "unsicher"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "fnv",
+                  "label": "Finger-Nase-Versuch",
+                  "optionen": [
+                    "beidseits sicher",
+                    "rechts unsicher",
+                    "links unsicher",
+                    "beidseits unsicher"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_hws",
+              "chip": "Halswirbelsäule",
+              "gruppe": "Halswirbelsäule",
+              "normal": "Halswirbelsäule ohne Druck- oder Bewegungsschmerz. ",
+              "abweichung": "Halswirbelsäule: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Druckschmerz über den Dornfortsätzen",
+                    "paravertebraler Druckschmerz",
+                    "schmerzhafte Bewegungseinschränkung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sht_uebrig",
+              "chip": "Übriger Körper",
+              "gruppe": "Übriger Körper",
+              "selten": true,
+              "normal": "Übriger Körper: Brustkorb und Becken stabil, kein Klopfschmerz über der Wirbelsäule, Arme und Beine ohne Verletzungszeichen. ",
+              "abweichung": "Übriger Körper: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund am übrigen Körper",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "sht-procedere",
+          "titel": "Schädel-Hirn-Trauma leicht, Schädelprellung – Procedere",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufsicht",
+              "label": "Häusliche Überwachung",
+              "an": true,
+              "text": "In den nächsten {dauer} nicht allein bleiben, Überwachung durch {wen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "24 Stunden",
+                    "48 Stunden",
+                    "72 Stunden"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wen",
+                  "label": "durch wen",
+                  "optionen": [
+                    "",
+                    "Angehörige",
+                    "die Eltern",
+                    "Mitbewohner",
+                    "das Pflegepersonal der Einrichtung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wecken",
+              "label": "Wecken in der Nacht",
+              "text": "In der ersten Nacht {wie} wecken und ansprechen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "optionen": [
+                    "",
+                    "alle 2 Stunden",
+                    "alle 3 Stunden",
+                    "zweimal"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Körperliche Schonung",
+              "an": true,
+              "text": "Körperliche Schonung für mindestens {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "24 Stunden",
+                    "48 Stunden",
+                    "72 Stunden",
+                    "1 Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Sportpause",
+              "text": "Kein Sport bis zur Beschwerdefreiheit, mindestens {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "1 Woche",
+                    "2 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "alkohol",
+              "label": "Kein Alkohol",
+              "text": "Kein Alkohol bis zur Beschwerdefreiheit."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "fahren",
+              "label": "Kein Fahrzeug führen",
+              "text": "Kein Auto und kein Fahrrad fahren für {dauer} und solange Schwindel oder Konzentrationsstörungen bestehen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "24 Stunden",
+                    "48 Stunden"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "Schmerzmittel bei Kopfschmerzen nach Bedarf."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "keine-ass",
+              "label": "Keine Acetylsalicylsäure",
+              "text": "Keine Acetylsalicylsäure als Schmerzmittel einnehmen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmendes Medikament",
+              "text": "Gerinnungshemmendes Medikament {weiter}. Eine Hirnblutung kann darunter auch verzögert auftreten: Warnzeichen in den nächsten Tagen besonders beachten.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Weiterführung",
+                  "optionen": [
+                    "",
+                    "unverändert weiter einnehmen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-pause",
+              "label": "Gerinnungshemmendes Medikament pausieren",
+              "text": "Gerinnungshemmendes Medikament pausieren bis {wann}; über den Wiederbeginn entscheidet die Hausarztpraxis bei der Kontrolle am {tag}. Unter gerinnungshemmender Medikation kann eine Hirnblutung auch verzögert auftreten: Warnzeichen in den nächsten Tagen besonders beachten.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Pause bis (Datum)",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "tag",
+                  "label": "Kontrolle am (Datum)",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Ambulante Kontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 1 Woche",
+                    "innerhalb von 14 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wundkontrolle",
+              "label": "Wundkontrolle",
+              "text": "Wundkontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 Tagen",
+                    "nach 2 bis 3 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "fadenzug",
+              "label": "Entfernung des Nahtmaterials",
+              "text": "Entfernung {was} {wann} nach der Wundversorgung {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Nahtmaterial",
+                  "optionen": [
+                    "",
+                    "der Fäden",
+                    "der Klammern"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am 5. bis 7. Tag",
+                    "am 7. bis 10. Tag",
+                    "am 10. bis 14. Tag"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Notaufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wunde-trocken",
+              "label": "Wunde trocken halten",
+              "text": "Wunde {dauer} trocken halten, Haare so lange nicht waschen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 24 Stunden",
+                    "für 48 Stunden",
+                    "für 3 Tage",
+                    "bis zur Entfernung des Nahtmaterials"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme oder Notruf 112 bei: zunehmenden Kopfschmerzen, wiederholtem Erbrechen, ungewöhnlicher Schläfrigkeit oder erschwertem Aufwecken, Verwirrtheit oder verändertem Verhalten, Sehstörungen oder zunehmendem Schwindel, Lähmung oder Gefühlsstörung, Krampfanfall, klarer Flüssigkeit oder Blut aus Nase oder Ohr."
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz-wunde",
+              "label": "Warnzeichen der Wunde",
+              "text": " Außerdem bei: Rötung, Schwellung, Überwärmung oder pochendem Schmerz der Wunde, Eiter, aufgehender Naht, Blutung, die nach 10 Minuten Druck nicht steht."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

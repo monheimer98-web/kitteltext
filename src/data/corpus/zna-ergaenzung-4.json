@@ -1,0 +1,5280 @@
+{
+  "regionen": [
+    {
+      "id": "huefte",
+      "name": "Hüfte & Oberschenkel",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "dx-hueftprothese-luxation",
+          "titel": "Diagnose Luxation einer Hüftprothese",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "richtung",
+              "label": "Richtung",
+              "optionen": [
+                "Hintere Luxation",
+                "Vordere Luxation",
+                "Luxation"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " der "
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Art der Prothese",
+              "optionen": [
+                "Hüft-Totalendoprothese",
+                "Hüft-Totalendoprothese mit tripolarer Pfanne",
+                "Duokopfprothese",
+                "Hüftprothese"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "option",
+              "id": "implantation",
+              "label": "Jahr der Implantation",
+              "an": false,
+              "text": " (Implantation {jahr})",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "jahr",
+                  "label": "Jahr oder Zeitraum der Implantation",
+                  "maxLen": 30,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Erste oder wiederholte Luxation",
+              "optionen": [
+                ", Erstluxation",
+                ", wiederholte Luxation"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "fraktur",
+              "label": "Periprothetische Fraktur",
+              "an": false,
+              "text": ", mit periprothetischer Fraktur"
+            },
+            {
+              "art": "option",
+              "id": "lockerung",
+              "label": "Verdacht auf Lockerung",
+              "an": false,
+              "text": ", mit Verdacht auf Lockerung der Prothese"
+            },
+            {
+              "art": "option",
+              "id": "infekt",
+              "label": "Verdacht auf Infekt",
+              "an": false,
+              "text": ", mit Verdacht auf Infekt der Prothese"
+            },
+            {
+              "art": "option",
+              "id": "nerv",
+              "label": "Störung eines Nervs",
+              "an": false,
+              "text": ", mit Störung {welcher}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "welcher",
+                  "label": "Nerv",
+                  "optionen": [
+                    "",
+                    "des N. ischiadicus",
+                    "des N. femoralis"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "intraprothetisch",
+              "label": "Verdacht auf intraprothetische Luxation",
+              "an": false,
+              "text": ", mit Verdacht auf intraprothetische Luxation"
+            }
+          ]
+        },
+        {
+          "id": "ana-hueftprothese-luxation",
+          "titel": "Anamnese Luxation einer Hüftprothese (Zusatz)",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "implantation",
+              "label": "Implantation",
+              "an": true,
+              "text": "Implantation der Hüftprothese {seite}: {wann}, {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann (Jahr oder „vor … Wochen“)",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in unserer Klinik",
+                    "in einer anderen Klinik",
+                    "Klinik nicht bekannt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "klinik",
+              "label": "Implantierende Klinik",
+              "an": false,
+              "text": "Implantierende Klinik: {klinik}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Implantierende Klinik",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "zugang",
+              "label": "Operativer Zugang",
+              "an": false,
+              "text": "Operativer Zugang: {zugang}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zugang",
+                  "label": "Operativer Zugang",
+                  "optionen": [
+                    "",
+                    "hinterer Zugang",
+                    "vorderer Zugang",
+                    "seitlicher Zugang",
+                    "nicht bekannt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "frueher",
+              "label": "Frühere Luxationen",
+              "an": false,
+              "text": "Frühere Luxationen dieser Prothese: {anzahl}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anzahl",
+                  "label": "Frühere Luxationen",
+                  "optionen": [
+                    "",
+                    "eine",
+                    "zwei",
+                    "mehrere"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wechsel",
+              "label": "Frühere Wechseloperationen",
+              "an": false,
+              "text": "Frühere Wechseloperationen an dieser Prothese: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Wechseloperationen",
+                  "optionen": [
+                    "",
+                    "keine bekannt",
+                    "Wechsel von Kopf und Inlay",
+                    "Pfannenwechsel",
+                    "Schaftwechsel",
+                    "mehrere"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ausloeser",
+              "label": "Auslöser",
+              "an": false,
+              "text": "Auslöser nach Angabe: {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Auslöser",
+                  "optionen": [
+                    "",
+                    "tiefes Beugen im Sitzen oder Bücken",
+                    "Übereinanderschlagen der Beine",
+                    "Drehen im Bett oder beim Aufstehen",
+                    "Aufstehen aus tiefem Sitz",
+                    "Sturz",
+                    "keine erinnerliche Ursache"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "vorschmerz",
+              "label": "Schmerzen vor dem Ereignis",
+              "an": true,
+              "text": "Schmerzen in der Hüfte {seite} schon vor dem Ereignis: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Schmerzen vor dem Ereignis",
+                  "optionen": [
+                    "",
+                    "nein",
+                    "ja, bei Belastung",
+                    "ja, auch in Ruhe und nachts"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "infektzeichen",
+              "label": "Fieber, Schüttelfrost, Wundheilungsstörung",
+              "an": true,
+              "text": "Fieber, Schüttelfrost oder Wundheilungsstörung seit der Implantation: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Fieber, Schüttelfrost, Wundheilungsstörung",
+                  "optionen": [
+                    "",
+                    "nach Angabe nein",
+                    "ja",
+                    "nicht zu erheben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mobilitaet",
+              "label": "Gehen vor dem Ereignis",
+              "an": false,
+              "text": "Gehen vor dem Ereignis: {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehen vor dem Ereignis",
+                  "optionen": [
+                    "",
+                    "ohne Hilfsmittel",
+                    "mit Gehstock oder Unterarmgehstützen",
+                    "am Rollator",
+                    "nur innerhalb der Wohnung",
+                    "im Rollstuhl"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "versorgung",
+              "label": "Versorgung zu Hause",
+              "an": false,
+              "text": "Versorgung zu Hause: {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Versorgung zu Hause",
+                  "optionen": [
+                    "",
+                    "allein lebend ohne Hilfe",
+                    "allein lebend mit ambulantem Pflegedienst",
+                    "mit Angehörigen",
+                    "betreutes Wohnen",
+                    "Pflegeheim"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-hueftprothese-luxation",
+          "titel": "Hüfte – Luxation einer Prothese (vor und nach Reposition)",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Hüfte "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "stellung",
+              "chip": "Stellung des Beins vor Reposition",
+              "gruppe": "Inspektion",
+              "normal": "",
+              "abweichung": "Bein vor Reposition {stellung}{federnd}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stellung",
+                  "label": "Stellung",
+                  "optionen": [
+                    "",
+                    "verkürzt, gebeugt und innengedreht",
+                    "verkürzt und innengedreht",
+                    "verkürzt und außengedreht",
+                    "gestreckt und außengedreht",
+                    "ohne sichtbare Fehlstellung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "federnd",
+                  "label": "Federnde Fixation",
+                  "optionen": [
+                    "",
+                    ", federnd fixiert"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "narbe",
+              "chip": "Narbe, Infektzeichen",
+              "gruppe": "Inspektion",
+              "normal": "Narbe reizlos, keine Rötung, keine Überwärmung, keine Fistel. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Rötung und Überwärmung der Narbe",
+                    "Schwellung über der Narbe",
+                    "Fistel mit Sekretion",
+                    "Wunde nicht verheilt",
+                    "Hämatom"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort oder Zusatz",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "prellmarke",
+              "chip": "Prellmarke, Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Keine Prellmarke, kein Hämatom an Hüfte und Oberschenkel. ",
+              "abweichung": "{was} {wo}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Prellmarke",
+                    "Hämatom",
+                    "Schürfwunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "nerv-vor",
+              "chip": "N. ischiadicus vor Reposition",
+              "gruppe": "Vor Reposition",
+              "normal": "Vor Reposition Fuß- und Zehenhebung sowie Fußsenkung kräftig, Sensibilität an Fußrücken und Fußsohle intakt. ",
+              "abweichung": "Vor Reposition {was} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fuß- und Zehenhebung abgeschwächt",
+                    "Fuß- und Zehenhebung nicht möglich",
+                    "Fußsenkung abgeschwächt",
+                    "Sensibilität am Fußrücken vermindert",
+                    "Sensibilität an Fußrücken und Fußsohle vermindert",
+                    "Fuß- und Zehenhebung abgeschwächt, Sensibilität am Fußrücken vermindert",
+                    "Nervenfunktion schmerzbedingt nicht sicher beurteilbar"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "durchblutung-vor",
+              "chip": "Durchblutung vor Reposition",
+              "gruppe": "Vor Reposition",
+              "normal": "Vor Reposition Fuß warm und rosig, Rekapillarisierung prompt. ",
+              "abweichung": "Vor Reposition {was} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fuß kühl und blass",
+                    "Rekapillarisierung verzögert",
+                    "Fußpulse nicht tastbar",
+                    "Fußpulse nicht tastbar, nach Angabe vorbestehend"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "nerv-nach",
+              "chip": "N. ischiadicus nach Reposition",
+              "gruppe": "Nach Reposition",
+              "normal": "Nach Reposition Fuß- und Zehenhebung sowie Fußsenkung kräftig, Sensibilität an Fußrücken und Fußsohle intakt. ",
+              "abweichung": "Nach Reposition {was} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fuß- und Zehenhebung abgeschwächt",
+                    "Fuß- und Zehenhebung nicht möglich",
+                    "Fußsenkung abgeschwächt",
+                    "Sensibilität am Fußrücken vermindert",
+                    "Sensibilität an Fußrücken und Fußsohle vermindert",
+                    "Fuß- und Zehenhebung abgeschwächt, Sensibilität am Fußrücken vermindert",
+                    "Nervenfunktion schmerzbedingt nicht sicher beurteilbar"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "durchblutung-nach",
+              "chip": "Durchblutung nach Reposition",
+              "gruppe": "Nach Reposition",
+              "normal": "Nach Reposition Fuß warm und rosig, Rekapillarisierung prompt. ",
+              "abweichung": "Nach Reposition {was} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fuß kühl und blass",
+                    "Rekapillarisierung verzögert",
+                    "Fußpulse nicht tastbar",
+                    "Fußpulse nicht tastbar, nach Angabe vorbestehend"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "stabilitaet",
+              "chip": "Stabilität nach Reposition",
+              "gruppe": "Nach Reposition",
+              "normal": "Nach Reposition in Beugung bis 90° keine Luxationsneigung. ",
+              "abweichung": "Nach Reposition Luxationsneigung {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "bereits bei geringer Beugung",
+                    "bei Beugung über 90° mit Innendrehung",
+                    "bei Streckung mit Außendrehung",
+                    "schmerzbedingt nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "beinlaenge",
+              "chip": "Beinlänge und Drehung nach Reposition",
+              "gruppe": "Nach Reposition",
+              "normal": "Nach Reposition Beinlänge und Drehung des Beins seitengleich. ",
+              "abweichung": "Nach Reposition {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Bein weiterhin verkürzt",
+                    "Bein weiterhin fehlgedreht",
+                    "Bein weiterhin verkürzt und fehlgedreht"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "femoralis",
+              "chip": "N. femoralis",
+              "gruppe": "Durchblutung und Nerven",
+              "normal": "Kniestreckung kräftig, Sensibilität an der Oberschenkelvorderseite intakt. ",
+              "abweichung": "{was} {detail}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Kniestreckung abgeschwächt",
+                    "Kniestreckung nicht möglich",
+                    "Sensibilität an der Oberschenkelvorderseite vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz, z. B. vor oder nach Reposition",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-hueftprothese-roentgen",
+          "titel": "Röntgen vor und nach Reposition einer Hüftprothese",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "auswahl",
+              "id": "umfang",
+              "label": "Umfang vor Reposition",
+              "optionen": [
+                "Beckenübersicht und Hüfte",
+                "Hüfte"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "ebenen",
+              "label": "Ebenen vor Reposition",
+              "optionen": [
+                " axial",
+                " in 2 Ebenen"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " vor Reposition: "
+            },
+            {
+              "art": "auswahl",
+              "id": "richtung-vor",
+              "label": "Röntgen vor Reposition: Richtung",
+              "optionen": [
+                "Luxation des Prothesenkopfs nach hinten oben",
+                "Luxation des Prothesenkopfs nach vorn",
+                "Luxation des Prothesenkopfs, Richtung in dieser Aufnahme nicht sicher bestimmbar"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ", "
+            },
+            {
+              "art": "auswahl",
+              "id": "knochen-vor",
+              "label": "Röntgen vor Reposition: Knochen",
+              "optionen": [
+                "kein Frakturnachweis",
+                "periprothetische Fraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ", "
+            },
+            {
+              "art": "auswahl",
+              "id": "prothese-vor",
+              "label": "Röntgen vor Reposition: Prothese",
+              "optionen": [
+                "kein Hinweis auf Lockerung",
+                "Lockerungssaum oder Lageveränderung der Prothese",
+                "Pfanne gekippt oder ausgebrochen",
+                "bei Duokopfprothese Pfannenerosion"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "an": false,
+              "text": " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend."
+            },
+            {
+              "art": "option",
+              "id": "nach",
+              "label": "Röntgen nach Reposition",
+              "an": true,
+              "text": "\nRöntgen {umfang} {seite}{ebenen} nach Reposition: {ergebnis}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "umfang",
+                  "label": "Umfang nach Reposition",
+                  "optionen": [
+                    "",
+                    "Beckenübersicht und Hüfte",
+                    "Hüfte"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ebenen",
+                  "label": "Ebenen nach Reposition",
+                  "optionen": [
+                    "",
+                    " axial",
+                    " in 2 Ebenen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Röntgenbefund nach Reposition",
+                  "optionen": [
+                    "",
+                    "Prothesenkopf zentriert, kein Frakturnachweis.",
+                    "Prothesenkopf zentriert, periprothetische Fraktur.",
+                    "Prothesenkopf exzentrisch in der Pfanne, Verdacht auf intraprothetische Luxation.",
+                    "Prothesenkopf erneut luxiert."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "nach-versuch",
+              "label": "Röntgen nach erfolglosem Repositionsversuch",
+              "an": false,
+              "text": "\nRöntgen {umfang} {seite}{ebenen} nach dem Repositionsversuch: {ergebnis}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "umfang",
+                  "label": "Umfang nach dem Versuch",
+                  "optionen": [
+                    "",
+                    "Beckenübersicht und Hüfte",
+                    "Hüfte"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ebenen",
+                  "label": "Ebenen nach dem Versuch",
+                  "optionen": [
+                    "",
+                    " axial",
+                    " in 2 Ebenen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Röntgenbefund nach dem Versuch",
+                  "optionen": [
+                    "",
+                    "Prothesenkopf weiterhin luxiert, kein neuer Frakturnachweis.",
+                    "Prothesenkopf weiterhin luxiert, periprothetische Fraktur."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ct",
+              "label": "CT Hüfte",
+              "an": false,
+              "text": "\nCT Hüfte {seite}: {befund}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "befund",
+                  "label": "CT-Befund",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "labor",
+              "label": "Labor",
+              "an": false,
+              "text": "\nLabor: {werte}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "werte",
+                  "label": "Werte mit Einheit, z. B. CRP und Leukozyten",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-hueftprothese-reposition",
+          "titel": "Hüftprothese: Reposition in der Notaufnahme",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung",
+              "label": "Aufklärung und Einwilligung",
+              "an": true,
+              "text": "Aufklärung über Reposition und Schmerzausschaltung: {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Aufklärung",
+                  "optionen": [
+                    "",
+                    "mündlich, Einwilligung liegt vor",
+                    "schriftlich, Einwilligung liegt vor",
+                    "mit der gesetzlichen Betreuung oder bevollmächtigten Person, Einwilligung liegt vor",
+                    "nicht einwilligungsfähig, Betreuung nicht erreichbar, Behandlung nach mutmaßlichem Willen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern seit",
+              "an": false,
+              "text": "Nüchtern seit {zeit}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "zeit",
+                  "label": "Uhrzeit oder Angabe",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "reposition",
+              "label": "Reposition",
+              "an": true,
+              "text": "Hüftprothese {seite} {analgesie} durch {wer}{versuch} geschlossen reponiert.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "analgesie",
+                  "label": "Schmerzausschaltung",
+                  "optionen": [
+                    "",
+                    "in Analgosedierung",
+                    "in Kurznarkose",
+                    "unter Schmerzmittelgabe ohne Sedierung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Durch wen",
+                  "optionen": [
+                    "",
+                    "den unfallchirurgisch-orthopädischen Dienst",
+                    "den unfallchirurgisch-orthopädischen Hintergrunddienst",
+                    "den Dienst der Notaufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "versuch",
+                  "label": "Versuch",
+                  "optionen": [
+                    "",
+                    " beim 1. Versuch",
+                    " beim 2. Versuch",
+                    " nach mehreren Versuchen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mittel",
+              "label": "Schmerzausschaltung: wer und womit",
+              "an": true,
+              "text": " Schmerzausschaltung durch {wer}: {mittel}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Durch wen",
+                  "optionen": [
+                    "",
+                    "die Anästhesie",
+                    "den Dienst der Notaufnahme",
+                    "den unfallchirurgisch-orthopädischen Dienst"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "mittel",
+                  "label": "Wirkstoffe, Dosis, Gabeweg",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "manoever",
+              "label": "Repositionsmanöver",
+              "an": false,
+              "text": " Repositionsmanöver: {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Manöver",
+                  "optionen": [
+                    "",
+                    "Längszug in Beugung von Hüft- und Kniegelenk",
+                    "Längszug in Streckung",
+                    "unter Bildwandlerkontrolle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "monitor",
+              "label": "Überwachung am Monitor",
+              "an": true,
+              "text": "Überwachung am Monitor nach der Schmerzausschaltung: {dauer}. Zustand danach: {zustand}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "30 Minuten",
+                    "1 Stunde",
+                    "2 Stunden",
+                    "bis zur Übernahme auf die Station",
+                    "nicht erforderlich, keine Sedierung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "zustand",
+                  "label": "Zustand danach",
+                  "optionen": [
+                    "",
+                    "wach, orientiert und kreislaufstabil",
+                    "noch sediert, Übergabe an die Station",
+                    "keine Sedierung erfolgt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gehprobe",
+              "label": "Gehprobe",
+              "an": true,
+              "text": "Gehprobe nach Reposition: {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehprobe",
+                  "optionen": [
+                    "",
+                    "an Unterarmgehstützen sicher",
+                    "am Rollator sicher",
+                    "ohne Hilfsmittel sicher",
+                    "nur mit Hilfe einer Person möglich",
+                    "nicht durchgeführt",
+                    "nicht möglich, bereits vor dem Ereignis nicht gehfähig"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Orthese oder Schiene",
+              "an": false,
+              "text": "{was} {seite} zur Vorbeugung einer erneuten Luxation angelegt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was",
+                  "optionen": [
+                    "",
+                    "Hüftorthese",
+                    "Kniestreckschiene"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kissen",
+              "label": "Abspreizkissen",
+              "an": false,
+              "text": "Lagerung mit Abspreizkissen zwischen den Beinen."
+            }
+          ]
+        },
+        {
+          "id": "th-hueftprothese-ohne-reposition",
+          "titel": "Hüftprothese: keine Reposition in der Notaufnahme (Weg zur Reposition in Narkose)",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "grund",
+              "label": "Reposition: was und warum",
+              "optionen": [
+                "Reposition in der Notaufnahme nicht versucht, Reposition in Narkose im Operationssaal vorgesehen.",
+                "Repositionsversuch in der Notaufnahme in Analgosedierung ohne Erfolg, Reposition in Narkose im Operationssaal vorgesehen.",
+                "Reposition in der Notaufnahme nicht versucht wegen periprothetischer Fraktur.",
+                "Reposition in der Notaufnahme nicht versucht wegen Lockerung oder Bruch der Prothese.",
+                "Reposition in der Notaufnahme nicht versucht, Verlegung in die implantierende Klinik vorgesehen."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "versuch",
+              "label": "Schmerzausschaltung beim Versuch",
+              "an": false,
+              "text": "Schmerzausschaltung beim Repositionsversuch durch {wer}: {mittel}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Durch wen",
+                  "optionen": [
+                    "",
+                    "die Anästhesie",
+                    "den Dienst der Notaufnahme",
+                    "den unfallchirurgisch-orthopädischen Dienst"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "mittel",
+                  "label": "Wirkstoffe, Dosis, Gabeweg",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "dms-versuch",
+              "label": "Durchblutung, Motorik, Sensibilität nach dem Versuch",
+              "an": false,
+              "text": " Nach dem Versuch Durchblutung, Motorik und Sensibilität am Bein {seite}: {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "unverändert",
+                    "verschlechtert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "monitor",
+              "label": "Überwachung am Monitor",
+              "an": false,
+              "text": "Überwachung am Monitor nach der Schmerzausschaltung: {dauer}. Zustand danach: {zustand}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "30 Minuten",
+                    "1 Stunde",
+                    "2 Stunden",
+                    "bis zur Übernahme auf die Station",
+                    "nicht erforderlich, keine Sedierung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "zustand",
+                  "label": "Zustand danach",
+                  "optionen": [
+                    "",
+                    "wach, orientiert und kreislaufstabil",
+                    "noch sediert, Übergabe an die Station",
+                    "keine Sedierung erfolgt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lagerung",
+              "label": "Lagerung",
+              "an": false,
+              "text": "Bein {seite} in der vorgefundenen Stellung gepolstert gelagert."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung",
+              "label": "Aufklärung Narkose",
+              "an": false,
+              "text": "Über die Reposition in Narkose aufgeklärt, Einwilligung {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Einwilligung",
+                  "optionen": [
+                    "",
+                    "liegt vor",
+                    "steht aus"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-hueftprothese-luxation-ambulant",
+          "titel": "Hüftprothese – Procedere: ambulant nach stabiler Reposition (keine Fraktur, keine Lockerung, kein Infekt, Nerv und Durchblutung intakt)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bedingung",
+              "label": "Bedingung für die ambulante Weiterbehandlung",
+              "an": true,
+              "text": "Ambulante Weiterbehandlung: {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Bedingung",
+                  "optionen": [
+                    "",
+                    "Prothese nach Reposition zentriert, kein Hinweis auf Fraktur, Lockerung oder Infekt, Durchblutung und Nervenfunktion intakt, Gehen sicher",
+                    "Prothese nach Reposition zentriert, kein Hinweis auf Fraktur, Lockerung oder Infekt, Durchblutung und Nervenfunktion intakt, Gehen sicher, Versorgung zu Hause gesichert",
+                    "Prothese nach Reposition zentriert, kein Hinweis auf Fraktur, Lockerung oder Infekt, Durchblutung und Nervenfunktion wie vor dem Ereignis, Mobilität wie vor dem Ereignis, Versorgung im Pflegeheim oder zu Hause gesichert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "regeln",
+              "label": "Luxationsregeln",
+              "an": true,
+              "text": "Zur Vorbeugung einer erneuten Luxation der Hüfte {seite}: {regeln}{dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regeln",
+                  "label": "Bewegungen meiden",
+                  "optionen": [
+                    "",
+                    "nicht über 90° beugen, die Beine nicht übereinanderschlagen, das Bein nicht nach innen drehen",
+                    "nicht überstrecken, das Bein nicht nach außen drehen",
+                    "tiefes Sitzen und Hocken vermeiden, die Beine nicht übereinanderschlagen",
+                    "die vom Operateur festgelegten Bewegungseinschränkungen einhalten"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    ", bis zur Vorstellung",
+                    ", für 6 Wochen",
+                    ", für 12 Wochen",
+                    ", nach Maßgabe des Operateurs"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hilfsmittel",
+              "label": "Hilfsmittel",
+              "an": false,
+              "text": "Hilfsmittel zur Vermeidung tiefen Beugens: {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Hilfsmittel",
+                  "optionen": [
+                    "",
+                    "Toilettensitzerhöhung",
+                    "Sitzkeil",
+                    "Toilettensitzerhöhung und Sitzkeil",
+                    "Greifzange und Strumpfanzieher"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Orthese oder Schiene",
+              "an": false,
+              "text": "{was} {seite} {wann} tragen, {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was",
+                  "optionen": [
+                    "",
+                    "Hüftorthese",
+                    "Kniestreckschiene"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Tragezeit",
+                  "optionen": [
+                    "",
+                    "Tag und Nacht",
+                    "beim Gehen und nachts",
+                    "nachts"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "bis zur Vorstellung",
+                    "für 6 Wochen",
+                    "nach Maßgabe des Operateurs"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Belastung des Beins {seite}: {stufe}{hilfe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Vollbelastung",
+                    "schmerzadaptierte Vollbelastung",
+                    "wie nach der Implantation vom Operateur festgelegt",
+                    "nach Maßgabe des Operateurs"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "hilfe",
+                  "label": "Gehhilfe",
+                  "optionen": [
+                    "",
+                    " an Unterarmgehstützen",
+                    " am Rollator",
+                    " ohne Hilfsmittel"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "vorstellung",
+              "label": "Vorstellung beim Operateur oder in der Sprechstunde",
+              "an": true,
+              "text": "Vorstellung {wo} {wann} zur Klärung der Luxationsursache und des weiteren Vorgehens.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "beim Operateur in der implantierenden Klinik",
+                    "in unserer Sprechstunde für Endoprothetik",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der unfallchirurgischen oder orthopädischen Praxis"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "am nächsten Werktag",
+                    "innerhalb von 1 Woche",
+                    "innerhalb von 2 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ct",
+              "label": "CT zur Beurteilung der Prothesenlage",
+              "an": false,
+              "text": "CT der Hüfte {seite} zur Beurteilung der Prothesenlage, Veranlassung durch {wer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Veranlassung",
+                  "optionen": [
+                    "",
+                    "die weiterbehandelnde Praxis",
+                    "unsere Sprechstunde",
+                    "den Operateur"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "unterlagen",
+              "label": "Prothesenpass mitbringen",
+              "an": false,
+              "text": "Prothesenpass und Operationsbericht zur Vorstellung mitbringen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der freien Mobilität.",
+                "Medikamentöse Thromboseprophylaxe nach ärztlicher Verordnung fortführen, wie nach der Implantation festgelegt.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "an": false,
+              "text": " Präparat: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis, Gabeweg und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "an": false,
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wie oft",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sedierung",
+              "label": "Verhalten nach Sedierung",
+              "an": true,
+              "text": "Nach der Sedierung kein Führen von Fahrzeugen und keine Bedienung von Maschinen für {dauer}, Entlassung nur in Begleitung.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "12 Stunden",
+                    "24 Stunden"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: erneutem Herausspringen der Hüfte oder plötzlicher Fehlstellung des Beins, plötzlich unmöglichem Gehen, Taubheitsgefühl, Kribbeln oder Schwäche an Fuß oder Bein, kaltem oder blassem Fuß, Fieber, Rötung oder Nässen an der Narbe, Schmerz oder Schwellung in der Wade, Atemnot oder Brustschmerz."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "an": false,
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-hueftprothese-luxation-aufnahme",
+          "titel": "Hüftprothese – Procedere: stationäre Aufnahme oder Verlegung (Reposition in Narkose, Fraktur, Lockerung, Infekt, Nervenschaden, Instabilität)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahme oder Verlegung",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Aufnahme oder Verlegung",
+                  "optionen": [
+                    "",
+                    "Stationäre Aufnahme zur Reposition in Narkose",
+                    "Stationäre Aufnahme nach Reposition zur Überwachung und Mobilisation",
+                    "Stationäre Aufnahme zur operativen Versorgung",
+                    "Stationäre Aufnahme zur Abklärung von Lockerung oder Infekt der Prothese",
+                    "Verlegung in die implantierende Klinik nach telefonischer Anmeldung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "klinik",
+              "label": "Aufnehmende Klinik",
+              "an": false,
+              "text": " Aufnehmende Klinik: {klinik}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Aufnehmende Klinik",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "anlass",
+              "label": "Anlass",
+              "an": true,
+              "text": "Anlass: {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Anlass",
+                  "optionen": [
+                    "",
+                    "Reposition in der Notaufnahme nicht gelungen",
+                    "Reposition in der Notaufnahme nicht vorgesehen",
+                    "periprothetische Fraktur",
+                    "Verdacht auf Lockerung der Prothese",
+                    "Verdacht auf Infekt der Prothese",
+                    "Störung des N. ischiadicus",
+                    "Störung der Durchblutung",
+                    "Hüfte nach Reposition instabil",
+                    "Verdacht auf intraprothetische Luxation",
+                    "wiederholte Luxation",
+                    "Gehen nach Reposition nicht sicher",
+                    "Versorgung zu Hause nicht gesichert",
+                    "Störung des N. femoralis"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "anlass2",
+              "label": "Weiterer Anlass",
+              "an": false,
+              "text": " Weiterer Anlass: {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Weiterer Anlass",
+                  "optionen": [
+                    "",
+                    "periprothetische Fraktur",
+                    "Verdacht auf Lockerung der Prothese",
+                    "Verdacht auf Infekt der Prothese",
+                    "Störung des N. ischiadicus",
+                    "Störung der Durchblutung",
+                    "Hüfte nach Reposition instabil",
+                    "wiederholte Luxation",
+                    "Gehen nach Reposition nicht sicher",
+                    "Versorgung zu Hause nicht gesichert",
+                    "Störung des N. femoralis"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "infekt",
+              "label": "Infektabklärung",
+              "an": false,
+              "text": "Infektabklärung: {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Infektabklärung",
+                  "optionen": [
+                    "",
+                    "Gelenkpunktion vorgesehen, bisher kein Antibiotikum",
+                    "Gelenkpunktion in der Notaufnahme erfolgt, bisher kein Antibiotikum",
+                    "Antibiotikum wegen Sepsis begonnen, Proben vorher abgenommen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum: Wirkstoff, Dosis, Zeitpunkt",
+              "an": false,
+              "text": "Antibiotikum: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Zeitpunkt der Gabe",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern seit",
+              "an": false,
+              "text": "Nüchtern seit {zeit}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "zeit",
+                  "label": "Uhrzeit oder Angabe",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmung bis zur Operation",
+              "an": false,
+              "text": "Gerinnungshemmende Medikamente bis zur Operation: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, letzte Einnahme, Vorgehen",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lagerung",
+              "label": "Lagerung bis zur Reposition",
+              "an": false,
+              "text": "Bein {seite} bis zur Reposition in der vorgefundenen Stellung gepolstert lagern."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dms",
+              "label": "Kontrolle von Durchblutung, Motorik, Sensibilität",
+              "an": false,
+              "text": "Kontrolle von Durchblutung, Motorik und Sensibilität am Bein {seite} bis zur Reposition {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wie oft",
+                  "optionen": [
+                    "",
+                    "stündlich",
+                    "alle 2 Stunden",
+                    "nach Anordnung der Station"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "unterlagen",
+              "label": "Prothesenpass und Operationsbericht",
+              "an": false,
+              "text": "Prothesenpass und Operationsbericht: {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Unterlagen",
+                  "optionen": [
+                    "",
+                    "liegen vor",
+                    "angefordert",
+                    "nicht verfügbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Thromboseprophylaxe: Festlegung durch die aufnehmende Station.",
+                "Keine medikamentöse Thromboseprophylaxe bis zur Reposition.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin ab dem Aufnahmetag.",
+                "Vorbestehende Antikoagulation pausiert, Thromboseprophylaxe: Festlegung durch die aufnehmende Station."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "an": false,
+              "text": " Präparat: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff und Dosis",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wunden",
+      "name": "Wunden",
+      "kuerzel": "🩹",
+      "bausteine": [
+        {
+          "id": "dx-verbrennung-koerper",
+          "titel": "Diagnose: Verbrennung außerhalb der Hand",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "kof",
+              "typ": "freitext",
+              "label": "Anteil an der Körperoberfläche in % (Grad 1 nicht mitgezählt)",
+              "required": true,
+              "vorschlaege": [
+                "unter 1",
+                "ca. 1",
+                "ca. 2",
+                "ca. 3",
+                "ca. 5"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Art",
+              "optionen": [
+                "Verbrennung",
+                "Verbrühung",
+                "Kontaktverbrennung"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "grad",
+              "label": "Tiefe",
+              "optionen": [
+                "Grad 1",
+                "Grad 2a",
+                "Grad 2a bis 2b",
+                "Grad 2b",
+                "Grad 2b bis 3",
+                "Grad 3",
+                "unklarer Tiefe"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "lok",
+              "label": "Lokalisation",
+              "optionen": [
+                "des Unterarms",
+                "des Oberarms",
+                "des Arms",
+                "des Oberschenkels",
+                "des Unterschenkels",
+                "des Beins",
+                "des Fußrückens",
+                "der Fußsohle",
+                "der Brustwand",
+                "der Bauchwand",
+                "des Rückens",
+                "des Gesäßes",
+                "des Gesichts",
+                "des Halses",
+                "des Genitalbereichs",
+                "mehrerer Körperregionen",
+                "der Kopfhaut",
+                "der Achsel",
+                "der Schulter",
+                "des Ellenbogens",
+                "des Knies",
+                "der Leiste",
+                "des Damms"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ", Ausdehnung "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "kof"
+            },
+            {
+              "art": "text",
+              "text": " % der Körperoberfläche"
+            },
+            {
+              "art": "option",
+              "id": "zirkulaer",
+              "label": "Zirkuläre Verbrennung",
+              "an": false,
+              "text": ", zirkulär"
+            },
+            {
+              "art": "option",
+              "id": "inhalation",
+              "label": "Verdacht auf Inhalationstrauma",
+              "an": false,
+              "text": ", mit Verdacht auf Inhalationstrauma"
+            }
+          ]
+        },
+        {
+          "id": "ana-verbrennung-koerper",
+          "titel": "Anamnese: Verbrennung außerhalb der Hand",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "ursache",
+              "label": "Ursache",
+              "an": true,
+              "text": "Ursache: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ursache der Verbrennung",
+                  "optionen": [
+                    "",
+                    "heiße Flüssigkeit",
+                    "heißes Fett",
+                    "Wasserdampf",
+                    "offene Flamme",
+                    "Explosion oder Verpuffung",
+                    "heiße Oberfläche",
+                    "Wärmflasche oder Heizkissen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "einwirkdauer",
+              "label": "Einwirkdauer",
+              "an": false,
+              "text": "Einwirkdauer nach Angabe: {wie}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wie",
+                  "label": "Einwirkdauer",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kuehlung",
+              "label": "Kühlung nach dem Unfall",
+              "an": true,
+              "text": "Kühlung nach dem Unfall: {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Kühlung",
+                  "optionen": [
+                    "",
+                    "sofort mit Wasser",
+                    "verzögert mit Wasser",
+                    "mit Eis oder Kühlakku",
+                    "keine"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "rauch",
+              "label": "Flamme oder Rauch im geschlossenen Raum",
+              "an": true,
+              "text": "Flamme oder Rauch in einem geschlossenen Raum: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Flamme oder Rauch im geschlossenen Raum",
+                  "optionen": [
+                    "",
+                    "nach Angabe nein",
+                    "ja",
+                    "unklar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "atemwege",
+              "label": "Husten, Heiserkeit oder Atemnot seit dem Unfall",
+              "an": false,
+              "text": "Husten, Heiserkeit oder Atemnot seit dem Unfall: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Husten, Heiserkeit, Atemnot",
+                  "optionen": [
+                    "",
+                    "nach Angabe nein",
+                    "ja",
+                    "unklar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "risiko",
+              "label": "Heilungsrelevante Vorerkrankungen",
+              "an": false,
+              "text": "Diabetes, Durchblutungsstörung oder Immunschwäche: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Heilungsrelevante Vorerkrankungen",
+                  "optionen": [
+                    "",
+                    "nach Angabe nein",
+                    "Diabetes",
+                    "Durchblutungsstörung",
+                    "Immunschwäche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "beobachtet",
+              "label": "Kind: Unfall beobachtet",
+              "an": false,
+              "text": "Unfall beobachtet: {wer}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Beobachtet",
+                  "optionen": [
+                    "",
+                    "von der Begleitperson",
+                    "von einer anderen Person",
+                    "von niemandem",
+                    "unklar"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-verbrennung-koerper",
+          "titel": "Befund: Verbrennung außerhalb der Hand",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "messwert",
+              "id": "hf",
+              "label": "Herzfrequenz",
+              "vorlage": "Herzfrequenz {w}/min. ",
+              "gruppe": "Allgemein"
+            },
+            {
+              "art": "messwert",
+              "id": "rr",
+              "label": "Blutdruck",
+              "vorlage": "Blutdruck {w} mmHg. ",
+              "gruppe": "Allgemein"
+            },
+            {
+              "art": "messwert",
+              "id": "spo2",
+              "label": "Sauerstoffsättigung",
+              "vorlage": "Sauerstoffsättigung {w} %. ",
+              "gruppe": "Allgemein"
+            },
+            {
+              "art": "option",
+              "id": "flaeche",
+              "label": "Verbrennungswunde",
+              "an": true,
+              "text": "Verbrennungswunde {ort} {seite}, Ausdehnung ca. {laenge} x {breite} cm. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "am Unterarm",
+                    "am Oberarm",
+                    "am Oberschenkel",
+                    "am Unterschenkel",
+                    "am Fußrücken",
+                    "an der Fußsohle",
+                    "an der Brustwand",
+                    "an der Bauchwand",
+                    "am Rücken",
+                    "am Gesäß",
+                    "im Gesicht",
+                    "am Hals"
+                  ]
+                },
+                {
+                  "art": "zahl",
+                  "id": "laenge",
+                  "label": "Länge in cm",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "breite",
+                  "label": "Breite in cm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "flaeche2",
+              "label": "Weitere Verbrennungswunde",
+              "an": false,
+              "text": "Weitere Verbrennungswunde {ort}, Ausdehnung ca. {laenge} x {breite} cm. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "laenge",
+                  "label": "Länge in cm",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "breite",
+                  "label": "Breite in cm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "methode",
+              "label": "Abschätzung der Körperoberfläche",
+              "an": false,
+              "text": "Körperoberfläche abgeschätzt nach {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Methode (beim Kind nicht die Neunerregel)",
+                  "optionen": [
+                    "",
+                    "der Handflächenregel",
+                    "der Neunerregel",
+                    "dem Lund-Browder-Schema"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Hautbefund",
+              "gruppe": "Haut",
+              "normal": "",
+              "abweichung": "{art}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Hautbefund",
+                  "optionen": [
+                    "",
+                    "Rötung, Haut geschlossen, keine Blasen",
+                    "Blasenbildung, Wundgrund rosig, feucht und schmerzhaft, Rekapillarisierung prompt",
+                    "Wundgrund blass und trocken, Schmerzempfindung vermindert, Rekapillarisierung verzögert",
+                    "Haut weiß, grau oder schwarz und lederartig, schmerzlos",
+                    "Tiefe nicht sicher beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "zirkulaer",
+              "chip": "Zirkuläre Verbrennung",
+              "gruppe": "Haut",
+              "normal": "Keine zirkuläre Verbrennung.",
+              "abweichung": "Zirkuläre Verbrennung {wo} mit {spannung}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Seite",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "spannung",
+                  "label": "Weichteilspannung",
+                  "optionen": [
+                    "",
+                    "weicher Weichteilspannung",
+                    "praller Weichteilspannung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung und Nerven",
+              "normal": "Distal der Verbrennung Durchblutung, Motorik und Sensibilität intakt.",
+              "abweichung": "Distal der Verbrennung {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "optionen": [
+                    "",
+                    "Durchblutung gestört",
+                    "Motorik gestört",
+                    "Sensibilität gestört",
+                    "Durchblutung und Sensibilität gestört"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "infekt",
+              "chip": "Entzündungszeichen",
+              "gruppe": "Haut",
+              "normal": "Keine Entzündungszeichen.",
+              "abweichung": "Entzündungszeichen: {was}.",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Haut",
+              "normal": "Keine wesentliche Schwellung.",
+              "abweichung": "Schwellung {wo}.",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "inhalation",
+              "chip": "Zeichen eines Inhalationstraumas",
+              "gruppe": "Atemwege",
+              "normal": "Keine versengten Gesichts- oder Nasenhaare, kein Ruß im Mund- und Rachenraum, keine Heiserkeit.",
+              "abweichung": "Zeichen eines Inhalationstraumas: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund",
+                  "maxLen": 100,
+                  "required": true,
+                  "vorschlaege": [
+                    "versengte Gesichts- oder Nasenhaare",
+                    "Ruß im Mund- und Rachenraum",
+                    "Heiserkeit",
+                    "Stridor"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "auge",
+              "chip": "Augen",
+              "gruppe": "Atemwege",
+              "normal": "Augen und Lider nicht betroffen.",
+              "abweichung": "Augenbeteiligung: {was}.",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "muster",
+              "chip": "Kind: Verletzungsmuster",
+              "gruppe": "Kind",
+              "normal": "Verletzungsmuster passt zum geschilderten Hergang.",
+              "abweichung": "Verletzungsmuster passt nicht sicher zum geschilderten Hergang: {was}.",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Was passt nicht",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-verbrennung-koerper",
+          "titel": "Diagnostik: Verbrennung außerhalb der Hand",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "verzicht",
+              "label": "Verzicht auf Bildgebung",
+              "an": true,
+              "text": "Auf eine Bildgebung haben wir verzichtet, weil {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund für den Verzicht",
+                  "optionen": [
+                    "",
+                    "sich klinisch kein Hinweis auf eine Begleitverletzung ergab",
+                    "sie zur Beurteilung der Verbrennung nicht beiträgt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "bild",
+              "label": "Bildgebung wegen Begleitverletzung",
+              "an": false,
+              "text": "Bildgebung: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Untersuchung und Befund",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "labor",
+              "label": "Labor",
+              "an": false,
+              "text": "Labor: {werte}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "werte",
+                  "label": "Werte mit Einheit",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "bga",
+              "label": "Blutgasanalyse",
+              "an": false,
+              "text": "Blutgasanalyse mit Kohlenmonoxid-Hämoglobin: {werte}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "werte",
+                  "label": "Werte mit Einheit",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-verbrennung-koerper",
+          "titel": "Therapie: Wundversorgung bei Verbrennung außerhalb der Hand",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kuehlung",
+              "label": "Kühlung in der Notaufnahme (nur kleine Fläche an Arm oder Bein)",
+              "an": false,
+              "text": "Kühlung in der Notaufnahme {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Kühlung",
+                  "optionen": [
+                    "",
+                    "mit handwarmem Wasser"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "waerme",
+              "label": "Wärmeerhalt",
+              "an": false,
+              "text": "Wärmeerhalt durch Decke und warme Umgebung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "reinigung",
+              "label": "Wundreinigung",
+              "optionen": [
+                "Wunde mit antiseptischer Lösung gereinigt.",
+                "Wunde mit steriler Spüllösung gereinigt.",
+                "Wunde mit antiseptischer Lösung gereinigt, Fremdmaterial entfernt.",
+                "Keine Wundreinigung, Haut geschlossen.",
+                "Keine Wundreinigung vor der Verlegung, Wunde steril abgedeckt."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "blasen",
+              "label": "Blasen",
+              "an": true,
+              "text": "Blasen {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Vorgehen",
+                  "optionen": [
+                    "",
+                    "belassen",
+                    "steril eröffnet, Blasenhaut belassen",
+                    "steril eröffnet und abgetragen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nekrosen",
+              "label": "Nekrosen abgetragen",
+              "an": false,
+              "text": "Nekrotische Hautanteile abgetragen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sauerstoff",
+              "label": "Sauerstoffgabe",
+              "an": false,
+              "text": "Sauerstoffgabe: {wie}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wie",
+                  "label": "Art und Menge",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mitbeurteilung",
+              "label": "Mitbeurteilung",
+              "an": false,
+              "text": "Mitbeurteilung durch {wer}: {ergebnis}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Durch wen",
+                  "optionen": [
+                    "",
+                    "die Anästhesie",
+                    "die Hals-Nasen-Ohren-Heilkunde",
+                    "die Augenheilkunde",
+                    "die Kinderheilkunde",
+                    "die plastische Chirurgie"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "ergebnis",
+                  "label": "Ergebnis",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "verband",
+              "label": "Verband",
+              "optionen": [
+                "Wundverband mit Fettgaze angelegt.",
+                "Wundverband mit Polihexanid-Wundgel und Fettgaze angelegt.",
+                "Wundverband mit synthetischem Hautersatz angelegt.",
+                "Steriler trockener Verband angelegt.",
+                "Offene Wundbehandlung mit Wundsalbe.",
+                "Kein Verband erforderlich, Hautpflege."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "verband-detail",
+              "label": "Verbandmaterial",
+              "an": false,
+              "text": " Material: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Verbandmaterial",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "optionen": [
+                "Keine Tetanusprophylaxe nötig, Haut geschlossen.",
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis.",
+                "Tetanusimpfung durch die aufnehmende Station vorgesehen.",
+                "Tetanusschutz ausreichend (mindestens 3 Impfungen, letzte vor weniger als 5 Jahren), keine Impfung.",
+                "Tetanusimpfung durch die aufnehmende Klinik vorgesehen."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "proc-verbrennung-koerper-ambulant",
+          "titel": "Verbrennung außerhalb der Hand – Procedere: ambulante Weiterbehandlung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "bedingung",
+              "label": "Bedingung für die ambulante Weiterbehandlung",
+              "optionen": [
+                "Ambulante Weiterbehandlung: oberflächliche Verbrennung kleiner Ausdehnung an unproblematischer Stelle, Schmerzen beherrscht, Versorgung zu Hause gesichert.",
+                "Ambulante Weiterbehandlung: oberflächliche Verbrennung kleiner Ausdehnung an unproblematischer Stelle, Schmerzen beherrscht, Versorgung durch die Sorgeberechtigten gesichert.",
+                "Ambulante Weiterbehandlung nach Rücksprache mit dem Verbrennungszentrum, Schmerzen beherrscht, Versorgung gesichert."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Wundkontrolle",
+              "an": true,
+              "text": "Wundkontrolle mit erneuter Beurteilung der Tiefe {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "innerhalb von 2 Tagen",
+                    "innerhalb von 3 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Kinderarztpraxis",
+                    "in unserer Sprechstunde",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verbandwechsel",
+              "label": "Verbandwechsel",
+              "an": false,
+              "text": "Verbandwechsel {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wie oft",
+                  "optionen": [
+                    "",
+                    "täglich",
+                    "alle 2 Tage",
+                    "nach Wundbefund in der Praxis",
+                    "nicht vor der Kontrolle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abheilung",
+              "label": "Vorstellung, wenn nicht abgeheilt",
+              "an": true,
+              "text": "Vorstellung in {wo}, wenn die Wunde nach {wann} nicht abgeheilt ist.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "unserer Sprechstunde",
+                    "der plastischen Chirurgie",
+                    "der Ambulanz des Verbrennungszentrums",
+                    "der Kinderchirurgie"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Nach",
+                  "optionen": [
+                    "",
+                    "10 Tagen",
+                    "14 Tagen",
+                    "21 Tagen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Hochlagern",
+              "an": false,
+              "text": "{was} {seite} hochlagern.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was",
+                  "optionen": [
+                    "",
+                    "Arm",
+                    "Bein",
+                    "Fuß"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "blasen",
+              "label": "Blasen nicht eröffnen",
+              "an": false,
+              "text": "Blasen nicht selbst eröffnen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hautpflege",
+              "label": "Haut nach Abheilung",
+              "an": false,
+              "text": "Abgeheilte Haut rückfetten und vor Sonne schützen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (keine zusätzlichen Risikofaktoren).",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der freien Mobilität.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "an": false,
+              "text": " Präparat: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis, Gabeweg und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "an": false,
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wie oft",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum bei Wundinfektion",
+              "an": false,
+              "text": "Antibiotische Behandlung der Wundinfektion: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmender Rötung oder Schwellung, pochendem Schmerz, Eiter, Fieber, neuer dunkler Hautverfärbung, Taubheitsgefühl, kalten oder blassen Fingern oder Zehen, Atemnot oder Heiserkeit."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz-kind",
+              "label": "Warnzeichen beim Kind",
+              "an": false,
+              "text": "Beim Kind zusätzlich sofortige Wiedervorstellung bei: Hautausschlag, Erbrechen, Durchfall, Trinkschwäche oder Teilnahmslosigkeit."
+            }
+          ]
+        },
+        {
+          "id": "proc-verbrennung-koerper-fachvorstellung",
+          "titel": "Verbrennung außerhalb der Hand – Procedere: Fachvorstellung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "vorstellung",
+              "label": "Fachvorstellung",
+              "an": true,
+              "text": "Vorstellung in {wo} {wann} zur Beurteilung der Tiefe und Festlegung der Behandlung.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "der Ambulanz des Verbrennungszentrums",
+                    "der plastischen Chirurgie",
+                    "der Kinderchirurgie",
+                    "unserer Sprechstunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "zentrum",
+              "label": "Name der Einrichtung",
+              "an": false,
+              "text": " Einrichtung: {klinik}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Name der Einrichtung",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "anlass",
+              "label": "Anlass",
+              "an": true,
+              "text": "Anlass: {was}{was2}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Anlass",
+                  "optionen": [
+                    "",
+                    "tiefe Verbrennung (Grad 2b oder 3)",
+                    "Tiefe nicht sicher beurteilbar",
+                    "Verbrennung an Gesicht oder Hals",
+                    "Verbrennung im Genitalbereich",
+                    "Verbrennung am Fuß oder über einem großen Gelenk",
+                    "Begleitverletzungen",
+                    "relevante Vorerkrankungen",
+                    "Säugling oder Kleinkind",
+                    "Wundinfektion"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "was2",
+                  "label": "Weiterer Anlass",
+                  "optionen": [
+                    "",
+                    ", tiefe Verbrennung (Grad 2b oder 3)",
+                    ", Tiefe nicht sicher beurteilbar",
+                    ", Verbrennung an Gesicht oder Hals",
+                    ", Verbrennung im Genitalbereich",
+                    ", Verbrennung am Fuß oder über einem großen Gelenk",
+                    ", Begleitverletzungen",
+                    ", relevante Vorerkrankungen",
+                    ", Säugling oder Kleinkind",
+                    ", Wundinfektion"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband belassen",
+              "an": false,
+              "text": "Verband bis zur Vorstellung belassen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Hochlagern",
+              "an": false,
+              "text": "{was} {seite} hochlagern.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was",
+                  "optionen": [
+                    "",
+                    "Arm",
+                    "Bein",
+                    "Fuß"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "blasen",
+              "label": "Blasen nicht eröffnen",
+              "an": false,
+              "text": "Blasen nicht selbst eröffnen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (keine zusätzlichen Risikofaktoren).",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der freien Mobilität.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "an": false,
+              "text": " Präparat: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis, Gabeweg und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "an": false,
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wie oft",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum bei Wundinfektion",
+              "an": false,
+              "text": "Antibiotische Behandlung der Wundinfektion: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmender Rötung oder Schwellung, pochendem Schmerz, Eiter, Fieber, neuer dunkler Hautverfärbung, Taubheitsgefühl, kalten oder blassen Fingern oder Zehen, Atemnot oder Heiserkeit."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz-kind",
+              "label": "Warnzeichen beim Kind",
+              "an": false,
+              "text": "Beim Kind zusätzlich sofortige Wiedervorstellung bei: Hautausschlag, Erbrechen, Durchfall, Trinkschwäche oder Teilnahmslosigkeit."
+            }
+          ]
+        },
+        {
+          "id": "proc-verbrennung-koerper-verlegung",
+          "titel": "Verbrennung außerhalb der Hand – Procedere: stationäre Aufnahme oder Verlegung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "was",
+              "label": "Aufnahme oder Verlegung",
+              "optionen": [
+                "Verlegung in ein Verbrennungszentrum nach telefonischer Anmeldung.",
+                "Verlegung in ein Verbrennungszentrum für Kinder nach telefonischer Anmeldung.",
+                "Stationäre Aufnahme zur Wundbehandlung und Beurteilung der Tiefe.",
+                "Stationäre Aufnahme zur Schmerztherapie und Wundbehandlung.",
+                "Stationäre Aufnahme zur Überwachung bei Verdacht auf Inhalationstrauma.",
+                "Stationäre Aufnahme zur Wundbehandlung und Klärung des Hergangs, Kinderschutzgruppe hinzugezogen."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "zentrum",
+              "label": "Name der Klinik",
+              "an": false,
+              "text": " Klinik: {klinik}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Name der Klinik",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "anlass",
+              "label": "Anlass",
+              "an": true,
+              "text": "Anlass: {was}{was2}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Anlass",
+                  "optionen": [
+                    "",
+                    "tiefe Verbrennung (Grad 2b oder 3)",
+                    "Tiefe nicht sicher beurteilbar",
+                    "Ausdehnung über der Grenze für eine ambulante Behandlung",
+                    "Verbrennung an Gesicht oder Hals",
+                    "Verbrennung im Genitalbereich",
+                    "Verbrennung am Fuß oder über einem großen Gelenk",
+                    "zirkuläre Verbrennung",
+                    "Verdacht auf Inhalationstrauma",
+                    "Begleitverletzungen",
+                    "relevante Vorerkrankungen",
+                    "Säugling oder Kleinkind",
+                    "Schmerzen ambulant nicht beherrscht",
+                    "Versorgung zu Hause nicht gesichert",
+                    "Verdacht auf nicht unfallbedingte Verletzung",
+                    "Wundinfektion"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "was2",
+                  "label": "Weiterer Anlass",
+                  "optionen": [
+                    "",
+                    ", tiefe Verbrennung (Grad 2b oder 3)",
+                    ", Tiefe nicht sicher beurteilbar",
+                    ", Ausdehnung über der Grenze für eine ambulante Behandlung",
+                    ", Verbrennung an Gesicht oder Hals",
+                    ", Verbrennung im Genitalbereich",
+                    ", Verbrennung am Fuß oder über einem großen Gelenk",
+                    ", zirkuläre Verbrennung",
+                    ", Verdacht auf Inhalationstrauma",
+                    ", Begleitverletzungen",
+                    ", relevante Vorerkrankungen",
+                    ", Säugling oder Kleinkind",
+                    ", Schmerzen ambulant nicht beherrscht",
+                    ", Versorgung zu Hause nicht gesichert",
+                    ", Verdacht auf nicht unfallbedingte Verletzung",
+                    ", Wundinfektion"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bett",
+              "label": "Bett über Vermittlungsstelle",
+              "an": false,
+              "text": "Bett über die zentrale Vermittlungsstelle für Schwerbrandverletzte vermittelt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gewicht",
+              "label": "Körpergewicht",
+              "an": false,
+              "text": "Körpergewicht: {kg}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Körpergewicht",
+                  "einheit": "kg",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "atemweg",
+              "label": "Atemweg",
+              "an": false,
+              "text": "Atemweg: {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Atemweg",
+                  "optionen": [
+                    "",
+                    "nicht gesichert, Atmung frei",
+                    "intubiert",
+                    "Maske, Sauerstoff"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "zugaenge",
+              "label": "Zugänge",
+              "an": false,
+              "text": "Zugänge: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Zugänge (Art und Ort)",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "infusion",
+              "label": "Infusion",
+              "an": false,
+              "text": "Infusion: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Lösung und Menge",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abdeckung",
+              "label": "Sterile Abdeckung",
+              "an": false,
+              "text": "Wunde steril und trocken abgedeckt, Schutz vor Auskühlung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern",
+              "an": false,
+              "text": "Nüchtern seit {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Nüchtern seit",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dms",
+              "label": "Kontrolle bei zirkulärer Verbrennung",
+              "an": false,
+              "text": "Kontrolle von Durchblutung, Motorik und Sensibilität distal der Verbrennung {wie}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wie",
+                  "label": "Wie oft",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "stündlich",
+                    "bis zur Übernahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "entlastung",
+              "label": "Entlastungsschnitt",
+              "an": false,
+              "text": "Entlastungsschnitt: {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Entlastungsschnitt",
+                  "optionen": [
+                    "",
+                    "nicht erforderlich",
+                    "mit dem Zentrum besprochen, dort vorgesehen",
+                    "vor der Verlegung erfolgt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kinderschutz",
+              "label": "Kinderschutzgruppe",
+              "an": false,
+              "text": "Kinderschutzgruppe informiert."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Thromboseprophylaxe: Festlegung durch die aufnehmende Station.",
+                "Thromboseprophylaxe: Festlegung durch die aufnehmende Klinik.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin begonnen.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "an": false,
+              "text": " Präparat: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff und Dosis",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weichteile",
+      "name": "Weichteile und Infekte",
+      "kuerzel": "🦠",
+      "bausteine": [
+        {
+          "id": "dx-stromunfall",
+          "titel": "Diagnose: Stromunfall",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Stromunfall durch "
+            },
+            {
+              "art": "auswahl",
+              "id": "spannung",
+              "label": "Spannung",
+              "optionen": [
+                "Niederspannung (Haushaltsstrom)",
+                "Niederspannung",
+                "Spannung nicht sicher bekannter Höhe",
+                "Hochspannung"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "marke",
+              "label": "Strommarke",
+              "optionen": [
+                ", ohne sichtbare Strommarke",
+                ", mit Strommarke",
+                ", mit Strommarken an Eintritts- und Austrittsstelle"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "verbrennung",
+              "label": "Verbrennung durch Strom",
+              "an": false,
+              "text": ", Verbrennung Grad {grad} {wo} {ls}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Tiefe",
+                  "optionen": [
+                    "",
+                    "1",
+                    "2a",
+                    "2b",
+                    "3"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "der Hand",
+                    "der Finger",
+                    "des Unterarms",
+                    "des Fußes"
+                  ]
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "bewusstlos",
+              "label": "Mit Bewusstlosigkeit",
+              "an": false,
+              "text": ", mit Bewusstlosigkeit"
+            },
+            {
+              "art": "option",
+              "id": "reanimation",
+              "label": "Mit Kreislaufstillstand oder Reanimation",
+              "an": false,
+              "text": ", mit Kreislaufstillstand oder Reanimation"
+            },
+            {
+              "art": "option",
+              "id": "rhythmus",
+              "label": "Mit Rhythmusstörung",
+              "an": false,
+              "text": ", mit Herzrhythmusstörung: {was}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Rhythmusstörung",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kompartment",
+              "label": "Verdacht auf Kompartmentsyndrom",
+              "an": false,
+              "text": ", Verdacht auf Kompartmentsyndrom {wo} {ls}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "am Unterarm",
+                    "an der Hand",
+                    "am Unterschenkel"
+                  ]
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ana-stromunfall",
+          "titel": "Anamnese: Stromunfall",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "quelle",
+              "label": "Stromquelle",
+              "an": true,
+              "text": "Stromquelle: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Stromquelle",
+                  "optionen": [
+                    "",
+                    "Steckdose",
+                    "defektes Elektrogerät",
+                    "Kabel oder Verlängerung",
+                    "Lampe oder Fassung",
+                    "Arbeit an der Hausinstallation",
+                    "Weidezaun",
+                    "Bahnstrom oder Oberleitung",
+                    "Hochspannungsanlage",
+                    "nicht bekannt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "volt",
+              "label": "Spannung nach Angabe",
+              "an": false,
+              "text": "Spannung nach Angabe: {wert}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wert",
+                  "label": "Spannung",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "stromart",
+              "label": "Stromart",
+              "an": false,
+              "text": "Stromart: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Stromart",
+                  "optionen": [
+                    "",
+                    "Wechselstrom",
+                    "Gleichstrom",
+                    "nicht bekannt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "stromweg",
+              "label": "Stromweg",
+              "an": true,
+              "text": "Stromweg nach Angabe: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Stromweg",
+                  "optionen": [
+                    "",
+                    "von Hand zu Hand",
+                    "von Hand zu Fuß",
+                    "von Hand zu Rumpf",
+                    "nur an einer Hand",
+                    "nicht bekannt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "loslassen",
+              "label": "Loslassen möglich",
+              "an": true,
+              "text": "Loslassen der Stromquelle: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Loslassen",
+                  "optionen": [
+                    "",
+                    "sofort möglich",
+                    "nicht sofort möglich (Festhalten durch Muskelverkrampfung)",
+                    "unklar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "bewusstlos",
+              "label": "Bewusstlosigkeit",
+              "an": true,
+              "text": "Bewusstlosigkeit: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Bewusstlosigkeit",
+                  "optionen": [
+                    "",
+                    "nach Angabe nein",
+                    "ja",
+                    "unklar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "reanimation",
+              "label": "Kreislaufstillstand oder Reanimation",
+              "an": true,
+              "text": "Kreislaufstillstand oder Reanimation: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Kreislaufstillstand oder Reanimation",
+                  "optionen": [
+                    "",
+                    "nach Angabe nein",
+                    "ja",
+                    "unklar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "herz",
+              "label": "Herzbeschwerden",
+              "an": true,
+              "text": "Herzrasen, Herzstolpern, Brustschmerz oder Atemnot seit dem Unfall: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Herzbeschwerden",
+                  "optionen": [
+                    "",
+                    "nach Angabe nein",
+                    "ja",
+                    "unklar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "vorerkrankung",
+              "label": "Herzerkrankung, Schrittmacher",
+              "an": true,
+              "text": "Herzerkrankung, Herzschrittmacher oder Defibrillator: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Herzerkrankung",
+                  "optionen": [
+                    "",
+                    "nach Angabe nein",
+                    "Herzerkrankung bekannt",
+                    "Herzschrittmacher",
+                    "implantierter Defibrillator"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sturz",
+              "label": "Sturz",
+              "an": false,
+              "text": "Sturz beim Unfall: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Sturz",
+                  "optionen": [
+                    "",
+                    "nein",
+                    "aus dem Stand",
+                    "aus der Höhe"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "muskel",
+              "label": "Muskelschmerzen",
+              "an": false,
+              "text": "Muskelschmerzen seit dem Unfall: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Muskelschmerzen",
+                  "optionen": [
+                    "",
+                    "nein",
+                    "ja, Arm",
+                    "ja, Bein",
+                    "ja, am ganzen Körper"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "schwanger",
+              "label": "Schwangerschaft",
+              "an": false,
+              "text": "Schwangerschaft: {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Schwangerschaft",
+                  "optionen": [
+                    "",
+                    "nach Angabe nein",
+                    "ja",
+                    "nicht ausgeschlossen",
+                    "nicht zutreffend"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ssw",
+              "label": "Schwangerschaftswoche",
+              "an": false,
+              "text": "Schwangerschaftswoche: {wert}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "wert",
+                  "label": "Schwangerschaftswoche",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-stromunfall",
+          "titel": "Befund: Stromunfall",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "bewusstsein",
+              "chip": "Bewusstsein und Orientierung",
+              "gruppe": "Allgemein",
+              "normal": "Wach, orientiert.",
+              "abweichung": "Bewusstsein: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "hf",
+              "label": "Herzfrequenz",
+              "vorlage": "Herzfrequenz {w}/min. ",
+              "gruppe": "Allgemein"
+            },
+            {
+              "art": "messwert",
+              "id": "rr",
+              "label": "Blutdruck",
+              "vorlage": "Blutdruck {w} mmHg. ",
+              "gruppe": "Allgemein"
+            },
+            {
+              "art": "befund",
+              "id": "neuro",
+              "chip": "Neurologie",
+              "gruppe": "Allgemein",
+              "selten": true,
+              "normal": "Grob neurologisch ohne Ausfall.",
+              "abweichung": "Neurologisch: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "inspektion",
+              "chip": "Inspektion der gesamten Haut",
+              "gruppe": "Strommarken",
+              "normal": "Gesamte Körperoberfläche inspiziert.",
+              "abweichung": "Inspektion nur eingeschränkt möglich: {grund}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "grund",
+                  "label": "Grund",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "marke",
+              "chip": "Eintrittsmarke",
+              "gruppe": "Strommarken",
+              "normal": "Keine sichtbare Eintrittsmarke.",
+              "abweichung": "Eintrittsmarke {wo} {ls}, ca. {d} mm{art}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "an der Fingerkuppe",
+                    "in der Hohlhand",
+                    "am Handrücken",
+                    "am Unterarm",
+                    "am Fuß",
+                    "an der Fußsohle",
+                    "am Rumpf"
+                  ]
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "d",
+                  "label": "Größe in mm",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Tiefe",
+                  "optionen": [
+                    "",
+                    ", oberflächlich",
+                    ", mit Blase",
+                    ", tief mit zentraler Nekrose",
+                    ", Tiefe nicht sicher beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "marke2",
+              "chip": "Austrittsmarke",
+              "gruppe": "Strommarken",
+              "normal": "Keine sichtbare Austrittsmarke.",
+              "abweichung": "Austrittsmarke {wo} {ls}, ca. {d} mm{art}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "an der Fingerkuppe",
+                    "in der Hohlhand",
+                    "am Handrücken",
+                    "am Unterarm",
+                    "am Fuß",
+                    "an der Fußsohle",
+                    "am Rumpf"
+                  ]
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "d",
+                  "label": "Größe in mm",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Tiefe",
+                  "optionen": [
+                    "",
+                    ", oberflächlich",
+                    ", mit Blase",
+                    ", tief mit zentraler Nekrose",
+                    ", Tiefe nicht sicher beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "beweglichkeit",
+              "chip": "Beweglichkeit der Finger",
+              "gruppe": "Hand",
+              "normal": "Finger aktiv frei beweglich, Faustschluss vollständig.",
+              "abweichung": "Beweglichkeit der Finger {ls} eingeschränkt: {was}.",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung und Nerven",
+              "normal": "Durchblutung, Motorik und Sensibilität der betroffenen Gliedmaße intakt.",
+              "abweichung": "{was} {wo} {ls}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "optionen": [
+                    "",
+                    "Durchblutung gestört",
+                    "Motorik gestört",
+                    "Sensibilität gestört",
+                    "Durchblutung und Sensibilität gestört"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort mit Präposition, z. B. an der Hand",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "an der Hand",
+                    "am Arm",
+                    "am Fuß",
+                    "am Bein"
+                  ]
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kompartment",
+              "chip": "Muskulatur, Kompartmentzeichen",
+              "gruppe": "Durchblutung und Nerven",
+              "normal": "Muskulatur der betroffenen Gliedmaße weich, kein Dehnungsschmerz.",
+              "abweichung": "Muskulatur {wo} {ls} {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "am Unterarm",
+                    "an der Hand",
+                    "am Unterschenkel"
+                  ]
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "prall gespannt",
+                    "druckschmerzhaft",
+                    "mit Dehnungsschmerz",
+                    "prall gespannt mit Dehnungsschmerz"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "begleit",
+              "chip": "Begleitverletzungen",
+              "gruppe": "Allgemein",
+              "normal": "Keine Begleitverletzungen.",
+              "abweichung": "Begleitverletzung: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "herz",
+              "chip": "Herz",
+              "gruppe": "Allgemein",
+              "normal": "Herzaktion rhythmisch.",
+              "abweichung": "Herzaktion {was}.",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "arrhythmisch",
+                    "tachykard",
+                    "bradykard"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-stromunfall",
+          "titel": "Diagnostik: EKG und Labor beim Stromunfall",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "ekg",
+              "typ": "freitext",
+              "label": "EKG-Befund (Rhythmus, Frequenz, Lagetyp, Erregungsrückbildung)",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "EKG: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "ekg"
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "option",
+              "id": "ekg2",
+              "label": "Kontroll-EKG",
+              "an": false,
+              "text": " Kontroll-EKG {wann}: {befund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "vor der Entlassung",
+                    "am Ende der Überwachung",
+                    "bei Aufnahme auf Station"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "befund",
+                  "label": "Befund",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "EKG befundet durch",
+              "an": false,
+              "text": " EKG befundet durch {wer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Wer",
+                  "optionen": [
+                    "",
+                    "den unfallchirurgisch-orthopädischen Dienst",
+                    "die Innere Medizin",
+                    "die Kardiologie",
+                    "die Kinderheilkunde"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "labor",
+              "label": "Labor",
+              "an": false,
+              "text": " Labor: {werte}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "werte",
+                  "label": "Werte mit Einheit: CK, Troponin, Myoglobin, Kalium, Kreatinin",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "labor2",
+              "label": "Laborkontrolle",
+              "an": false,
+              "text": " Laborkontrolle {wann}: {werte}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "werte",
+                  "label": "Werte mit Einheit",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "urin",
+              "label": "Urin",
+              "an": false,
+              "text": " Urin: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "geraet",
+              "label": "Kontrolle von Schrittmacher oder Defibrillator",
+              "an": false,
+              "text": " Kontrolle von Herzschrittmacher oder Defibrillator: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Ergebnis",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "bild",
+              "label": "Bildgebung",
+              "an": false,
+              "text": " Bildgebung: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Untersuchung und Befund",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-stromunfall",
+          "titel": "Therapie: Stromunfall",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "monitor",
+              "label": "Überwachung am Monitor",
+              "an": false,
+              "text": "Überwachung am Monitor in der Notaufnahme über {dauer}: {ergebnis}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "dauer",
+                  "label": "Dauer (Festlegung durch den Arzt)",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "keine Rhythmusstörung",
+                    "Rhythmusstörung, siehe Diagnostik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "infusion",
+              "label": "Infusion",
+              "an": false,
+              "text": "Infusion: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Lösung, Menge und Beginn",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "marke",
+              "label": "Strommarke versorgt",
+              "an": false,
+              "text": "Strommarke {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Versorgung",
+                  "optionen": [
+                    "",
+                    "desinfiziert und steril verbunden",
+                    "desinfiziert und mit Fettgaze verbunden",
+                    "desinfiziert, offen belassen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schmuck",
+              "label": "Ringe und Schmuck entfernt",
+              "an": false,
+              "text": "Ringe und Schmuck entfernt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mitbeurteilung",
+              "label": "Mitbeurteilung",
+              "an": false,
+              "text": "Mitbeurteilung durch {wer}: {ergebnis}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Durch wen",
+                  "optionen": [
+                    "",
+                    "die Innere Medizin",
+                    "die Kardiologie",
+                    "die Frauenheilkunde",
+                    "die Handchirurgie",
+                    "die Kinderheilkunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "ergebnis",
+                  "label": "Ergebnis",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "optionen": [
+                "Keine Tetanusprophylaxe nötig, Haut geschlossen.",
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis.",
+                "Tetanusimpfung durch die aufnehmende Station vorgesehen.",
+                "Tetanusschutz ausreichend (mindestens 3 Impfungen, letzte vor weniger als 5 Jahren), keine Impfung.",
+                "Tetanusimpfung durch die aufnehmende Klinik vorgesehen."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "proc-stromunfall-ambulant",
+          "titel": "Stromunfall – Procedere: ambulante Weiterbehandlung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "bedingung",
+              "label": "Bedingung für die ambulante Weiterbehandlung",
+              "optionen": [
+                "Ambulante Weiterbehandlung: Niederspannung, keine Bewusstlosigkeit, keine Herzerkrankung oder Herzbeschwerden, EKG ohne pathologischen Befund, keine tiefe Verbrennung, kein Hinweis auf Kompartmentsyndrom, Durchblutung, Motorik und Sensibilität intakt.",
+                "Ambulante Weiterbehandlung: Niederspannung, keine Bewusstlosigkeit, keine Herzerkrankung oder Herzbeschwerden, EKG ohne pathologischen Befund, keine tiefe Verbrennung, Herz- und Muskelwerte nicht erhöht, kein Hinweis auf Kompartmentsyndrom, Durchblutung, Motorik und Sensibilität intakt.",
+                "Ambulante Weiterbehandlung: Niederspannung, keine Bewusstlosigkeit, keine Herzerkrankung oder Herzbeschwerden, EKG ohne pathologischen Befund, keine tiefe Verbrennung, Überwachung in der Notaufnahme ohne Befund, kein Hinweis auf Kompartmentsyndrom, Durchblutung, Motorik und Sensibilität intakt.",
+                "Ambulante Weiterbehandlung: Niederspannung, keine Bewusstlosigkeit, keine Herzerkrankung oder Herzbeschwerden, EKG ohne pathologischen Befund, keine tiefe Verbrennung, Herz- und Muskelwerte nicht erhöht, Überwachung in der Notaufnahme ohne Befund, kein Hinweis auf Kompartmentsyndrom, Durchblutung, Motorik und Sensibilität intakt.",
+                "Ambulante Weiterbehandlung: Niederspannung, keine Bewusstlosigkeit, vorbestehende Herzerkrankung oder Herzschrittmacher, Überwachung und Kontrolle des Geräts ohne Befund, EKG ohne pathologischen Befund, keine tiefe Verbrennung, kein Hinweis auf Kompartmentsyndrom, Durchblutung, Motorik und Sensibilität intakt."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Befundkontrolle",
+              "an": true,
+              "text": "Befundkontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "innerhalb von 2 Tagen",
+                    "innerhalb von 3 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Kinderarztpraxis",
+                    "in unserer Sprechstunde",
+                    "in unserer Notaufnahme",
+                    "in unserer Handsprechstunde",
+                    "in der Handchirurgie",
+                    "in der Ambulanz des Verbrennungszentrums"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "marke",
+              "label": "Strommarke kontrollieren",
+              "an": false,
+              "text": "Strommarke bei der Kontrolle erneut beurteilen; Strommarken sind oft tiefer, als sie aussehen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hand",
+              "label": "Hand hochlagern, Finger bewegen",
+              "an": false,
+              "text": "Hand {ls} hochlagern, Finger regelmäßig bewegen.",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": false,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (volle Gehfähigkeit, keine zusätzlichen Risikofaktoren).",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "frauen",
+              "label": "Frauenärztliche Kontrolle",
+              "an": false,
+              "text": "Frauenärztliche Kontrolle {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "innerhalb von 2 Tagen",
+                    "wie mit der Frauenheilkunde vereinbart"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme (bei Ohnmacht oder Atemnot über den Notruf) bei: Herzrasen, Herzstolpern oder Brustschmerz, Ohnmacht oder Atemnot, starken Muskelschmerzen oder Muskelschwäche, dunklem oder rotbraunem Urin, zunehmender Schwellung, Spannungsschmerz oder Taubheit an Arm oder Bein, Rötung oder Eiter an der Strommarke."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz-schwanger",
+              "label": "Warnzeichen in der Schwangerschaft",
+              "an": false,
+              "text": "In der Schwangerschaft zusätzlich sofortige Vorstellung in der Frauenklinik bei: Blutung, Wehen oder weniger Kindsbewegungen."
+            }
+          ]
+        },
+        {
+          "id": "proc-stromunfall-aufnahme",
+          "titel": "Stromunfall – Procedere: stationäre Aufnahme oder Verlegung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "was",
+              "label": "Aufnahme oder Verlegung",
+              "optionen": [
+                "Stationäre Aufnahme zur Überwachung am Monitor.",
+                "Stationäre Aufnahme zur Überwachung am Monitor und Wundbehandlung.",
+                "Übernahme durch die Innere Medizin zur Überwachung am Monitor.",
+                "Verlegung in ein Verbrennungszentrum nach telefonischer Anmeldung.",
+                "Verlegung in eine Klinik mit Handchirurgie nach telefonischer Anmeldung.",
+                "Stationäre Aufnahme zur notfallmäßigen Kompartmentspaltung.",
+                "Stationäre Aufnahme zur operativen Versorgung der Verbrennung."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "klinik",
+              "label": "Name der Klinik",
+              "an": false,
+              "text": " Klinik: {klinik}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Name der Klinik",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "anlass",
+              "label": "Anlass",
+              "an": true,
+              "text": "Anlass: {was}{was2}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Anlass",
+                  "optionen": [
+                    "",
+                    "Hochspannung",
+                    "Bewusstlosigkeit",
+                    "Rhythmusstörung oder pathologisches EKG",
+                    "Brustschmerz oder Atemnot",
+                    "erhöhte Herz- oder Muskelwerte",
+                    "tiefe Verbrennung an der Kontaktstelle",
+                    "Verdacht auf Kompartmentsyndrom",
+                    "dunkler Urin",
+                    "Schwangerschaft",
+                    "Herzerkrankung",
+                    "Herzschrittmacher oder Defibrillator",
+                    "Begleitverletzungen durch Sturz",
+                    "Spannung und Stromweg nicht zu klären",
+                    "Kreislaufstillstand oder Reanimation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "was2",
+                  "label": "Weiterer Anlass",
+                  "optionen": [
+                    "",
+                    ", Hochspannung",
+                    ", Bewusstlosigkeit",
+                    ", Rhythmusstörung oder pathologisches EKG",
+                    ", Brustschmerz oder Atemnot",
+                    ", erhöhte Herz- oder Muskelwerte",
+                    ", tiefe Verbrennung an der Kontaktstelle",
+                    ", Verdacht auf Kompartmentsyndrom",
+                    ", dunkler Urin",
+                    ", Schwangerschaft",
+                    ", Herzerkrankung",
+                    ", Herzschrittmacher oder Defibrillator",
+                    ", Begleitverletzungen durch Sturz",
+                    ", Spannung und Stromweg nicht zu klären",
+                    ", Kreislaufstillstand oder Reanimation"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dauer",
+              "label": "Dauer der Überwachung",
+              "an": false,
+              "text": "Dauer der Überwachung: {dauer}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "dauer",
+                  "label": "Dauer (Festlegung durch den Arzt)",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "Festlegung durch die aufnehmende Station"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "labor",
+              "label": "Laborkontrollen",
+              "an": false,
+              "text": "Laborkontrollen: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Werte und Zeitpunkte",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "urin",
+              "label": "Urin beobachten",
+              "an": false,
+              "text": "Urinausscheidung und Urinfarbe beobachten."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "diurese",
+              "label": "Diureseziel",
+              "an": false,
+              "text": "Diureseziel: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Diureseziel (Festlegung durch den Arzt)",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dms",
+              "label": "Kontrolle der Gliedmaße",
+              "an": false,
+              "text": "Kontrolle von Durchblutung, Motorik, Sensibilität und Weichteilspannung {wo} {ls} {wie}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "an der Hand",
+                    "am Unterarm",
+                    "am Unterschenkel"
+                  ]
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wie",
+                  "label": "Wie oft",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "stündlich",
+                    "bis zur Übernahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "geraet",
+              "label": "Kontrolle von Schrittmacher oder Defibrillator",
+              "an": false,
+              "text": "Kontrolle von Herzschrittmacher oder Defibrillator veranlasst."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "frauen",
+              "label": "Frauenärztliche Mitbeurteilung",
+              "an": false,
+              "text": "Frauenärztliche Mitbeurteilung veranlasst."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Thromboseprophylaxe: Festlegung durch die aufnehmende Station.",
+                "Thromboseprophylaxe: Festlegung durch die aufnehmende Klinik.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin begonnen.",
+                "Vorbestehende Antikoagulation unverändert fortführen, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "an": false,
+              "text": " Präparat: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff und Dosis",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

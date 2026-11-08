@@ -7,8 +7,9 @@
       "bausteine": [
         {
           "id": "schulter-unt",
-          "titel": "Schulter – Untersuchung",
+          "titel": "Schulter – Untersuchung (Vollstatus mit Funktionstests)",
           "typ": "untersuchung",
+          "status": "hausstandard",
           "platzhalter": [],
           "segmente": [
             {
@@ -20,7 +21,23 @@
             },
             {
               "art": "text",
-              "text": ": Harmonischer Schulterstand und harmonisches muskuläres Relief des Armes im Seitenvergleich. "
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "schulter-relief",
+              "chip": "Schulterstand/Relief verändert",
+              "gruppe": "Inspektion",
+              "normal": "Harmonischer Schulterstand und harmonisches muskuläres Relief des Armes im Seitenvergleich. ",
+              "abweichung": "Schulterstand oder muskuläres Relief des Armes im Seitenvergleich verändert {detail}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Beschreibung (optional)",
+                  "maxLen": 80
+                }
+              ]
             },
             {
               "art": "befund",
@@ -28,7 +45,36 @@
               "chip": "Wunde/Schwellung",
               "gruppe": "Inspektion",
               "normal": "Keine Wunden, keine Hämatome, keine Rötung, Schwellung oder Überwärmung. ",
-              "abweichung": "Wunde, Hämatom, Rötung, Schwellung und Überwärmung. "
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Schwellung",
+                    "Hämatom",
+                    "Schwellung und Hämatom",
+                    "Wunde",
+                    "Rötung und Überwärmung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "an der Schulter",
+                    "über der Clavicula",
+                    "über dem Acromioclaviculargelenk",
+                    "am Oberarm"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -44,7 +90,35 @@
               "chip": "DS Clavicula/SC/AC",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem Sternoclaviculargelenk, im Verlauf der Clavicula, dem Acromioclaviculargelenk, dem Processus coracoideus, dem Tuberculum majus oder minus humeri oder im Verlauf der langen Bizepssehne. ",
-              "abweichung": "Druckschmerz über dem Sternoclaviculargelenk, im Verlauf der Clavicula, dem Acromioclaviculargelenk, dem Processus coracoideus, dem Tuberculum majus oder minus humeri oder im Verlauf der langen Bizepssehne. "
+              "abweichung": "Druckschmerz {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "über dem Sternoclaviculargelenk",
+                    "im Verlauf der Clavicula",
+                    "über dem Acromioclaviculargelenk",
+                    "über dem Processus coracoideus",
+                    "über dem Tuberculum majus humeri",
+                    "über dem Tuberculum minus humeri",
+                    "im Verlauf der langen Bizepssehne"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -52,7 +126,31 @@
               "chip": "DS Ober-/Unterarm/Ellenbogen",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem Ober- oder Unterarmschaft oder im Bereich des Ellenbogengelenks. ",
-              "abweichung": "Druckschmerz über dem Ober- oder Unterarmschaft oder im Bereich des Ellenbogengelenks. "
+              "abweichung": "Druckschmerz {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "über dem Oberarmschaft",
+                    "über dem Unterarmschaft",
+                    "im Bereich des Ellenbogengelenks"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -60,7 +158,19 @@
               "chip": "Nacken-/Schürzengriff eingeschränkt",
               "gruppe": "Funktion",
               "normal": "Nacken- und Schürzengriff schmerzfrei ausführbar. ",
-              "abweichung": "Nacken- und Schürzengriff schmerzhaft eingeschränkt. "
+              "abweichung": "{griff} schmerzhaft eingeschränkt. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "griff",
+                  "label": "Griff",
+                  "optionen": [
+                    "Nacken- und Schürzengriff",
+                    "Nackengriff",
+                    "Schürzengriff"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -68,7 +178,21 @@
               "chip": "Bewegung eingeschränkt",
               "gruppe": "Beweglichkeit",
               "normal": "Abduktion, Adduktion, Innen- und Außenrotation sowie Ante- und Retroversion endgradig ohne Schmerzen ausführbar. ",
-              "abweichung": "Abduktion, Adduktion, Innen- und Außenrotation sowie Ante- und Retroversion schmerzhaft eingeschränkt. "
+              "abweichung": "{bewegung} schmerzhaft eingeschränkt. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "bewegung",
+                  "label": "Bewegung",
+                  "optionen": [
+                    "Abduktion, Adduktion, Innen- und Außenrotation sowie Ante- und Retroversion",
+                    "Abduktion",
+                    "Abduktion und Anteversion",
+                    "Außenrotation",
+                    "Innenrotation"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -76,7 +200,18 @@
               "chip": "subacromiales Impingement",
               "gruppe": "Tests",
               "normal": "Kein Hinweis auf subacromiales Impingement. ",
-              "abweichung": "Hinweis auf subacromiales Impingement. "
+              "abweichung": "{erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "Hinweis auf subacromiales Impingement",
+                    "Impingement-Tests schmerzbedingt nicht beurteilbar"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -84,7 +219,18 @@
               "chip": "Lift-off positiv",
               "gruppe": "Tests",
               "normal": "Lift-off-Test (M. subscapularis, Innenrotation) kraftvoll. ",
-              "abweichung": "Lift-off-Test (M. subscapularis, Innenrotation) abgeschwächt. "
+              "abweichung": "Lift-off-Test (M. subscapularis, Innenrotation) {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "abgeschwächt",
+                    "schmerzbedingt nicht beurteilbar"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -92,7 +238,18 @@
               "chip": "Jobe positiv",
               "gruppe": "Tests",
               "normal": "Jobe-Test (M. supraspinatus, Abduktion) kraftvoll. ",
-              "abweichung": "Jobe-Test (M. supraspinatus, Abduktion) abgeschwächt. "
+              "abweichung": "Jobe-Test (M. supraspinatus, Abduktion) {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "abgeschwächt",
+                    "schmerzbedingt nicht beurteilbar"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -100,7 +257,18 @@
               "chip": "Außenrotation abgeschwächt",
               "gruppe": "Tests",
               "normal": "Außenrotation kraftvoll. ",
-              "abweichung": "Außenrotation abgeschwächt. "
+              "abweichung": "Außenrotation {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "abgeschwächt",
+                    "schmerzbedingt nicht beurteilbar"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -108,22 +276,59 @@
               "chip": "Muskulatur abgeschwächt",
               "gruppe": "Funktion",
               "normal": "M. deltoideus, M. biceps brachii und M. triceps brachii kraftvoll einsetzbar. ",
-              "abweichung": "M. deltoideus, M. biceps brachii oder M. triceps brachii abgeschwächt. "
+              "abweichung": "{muskel} abgeschwächt. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "muskel",
+                  "label": "Muskel",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "M. deltoideus",
+                    "M. biceps brachii",
+                    "M. triceps brachii",
+                    "M. deltoideus, M. biceps brachii und M. triceps brachii"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "schulter-pdms",
               "chip": "pDMS gestört",
               "gruppe": "pDMS",
-              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt.",
-              "abweichung": "Periphere Durchblutung, Motorik oder Sensibilität gestört."
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} gestört {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was ist gestört",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Periphere Durchblutung",
+                    "Motorik",
+                    "Sensibilität",
+                    "Motorik und Sensibilität"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Beschreibung (optional)",
+                  "maxLen": 80
+                }
+              ]
             }
           ]
         },
         {
           "id": "schulter-unt-knapp",
-          "titel": "Schulter – Untersuchung (knapp)",
+          "titel": "Schulter – Untersuchung (knapp, schmerzhafte Schulter)",
           "typ": "untersuchung",
+          "status": "hausstandard",
           "platzhalter": [],
           "segmente": [
             {
@@ -135,14 +340,22 @@
             },
             {
               "art": "text",
-              "text": ": Schmerzen bei Bewegung. Bewegung schmerzhaft eingeschränkt. "
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "schulter-knapp-schmerz",
+              "chip": "Bewegungsschmerz",
+              "gruppe": "Beweglichkeit",
+              "normal": "",
+              "abweichung": "Schmerzen bei Bewegung. Bewegung schmerzhaft eingeschränkt. "
             },
             {
               "art": "messwert",
               "id": "schulter-knapp-rom-abdadd",
               "label": "Abduktion/Adduktion",
               "gruppe": "Beweglichkeit",
-              "vorlage": "Abduktion/Adduktion {w}. ",
+              "vorlage": "Abduktion/Adduktion {w}°. ",
               "leer": "_/0/_"
             },
             {
@@ -150,7 +363,7 @@
               "id": "schulter-knapp-rom-anteretro",
               "label": "Anteversion/Retroversion",
               "gruppe": "Beweglichkeit",
-              "vorlage": "Anteversion/Retroversion {w}. ",
+              "vorlage": "Anteversion/Retroversion {w}°. ",
               "leer": "_/0/_"
             },
             {
@@ -158,7 +371,7 @@
               "id": "schulter-knapp-rom-iroaro",
               "label": "Innenrotation/Außenrotation",
               "gruppe": "Beweglichkeit",
-              "vorlage": "Innenrotation/Außenrotation {w}. ",
+              "vorlage": "Innenrotation/Außenrotation {w}°. ",
               "leer": "_/0/_"
             },
             {
@@ -167,7 +380,18 @@
               "chip": "Lift-off positiv",
               "gruppe": "Tests",
               "normal": "Lift-off-Test (M. subscapularis) kraftvoll. ",
-              "abweichung": "Lift-off-Test (M. subscapularis) abgeschwächt. "
+              "abweichung": "Lift-off-Test (M. subscapularis) {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "abgeschwächt",
+                    "schmerzbedingt nicht beurteilbar"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -175,7 +399,18 @@
               "chip": "Jobe positiv",
               "gruppe": "Tests",
               "normal": "Jobe-Test (M. supraspinatus) kraftvoll. ",
-              "abweichung": "Jobe-Test (M. supraspinatus) abgeschwächt. "
+              "abweichung": "Jobe-Test (M. supraspinatus) {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "abgeschwächt",
+                    "schmerzbedingt nicht beurteilbar"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -183,7 +418,19 @@
               "chip": "DS proximale Bizepssehne",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz an den Ansatzpunkten der proximalen Bizepssehne. ",
-              "abweichung": "Druckschmerz an den Ansatzpunkten der proximalen Bizepssehne. "
+              "abweichung": "Druckschmerz an den Ansatzpunkten der proximalen Bizepssehne{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -191,7 +438,21 @@
               "chip": "Muskulatur abgeschwächt",
               "gruppe": "Funktion",
               "normal": "M. biceps brachii und M. triceps brachii kraftvoll einsetzbar. ",
-              "abweichung": "M. biceps brachii oder M. triceps brachii abgeschwächt. "
+              "abweichung": "{muskel} abgeschwächt. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "muskel",
+                  "label": "Muskel",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "M. biceps brachii",
+                    "M. triceps brachii",
+                    "M. biceps brachii und M. triceps brachii"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -199,15 +460,48 @@
               "chip": "pDMS gestört",
               "gruppe": "pDMS",
               "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
-              "abweichung": "Periphere Durchblutung, Motorik oder Sensibilität gestört. "
+              "abweichung": "{was} gestört {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was ist gestört",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Periphere Durchblutung",
+                    "Motorik",
+                    "Sensibilität",
+                    "Motorik und Sensibilität"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Beschreibung (optional)",
+                  "maxLen": 80
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "schulter-knapp-griffe",
               "chip": "Schürzen-/Nackengriff eingeschränkt",
               "gruppe": "Funktion",
-              "normal": "Schürzen- und Nackengriff sind möglich.",
-              "abweichung": "Schürzen- und Nackengriff schmerzhaft eingeschränkt."
+              "normal": "Schürzen- und Nackengriff sind möglich. ",
+              "abweichung": "{griff} schmerzhaft eingeschränkt. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "griff",
+                  "label": "Griff",
+                  "optionen": [
+                    "Schürzen- und Nackengriff",
+                    "Nackengriff",
+                    "Schürzengriff"
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -215,20 +509,50 @@
           "id": "schulter-clavicula-proc",
           "titel": "Claviculafraktur – Procedere (konservativ)",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [
             {
               "id": "schulter-clav-gilchrist-wochen",
-              "typ": "zeitraum",
-              "label": "Ruhigstellung Gilchristverband",
-              "einheit": "Wochen",
-              "default": "2",
-              "required": true
+              "typ": "begriff",
+              "label": "Dauer der Ruhigstellung",
+              "required": true,
+              "vorschlaege": [
+                "2 Wochen",
+                "1 Woche",
+                "3 Wochen",
+                "4 Wochen"
+              ]
             }
           ],
           "segmente": [
             {
+              "art": "punkt"
+            },
+            {
               "art": "text",
-              "text": "Ruhigstellung im Gilchristverband für "
+              "text": "Ruhigstellung der Schulter "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Art der Ruhigstellung",
+              "optionen": [
+                "im Gilchrist-Verband",
+                "im Rucksackverband",
+                "in der Armschlinge"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " für "
             },
             {
               "art": "platzhalter",
@@ -236,7 +560,362 @@
             },
             {
               "art": "text",
-              "text": ", frühere Abnahme des Verbandes bei Schmerzfreiheit möglich. Bewegungsausmaße: 1. Woche Pendelübungen, 2.–3. Woche passiv bis 90°, 3.–6. Woche frei (auch über 90°), ab der 6. Woche Belastungsaufbau (keine Druck- oder Zugbelastungen, z. B. Mountainbiken, für 12 Wochen). Schmerzadaptierte Analgesie. Weiterbehandlung durch den niedergelassenen Kollegen mit der Bitte um klinische Verlaufskontrollen."
+              "text": ", frühere Abnahme des Verbandes bei Schmerzfreiheit möglich."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "pendel",
+              "label": "Pendelübungen",
+              "an": true,
+              "text": "In der {woche} Pendelübungen der Schulter {seite}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "woche",
+                  "label": "Zeitraum",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1. Woche",
+                    "1. und 2. Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "passiv",
+              "label": "Passive Bewegung",
+              "an": true,
+              "text": "In der {woche} passive Bewegung der Schulter {seite} bis {grad}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "woche",
+                  "label": "Zeitraum",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "2. bis 3. Woche",
+                    "3. bis 4. Woche"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Bewegungsgrenze",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "60°",
+                    "90°"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "frei",
+              "label": "Freie Bewegung",
+              "an": true,
+              "text": "In der {woche} freie Bewegung der Schulter {seite}, auch über 90°.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "woche",
+                  "label": "Zeitraum",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "3. bis 6. Woche",
+                    "4. bis 6. Woche",
+                    "5. bis 6. Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastungsaufbau",
+              "an": true,
+              "text": "Ab der {woche} Belastungsaufbau. Keine Druck- oder Zugbelastungen des Arms {seite}, z. B. Mountainbiken, für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "woche",
+                  "label": "ab",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "6. Woche",
+                    "8. Woche"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "8 Wochen",
+                    "12 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Weiterbehandlung und Kontrolle",
+              "an": true,
+              "text": "Weiterbehandlung {wo} mit klinischen Verlaufskontrollen, erste Kontrolle {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "default": 2,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgenkontrolle",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle der Clavicula {seite} {wann} in der weiterbehandelnden Praxis.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nach 1 Woche",
+                    "nach 2 Wochen",
+                    "nach 1 Woche und nach 2 Wochen",
+                    "nach 6 Wochen",
+                    "nach 1 Woche, nach 2 Wochen und nach 6 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "op-hinweis",
+              "label": "Bei Verschiebung: Sprechstunde",
+              "text": "Bei zunehmender Verschiebung der Fraktur in der Röntgenkontrolle: Vorstellung in unserer Sprechstunde zur Prüfung einer Operation."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "op-pruefung",
+              "label": "Sprechstunde: Operation prüfen",
+              "text": "Vorstellung in unserer Sprechstunde {frist} zur Prüfung einer Operation.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 5 Tagen",
+                    "innerhalb von 1 Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "text": "Physiotherapie für die Schulter {seite} nach Ende der Ruhigstellung, Verordnung durch die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "pflicht": true,
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "text": "Medikamentöse Thromboseprophylaxe mit {wirkstoff} {dosis} subkutan 1-mal täglich {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin"
+                  ]
+                },
+                {
+                  "art": "zahl",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "bis zur Abnahme der Ruhigstellung",
+                    "bis zur vollen Mobilität"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "default": 1,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen trotz Schmerzmittel, Taubheitsgefühl oder Kribbeln in Arm oder Hand, kalter, blasser oder blauer Hand, Atemnot, gespannter, weißer oder offener Haut über dem Bruch."
             }
           ]
         },
@@ -244,20 +923,141 @@
           "id": "schulter-ac-proc",
           "titel": "AC-Gelenksluxation – Procedere (konservativ)",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [
             {
               "id": "schulter-ac-karenz-wochen",
-              "typ": "zeitraum",
-              "label": "Karenz Heben/Kontaktsport",
-              "einheit": "Wochen",
-              "default": "6",
-              "required": true
+              "typ": "begriff",
+              "label": "Karenz Heben und Kontaktsport",
+              "required": true,
+              "vorschlaege": [
+                "6 Wochen",
+                "3 Wochen",
+                "8 Wochen",
+                "12 Wochen"
+              ]
             }
           ],
           "segmente": [
             {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "indikation",
+              "label": "Hinweis zur Indikation (Hausstandard)",
+              "text": "Konservative Behandlung bei Tossy I und II; im Alter über 35 Jahre kann auch eine Tossy-III-Luxation konservativ behandelt werden."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Schonung und Ruhigstellung",
+              "an": true,
+              "text": "Schonung und temporäre Ruhigstellung der Schulter {seite} {art} für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art der Ruhigstellung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "im Gilchrist-Verband",
+                    "in der Armschlinge"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "wenige Tage",
+                    "1 Woche",
+                    "1 bis 2 Wochen",
+                    "2 Wochen",
+                    "3 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kuehlung",
+              "label": "Kühlung",
+              "an": true,
+              "text": "Lokale Kühlung der Schulter {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "fruehfunktionell",
+              "label": "Bewegung, Heben über die Horizontale",
+              "an": true,
+              "text": "Bewegung der Schulter {seite} im schmerzarmen Bereich ab sofort, Heben des Arms über die Horizontale erst {ab}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "ab wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "ab der 3. Woche",
+                    "ab der 4. Woche",
+                    "ab der 7. Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "text": "Physiotherapie für die Schulter {seite}, Verordnung durch die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
               "art": "text",
-              "text": "Indikation: Tossy I und II (bei Patienten über 35 Jahre kann auch eine Tossy-III-Luxation konservativ behandelt werden). Schonung und temporäre Ruhigstellung im Gilchristverband über einen Zeitraum von 1–2 Wochen. Lokale Kühlung, bedarfsgerechte Analgesie. Frühfunktionelle Behandlung im schmerzfreien Intervall. Schweres Heben und Kontaktsportarten sind über einen Zeitraum von "
+              "text": "Schweres Heben und Kontaktsportarten sind für "
             },
             {
               "art": "platzhalter",
@@ -265,7 +1065,180 @@
             },
             {
               "art": "text",
-              "text": " zu vermeiden. Weiterbehandlung durch den niedergelassenen Kollegen."
+              "text": " zu vermeiden."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Weiterbehandlung und Kontrolle",
+              "an": true,
+              "text": "Weiterbehandlung {wo}, klinische Kontrolle {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "default": 2,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sprechstunde",
+              "label": "Sprechstunde: Operation prüfen",
+              "text": "Vorstellung in unserer Sprechstunde zur Prüfung einer operativen Stabilisierung {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche",
+                    "nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "pflicht": true,
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "text": "Medikamentöse Thromboseprophylaxe mit {wirkstoff} {dosis} subkutan 1-mal täglich {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin"
+                  ]
+                },
+                {
+                  "art": "zahl",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "bis zur Abnahme der Ruhigstellung",
+                    "bis zur vollen Mobilität"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "default": 1,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen trotz Schmerzmittel, zunehmender Schwellung der Schulter, Taubheitsgefühl oder Kribbeln in Arm oder Hand, kalter, blasser oder blauer Hand."
             }
           ]
         }
@@ -280,6 +1253,7 @@
           "id": "ellb-unt",
           "titel": "Ellenbogen – Untersuchung",
           "typ": "untersuchung",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
@@ -291,15 +1265,110 @@
             },
             {
               "art": "text",
-              "text": ": Reizlos geschlossene Weichteile. "
+              "text": ": "
             },
             {
               "art": "befund",
               "id": "ellb-inspektion",
-              "chip": "Wunde/Schwellung",
+              "chip": "Wunde/Prellmarke",
               "gruppe": "Inspektion",
-              "normal": "Keine offenen Wunden oder Prellmarken, keine Rötung, Schwellung oder Überwärmung. ",
-              "abweichung": "Offene Wunde bzw. Prellmarke, Rötung, Schwellung und Überwärmung. "
+              "normal": "Reizlos geschlossene Weichteile, keine offenen Wunden oder Prellmarken. ",
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Prellmarke",
+                    "Schürfwunde",
+                    "Offene Wunde"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "über dem Olecranon",
+                    "radial",
+                    "ulnar",
+                    "streckseitig",
+                    "beugeseitig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-schwellung",
+              "chip": "Schwellung/Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung, kein Hämatom. ",
+              "abweichung": "Schwellung{haematom} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "haematom",
+                  "label": "Hämatom",
+                  "optionen": [
+                    "",
+                    " und Hämatom"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "über dem Olecranon",
+                    "radial über dem Radiuskopf",
+                    "ulnar",
+                    "des gesamten Ellenbogens"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-roetung",
+              "chip": "Rötung/Überwärmung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, keine Überwärmung. ",
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Rötung und Überwärmung",
+                    "Rötung",
+                    "Überwärmung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "über dem Olecranon",
+                    "radial",
+                    "ulnar",
+                    "des gesamten Ellenbogens"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -307,7 +1376,40 @@
               "chip": "Druckschmerz",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem Oberarmschaft, dem Epicondylus lateralis und medialis humeri, dem Olecranon, dem Radiuskopf oder dem Unterarmschaft. ",
-              "abweichung": "Druckschmerz über dem Oberarmschaft, dem Epicondylus lateralis und medialis humeri, dem Olecranon, dem Radiuskopf oder dem Unterarmschaft. "
+              "abweichung": "Druckschmerz {ort}{grad} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "über dem Radiuskopf",
+                    "über dem Olecranon",
+                    "über dem Epicondylus lateralis humeri",
+                    "über dem Epicondylus medialis humeri",
+                    "über dem Oberarmschaft",
+                    "über dem Unterarmschaft"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "weitere Orte (optional)",
+                  "maxLen": 80
+                }
+              ]
             },
             {
               "art": "befund",
@@ -315,39 +1417,106 @@
               "chip": "Bewegung schmerzhaft eingeschränkt",
               "gruppe": "Beweglichkeit",
               "normal": "Ellenbogengelenk endgradig ohne Schmerzen beweglich. ",
-              "abweichung": "Ellenbogengelenk schmerzhaft eingeschränkt beweglich. "
+              "abweichung": "Ellenbogengelenk schmerzhaft eingeschränkt beweglich{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Einschränkung",
+                  "optionen": [
+                    "",
+                    ", Streckdefizit",
+                    ", Beugedefizit",
+                    ", Streck- und Beugedefizit",
+                    ", Unterarmdrehung schmerzhaft"
+                  ]
+                }
+              ]
             },
             {
-              "art": "messwert",
+              "art": "option",
               "id": "ellb-rom-extflex",
-              "label": "Extension/Flexion",
+              "label": "Extension/Flexion (Neutral-Null)",
               "gruppe": "Beweglichkeit",
-              "vorlage": "Extension/Flexion {w}. ",
-              "normal": "0/0/150"
+              "text": "Extension/Flexion {wert}°. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "wert",
+                  "label": "Wert, z. B. 0/10/130",
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "messwert",
+              "art": "option",
               "id": "ellb-rom-prosup",
-              "label": "Pronation/Supination",
+              "label": "Pronation/Supination (Neutral-Null)",
               "gruppe": "Beweglichkeit",
-              "vorlage": "Pronation/Supination {w}. ",
-              "normal": "90/0/90"
+              "text": "Pronation/Supination {wert}°. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "wert",
+                  "label": "Wert, z. B. 80/0/80",
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "ellb-instabil",
               "chip": "Instabilität",
               "gruppe": "Stabilität",
-              "normal": "Keine Instabilität im Bereich des Gelenkes. ",
-              "abweichung": "Instabilität im Bereich des Gelenkes. "
+              "normal": "",
+              "abweichung": "{erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "Instabilität im Bereich des Gelenkes",
+                    "Stabilität des Gelenkes schmerzbedingt nicht beurteilbar"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ellb-stabil",
+              "label": "Gelenk stabil (geprüft)",
+              "gruppe": "Stabilität",
+              "text": "Keine Instabilität im Bereich des Gelenkes. "
             },
             {
               "art": "befund",
               "id": "ellb-pdms",
               "chip": "pDMS gestört",
               "gruppe": "pDMS",
-              "normal": "Periphere Durchblutung, Motorik und Sensibilität regelrecht.",
-              "abweichung": "Periphere Durchblutung, Motorik oder Sensibilität gestört."
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} gestört {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was ist gestört",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Periphere Durchblutung",
+                    "Motorik",
+                    "Sensibilität",
+                    "Motorik und Sensibilität"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Beschreibung (optional)",
+                  "maxLen": 80
+                }
+              ]
             }
           ]
         },
@@ -355,6 +1524,7 @@
           "id": "ellb-epicondylitis-unt",
           "titel": "Ellenbogen – Untersuchung (Epicondylitis)",
           "typ": "untersuchung",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
@@ -366,23 +1536,41 @@
             },
             {
               "art": "text",
-              "text": ": Reizlos geschlossene Weichteile, keine offenen Wunden oder Prellmarken. "
+              "text": ": "
             },
             {
               "art": "befund",
-              "id": "ellb-epi-rom",
-              "chip": "ROM eingeschränkt",
-              "gruppe": "Funktion",
-              "normal": "ROM Handgelenk und Ellenbogen frei und schmerzfrei. ",
-              "abweichung": "ROM Handgelenk und Ellenbogen schmerzhaft eingeschränkt. "
-            },
-            {
-              "art": "befund",
-              "id": "ellb-epi-instabil",
-              "chip": "Bandinstabilität",
-              "gruppe": "Stabilität",
-              "normal": "Keine Bandinstabilität. ",
-              "abweichung": "Bandinstabilität. "
+              "id": "ellb-epi-weichteile",
+              "chip": "Schwellung/Rötung",
+              "gruppe": "Inspektion",
+              "normal": "Reizlos geschlossene Weichteile, keine offenen Wunden oder Prellmarken. ",
+              "abweichung": "{was} über dem Epicondylus humeri {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Schwellung",
+                    "Rötung",
+                    "Schwellung und Rötung",
+                    "Überwärmung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "radialis",
+                    "ulnaris"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -390,7 +1578,19 @@
               "chip": "DS Epicondylus radialis",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem Epicondylus humeri radialis. ",
-              "abweichung": "Lokaler Druckschmerz über dem Epicondylus humeri radialis. "
+              "abweichung": "Lokaler Druckschmerz über dem Epicondylus humeri radialis{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -398,7 +1598,19 @@
               "chip": "DS Epicondylus ulnaris",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem Epicondylus humeri ulnaris. ",
-              "abweichung": "Druckschmerz über dem Epicondylus humeri ulnaris. "
+              "abweichung": "Druckschmerz über dem Epicondylus humeri ulnaris{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -406,7 +1618,19 @@
               "chip": "DS Strecksehnen",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz im Verlauf der Strecksehnen. ",
-              "abweichung": "Druckschmerz im Verlauf der Strecksehnen. "
+              "abweichung": "Druckschmerz im Verlauf der Strecksehnen{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -414,15 +1638,81 @@
               "chip": "DS distaler Radius/Ulna",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem distalen Radius und der distalen Ulna. ",
-              "abweichung": "Druckschmerz über dem distalen Radius und der distalen Ulna. "
+              "abweichung": "Druckschmerz über {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "dem distalen Radius und der distalen Ulna",
+                    "dem distalen Radius",
+                    "der distalen Ulna"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "ellb-epi-ds-knoechern",
-              "chip": "knöcherner Druckschmerz",
+              "chip": "weiterer knöcherner Druckschmerz",
               "gruppe": "Palpation",
-              "normal": "Kein knöcherner Druckschmerz. ",
-              "abweichung": "Knöcherner Druckschmerz. "
+              "normal": "Kein weiterer knöcherner Druckschmerz. ",
+              "abweichung": "Knöcherner Druckschmerz {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "über dem Olecranon",
+                    "über dem Radiuskopf",
+                    "über dem distalen Humerus"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-epi-rom",
+              "chip": "Beweglichkeit eingeschränkt",
+              "gruppe": "Beweglichkeit",
+              "normal": "Handgelenk und Ellenbogen frei und schmerzfrei beweglich. ",
+              "abweichung": "{gelenk} schmerzhaft eingeschränkt beweglich. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "gelenk",
+                  "label": "Gelenk",
+                  "optionen": [
+                    "Handgelenk und Ellenbogen",
+                    "Ellenbogen",
+                    "Handgelenk"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
@@ -430,15 +1720,74 @@
               "chip": "Cozen positiv",
               "gruppe": "Tests",
               "normal": "Cozen-Test negativ. ",
-              "abweichung": "Cozen-Test positiv, inverser Cozen-Test negativ. "
+              "abweichung": "{erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "Cozen-Test positiv, inverser Cozen-Test negativ",
+                    "Cozen-Test negativ, inverser Cozen-Test positiv",
+                    "Cozen-Test und inverser Cozen-Test positiv"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-epi-instabil",
+              "chip": "Bandinstabilität",
+              "gruppe": "Stabilität",
+              "normal": "",
+              "abweichung": "{erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "Bandinstabilität",
+                    "Bandstabilität schmerzbedingt nicht beurteilbar"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ellb-epi-stabil",
+              "label": "Bänder stabil (geprüft)",
+              "gruppe": "Stabilität",
+              "text": "Keine Bandinstabilität. "
             },
             {
               "art": "befund",
               "id": "ellb-epi-pdms",
               "chip": "pDMS gestört",
               "gruppe": "pDMS",
-              "normal": "Periphere Durchblutung, Motorik und Sensibilität regelrecht.",
-              "abweichung": "Periphere Durchblutung, Motorik oder Sensibilität gestört."
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} gestört {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was ist gestört",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Periphere Durchblutung",
+                    "Motorik",
+                    "Sensibilität",
+                    "Motorik und Sensibilität"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Beschreibung (optional)",
+                  "maxLen": 80
+                }
+              ]
             }
           ]
         },
@@ -446,11 +1795,353 @@
           "id": "ellb-prellung-proc",
           "titel": "Ellenbogenprellung – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Ruhigstellung in Oberarmgipsschiene für 5–7 Tage, bedarfsgerechte Analgesie. Danach klinische Kontrolle beim niedergelassenen Kollegen. Bei Beschwerdefreiheit Gipsabnahme. Bei persistierenden Beschwerden Re-Evaluation, ggf. Gipsbehandlung weiter für insgesamt 4 Wochen, ggf. weiterführende Diagnostik. Bei Komplikationen jederzeit Wiedervorstellung möglich."
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "an": true,
+              "text": "Ruhigstellung des Ellenbogens {seite} {art} für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art der Ruhigstellung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Oberarmgipsschiene",
+                    "in der Armschlinge",
+                    "im elastischen Stützverband"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "3 Tage",
+                    "5 bis 7 Tage",
+                    "10 Tage"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Keine Ruhigstellung, Schonung",
+              "an": true,
+              "text": "Keine Ruhigstellung. Schonung des Ellenbogens {seite} für {dauer}, danach Bewegung und Belastung, soweit die Schmerzen es zulassen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "2 bis 3 Tage",
+                    "5 bis 7 Tage"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kuehlung",
+              "label": "Kühlung",
+              "text": "Kühlung des Ellenbogens {seite} in den ersten Tagen nach dem Unfall."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gipskontrolle",
+              "label": "Gipskontrolle am Folgetag",
+              "an": true,
+              "text": "Kontrolle der Gipsschiene {seite} am Folgetag {wo}: Sitz der Schiene, Schwellung, Durchblutung, Gefühl und Beweglichkeit der Finger.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in unserer Notaufnahme",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Klinische Kontrolle",
+              "an": true,
+              "text": "Danach klinische Kontrolle des Ellenbogens {seite} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "default": 2,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gipsabnahme",
+              "label": "Bei Beschwerdefreiheit Gipsabnahme",
+              "text": "Bei Beschwerdefreiheit in der Kontrolle Abnahme der Gipsschiene."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "reevaluation",
+              "label": "Bei fortbestehenden Beschwerden",
+              "an": true,
+              "text": "Bei fortbestehenden Beschwerden in der Kontrolle erneute Beurteilung und Entscheidung über eine weiterführende Diagnostik (Röntgenkontrolle, CT oder MRT)."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gips-laenger",
+              "label": "Längere Gipsbehandlung",
+              "text": "Gipsbehandlung dann für insgesamt {dauer} möglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Gesamtdauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "2 Wochen",
+                    "3 Wochen",
+                    "4 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgenkontrolle",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle des Ellenbogens {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nach 7 bis 10 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der weiterbehandelnden Praxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "pflicht": true,
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "text": "Medikamentöse Thromboseprophylaxe mit {wirkstoff} {dosis} subkutan 1-mal täglich {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin"
+                  ]
+                },
+                {
+                  "art": "zahl",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "bis zur Abnahme der Ruhigstellung",
+                    "bis zur vollen Mobilität"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "default": 1,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "zunehmenden Schmerzen im Gips, zunehmender Schwellung der Finger, Taubheitsgefühl oder Kribbeln in den Fingern, kalten, blassen oder blauen Fingern, drückendem, zu engem oder gebrochenem Gips",
+                    "zunehmenden Schmerzen oder zunehmender Schwellung des Ellenbogens, Taubheitsgefühl oder Kribbeln in den Fingern, kalten, blassen oder blauen Fingern, Rötung, Überwärmung oder Fieber"
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -458,11 +2149,205 @@
           "id": "ellb-epicondylitis-proc",
           "titel": "Epicondylitis – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Es wurde folgendes Procedere vereinbart: Befundkontrolle und Weiterbehandlung durch den niedergelassenen Orthopäden. Körperliche Schonung, nach Möglichkeit Entlastung der betroffenen oberen Extremität. Bedarfsgerechte Analgesie. Regelmäßige Dehnübungen und Querfriktion (Anleitung zu Eigenübungen erfolgt). Konsequentes Tragen einer Epicondylitis-Spange (Rezept ausgestellt). Bei Persistenz oder Progredienz der Beschwerden empfehlen wir eine weiterführende Diagnostik (z. B. MRT)."
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Befundkontrolle und Weiterbehandlung",
+              "an": true,
+              "text": "Befundkontrolle und Weiterbehandlung {wo} {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "default": 1,
+                  "optionen": [
+                    "",
+                    "in der orthopädischen Praxis",
+                    "in der Hausarztpraxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nach 1 Woche",
+                    "nach 2 Wochen",
+                    "nach 4 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung",
+              "an": true,
+              "text": "Körperliche Schonung, nach Möglichkeit Entlastung des Arms {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "uebungen",
+              "label": "Dehnübungen und Querfriktion",
+              "an": true,
+              "text": "Dehnübungen und Querfriktion als Eigenübung {wie-oft}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie-oft",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "täglich",
+                    "2-mal täglich",
+                    "3-mal täglich"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "spange",
+              "label": "Epicondylitis-Spange",
+              "an": true,
+              "text": "Konsequentes Tragen der Epicondylitis-Spange am Unterarm {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "diagnostik",
+              "label": "Bei Fortbestehen: weiterführende Diagnostik",
+              "an": true,
+              "text": "Bei fortbestehenden oder zunehmenden Beschwerden nach {dauer} empfehlen wir eine weiterführende Diagnostik, z. B. MRT.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "nach",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "4 Wochen",
+                    "6 Wochen",
+                    "3 Monaten"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "",
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit)."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "default": 1,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Rötung, Schwellung oder Überwärmung am Ellenbogen, Fieber, Taubheitsgefühl oder Kribbeln in den Fingern, plötzlichem Kraftverlust der Hand."
             }
           ]
         },
@@ -470,18 +2355,377 @@
           "id": "ellb-radiuskopf-proc",
           "titel": "Radiuskopffraktur – Procedere (konservativ)",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "1. Woche konsequente Ruhigstellung in Oberarmgipsschiene. Hiernach frühfunktionelle Therapie. Kein Abstützen und kein Tragen schwerer Gewichte für 6 Wochen. Bedarfsgerechte Analgesie, Kühlung, Schonung."
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "an": true,
+              "text": "Ruhigstellung des Ellenbogens {seite} {art} für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art der Ruhigstellung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Oberarmgipsschiene",
+                    "in der Armschlinge"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "wenige Tage",
+                    "1 Woche",
+                    "2 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gipskontrolle",
+              "label": "Gipskontrolle am Folgetag",
+              "an": true,
+              "text": "Kontrolle der Gipsschiene {seite} am Folgetag {wo}: Sitz der Schiene, Schwellung, Durchblutung, Gefühl und Beweglichkeit der Finger.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in unserer Notaufnahme",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "fruehfunktionell",
+              "label": "Danach frühfunktionell",
+              "an": true,
+              "text": "Hiernach frühfunktionelle Therapie des Ellenbogens {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Kein Abstützen, kein schweres Tragen",
+              "an": true,
+              "text": "Kein Abstützen und kein Tragen schwerer Gewichte mit dem Arm {seite} für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "4 Wochen",
+                    "6 Wochen",
+                    "8 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kuehlung",
+              "label": "Kühlung und Schonung",
+              "an": true,
+              "text": "Kühlung und Schonung des Arms {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Klinische Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle des Ellenbogens {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgenkontrolle",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle des Ellenbogens {seite} {wann} in der weiterbehandelnden Praxis.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "nach 1 Woche",
+                    "nach 7 bis 10 Tagen",
+                    "nach 2 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "op-hinweis",
+              "label": "Bei Verschiebung: Sprechstunde",
+              "text": "Bei zunehmender Verschiebung der Fraktur in der Röntgenkontrolle: Vorstellung in unserer Sprechstunde zur Prüfung einer Operation."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "op-pruefung",
+              "label": "Sprechstunde: Operation prüfen",
+              "text": "Vorstellung in unserer Sprechstunde {frist} zur Prüfung einer Operation.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 5 Tagen",
+                    "innerhalb von 1 Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ct",
+              "label": "CT vor der Vorstellung",
+              "text": " Vorher CT des Ellenbogens {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "text": "Physiotherapie mit Bewegungsübungen des Ellenbogens {seite} nach Ende der Ruhigstellung, Verordnung durch die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "pflicht": true,
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "text": "Medikamentöse Thromboseprophylaxe mit {wirkstoff} {dosis} subkutan 1-mal täglich {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin"
+                  ]
+                },
+                {
+                  "art": "zahl",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "bis zur Abnahme der Ruhigstellung",
+                    "bis zur vollen Mobilität"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "default": 1,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "zunehmenden Schmerzen im Gips, zunehmender Schwellung der Finger, Taubheitsgefühl oder Kribbeln in den Fingern, kalten, blassen oder blauen Fingern, drückendem, zu engem oder gebrochenem Gips",
+                    "zunehmenden Schmerzen oder zunehmender Schwellung des Ellenbogens, Taubheitsgefühl oder Kribbeln in den Fingern, kalten, blassen oder blauen Fingern, Rötung, Überwärmung oder Fieber"
+                  ]
+                }
+              ]
             }
           ]
         },
         {
           "id": "ellb-chassaignac",
-          "titel": "Chassaignac-Luxation – Untersuchung und Reposition",
+          "titel": "Chassaignac-Luxation – Untersuchung (vor und nach Reposition)",
           "typ": "untersuchung",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
@@ -493,109 +2737,487 @@
             },
             {
               "art": "text",
-              "text": ": Reizlos geschlossene Weichteile, kein Hämatom, keine Schwellung. Kein Druckschmerz über dem Oberarm- und Unterarmschaft, kein Druckschmerz über dem Epicondylus radialis und ulnaris. Schmerzhafte Bewegungseinschränkung bei Schonhaltung in Pronationsstellung. Schulter und Handgelenk frei. Keine lokalen oder fortgeleiteten Entzündungszeichen. Kein knöcherner Druckschmerz. "
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-weichteile",
+              "chip": "Schwellung/Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Reizlos geschlossene Weichteile, kein Hämatom, keine Schwellung. ",
+              "abweichung": "{was} am Ellenbogen. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Schwellung",
+                    "Hämatom",
+                    "Schwellung und Hämatom"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-schonhaltung",
+              "chip": "Schonhaltung in Pronation",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schonhaltung des Arms. ",
+              "abweichung": "Schonhaltung des Arms in Pronationsstellung. "
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-entzuendung",
+              "chip": "Entzündungszeichen",
+              "gruppe": "Inspektion",
+              "normal": "Keine lokalen oder fortgeleiteten Entzündungszeichen. ",
+              "abweichung": "{was} am Ellenbogen. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Rötung",
+                    "Überwärmung",
+                    "Rötung und Überwärmung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-ds-schaft",
+              "chip": "DS Ober-/Unterarmschaft",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Oberarm- und Unterarmschaft. ",
+              "abweichung": "Druckschmerz {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "über dem Oberarmschaft",
+                    "über dem Unterarmschaft",
+                    "über dem distalen Unterarm"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-ds-epi",
+              "chip": "DS Epicondylen",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Epicondylus radialis und ulnaris. ",
+              "abweichung": "Druckschmerz über dem Epicondylus {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "radialis",
+                    "ulnaris",
+                    "radialis und ulnaris"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-ds-knoechern",
+              "chip": "knöcherner Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein knöcherner Druckschmerz. ",
+              "abweichung": "Knöcherner Druckschmerz {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "über dem Radiuskopf",
+                    "über dem Olecranon",
+                    "über der Clavicula",
+                    "über dem distalen Unterarm",
+                    "suprakondylär am distalen Humerus"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-bewegung",
+              "chip": "Bewegung schmerzhaft eingeschränkt",
+              "gruppe": "Beweglichkeit",
+              "normal": "Ellenbogen und Unterarmdrehung frei und schmerzfrei. ",
+              "abweichung": "Schmerzhafte Bewegungseinschränkung des Ellenbogens{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Einschränkung",
+                  "optionen": [
+                    "",
+                    ", Supination schmerzhaft",
+                    ", Beugung und Supination schmerzhaft"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-nachbar",
+              "chip": "Schulter/Handgelenk",
+              "gruppe": "Beweglichkeit",
+              "normal": "Schulter und Handgelenk frei. ",
+              "abweichung": "Schmerzen {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "an der Schulter",
+                    "am Handgelenk",
+                    "an Schulter und Handgelenk"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-hand",
+              "chip": "Hand beim Kleinkind: Bewegung/Durchblutung",
+              "gruppe": "pDMS",
+              "normal": "Finger werden spontan bewegt, Hand warm und rosig, Rekapillarisierung unter 2 Sekunden. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Finger werden nicht spontan bewegt",
+                    "Hand kühl oder blass",
+                    "Rekapillarisierung verzögert"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "ellb-chass-pdms",
               "chip": "pDMS gestört",
               "gruppe": "pDMS",
-              "normal": "pDMS intakt. ",
-              "abweichung": "pDMS gestört. "
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} gestört {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was ist gestört",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Periphere Durchblutung",
+                    "Motorik",
+                    "Sensibilität",
+                    "Motorik und Sensibilität"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Beschreibung (optional)",
+                  "maxLen": 80
+                }
+              ]
             },
             {
-              "art": "text",
-              "text": "Nach Reposition freie und schmerzfreie Beweglichkeit, kein knöcherner Druckschmerz, Ellenbogengelenk stabil. Keine weiteren Beschwerden, subjektives Wohlbefinden."
+              "art": "absatz"
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-nach-reposition",
+              "chip": "Nach Reposition nicht frei",
+              "gruppe": "Nach Reposition",
+              "normal": "Nach Reposition freie und schmerzfreie Beweglichkeit, kein knöcherner Druckschmerz. ",
+              "abweichung": "Nach dem Repositionsversuch {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "weiterhin Schonhaltung des Arms",
+                    "weiterhin schmerzhafte Bewegungseinschränkung des Ellenbogens"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ellb-chass-stabil",
+              "label": "Gelenk stabil (geprüft)",
+              "gruppe": "Nach Reposition",
+              "text": "Ellenbogengelenk nach Reposition stabil. "
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-spielt",
+              "chip": "Kind greift und spielt wieder",
+              "gruppe": "Nach Reposition",
+              "selten": true,
+              "normal": "Das Kind greift und spielt wieder mit dem Arm {seite}. ",
+              "abweichung": "Das Kind setzt den Arm {seite} weiterhin nicht ein. "
+            },
+            {
+              "art": "befund",
+              "id": "ellb-chass-wohlbefinden",
+              "chip": "Weitere Beschwerden",
+              "gruppe": "Nach Reposition",
+              "normal": "Keine weiteren Beschwerden, subjektives Wohlbefinden. ",
+              "abweichung": "Weiterhin Beschwerden {detail}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Beschreibung (optional)",
+                  "maxLen": 80
+                }
+              ]
             }
           ]
         },
         {
           "id": "ellb-paravasat-proc",
-          "titel": "Paravasat – Untersuchung und Procedere",
+          "titel": "Paravasat – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Paravasat der Ellenbeuge "
+              "art": "punkt"
             },
             {
-              "art": "seite"
+              "art": "option",
+              "id": "hochlagerung",
+              "label": "Hochlagerung",
+              "text": "Hochlagerung des Arms {seite} für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "24 Stunden",
+                    "2 Tage",
+                    "3 Tage"
+                  ]
+                }
+              ]
             },
             {
-              "art": "text",
-              "text": ": Schwellung im Bereich der Ellenbeuge, keine Rötung, keine Überwärmung, keine Schmerzen, pDMS intakt. Anlage eines Heparinsalbenverbandes, Hochlagerung des Armes sowie lokale Kühlung. "
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lokal",
+              "label": "Kühlung oder Wärme",
+              "an": true,
+              "text": "{massnahme} am Arm {seite} {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "massnahme",
+                  "label": "Lokale Maßnahme",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Lokale Kühlung",
+                    "Lokale Wärme",
+                    "Keine lokale Kühlung und keine Wärme"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "für 24 Stunden",
+                    "für 2 Tage",
+                    "für 3 Tage",
+                    "bis zur Kontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Salbenverband fortführen",
+              "text": "Salbenverband mit {salbe} am Arm {seite} {wechsel}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "salbe",
+                  "label": "Salbe",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Heparinsalbe"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wechsel",
+                  "label": "Wechsel",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "täglich erneuern",
+                    "bis zur Kontrolle belassen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Befundkontrolle",
+              "an": true,
+              "text": "Kontrolle des Befunds am Arm {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Notaufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
             },
             {
               "art": "befund",
               "id": "ellb-paravasat-tetanus",
-              "chip": "Tetanusschutz auffrischen",
+              "chip": "Tetanusschutz aufgefrischt",
               "gruppe": "Tetanus",
-              "normal": "Tetanusschutz intakt. ",
-              "abweichung": "Tetanusschutz nicht intakt, Auffrischung nach vorheriger Aufklärung erfolgt. "
+              "normal": "",
+              "abweichung": "Tetanusschutz nicht intakt, Auffrischung nach vorheriger Aufklärung erfolgt."
             },
             {
-              "art": "text",
-              "text": "Sofortige Wiedervorstellung beim nächstgelegenen Arzt bei Auftreten von Entzündungszeichen."
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "",
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit)."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmender Schwellung oder zunehmenden Schmerzen, Rötung oder Überwärmung, Blasen oder Verfärbung der Haut, Taubheitsgefühl oder Kribbeln in der Hand, kalten oder blassen Fingern, Fieber."
+            }
+          ]
+        },
+        {
+          "id": "proc-paravasat-aufnahme",
+          "titel": "Paravasat – stationäre Aufnahme",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme",
+              "an": true,
+              "text": "Stationäre Aufnahme zur {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "Überwachung der Weichteile",
+                    "operativen Behandlung"
+                  ],
+                  "required": true
+                }
+              ]
             }
           ]
         }
-      ]
-    }
-  ],
-  "stapel": [
-    {
-      "id": "stapel-clavicula",
-      "name": "Claviculafraktur",
-      "bausteinIds": [
-        "schulter-unt-knapp",
-        "schulter-clavicula-proc"
-      ]
-    },
-    {
-      "id": "stapel-ac-luxation",
-      "name": "AC-Gelenksluxation",
-      "bausteinIds": [
-        "schulter-unt-knapp",
-        "schulter-ac-proc"
-      ]
-    },
-    {
-      "id": "stapel-ellb-prellung",
-      "name": "Ellenbogenprellung",
-      "bausteinIds": [
-        "ellb-unt",
-        "ellb-prellung-proc"
-      ]
-    },
-    {
-      "id": "stapel-epicondylitis",
-      "name": "Epicondylitis",
-      "bausteinIds": [
-        "ellb-epicondylitis-unt",
-        "ellb-epicondylitis-proc"
-      ]
-    },
-    {
-      "id": "stapel-radiuskopf",
-      "name": "Radiuskopffraktur",
-      "bausteinIds": [
-        "ellb-unt",
-        "ellb-radiuskopf-proc"
-      ]
-    },
-    {
-      "id": "stapel-chassaignac",
-      "name": "Chassaignac-Luxation",
-      "bausteinIds": [
-        "ellb-chassaignac"
-      ]
-    },
-    {
-      "id": "stapel-paravasat",
-      "name": "Paravasat",
-      "bausteinIds": [
-        "ellb-paravasat-proc"
       ]
     }
   ]

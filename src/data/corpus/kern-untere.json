@@ -1,0 +1,1697 @@
+{
+  "regionen": [
+    {
+      "id": "osg",
+      "name": "OSG",
+      "kuerzel": "🦶",
+      "bausteine": [
+        {
+          "id": "osg-untersuchung",
+          "titel": "OSG – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Oberes Sprunggelenk "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "osg_haut",
+              "chip": "Wunde/Haut",
+              "gruppe": "Inspektion",
+              "normal": "Reizlos geschlossene Weichteile, keine Wunde. ",
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Schürfwunde",
+                    "Oberflächliche Wunde",
+                    "Prellmarke",
+                    "Spannungsblasen"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_schwellung",
+              "chip": "Schwellung/Hämatom lateral",
+              "gruppe": "Inspektion",
+              "normal": "Keine Weichteilschwellung, keine Hämatome. ",
+              "abweichung": "{was}{ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Schwellung und Hämatom",
+                    "Schwellung",
+                    "Hämatom"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    " über dem Außenknöchel",
+                    " unterhalb des Außenknöchels",
+                    " über dem Innenknöchel",
+                    " über Außen- und Innenknöchel",
+                    " über dem Fußrücken"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_ds_aussen",
+              "chip": "DS Außenknöchel",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Außenknöchel. ",
+              "abweichung": "Druckschmerz über dem Außenknöchel{wo}{grad} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "",
+                    " an der Hinterkante",
+                    " an der Spitze"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Detail",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_ds_innen",
+              "chip": "DS Innenknöchel",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Innenknöchel. ",
+              "abweichung": "Druckschmerz über dem Innenknöchel{wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "",
+                    " an der Hinterkante",
+                    " an der Spitze"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_ds_fibulotalar",
+              "chip": "DS Außenband",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem fibulotalaren Bandapparat. ",
+              "abweichung": "Druckschmerz über dem {band}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "band",
+                  "label": "Band",
+                  "optionen": [
+                    "fibulotalaren Bandapparat",
+                    "Ligamentum fibulotalare anterius",
+                    "Ligamentum fibulotalare anterius und Ligamentum fibulocalcaneare"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_ds_deltaband",
+              "chip": "DS Deltaband",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Deltaband. ",
+              "abweichung": "Druckschmerz über dem Deltaband{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_ds_syndesmose",
+              "chip": "Syndesmose",
+              "gruppe": "Palpation",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Druckschmerz über der vorderen Syndesmose",
+                    "Kein Druckschmerz über der vorderen Syndesmose"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_ds_fibula",
+              "chip": "DS Fibula proximal",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Fibulaköpfchen und der proximalen Fibula. ",
+              "abweichung": "Druckschmerz über dem {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "Fibulaköpfchen",
+                    "Fibulaschaft"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_ds_mt5",
+              "chip": "DS Basis Os metatarsale V",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über der Basis des Os metatarsale V. ",
+              "abweichung": "Druckschmerz über der Basis des Os metatarsale V{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_mittelfuss",
+              "chip": "Mittelfuß",
+              "gruppe": "Palpation",
+              "normal": "Kein Mittelfußkompressionsschmerz, kein Druckschmerz über den Mittelfußknochen. ",
+              "abweichung": "{was}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Mittelfußkompressionsschmerz",
+                    "Druckschmerz über den Mittelfußknochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_ds_naviculare",
+              "chip": "Os naviculare",
+              "gruppe": "Palpation",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Druckschmerz über dem Os naviculare",
+                    "Kein Druckschmerz über dem Os naviculare"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_ds_calcaneus",
+              "chip": "DS Calcaneus",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Calcaneus. ",
+              "abweichung": "Druckschmerz über dem Calcaneus{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_gabel",
+              "chip": "Gabelkompression",
+              "gruppe": "Palpation",
+              "normal": "Kein Gabelkompressionsschmerz. ",
+              "abweichung": "Gabelkompressionsschmerz. "
+            },
+            {
+              "art": "befund",
+              "id": "osg_beweglichkeit",
+              "chip": "Beweglichkeit",
+              "gruppe": "Beweglichkeit",
+              "normal": "Endständige Dorsalextension und Plantarflexion ohne Schmerzen ausführbar. ",
+              "abweichung": "Dorsalextension und Plantarflexion {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Einschränkung",
+                  "optionen": [
+                    "schmerzbedingt endgradig eingeschränkt",
+                    "schmerzbedingt deutlich eingeschränkt",
+                    "bei Frakturverdacht nicht geprüft"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_aufklappbar",
+              "chip": "Bandstabilität (Talusvorschub, Aufklappbarkeit)",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Bandstabilität schmerzbedingt nicht beurteilbar",
+                    "Kein Talusvorschub, keine vermehrte laterale oder mediale Aufklappbarkeit",
+                    "Vermehrte laterale Aufklappbarkeit, kein sicherer Talusvorschub",
+                    "Vermehrter Talusvorschub",
+                    "Vermehrter Talusvorschub und vermehrte laterale Aufklappbarkeit"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_achilles",
+              "chip": "Achillessehne",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Achillessehne durchgängig tastbar, Thompson-Test unauffällig",
+                    "Tastbare Delle über der Achillessehne, Thompson-Test pathologisch"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_geh",
+              "chip": "Gehfähigkeit",
+              "gruppe": "Belastbarkeit",
+              "normal": "Frei geh- und stehfähig, mehr als 4 Schritte. ",
+              "abweichung": "{wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Unter Schmerzen geh- und stehfähig, mehr als 4 Schritte",
+                    "Unter Schonhinken geh- und stehfähig, mehr als 4 Schritte",
+                    "Unter Schmerzen gehfähig, weniger als 4 Schritte",
+                    "Nicht belastungsfähig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_pulse",
+              "chip": "Fußpulse",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "A. tibialis posterior und A. dorsalis pedis kräftig tastbar. ",
+              "abweichung": "{puls} nicht tastbar. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "puls",
+                  "label": "Puls",
+                  "optionen": [
+                    "Fußpulse",
+                    "A. dorsalis pedis",
+                    "A. tibialis posterior"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_dms",
+              "chip": "Durchblutung/Motorik/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Sensibilität und Motorik intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "osg_kompartment",
+              "chip": "Kompartmentsyndrom",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Kein Hinweis auf ein Kompartmentsyndrom. ",
+              "abweichung": "Unterschenkel oder Fuß prall gespannt, Verdacht auf ein Kompartmentsyndrom. "
+            }
+          ]
+        },
+        {
+          "id": "osg-procedere",
+          "titel": "OSG-Distorsion – Procedere",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Bein {seite}: {stufe}{gehhilfe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung",
+                    "Entlastung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe und Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    " ohne Gehhilfen",
+                    " an Unterarmgehstützen, solange das Gehen schmerzt",
+                    " an Unterarmgehstützen für höchstens 5 bis 7 Tage, danach schmerzadaptierter Belastungsaufbau"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Orthese",
+              "an": true,
+              "text": "Sprunggelenkorthese {seite} für {tag} Tag und Nacht tragen{nacht}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "tag",
+                  "label": "Tag und Nacht",
+                  "optionen": [
+                    "",
+                    "1 Woche",
+                    "2 Wochen",
+                    "3 Wochen",
+                    "4 Wochen",
+                    "6 Wochen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "nacht",
+                  "label": "danach",
+                  "optionen": [
+                    "",
+                    ", danach 2 weitere Wochen nur nachts",
+                    ", danach 4 weitere Wochen nur nachts",
+                    ", danach 2 weitere Wochen tagsüber bei Belastung",
+                    ", danach 4 weitere Wochen tagsüber bei Belastung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung, Hochlagerung, Kühlung",
+              "an": true,
+              "text": "Schonung, Hochlagerung und Kühlung des Sprunggelenks {seite} in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "osg_thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der freien Mobilität.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der Vollbelastung.",
+                "Die vorbestehende Blutverdünnung (Antikoagulation) wird unverändert fortgeführt, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat} {dosis} subkutan, 1-mal täglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "maxLen": 20
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Sportpause",
+              "an": true,
+              "text": "Sportpause für {dauer}, danach langsamer Belastungsaufbau.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "2 Wochen",
+                    "4 Wochen",
+                    "6 Wochen",
+                    "8 Wochen"
+                  ],
+                  "default": 1
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "uebungen",
+              "label": "Stabilisierende Übungen",
+              "an": true,
+              "text": "Sprunggelenkstabilisierende Übungen werden empfohlen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "text": "Physiotherapie mit Koordinations- und Stabilisationstraining, Verordnung durch die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle des Sprunggelenks {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "weiter",
+              "label": "Weitere Diagnostik bei anhaltenden Beschwerden",
+              "an": true,
+              "text": "Bei anhaltenden Beschwerden nach Ende der Orthesenbehandlung weiterführende Diagnostik über die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "zunehmender Schwellung oder zunehmenden Schmerzen trotz Hochlagern, Taubheitsgefühl oder Kribbeln im Fuß, kalten oder blassen Zehen, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "zunehmenden Schmerzen in der Schiene oder Orthese, zunehmender Schwellung der Zehen, Taubheitsgefühl oder Kribbeln in den Zehen, kalten, blassen oder blauen Zehen, drückender oder zu enger Schiene, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "warnzeichen-besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "knie",
+      "name": "Knie",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "knie-untersuchung",
+          "titel": "Knie – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Knie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "knie_haut",
+              "chip": "Wunde/Haut",
+              "gruppe": "Inspektion",
+              "normal": "Reizlos geschlossene Weichteile, keine Wunde. ",
+              "abweichung": "{was} {ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Schürfwunde",
+                    "Oberflächliche Wunde",
+                    "Prellmarke",
+                    "Spannungsblasen"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "ort",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_schwellung",
+              "chip": "Schwellung/Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung, kein Hämatom. ",
+              "abweichung": "{was}{ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Schwellung",
+                    "Hämatom",
+                    "Schwellung und Hämatom"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " prä- und infrapatellar",
+                    " medial",
+                    " lateral",
+                    " in der Kniekehle"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_ueberwaermung",
+              "chip": "Rötung/Überwärmung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, keine Überwärmung. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "Überwärmung",
+                    "Rötung und Überwärmung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_erguss",
+              "chip": "Gelenkerguss",
+              "gruppe": "Palpation",
+              "normal": "Kein tastbarer Gelenkerguss. ",
+              "abweichung": "Tastbarer Gelenkerguss{grad}{patella}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)",
+                    " (prall)"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "patella",
+                  "label": "tanzende Patella",
+                  "optionen": [
+                    "",
+                    ", tanzende Patella"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_ds_medial",
+              "chip": "DS medialer Gelenkspalt",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem medialen Gelenkspalt. ",
+              "abweichung": "Druckschmerz über dem medialen Gelenkspalt{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_ds_lateral",
+              "chip": "DS lateraler Gelenkspalt",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem lateralen Gelenkspalt. ",
+              "abweichung": "Druckschmerz über dem lateralen Gelenkspalt{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_ds_patella",
+              "chip": "DS Patella",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über der Patella. ",
+              "abweichung": "Druckschmerz über der Patella{wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "optionen": [
+                    "",
+                    " am medialen Rand",
+                    " am lateralen Rand",
+                    " am unteren Pol",
+                    " am oberen Pol"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_ds_umgebung",
+              "chip": "DS Sehnen, Seitenbänder, Fibulaköpfchen",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem medialen und lateralen Seitenband und über dem Fibulaköpfchen. ",
+              "abweichung": "Druckschmerz über {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "dem Fibulaköpfchen",
+                    "der distalen Quadrizepssehne",
+                    "dem Ligamentum patellae",
+                    "der Tuberositas tibiae",
+                    "dem Tractus iliotibialis",
+                    "dem medialen Seitenband",
+                    "dem lateralen Seitenband"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_ds_tibiakopf",
+              "chip": "DS Tibiakopf, Fibulaköpfchen",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über Tibiakopf und Fibulaköpfchen. ",
+              "abweichung": "Druckschmerz über {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "dem Tibiakopf medial",
+                    "dem Tibiakopf lateral",
+                    "dem Fibulaköpfchen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_ds_langknochen",
+              "chip": "DS Ober-/Unterschenkel",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über Ober- und Unterschenkelschaft, Ober- und Unterschenkel weich. ",
+              "abweichung": "Druckschmerz über {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Stelle",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "dem distalen Oberschenkel",
+                    "dem Tibiakopf",
+                    "dem Unterschenkelschaft"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "knie_extflex",
+              "label": "Extension/Flexion",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Extension/Flexion {w}°. "
+            },
+            {
+              "art": "befund",
+              "id": "knie_bewegungsschmerz",
+              "chip": "Bewegungsschmerz",
+              "gruppe": "Beweglichkeit",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Bewegung schmerzfrei",
+                    "Bewegung endgradig schmerzhaft",
+                    "Jede Bewegung stark schmerzhaft"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_streckhebung",
+              "chip": "Streckhebung des Beins",
+              "gruppe": "Beweglichkeit",
+              "normal": "Bein gestreckt von der Unterlage anhebbar. ",
+              "abweichung": "{wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "Bein kann nicht gestreckt von der Unterlage angehoben werden",
+                    "Bein nur unter Schmerzen gestreckt von der Unterlage anhebbar"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_baender",
+              "chip": "Seitenbänder",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Seitenbänder schmerzbedingt nicht beurteilbar",
+                    "Seitenbänder in Streckung und 30° Beugung stabil",
+                    "Mediale Aufklappbarkeit in 30° Beugung",
+                    "Mediale Aufklappbarkeit in Streckung und 30° Beugung",
+                    "Laterale Aufklappbarkeit in 30° Beugung",
+                    "Schmerz am medialen Seitenband bei Valgusstress, keine Aufklappbarkeit"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_lachmann",
+              "chip": "Kreuzbänder (Lachman, Schublade)",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Kreuzbänder schmerzbedingt nicht sicher beurteilbar, keine grobe Instabilität",
+                    "Lachman-Test negativ, fester Anschlag",
+                    "Lachman-Test positiv, weicher Anschlag",
+                    "Lachman-Test positiv, fehlender Anschlag",
+                    "Vordere und hintere Schublade negativ",
+                    "Hintere Schublade positiv"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_apley",
+              "chip": "Meniskuszeichen",
+              "gruppe": "Stabilität und Tests",
+              "normal": "",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Meniskuszeichen schmerzbedingt nicht beurteilbar",
+                    "Keine Meniskuszeichen",
+                    "Apley-Grinding-Zeichen positiv bei Außenrotation",
+                    "Apley-Grinding-Zeichen positiv bei Innenrotation",
+                    "Steinmann-I-Zeichen positiv medial",
+                    "Steinmann-I-Zeichen positiv lateral",
+                    "Schmerz am medialen Gelenkspalt bei tiefer Beugung",
+                    "Federnde Streckhemmung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_instabil",
+              "chip": "Instabilitätsgefühl",
+              "gruppe": "Belastbarkeit",
+              "normal": "",
+              "abweichung": "Subjektives Instabilitätsgefühl. "
+            },
+            {
+              "art": "befund",
+              "id": "knie_gehen",
+              "chip": "Gehfähigkeit",
+              "gruppe": "Belastbarkeit",
+              "normal": "{Person} ist frei steh- und gehfähig. ",
+              "abweichung": "{Person} ist {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Gehfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "unter Schmerzen steh- und gehfähig",
+                    "nur an Unterarmgehstützen gehfähig",
+                    "schmerzbedingt nicht belastungsfähig",
+                    "schmerz- und instabilitätsbedingt nicht steh- und gehfähig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knie_pdms",
+              "chip": "Durchblutung/Motorik/Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kribbelparästhesien",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 40
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "knie_temperatur",
+              "label": "Körpertemperatur",
+              "gruppe": "Allgemein",
+              "vorlage": "Körpertemperatur {w} °C. "
+            }
+          ]
+        },
+        {
+          "id": "knie-procedere",
+          "titel": "Kniedistorsion – Procedere",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Bein {seite}: {stufe}{gehhilfe}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung",
+                    "Teilbelastung mit 20 kg",
+                    "Entlastung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe und Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    " ohne Gehhilfen",
+                    " an Unterarmgehstützen, solange das Gehen schmerzt",
+                    " an Unterarmgehstützen für 3 bis 5 Tage",
+                    " an Unterarmgehstützen für 1 Woche",
+                    " an Unterarmgehstützen für 2 Wochen",
+                    " an Unterarmgehstützen bis zur klinischen Kontrolle"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung, Hochlagerung, Kühlung",
+              "an": true,
+              "text": "Schonung, Hochlagerung und Kühlung des Kniegelenks {seite} in den ersten Tagen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Orthese oder Stützverband",
+              "text": "{was} {seite} für {dauer} tragen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Hilfsmittel",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Knieorthese",
+                    "Elastischen Stützverband",
+                    "Kniestreckschiene",
+                    "Bewegliche Knieorthese mit Seitenführung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "3 bis 5 Tage",
+                    "1 Woche",
+                    "2 Wochen",
+                    "die Zeit bis zur klinischen Kontrolle",
+                    "6 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der freien Mobilität.",
+                "Medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin bis zum Erreichen der Vollbelastung.",
+                "Die vorbestehende Blutverdünnung (Antikoagulation) wird unverändert fortgeführt, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat} {dosis} subkutan, 1-mal täglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "maxLen": 20
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Thrombozytenkontrollen",
+              "text": " Thrombozytenkontrollen {wie} in der Hausarztpraxis, solange Heparin gespritzt wird.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie oft",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle des Kniegelenks {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 5 bis 7 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sprechstunde",
+              "label": "Gelenksprechstunde bei anhaltenden Beschwerden",
+              "an": true,
+              "text": "Bestehen die Beschwerden bei der klinischen Kontrolle fort: Vorstellung in unserer Gelenksprechstunde mit Überweisung nach Terminvereinbarung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mrt",
+              "label": "MRT",
+              "text": "MRT des Kniegelenks {seite} {wann}, Überweisung über die weiterbehandelnde Praxis.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "MRT",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "innerhalb von 1 bis 2 Wochen",
+                    "bei anhaltendem Erguss oder Instabilitätsgefühl nach 2 Wochen",
+                    "nach Abschwellung, vor dem Termin in der Gelenksprechstunde"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sprechstunde-mrt",
+              "label": "Gelenksprechstunde mit MRT-Befund (bei Verdachtsdiagnose)",
+              "text": "Vorstellung in unserer Gelenksprechstunde mit dem MRT-Befund nach Terminvereinbarung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "zunehmender Schwellung oder zunehmenden Schmerzen im Kniegelenk, Blockierung oder Wegknicken des Kniegelenks, Rötung oder Überwärmung, Fieber, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "zunehmenden Schmerzen in der Schiene oder Orthese, zunehmender Schwellung der Zehen, Taubheitsgefühl oder Kribbeln in den Zehen, kalten, blassen oder blauen Zehen, drückender oder zu enger Schiene, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "warnzeichen-besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

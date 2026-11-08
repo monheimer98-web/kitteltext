@@ -1,0 +1,1069 @@
+{
+  "regionen": [
+    {
+      "id": "huefte",
+      "name": "Hüfte & Oberschenkel",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "dx-st-koxarthrose",
+          "titel": "Diagnose Koxarthrose",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "pflicht": true,
+              "optionen": [
+                "Primäre Koxarthrose",
+                "Koxarthrose bei Hüftdysplasie",
+                "Posttraumatische Koxarthrose",
+                "Hüftkopfnekrose"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            }
+          ]
+        },
+        {
+          "id": "th-st-hueft-tep",
+          "titel": "Operation: Hüft-Totalendoprothese",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Implantation einer "
+            },
+            {
+              "art": "auswahl",
+              "id": "verankerung",
+              "label": "Verankerung",
+              "pflicht": true,
+              "optionen": [
+                "zementfreien",
+                "zementierten",
+                "teilzementierten"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " Hüft-Totalendoprothese "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "zugang",
+              "label": "Zugang",
+              "text": "\nZugang: {zugang}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zugang",
+                  "label": "Zugang",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "anterolateral",
+                    "direkt anterior",
+                    "lateral",
+                    "dorsal"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-hueft-tep",
+          "titel": "Röntgen Hüfte vor und nach Gelenkersatz",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Beckenübersicht und Hüfte "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " axial vor der Operation: "
+            },
+            {
+              "art": "auswahl",
+              "id": "vorher",
+              "label": "Röntgenbefund vor der Operation",
+              "pflicht": true,
+              "optionen": [
+                "fortgeschrittene Koxarthrose mit verschmälertem Gelenkspalt, Osteophyten und subchondraler Sklerosierung.",
+                "Koxarthrose bei Hüftdysplasie.",
+                "Hüftkopfnekrose mit Einbruch der Gelenkfläche.",
+                "posttraumatische Koxarthrose."
+              ]
+            },
+            {
+              "art": "text",
+              "text": "\nRöntgen Beckenübersicht und Hüfte "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " axial nach der Operation: "
+            },
+            {
+              "art": "auswahl",
+              "id": "nachher",
+              "label": "Röntgenbefund nach der Operation",
+              "pflicht": true,
+              "optionen": [
+                "regelrechte Stellung der Prothese, kein Hinweis auf eine Fraktur.",
+                "regelrechte Stellung der Prothese, Fissur am proximalen Femur."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "knie",
+      "name": "Knie",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "dx-st-gonarthrose",
+          "titel": "Diagnose Gonarthrose",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "pflicht": true,
+              "optionen": [
+                "Primäre Gonarthrose",
+                "Gonarthrose bei Varusfehlstellung",
+                "Gonarthrose bei Valgusfehlstellung",
+                "Posttraumatische Gonarthrose"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            }
+          ]
+        },
+        {
+          "id": "th-st-knie-tep",
+          "titel": "Operation: Knie-Totalendoprothese",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Implantation einer "
+            },
+            {
+              "art": "auswahl",
+              "id": "verankerung",
+              "label": "Verankerung",
+              "pflicht": true,
+              "optionen": [
+                "zementierten",
+                "zementfreien",
+                "teilzementierten"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "typ",
+              "label": "Prothesentyp",
+              "pflicht": true,
+              "optionen": [
+                "Knie-Totalendoprothese",
+                "medialen Schlittenprothese des Kniegelenks",
+                "lateralen Schlittenprothese des Kniegelenks",
+                "gekoppelten Knie-Totalendoprothese"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "patella",
+              "label": "Rückflächenersatz der Kniescheibe",
+              "text": "\nMit Rückflächenersatz der Kniescheibe"
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-knie-tep",
+          "titel": "Röntgen Knie vor und nach Gelenkersatz",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Knie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen und Patella tangential vor der Operation: "
+            },
+            {
+              "art": "auswahl",
+              "id": "vorher",
+              "label": "Röntgenbefund vor der Operation",
+              "pflicht": true,
+              "optionen": [
+                "fortgeschrittene Gonarthrose mit verschmälertem Gelenkspalt, Osteophyten und subchondraler Sklerosierung.",
+                "fortgeschrittene, medial betonte Gonarthrose.",
+                "fortgeschrittene, lateral betonte Gonarthrose.",
+                "posttraumatische Gonarthrose."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ganzbein",
+              "label": "Ganzbeinaufnahme",
+              "text": "\nGanzbeinaufnahme im Stehen: {achse}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "achse",
+                  "label": "Beinachse",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Varusachse",
+                    "Valgusachse",
+                    "gerade Beinachse"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "text",
+              "text": "\nRöntgen Knie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen nach der Operation: "
+            },
+            {
+              "art": "auswahl",
+              "id": "nachher",
+              "label": "Röntgenbefund nach der Operation",
+              "pflicht": true,
+              "optionen": [
+                "regelrechte Stellung der Prothese, kein Hinweis auf eine Fraktur.",
+                "regelrechte Stellung der Prothese, Beinachse gerade, kein Hinweis auf eine Fraktur."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "handgelenk",
+      "name": "Handgelenk",
+      "kuerzel": "✋",
+      "bausteine": [
+        {
+          "id": "dx-st-radius",
+          "titel": "Diagnose distale Radiusfraktur (Station)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Distale Radiusfraktur "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "gelenk",
+              "label": "Gelenkbeteiligung",
+              "pflicht": true,
+              "optionen": [
+                ", extraartikulär",
+                ", intraartikulär"
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "verschiebung",
+              "label": "Verschiebung",
+              "pflicht": true,
+              "optionen": [
+                ", nach dorsal verschoben",
+                ", nach palmar verschoben",
+                ", verkürzt und nach dorsal verschoben",
+                ", nicht wesentlich verschoben"
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ulna",
+              "label": "Abriss Processus styloideus ulnae",
+              "text": ", mit Abriss des Processus styloideus ulnae"
+            },
+            {
+              "art": "option",
+              "id": "ao",
+              "label": "AO-Klassifikation",
+              "text": " (AO {klasse})",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klasse",
+                  "label": "AO-Klassifikation, z. B. 2R3A2",
+                  "maxLen": 12,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", Sturz auf die ausgestreckte Hand",
+                ", häuslicher Sturz",
+                ", Sportunfall",
+                ", Verkehrsunfall"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "th-st-radius-platte",
+          "titel": "Operation: Plattenosteosynthese distaler Radius",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Offene Reposition und "
+            },
+            {
+              "art": "auswahl",
+              "id": "platte",
+              "label": "Platte",
+              "pflicht": true,
+              "optionen": [
+                "palmare winkelstabile Plattenosteosynthese",
+                "dorsale winkelstabile Plattenosteosynthese",
+                "palmare und dorsale Plattenosteosynthese"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " des distalen Radius "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            }
+          ]
+        },
+        {
+          "id": "verl-st-arm",
+          "titel": "Verlauf: Übungen nach Operation am Arm",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "uebung",
+              "label": "Bewegungsübungen",
+              "an": true,
+              "text": "{ab} übte {person} mit Physiotherapie die Beweglichkeit der Finger, des Ellenbogens und der Schulter. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Beginn",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Ab dem Operationstag",
+                    "Ab dem 1. Tag nach der Operation",
+                    "Ab dem 2. Tag nach der Operation"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "osg",
+      "name": "OSG",
+      "kuerzel": "🦶",
+      "bausteine": [
+        {
+          "id": "dx-st-osg-fraktur",
+          "titel": "Diagnose Sprunggelenkfraktur (Station)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "pflicht": true,
+              "optionen": [
+                "Außenknöchelfraktur",
+                "Innenknöchelfraktur",
+                "Bimalleoläre Sprunggelenkfraktur",
+                "Trimalleoläre Sprunggelenkfraktur",
+                "Bimalleoläre Luxationsfraktur des Sprunggelenks",
+                "Trimalleoläre Luxationsfraktur des Sprunggelenks",
+                "Maisonneuve-Fraktur"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "weber",
+              "label": "Höhe der Fibulafraktur",
+              "pflicht": true,
+              "optionen": [
+                " (Weber A)",
+                " (Weber B)",
+                " (Weber C)",
+                ""
+              ]
+            },
+            {
+              "art": "option",
+              "id": "syndesmose",
+              "label": "Syndesmosenverletzung",
+              "text": ", mit Verletzung der Syndesmose"
+            },
+            {
+              "art": "option",
+              "id": "deltaband",
+              "label": "Deltabandruptur",
+              "text": ", mit Ruptur des Deltabands"
+            },
+            {
+              "art": "option",
+              "id": "offen",
+              "label": "Offene Fraktur",
+              "text": ", offen ({grad})",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "grad",
+                  "label": "Grad der offenen Fraktur",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", Umknicktrauma",
+                ", Sturz",
+                ", Sportunfall",
+                ", Verkehrsunfall"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "th-st-osg-osteosynthese",
+          "titel": "Operation: Osteosynthese am Sprunggelenk",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "was",
+              "label": "Hauptverfahren",
+              "pflicht": true,
+              "optionen": [
+                "Offene Reposition und Plattenosteosynthese der distalen Fibula",
+                "Offene Reposition und Schraubenosteosynthese des Innenknöchels",
+                "Offene Reposition und Zuggurtungsosteosynthese des Innenknöchels",
+                "Geschlossene Reposition und Anlage eines Fixateur externe"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "innenknoechel",
+              "label": "Zusätzlich Innenknöchel",
+              "text": "\n{was} des Innenknöchels",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verfahren",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Schraubenosteosynthese",
+                    "Zuggurtungsosteosynthese"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "hinterkante",
+              "label": "Hinteres Kantenfragment",
+              "text": "\nVerschraubung des hinteren Kantenfragments"
+            },
+            {
+              "art": "option",
+              "id": "syndesmose",
+              "label": "Stabilisierung der Syndesmose",
+              "text": "\nStabilisierung der Syndesmose mit {womit}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Womit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "einer Stellschraube",
+                    "zwei Stellschrauben",
+                    "einem Fadenzugsystem"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "zweizeitig",
+              "label": "Zweizeitiges Vorgehen",
+              "text": "\nEndgültige Osteosynthese nach Abschwellung der Weichteile am {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Datum der zweiten Operation",
+                  "maxLen": 20,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "reposition",
+              "label": "Reposition in der Notaufnahme",
+              "text": "\nGeschlossene Reposition und Ruhigstellung in der Unterschenkelgipsschiene am Aufnahmetag"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wirbelsaeule",
+      "name": "Wirbelsäule",
+      "kuerzel": "🦴",
+      "bausteine": [
+        {
+          "id": "dx-st-wirbelkoerperfraktur",
+          "titel": "Diagnose Wirbelkörperfraktur",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "hoehe",
+              "typ": "begriff",
+              "label": "Höhe, z. B. LWK 1",
+              "required": true,
+              "vorschlaege": [
+                "BWK 12",
+                "LWK 1",
+                "LWK 2",
+                "LWK 3",
+                "LWK 4"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "pflicht": true,
+              "optionen": [
+                "Stabile Wirbelkörperfraktur",
+                "Osteoporotische Wirbelkörperfraktur",
+                "Wirbelkörperkompressionsfraktur"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "hoehe"
+            },
+            {
+              "art": "auswahl",
+              "id": "klasse",
+              "label": "Klassifikation",
+              "optionen": [
+                "",
+                " (OF 1)",
+                " (OF 2)",
+                " (OF 3)",
+                " (OF 4)",
+                " (AO Spine A1)",
+                " (AO Spine A2)",
+                " (AO Spine A3)",
+                " (AO Spine A4)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "neuro",
+              "label": "Ohne neurologisches Defizit",
+              "an": true,
+              "text": ", ohne neurologisches Defizit"
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", häuslicher Sturz",
+                ", Sturz aus dem Stand",
+                ", Sturz aus der Höhe",
+                ", ohne erinnerliches Trauma",
+                ", Verkehrsunfall"
+              ],
+              "default": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thorax",
+      "name": "Thorax",
+      "kuerzel": "🫁",
+      "bausteine": [
+        {
+          "id": "dx-st-rippenserienfraktur",
+          "titel": "Diagnose Rippenserienfraktur",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "rippen",
+              "typ": "begriff",
+              "label": "Welche Rippen, z. B. 4. bis 7. Rippe",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Rippenserienfraktur "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " ("
+            },
+            {
+              "art": "platzhalter",
+              "ref": "rippen"
+            },
+            {
+              "art": "text",
+              "text": ")"
+            },
+            {
+              "art": "option",
+              "id": "pneumothorax",
+              "label": "Pneumothorax",
+              "text": ", mit Pneumothorax"
+            },
+            {
+              "art": "option",
+              "id": "haematothorax",
+              "label": "Hämatothorax",
+              "text": ", mit Hämatothorax"
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", häuslicher Sturz",
+                ", Sturz aus der Höhe",
+                ", Fahrradsturz",
+                ", Verkehrsunfall"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "verl-st-thorax",
+          "titel": "Verlauf: Pneumothorax und Drainage",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "drainage",
+              "label": "Thoraxdrainage",
+              "text": "{was} ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Thoraxdrainage: Anlage, Verlauf, Entfernung (ganzer Satz)",
+                  "maxLen": 240,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "pneumothorax",
+              "label": "Verlauf des Pneumothorax",
+              "text": "{wie} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Pneumothorax",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Der Pneumothorax bildete sich ohne Drainage zurück; im Röntgenbild vor der Entlassung war er nicht mehr nachweisbar.",
+                    "Der Pneumothorax war im Röntgenbild vor der Entlassung nicht größer geworden.",
+                    "Ein Pneumothorax bestand zu keinem Zeitpunkt."
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weichteile",
+      "name": "Weichteile",
+      "kuerzel": "🩹",
+      "bausteine": [
+        {
+          "id": "dx-st-weichteilinfekt",
+          "titel": "Diagnose Weichteilinfekt (Station)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "ort",
+              "typ": "begriff",
+              "label": "Ort, z. B. am Unterschenkel",
+              "required": true,
+              "vorschlaege": [
+                "am Unterschenkel",
+                "am Unterarm",
+                "an der Hand",
+                "am Oberschenkel",
+                "am Ellenbogen",
+                "am Knie",
+                "am Fuß"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "pflicht": true,
+              "optionen": [
+                "Abszess",
+                "Phlegmone",
+                "Infiziertes Hämatom",
+                "Wundinfektion",
+                "Infizierte Bursitis"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "ort"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            }
+          ]
+        },
+        {
+          "id": "th-st-debridement",
+          "titel": "Operation: Débridement",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "was",
+              "label": "Eingriff",
+              "pflicht": true,
+              "optionen": [
+                "Inzision, Débridement und Spülung",
+                "Abszessspaltung, Débridement und Spülung",
+                "Débridement, Spülung und Einlage einer Drainage",
+                "Bursektomie und Débridement"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "zweit",
+              "label": "Erneutes Débridement",
+              "text": "\nErneutes Débridement {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann: Datum oder Tag nach der ersten Operation",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "verschluss",
+              "label": "Sekundärer Wundverschluss",
+              "text": "\nSekundärer Wundverschluss {wann}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann: Datum oder Tag nach der ersten Operation",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotische Therapie",
+              "text": "\nAntibiotische Therapie mit {wirkstoff}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff, Gabe und Dauer",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

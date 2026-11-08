@@ -7,185 +7,246 @@
       "bausteine": [
         {
           "id": "ws-rueckenschmerzen-anamnese",
-          "titel": "Rückenschmerzen – Anamnese",
+          "titel": "Rückenschmerz – Anamnese (Zusatzangaben und Warnhinweise)",
           "typ": "anamnese",
-          "platzhalter": [
-            {
-              "id": "ws-lokalisation",
-              "typ": "begriff",
-              "label": "Lokalisation der Schmerzen",
-              "required": true
-            },
-            {
-              "id": "ws-zeitraum",
-              "typ": "zeitraum",
-              "label": "Beschwerdedauer",
-              "required": true
-            },
-            {
-              "id": "ws-qualitaet",
-              "typ": "begriff",
-              "label": "Schmerzqualität",
-              "required": true
-            },
-            {
-              "id": "ws-ausstrahlungsort",
-              "typ": "begriff",
-              "label": "Ausstrahlungsort",
-              "required": true
-            },
-            {
-              "id": "ws-schmerzintensitaet",
-              "typ": "zahl",
-              "label": "Schmerzintensität (NRS)",
-              "einheit": "/10",
-              "required": false,
-              "leerMarker": "…"
-            }
-          ],
+          "status": "entwurf",
+          "platzhalter": [],
           "segmente": [
             {
               "art": "text",
-              "text": "Der Patient wird "
-            },
-            {
-              "art": "auswahl",
-              "id": "ws-vorstellung",
-              "label": "Vorstellung",
-              "default": 0,
-              "optionen": [
-                "in Begleitung des Rettungsdienstes",
-                "in Begleitung des Notarztes",
-                "mit Einweisung"
-              ]
-            },
-            {
-              "art": "text",
-              "text": " vorstellig, mit Rückenschmerzen der "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "ws-lokalisation"
-            },
-            {
-              "art": "text",
-              "text": " seit "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "ws-zeitraum"
-            },
-            {
-              "art": "text",
-              "text": ". "
+              "text": "Zum Rückenschmerz: "
             },
             {
               "art": "befund",
-              "id": "ws-anam-trauma",
-              "chip": "Trauma",
-              "gruppe": "Unfallmechanismus",
-              "normal": "Kein vorausgegangenes Trauma. ",
-              "abweichung": "Vorausgegangenes Trauma. "
-            },
-            {
-              "art": "text",
-              "text": "Die Schmerzen seien "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "ws-qualitaet"
-            },
-            {
-              "art": "text",
-              "text": ", "
-            },
-            {
-              "art": "auswahl",
               "id": "ws-ausstrahlung",
-              "label": "Ausstrahlung",
-              "default": 0,
-              "optionen": [
-                "mit Ausstrahlung in ",
-                "ohne Ausstrahlung"
+              "chip": "Ausstrahlung ins Bein",
+              "gruppe": "Schmerz",
+              "normal": "Der Schmerz strahle nicht in die Beine aus. ",
+              "abweichung": "Der Schmerz strahle {ls} {bis} aus. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "bis",
+                  "label": "Ausstrahlung",
+                  "optionen": [
+                    "",
+                    "in das Gesäß",
+                    "bis zum Oberschenkel",
+                    "bis zum Knie",
+                    "bis in den Unterschenkel",
+                    "bis in den Fuß"
+                  ],
+                  "required": true
+                }
               ]
             },
             {
-              "art": "platzhalter",
-              "ref": "ws-ausstrahlungsort"
-            },
-            {
-              "art": "text",
-              "text": ". Die Schmerzen seien seit Beginn "
+              "art": "option",
+              "id": "ws-qualitaet",
+              "label": "Schmerzcharakter",
+              "gruppe": "Schmerz",
+              "text": "Der Schmerz sei {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Schmerzcharakter",
+                  "optionen": [
+                    "",
+                    "ziehend",
+                    "stechend",
+                    "dumpf",
+                    "einschießend",
+                    "brennend"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "auswahl",
               "id": "ws-verlauf",
               "label": "Verlauf",
-              "default": 0,
               "optionen": [
-                "unverändert",
-                "verstärkt",
-                "verringert"
-              ]
-            },
-            {
-              "art": "text",
-              "text": " und "
+                "",
+                "Der Schmerz sei seit Beginn unverändert. ",
+                "Der Schmerz habe seit Beginn zugenommen. ",
+                "Der Schmerz habe seit Beginn nachgelassen. "
+              ],
+              "default": 0
             },
             {
               "art": "auswahl",
               "id": "ws-rhythmus",
               "label": "Zeitliches Muster",
-              "default": 0,
               "optionen": [
-                "dauernd",
-                "intermittierend",
-                "im Tagesrhythmus"
+                "",
+                "Der Schmerz bestehe dauernd. ",
+                "Der Schmerz trete in Abständen auf. ",
+                "Der Schmerz sei bei Bewegung am stärksten. ",
+                "Der Schmerz sei nachts und in Ruhe am stärksten. "
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "ws-schmerzintensitaet",
+              "label": "Schmerzstärke",
+              "gruppe": "Schmerz",
+              "text": "Schmerzstärke aktuell {nrs} von 10. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "nrs",
+                  "label": "Schmerzstärke (0 bis 10)",
+                  "required": true
+                }
               ]
             },
             {
-              "art": "text",
-              "text": ". Aktuelle Schmerzintensität "
-            },
-            {
-              "art": "platzhalter",
-              "ref": "ws-schmerzintensitaet"
-            },
-            {
-              "art": "text",
-              "text": " auf der numerischen Schmerzskala. "
+              "art": "befund",
+              "id": "ws-laehmung",
+              "chip": "Schwäche oder Lähmung der Beine",
+              "gruppe": "Warnhinweise",
+              "normal": "Eine Schwäche oder Lähmung der Beine bestehe nicht. ",
+              "abweichung": "Eine Schwäche bestehe {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "im rechten Bein",
+                    "im linken Bein",
+                    "in beiden Beinen",
+                    "im rechten Fuß",
+                    "im linken Fuß"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "ws-anam-az",
-              "chip": "Reduziertes Allgemeinbefinden",
-              "gruppe": "Allgemeinzustand",
-              "normal": "Gutes Allgemeinbefinden. ",
-              "abweichung": "Reduziertes Allgemeinbefinden. "
-            },
-            {
-              "art": "befund",
-              "id": "ws-bsymptomatik",
-              "chip": "B-Symptomatik",
-              "gruppe": "Red Flags",
-              "normal": "Kein Fieber, kein Schüttelfrost, kein Nachtschweiß, kein Gewichtsverlust. ",
-              "abweichung": "Fieber, Nachtschweiß und/oder Gewichtsverlust angegeben. "
-            },
-            {
-              "art": "befund",
-              "id": "ws-infiltration",
-              "chip": "Infiltration / i.v.-Drogen",
-              "gruppe": "Red Flags",
-              "normal": "Keine vorausgehende Infiltrationsbehandlung, kein i.v. Drogenkonsum. ",
-              "abweichung": "Vorausgegangene Infiltrationsbehandlung oder i.v. Drogenkonsum. "
+              "id": "ws-reithose-anam",
+              "chip": "Taubheit im Gesäß- und Genitalbereich",
+              "gruppe": "Warnhinweise",
+              "normal": "Ein Taubheitsgefühl im Gesäß- und Genitalbereich bestehe nicht. ",
+              "abweichung": "Ein Taubheitsgefühl im Gesäß- und Genitalbereich bestehe. "
             },
             {
               "art": "befund",
               "id": "ws-miktion",
-              "chip": "Blasen-/Mastdarmstörung",
-              "gruppe": "Red Flags",
-              "normal": "Keine Miktions- oder Defäkationsstörungen.",
-              "abweichung": "Miktions- und/oder Defäkationsstörungen."
+              "chip": "Blasen- oder Darmstörung",
+              "gruppe": "Warnhinweise",
+              "normal": "Eine Störung beim Wasserlassen oder beim Stuhlgang bestehe nicht. ",
+              "abweichung": "Es bestehe {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Störung",
+                  "optionen": [
+                    "",
+                    "ein Harnverhalt",
+                    "ein unwillkürlicher Urinabgang",
+                    "ein unwillkürlicher Stuhlabgang",
+                    "eine Störung beim Wasserlassen und beim Stuhlgang"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ws-bsymptomatik",
+              "chip": "Fieber, Nachtschweiß, Gewichtsverlust",
+              "gruppe": "Warnhinweise",
+              "normal": "Fieber, Schüttelfrost, Nachtschweiß oder ungewollter Gewichtsverlust bestehe nicht. ",
+              "abweichung": "Angegeben werde {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Symptom",
+                  "optionen": [
+                    "",
+                    "Fieber",
+                    "Schüttelfrost",
+                    "Nachtschweiß",
+                    "ungewollter Gewichtsverlust",
+                    "Fieber und Nachtschweiß"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ws-infiltration",
+              "chip": "Vorausgegangene Infiltration",
+              "gruppe": "Warnhinweise",
+              "normal": "Eine Infiltrations- oder Spritzenbehandlung am Rücken sei nicht vorausgegangen. ",
+              "abweichung": "Eine Infiltrationsbehandlung am Rücken sei {wann} vorausgegangen. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "in der letzten Woche",
+                    "im letzten Monat",
+                    "vor mehr als 1 Monat"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ws-risiko",
+              "chip": "Tumor, Osteoporose, Kortison, Immunschwäche",
+              "gruppe": "Warnhinweise",
+              "normal": "Eine Tumorerkrankung, eine Osteoporose, eine längere Kortisoneinnahme oder eine Immunschwäche sei nicht bekannt. ",
+              "abweichung": "Bekannt sei {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Bekannt ist (Erkrankung oder Medikament)",
+                  "maxLen": 120,
+                  "required": true,
+                  "vorschlaege": [
+                    "eine Tumorerkrankung",
+                    "eine Osteoporose",
+                    "eine längere Kortisoneinnahme",
+                    "eine Immunschwäche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ws-drogen",
+              "label": "Kein intravenöser Drogenkonsum",
+              "gruppe": "Warnhinweise",
+              "text": "Intravenöser Drogenkonsum bestehe nicht. "
+            },
+            {
+              "art": "befund",
+              "id": "ws-anam-az",
+              "chip": "Allgemeinbefinden",
+              "gruppe": "Allgemeinbefinden",
+              "normal": "Das Allgemeinbefinden sei gut. ",
+              "abweichung": "Das Allgemeinbefinden sei reduziert. "
             }
           ]
         },
@@ -193,95 +254,495 @@
           "id": "ws-rueckenschmerzen-untersuchung",
           "titel": "Rückenschmerzen – Untersuchung",
           "typ": "untersuchung",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
+              "art": "text",
+              "text": "Wirbelsäule und Becken: "
+            },
+            {
               "art": "befund",
-              "id": "ws-stehgehfaehig",
-              "chip": "Steh-/Gehunfähigkeit",
-              "gruppe": "Funktion",
-              "normal": "Der Patient ist steh- und gehfähig. ",
-              "abweichung": "Der Patient ist nicht steh- und gehfähig. "
+              "id": "ws-inspektion",
+              "chip": "Haut, Prellmarke",
+              "gruppe": "Inspektion",
+              "normal": "Haut über dem Rücken reizlos, keine Prellmarke, kein Hämatom. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Prellmarke",
+                    "Hämatom",
+                    "Schürfwunde",
+                    "Rötung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "lumbal in der Mittellinie",
+                    "lumbal rechts",
+                    "lumbal links",
+                    "über dem Kreuzbein",
+                    "über dem Steißbein",
+                    "an der rechten Flanke",
+                    "an der linken Flanke",
+                    "thorakal in der Mittellinie",
+                    "thorakal rechts",
+                    "thorakal links"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ws-hartspann",
+              "chip": "Hartspann, Druckschmerz paravertebral",
+              "gruppe": "Palpation",
+              "normal": "Kein paravertebraler Druckschmerz, kein Muskelhartspann. ",
+              "abweichung": "{was} {hoehe}{wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Paravertebraler Muskelhartspann mit Druckschmerz",
+                    "Paravertebraler Druckschmerz ohne Muskelhartspann"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "hoehe",
+                  "label": "Höhe",
+                  "optionen": [
+                    "",
+                    "lumbal",
+                    "thorakal",
+                    "thorakolumbal"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Seite",
+                  "optionen": [
+                    "",
+                    " beidseits",
+                    " rechts",
+                    " links"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "ws-klopfschmerz",
               "chip": "Klopfschmerz Dornfortsätze",
               "gruppe": "Palpation",
-              "normal": "Kein Klopfschmerz über den Dornfortsätzen der gesamten Wirbelsäule. ",
-              "abweichung": "Klopfschmerz über den Dornfortsätzen. "
+              "normal": "Kein Klopfschmerz über den Dornfortsätzen der Brust- und Lendenwirbelsäule. ",
+              "abweichung": "Klopfschmerz über den Dornfortsätzen{wo} {hoehe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Abschnitt",
+                  "optionen": [
+                    "",
+                    " der Lendenwirbelsäule",
+                    " der Brustwirbelsäule",
+                    " am Übergang von Brust- zu Lendenwirbelsäule"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "hoehe",
+                  "label": "Höhe (z. B. 3. bis 5. Lendenwirbel)",
+                  "maxLen": 40
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "ws-beckenkompression",
-              "chip": "Beckenkompressionsschmerz",
+              "id": "ws-steissbein",
+              "chip": "Druckschmerz Kreuzbein, Steißbein",
               "gruppe": "Palpation",
-              "normal": "Kein Beckenkompressionsschmerz, kein Druckschmerz in der Leiste. ",
-              "abweichung": "Beckenkompressionsschmerz. "
+              "normal": "Kein Druckschmerz über Kreuzbein und Steißbein. ",
+              "abweichung": "Druckschmerz über {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "dem Kreuzbein",
+                    "dem Steißbein",
+                    "Kreuzbein und Steißbein"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "ws-huefte",
-              "chip": "Hüfte schmerzhaft/eingeschränkt",
-              "gruppe": "Hüfte",
-              "normal": "Hüfte frei und schmerzfrei beweglich. ",
-              "abweichung": "Hüfte schmerzhaft und/oder bewegungseingeschränkt. "
+              "id": "ws-beweglichkeit",
+              "chip": "Beweglichkeit der Lendenwirbelsäule",
+              "gruppe": "Beweglichkeit",
+              "normal": "Lendenwirbelsäule frei beweglich. ",
+              "abweichung": "Beweglichkeit der Lendenwirbelsäule schmerzbedingt{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    " eingeschränkt",
+                    " leicht eingeschränkt",
+                    " deutlich eingeschränkt",
+                    " stark eingeschränkt",
+                    " nicht geprüft"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ws-fba",
+              "label": "Finger-Boden-Abstand",
+              "gruppe": "Beweglichkeit",
+              "text": "Finger-Boden-Abstand {cm}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "cm",
+                  "label": "Finger-Boden-Abstand",
+                  "einheit": "cm",
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "ws-lasegue",
-              "chip": "Lasègue positiv",
+              "chip": "Lasègue-Zeichen",
               "gruppe": "Nervendehnung",
-              "normal": "Lasègue-Zeichen negativ. ",
-              "abweichung": "Lasègue-Zeichen positiv. "
+              "normal": "Lasègue-Zeichen beidseits negativ. ",
+              "abweichung": "Lasègue-Zeichen {ls} positiv{winkel}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "winkel",
+                  "label": "Winkel",
+                  "optionen": [
+                    "",
+                    " bei 30°",
+                    " bei 45°",
+                    " bei 60°",
+                    " bei 70°"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "ws-bragard",
-              "chip": "Bragard positiv",
+              "chip": "Bragard-Zeichen",
               "gruppe": "Nervendehnung",
-              "normal": "Bragard-Zeichen negativ. ",
-              "abweichung": "Bragard-Zeichen positiv. "
+              "normal": "",
+              "abweichung": "Bragard-Zeichen {ls} positiv. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ws-stehgehfaehig",
+              "chip": "Stehen und Gehen",
+              "gruppe": "Belastbarkeit",
+              "normal": "Stehen und Gehen ohne Hilfe möglich. ",
+              "abweichung": "Stehen und Gehen {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Einschränkung",
+                  "optionen": [
+                    "",
+                    "nur unter Schmerzen möglich",
+                    "nur mit Hilfe möglich",
+                    "schmerzbedingt nicht möglich"
+                  ],
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "ws-paresen",
-              "chip": "Parese untere Extremität",
+              "chip": "Kraft Hüfte und Knie",
               "gruppe": "Neurologie",
-              "normal": "Keine Paresen, Kraftgrad der Hüftbeuger und -strecker sowie der Kniebeuger und -strecker beidseits uneingeschränkt 5/5. ",
-              "abweichung": "Parese der unteren Extremität. "
+              "normal": "Volle Kraft der Hüftbeuger und der Kniestrecker beidseits. ",
+              "abweichung": "Kraftminderung {muskel} {ls}, Kraftgrad {kg}/5. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "muskel",
+                  "label": "Muskelgruppe",
+                  "optionen": [
+                    "",
+                    "der Hüftbeuger",
+                    "der Kniestrecker",
+                    "der Kniebeuger"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "ws-fussheber",
-              "chip": "Fußheberparese",
+              "chip": "Fußheber, Zehenheber, Fußsenker",
               "gruppe": "Neurologie",
-              "normal": "Zehenhebung und -senkung uneingeschränkt, insbesondere kein Hinweis auf eine Fußheberparese. Zehenspitzen- und Hackengang möglich. ",
-              "abweichung": "Hinweis auf eine Fußheberparese, Zehenspitzen-/Hackengang eingeschränkt. "
+              "normal": "Zehenhebung und -senkung uneingeschränkt, insbesondere kein Hinweis auf eine Fußheberparese. ",
+              "abweichung": "{was} {ls}, Kraftgrad {kg}/5. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fußheberschwäche",
+                    "Großzehenheberschwäche",
+                    "Fußsenkerschwäche"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ws-zehengang",
+              "chip": "Zehenspitzen- und Hackengang",
+              "gruppe": "Neurologie",
+              "normal": "Zehenspitzen- und Hackengang möglich. ",
+              "abweichung": "{was} {ls} nicht möglich. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Zehenspitzengang",
+                    "Hackengang",
+                    "Zehenspitzen- und Hackengang"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite"
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "ws-sensibilitaet",
               "chip": "Sensibilitätsminderung",
               "gruppe": "Neurologie",
-              "normal": "Keine Sensibilitätsminderung. ",
-              "abweichung": "Sensibilitätsminderung. "
+              "normal": "Keine Sensibilitätsminderung an den Beinen. ",
+              "abweichung": "Sensibilitätsminderung {ls} {wo}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "am Oberschenkel vorn",
+                    "am Unterschenkel innen",
+                    "am Fußrücken und an der Großzehe",
+                    "am Fußaußenrand und an der Fußsohle"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
+              "id": "ws-reflexe",
+              "chip": "Reflexe",
+              "gruppe": "Neurologie",
+              "normal": "Patellarsehnenreflex und Achillessehnenreflex seitengleich auslösbar. ",
+              "abweichung": "{befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Patellarsehnenreflex rechts abgeschwächt",
+                    "Patellarsehnenreflex links abgeschwächt",
+                    "Patellarsehnenreflex rechts nicht auslösbar",
+                    "Patellarsehnenreflex links nicht auslösbar",
+                    "Achillessehnenreflex rechts abgeschwächt",
+                    "Achillessehnenreflex links abgeschwächt",
+                    "Achillessehnenreflex rechts nicht auslösbar",
+                    "Achillessehnenreflex links nicht auslösbar",
+                    "Reflexe schmerzbedingt nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
               "id": "ws-reithose",
-              "chip": "Reithosenanästhesie",
-              "gruppe": "Red Flags",
-              "normal": "Keine Reithosenanästhesie. ",
-              "abweichung": "Reithosenanästhesie. "
+              "label": "Sensibilität perianal",
+              "gruppe": "Neurologie",
+              "text": "Sensibilität perianal und im Reithosengebiet {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "intakt",
+                    "herabgesetzt",
+                    "aufgehoben"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "ws-blasenmastdarm",
-              "chip": "Blasen-/Mastdarmstörung",
-              "gruppe": "Red Flags",
-              "normal": "Keine Blasen- oder Mastdarmstörung.",
-              "abweichung": "Blasen- und/oder Mastdarmstörung."
+              "id": "ws-beckenkompression",
+              "chip": "Beckenkompressionsschmerz",
+              "gruppe": "Nachbarregionen",
+              "normal": "Kein Beckenkompressionsschmerz, kein Druckschmerz in der Leiste. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Beckenkompressionsschmerz",
+                    "Druckschmerz in der rechten Leiste",
+                    "Druckschmerz in der linken Leiste"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ws-huefte",
+              "chip": "Hüftgelenke",
+              "gruppe": "Nachbarregionen",
+              "normal": "Hüftgelenke frei und schmerzfrei beweglich. ",
+              "abweichung": "Hüftgelenk {ls} schmerzhaft bewegungseingeschränkt. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ws-nierenlager",
+              "chip": "Nierenlager",
+              "gruppe": "Nachbarregionen",
+              "normal": "Nierenlager beidseits nicht klopfschmerzhaft. ",
+              "abweichung": "Nierenlager {ls} klopfschmerzhaft. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ws-abdomen",
+              "chip": "Abdomen, Fußpulse",
+              "gruppe": "Nachbarregionen",
+              "selten": true,
+              "normal": "Abdomen weich, kein Druckschmerz, keine pulsierende Resistenz. Fußpulse beidseits tastbar. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund an Abdomen und Fußpulsen",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
             }
           ]
         },
@@ -289,11 +750,180 @@
           "id": "ws-lumbago-proc",
           "titel": "Lumbago – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Rückenschonendes Verhalten und Rückenschule empfohlen, keine körperliche Schonung. Bedarfsadaptierte Analgesie für eine Woche. Klinische Befundkontrolle bei einem niedergelassenen Kollegen. Bei Beschwerdepersistenz oder -progredienz ist eine weiterführende Diagnostik empfohlen. Sofortige Wiedervorstellung im nächstgelegenen Krankenhaus bei Neuauftreten akuter neurologischer Symptome (z. B. Lähmungserscheinungen, Sensibilitätsstörungen)."
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verhalten",
+              "label": "Aktiv bleiben, keine Bettruhe",
+              "an": true,
+              "text": "Körperlich aktiv bleiben und die gewohnten Tätigkeiten fortführen, soweit die Schmerzen es zulassen. Keine Bettruhe."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "waerme",
+              "label": "Wärme",
+              "text": "Wärmeanwendung am unteren Rücken."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "Schmerzmittel nach Bedarf für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "3 Tage",
+                    "5 Tage",
+                    "1 Woche",
+                    "2 Wochen"
+                  ],
+                  "required": true,
+                  "default": 3
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "text": "Physiotherapie, Verordnung durch die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Befundkontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "nach 3 bis 5 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "diagnostik",
+              "label": "Weiterführende Diagnostik",
+              "an": true,
+              "text": "Weiterführende Diagnostik über die weiterbehandelnde Praxis, wenn die Beschwerden nach {frist} anhalten oder zunehmen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "2 Wochen",
+                    "4 Wochen",
+                    "6 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Lähmung oder Schwäche in den Beinen, Taubheitsgefühl im Gesäß- oder Genitalbereich, Harnverhalt oder ungewolltem Abgang von Urin oder Stuhl, Fieber, stark zunehmenden Schmerzen."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
             }
           ]
         },
@@ -301,11 +931,168 @@
           "id": "ws-lws-prellung-proc",
           "titel": "LWS-Prellung – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Maßnahmen in der ZNA: Untersuchung und Beratung, Analgesie, Handlungsanweisung für zunehmende Beschwerden. Empfehlungen: Befundkontrolle und Weiterbehandlung durch einen niedergelassenen Kollegen. Bei anhaltenden Beschwerden empfehlen wir weiterführende Diagnostik. Sofortige Wiedervorstellung im nächstgelegenen Krankenhaus bei akuten neurologischen Beschwerden."
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Befundkontrolle und Weiterbehandlung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "nach 3 bis 5 Tagen",
+                    "nach 1 Woche",
+                    "nach 2 Wochen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Körperliche Schonung",
+              "text": "Körperliche Schonung für {dauer}, danach Belastung nach Beschwerden steigern.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "3 Tage",
+                    "1 Woche",
+                    "2 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "Schmerzmittel nach Bedarf."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "diagnostik",
+              "label": "Weiterführende Diagnostik",
+              "an": true,
+              "text": "Weiterführende Diagnostik über die weiterbehandelnde Praxis, wenn die Beschwerden nach {frist} anhalten.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "1 Woche",
+                    "2 Wochen",
+                    "4 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-hinweis",
+              "label": "Hinweis bei Gerinnungshemmung",
+              "text": "Unter gerinnungshemmender Medikation kann ein Bluterguss in den nächsten Tagen zunehmen: Wiedervorstellung bei zunehmender Schwellung, zunehmenden Schmerzen in Rücken, Flanke oder Bauch, Schwindel oder Schwäche."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Lähmung oder Schwäche in den Beinen, Taubheitsgefühl oder Kribbeln in den Beinen oder im Gesäß- und Genitalbereich, Harnverhalt oder ungewolltem Abgang von Urin oder Stuhl, blutigem Urin, stark zunehmenden Schmerzen."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
             }
           ]
         }
@@ -320,71 +1107,282 @@
           "id": "thorax-untersuchung",
           "titel": "Thorax – Untersuchung",
           "typ": "untersuchung",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
+              "art": "text",
+              "text": "Thorax "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
               "art": "befund",
               "id": "thorax-prellmarken",
-              "chip": "Prellmarke/Hämatom",
+              "chip": "Prellmarke, Hämatom",
               "gruppe": "Inspektion",
               "normal": "Reizlos geschlossene Weichteile, keine offenen Wunden oder Prellmarken. ",
-              "abweichung": "Prellmarke bzw. Hämatom der Thoraxwand. "
+              "abweichung": "{was}{wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Prellmarke",
+                    "Hämatom",
+                    "Schürfwunde",
+                    "Gurtmarke"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " ventral",
+                    " lateral",
+                    " dorsal"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
-              "id": "thorax-belueftung",
-              "chip": "Atemgeräusch/Exkursion",
-              "gruppe": "Auskultation",
-              "normal": "Lungen seitengleich belüftet, Atemexkursion seitengleich normal. ",
-              "abweichung": "Abgeschwächtes Atemgeräusch, schmerzbedingt eingeschränkte Atemexkursion. "
+              "id": "thorax-atemexkursion",
+              "chip": "Atemexkursion",
+              "gruppe": "Inspektion",
+              "normal": "Atemexkursion seitengleich normal. ",
+              "abweichung": "Atemexkursion schmerzbedingt eingeschränkt. "
             },
             {
               "art": "befund",
-              "id": "thorax-ws-klopf",
-              "chip": "Klopfschmerz BWS",
-              "gruppe": "Wirbelsäule",
-              "normal": "Kein Klopfschmerz über der gesamten Wirbelsäule, insbesondere kein Klopfschmerz über der Brustwirbelsäule. ",
-              "abweichung": "Klopfschmerz über der Brustwirbelsäule. "
+              "id": "thorax-druckschmerz",
+              "chip": "Druckschmerz Thoraxwand",
+              "gruppe": "Palpation",
+              "normal": "Thorax nicht druckschmerzhaft. ",
+              "abweichung": "Lokaler Druckschmerz der Thoraxwand{wo} {rippen}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " ventral",
+                    " lateral",
+                    " dorsal",
+                    " am Rippenbogen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "rippen",
+                  "label": "Rippen (z. B. über der 6. bis 8. Rippe)",
+                  "maxLen": 50
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "thorax-kompression",
+              "chip": "Thoraxkompressionsschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Thoraxkompressionsschmerz. ",
+              "abweichung": "Thoraxkompressionsschmerz{richtung}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "richtung",
+                  "label": "Richtung",
+                  "optionen": [
+                    "",
+                    " sagittal",
+                    " transversal",
+                    " sagittal und transversal"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "thorax-stabil",
+              "chip": "Thoraxstabilität",
+              "gruppe": "Palpation",
+              "normal": "Thorax stabil. ",
+              "abweichung": "Instabiler Abschnitt der Thoraxwand{wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " ventral",
+                    " lateral",
+                    " dorsal"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "thorax-emphysem",
+              "chip": "Hautemphysem, Krepitation",
+              "gruppe": "Palpation",
+              "normal": "Kein Hautemphysem, keine Krepitation. ",
+              "abweichung": "{was}{wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Hautemphysem",
+                    "Krepitation",
+                    "Hautemphysem und Krepitation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " ventral",
+                    " lateral",
+                    " dorsal"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "thorax-sternum",
-              "chip": "DS Sternum",
+              "chip": "Druckschmerz Sternum",
               "gruppe": "Palpation",
               "normal": "Kein Druckschmerz über dem Sternum. ",
               "abweichung": "Druckschmerz über dem Sternum. "
             },
             {
               "art": "befund",
-              "id": "thorax-druckschmerz",
-              "chip": "Thorax druckschmerzhaft",
-              "gruppe": "Palpation",
-              "normal": "Thorax nicht druckschmerzhaft, stabil. ",
-              "abweichung": "Thorax lokal druckschmerzhaft, aber stabil. "
+              "id": "thorax-belueftung",
+              "chip": "Atemgeräusch",
+              "gruppe": "Auskultation",
+              "normal": "Lungen seitengleich belüftet. ",
+              "abweichung": "Atemgeräusch {ls} abgeschwächt. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "thorax-spo2",
+              "label": "Sauerstoffsättigung",
+              "vorlage": "Sauerstoffsättigung {w} % ohne Sauerstoffgabe. ",
+              "gruppe": "Messwerte"
+            },
+            {
+              "art": "option",
+              "id": "thorax-af",
+              "label": "Atemfrequenz",
+              "gruppe": "Messwerte",
+              "text": "Atemfrequenz {af}/min. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "af",
+                  "label": "Atemfrequenz (pro Minute)",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "thorax-ws-klopf",
+              "chip": "Klopfschmerz Brustwirbelsäule",
+              "gruppe": "Nachbarregionen",
+              "normal": "Kein Klopfschmerz über der Brustwirbelsäule. ",
+              "abweichung": "Klopfschmerz über der Brustwirbelsäule {hoehe}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "hoehe",
+                  "label": "Höhe (z. B. 7. bis 9. Brustwirbel)",
+                  "maxLen": 40
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "thorax-abdomen",
-              "chip": "Abdomen DS/Abwehrspannung",
-              "gruppe": "Abdomen",
+              "chip": "Abdomen",
+              "gruppe": "Nachbarregionen",
               "normal": "Bauch weich, ohne Druckschmerz oder Abwehrspannung. ",
-              "abweichung": "Druckschmerz und/oder Abwehrspannung des Abdomens. "
+              "abweichung": "Abdomen: {was}{wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Druckschmerz",
+                    "Druckschmerz mit Abwehrspannung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " im rechten Oberbauch",
+                    " im linken Oberbauch",
+                    " im gesamten Abdomen"
+                  ]
+                }
+              ]
             },
             {
               "art": "befund",
               "id": "thorax-nierenlager",
-              "chip": "Nierenlagerklopfschmerz",
-              "gruppe": "Abdomen",
-              "normal": "Nierenlager frei. ",
-              "abweichung": "Nierenlagerklopfschmerz. "
+              "chip": "Nierenlager",
+              "gruppe": "Nachbarregionen",
+              "normal": "Nierenlager beidseits nicht klopfschmerzhaft. ",
+              "abweichung": "Nierenlager {ls} klopfschmerzhaft. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
             },
             {
-              "art": "befund",
+              "art": "option",
               "id": "thorax-becken",
-              "chip": "Beckeninstabilität",
-              "gruppe": "Becken",
-              "normal": "Becken stabil.",
-              "abweichung": "Beckeninstabilität."
+              "label": "Becken stabil",
+              "gruppe": "Nachbarregionen",
+              "text": "Becken stabil, kein Kompressionsschmerz. "
             }
           ]
         },
@@ -392,40 +1390,179 @@
           "id": "thorax-prellung-proc",
           "titel": "Thoraxprellung – Procedere",
           "typ": "procedere",
+          "status": "entwurf",
           "platzhalter": [],
           "segmente": [
             {
-              "art": "text",
-              "text": "Maßnahmen in der ZNA: Untersuchung und Beratung, Blutentnahme, Urinkontrolle, Sonographie des Abdomens (FAST), Handlungsanweisung für zunehmende Beschwerden. Empfehlungen: Atemtraining zur Pneumonieprophylaxe. Bedarfsgerechte Analgesie. Schonung und Sportkarenz bis zur Beschwerdefreiheit. Bei Dyspnoe oder ausgeprägter Schmerzexazerbation sofortige Vorstellung im nächstgelegenen Krankenhaus. Bei Beschwerdepersistenz oder -progredienz Vorstellung beim niedergelassenen Kollegen und ggf. weitere Diagnostik."
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "atemtraining",
+              "label": "Atemtraining",
+              "an": true,
+              "text": "Atemtraining zur Vorbeugung einer Lungenentzündung: mehrmals täglich tief ein- und ausatmen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "Schmerzmittel nach Bedarf, so dass tiefes Durchatmen möglich ist."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonung und Sportpause",
+              "an": true,
+              "text": "Schonung und Sportpause bis zur Beschwerdefreiheit."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Vorstellung bei anhaltenden Beschwerden",
+              "an": true,
+              "text": "Vorstellung {wo}, wenn die Beschwerden nach {frist} anhalten oder zunehmen; dort Entscheidung über weitere Diagnostik.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "1 Woche",
+                    "2 Wochen",
+                    "4 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgenkontrolle",
+              "label": "Kontrolle mit Röntgen des Thorax",
+              "text": "Kontrolle mit Röntgen des Thorax {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 1 Woche"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "über die Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-hinweis",
+              "label": "Hinweis bei Gerinnungshemmung",
+              "text": "Unter gerinnungshemmender Medikation kann eine Blutung im Brustkorb auch nach Tagen auftreten: Wiedervorstellung bei Atemnot, zunehmenden Schmerzen, Schwindel oder Schwäche."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme oder Notruf 112 bei: Atemnot, stark zunehmenden Schmerzen im Brustkorb, Fieber, Husten mit gelbem oder blutigem Auswurf, Schmerzen im Oberbauch, Schwindel oder Kollaps."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
             }
           ]
         }
-      ]
-    }
-  ],
-  "stapel": [
-    {
-      "id": "stapel-lumbago",
-      "name": "Lumbago",
-      "bausteinIds": [
-        "ws-rueckenschmerzen-untersuchung",
-        "ws-lumbago-proc"
-      ]
-    },
-    {
-      "id": "stapel-lws-prellung",
-      "name": "LWS-Prellung",
-      "bausteinIds": [
-        "ws-rueckenschmerzen-untersuchung",
-        "ws-lws-prellung-proc"
-      ]
-    },
-    {
-      "id": "stapel-thoraxprellung",
-      "name": "Thoraxprellung",
-      "bausteinIds": [
-        "thorax-untersuchung",
-        "thorax-prellung-proc"
       ]
     }
   ]

@@ -1,0 +1,2637 @@
+{
+  "regionen": [
+    {
+      "id": "becken",
+      "name": "Becken",
+      "kuerzel": "🦴",
+      "bausteine": [
+        {
+          "id": "dx-st-beckenring",
+          "titel": "Diagnose Beckenringfraktur (vorderer und hinterer Beckenring je mit eigener Seite)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "optionen": [
+                "Beckenringfraktur",
+                "Fragilitätsfraktur des Beckenrings"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "klasse",
+              "label": "Klassifikation",
+              "optionen": [
+                "",
+                " (FFP Ia)",
+                " (FFP Ib)",
+                " (FFP IIa)",
+                " (FFP IIb)",
+                " (FFP IIc)",
+                " (AO 61-A2)",
+                " (AO 61-B)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", häuslicher Sturz",
+                ", Sturz aus dem Stand",
+                ", ohne erinnerliches Trauma",
+                ", Sturz aus der Höhe",
+                ", Verkehrsunfall"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "vorne",
+              "label": "Vorderer Beckenring",
+              "text": "\nVorderer Beckenring: {was} {lseite}",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Fraktur am vorderen Beckenring",
+                  "optionen": [
+                    "",
+                    "Fraktur des oberen Schambeinasts",
+                    "Fraktur des oberen und unteren Schambeinasts",
+                    "Fraktur des unteren Schambeinasts",
+                    "Parasymphysäre Fraktur des Schambeins"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "lseite",
+                  "label": "Seite am vorderen Beckenring",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "hinten",
+              "label": "Hinterer Beckenring",
+              "text": "\nHinterer Beckenring: {was} {lseite}",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Fraktur am hinteren Beckenring",
+                  "optionen": [
+                    "",
+                    "nicht verschobene Fraktur des Kreuzbeinflügels",
+                    "Kompressionsfraktur des Kreuzbeinflügels",
+                    "nicht verschobene Fraktur des Darmbeins",
+                    "nicht verschobene Fraktur am Iliosakralgelenk"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "lseite",
+                  "label": "Seite am hinteren Beckenring",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-st-beckenring-konservativ",
+          "titel": "Therapie: konservative Behandlung der Beckenringfraktur",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Konservative, frühfunktionelle Behandlung "
+            },
+            {
+              "art": "auswahl",
+              "id": "womit",
+              "label": "Art der Behandlung",
+              "optionen": [
+                "mit Schmerztherapie und Mobilisation",
+                "mit Schmerztherapie und Mobilisation unter geriatrischer Mitbehandlung"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "komplex",
+              "label": "Geriatrische frührehabilitative Komplexbehandlung",
+              "text": "\nGeriatrische frührehabilitative Komplexbehandlung"
+            }
+          ]
+        },
+        {
+          "id": "bef-st-becken",
+          "titel": "Aufnahmebefund Becken und Hüften (ohne Seitenfeld)",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Becken und Hüften: "
+            },
+            {
+              "art": "befund",
+              "id": "inspektion",
+              "chip": "Prellmarke, Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Keine Prellmarke, kein Hämatom über Becken und Hüften. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Prellmarke",
+                    "Hämatom",
+                    "Prellmarke und Hämatom",
+                    "Schürfwunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort, z. B. über dem Trochanter major rechts",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bein",
+              "chip": "Beinlänge, Rotation",
+              "gruppe": "Inspektion",
+              "normal": "Beine gleich lang, keine Außenrotation. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Bein rechts verkürzt und außenrotiert",
+                    "Bein links verkürzt und außenrotiert",
+                    "Bein rechts außenrotiert",
+                    "Bein links außenrotiert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds-vorne",
+              "chip": "Druckschmerz Schambein, Symphyse",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über Schambeinästen und Symphyse. ",
+              "abweichung": "Druckschmerz über {ort} {lseite}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "dem oberen Schambeinast",
+                    "dem oberen und unteren Schambeinast",
+                    "dem unteren Schambeinast",
+                    "der Symphyse",
+                    "der Leiste"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "lseite",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds-hinten",
+              "chip": "Druckschmerz Kreuzbein, Iliosakralgelenk",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über Kreuzbein und Iliosakralgelenken. ",
+              "abweichung": "Druckschmerz über {ort} {lseite}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "dem Kreuzbein",
+                    "dem Iliosakralgelenk",
+                    "der Beckenschaufel"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "lseite",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kompression",
+              "chip": "Beckenkompression",
+              "gruppe": "Stabilität",
+              "normal": "Kein Kompressionsschmerz des Beckens. ",
+              "abweichung": "Kompressionsschmerz des Beckens{wo}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " im vorderen Beckenring",
+                    " im hinteren Beckenring"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "huefte",
+              "chip": "Hüftbeweglichkeit, Rotationsschmerz",
+              "gruppe": "Beweglichkeit",
+              "normal": "Hüftgelenke passiv ohne Rotationsschmerz beweglich. ",
+              "abweichung": "{was} {lseite}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Schmerz in der Leiste bei passiver Bewegung der Hüfte",
+                    "Rotationsschmerz der Hüfte",
+                    "Beweglichkeit der Hüfte schmerzbedingt nicht prüfbar"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "lseite",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "heben",
+              "chip": "Bein gestreckt anheben",
+              "gruppe": "Funktion",
+              "normal": "Gestrecktes Bein beidseits aktiv anhebbar. ",
+              "abweichung": "Gestrecktes Bein {lseite} schmerzbedingt nicht anhebbar. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "lseite",
+                  "label": "Seite",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "stehen",
+              "chip": "Stehen und Gehen",
+              "gruppe": "Mobilität",
+              "normal": "Stehen und Gehen ohne Hilfe möglich. ",
+              "abweichung": "{wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Mobilität",
+                  "optionen": [
+                    "",
+                    "Stehen und Gehen schmerzbedingt nur mit Hilfe möglich",
+                    "Stehen und Gehen schmerzbedingt nicht möglich",
+                    "Mobilisation nur an die Bettkante möglich"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität an beiden Beinen intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kraft vermindert",
+                    "Durchblutung vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort, z. B. am Fußrücken rechts",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "reithose",
+              "chip": "Sensibilität perianal",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Sensibilität perianal und im Reithosengebiet intakt. ",
+              "abweichung": "Sensibilität perianal und im Reithosengebiet {wie}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "herabgesetzt",
+                    "aufgehoben"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-st-becken-begleitverletzungen",
+          "titel": "Aufnahmebefund weitere Verletzungen bei Beckenfraktur (ohne Becken im Normaltext)",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "weitere",
+              "chip": "Weitere Verletzungen",
+              "gruppe": "Übrige Regionen",
+              "normal": "Kopf, Wirbelsäule, Brustkorb, Bauch, Arme und Beine unterhalb der Hüften: kein Druckschmerz, keine Prellmarken. ",
+              "abweichung": "{was} {wo} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Druckschmerz",
+                    "Prellmarke",
+                    "Schürfwunde",
+                    "Hämatom",
+                    "Platzwunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "am Kopf",
+                    "an der Halswirbelsäule",
+                    "an der Brust- oder Lendenwirbelsäule",
+                    "am Brustkorb",
+                    "am Bauch",
+                    "am Arm",
+                    "am Bein"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Seite und Zusatz, z. B. rechts seitlich",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-becken-roentgen",
+          "titel": "Röntgen Becken bei Aufnahme (ohne Seitenfeld)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Röntgen: Aufnahmen",
+              "optionen": [
+                "Beckenübersicht",
+                "Beckenübersicht mit Inlet- und Outlet-Aufnahme",
+                "Beckenübersicht und Hüfte rechts axial",
+                "Beckenübersicht und Hüfte links axial",
+                "Beckenübersicht und beide Hüften axial"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " bei Aufnahme: "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund",
+              "optionen": [
+                "Fraktur wie unter Diagnosen beschrieben.",
+                "Fraktur des vorderen Beckenrings wie unter Diagnosen beschrieben, hinterer Beckenring im Röntgen nicht sicher beurteilbar.",
+                "keine Fraktur sicher abgrenzbar, Nachweis erst in der Schnittbildgebung."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "huefte",
+              "label": "Kein Nachweis einer hüftgelenknahen Oberschenkelfraktur",
+              "text": " Kein Nachweis einer hüftgelenknahen Oberschenkelfraktur."
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-becken-ct",
+          "titel": "CT Becken mit Aussage zum hinteren Beckenring (Entweder-oder)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "CT des Beckens "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "bei Aufnahme",
+                "im Verlauf",
+                "im Verlauf bei ausbleibender Besserung der Mobilität"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "CT-Befund",
+              "optionen": [
+                "Fraktur des vorderen Beckenrings wie unter Diagnosen beschrieben, hinterer Beckenring ohne Fraktur.",
+                "Fraktur des vorderen und hinteren Beckenrings wie unter Diagnosen beschrieben, keine Verschiebung am hinteren Beckenring.",
+                "Fraktur des hinteren Beckenrings wie unter Diagnosen beschrieben, keine Verschiebung, vorderer Beckenring ohne Fraktur."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "pfanne",
+              "label": "Hüftpfannen und hüftgelenknahe Oberschenkel ohne Fraktur",
+              "text": " Hüftpfannen und hüftgelenknahe Oberschenkel ohne Frakturnachweis."
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-becken-mrt",
+          "titel": "MRT Becken (Entweder-oder)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "MRT des Beckens "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "bei Aufnahme",
+                "im Verlauf",
+                "im Verlauf bei ausbleibender Besserung der Mobilität"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "MRT-Befund",
+              "optionen": [
+                "Knochenmarködem und Frakturlinien wie unter Diagnosen beschrieben, Zeichen frischer Frakturen.",
+                "Knochenmarködem im Kreuzbein ohne abgrenzbare Frakturlinie, Zeichen einer frischen Insuffizienzfraktur.",
+                "Fraktur wie unter Diagnosen beschrieben."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-becken-verzicht",
+          "titel": "Verzicht auf Schnittbildgebung des Beckens mit Grund (Entweder-oder)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Schnittbildgebung des Beckens haben wir verzichtet, weil "
+            },
+            {
+              "art": "auswahl",
+              "id": "grund",
+              "label": "Grund des Verzichts",
+              "optionen": [
+                "das Röntgen nur am vorderen Beckenring eine Fraktur zeigte und die Mobilisation gelang",
+                "sich aus ihr keine Änderung der Behandlung ergeben hätte",
+                "sie nach Aufklärung nicht gewünscht war"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "verl-st-beckenring-konservativ",
+          "titel": "Verlauf: konservative Behandlung der Beckenringfraktur",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahme und Grund",
+              "text": "Wir nahmen {person-akk} wegen der oben genannten Fraktur stationär auf, weil {grund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund der stationären Aufnahme",
+                  "optionen": [
+                    "",
+                    "die Schmerzen ambulant nicht ausreichend zu behandeln waren",
+                    "Stehen und Gehen schmerzbedingt nicht möglich war",
+                    "die Versorgung zu Hause nicht gesichert war",
+                    "Stehen und Gehen schmerzbedingt nicht möglich und die Versorgung zu Hause nicht gesichert war"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "entscheidung",
+              "label": "Einwilligung und Grund der konservativen Behandlung",
+              "text": "{einwilligung} behandelten wir die Fraktur konservativ, weil {grund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "einwilligung",
+                  "label": "Aufklärung und Einwilligung",
+                  "optionen": [
+                    "",
+                    "Nach Aufklärung und Einwilligung",
+                    "Nach Aufklärung und Einwilligung der bevollmächtigten Person",
+                    "Nach Aufklärung und Einwilligung der gesetzlichen Betreuung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "sie nicht verschoben war",
+                    "der hintere Beckenring nicht oder nicht verschoben beteiligt war",
+                    "das Risiko einer Operation wegen der Begleiterkrankungen zu hoch war",
+                    "eine Operation nach Aufklärung nicht gewünscht war"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung",
+              "label": "Inhalt der Aufklärung",
+              "text": "Die Aufklärung umfasste Diagnose, konservative Behandlung sowie {risiko}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "risiko",
+                  "label": "Aufgeklärt über",
+                  "optionen": [
+                    "",
+                    "das Risiko einer nachträglichen Verschiebung der Fraktur",
+                    "das Risiko einer nachträglichen Verschiebung der Fraktur und die Möglichkeit einer Operation, wenn die Mobilisation nicht gelingt",
+                    "die Möglichkeit einer Operation, wenn die Mobilisation nicht gelingt"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "schmerz",
+              "label": "Schmerztherapie",
+              "text": "Die Schmerzen behandelten wir {womit}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Schmerztherapie",
+                  "optionen": [
+                    "nach Stufenschema",
+                    "nach Stufenschema einschließlich eines Opioids"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mobilisation",
+              "label": "Mobilisation",
+              "text": "{ab} mobilisierten wir {person-akk} mit Physiotherapie{hilfsmittel}{belastung}{erreicht}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Beginn",
+                  "optionen": [
+                    "",
+                    "Ab dem Aufnahmetag",
+                    "Ab dem 1. Tag nach der Aufnahme",
+                    "Ab dem 2. Tag nach der Aufnahme",
+                    "Wegen starker Schmerzen erst ab dem 3. Tag nach der Aufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "hilfsmittel",
+                  "label": "Hilfsmittel",
+                  "optionen": [
+                    "",
+                    " am Rollator",
+                    " am Gehwagen",
+                    " an Unterarmgehstützen",
+                    " an die Bettkante und in den Stuhl"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "belastung",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    " unter schmerzadaptierter Vollbelastung",
+                    " unter schmerzadaptierter Steigerung der Belastung bis zur Vollbelastung",
+                    " unter Teilbelastung des rechten Beins",
+                    " unter Teilbelastung des linken Beins"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "erreicht",
+                  "label": "Erreichte Mobilität",
+                  "optionen": [
+                    "",
+                    ", zuletzt selbstständig auf Stationsebene",
+                    ", zuletzt selbstständig auf Stationsebene und auf der Treppe",
+                    ", zuletzt unter Aufsicht",
+                    ", zuletzt mit Hilfe einer Person"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "verzoegert",
+              "label": "Mobilisation verzögert",
+              "text": "Wegen anhaltend starker Schmerzen gelang die Mobilisation nur verzögert. {folge} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "folge",
+                  "label": "Folge",
+                  "optionen": [
+                    "",
+                    "Unter angepasster Schmerztherapie besserte sich die Mobilität bis zur Entlassung.",
+                    "Eine erneute Schnittbildgebung zeigte keine Zunahme der Fraktur.",
+                    "Eine erneute Schnittbildgebung zeigte eine Zunahme der Fraktur. Eine Operation haben wir empfohlen, sie war nach Aufklärung nicht gewünscht."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle nach Mobilisation",
+              "text": "Die Röntgenkontrolle des Beckens nach Mobilisation zeigte {ergebnis}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "eine unveränderte Stellung der Fraktur",
+                    "eine geringe Zunahme der Verschiebung. Nach Aufklärung setzten wir die konservative Behandlung fort"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "osteologie",
+              "label": "Osteologische Basistherapie begonnen",
+              "text": "Eine osteologische Basistherapie mit {was} begannen wir während des Aufenthalts. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Basistherapie",
+                  "optionen": [
+                    "",
+                    "Vitamin D3",
+                    "Calcium und Vitamin D3"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe im Aufenthalt",
+              "text": "{was} ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Thromboseprophylaxe im Aufenthalt",
+                  "optionen": [
+                    "",
+                    "Während des Aufenthalts gaben wir eine medikamentöse Thromboseprophylaxe.",
+                    "Während des Aufenthalts gaben wir eine medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin.",
+                    "Die vorbestehende Antikoagulation in therapeutischer Dosis führten wir fort, eine zusätzliche Thromboseprophylaxe gaben wir nicht.",
+                    "Eine medikamentöse Thromboseprophylaxe gaben wir nicht."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-becken",
+          "titel": "Entlassbefund Becken und Beine (ohne Seitenfeld)",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Becken und Beine: "
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut Kreuzbein und Fersen",
+              "gruppe": "Inspektion",
+              "normal": "Haut über Kreuzbein und Fersen intakt. ",
+              "abweichung": "Haut über {wo} {befund}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "dem Kreuzbein",
+                    "den Fersen",
+                    "Kreuzbein und Fersen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "gerötet, Haut geschlossen",
+                    "mit Druckgeschwür"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität an beiden Beinen intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Kraft vermindert",
+                    "Durchblutung vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort, z. B. am Fußrücken rechts",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-beckenring-konservativ",
+          "titel": "Nachbehandlung Beckenringfraktur konservativ",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung bei Entlassung",
+              "text": "Belastung bei Entlassung: {stufe}. Gehen{gehhilfe}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "schmerzadaptierte Vollbelastung beider Beine",
+                    "Teilbelastung des rechten Beins mit 15 kg, schmerzadaptierte Vollbelastung des linken Beins",
+                    "Teilbelastung des rechten Beins mit 20 kg, schmerzadaptierte Vollbelastung des linken Beins",
+                    "Teilbelastung des linken Beins mit 15 kg, schmerzadaptierte Vollbelastung des rechten Beins",
+                    "Teilbelastung des linken Beins mit 20 kg, schmerzadaptierte Vollbelastung des rechten Beins"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "gehhilfe",
+                  "label": "Gehhilfe",
+                  "optionen": [
+                    "",
+                    " am Rollator",
+                    " am Gehwagen",
+                    " an Unterarmgehstützen im Dreipunktegang",
+                    " an Unterarmgehstützen",
+                    " ohne Gehhilfe"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Becken: "
+            },
+            {
+              "art": "auswahl",
+              "id": "schema",
+              "label": "Nachbehandlung",
+              "optionen": [
+                "Steigerung von Belastung und Gehstrecke nach Maßgabe der weiterbehandelnden Praxis anhand der klinischen und radiologischen Kontrollen.",
+                "Nachbehandlung nach dem mitgegebenen Schema unserer Klinik.",
+                "Nachbehandlung individuell nach den folgenden Punkten."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "steigerung",
+              "label": "Einzeln: Steigerung der Belastung",
+              "text": "Belastung {verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Steigerung",
+                  "optionen": [
+                    "",
+                    "nach Schmerzen steigern bis zur Vollbelastung, die Gehhilfe bei sicherem Gang weglassen",
+                    "nach Schmerzen steigern bis zur Vollbelastung bis zum Ende der 2. Woche nach dem Unfall, Gehen ohne Gehhilfe bis zum Ende der 6. Woche",
+                    "wie bei Entlassung bis zur Röntgenkontrolle 6 Wochen nach dem Unfall, über die weitere Steigerung entscheidet die weiterbehandelnde unfallchirurgische oder orthopädische Praxis anhand des Röntgenbilds"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufstehen",
+              "label": "Einzeln: Aufstehen über die verletzte Seite",
+              "text": "Aus dem Bett über die {welche} aufstehen. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "welche",
+                  "label": "Seite",
+                  "optionen": [
+                    "",
+                    "rechte Seite",
+                    "linke Seite"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Einzeln: Sport",
+              "text": "Sport {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Ab wann",
+                  "optionen": [
+                    "",
+                    "mit geringer Stoßbelastung, z. B. Radfahren und Schwimmen, ab dem 4. Monat, mit hoher Stoßbelastung ab dem 6. Monat nach dem Unfall",
+                    "nach ärztlicher Freigabe"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "opioid",
+              "label": "Opioid verringern und absetzen",
+              "text": "{wirkstoff} innerhalb von {frist} nach der Entlassung in der Hausarztpraxis schrittweise verringern und absetzen. Solange {wirkstoff} eingenommen wird, kein Führen von Fahrzeugen. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Opioid (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "7 Tagen",
+                    "14 Tagen",
+                    "4 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle des Beckens {wann} {wo}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "2 Wochen nach dem Unfall",
+                    "6 Wochen nach dem Unfall",
+                    "2 und 6 Wochen nach dem Unfall",
+                    "6 Wochen nach der Aufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in der Durchgangsarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verschlechterung",
+              "label": "Bei Schmerzzunahme: Bildgebung und Vorstellung",
+              "text": "Bei zunehmenden Schmerzen im Becken oder Verlust der Gehfähigkeit umgehende Wiedervorstellung in unserer Klinik zur erneuten Bildgebung und Entscheidung über eine Operation. ",
+              "an": true
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-becken",
+          "titel": "Thromboseprophylaxe nach konservativ behandelter Beckenringfraktur (Pflichtwahl, Anker Mobilität statt Operation)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Medikamentöse Thromboseprophylaxe bis zur ausreichenden Mobilität (überwiegender Teil des Tages außerhalb des Betts). Wirkstoff und Dosis siehe Medikation.",
+                "Medikamentöse Thromboseprophylaxe bis zum Ende der Teilbelastung. Wirkstoff und Dosis siehe Medikation.",
+                "Vorbestehende Antikoagulation in therapeutischer Dosis fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe nach der Entlassung, weil Vollbelastung erreicht und die Mobilität ausreichend ist.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Kontrolle der Thrombozytenzahl",
+              "text": " Kontrolle der Thrombozytenzahl {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche",
+                    "1 Woche nach der Entlassung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-sicherheitsnetz-becken",
+          "titel": "Wiedervorstellung bei Warnzeichen nach Beckenringfraktur (immer letzter Baustein)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: {zeichen}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zeichen",
+                  "label": "Warnzeichen",
+                  "optionen": [
+                    "",
+                    "zunehmenden Schmerzen im Becken oder in der Leiste trotz Schmerzmitteln, Verlust der Gehfähigkeit, erneutem Sturz, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz",
+                    "zunehmenden Schmerzen im Becken, in der Leiste oder im Gesäß trotz Schmerzmitteln, Verlust der Gehfähigkeit, neuem Taubheitsgefühl oder neuer Schwäche der Beine, Störung beim Wasserlassen oder beim Stuhlgang, erneutem Sturz, Schmerzen oder Schwellung in der Wade, Atemnot oder Brustschmerz"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": "Die Warnzeichen haben wir mit {person-dat} besprochen. "
+            },
+            {
+              "art": "option",
+              "id": "merkblatt",
+              "label": "Merkblatt mitgegeben",
+              "text": "Ein Merkblatt haben wir mitgegeben. "
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wirbelsaeule",
+      "name": "Wirbelsäule",
+      "kuerzel": "🦴",
+      "bausteine": [
+        {
+          "id": "dx-st-kyphoplastie",
+          "titel": "Diagnose osteoporotische Wirbelkörperfraktur vor Kyphoplastie (OF 2 oder OF 3)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "hoehe",
+              "typ": "begriff",
+              "label": "Höhe, z. B. LWK 1",
+              "required": true,
+              "vorschlaege": [
+                "BWK 11",
+                "BWK 12",
+                "LWK 1",
+                "LWK 2",
+                "LWK 3",
+                "LWK 4"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Osteoporotische Wirbelkörperfraktur "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "hoehe"
+            },
+            {
+              "art": "auswahl",
+              "id": "klasse",
+              "label": "Klassifikation",
+              "optionen": [
+                " (OF 2)",
+                " (OF 3)"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "alter",
+              "label": "Frakturalter",
+              "optionen": [
+                "",
+                ", frisch",
+                ", mit Zunahme der Sinterung unter konservativer Behandlung"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "neuro",
+              "label": "Neurologisches Defizit",
+              "text": "{wie}",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Neurologisches Defizit",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    ", ohne neurologisches Defizit",
+                    ", ohne frakturbedingtes neurologisches Defizit, vorbestehende Ausfälle siehe Aufnahmebefund"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "ereignis",
+              "label": "Ereignis",
+              "optionen": [
+                "",
+                ", häuslicher Sturz",
+                ", Sturz aus dem Stand",
+                ", ohne erinnerliches Trauma",
+                ", Sturz aus der Höhe",
+                ", Verkehrsunfall"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "th-st-kyphoplastie",
+          "titel": "Therapie: Kyphoplastie oder Vertebroplastie mit Höhe und Datum",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "hoehe",
+              "typ": "begriff",
+              "label": "Höhe, z. B. LWK 1",
+              "required": true,
+              "vorschlaege": [
+                "BWK 11",
+                "BWK 12",
+                "LWK 1",
+                "LWK 2",
+                "LWK 3",
+                "LWK 4"
+              ]
+            },
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "verfahren",
+              "label": "Verfahren",
+              "optionen": [
+                "Ballonkyphoplastie",
+                "Kyphoplastie",
+                "Vertebroplastie"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "hoehe"
+            },
+            {
+              "art": "auswahl",
+              "id": "zugang",
+              "label": "Zugang",
+              "optionen": [
+                "",
+                ", bipedikulär,",
+                ", unipedikulär,"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "option",
+              "id": "biopsie",
+              "label": "Knochenbiopsie",
+              "text": "\nKnochenbiopsie aus dem frakturierten Wirbelkörper zur histologischen Untersuchung"
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-wirbel-ct",
+          "titel": "CT der Wirbelsäule mit Aussage zur Hinterkante",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "CT "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "CT: Region",
+              "optionen": [
+                "der Brustwirbelsäule",
+                "der Lendenwirbelsäule",
+                "der Brust- und Lendenwirbelsäule"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "bei Aufnahme",
+                "im Verlauf",
+                "vor der Operation"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "CT-Befund",
+              "optionen": [
+                "Fraktur wie unter Diagnosen beschrieben, Hinterkante intakt.",
+                "Fraktur wie unter Diagnosen beschrieben, Hinterkante beteiligt, Spinalkanal nicht eingeengt.",
+                "Fraktur wie unter Diagnosen beschrieben."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-wirbel-mrt",
+          "titel": "MRT der Wirbelsäule zum Frakturalter (zuwählbar)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "mrt",
+              "label": "MRT der Wirbelsäule",
+              "text": "MRT {region} {wann}: {ergebnis}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "region",
+                  "label": "Region",
+                  "optionen": [
+                    "",
+                    "der Brustwirbelsäule",
+                    "der Lendenwirbelsäule",
+                    "der Brust- und Lendenwirbelsäule"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Zeitpunkt",
+                  "optionen": [
+                    "",
+                    "bei Aufnahme",
+                    "im Verlauf",
+                    "vor der Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "MRT-Befund",
+                  "optionen": [
+                    "",
+                    "Knochenmarködem im frakturierten Wirbelkörper als Zeichen einer frischen Fraktur.",
+                    "Knochenmarködem im frakturierten Wirbelkörper, kein Ödem in weiteren Wirbelkörpern.",
+                    "Knochenmarködem im frakturierten und in weiteren Wirbelkörpern, siehe Diagnosen."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-kyphoplastie-roentgen",
+          "titel": "Röntgen nach Kyphoplastie: Zementverteilung und Zementaustritt (Entweder-oder)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Röntgen: Region",
+              "optionen": [
+                "Brustwirbelsäule in 2 Ebenen",
+                "Lendenwirbelsäule in 2 Ebenen",
+                "Brustwirbelsäule und Lendenwirbelsäule in 2 Ebenen"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "stehen",
+              "label": "Im Stehen",
+              "text": " im Stehen"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "wann",
+              "label": "Zeitpunkt",
+              "optionen": [
+                "am Operationstag",
+                "am 1. Tag nach der Operation",
+                "am 2. Tag nach der Operation",
+                "am 3. Tag nach der Operation"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Zementverteilung und Zementaustritt",
+              "optionen": [
+                "Zement im frakturierten Wirbelkörper, kein Zementaustritt.",
+                "Zement im frakturierten Wirbelkörper, geringer Zementaustritt in die angrenzende Bandscheibe.",
+                "Zement im frakturierten Wirbelkörper, geringer Zementaustritt in paravertebrale Venen.",
+                "Zement im frakturierten Wirbelkörper, Zementaustritt nach dorsal in Richtung Spinalkanal."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "hoehe",
+              "label": "Höhe des Wirbelkörpers",
+              "text": " Höhe des Wirbelkörpers {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Höhe",
+                  "optionen": [
+                    "",
+                    "teilweise wiederhergestellt",
+                    "unverändert zur Aufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch",
+              "text": " {wer}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Befundung",
+                  "optionen": [
+                    "Fachradiologisch befundet.",
+                    "Fachradiologischer Befund ausstehend."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-kyphoplastie-verzicht",
+          "titel": "Verzicht auf Röntgen nach Kyphoplastie mit Grund und Aussage zum Zement (Entweder-oder)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Röntgenkontrolle nach der Operation haben wir verzichtet, weil "
+            },
+            {
+              "art": "auswahl",
+              "id": "grund",
+              "label": "Grund und Befund der Durchleuchtung",
+              "optionen": [
+                "die Durchleuchtung während der Operation die Zementverteilung ohne Zementaustritt zeigte",
+                "die Durchleuchtung während der Operation die Zementverteilung mit geringem Zementaustritt in die angrenzende Bandscheibe zeigte",
+                "die Durchleuchtung während der Operation die Zementverteilung mit geringem Zementaustritt in paravertebrale Venen zeigte"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "verl-st-kyphoplastie",
+          "titel": "Verlauf: Kyphoplastie bei osteoporotischer Wirbelkörperfraktur",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahmeanlass",
+              "text": "Wir nahmen {person-akk} {anlass} stationär auf. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anlass",
+                  "label": "Aufnahmeanlass",
+                  "optionen": [
+                    "",
+                    "wegen der oben genannten Fraktur",
+                    "wegen zunehmender Sinterung der oben genannten Fraktur unter ambulanter konservativer Behandlung",
+                    "wegen anhaltender Schmerzen bei der oben genannten Fraktur unter ambulanter konservativer Behandlung",
+                    "zur geplanten Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "konservativ",
+              "label": "Konservative Behandlung vorher",
+              "text": "Eine konservative Behandlung mit Schmerztherapie und Mobilisation {dauer} besserte die Beschwerden nicht ausreichend. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "über mehrere Tage",
+                    "über 1 Woche",
+                    "über 2 Wochen",
+                    "über mehrere Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "indikation",
+              "label": "Indikation zur Operation",
+              "text": "Die Indikation zur Operation stellten wir, weil {grund}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "die Schmerzen trotz Schmerztherapie eine Mobilisation nicht zuließen",
+                    "die Sinterung unter konservativer Behandlung zunahm",
+                    "die Schmerzen trotz Schmerztherapie eine Mobilisation nicht zuließen und die Sinterung zunahm",
+                    "die Schmerzen trotz konservativer Behandlung anhielten"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "operation",
+              "label": "Aufklärung und Operation",
+              "text": "{einwilligung} operierten wir{wann}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "einwilligung",
+                  "label": "Aufklärung und Einwilligung",
+                  "optionen": [
+                    "",
+                    "Nach Aufklärung und schriftlicher Einwilligung",
+                    "Nach Aufklärung und Einwilligung der bevollmächtigten Person",
+                    "Nach Aufklärung und Einwilligung der gesetzlichen Betreuung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Zeitpunkt der Operation",
+                  "optionen": [
+                    "",
+                    " am Aufnahmetag",
+                    " am Tag nach der Aufnahme",
+                    " am 2. Tag nach der Aufnahme",
+                    " nach Pause der gerinnungshemmenden Medikation"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "op-verlauf",
+              "label": "Verlauf von Operation und Narkose",
+              "text": "{verlauf} ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf von Operation und Narkose",
+                  "optionen": [
+                    "",
+                    "Operation und Narkose verliefen ohne Komplikationen.",
+                    "Bei Operation oder Narkose traten Besonderheiten auf, Einzelheiten siehe beigefügten Operationsbericht."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "neuro",
+              "label": "Neurologie nach der Operation",
+              "text": "Kraft und Sensibilität der Beine waren nach der Operation {wie}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Neurologie nach der Operation",
+                  "optionen": [
+                    "",
+                    "wie vor der Operation intakt",
+                    "unverändert zum Aufnahmebefund, siehe Entlassbefund",
+                    "gegenüber dem Aufnahmebefund verschlechtert, siehe Entlassbefund"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "zement",
+              "label": "Zementaustritt und Folgen",
+              "text": "{folgen} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "folgen",
+                  "label": "Zementaustritt und Folgen",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Die Bildgebung zeigte keinen Zementaustritt.",
+                    "Der Zementaustritt blieb ohne klinische Folgen: Kraft und Sensibilität der Beine blieben unverändert, Atemnot oder Brustschmerz traten nicht auf."
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "schmerzverlauf",
+              "label": "Rückenschmerzen nach der Operation",
+              "text": "Die Rückenschmerzen {verlauf}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf der Rückenschmerzen",
+                  "optionen": [
+                    "",
+                    "besserten sich nach der Operation deutlich",
+                    "besserten sich nach der Operation teilweise",
+                    "bestanden nach der Operation unverändert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "schmerz",
+              "label": "Schmerztherapie",
+              "text": "Die Schmerzen behandelten wir {womit}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Schmerztherapie",
+                  "optionen": [
+                    "nach Stufenschema",
+                    "nach Stufenschema einschließlich eines Opioids"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mobilisation",
+              "label": "Mobilisation",
+              "text": "{ab} mobilisierten wir {person-akk} mit Physiotherapie{hilfsmittel}{belastung}{erreicht}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Beginn",
+                  "optionen": [
+                    "",
+                    "Ab dem Operationstag",
+                    "Ab dem 1. Tag nach der Operation",
+                    "Ab dem 2. Tag nach der Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "hilfsmittel",
+                  "label": "Hilfsmittel",
+                  "optionen": [
+                    "",
+                    " ohne Hilfsmittel",
+                    " am Rollator",
+                    " am Gehwagen",
+                    " an Unterarmgehstützen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "belastung",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    " unter Vollbelastung",
+                    " unter schmerzadaptierter Vollbelastung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "erreicht",
+                  "label": "Erreichte Mobilität",
+                  "optionen": [
+                    "",
+                    ", zuletzt selbstständig auf Stationsebene",
+                    ", zuletzt selbstständig auf Stationsebene und auf der Treppe",
+                    ", zuletzt unter Aufsicht",
+                    ", zuletzt mit Hilfe einer Person"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "histologie",
+              "label": "Knochenbiopsie und Histologie",
+              "text": "{ergebnis} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Knochenbiopsie und Histologie",
+                  "optionen": [
+                    "",
+                    "Die histologische Untersuchung der Knochenbiopsie ergab keinen Anhalt für Malignität.",
+                    "Die histologische Untersuchung der Knochenbiopsie steht aus, wir senden den Befund nach.",
+                    "Eine Knochenbiopsie entnahmen wir nicht."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "osteologie",
+              "label": "Osteologische Basistherapie begonnen",
+              "text": "Eine osteologische Basistherapie mit {was} begannen wir während des Aufenthalts. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Basistherapie",
+                  "optionen": [
+                    "",
+                    "Vitamin D3",
+                    "Calcium und Vitamin D3"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe im Aufenthalt",
+              "text": "{was} ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Thromboseprophylaxe im Aufenthalt",
+                  "optionen": [
+                    "",
+                    "Während des Aufenthalts gaben wir eine medikamentöse Thromboseprophylaxe.",
+                    "Während des Aufenthalts gaben wir eine medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin.",
+                    "Die vorbestehende Antikoagulation in therapeutischer Dosis führten wir fort, eine zusätzliche Thromboseprophylaxe gaben wir nicht.",
+                    "Eine medikamentöse Thromboseprophylaxe gaben wir nicht."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-kyphoplastie",
+          "titel": "Nachbehandlung nach Kyphoplastie (Pflichtwahl des Wegs, Einzelsätze zuwählbar)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Wirbelsäule: "
+            },
+            {
+              "art": "auswahl",
+              "id": "schema",
+              "label": "Nachbehandlung",
+              "optionen": [
+                "Belastung, Bewegung und Orthese nach Maßgabe des Operateurs, siehe beigefügten Operationsbericht.",
+                "Nachbehandlung nach dem mitgegebenen Schema unserer Klinik.",
+                "Nachbehandlung individuell nach den folgenden Punkten."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegung",
+              "label": "Einzeln: Bewegung der Wirbelsäule",
+              "text": "Bewegung der Wirbelsäule {regel}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regel",
+                  "label": "Bewegung",
+                  "optionen": [
+                    "",
+                    "im schmerzarmen Bereich bis zum Ende der 2. Woche nach der Operation, danach schrittweise steigern bis zur Bewegung ohne Grenze am Ende der 6. Woche",
+                    "nach Schmerzen ohne Bewegungsgrenze"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verhalten",
+              "label": "Einzeln: rückengerechtes Verhalten",
+              "text": "Rückengerechtes Verhalten: über die Seite aus dem Bett aufstehen, den Oberkörper nicht verdrehen, tiefes Sitzen und tiefes Bücken meiden{dauer}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " bis zum Ende der 6. Woche nach der Operation",
+                    " bis zum Ende der 12. Woche nach der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Einzeln: Sport",
+              "text": "Sport mit geringer Stoßbelastung, z. B. Radfahren und Schwimmen, {ab}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Ab wann",
+                  "optionen": [
+                    "",
+                    "ab dem 4. Monat nach der Operation",
+                    "nach ärztlicher Freigabe"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-thrombose-kyphoplastie",
+          "titel": "Thromboseprophylaxe nach Kyphoplastie (Pflichtwahl ohne Anker Vollbelastung oder Verband)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe nach der Entlassung, die Mobilität ist ausreichend.",
+                "Medikamentöse Thromboseprophylaxe bis zur ausreichenden Mobilität (überwiegender Teil des Tages außerhalb des Betts). Wirkstoff und Dosis siehe Medikation.",
+                "Vorbestehende Antikoagulation in therapeutischer Dosis fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe wegen erhöhten Blutungsrisikos."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombozyten",
+              "label": "Kontrolle der Thrombozytenzahl",
+              "text": " Kontrolle der Thrombozytenzahl {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "1-mal pro Woche",
+                    "2-mal pro Woche",
+                    "1 Woche nach der Entlassung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann, z. B. am 2. Tag nach der Operation",
+                  "maxLen": 60,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-sicherheitsnetz-kyphoplastie",
+          "titel": "Weitere Fraktur und Wiedervorstellung bei Warnzeichen nach Kyphoplastie (immer letzter Baustein)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "anschluss",
+              "label": "Neue Rückenschmerzen: weitere Fraktur",
+              "text": "Bei neuen oder zunehmenden Rückenschmerzen ohne Taubheitsgefühl, Schwäche der Beine oder Störung von Blase und Darm: Röntgen der Wirbelsäule im Stehen zur Frage einer weiteren Fraktur und Vorstellung in unserer Sprechstunde. ",
+              "an": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Rötung, Schwellung oder Nässen an den Einstichstellen am Rücken, Fieber über 38,5 °C, plötzlich neuen oder deutlich zunehmenden Rückenschmerzen, Taubheitsgefühl im Gesäß oder im Genitalbereich, Lähmung oder zunehmender Schwäche der Beine, Störung beim Wasserlassen oder beim Stuhlgang, Atemnot oder Brustschmerz, erneutem Sturz. ",
+              "an": true
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": "Die Warnzeichen haben wir mit {person-dat} besprochen. "
+            },
+            {
+              "art": "option",
+              "id": "merkblatt",
+              "label": "Merkblatt mitgegeben",
+              "text": "Ein Merkblatt haben wir mitgegeben. "
+            }
+          ]
+        },
+        {
+          "id": "bef-st-ws-kyphoplastie",
+          "titel": "Aufnahmebefund Wirbelsäule vor Kyphoplastie (Sensibilität perianal getrennt)",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Wirbelsäule: "
+            },
+            {
+              "art": "befund",
+              "id": "klopfschmerz",
+              "chip": "Klopf- und Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Klopf- oder Druckschmerz über den Dornfortsätzen. ",
+              "abweichung": "Klopf- und Druckschmerz über {hoehe}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "hoehe",
+                  "label": "Höhe, z. B. LWK 1",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "inspektion",
+              "chip": "Prellmarken, Fehlstellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Prellmarken, keine sichtbare Fehlstellung. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund der Inspektion",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "stehen",
+              "chip": "Stehen und Gehen",
+              "gruppe": "Mobilität",
+              "normal": "Stehen und Gehen ohne Hilfe möglich. ",
+              "abweichung": "{wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Mobilität",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Stehen und Gehen schmerzbedingt nur mit Hilfe möglich",
+                    "Stehen und Gehen schmerzbedingt nicht möglich",
+                    "Mobilisation nur an die Bettkante möglich"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft",
+              "chip": "Kraft der Beine",
+              "gruppe": "Neurologie",
+              "normal": "Kraft an beiden Beinen voll, keine Paresen. ",
+              "abweichung": "Kraftminderung {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Wo und wie stark",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sensibilitaet",
+              "chip": "Sensibilität Beine",
+              "gruppe": "Neurologie",
+              "normal": "Sensibilität an beiden Beinen intakt. ",
+              "abweichung": "Sensibilitätsstörung {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Wo",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "perianal",
+              "chip": "Sensibilität perianal",
+              "gruppe": "Neurologie",
+              "selten": true,
+              "normal": "Sensibilität perianal und im Reithosengebiet intakt. ",
+              "abweichung": "Sensibilität perianal und im Reithosengebiet {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "herabgesetzt",
+                    "aufgehoben"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "blase",
+              "chip": "Blasen- und Mastdarmfunktion",
+              "gruppe": "Neurologie",
+              "normal": "Blasen- und Mastdarmfunktion ungestört. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Störung von Blase oder Mastdarm",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "beweglichkeit",
+              "label": "Beweglichkeit nicht geprüft",
+              "gruppe": "Beweglichkeit",
+              "text": "Beweglichkeit der Wirbelsäule bei Fraktur nicht geprüft. "
+            }
+          ]
+        },
+        {
+          "id": "proc-st-verhalten-kyphoplastie",
+          "titel": "Verhalten nach Kyphoplastie: Heben und Bücken, Rumpforthese mit Dauer, Opioid",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "heben",
+              "label": "Nicht heben, nicht bücken",
+              "text": "Für {dauer} nicht schwer heben und nicht tief bücken. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "6 Wochen nach der Operation",
+                    "12 Wochen nach der Operation"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "rumpforthese",
+              "label": "Rumpforthese ja oder nein",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Rumpforthese",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Keine Rumpforthese",
+                    "Rumpforthese zur Schmerzlinderung beim Sitzen und Gehen, nicht im Liegen, für 4 Wochen nach der Operation",
+                    "Rumpforthese zur Schmerzlinderung beim Sitzen und Gehen, nicht im Liegen, für 6 Wochen nach der Operation",
+                    "Rumpforthese zur Schmerzlinderung beim Sitzen und Gehen, nicht im Liegen, bis zur Röntgenkontrolle, danach nach Schmerzen abtrainieren"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "opioid",
+              "label": "Opioid verringern und absetzen",
+              "text": "{wirkstoff} innerhalb von {frist} nach der Entlassung in der Hausarztpraxis schrittweise verringern und absetzen. Solange {wirkstoff} eingenommen wird, kein Führen von Fahrzeugen. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Opioid (Wirkstoff)",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "7 Tagen",
+                    "14 Tagen",
+                    "4 Wochen"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brief-station",
+      "name": "Brief Station",
+      "kuerzel": "📄",
+      "bausteine": [
+        {
+          "id": "dgn-st-osteologie",
+          "titel": "Diagnostik zur Osteoporose: Basislabor, Knochendichtemessung (alles zuwählbar)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "labor",
+              "label": "Basislabor Osteoporose",
+              "text": "Basislabor zur Abklärung der Osteoporose während des Aufenthalts: {ergebnis} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "ohne Hinweis auf eine sekundäre Ursache der Osteoporose.",
+                    "Befund ausstehend, wir senden ihn nach."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "dxa",
+              "label": "Knochendichtemessung",
+              "text": "Knochendichtemessung während des Aufenthalts: niedrigster T-Wert {wert} {ort}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wert",
+                  "label": "T-Wert, z. B. -2,8",
+                  "maxLen": 10,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Messort",
+                  "optionen": [
+                    "",
+                    "an der Lendenwirbelsäule",
+                    "an der Gesamthüfte",
+                    "am Schenkelhals"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-osteoporose-auftrag",
+          "titel": "Osteoporose als Auftrag an die Weiterbehandlung (Pflichtangaben), Basistherapie, Sturzvorbeugung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "auftrag",
+              "label": "Osteoporose: Auftrag",
+              "text": "Osteoporose: {auftrag} {wo} {wann}. ",
+              "an": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "auftrag",
+                  "label": "Auftrag",
+                  "optionen": [
+                    "",
+                    "Knochendichtemessung und Beginn einer spezifischen Therapie",
+                    "Knochendichtemessung und Entscheidung über eine spezifische Therapie",
+                    "Entscheidung über eine spezifische Therapie",
+                    "Fortführung und Verlaufskontrolle der bei uns begonnenen spezifischen Therapie",
+                    "Prüfung der vorbestehenden spezifischen Therapie wegen der Fraktur unter dieser Therapie"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der osteologischen Sprechstunde",
+                    "in der Rehabilitationsklinik"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "im Anschluss an die Entlassung",
+                    "innerhalb von 6 Wochen",
+                    "innerhalb von 3 Monaten",
+                    "nach Abschluss der Rehabilitation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "basis",
+              "label": "Basistherapie fortführen",
+              "text": "Basistherapie mit {was} fortführen, siehe Medikation. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Basistherapie",
+                  "optionen": [
+                    "",
+                    "Vitamin D3",
+                    "Calcium und Vitamin D3"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sturzvorbeugung",
+              "label": "Sturzvorbeugung",
+              "text": "Sturzvorbeugung: Stolperfallen in der Wohnung beseitigen, festes Schuhwerk tragen, Sehhilfe prüfen lassen. "
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

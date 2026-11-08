@@ -1,0 +1,808 @@
+{
+  "vorlagen": [
+    {
+      "setting": "station",
+      "schnellwerte": {
+        "ana-st-elektiv/eingriff": [
+          "Implantation einer Hüft-Totalendoprothese",
+          "Operation"
+        ],
+        "ana-st-elektiv/beschwerden": [
+          "Der Schmerz bestehe seit mehreren Jahren und habe zuletzt deutlich zugenommen.",
+          "Der Schmerz in der Leiste nehme beim Gehen und Treppensteigen zu.",
+          "Der Schmerz strahle von der Leiste in den Oberschenkel aus.",
+          "Das Anziehen von Strümpfen und Schuhen sei nur noch mit Mühe möglich.",
+          "Der Schmerz bestehe seit mehreren Monaten und nehme bei Belastung zu."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion nach den Nutzertests vom 08.10.2026",
+      "id": "station-hueft-tep",
+      "titel": "Koxarthrose, Hüft-Totalendoprothese",
+      "region": "huefte",
+      "suchbegriffe": [
+        "Koxarthrose",
+        "Coxarthrose",
+        "Hüftprothese",
+        "Hüft-TEP",
+        "Hüftgelenkersatz",
+        "Hüftkopfnekrose",
+        "Endoprothese Hüfte"
+      ],
+      "kuerzel": [
+        "htep",
+        "tep hüfte"
+      ],
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-koxarthrose",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-hueft-tep",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-elektiv"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-huefte-elektiv"
+        ],
+        "diagnostik": [
+          "dgn-st-hueft-tep",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-beinlaenge",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten",
+          "proc-st-wunde",
+          "proc-st-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-huefte-elektiv/druckschmerz",
+        "bef-st-huefte-elektiv/bewegungsschmerz",
+        "bef-st-huefte-elektiv/gang",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/dms",
+        "eb-st-beinlaenge/beinlaenge",
+        "eb-st-wunde/schwellung"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/implantat",
+          "th-st-weitere/physio",
+          "proc-st-verhalten/luxation",
+          "proc-st-kontrollen/sprechstunde",
+          "proc-st-physio/reha"
+        ],
+        "slots": {
+          "th-st-weitere/implantat/hinweis": 1,
+          "th-st-weitere/physio/inhalt": 1,
+          "verl-st-operativ/aufnahme/anlass": 4,
+          "verl-st-operativ/roentgen/ergebnis": 2,
+          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 10
+        }
+      }
+    },
+    {
+      "setting": "station",
+      "schnellwerte": {
+        "ana-st-elektiv/eingriff": [
+          "Implantation einer Knie-Totalendoprothese",
+          "Implantation einer Schlittenprothese des Kniegelenks",
+          "Operation"
+        ],
+        "ana-st-elektiv/beschwerden": [
+          "Der Schmerz bestehe seit mehreren Jahren und habe zuletzt deutlich zugenommen.",
+          "Der Schmerz im Knie nehme beim Gehen und Treppensteigen zu.",
+          "Nach längerem Sitzen bestehe ein Anlaufschmerz im Knie.",
+          "Das Knie schwelle nach Belastung wiederholt an.",
+          "Der Schmerz bestehe seit mehreren Monaten und nehme bei Belastung zu."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion nach den Nutzertests vom 08.10.2026",
+      "id": "station-knie-tep",
+      "titel": "Gonarthrose, Knie-Totalendoprothese",
+      "region": "knie",
+      "suchbegriffe": [
+        "Gonarthrose",
+        "Knieprothese",
+        "Knie-TEP",
+        "Kniegelenkersatz",
+        "Endoprothese Knie"
+      ],
+      "kuerzel": [
+        "ktep",
+        "tep knie"
+      ],
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-gonarthrose",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-knie-tep",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-elektiv"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-knie-elektiv"
+        ],
+        "diagnostik": [
+          "dgn-st-knie-tep",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten",
+          "proc-st-wunde",
+          "proc-st-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-knie-elektiv/achse",
+        "bef-st-knie-elektiv/druckschmerz",
+        "bef-st-knie-elektiv/gang",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/dms",
+        "eb-st-wunde/schwellung"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/implantat",
+          "th-st-weitere/physio",
+          "proc-st-verhalten/knie-beugung",
+          "proc-st-kontrollen/sprechstunde",
+          "proc-st-physio/reha",
+          "eb-st-mobilitaet/beweglichkeit"
+        ],
+        "slots": {
+          "th-st-weitere/implantat/hinweis": 1,
+          "th-st-weitere/physio/inhalt": 1,
+          "verl-st-operativ/aufnahme/anlass": 4,
+          "verl-st-operativ/roentgen/ergebnis": 2,
+          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 1
+        }
+      }
+    },
+    {
+      "setting": "station",
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz auf die ausgestreckte Hand gekommen.",
+          "Es sei zu einem Stolpersturz im häuslichen Umfeld gekommen.",
+          "Beim Ausrutschen auf glattem Boden sei es zu einem Sturz auf die Hand gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Sport sei es zu einem Sturz auf die Hand gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion nach den Nutzertests vom 08.10.2026",
+      "id": "station-distale-radiusfraktur-platte",
+      "titel": "Distale Radiusfraktur, Plattenosteosynthese",
+      "region": "handgelenk",
+      "suchbegriffe": [
+        "Radiusfraktur",
+        "Handgelenkbruch",
+        "Handgelenksfraktur",
+        "Colles",
+        "Smith",
+        "Plattenosteosynthese Radius"
+      ],
+      "kuerzel": [
+        "drf",
+        "drf platte"
+      ],
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-radius",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-radius-platte",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "hand-untersuchung",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen",
+          "dgn-st-roentgen-postop",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-operativ",
+          "verl-st-arm",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-arm"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten",
+          "proc-st-wunde",
+          "proc-st-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose",
+          "proc-st-metall",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "hand-untersuchung/hand-us-schwellung",
+        "hand-untersuchung/hand-us-fehlstellung",
+        "hand-untersuchung/hand-us-ds-styloid",
+        "hand-untersuchung/hand-us-rom-schmerz",
+        "hand-untersuchung/hand-us-pdms",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/dms",
+        "eb-st-arm/faustschluss",
+        "eb-st-wunde/schwellung"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/physio",
+          "proc-st-belastung/arm",
+          "proc-st-verhalten/finger",
+          "proc-st-kontrollen/roentgen",
+          "proc-st-metall/metall",
+          "proc-st-belastung/bewegung"
+        ],
+        "aus": [
+          "proc-st-belastung/bein",
+          "proc-st-belastung/hilfsmittel",
+          "verl-st-operativ/mobilisation",
+          "verl-st-operativ/thrombose"
+        ],
+        "auswahl": {
+          "dgn-st-roentgen/region": 11,
+          "dgn-st-roentgen-postop/region": 11
+        },
+        "slots": {
+          "th-st-weitere/physio/inhalt": 2,
+          "verl-st-operativ/aufnahme/anlass": 1,
+          "proc-st-kontrollen/roentgen/region": 12,
+          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 2
+        }
+      },
+      "ohne": [
+        "hand-untersuchung/hand-us-haematom",
+        "hand-untersuchung/hand-us-ds-tabatiere",
+        "hand-untersuchung/hand-us-stauchung-d1",
+        "hand-untersuchung/hand-us-ds-handwurzel",
+        "hand-untersuchung/hand-us-ds-mittelhand",
+        "hand-untersuchung/hand-us-ds-langfinger",
+        "hand-untersuchung/hand-us-faustschluss",
+        "hand-untersuchung/hand-us-ds-tuberculum",
+        "hand-untersuchung/hand-us-druj"
+      ]
+    },
+    {
+      "setting": "station",
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Beim Gehen sei der Fuß nach außen umgeknickt.",
+          "Beim Sport sei der Fuß nach außen umgeknickt.",
+          "Beim Verfehlen einer Stufe sei der Fuß nach außen umgeknickt.",
+          "Beim Ausrutschen auf glattem Boden sei der Fuß nach außen umgeknickt.",
+          "Beim Gehen sei der Fuß über die Innenkante umgeknickt.",
+          "Es sei zu einem Sturz von der Leiter gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion nach den Nutzertests vom 08.10.2026",
+      "id": "station-osg-fraktur-osteosynthese",
+      "titel": "Sprunggelenkfraktur, Osteosynthese",
+      "region": "osg",
+      "suchbegriffe": [
+        "Sprunggelenkfraktur",
+        "Außenknöchelfraktur",
+        "Weber B",
+        "Weber C",
+        "bimalleolär",
+        "trimalleolär",
+        "Luxationsfraktur",
+        "Knöchelbruch"
+      ],
+      "kuerzel": [
+        "osg",
+        "osg fraktur",
+        "weber"
+      ],
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-osg-fraktur",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-osg-osteosynthese",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-osg-fraktur",
+          "osg-untersuchung",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen",
+          "dgn-st-roentgen-postop",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-operativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten",
+          "proc-st-wunde",
+          "proc-st-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-metall",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz"
+        ]
+      },
+      "entscheiden": [
+        "bef-st-osg-fraktur/fehlstellung",
+        "bef-st-osg-fraktur/hautspannung",
+        "osg-untersuchung/osg_haut",
+        "osg-untersuchung/osg_schwellung",
+        "osg-untersuchung/osg_ds_aussen",
+        "osg-untersuchung/osg_ds_innen",
+        "osg-untersuchung/osg_beweglichkeit",
+        "osg-untersuchung/osg_geh",
+        "osg-untersuchung/osg_pulse",
+        "osg-untersuchung/osg_dms",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-wunde/wunde",
+        "eb-st-wunde/schwellung",
+        "eb-st-wunde/dms"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/physio",
+          "proc-st-wunde/hochlagern",
+          "proc-st-kontrollen/roentgen",
+          "proc-st-metall/metall",
+          "proc-st-belastung/bewegung"
+        ],
+        "auswahl": {
+          "dgn-st-roentgen/region": 4,
+          "dgn-st-roentgen-postop/region": 4
+        },
+        "slots": {
+          "th-st-weitere/physio/inhalt": 1,
+          "verl-st-operativ/aufnahme/anlass": 1,
+          "proc-st-kontrollen/roentgen/region": 5,
+          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 3
+        }
+      },
+      "ohne": [
+        "osg-untersuchung/osg_ds_fibulotalar",
+        "osg-untersuchung/osg_gabel",
+        "osg-untersuchung/osg_ds_fibula",
+        "osg-untersuchung/osg_ds_mt5",
+        "osg-untersuchung/osg_mittelfuss",
+        "osg-untersuchung/osg_ds_calcaneus",
+        "osg-untersuchung/osg_ds_deltaband"
+      ]
+    },
+    {
+      "setting": "station",
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Es sei zu einem Sturz aus dem Stand gekommen.",
+          "Es sei zu einem Stolpersturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz auf das Gesäß gekommen.",
+          "Es sei zu einem Sturz von der Leiter gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen."
+        ],
+        "ana-st-beschwerden/beschwerden": [
+          "Beim Heben einer Last sei plötzlich ein Schmerz im Rücken aufgetreten.",
+          "Bei einer alltäglichen Bewegung sei plötzlich ein Schmerz im Rücken aufgetreten.",
+          "Der Rückenschmerz habe ohne erinnerlichen Auslöser begonnen.",
+          "Der Rückenschmerz nehme beim Aufrichten und Gehen zu.",
+          "Im Liegen lasse der Rückenschmerz nach.",
+          "Wegen der Schmerzen sei das Gehen nur mit Mühe möglich."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion nach den Nutzertests vom 08.10.2026",
+      "id": "station-wirbelkoerperfraktur-konservativ",
+      "titel": "Wirbelkörperfraktur konservativ",
+      "region": "wirbelsaeule",
+      "suchbegriffe": [
+        "Wirbelkörperfraktur",
+        "Wirbelbruch",
+        "LWK-Fraktur",
+        "BWK-Fraktur",
+        "Kompressionsfraktur",
+        "osteoporotische Fraktur",
+        "Sinterungsfraktur"
+      ],
+      "kuerzel": [
+        "wkf",
+        "lwk",
+        "bwk"
+      ],
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-wirbelkoerperfraktur",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-konservativ",
+          "th-st-weitere"
+        ],
+        "anamnese": [],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-st-ws-fraktur"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen-ohne-seite",
+          "dgn-st-ct",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-konservativ",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-neuro",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten",
+          "proc-st-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-osteoporose",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz"
+        ],
+        "medikation": [
+          "med-st-entlassung-dauer-procedere"
+        ]
+      },
+      "wahl": [
+        {
+          "abschnitt": "anamnese",
+          "label": "Unfall oder Beschwerden ohne Unfall?",
+          "bausteine": [
+            "ana-st-unfall",
+            "ana-st-beschwerden"
+          ]
+        }
+      ],
+      "entscheiden": [
+        "bef-st-ws-fraktur/klopfschmerz",
+        "bef-st-ws-fraktur/stehen",
+        "bef-st-ws-fraktur/kraft",
+        "bef-st-ws-fraktur/sensibilitaet",
+        "bef-st-ws-fraktur/blase",
+        "eb-st-neuro/neuro"
+      ],
+      "vorgaben": {
+        "an": [
+          "proc-st-belastung/ohne-seite",
+          "proc-st-verhalten/heben",
+          "proc-st-kontrollen/roentgen-ohne-seite",
+          "proc-st-osteoporose/abklaerung",
+          "proc-st-verhalten/rumpforthese",
+          "verl-st-konservativ/roentgen",
+          "ana-st-unfall/wohnen",
+          "ana-st-unfall/versorgung",
+          "ana-st-unfall/mobilitaet",
+          "ana-st-beschwerden/wohnen",
+          "ana-st-beschwerden/versorgung",
+          "ana-st-beschwerden/mobilitaet",
+          "ana-st-beschwerden/risiko"
+        ],
+        "aus": [
+          "proc-st-belastung/bein"
+        ],
+        "slots": {
+          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 7,
+          "proc-st-kontrollen/roentgen-ohne-seite/stand": 1,
+          "proc-st-kontrollen/roentgen-ohne-seite/anker": 2
+        }
+      }
+    },
+    {
+      "setting": "station",
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion nach den Nutzertests vom 08.10.2026",
+      "id": "station-weichteilinfekt",
+      "titel": "Weichteilinfekt, Débridement",
+      "region": "weichteile",
+      "suchbegriffe": [
+        "Abszess",
+        "Phlegmone",
+        "Weichteilinfekt",
+        "Wundinfektion",
+        "infiziertes Hämatom",
+        "Bursitis",
+        "Débridement",
+        "Debridement"
+      ],
+      "kuerzel": [
+        "abszess",
+        "wti"
+      ],
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-weichteilinfekt",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-debridement",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-beschwerden"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "bef-weichteilinfekt"
+        ],
+        "diagnostik": [
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-operativ",
+          "verl-st-infekt",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-wunde",
+          "eb-st-infekt"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten",
+          "proc-st-wunde",
+          "proc-st-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "bef-weichteilinfekt/roetung",
+        "bef-weichteilinfekt/schwellung",
+        "bef-weichteilinfekt/ueberwaermung",
+        "bef-weichteilinfekt/fluktuation",
+        "bef-weichteilinfekt/druckschmerz",
+        "eb-st-wunde/wunde",
+        "eb-st-infekt/zeichen"
+      ],
+      "vorgaben": {
+        "an": [
+          "proc-st-verhalten/antibiotikum",
+          "proc-st-kontrollen/labor",
+          "dgn-st-labor/crp-maximal",
+          "dgn-st-labor/crp-entlassung",
+          "proc-st-belastung/ohne-seite"
+        ],
+        "aus": [
+          "verl-st-operativ/mobilisation",
+          "verl-st-operativ/roentgen",
+          "verl-st-operativ/wunde",
+          "proc-st-wunde/kontrolle",
+          "proc-st-wunde/naht",
+          "proc-st-belastung/bein",
+          "proc-st-belastung/hilfsmittel"
+        ],
+        "slots": {
+          "verl-st-operativ/aufnahme/anlass": 3,
+          "proc-st-kontrollen/labor/werte": 2,
+          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 8
+        }
+      },
+      "ohne": [
+        "bef-weichteilinfekt/sehnenscheide"
+      ]
+    },
+    {
+      "setting": "station",
+      "schnellwerte": {
+        "ana-st-unfall/hergang": [
+          "Bei einem Sturz sei der Brustkorb gegen eine Kante geprallt.",
+          "Es sei zu einem Stolpersturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz von der Leiter gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Bei einem Autounfall sei der Brustkorb gegen den Sicherheitsgurt geprallt."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion nach den Nutzertests vom 08.10.2026",
+      "id": "station-rippenserienfraktur",
+      "titel": "Rippenserienfraktur konservativ",
+      "region": "thorax",
+      "suchbegriffe": [
+        "Rippenserienfraktur",
+        "Rippenfraktur",
+        "Rippenbruch",
+        "Thoraxtrauma",
+        "Pneumothorax",
+        "Hämatothorax"
+      ],
+      "kuerzel": [
+        "rsf",
+        "rippen"
+      ],
+      "abschnitte": {
+        "diagnose": [
+          "dx-st-rippenserienfraktur",
+          "dx-st-neben"
+        ],
+        "therapie": [
+          "th-st-konservativ",
+          "th-st-weitere"
+        ],
+        "anamnese": [
+          "ana-st-unfall"
+        ],
+        "befund": [
+          "bef-st-allgemein",
+          "thorax-untersuchung",
+          "bef-st-begleitverletzungen"
+        ],
+        "diagnostik": [
+          "dgn-st-roentgen-ohne-seite",
+          "dgn-st-ct",
+          "dgn-st-labor",
+          "dgn-st-weitere"
+        ],
+        "verlauf": [
+          "verl-st-konservativ",
+          "verl-st-thorax",
+          "verl-st-besonderheiten",
+          "verl-st-entlassung"
+        ],
+        "entlassbefund": [
+          "eb-st-allgemein",
+          "eb-st-lunge",
+          "eb-st-mobilitaet"
+        ],
+        "procedere": [
+          "proc-st-belastung",
+          "proc-st-verhalten",
+          "proc-st-thrombose",
+          "proc-st-kontrollen",
+          "proc-st-physio",
+          "proc-st-arbeit",
+          "proc-st-entlassmanagement",
+          "proc-st-vorlaeufig",
+          "proc-st-sicherheitsnetz"
+        ],
+        "medikation": [
+          "med-st-entlassung"
+        ]
+      },
+      "entscheiden": [
+        "thorax-untersuchung/thorax-druckschmerz",
+        "thorax-untersuchung/thorax-kompression",
+        "thorax-untersuchung/thorax-atemexkursion",
+        "thorax-untersuchung/thorax-belueftung",
+        "bef-st-begleitverletzungen/weitere",
+        "eb-st-lunge/lunge"
+      ],
+      "vorgaben": {
+        "an": [
+          "th-st-weitere/physio",
+          "proc-st-belastung/ohne-seite",
+          "proc-st-verhalten/atem",
+          "proc-st-kontrollen/roentgen-ohne-seite",
+          "thorax-untersuchung/thorax-af"
+        ],
+        "aus": [
+          "proc-st-belastung/bein",
+          "proc-st-belastung/hilfsmittel"
+        ],
+        "slots": {
+          "th-st-weitere/physio/inhalt": 3,
+          "proc-st-kontrollen/roentgen-ohne-seite/region": 5,
+          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 11
+        }
+      }
+    }
+  ]
+}

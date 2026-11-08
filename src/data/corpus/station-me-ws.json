@@ -1,0 +1,3093 @@
+{
+  "regionen": [
+    {
+      "id": "brief-station",
+      "name": "Brief Station",
+      "kuerzel": "📄",
+      "bausteine": [
+        {
+          "id": "dx-st-metallentfernung",
+          "titel": "Diagnose einliegendes Osteosynthesematerial (Metallentfernung)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "erst",
+              "typ": "begriff",
+              "label": "Erstoperation mit Verletzung und Zeitpunkt, z. B. Plattenosteosynthese einer distalen Radiusfraktur (03/2025)",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Einliegendes Osteosynthesematerial "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Region",
+              "optionen": [
+                "am Schlüsselbein",
+                "am Schultereckgelenk",
+                "am proximalen Oberarm",
+                "am Oberarmschaft",
+                "am distalen Oberarm",
+                "am Olecranon",
+                "am Radiuskopf",
+                "am Unterarmschaft",
+                "am distalen Radius",
+                "an der Mittelhand",
+                "am proximalen Oberschenkel",
+                "am Oberschenkelschaft",
+                "am distalen Oberschenkel",
+                "an der Kniescheibe",
+                "am Schienbeinkopf",
+                "am Unterschenkelschaft",
+                "am Innenknöchel",
+                "am Außenknöchel",
+                "am Sprunggelenk",
+                "am Fersenbein",
+                "am Mittelfuß"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " nach "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "erst"
+            },
+            {
+              "art": "auswahl",
+              "id": "anlass",
+              "label": "Befund und Anlass",
+              "optionen": [
+                ", knöchern konsolidiert",
+                ", knöchern konsolidiert, Beschwerden durch das Material",
+                ", knöchern konsolidiert, Materiallockerung",
+                ", knöchern konsolidiert, Materialbruch",
+                ", temporäres Implantat, geplante Entfernung",
+                ", Implantat im Wachstumsalter, geplante Entfernung",
+                ", Verdacht auf Infekt des Osteosynthesematerials",
+                ", Infekt des Osteosynthesematerials mit Fistel",
+                ", knöchern konsolidiert, Entfernung auf Wunsch nach Aufklärung"
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "th-st-metallentfernung",
+          "titel": "Operation: Metallentfernung",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "OP-Datum",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Metallentfernung "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Region",
+              "optionen": [
+                "am Schlüsselbein",
+                "am Schultereckgelenk",
+                "am proximalen Oberarm",
+                "am Oberarmschaft",
+                "am distalen Oberarm",
+                "am Olecranon",
+                "am Radiuskopf",
+                "am Unterarmschaft",
+                "am distalen Radius",
+                "an der Mittelhand",
+                "am proximalen Oberschenkel",
+                "am Oberschenkelschaft",
+                "am distalen Oberschenkel",
+                "an der Kniescheibe",
+                "am Schienbeinkopf",
+                "am Unterschenkelschaft",
+                "am Innenknöchel",
+                "am Außenknöchel",
+                "am Sprunggelenk",
+                "am Fersenbein",
+                "am Mittelfuß"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "implantat",
+              "label": "Entferntes Implantat",
+              "optionen": [
+                "Platte und Schrauben",
+                "winkelstabile Platte und Schrauben",
+                "Schrauben",
+                "Marknagel und Verriegelungsschrauben",
+                "Verriegelungsschrauben",
+                "Kirschner-Drähte",
+                "Zuggurtung mit Kirschner-Drähten und Drahtcerclage",
+                "Drahtcerclagen",
+                "Stellschraube",
+                "Hakenplatte und Schrauben",
+                "elastische Marknägel",
+                "dynamische Hüftschraube"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "umfang",
+              "label": "Vollständig oder teilweise entfernt",
+              "optionen": [
+                " vollständig entfernt",
+                " teilweise entfernt, abgebrochene Schraubenspitze belassen",
+                " teilweise entfernt, abgebrochene Schraube belassen",
+                " teilweise entfernt, Einzelheiten siehe Operationsbericht"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "zusatz",
+              "label": "Zusätzlicher Eingriff",
+              "text": "\nZusätzlich {was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Zusätzlicher Eingriff",
+                  "optionen": [
+                    "",
+                    "Narbenkorrektur",
+                    "Arthrolyse",
+                    "Tenolyse",
+                    "Neurolyse"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-st-metall",
+          "titel": "Aufnahmebefund vor Metallentfernung",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Operationsgebiet "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "narbe",
+              "chip": "Narbe",
+              "gruppe": "Inspektion",
+              "normal": "Narbe reizlos, keine Rötung, keine Schwellung. ",
+              "abweichung": "Narbe {was} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "gerötet",
+                    "verdickt",
+                    "druckempfindlich",
+                    "verdickt und druckempfindlich",
+                    "mit Schwellung der Umgebung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz, z. B. Lage oder Länge",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "material",
+              "chip": "Druckschmerz über dem Material",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Osteosynthesematerial. ",
+              "abweichung": "{was} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Osteosynthesematerial unter der Haut tastbar und druckschmerzhaft",
+                    "Osteosynthesematerial unter der Haut tastbar, nicht druckschmerzhaft",
+                    "Druckschmerz über dem Osteosynthesematerial",
+                    "Druckschmerz über dem Osteosynthesematerial mit Reizung der Weichteile"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Ort, z. B. über dem Plattenende",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "beweglichkeit",
+              "chip": "Beweglichkeit der benachbarten Gelenke",
+              "gruppe": "Beweglichkeit",
+              "normal": "Benachbarte Gelenke frei beweglich. ",
+              "abweichung": "Beweglichkeit eingeschränkt: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Gelenk und Neutral-Null-Werte, z. B. Handgelenk Extension/Flexion 50/0/60°",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Sensibilität vermindert",
+                    "Motorik eingeschränkt",
+                    "Durchblutung vermindert"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Ort, z. B. am Handrücken über dem Daumen",
+                  "maxLen": 60
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-metall-vorher",
+          "titel": "Röntgen vor Metallentfernung",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "vorher",
+              "label": "Röntgen vor der Operation",
+              "an": true,
+              "text": "Röntgen {region} {seite}{ebenen} vor der Operation: {ergebnis}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "region",
+                  "label": "Region",
+                  "optionen": [
+                    "",
+                    "Schulter",
+                    "Schlüsselbein",
+                    "Oberarm",
+                    "Ellenbogen",
+                    "Unterarm",
+                    "Handgelenk",
+                    "Hand",
+                    "Hüfte",
+                    "Oberschenkel",
+                    "Knie",
+                    "Unterschenkel",
+                    "Sprunggelenk",
+                    "Fuß"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ebenen",
+                  "label": "Ebenen",
+                  "optionen": [
+                    "",
+                    " in 2 Ebenen",
+                    " in 3 Ebenen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Röntgenbefund",
+                  "optionen": [
+                    "",
+                    "knöchern konsolidiert, Osteosynthesematerial ohne Lockerung oder Bruch.",
+                    "knöchern konsolidiert, Materiallockerung.",
+                    "knöchern konsolidiert, Materialbruch.",
+                    "temporäres Implantat ohne Lockerung oder Bruch.",
+                    "Lockerungssaum um das Osteosynthesematerial, Verdacht auf Infekt."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-metall-nachher",
+          "titel": "Röntgen nach Metallentfernung",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Röntgen: Region",
+              "optionen": [
+                "Schulter",
+                "Schlüsselbein",
+                "Oberarm",
+                "Ellenbogen",
+                "Unterarm",
+                "Handgelenk",
+                "Hand",
+                "Hüfte",
+                "Oberschenkel",
+                "Knie",
+                "Unterschenkel",
+                "Sprunggelenk",
+                "Fuß"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "ebenen",
+              "label": "Ebenen",
+              "optionen": [
+                "",
+                " in 2 Ebenen",
+                " in 3 Ebenen"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": " nach der Operation: "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund nach der Operation",
+              "optionen": [
+                "Osteosynthesematerial vollständig entfernt, kein Nachweis einer neuen Fraktur.",
+                "Osteosynthesematerial bis auf das in der Therapie genannte Restmaterial entfernt, kein Nachweis einer neuen Fraktur.",
+                "Fraktur im Bereich des entfernten Materials, siehe Verlauf und Procedere."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-metall-verzicht",
+          "titel": "Keine Röntgenkontrolle nach Metallentfernung (mit Grund)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "grund",
+              "label": "Grund für den Verzicht",
+              "optionen": [
+                "Auf eine Röntgenkontrolle nach der Operation haben wir verzichtet, weil das Material vollständig und unversehrt entfernt wurde.",
+                "Auf eine Röntgenkontrolle nach der Operation haben wir verzichtet, weil die Durchleuchtung während der Operation die vollständige Entfernung zeigte.",
+                "Auf eine Röntgenkontrolle nach der Operation haben wir verzichtet, weil die Durchleuchtung während der Operation die Lage des belassenen Materials zeigte."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "verl-st-metallentfernung",
+          "titel": "Verlauf nach Metallentfernung",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "mobil",
+              "label": "Mobilität",
+              "an": true,
+              "text": "{Er} war {ab} {wie} mobil. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "Ab wann",
+                  "optionen": [
+                    "",
+                    "ab dem Operationstag",
+                    "ab dem 1. Tag nach der Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wie",
+                  "optionen": [
+                    "",
+                    "selbstständig ohne Hilfsmittel",
+                    "selbstständig mit Unterarmgehstützen",
+                    "mit Unterarmgehstützen unter Anleitung der Physiotherapie",
+                    "mit Rollator"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mikrobiologie",
+              "label": "Mikrobiologische Untersuchung",
+              "text": "Material und Gewebeproben sandten wir zur mikrobiologischen Untersuchung ein. {ergebnis} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "Ein Keim war nicht nachweisbar.",
+                    "Das Ergebnis steht aus, wir senden den Befund nach."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "keimnachweis",
+              "label": "Mikrobiologische Untersuchung mit Erregernachweis",
+              "text": "Material und Gewebeproben sandten wir zur mikrobiologischen Untersuchung ein. Nachweis von {erreger}, Antibiotikum siehe Procedere. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "erreger",
+                  "label": "Erreger, z. B. Staphylococcus aureus",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe im Aufenthalt",
+              "an": true,
+              "text": "{was} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Thromboseprophylaxe im Aufenthalt",
+                  "optionen": [
+                    "",
+                    "Während des Aufenthalts gaben wir eine medikamentöse Thromboseprophylaxe.",
+                    "Während des Aufenthalts gaben wir eine medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin.",
+                    "Die vorbestehende gerinnungshemmende Medikation führten wir fort, eine zusätzliche Thromboseprophylaxe gaben wir nicht.",
+                    "Eine medikamentöse Thromboseprophylaxe gaben wir nicht."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-metall-belastung",
+          "titel": "Belastung nach Metallentfernung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "{glied} {seite}: {stufe}{dauer}{danach}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "glied",
+                  "label": "Gliedmaße",
+                  "optionen": [
+                    "",
+                    "Bein",
+                    "Arm",
+                    "Hand",
+                    "Fuß"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "stufe",
+                  "label": "Belastung",
+                  "optionen": [
+                    "",
+                    "Entlastung",
+                    "Minimalbelastung",
+                    "Teilbelastung mit 15 kg",
+                    "Teilbelastung mit 20 kg",
+                    "Teilbelastung mit halbem Körpergewicht",
+                    "schmerzadaptierte Vollbelastung",
+                    "Vollbelastung",
+                    "keine Stütz- und Hebebelastung",
+                    "keine Stützbelastung",
+                    "volle Belastung im Alltag",
+                    "Belastung nach Maßgabe des Operateurs"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " ab sofort, ohne zeitliche Begrenzung",
+                    " für 2 Wochen nach der Operation",
+                    " für 4 Wochen nach der Operation",
+                    " für 6 Wochen nach der Operation",
+                    " bis zur Röntgenkontrolle",
+                    ", Einzelheiten siehe Operationsbericht"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "danach",
+                  "label": "Danach",
+                  "optionen": [
+                    "",
+                    ", danach Vollbelastung",
+                    ", danach schrittweise Steigerung bis zur Vollbelastung",
+                    ", danach volle Belastung im Alltag"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gehhilfe",
+              "label": "Gehhilfe",
+              "text": "Gehen {womit}{wielange}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Gehhilfe",
+                  "optionen": [
+                    "",
+                    "an Unterarmgehstützen",
+                    "am Rollator",
+                    "ohne Gehhilfe"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wielange",
+                  "label": "Wie lange",
+                  "optionen": [
+                    "",
+                    ", bis der Gang sicher ist",
+                    ", solange die Teilbelastung gilt"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-metall-antibiotikum",
+          "titel": "Antibiotikum nach Metallentfernung bei Infekt",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum mit Anpassung nach mikrobiologischem Befund",
+              "text": "Antibiotikum: {wirkstoff} bis einschließlich {bis}, siehe Medikation. Anpassung nach dem mikrobiologischen Befund durch {wer}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "bis",
+                  "label": "Bis einschließlich: Datum oder Tag nach der Operation",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "Anpassung durch",
+                  "optionen": [
+                    "",
+                    "unsere Sprechstunde",
+                    "die Hausarztpraxis",
+                    "die unfallchirurgische oder orthopädische Praxis"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-metall-thrombose",
+          "titel": "Thromboseprophylaxe nach Metallentfernung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 7. Tag nach der Operation.",
+                "Medikamentöse Thromboseprophylaxe bis einschließlich 10. Tag nach der Operation.",
+                "Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung.",
+                "Medikamentöse Thromboseprophylaxe bis zur ausreichenden Mobilität (überwiegender Teil des Tages außerhalb des Betts).",
+                "Vorbestehende gerinnungshemmende Medikation fortführen, keine zusätzliche Thromboseprophylaxe."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "wirkstoff",
+              "label": "Wirkstoff und Dosis",
+              "text": " Wirkstoff: {wirkstoff} {dosis}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff der Thromboseprophylaxe",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "Enoxaparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Certoparin",
+                    "Nadroparin",
+                    "Fondaparinux"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis und Schema, z. B. 40 mg 1-mal täglich subkutan",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "siehe-medikation",
+              "label": "Verweis auf Medikation",
+              "text": " Wirkstoff und Dosis siehe Medikation."
+            },
+            {
+              "art": "option",
+              "id": "grund",
+              "label": "Begründung",
+              "text": " Begründung: {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Begründung",
+                  "optionen": [
+                    "",
+                    "Eingriff am Arm bei voller Gehfähigkeit",
+                    "Vollbelastung und freie Beweglichkeit",
+                    "erhöhtes Thromboserisiko",
+                    "erhöhtes Blutungsrisiko"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "wiederbeginn",
+              "label": "Wiederbeginn Gerinnungshemmung",
+              "text": " Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation ab dem {tag}. Tag nach der Operation.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "tag",
+                  "label": "Tag nach der Operation",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-metall-sport",
+          "titel": "Sportpause und Abschluss nach Metallentfernung",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sport",
+              "label": "Sportpause",
+              "an": true,
+              "text": "Sportpause für Kontaktsport und Sportarten mit Sprung-, Sturz- oder Stoßbelastung {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 4 Wochen nach der Operation",
+                    "für 6 Wochen nach der Operation",
+                    "für 12 Wochen nach der Operation",
+                    "nach Maßgabe des Operateurs"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abschluss",
+              "label": "Keine weiteren Kontrollen",
+              "text": "Nach Abschluss der Wundheilung sind keine weiteren Kontrollen vorgesehen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wirbelsaeule",
+      "name": "Wirbelsäule",
+      "kuerzel": "🦴",
+      "bausteine": [
+        {
+          "id": "dx-st-lumboischialgie",
+          "titel": "Diagnose Lumboischialgie (Station)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Lumboischialgie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "dermatom",
+              "label": "Dermatom",
+              "optionen": [
+                "",
+                " (Dermatom L4)",
+                " (Dermatom L5)",
+                " (Dermatom S1)",
+                " (Dermatome L5 und S1)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "korrelat",
+              "label": "Ursache in der Bildgebung",
+              "optionen": [
+                "bei Bandscheibenvorfall",
+                "bei sequestriertem Bandscheibenvorfall",
+                "bei Bandscheibenprotrusion",
+                "bei Neuroforamenstenose",
+                "bei Rezessusstenose",
+                "bei lumbaler Spinalkanalstenose",
+                ", ohne bildmorphologisches Korrelat",
+                ", ohne Schnittbildgebung"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "hoehe",
+              "label": "Segment",
+              "optionen": [
+                "",
+                " L2/3",
+                " L3/4",
+                " L4/5",
+                " L5/S1",
+                " L3/4 und L4/5",
+                " L4/5 und L5/S1"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ", "
+            },
+            {
+              "art": "auswahl",
+              "id": "defizit",
+              "label": "Neurologisches Defizit",
+              "optionen": [
+                "ohne sensomotorisches Defizit",
+                "mit sensiblem Defizit",
+                "mit motorischem Defizit",
+                "mit sensomotorischem Defizit"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "parese",
+              "label": "Parese mit Kraftgrad bei Aufnahme",
+              "text": " ({muskel}, Kraftgrad {kg}/5 bei Aufnahme)",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "muskel",
+                  "label": "Parese",
+                  "optionen": [
+                    "",
+                    "Fußheberparese",
+                    "Großzehenheberparese",
+                    "Fußsenkerparese",
+                    "Kniestreckerparese",
+                    "Hüftbeugerparese"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kauda",
+              "label": "Kaudasyndrom",
+              "text": "\n{was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Kaudasyndrom",
+                  "optionen": [
+                    "",
+                    "Inkomplettes Kaudasyndrom",
+                    "Kaudasyndrom mit Harnverhalt",
+                    "Verdacht auf Kaudasyndrom, Bildgebung ausstehend"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-st-lumboischialgie",
+          "titel": "Konservative Behandlung der Lumboischialgie",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "mittel",
+              "typ": "freitext",
+              "label": "Schmerzmittel (Wirkstoffe oder Stufenschema, ohne Dosis; Dosis unter Medikation)",
+              "required": true,
+              "vorschlaege": [
+                "Nicht-Opioid-Analgetika nach Stufenschema",
+                "Nicht-Opioid-Analgetika und schwach wirksamem Opioid nach Stufenschema",
+                "Nicht-Opioid-Analgetika und stark wirksamem Opioid nach Stufenschema"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Konservative stationäre Schmerztherapie mit "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "mittel"
+            },
+            {
+              "art": "option",
+              "id": "kortikoid",
+              "label": "Systemisches Kortikoid",
+              "text": "\nSystemische Kortikoidgabe: {was}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "infiltration",
+              "label": "Infiltration",
+              "text": "\n{art} {hoehe} {wann}{mittel}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Verfahren",
+                  "optionen": [
+                    "",
+                    "Periradikuläre Therapie unter CT-Steuerung",
+                    "Periradikuläre Therapie unter Durchleuchtung",
+                    "Epidurale Injektion unter Durchleuchtung",
+                    "Epidurale Injektion über den Hiatus sacralis",
+                    "Facetteninfiltration",
+                    "Infiltration des Iliosakralgelenks"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "hoehe",
+                  "label": "Höhe und Seite, z. B. L5 rechts",
+                  "maxLen": 40,
+                  "required": true,
+                  "vorschlaege": [
+                    "L4 rechts",
+                    "L4 links",
+                    "L5 rechts",
+                    "L5 links",
+                    "S1 rechts",
+                    "S1 links"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Datum, bei mehreren alle, z. B. am 13.10. und 15.10.2026",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "mittel",
+                  "label": "Injiziert",
+                  "optionen": [
+                    "",
+                    " mit Lokalanästhetikum",
+                    " mit Lokalanästhetikum und Kortikoid"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "an": true,
+              "text": "\nPhysiotherapie {inhalt}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "inhalt",
+                  "label": "Inhalt",
+                  "optionen": [
+                    "",
+                    "mit Mobilisation und Haltungsschulung",
+                    "mit Mobilisation und Kräftigung der Rumpfmuskulatur",
+                    "mit Gangschule",
+                    "mit Mobilisation, Gangschule und Kräftigung der Rumpfmuskulatur"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "physikalisch",
+              "label": "Physikalische Therapie",
+              "text": "\nPhysikalische Therapie mit {was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Art",
+                  "optionen": [
+                    "",
+                    "Wärme",
+                    "Elektrotherapie",
+                    "Wärme und Elektrotherapie"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "mitbehandlung",
+              "label": "Mitbehandlung",
+              "text": "\nMitbehandlung durch {fach}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "fach",
+                  "label": "Fach",
+                  "optionen": [
+                    "",
+                    "den Schmerzdienst der Anästhesie",
+                    "die Neurologie"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "ana-st-lumboischialgie",
+          "titel": "Anamnese Lumboischialgie: Vorbehandlung, frühere Operation",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "vorbehandlung",
+              "label": "Ambulante Vorbehandlung",
+              "an": true,
+              "text": "{was} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ambulante Vorbehandlung",
+                  "optionen": [
+                    "",
+                    "Eine ambulante Behandlung habe vor der Aufnahme nicht stattgefunden.",
+                    "Die ambulante Behandlung mit Schmerzmitteln habe keine ausreichende Besserung gebracht.",
+                    "Die ambulante Behandlung mit Schmerzmitteln und Physiotherapie habe keine ausreichende Besserung gebracht.",
+                    "Die ambulante Behandlung mit Schmerzmitteln, Physiotherapie und Infiltrationen habe keine ausreichende Besserung gebracht."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "voroperation",
+              "label": "Frühere Operation an der Lendenwirbelsäule",
+              "text": "Frühere Operation an der Lendenwirbelsäule: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Eingriff und Jahr, z. B. Nukleotomie L4/5 rechts 2019",
+                  "maxLen": 80,
+                  "required": true,
+                  "vorschlaege": [
+                    "keine"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-st-lumboischialgie-kraft",
+          "titel": "Aufnahmebefund Lumboischialgie: Kraft je Kennmuskel",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "kraft-hueftbeuger",
+              "chip": "Kraft Hüftbeuger",
+              "gruppe": "Neurologie",
+              "normal": "Volle Kraft der Hüftbeuger beidseits. ",
+              "abweichung": "Kraft der Hüftbeuger {ls} {kg}/5. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft-kniestrecker",
+              "chip": "Kraft Kniestrecker",
+              "gruppe": "Neurologie",
+              "normal": "Volle Kraft der Kniestrecker beidseits. ",
+              "abweichung": "Kraft der Kniestrecker {ls} {kg}/5. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft-fussheber",
+              "chip": "Kraft Fußheber",
+              "gruppe": "Neurologie",
+              "normal": "Volle Kraft der Fußheber beidseits. ",
+              "abweichung": "Kraft der Fußheber {ls} {kg}/5. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft-grosszehenheber",
+              "chip": "Kraft Großzehenheber",
+              "gruppe": "Neurologie",
+              "normal": "Volle Kraft der Großzehenheber beidseits. ",
+              "abweichung": "Kraft der Großzehenheber {ls} {kg}/5. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft-fusssenker",
+              "chip": "Kraft Fußsenker",
+              "gruppe": "Neurologie",
+              "normal": "Volle Kraft der Fußsenker beidseits. ",
+              "abweichung": "Kraft der Fußsenker {ls} {kg}/5. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-st-lumboischialgie-kauda",
+          "titel": "Aufnahmebefund Lumboischialgie: Reithosengebiet, Sphinkter, Restharn",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "reithose",
+              "chip": "Sensibilität perianal und im Reithosengebiet",
+              "gruppe": "Neurologie",
+              "normal": "Sensibilität perianal und im Reithosengebiet intakt. ",
+              "abweichung": "Sensibilität perianal und im Reithosengebiet {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "herabgesetzt",
+                    "aufgehoben",
+                    "seitendifferent"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sphinkter",
+              "chip": "Analer Sphinktertonus",
+              "gruppe": "Neurologie",
+              "selten": true,
+              "normal": "Analer Sphinktertonus kräftig, Willküranspannung möglich. ",
+              "abweichung": "Analer Sphinktertonus {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "vermindert",
+                    "aufgehoben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "restharn",
+              "chip": "Restharn sonografisch",
+              "gruppe": "Neurologie",
+              "selten": true,
+              "normal": "Kein Restharn in der sonografischen Messung nach dem Wasserlassen. ",
+              "abweichung": "Restharn {ml} in der sonografischen Messung nach dem Wasserlassen. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "ml",
+                  "label": "Restharn",
+                  "einheit": "ml",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-lws-mrt",
+          "titel": "MRT der Lendenwirbelsäule (Station)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "Datum der MRT",
+              "required": true
+            },
+            {
+              "id": "befund",
+              "typ": "freitext",
+              "label": "MRT-Befund, z. B. Bandscheibenvorfall L4/5 mediolateral rechts mit Kompression der Nervenwurzel L5 rechts",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "MRT der Lendenwirbelsäule vom "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "befund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Fachradiologisch befundet.",
+                " Vorläufiger Befund, fachradiologischer Befund ausstehend.",
+                " Auswärtige Untersuchung, Bilder von uns mitbeurteilt."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-lws-ct",
+          "titel": "CT der Lendenwirbelsäule (Station)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "Datum der CT",
+              "required": true
+            },
+            {
+              "id": "befund",
+              "typ": "freitext",
+              "label": "CT-Befund",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "CT der Lendenwirbelsäule vom "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "befund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "option",
+              "id": "grund",
+              "label": "Grund für CT statt MRT",
+              "text": " MRT nicht möglich: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Grund, z. B. Herzschrittmacher",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "Herzschrittmacher",
+                    "Platzangst"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Fachradiologisch befundet.",
+                " Vorläufiger Befund, fachradiologischer Befund ausstehend."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-lws-verzicht",
+          "titel": "Keine Schnittbildgebung der Lendenwirbelsäule (mit Grund)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "grund",
+              "label": "Grund",
+              "optionen": [
+                "Auf eine Schnittbildgebung haben wir verzichtet, weil keine Lähmung und keine Warnzeichen bestanden und die Beschwerden unter der Behandlung rasch nachließen.",
+                "Auf eine Schnittbildgebung haben wir verzichtet, weil die angebotene MRT abgelehnt wurde.",
+                "Eine MRT der Lendenwirbelsäule ist ambulant geplant, siehe Procedere."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "verl-st-lumboischialgie",
+          "titel": "Verlauf konservative Behandlung der Lumboischialgie",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Aufnahmeanlass",
+              "an": true,
+              "text": "Wir nahmen {person-akk} {anlass} stationär auf. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anlass",
+                  "label": "Aufnahmeanlass",
+                  "optionen": [
+                    "",
+                    "zur Schmerzbehandlung bei ambulant nicht beherrschbaren Schmerzen",
+                    "bei höhergradiger oder zunehmender Lähmung",
+                    "bei Verdacht auf ein Kaudasyndrom",
+                    "zur weiteren Diagnostik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kauda",
+              "label": "Kaudasyndrom im Verlauf",
+              "an": true,
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Kaudasyndrom",
+                  "optionen": [
+                    "",
+                    "Zeichen eines Kaudasyndroms bestanden während des gesamten Aufenthalts nicht",
+                    "Den Verdacht auf ein Kaudasyndrom bestätigten weder die klinischen Kontrollen noch die Bildgebung",
+                    "Im Verlauf traten Zeichen eines Kaudasyndroms auf, siehe Procedere"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "schmerz",
+              "label": "Schmerzverlauf",
+              "an": true,
+              "text": "Unter der konservativen Behandlung {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Schmerzverlauf",
+                  "optionen": [
+                    "",
+                    "besserten sich die Schmerzen deutlich",
+                    "besserten sich die Schmerzen teilweise",
+                    "besserten sich die Schmerzen nicht",
+                    "nahmen die Schmerzen zu"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "nrs",
+              "label": "Schmerzstärke mit Zahlen",
+              "text": "Die Schmerzstärke lag bei Aufnahme bei {a} von 10, bei Entlassung bei {b} von 10. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "a",
+                  "label": "Schmerzstärke bei Aufnahme (0 bis 10)",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "b",
+                  "label": "Schmerzstärke bei Entlassung (0 bis 10)",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "infiltration",
+              "label": "Wirkung der Infiltration",
+              "text": "Nach {welche} {wirkung}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "welche",
+                  "label": "Anzahl",
+                  "optionen": [
+                    "",
+                    "der Infiltration",
+                    "den Infiltrationen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wirkung",
+                  "label": "Wirkung",
+                  "optionen": [
+                    "",
+                    "besserten sich die Beinschmerzen deutlich und anhaltend",
+                    "besserten sich die Beinschmerzen nur vorübergehend",
+                    "besserten sich die Beinschmerzen nicht"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "neuro",
+              "label": "Neurologischer Verlauf",
+              "an": true,
+              "text": "{was} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Neurologischer Verlauf",
+                  "optionen": [
+                    "",
+                    "Ein neurologisches Defizit bestand bei Aufnahme nicht und trat im Verlauf nicht auf.",
+                    "Das neurologische Defizit bildete sich vollständig zurück.",
+                    "Das neurologische Defizit besserte sich, Einzelheiten siehe Entlassbefund.",
+                    "Das neurologische Defizit blieb unverändert, Einzelheiten siehe Entlassbefund.",
+                    "Das neurologische Defizit nahm zu, Einzelheiten siehe Entlassbefund und Procedere.",
+                    "Ein neurologisches Defizit trat im Verlauf neu auf, Einzelheiten siehe Entlassbefund und Procedere."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "konsil",
+              "label": "Konsil",
+              "text": "Die konsiliarische Mitbeurteilung durch die {fach} ergab {ergebnis}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "fach",
+                  "label": "Fach",
+                  "optionen": [
+                    "",
+                    "Wirbelsäulenchirurgie",
+                    "Neurochirurgie",
+                    "Neurologie"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ergebnis",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "keine Indikation zur Operation",
+                    "eine Indikation zur Operation, siehe Procedere",
+                    "eine Indikation zur Operation, falls die konservative Behandlung nicht ausreicht, siehe Procedere",
+                    "keinen Hinweis auf eine andere neurologische Ursache"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung",
+              "label": "Aufklärung über die Operation",
+              "text": "Über die Möglichkeit einer Operation haben wir {person-akk} aufgeklärt. {Er} entschied sich für {was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Entscheidung",
+                  "optionen": [
+                    "",
+                    "die Fortführung der konservativen Behandlung",
+                    "die Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe im Aufenthalt",
+              "an": true,
+              "text": "{was} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Thromboseprophylaxe im Aufenthalt",
+                  "optionen": [
+                    "",
+                    "Während des Aufenthalts gaben wir eine medikamentöse Thromboseprophylaxe.",
+                    "Während des Aufenthalts gaben wir eine medikamentöse Thromboseprophylaxe mit niedermolekularem Heparin.",
+                    "Die vorbestehende gerinnungshemmende Medikation führten wir fort, eine zusätzliche Thromboseprophylaxe gaben wir nicht.",
+                    "Eine medikamentöse Thromboseprophylaxe gaben wir nicht."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-lumboischialgie",
+          "titel": "Entlassbefund Lumboischialgie: Nervendehnung, Kraft, Sensibilität, Reithosengebiet, Blase",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Wirbelsäule und Beine: "
+            },
+            {
+              "art": "befund",
+              "id": "lasegue",
+              "chip": "Lasègue-Zeichen",
+              "gruppe": "Nervendehnung",
+              "normal": "Lasègue-Zeichen beidseits negativ. ",
+              "abweichung": "Lasègue-Zeichen {ls} positiv{winkel}{verlauf}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "winkel",
+                  "label": "Winkel",
+                  "optionen": [
+                    "",
+                    " bei 30°",
+                    " bei 45°",
+                    " bei 60°",
+                    " bei 70°"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft-hueftbeuger",
+              "chip": "Kraft Hüftbeuger",
+              "gruppe": "Neurologie",
+              "normal": "Volle Kraft der Hüftbeuger beidseits. ",
+              "abweichung": "Kraft der Hüftbeuger {ls} {kg}/5{verlauf}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft-kniestrecker",
+              "chip": "Kraft Kniestrecker",
+              "gruppe": "Neurologie",
+              "normal": "Volle Kraft der Kniestrecker beidseits. ",
+              "abweichung": "Kraft der Kniestrecker {ls} {kg}/5{verlauf}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft-fussheber",
+              "chip": "Kraft Fußheber",
+              "gruppe": "Neurologie",
+              "normal": "Volle Kraft der Fußheber beidseits. ",
+              "abweichung": "Kraft der Fußheber {ls} {kg}/5{verlauf}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft-grosszehenheber",
+              "chip": "Kraft Großzehenheber",
+              "gruppe": "Neurologie",
+              "normal": "Volle Kraft der Großzehenheber beidseits. ",
+              "abweichung": "Kraft der Großzehenheber {ls} {kg}/5{verlauf}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft-fusssenker",
+              "chip": "Kraft Fußsenker",
+              "gruppe": "Neurologie",
+              "normal": "Volle Kraft der Fußsenker beidseits. ",
+              "abweichung": "Kraft der Fußsenker {ls} {kg}/5{verlauf}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "kg",
+                  "label": "Kraftgrad (0 bis 5)",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "zehengang",
+              "chip": "Zehenspitzen- und Hackengang",
+              "gruppe": "Neurologie",
+              "selten": true,
+              "normal": "Zehenspitzen- und Hackengang möglich. ",
+              "abweichung": "{was} {ls} nicht möglich{verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Zehenspitzengang",
+                    "Hackengang",
+                    "Zehenspitzen- und Hackengang"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite"
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sensibilitaet",
+              "chip": "Sensibilitätsminderung",
+              "gruppe": "Neurologie",
+              "normal": "Keine Sensibilitätsminderung an den Beinen. ",
+              "abweichung": "Sensibilitätsminderung {ls} {wo}{verlauf}. ",
+              "slots": [
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "am Oberschenkel vorn",
+                    "am Unterschenkel innen",
+                    "am Fußrücken und an der Großzehe",
+                    "am Fußaußenrand und an der Fußsohle"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "reflexe",
+              "chip": "Reflexe",
+              "gruppe": "Neurologie",
+              "selten": true,
+              "normal": "Patellarsehnenreflex und Achillessehnenreflex seitengleich auslösbar. ",
+              "abweichung": "{reflex} {ls} {wie}{verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "reflex",
+                  "label": "Reflex",
+                  "optionen": [
+                    "",
+                    "Patellarsehnenreflex",
+                    "Achillessehnenreflex"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "abgeschwächt",
+                    "nicht auslösbar"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "reithose",
+              "chip": "Sensibilität perianal und im Reithosengebiet",
+              "gruppe": "Neurologie",
+              "normal": "Sensibilität perianal und im Reithosengebiet intakt. ",
+              "abweichung": "Sensibilität perianal und im Reithosengebiet {wie}{verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "herabgesetzt",
+                    "aufgehoben",
+                    "seitendifferent"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "blase",
+              "chip": "Blasen- und Mastdarmfunktion",
+              "gruppe": "Neurologie",
+              "normal": "Blasen- und Mastdarmfunktion ungestört. ",
+              "abweichung": "{was}{verlauf}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Störung der Blasenentleerung",
+                    "Harnverhalt, Blasenkatheter eingelegt",
+                    "Unwillkürlicher Urinabgang",
+                    "Störung der Blasen- und Mastdarmfunktion"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verlauf",
+                  "label": "Verlauf",
+                  "optionen": [
+                    "",
+                    ", gegenüber der Aufnahme gebessert",
+                    ", gegenüber der Aufnahme unverändert",
+                    ", gegenüber der Aufnahme verschlechtert",
+                    ", neu seit der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "restharn",
+              "chip": "Restharn sonografisch",
+              "gruppe": "Neurologie",
+              "selten": true,
+              "normal": "Kein Restharn in der sonografischen Messung nach dem Wasserlassen. ",
+              "abweichung": "Restharn {ml} in der sonografischen Messung nach dem Wasserlassen. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "ml",
+                  "label": "Restharn",
+                  "einheit": "ml",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-st-lumboischialgie-ambulant",
+          "titel": "Lumboischialgie: konservative Behandlung ambulant fortführen",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "weiter",
+              "label": "Konservativ ambulant",
+              "an": true,
+              "text": "Konservative Behandlung ambulant fortführen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verhalten",
+              "label": "Aktiv bleiben, keine Bettruhe",
+              "an": true,
+              "text": "Körperlich aktiv bleiben und die gewohnten Tätigkeiten fortführen, soweit die Schmerzen es zulassen. Keine Bettruhe."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Fußheberorthese",
+              "text": "Fußheberorthese {seite} beim Gehen tragen, bis die Fußhebung wieder kräftig ist."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schmerzmittel",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "Schmerzmittel siehe Medikation, {plan}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "plan",
+                  "label": "Plan",
+                  "optionen": [
+                    "",
+                    "Verringerung nach Abklingen der Schmerzen in der Hausarztpraxis",
+                    "schrittweise Verringerung nach beigefügtem Plan",
+                    "unverändert bis zur nächsten Kontrolle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "opioid",
+              "label": "Opioid verringern und absetzen",
+              "text": "{wirkstoff} innerhalb von {frist} nach der Entlassung in der Hausarztpraxis schrittweise verringern und absetzen. Solange {wirkstoff} eingenommen wird, kein Führen von Fahrzeugen.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Opioid (Wirkstoff)",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "7 Tagen",
+                    "14 Tagen",
+                    "4 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kortikoid",
+              "label": "Kortikoid ausschleichen",
+              "text": "{wirkstoff} nach Plan bis einschließlich {bis} verringern und absetzen, siehe Medikation.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Kortikoid (Wirkstoff)",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "bis",
+                  "label": "Bis wann (Datum)",
+                  "maxLen": 20,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Vorbestehende gerinnungshemmende Medikation fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe bis zur ausreichenden Mobilität (überwiegender Teil des Tages außerhalb des Betts)."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "siehe-medikation",
+              "label": "Verweis auf Medikation",
+              "text": " Wirkstoff und Dosis siehe Medikation."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Klinische Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle mit neurologischer Untersuchung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "2 bis 3 Tage nach der Entlassung",
+                    "1 Woche nach der Entlassung",
+                    "2 Wochen nach der Entlassung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der neurochirurgischen Praxis"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mrt",
+              "label": "MRT ambulant",
+              "text": "MRT der Lendenwirbelsäule über die weiterbehandelnde Praxis, {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "innerhalb von 1 Woche",
+                    "wenn die Beschwerden nach 4 Wochen anhalten",
+                    "wenn die Beschwerden nach 6 Wochen anhalten"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "operation",
+              "label": "Wann zur Prüfung einer Operation",
+              "an": true,
+              "text": "Vorstellung in der wirbelsäulenchirurgischen oder neurochirurgischen Sprechstunde zur Prüfung einer Operation, {wenn}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wenn",
+                  "label": "Wenn",
+                  "optionen": [
+                    "",
+                    "wenn die Beinschmerzen nach 6 Wochen konservativer Behandlung nicht deutlich nachgelassen haben",
+                    "wenn die Beinschmerzen nach 12 Wochen konservativer Behandlung nicht deutlich nachgelassen haben",
+                    "wenn sich die Lähmung nach 6 Wochen nicht gebessert hat"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "an": true,
+              "text": "Physiotherapie{inhalt}. {verordnung}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "inhalt",
+                  "label": "Inhalt",
+                  "optionen": [
+                    "",
+                    " mit Kräftigung der Rumpfmuskulatur",
+                    " mit Haltungs- und Bewegungsschulung",
+                    " mit Kräftigung der Rumpfmuskulatur und Haltungsschulung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verordnung",
+                  "label": "Verordnung",
+                  "optionen": [
+                    "",
+                    "Eine Verordnung haben wir mitgegeben.",
+                    "Verordnung durch die weiterbehandelnde Praxis."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "reha",
+              "label": "Rehabilitation",
+              "text": "{art} {status}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art",
+                  "optionen": [
+                    "",
+                    "Rehabilitation",
+                    "Ambulante Rehabilitation",
+                    "Stationäre Rehabilitation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "status",
+                  "label": "Stand",
+                  "optionen": [
+                    "",
+                    "ist beantragt",
+                    "ist beantragt, die Kostenzusage steht aus",
+                    "ist bewilligt, den Beginn teilt die Klinik mit",
+                    "ist über die Hausarztpraxis zu beantragen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": true,
+              "text": "Arbeitsunfähigkeit: {art} {bis}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "keine Bescheinigung erforderlich",
+                    "von uns bescheinigt",
+                    "von uns nicht bescheinigt, Beurteilung durch die Hausarztpraxis"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "bis",
+                  "label": "Bei Bescheinigung: Ende, z. B. bis einschließlich 09.10.2026",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: neuer oder zunehmender Lähmung oder Schwäche im Bein oder Fuß, Taubheitsgefühl im Gesäß- oder Genitalbereich, Harnverhalt oder ungewolltem Abgang von Urin oder Stuhl, Schmerzen, die trotz Schmerzmitteln nicht auszuhalten sind, Fieber."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-st-lumboischialgie-sprechstunde",
+          "titel": "Lumboischialgie: Vorstellung in der Wirbelsäulenchirurgie",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "vorstellung",
+              "label": "Vorstellung in der Wirbelsäulenchirurgie",
+              "an": true,
+              "text": "Vorstellung in der {wo} {wann}{bilder} {wozu}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "wirbelsäulenchirurgischen Sprechstunde unseres Hauses",
+                    "neurochirurgischen Sprechstunde unseres Hauses",
+                    "wirbelsäulenchirurgischen Sprechstunde",
+                    "neurochirurgischen Sprechstunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wann (Frist oder Termin)",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "innerhalb von 1 Woche",
+                    "innerhalb von 2 Wochen",
+                    "am vereinbarten Termin"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "bilder",
+                  "label": "Bilder",
+                  "optionen": [
+                    "",
+                    " mit den MRT-Bildern",
+                    " mit den CT-Bildern"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wozu",
+                  "label": "Wozu",
+                  "optionen": [
+                    "",
+                    "zur Prüfung einer Operation",
+                    "zur Planung der vereinbarten Operation",
+                    "zur Besprechung des weiteren Vorgehens"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "termin",
+              "label": "Termin",
+              "an": true,
+              "text": "Der Termin {status}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "status",
+                  "label": "Termin",
+                  "optionen": [
+                    "",
+                    "ist vereinbart",
+                    "ist noch zu vereinbaren, eine Überweisung haben wir mitgegeben",
+                    "ist über die Hausarztpraxis zu vereinbaren"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verhalten",
+              "label": "Aktiv bleiben, keine Bettruhe",
+              "an": true,
+              "text": "Körperlich aktiv bleiben und die gewohnten Tätigkeiten fortführen, soweit die Schmerzen es zulassen. Keine Bettruhe."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "orthese",
+              "label": "Fußheberorthese",
+              "text": "Fußheberorthese {seite} beim Gehen tragen, bis die Fußhebung wieder kräftig ist."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schmerzmittel",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "Schmerzmittel siehe Medikation, {plan}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "plan",
+                  "label": "Plan",
+                  "optionen": [
+                    "",
+                    "Verringerung nach Abklingen der Schmerzen in der Hausarztpraxis",
+                    "schrittweise Verringerung nach beigefügtem Plan",
+                    "unverändert bis zur nächsten Kontrolle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "opioid",
+              "label": "Opioid verringern und absetzen",
+              "text": "{wirkstoff} innerhalb von {frist} nach der Entlassung in der Hausarztpraxis schrittweise verringern und absetzen. Solange {wirkstoff} eingenommen wird, kein Führen von Fahrzeugen.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Opioid (Wirkstoff)",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "7 Tagen",
+                    "14 Tagen",
+                    "4 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kortikoid",
+              "label": "Kortikoid ausschleichen",
+              "text": "{wirkstoff} nach Plan bis einschließlich {bis} verringern und absetzen, siehe Medikation.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Kortikoid (Wirkstoff)",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "bis",
+                  "label": "Bis wann (Datum)",
+                  "maxLen": 20,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Vorbestehende gerinnungshemmende Medikation fortführen, keine zusätzliche Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe bis zur ausreichenden Mobilität (überwiegender Teil des Tages außerhalb des Betts)."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "siehe-medikation",
+              "label": "Verweis auf Medikation",
+              "text": " Wirkstoff und Dosis siehe Medikation."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Klinische Kontrolle",
+              "text": "Klinische Kontrolle mit neurologischer Untersuchung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "2 bis 3 Tage nach der Entlassung",
+                    "1 Woche nach der Entlassung",
+                    "2 Wochen nach der Entlassung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der neurochirurgischen Praxis"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "an": true,
+              "text": "Physiotherapie{inhalt}. {verordnung}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "inhalt",
+                  "label": "Inhalt",
+                  "optionen": [
+                    "",
+                    " mit Kräftigung der Rumpfmuskulatur",
+                    " mit Haltungs- und Bewegungsschulung",
+                    " mit Kräftigung der Rumpfmuskulatur und Haltungsschulung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "verordnung",
+                  "label": "Verordnung",
+                  "optionen": [
+                    "",
+                    "Eine Verordnung haben wir mitgegeben.",
+                    "Verordnung durch die weiterbehandelnde Praxis."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "reha",
+              "label": "Rehabilitation",
+              "text": "{art} {status}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art",
+                  "optionen": [
+                    "",
+                    "Rehabilitation",
+                    "Ambulante Rehabilitation",
+                    "Stationäre Rehabilitation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "status",
+                  "label": "Stand",
+                  "optionen": [
+                    "",
+                    "ist beantragt",
+                    "ist beantragt, die Kostenzusage steht aus",
+                    "ist bewilligt, den Beginn teilt die Klinik mit",
+                    "ist über die Hausarztpraxis zu beantragen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": true,
+              "text": "Arbeitsunfähigkeit: {art} {bis}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "keine Bescheinigung erforderlich",
+                    "von uns bescheinigt",
+                    "von uns nicht bescheinigt, Beurteilung durch die Hausarztpraxis"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "bis",
+                  "label": "Bei Bescheinigung: Ende, z. B. bis einschließlich 09.10.2026",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: neuer oder zunehmender Lähmung oder Schwäche im Bein oder Fuß, Taubheitsgefühl im Gesäß- oder Genitalbereich, Harnverhalt oder ungewolltem Abgang von Urin oder Stuhl, Schmerzen, die trotz Schmerzmitteln nicht auszuhalten sind, Fieber."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-st-lumboischialgie-verlegung",
+          "titel": "Lumboischialgie: Verlegung zur Operation",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verlegung",
+              "label": "Verlegung zur Operation",
+              "an": true,
+              "text": "Verlegung {wohin} zur operativen Behandlung {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wohin",
+                  "label": "Wohin",
+                  "optionen": [
+                    "",
+                    "in die Wirbelsäulenchirurgie unseres Hauses",
+                    "in die Neurochirurgie unseres Hauses",
+                    "in die Wirbelsäulenchirurgie eines anderen Krankenhauses",
+                    "in die Neurochirurgie eines anderen Krankenhauses"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "bei Verdacht auf ein Kaudasyndrom",
+                    "bei höhergradiger oder zunehmender Lähmung",
+                    "bei unter konservativer Behandlung nicht beherrschbaren Schmerzen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "uebernahme",
+              "label": "Übernahme",
+              "an": true,
+              "text": "Übernahme {wann} nach Absprache mit der aufnehmenden Abteilung.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Wann",
+                  "optionen": [
+                    "",
+                    "notfallmäßig",
+                    "am Verlegungstag",
+                    "zum vereinbarten Termin"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "transport",
+              "label": "Transport",
+              "text": "Transport {womit}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "womit",
+                  "label": "Transport",
+                  "optionen": [
+                    "",
+                    "liegend mit dem Rettungsdienst",
+                    "liegend mit dem Krankentransport",
+                    "sitzend mit dem Krankentransport"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Letzte Gabe gerinnungshemmender Medikamente",
+              "an": true,
+              "text": "Letzte Gabe gerinnungshemmender Medikamente oder der Thromboseprophylaxe: {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Wirkstoff und Zeitpunkt, z. B. Enoxaparin am 17.10.2026 um 18 Uhr",
+                  "maxLen": 80,
+                  "required": true,
+                  "vorschlaege": [
+                    "keine"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern seit",
+              "text": "Nüchtern seit {wann}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Zeitpunkt, z. B. 17.10.2026, 22 Uhr",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "neuro",
+              "label": "Verweis neurologischer Befund",
+              "an": true,
+              "text": "Neurologischer Befund bei Verlegung siehe Entlassbefund."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mitgegeben",
+              "label": "Mitgegeben",
+              "an": true,
+              "text": "Mitgegeben: {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Mitgegeben",
+                  "optionen": [
+                    "",
+                    "MRT-Bilder auf Datenträger und Medikationsplan",
+                    "MRT-Bilder digital übermittelt, Medikationsplan mitgegeben",
+                    "Medikationsplan"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

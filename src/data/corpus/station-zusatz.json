@@ -1,0 +1,1200 @@
+{
+  "regionen": [
+    {
+      "id": "brief-station",
+      "name": "Entlassbrief",
+      "kuerzel": "🏥",
+      "bausteine": [
+        {
+          "id": "proc-st-verhalten",
+          "titel": "Ruhigstellung und Verhalten",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Schiene, Orthese oder Verband mit Dauer",
+              "text": "{was} {seite} für {dauer} tragen{abnehmbar}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Was",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Unterarmgipsschiene",
+                    "Unterarmorthese",
+                    "Oberarmgipsschiene",
+                    "Gilchrist-Verband",
+                    "Armschlinge",
+                    "Unterschenkelorthese",
+                    "Unterschenkelgipsschiene",
+                    "Kniestreckschiene",
+                    "Knieorthese"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "2 Wochen nach der Operation",
+                    "4 Wochen nach der Operation",
+                    "6 Wochen nach der Operation",
+                    "2 Wochen nach dem Unfall",
+                    "4 Wochen nach dem Unfall",
+                    "6 Wochen nach dem Unfall",
+                    "die Zeit bis zur nächsten Kontrolle"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "abnehmbar",
+                  "label": "Tragen",
+                  "optionen": [
+                    "",
+                    ", für Körperpflege und Bewegungsübungen abnehmbar",
+                    ", Tag und Nacht"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "luxation",
+              "label": "Bewegungsregeln nach Hüftprothese",
+              "text": "{regeln}{dauer}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "regeln",
+                  "label": "Regeln",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Keine Einschränkung der Hüftbeweglichkeit",
+                    "Zur Vorbeugung einer Luxation (dorsaler Zugang): Hüfte nicht über 90° beugen, Beine nicht übereinanderschlagen, das operierte Bein nicht nach innen drehen",
+                    "Zur Vorbeugung einer Luxation (vorderer oder seitlicher Zugang): Hüfte nicht überstrecken, das operierte Bein nicht nach außen drehen",
+                    "Zur Vorbeugung einer Luxation: tiefes Sitzen und Hocken vermeiden, Beine nicht übereinanderschlagen"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 6 Wochen nach der Operation",
+                    " für 12 Wochen nach der Operation"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sitzen",
+              "label": "Sitzerhöhung, Schlafen in Rückenlage",
+              "text": "Sitzen mit Sitzerhöhung und Schlafen in Rückenlage für {dauer} nach der Operation. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "6 Wochen",
+                    "12 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "knie-beugung",
+              "label": "Bewegungsziel nach Knieprothese",
+              "text": "Beugung und Streckung des Kniegelenks {seite} mehrmals täglich üben, Ziel: Beugung von mindestens {grad}° bis {wann} nach der Operation. Kein Kissen unter die Kniekehle legen. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "grad",
+                  "label": "Beugung in Grad",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Bis wann",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "2 Wochen",
+                    "6 Wochen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "finger",
+              "label": "Finger, Ellenbogen, Schulter bewegen",
+              "text": "Finger, Ellenbogen und Schulter {seite} mehrmals täglich bewegen. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "heben",
+              "label": "Nicht heben, nicht bücken",
+              "text": "Für {dauer} nicht schwer heben und nicht tief bücken. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "6 Wochen nach dem Unfall",
+                    "12 Wochen nach dem Unfall",
+                    "6 Wochen nach der Operation",
+                    "12 Wochen nach der Operation",
+                    "6 Wochen nach der Aufnahme",
+                    "12 Wochen nach der Aufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "atem",
+              "label": "Atemübungen",
+              "text": "Atemübungen mit dem Atemtrainer mehrmals täglich. Schmerzmittel so einnehmen, dass tiefes Durchatmen und Abhusten möglich sind. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "flug",
+              "label": "Keine Flugreise, kein Tauchen",
+              "text": "Keine Flugreise und kein Tauchen für {dauer}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "6 Wochen nach dem Röntgenbild ohne Pneumothorax",
+                    "6 Wochen nach dem Unfall",
+                    "die Zeit bis zur ärztlichen Freigabe"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum bis wann",
+              "text": "{wirkstoff} bis einschließlich {bis} einnehmen, siehe Medikation. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "bis",
+                  "label": "Bis wann: Datum oder Tag nach der Operation",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "rumpforthese",
+              "label": "Rumpforthese ja oder nein",
+              "text": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Rumpforthese",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Keine Rumpforthese",
+                    "Rumpforthese zur Schmerzlinderung beim Sitzen und Gehen, nicht im Liegen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kein-antibiotikum",
+              "label": "Kein Antibiotikum nötig",
+              "text": "Eine antibiotische Behandlung ist nicht nötig. "
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "opioid",
+              "label": "Opioid verringern und absetzen",
+              "text": "{wirkstoff} innerhalb von {frist} nach der Entlassung in der Hausarztpraxis schrittweise verringern und absetzen. Solange {wirkstoff} eingenommen wird, kein Führen von Fahrzeugen. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Opioid (Wirkstoff)",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "7 Tagen",
+                    "14 Tagen",
+                    "4 Wochen"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-arm",
+          "titel": "Entlassbefund Hand und Arm",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "faustschluss",
+              "chip": "Faustschluss und Finger",
+              "gruppe": "Hand und Finger",
+              "normal": "Faustschluss vollständig, Finger frei beweglich. ",
+              "abweichung": "Faustschluss {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Faustschluss",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "unvollständig",
+                    "schmerzbedingt eingeschränkt",
+                    "wegen Schwellung der Finger eingeschränkt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schiene",
+              "chip": "Schiene oder Orthese",
+              "gruppe": "Hand und Finger",
+              "selten": true,
+              "normal": "Schiene sitzt ohne Druckstellen. ",
+              "abweichung": "Schiene: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund an der Schiene",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "nachbargelenke",
+              "chip": "Schulter und Ellenbogen",
+              "gruppe": "Beweglichkeit",
+              "selten": true,
+              "normal": "Schulter und Ellenbogen frei beweglich. ",
+              "abweichung": "Beweglichkeit eingeschränkt: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Welches Gelenk, wie weit",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-beinlaenge",
+          "titel": "Entlassbefund Beinlänge",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "beinlaenge",
+              "chip": "Beinlänge",
+              "gruppe": "Inspektion",
+              "normal": "Beinlänge klinisch seitengleich. ",
+              "abweichung": "Beinlängendifferenz: operiertes Bein um etwa {cm} {wie}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "cm",
+                  "label": "Unterschied",
+                  "einheit": "cm",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Richtung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "länger",
+                    "kürzer"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-st-ws-fraktur",
+          "titel": "Aufnahmebefund Wirbelsäule bei Fraktur",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Wirbelsäule: "
+            },
+            {
+              "art": "befund",
+              "id": "klopfschmerz",
+              "chip": "Klopf- und Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Klopf- oder Druckschmerz über den Dornfortsätzen. ",
+              "abweichung": "Klopf- und Druckschmerz über {hoehe}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "hoehe",
+                  "label": "Höhe, z. B. LWK 1",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "inspektion",
+              "chip": "Prellmarken, Fehlstellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Prellmarken, keine sichtbare Fehlstellung. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund der Inspektion",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "stehen",
+              "chip": "Stehen und Gehen",
+              "gruppe": "Mobilität",
+              "normal": "Stehen und Gehen ohne Hilfe möglich. ",
+              "abweichung": "{wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Mobilität",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Stehen und Gehen schmerzbedingt nur mit Hilfe möglich",
+                    "Stehen und Gehen schmerzbedingt nicht möglich",
+                    "Mobilisation nur an die Bettkante möglich"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kraft",
+              "chip": "Kraft der Beine",
+              "gruppe": "Neurologie",
+              "normal": "Kraft an beiden Beinen voll, keine Paresen. ",
+              "abweichung": "Kraftminderung {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Wo und wie stark",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sensibilitaet",
+              "chip": "Sensibilität Beine und perianal",
+              "gruppe": "Neurologie",
+              "normal": "Sensibilität an beiden Beinen und perianal intakt. ",
+              "abweichung": "Sensibilitätsstörung {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Wo",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "blase",
+              "chip": "Blasen- und Mastdarmfunktion",
+              "gruppe": "Neurologie",
+              "normal": "Blasen- und Mastdarmfunktion ungestört. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Störung von Blase oder Mastdarm",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "beweglichkeit",
+              "label": "Beweglichkeit nicht geprüft",
+              "gruppe": "Beweglichkeit",
+              "text": "Beweglichkeit der Wirbelsäule bei Fraktur nicht geprüft. "
+            }
+          ]
+        },
+        {
+          "id": "eb-st-neuro",
+          "titel": "Entlassbefund Neurologie der Beine",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "neuro",
+              "chip": "Kraft, Sensibilität, Blase und Mastdarm",
+              "gruppe": "Neurologie",
+              "normal": "Kraft und Sensibilität an beiden Beinen intakt, Blasen- und Mastdarmfunktion ungestört. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Neurologischer Befund",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "verl-st-infekt",
+          "titel": "Verlauf: Wunde, Erreger, Antibiotikum bei Infekt",
+          "typ": "verlauf",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "wunde",
+              "label": "Wundbehandlung",
+              "an": true,
+              "text": "{wie} ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wundbehandlung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Die Wunde behandelten wir offen; bei Entlassung war sie sauber und granulierte.",
+                    "Die Wunde behandelten wir zunächst offen und verschlossen sie sekundär; danach heilte sie trocken und reizlos.",
+                    "Die Wunde heilte nach primärem Verschluss trocken und reizlos."
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "erreger",
+              "label": "Erregernachweis",
+              "an": true,
+              "text": "{was} ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Abstrich: Erreger und Empfindlichkeit, oder „Der Abstrich blieb ohne Erregernachweis.“ (ganzer Satz)",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Der Abstrich blieb ohne Erregernachweis.",
+                    "Das Ergebnis des Abstrichs steht aus.",
+                    "Einen Abstrich haben wir nicht entnommen."
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotische Behandlung",
+              "an": true,
+              "text": "{was} ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Antibiotikum im Aufenthalt: Wirkstoff, Gabe, von wann bis wann (ganzer Satz)",
+                  "maxLen": 240,
+                  "required": true,
+                  "vorschlaege": [
+                    "Eine antibiotische Behandlung war nicht nötig."
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-infekt",
+          "titel": "Entlassbefund Infektzeichen",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "zeichen",
+              "chip": "Rötung, Überwärmung, Lymphangitis",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung der Umgebung, keine Überwärmung, keine Lymphangitis. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Verbliebene Infektzeichen mit Ausdehnung",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "eb-st-lunge",
+          "titel": "Entlassbefund Lunge",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "lunge",
+              "chip": "Atmung und Atemgeräusch",
+              "gruppe": "Lunge",
+              "normal": "Keine Atemnot in Ruhe, Atemgeräusch seitengleich. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund der Lunge",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "spo2",
+              "label": "Sauerstoffsättigung ohne Sauerstoffgabe",
+              "gruppe": "Lunge",
+              "vorlage": "Sauerstoffsättigung {w} % ohne Sauerstoffgabe. ",
+              "normal": ""
+            }
+          ]
+        },
+        {
+          "id": "bef-st-oertlich",
+          "titel": "Aufnahmebefund örtlich (frei)",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Region des örtlichen Befunds",
+              "required": true
+            },
+            {
+              "id": "befund",
+              "typ": "freitext",
+              "label": "Örtlicher Befund bei Aufnahme: Inspektion, Palpation, Beweglichkeit, Durchblutung, Motorik, Sensibilität",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "befund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "eb-st-oertlich",
+          "titel": "Entlassbefund örtlich und neurologisch (frei)",
+          "typ": "befund",
+          "abschnitt": "entlassbefund",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Region des örtlichen Befunds",
+              "required": true
+            },
+            {
+              "id": "befund",
+              "typ": "freitext",
+              "label": "Örtlicher und neurologischer Befund bei Entlassung",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "befund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "dgn-st-roentgen-postop-verzicht",
+          "titel": "Keine Röntgenkontrolle nach der Operation",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Eine Röntgenkontrolle nach der Operation war nicht nötig."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "huefte",
+      "name": "Hüfte & Oberschenkel",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "bef-st-huefte-elektiv",
+          "titel": "Aufnahmebefund Hüfte vor Gelenkersatz",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Hüfte "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "druckschmerz",
+              "chip": "Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz in der Leiste und über dem Trochanter major. ",
+              "abweichung": "Druckschmerz {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "in der Leiste",
+                    "über dem Trochanter major",
+                    "in der Leiste und über dem Trochanter major"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "extflex",
+              "label": "Extension/Flexion",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Extension/Flexion {w}°. ",
+              "normal": ""
+            },
+            {
+              "art": "messwert",
+              "id": "rotation",
+              "label": "Außenrotation/Innenrotation",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Außenrotation/Innenrotation {w}°. ",
+              "normal": ""
+            },
+            {
+              "art": "befund",
+              "id": "bewegungsschmerz",
+              "chip": "Bewegungsschmerz",
+              "gruppe": "Beweglichkeit",
+              "normal": "Bewegungen schmerzfrei. ",
+              "abweichung": "{was} schmerzhaft. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Bewegung",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Innenrotation",
+                    "Innen- und Außenrotation",
+                    "Endgradige Beugung",
+                    "Alle Bewegungen endgradig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gang",
+              "chip": "Gangbild",
+              "gruppe": "Gangbild",
+              "normal": "Gangbild flüssig, kein Hinken. ",
+              "abweichung": "{was} {seite}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Hinken",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Schonhinken",
+                    "Verkürzungshinken",
+                    "Hinken mit Absinken des Beckens zur Gegenseite"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "beinlaenge",
+              "chip": "Beinlänge",
+              "gruppe": "Inspektion",
+              "normal": "Beinlänge seitengleich. ",
+              "abweichung": "Beinverkürzung {seite} um etwa {cm}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "cm",
+                  "label": "Verkürzung",
+                  "einheit": "cm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut im Operationsgebiet",
+              "gruppe": "Inspektion",
+              "normal": "Haut im Operationsgebiet reizlos. ",
+              "abweichung": "Haut im Operationsgebiet: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Hautbefund",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität am Bein {seite} intakt. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund zu Durchblutung, Motorik, Sensibilität",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "knie",
+      "name": "Knie",
+      "kuerzel": "🦵",
+      "bausteine": [
+        {
+          "id": "bef-st-knie-elektiv",
+          "titel": "Aufnahmebefund Knie vor Gelenkersatz",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Knie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "achse",
+              "chip": "Beinachse",
+              "gruppe": "Inspektion",
+              "normal": "Beinachse gerade. ",
+              "abweichung": "{was} des Kniegelenks. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Achse",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Varusfehlstellung",
+                    "Valgusfehlstellung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "erguss",
+              "chip": "Erguss",
+              "gruppe": "Inspektion",
+              "normal": "Kein Erguss. ",
+              "abweichung": "{grad} Erguss. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Geringer",
+                    "Deutlicher"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "druckschmerz",
+              "chip": "Druckschmerz Gelenkspalt",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über den Gelenkspalten. ",
+              "abweichung": "Druckschmerz über dem {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "medialen Gelenkspalt",
+                    "lateralen Gelenkspalt",
+                    "medialen und lateralen Gelenkspalt",
+                    "Rand der Kniescheibe"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "extflex",
+              "label": "Extension/Flexion",
+              "gruppe": "Beweglichkeit",
+              "vorlage": "Extension/Flexion {w}°. ",
+              "normal": ""
+            },
+            {
+              "art": "befund",
+              "id": "baender",
+              "chip": "Seitenbänder",
+              "gruppe": "Stabilität",
+              "normal": "Seitenbänder stabil. ",
+              "abweichung": "Seitenbänder: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund der Seitenbänder",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gang",
+              "chip": "Gangbild",
+              "gruppe": "Gangbild",
+              "normal": "Gangbild flüssig, kein Hinken. ",
+              "abweichung": "Hinken {seite}. "
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut im Operationsgebiet",
+              "gruppe": "Inspektion",
+              "normal": "Haut im Operationsgebiet reizlos. ",
+              "abweichung": "Haut im Operationsgebiet: {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Hautbefund",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität am Bein {seite} intakt. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Befund zu Durchblutung, Motorik, Sensibilität",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "osg",
+      "name": "OSG",
+      "kuerzel": "🦶",
+      "bausteine": [
+        {
+          "id": "bef-st-osg-fraktur",
+          "titel": "Aufnahmebefund Sprunggelenkfraktur: Stellung und Haut",
+          "typ": "befund",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Fehlstellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine sichtbare Fehlstellung des Sprunggelenks. ",
+              "abweichung": "Sichtbare Fehlstellung des Sprunggelenks {seite}{richtung}{reposition}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "richtung",
+                  "label": "Richtung",
+                  "optionen": [
+                    "",
+                    " nach außen",
+                    " nach innen",
+                    " nach hinten"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "reposition",
+                  "label": "Nach Reposition",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    ", nach Reposition achsgerecht",
+                    ", Reposition nicht gelungen",
+                    ", nicht reponiert"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hautspannung",
+              "chip": "Hautspannung, Spannungsblasen",
+              "gruppe": "Inspektion",
+              "normal": "Haut über den Knöcheln nicht gespannt, keine Spannungsblasen. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Haut",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Haut über dem Innenknöchel gespannt",
+                    "Haut über dem Außenknöchel gespannt",
+                    "Spannungsblasen",
+                    "Haut gespannt und Spannungsblasen"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

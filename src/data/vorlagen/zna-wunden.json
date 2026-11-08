@@ -1,0 +1,436 @@
+{
+  "vorlagen": [
+    {
+      "setting": "zna",
+      "id": "zna-prellung",
+      "titel": "Prellung allgemein",
+      "suchbegriffe": [
+        "Kontusion",
+        "Hämatom",
+        "blauer Fleck",
+        "Anpralltrauma",
+        "Oberschenkelprellung"
+      ],
+      "region": "weichteile",
+      "abschnitte": {
+        "diagnose": [
+          "dx-prellung"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-tetanus-letzte-impfung"
+        ],
+        "befund": [
+          "bef-prellung"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "entscheiden": [
+        "bef-prellung/schwellung",
+        "bef-prellung/haematom",
+        "bef-prellung/haut",
+        "bef-prellung/druckschmerz",
+        "bef-prellung/knochen",
+        "bef-prellung/beweglichkeit",
+        "bef-prellung/belastung"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Es sei zu einem Stolpersturz im häuslichen Umfeld gekommen.",
+          "Es sei zu einem Sturz aus dem Stand gekommen.",
+          "Es sei zu einem Anprall gegen eine Kante gekommen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Beim Sport sei es zu einem Zusammenprall mit einem Gegenspieler gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion 10/2026 nach Recherche R2",
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen oder Verzicht?",
+          "bausteine": [
+            "dgn-roentgen",
+            "dgn-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Entlassung, feste Kontrolle oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-prellung",
+            "proc-prellung-kontrolle",
+            "proc-prellung-aufnahme"
+          ]
+        }
+      ]
+    },
+    {
+      "setting": "zna",
+      "id": "zna-wunde",
+      "titel": "Schnittwunde, Riss-Quetschwunde",
+      "suchbegriffe": [
+        "Platzwunde",
+        "Wunde",
+        "Wundversorgung",
+        "Naht",
+        "Stichwunde",
+        "Schürfwunde",
+        "Schnittverletzung"
+      ],
+      "kuerzel": [
+        "rqw"
+      ],
+      "region": "wunden",
+      "abschnitte": {
+        "diagnose": [
+          "dx-wunde"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-tetanus-letzte-impfung"
+        ],
+        "befund": [
+          "bef-wunde"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-wunde-versorgung"
+        ]
+      },
+      "entscheiden": [
+        "bef-wunde/laenge",
+        "bef-wunde/wundraender",
+        "bef-wunde/verschmutzung",
+        "bef-wunde/wundgrund",
+        "bef-wunde/tiefe",
+        "bef-wunde/sehnen",
+        "bef-wunde/sensibilitaet"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Schneiden von Lebensmitteln sei das Messer abgerutscht.",
+          "Es sei zu einem Anprall gegen eine Kante gekommen.",
+          "Beim Abwaschen sei ein Glas zerbrochen.",
+          "Es sei zu einem Sturz mit dem Fahrrad gekommen.",
+          "Bei der Arbeit sei es zu einem Kontakt mit einer scharfen Blechkante gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion 10/2026 nach Recherche R2",
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen, Sonografie oder Verzicht?",
+          "bausteine": [
+            "dgn-wunde-roentgen",
+            "dgn-wunde-sono",
+            "dgn-wunde-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Versorgung, Operation oder Verlegung?",
+          "bausteine": [
+            "proc-wunde",
+            "proc-wunde-aufnahme",
+            "proc-wunde-verlegung"
+          ]
+        }
+      ],
+      "vorgaben": {
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-wunde-versorgung/tetanus"
+        ]
+      }
+    },
+    {
+      "setting": "zna",
+      "id": "zna-bissverletzung",
+      "titel": "Bissverletzung",
+      "suchbegriffe": [
+        "Hundebiss",
+        "Katzenbiss",
+        "Menschenbiss",
+        "Tierbiss",
+        "Biss"
+      ],
+      "region": "wunden",
+      "abschnitte": {
+        "diagnose": [
+          "dx-biss"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-biss"
+        ],
+        "befund": [
+          "bef-biss"
+        ],
+        "therapie": [
+          "th-zna",
+          "th-biss"
+        ]
+      },
+      "entscheiden": [
+        "ana-biss/risiko",
+        "bef-biss/tiefe",
+        "bef-biss/roetung",
+        "bef-biss/schwellung",
+        "bef-biss/lymphangitis",
+        "bef-biss/sehnenscheide",
+        "bef-biss/gelenk",
+        "bef-biss/sehnen",
+        "bef-biss/sensibilitaet",
+        "bef-biss/durchblutung"
+      ],
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Beim Streicheln eines Tieres sei es zu einem Biss gekommen.",
+          "Beim Spielen mit einem Tier sei es zu einem Biss gekommen.",
+          "Beim Trennen zweier raufender Tiere sei es zu einem Biss gekommen.",
+          "Beim Hochheben eines Tieres sei es zu einem Biss gekommen.",
+          "Beim Füttern eines Tieres sei es zu einem Biss gekommen."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion 10/2026 nach Recherche R2",
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen, Sonografie oder Verzicht?",
+          "bausteine": [
+            "dgn-wunde-roentgen",
+            "dgn-wunde-sono",
+            "dgn-wunde-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Behandlung oder Operation?",
+          "bausteine": [
+            "proc-biss",
+            "proc-biss-aufnahme",
+            "proc-wunde-verlegung",
+            "proc-biss-op-abgelehnt"
+          ]
+        }
+      ],
+      "vorgaben": {
+        "aus": [
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-biss/tetanus"
+        ]
+      }
+    },
+    {
+      "setting": "zna",
+      "id": "zna-weichteilinfekt",
+      "titel": "Weichteilinfekt, Abszess",
+      "suchbegriffe": [
+        "Abszessspaltung",
+        "Phlegmone",
+        "Erysipel",
+        "Wundinfektion",
+        "infizierte Wunde",
+        "Atherom",
+        "Insektenstich",
+        "Eiter",
+        "Furunkel"
+      ],
+      "region": "weichteile",
+      "abschnitte": {
+        "diagnose": [
+          "dx-weichteilinfekt"
+        ],
+        "anamnese": [
+          "ana-beschwerden",
+          "ana-weichteilinfekt"
+        ],
+        "befund": [
+          "bef-weichteilinfekt"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "entscheiden": [
+        "bef-weichteilinfekt/roetung",
+        "bef-weichteilinfekt/schwellung",
+        "bef-weichteilinfekt/lymphangitis",
+        "bef-weichteilinfekt/ueberwaermung",
+        "bef-weichteilinfekt/fluktuation",
+        "bef-weichteilinfekt/druckschmerz",
+        "bef-weichteilinfekt/gelenk",
+        "bef-weichteilinfekt/temperatur",
+        "bef-weichteilinfekt/sehnenscheide",
+        "ana-weichteilinfekt/risiko",
+        "ana-weichteilinfekt/implantat"
+      ],
+      "vorgaben": {
+        "aus": [
+          "ana-beschwerden/kein-unfall",
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-abszess/tetanus",
+          "th-weichteilinfekt-konservativ/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-beschwerden/beschwerden": [
+          "Es sei eine schmerzhafte Schwellung aufgetreten.",
+          "Eine Rötung der Haut habe sich ausgebreitet.",
+          "Die Schwellung habe rasch zugenommen.",
+          "Der Schmerz sei pochend.",
+          "Der Nachtschlaf sei durch den Schmerz gestört."
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion 10/2026 nach Recherche R2",
+      "ohne": [
+        "bef-weichteilinfekt/lymphknoten"
+      ],
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Labor oder Verzicht auf Labor und Bildgebung?",
+          "bausteine": [
+            "dgn-weichteilinfekt",
+            "dgn-weichteilinfekt-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "therapie",
+          "label": "Inzision oder konservative Behandlung?",
+          "bausteine": [
+            "th-abszess",
+            "th-weichteilinfekt-konservativ"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Ambulante Behandlung oder stationäre Aufnahme?",
+          "bausteine": [
+            "proc-weichteilinfekt",
+            "proc-weichteilinfekt-konservativ",
+            "proc-weichteilinfekt-aufnahme",
+            "proc-weichteilinfekt-abgelehnt"
+          ]
+        }
+      ]
+    },
+    {
+      "setting": "zna",
+      "id": "zna-fremdkoerper",
+      "titel": "Fremdkörper in den Weichteilen",
+      "suchbegriffe": [
+        "Splitter",
+        "Holzsplitter",
+        "Glassplitter",
+        "Metallsplitter",
+        "Dorn",
+        "Angelhaken",
+        "Fremdkörperentfernung"
+      ],
+      "kuerzel": [
+        "fk"
+      ],
+      "region": "wunden",
+      "abschnitte": {
+        "diagnose": [
+          "dx-fremdkoerper"
+        ],
+        "anamnese": [
+          "ana-trauma",
+          "ana-tetanus-letzte-impfung"
+        ],
+        "befund": [
+          "bef-fremdkoerper"
+        ],
+        "therapie": [
+          "th-zna"
+        ]
+      },
+      "entscheiden": [
+        "bef-fremdkoerper/infekt",
+        "bef-fremdkoerper/sehnen",
+        "bef-fremdkoerper/sensibilitaet",
+        "bef-fremdkoerper/sehnenscheide",
+        "bef-fremdkoerper/gelenk"
+      ],
+      "vorgaben": {
+        "aus": [
+          "proc-wunde/fadenzug",
+          "th-zna/untersuchung"
+        ]
+      },
+      "weglassen": {
+        "th-zna/tetanus": [
+          "th-fremdkoerper/tetanus",
+          "th-fremdkoerper-belassen/tetanus"
+        ]
+      },
+      "schnellwerte": {
+        "ana-trauma/hergang": [
+          "Bei Holzarbeiten sei ein Splitter in die Haut eingedrungen.",
+          "Beim Barfußgehen sei ein spitzer Gegenstand in die Fußsohle eingedrungen.",
+          "Beim Zerbrechen eines Glases sei ein Splitter in die Haut eingedrungen.",
+          "Bei der Gartenarbeit sei ein Dorn in die Haut eingedrungen.",
+          "Beim Schleifen von Metall sei ein Splitter in die Haut eingedrungen.",
+          "Beim Angeln sei ein Angelhaken in die Haut eingedrungen."
+        ],
+        "ana-trauma/zeitpunkt": [
+          "heute",
+          "gestern",
+          "vor 2 Tagen",
+          "vor 3 Tagen",
+          "vor 1 Woche",
+          "kein umschriebenes Ereignis erinnerlich"
+        ]
+      },
+      "status": "entwurf",
+      "quelle": "Entwurf der Redaktion 10/2026 nach Recherche R2",
+      "wahl": [
+        {
+          "abschnitt": "diagnostik",
+          "label": "Röntgen, Sonografie oder Verzicht?",
+          "bausteine": [
+            "dgn-fremdkoerper",
+            "dgn-wunde-sono",
+            "dgn-wunde-verzicht"
+          ]
+        },
+        {
+          "abschnitt": "therapie",
+          "label": "Fremdkörper entfernt oder belassen?",
+          "bausteine": [
+            "th-fremdkoerper",
+            "th-fremdkoerper-belassen"
+          ]
+        },
+        {
+          "abschnitt": "procedere",
+          "label": "Weiterbehandlung nach Entfernung oder bei belassenem Fremdkörper?",
+          "bausteine": [
+            "proc-wunde",
+            "proc-fremdkoerper-belassen"
+          ]
+        }
+      ]
+    }
+  ]
+}

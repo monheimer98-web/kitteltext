@@ -1,0 +1,2280 @@
+{
+  "regionen": [
+    {
+      "id": "hws",
+      "name": "HWS",
+      "kuerzel": "🧣",
+      "bausteine": [
+        {
+          "id": "dx-hws-distorsion",
+          "titel": "Diagnose HWS-Distorsion",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Distorsion der Halswirbelsäule"
+            },
+            {
+              "art": "auswahl",
+              "id": "grad",
+              "label": "Schweregrad",
+              "optionen": [
+                "",
+                " (Grad I nach Quebec Task Force)",
+                " (Grad II nach Quebec Task Force)",
+                " (Grad III nach Quebec Task Force)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "kein-fraktur",
+              "label": "Zeile: kein Frakturnachweis",
+              "text": "\nKein Frakturnachweis im Röntgen der Halswirbelsäule"
+            }
+          ]
+        },
+        {
+          "id": "dgn-hws",
+          "titel": "Bildgebung Halswirbelsäule",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "verfahren",
+              "label": "Verfahren und Ebenen",
+              "optionen": [
+                "Röntgen Halswirbelsäule in 2 Ebenen",
+                "Röntgen Halswirbelsäule in 2 Ebenen mit Dens-Zielaufnahme",
+                "CT Halswirbelsäule"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Befund der Bildgebung",
+              "pflicht": true,
+              "optionen": [
+                "kein Frakturnachweis.",
+                "kein Frakturnachweis, regelrechte Stellung der Wirbelkörper.",
+                "kein Frakturnachweis, Steilstellung der Halswirbelsäule.",
+                "kein Frakturnachweis, degenerative Veränderungen."
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend.",
+                " Fachradiologisch befundet."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-hws-verzicht",
+          "titel": "Verzicht auf Bildgebung der Halswirbelsäule",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "grund",
+              "typ": "freitext",
+              "label": "Grund für den Verzicht",
+              "required": true,
+              "vorschlaege": [
+                "kein Druckschmerz über den Dornfortsätzen, kein neurologischer Ausfall, Kopfdrehung nach beiden Seiten möglich, kein gefährlicher Unfallhergang"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Bildgebung der Halswirbelsäule haben wir verzichtet: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "grund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "ana-hws",
+          "titel": "HWS-Distorsion – Anamnese (Zusatzangaben)",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Zur Halswirbelsäule: "
+            },
+            {
+              "art": "befund",
+              "id": "kopf",
+              "chip": "Kopfanprall, Bewusstlosigkeit",
+              "gruppe": "Ereignis",
+              "normal": "Mit dem Kopf sei {er} nicht angeschlagen, bewusstlos sei {er} nicht gewesen. ",
+              "abweichung": "{Er} sei mit dem Kopf angeschlagen. "
+            },
+            {
+              "art": "befund",
+              "id": "beginn",
+              "chip": "Beginn der Nackenschmerzen",
+              "gruppe": "Symptome",
+              "normal": "",
+              "abweichung": "{beginn}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "beginn",
+                  "label": "Beginn",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Die Nackenschmerzen hätten sofort nach dem Unfall begonnen",
+                    "Die Nackenschmerzen hätten einige Stunden nach dem Unfall begonnen",
+                    "Die Nackenschmerzen hätten am Folgetag begonnen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "kribbeln",
+              "chip": "Kribbeln, Taubheit in Armen oder Händen",
+              "gruppe": "Symptome",
+              "normal": "Kribbeln oder Taubheitsgefühl in Armen oder Händen bestehe nicht. ",
+              "abweichung": "Es bestehe Kribbeln oder Taubheitsgefühl {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "im rechten Arm",
+                    "im linken Arm",
+                    "in beiden Armen",
+                    "in der rechten Hand",
+                    "in der linken Hand",
+                    "in beiden Händen"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sht",
+      "name": "Kopf",
+      "kuerzel": "🧠",
+      "bausteine": [
+        {
+          "id": "dx-sht-leicht",
+          "titel": "Diagnose leichtes Schädel-Hirn-Trauma, Schädelprellung",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "dx",
+              "label": "Diagnose",
+              "pflicht": true,
+              "optionen": [
+                "Leichtes Schädel-Hirn-Trauma",
+                "Leichtes Schädel-Hirn-Trauma (Commotio cerebri)",
+                "Schädelprellung",
+                "Schädelprellung ohne Hinweis auf ein Schädel-Hirn-Trauma"
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "zusatz",
+              "label": "Zusatz",
+              "optionen": [
+                "",
+                ", unter gerinnungshemmender Medikation",
+                ", unter Alkoholeinfluss"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "wunde",
+              "label": "Zeile: Kopfplatzwunde",
+              "text": "\nKopfplatzwunde {lage}",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "lage",
+                  "label": "Lage der Wunde",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "rechts frontal",
+                    "links frontal",
+                    "frontal in der Mittellinie",
+                    "rechts parietal",
+                    "links parietal",
+                    "rechts temporal",
+                    "links temporal",
+                    "okzipital",
+                    "an der rechten Augenbraue",
+                    "an der linken Augenbraue",
+                    "am Kinn"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "ct-zeile",
+              "label": "Zeile: CT ohne Nachweis einer Blutung",
+              "text": "\nKein Nachweis einer Blutung oder Fraktur im CT des Schädels"
+            }
+          ]
+        },
+        {
+          "id": "dgn-sht",
+          "titel": "CT bei Kopfverletzung",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "bildgebung",
+              "label": "CT-Befund",
+              "pflicht": true,
+              "optionen": [
+                "CT des Schädels: kein Nachweis einer Blutung im Schädel, kein Nachweis einer Schädelfraktur.",
+                "CT des Schädels und der Halswirbelsäule: kein Nachweis einer Blutung im Schädel, kein Frakturnachweis."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "nebenbefund",
+              "label": "Nebenbefund der CT",
+              "text": " Nebenbefund: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Nebenbefund der CT",
+                  "maxLen": 200,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Fachradiologisch befundet.",
+                " Vorläufiger Befund, fachradiologischer Befund ausstehend."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-sht-verzicht",
+          "titel": "Verzicht auf die CT des Schädels",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "grund",
+              "typ": "freitext",
+              "label": "Grund für den Verzicht",
+              "required": true,
+              "vorschlaege": [
+                "keine Bewusstlosigkeit, keine Erinnerungslücke, kein Erbrechen, kein neurologischer Ausfall, keine gerinnungshemmende Medikation",
+                "ausdrücklicher Wunsch nach Aufklärung über das Risiko einer übersehenen Blutung"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine CT des Schädels haben wir verzichtet: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "grund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "th-sht",
+          "titel": "Kopfverletzung – Überwachung, Entlassung, Aufklärung",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "beobachtung",
+              "label": "Überwachung in der Notaufnahme",
+              "text": "In der Notaufnahme {dauer} überwacht, neurologischer Befund dabei unverändert.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "1 Stunde",
+                    "2 Stunden",
+                    "4 Stunden",
+                    "6 Stunden"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "entlassung",
+              "label": "Entlasskriterien",
+              "an": true,
+              "text": "{kriterien}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "kriterien",
+                  "label": "Entlasskriterien",
+                  "optionen": [
+                    "",
+                    "Bei Entlassung wach und orientiert, ohne neurologische Ausfälle, ohne Erbrechen. Aufsicht zu Hause ist gesichert.",
+                    "Bei Entlassung wach und orientiert, ohne neurologische Ausfälle, ohne Erbrechen. Entlassung in Begleitung.",
+                    "Bei Entlassung wach und orientiert, ohne neurologische Ausfälle. Aufsicht zu Hause ist nicht gesichert; die stationäre Überwachung haben wir angeboten, sie wurde abgelehnt.",
+                    "Bei Entlassung wach, neurologischer Befund gegenüber der Aufnahme unverändert, kein Erbrechen. Rückverlegung in die Pflegeeinrichtung."
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ablehnung",
+              "label": "Stationäre Überwachung empfohlen, abgelehnt",
+              "text": "Die stationäre Überwachung haben wir empfohlen. {Person} lehnt sie nach Aufklärung über das Risiko einer verzögert auftretenden Hirnblutung ab."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung",
+              "label": "Aufklärung Kopfverletzung",
+              "an": true,
+              "text": "{was}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Aufklärung Kopfverletzung",
+                  "optionen": [
+                    "",
+                    "Über Risiken und Komplikationen einer Kopfverletzung aufgeklärt, Verhaltensregeln und Warnzeichen besprochen.",
+                    "Über Risiken und Komplikationen einer Kopfverletzung aufgeklärt, Verhaltensregeln und Warnzeichen besprochen, Merkblatt mitgegeben.",
+                    "Aufklärung über Risiken, Verhaltensregeln und Warnzeichen im Beisein der Begleitperson, Merkblatt mitgegeben.",
+                    "Das Pflegepersonal der Einrichtung haben wir über Befund, Überwachung und Warnzeichen informiert, Merkblatt mitgegeben."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dx-kopfplatzwunde",
+          "titel": "Diagnose Kopfplatzwunde",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "lage",
+              "typ": "begriff",
+              "label": "Lage der Wunde",
+              "required": true,
+              "vorschlaege": [
+                "rechts frontal",
+                "links frontal",
+                "frontal in der Mittellinie",
+                "rechts parietal",
+                "links parietal",
+                "rechts temporal",
+                "links temporal",
+                "okzipital",
+                "an der rechten Augenbraue",
+                "an der linken Augenbraue",
+                "am Kinn"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Kopfplatzwunde "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "lage"
+            },
+            {
+              "art": "option",
+              "id": "laenge",
+              "label": "Länge der Wunde",
+              "text": ", {cm}",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "cm",
+                  "label": "Länge",
+                  "einheit": "cm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "zusatz",
+              "label": "Zusatz",
+              "optionen": [
+                "",
+                ", unter gerinnungshemmender Medikation"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "zweite",
+              "label": "Zeile: Schädelprellung oder Schädel-Hirn-Trauma",
+              "text": "\n{dx}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dx",
+                  "label": "Zweite Diagnose",
+                  "optionen": [
+                    "",
+                    "Schädelprellung",
+                    "Leichtes Schädel-Hirn-Trauma",
+                    "Leichtes Schädel-Hirn-Trauma (Commotio cerebri)"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-kopfplatzwunde",
+          "titel": "Kopfplatzwunde – Wundbefund",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "wunde",
+              "label": "Wunde",
+              "an": true,
+              "text": "{art} {ls} {ort}, {laenge} lang{tiefe}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Wundart",
+                  "optionen": [
+                    "",
+                    "Platzwunde",
+                    "Riss-Quetschwunde",
+                    "Schnittwunde",
+                    "Schürfwunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "lokaleSeite",
+                  "id": "ls",
+                  "label": "Seite (entfällt in der Mittellinie)"
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Lage",
+                  "optionen": [
+                    "",
+                    "frontal",
+                    "parietal",
+                    "temporal",
+                    "okzipital",
+                    "an der Augenbraue",
+                    "am Jochbein",
+                    "an der Nase",
+                    "an der Lippe",
+                    "am Kinn"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "laenge",
+                  "label": "Länge",
+                  "einheit": "cm",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "tiefe",
+                  "label": "Tiefe und Wundgrund",
+                  "optionen": [
+                    "",
+                    ", bis in die Subkutis reichend, Galea intakt",
+                    ", bis auf die Galea reichend, Galea intakt",
+                    ", Galea eröffnet, Knochen ohne tastbare Stufe",
+                    ", bis auf den Knochen reichend, Knochen ohne tastbare Stufe",
+                    ", bis in die Subkutis reichend",
+                    ", oberflächlich"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-kopfplatzwunde",
+          "titel": "Kopfplatzwunde – Procedere",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wundkontrolle",
+              "label": "Wundkontrolle",
+              "an": true,
+              "text": "Wundkontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 Tagen",
+                    "nach 2 bis 3 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "fadenzug",
+              "label": "Entfernung des Nahtmaterials",
+              "an": true,
+              "text": "Entfernung {was} {wann} nach der Wundversorgung {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Nahtmaterial",
+                  "optionen": [
+                    "",
+                    "der Fäden",
+                    "der Klammern"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am 5. bis 7. Tag",
+                    "am 7. bis 10. Tag",
+                    "am 10. bis 14. Tag"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Notaufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kleber",
+              "label": "Gewebekleber",
+              "text": "Der Gewebekleber löst sich von selbst: nicht abziehen, nicht eincremen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "trocken",
+              "label": "Wunde trocken halten",
+              "an": true,
+              "text": "Wunde {dauer} trocken halten, Haare so lange nicht waschen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 24 Stunden",
+                    "für 48 Stunden",
+                    "für 3 Tage",
+                    "bis zur Entfernung des Nahtmaterials"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufsicht",
+              "label": "Häusliche Überwachung",
+              "text": "In den nächsten {dauer} nicht allein bleiben, Überwachung durch {wen}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "24 Stunden",
+                    "48 Stunden",
+                    "72 Stunden"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wen",
+                  "label": "durch wen",
+                  "optionen": [
+                    "",
+                    "Angehörige",
+                    "die Eltern",
+                    "Mitbewohner",
+                    "das Pflegepersonal der Einrichtung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "text": "Schmerzmittel nach Bedarf."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmendes Medikament",
+              "text": "Gerinnungshemmendes Medikament {weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Weiterführung",
+                  "optionen": [
+                    "",
+                    "unverändert weiter einnehmen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-pause",
+              "label": "Gerinnungshemmendes Medikament pausieren",
+              "text": "Gerinnungshemmendes Medikament pausieren bis {wann}; über den Wiederbeginn entscheidet die Hausarztpraxis bei der Kontrolle am {tag}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "Pause bis (Datum)",
+                  "maxLen": 40,
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "tag",
+                  "label": "Kontrolle am (Datum)",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-hinweis",
+              "label": "Hinweis bei Gerinnungshemmung",
+              "text": "Unter gerinnungshemmender Medikation kann die Wunde nachbluten und eine Hirnblutung auch verzögert auftreten: Warnzeichen in den nächsten Tagen besonders beachten."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme oder Notruf 112 bei: Rötung, Schwellung, Überwärmung oder pochendem Schmerz der Wunde, Eiter, aufgehender Naht, Blutung, die nach 10 Minuten Druck nicht steht, zunehmenden Kopfschmerzen, wiederholtem Erbrechen, ungewöhnlicher Schläfrigkeit, Verwirrtheit."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wirbelsaeule",
+      "name": "Wirbelsäule",
+      "kuerzel": "🦴",
+      "bausteine": [
+        {
+          "id": "dx-lumbago",
+          "titel": "Diagnose Lumbago",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "dx",
+              "label": "Diagnose",
+              "optionen": [
+                "Akute Lumbago",
+                "Akuter Kreuzschmerz ohne Ausstrahlung",
+                "Akute Lumbalgie",
+                "Akute Verschlechterung eines chronischen Kreuzschmerzes"
+              ],
+              "variante": true
+            },
+            {
+              "art": "auswahl",
+              "id": "zusatz",
+              "label": "Zusatz",
+              "optionen": [
+                "",
+                ", ohne sensomotorisches Defizit"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dx-lws-prellung",
+          "titel": "Diagnose Prellung der Wirbelsäule",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "dx",
+              "label": "Diagnose",
+              "optionen": [
+                "Prellung der Lendenwirbelsäule",
+                "Prellung der Brustwirbelsäule",
+                "Prellung der Brust- und Lendenwirbelsäule",
+                "Prellung der Lendenwirbelsäule und des Beckens"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "kein-fraktur",
+              "label": "Zeile: kein Frakturnachweis",
+              "text": "\nKein Frakturnachweis im Röntgen"
+            }
+          ]
+        },
+        {
+          "id": "dx-lumboischialgie",
+          "titel": "Diagnose Lumboischialgie",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Akute Lumboischialgie "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ", "
+            },
+            {
+              "art": "auswahl",
+              "id": "defizit",
+              "label": "Neurologisches Defizit",
+              "pflicht": true,
+              "optionen": [
+                "ohne sensomotorisches Defizit",
+                "mit sensiblem Defizit",
+                "mit motorischem Defizit",
+                "mit sensomotorischem Defizit"
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "dermatom",
+              "label": "Dermatom",
+              "optionen": [
+                "",
+                " (Dermatom L4)",
+                " (Dermatom L5)",
+                " (Dermatom S1)",
+                " (Dermatome L5 und S1)"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-lws",
+          "titel": "Röntgen Wirbelsäule",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Region",
+              "optionen": [
+                "Lendenwirbelsäule",
+                "Brustwirbelsäule",
+                "Brust- und Lendenwirbelsäule",
+                "Lendenwirbelsäule mit Beckenübersicht",
+                "Kreuzbein und Steißbein"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "ebenen",
+              "label": "Ebenen",
+              "optionen": [
+                "in 2 Ebenen",
+                "in 2 Ebenen im Stehen"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund",
+              "pflicht": true,
+              "optionen": [
+                "kein Frakturnachweis.",
+                "kein Frakturnachweis, Wirbelkörperhöhen erhalten.",
+                "kein Frakturnachweis, degenerative Veränderungen."
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend.",
+                " Fachradiologisch befundet."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-lws-ct",
+          "titel": "CT Wirbelsäule",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "CT "
+            },
+            {
+              "art": "auswahl",
+              "id": "region",
+              "label": "Region",
+              "optionen": [
+                "Lendenwirbelsäule",
+                "Brustwirbelsäule",
+                "Brust- und Lendenwirbelsäule",
+                "Lendenwirbelsäule und Becken",
+                "Kreuzbein und Steißbein"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "CT-Befund",
+              "pflicht": true,
+              "optionen": [
+                "kein Frakturnachweis.",
+                "kein Frakturnachweis, degenerative Veränderungen.",
+                "Fraktur wie unter Diagnose beschrieben."
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Fachradiologisch befundet.",
+                " Vorläufiger Befund, fachradiologischer Befund ausstehend."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-lws-verzicht",
+          "titel": "Verzicht auf Bildgebung der Wirbelsäule (nach Unfall)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "grund",
+              "typ": "freitext",
+              "label": "Grund für den Verzicht",
+              "required": true,
+              "vorschlaege": [
+                "kein Klopf- oder Druckschmerz über den Dornfortsätzen, kein neurologischer Ausfall, kein gefährlicher Unfallhergang"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Bildgebung haben wir verzichtet: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "grund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "dgn-lws-urin",
+          "titel": "Urin-Teststreifen nach Sturz auf Rücken oder Flanke",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "urin",
+              "label": "Urin-Teststreifen",
+              "text": "Urin-Teststreifen: kein Nachweis von Blut."
+            }
+          ]
+        },
+        {
+          "id": "dgn-kreuzschmerz",
+          "titel": "Bildgebung bei Rückenschmerz ohne Unfall",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "bildgebung",
+              "label": "Bildgebung",
+              "pflicht": true,
+              "optionen": [
+                "Auf eine Bildgebung haben wir verzichtet, weil kein Unfall vorlag und sich keine Warnhinweise auf eine spezifische Ursache ergaben.",
+                "Auf eine Bildgebung in der Notaufnahme haben wir verzichtet, weil kein Unfall vorlag und kein neurologischer Ausfall besteht.",
+                "Röntgen Lendenwirbelsäule in 2 Ebenen: kein Frakturnachweis.",
+                "Röntgen Lendenwirbelsäule in 2 Ebenen: kein Frakturnachweis, degenerative Veränderungen."
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend.",
+                " Fachradiologisch befundet."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-lws-mrt",
+          "titel": "MRT der Lendenwirbelsäule",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "befund",
+              "typ": "freitext",
+              "label": "MRT-Befund",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "MRT der Lendenwirbelsäule: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "befund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Fachradiologisch befundet.",
+                " Vorläufiger Befund, fachradiologischer Befund ausstehend."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-kreuzschmerz-verzicht",
+          "titel": "Verzicht auf Bildgebung in der Notaufnahme (Rückenschmerz ohne Unfall)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "grund",
+              "typ": "freitext",
+              "label": "Grund für den Verzicht",
+              "required": true,
+              "vorschlaege": [
+                "kein Unfall, keine Warnhinweise auf eine spezifische Ursache",
+                "kein Unfall, kein neurologischer Ausfall",
+                "die MRT der Lendenwirbelsäule erfolgt ambulant, siehe Procedere"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Bildgebung in der Notaufnahme haben wir verzichtet: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "grund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "proc-lumboischialgie",
+          "titel": "Lumboischialgie – Procedere",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme-abgelehnt",
+              "label": "Stationäre Aufnahme angeboten, abgelehnt",
+              "text": "Die stationäre Aufnahme zur Schmerzbehandlung und Diagnostik haben wir angeboten; {person} lehnt sie ab."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verhalten",
+              "label": "Aktiv bleiben, keine Bettruhe",
+              "an": true,
+              "text": "Körperlich aktiv bleiben und die gewohnten Tätigkeiten fortführen, soweit die Schmerzen es zulassen. Keine Bettruhe."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "stufenlagerung",
+              "label": "Stufenlagerung",
+              "text": "Stufenlagerung zur Schmerzlinderung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "Schmerzmittel nach ärztlicher Verordnung für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "3 Tage",
+                    "5 Tage",
+                    "1 Woche",
+                    "2 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "physio",
+              "label": "Physiotherapie",
+              "text": "Physiotherapie, Verordnung durch die weiterbehandelnde Praxis."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle mit neurologischer Untersuchung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 1 Woche"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der neurochirurgischen Praxis"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mrt",
+              "label": "MRT der Lendenwirbelsäule",
+              "text": "MRT der Lendenwirbelsäule über die weiterbehandelnde Praxis, {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "innerhalb von 1 Woche",
+                    "wenn die Beschwerden nach 4 Wochen anhalten",
+                    "wenn die Beschwerden nach 6 Wochen anhalten",
+                    "innerhalb von 3 Tagen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sprechstunde",
+              "label": "Wirbelsäulenchirurgische oder neurochirurgische Sprechstunde",
+              "text": "Vorstellung in der wirbelsäulenchirurgischen oder neurochirurgischen Sprechstunde {wann} mit den MRT-Bildern.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "wann (Frist oder Termin)",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: neuer oder zunehmender Lähmung oder Schwäche im Bein oder Fuß, Taubheitsgefühl im Gesäß- oder Genitalbereich, Harnverhalt oder ungewolltem Abgang von Urin oder Stuhl, Schmerzen, die trotz Schmerzmitteln nicht auszuhalten sind, Fieber."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-lumboischialgie-aufnahme",
+          "titel": "Lumboischialgie – stationäre Aufnahme",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme",
+              "an": true,
+              "text": "Stationäre Aufnahme {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "bei Verdacht auf ein Kaudasyndrom",
+                    "bei höhergradiger oder zunehmender Lähmung",
+                    "zur Schmerzbehandlung bei ambulant nicht beherrschbaren Schmerzen",
+                    "zur weiteren Diagnostik"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mrt",
+              "label": "MRT der Lendenwirbelsäule",
+              "text": "MRT der Lendenwirbelsäule {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "notfallmäßig veranlasst",
+                    "am Aufnahmetag geplant",
+                    "im stationären Verlauf geplant"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "konsil",
+              "label": "Wirbelsäulenchirurgische oder neurochirurgische Vorstellung",
+              "text": "Vorstellung in der {fach} {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "fach",
+                  "label": "Fachgebiet",
+                  "optionen": [
+                    "",
+                    "Wirbelsäulenchirurgie",
+                    "Neurochirurgie"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "wann (Frist oder Termin)",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thorax",
+      "name": "Thorax",
+      "kuerzel": "🫁",
+      "bausteine": [
+        {
+          "id": "ana-thorax",
+          "titel": "Thoraxverletzung – Anamnese (Zusatzangaben)",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Zur Thoraxverletzung: "
+            },
+            {
+              "art": "befund",
+              "id": "atemnot",
+              "chip": "Atemnot",
+              "gruppe": "Symptome",
+              "normal": "Atemnot bestehe nicht. ",
+              "abweichung": "Atemnot bestehe{wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    " in Ruhe",
+                    " bei Belastung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "atemschmerz",
+              "chip": "Atemabhängiger Schmerz",
+              "gruppe": "Symptome",
+              "normal": "",
+              "abweichung": "Der Schmerz nehme beim tiefen Einatmen und beim Husten zu. "
+            },
+            {
+              "art": "option",
+              "id": "bluthusten",
+              "label": "Kein Bluthusten",
+              "gruppe": "Symptome",
+              "text": "Bluthusten sei nicht aufgetreten. "
+            }
+          ]
+        },
+        {
+          "id": "dx-thoraxprellung",
+          "titel": "Diagnose Thoraxprellung",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "dx",
+              "label": "Diagnose",
+              "optionen": [
+                "Thoraxprellung",
+                "Rippenprellung"
+              ],
+              "variante": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "option",
+              "id": "kein-fraktur",
+              "label": "Zeile: kein Frakturnachweis",
+              "text": "\nKein Frakturnachweis im Röntgen des Thorax"
+            }
+          ]
+        },
+        {
+          "id": "dx-rippenfraktur",
+          "titel": "Diagnose Rippenfraktur, Rippenprellung",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "rippe",
+              "typ": "begriff",
+              "label": "Betroffene Rippen",
+              "required": true,
+              "vorschlaege": [
+                "der 5. Rippe",
+                "der 6. Rippe",
+                "der 7. Rippe",
+                "der 8. Rippe",
+                "der 9. Rippe",
+                "der 6. und 7. Rippe",
+                "der 7. und 8. Rippe",
+                "der unteren Rippen"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "dx",
+              "label": "Diagnose",
+              "pflicht": true,
+              "optionen": [
+                "Fraktur",
+                "Verdacht auf Fraktur",
+                "Prellung"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "rippe"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "dislokation",
+              "label": "Dislokation",
+              "optionen": [
+                "",
+                ", nicht disloziert",
+                ", disloziert"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "begleit",
+              "label": "Begleitverletzung",
+              "optionen": [
+                "",
+                ", ohne Pneumothorax",
+                ", ohne Pneumothorax oder Hämatothorax"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-thorax",
+          "titel": "Röntgen Thorax",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Thorax "
+            },
+            {
+              "art": "auswahl",
+              "id": "ebenen",
+              "label": "Ebenen",
+              "optionen": [
+                "in 2 Ebenen",
+                "in 1 Ebene"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "hemithorax",
+              "label": "Knöcherner Hemithorax",
+              "text": " und knöcherner Hemithorax {seite}"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund",
+              "pflicht": true,
+              "optionen": [
+                "kein Frakturnachweis, kein Nachweis eines Pneumothorax oder Pleuraergusses.",
+                "Rippenfraktur ohne wesentliche Dislokation, kein Nachweis eines Pneumothorax oder Pleuraergusses.",
+                "Rippenfraktur mit Dislokation, kein Nachweis eines Pneumothorax oder Pleuraergusses.",
+                "kein sicherer Frakturnachweis, kein Nachweis eines Pneumothorax oder Pleuraergusses."
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend.",
+                " Fachradiologisch befundet."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-thorax-ct",
+          "titel": "CT des Thorax",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "befund",
+              "typ": "freitext",
+              "label": "CT-Befund",
+              "required": true
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "CT des Thorax: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "befund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Fachradiologisch befundet.",
+                " Vorläufiger Befund, fachradiologischer Befund ausstehend."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-thorax-verzicht",
+          "titel": "Verzicht auf die Röntgenuntersuchung des Thorax",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "grund",
+              "typ": "freitext",
+              "label": "Grund für den Verzicht",
+              "required": true,
+              "vorschlaege": [
+                "keine Atemnot, Atemgeräusch seitengleich, Sauerstoffsättigung normal, kein Thoraxkompressionsschmerz",
+                "Diagnose klinisch gestellt, kein Hinweis auf eine Verletzung der Lunge"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Röntgenuntersuchung haben wir verzichtet: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "grund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "dgn-thorax-weitere",
+          "titel": "Weitere Diagnostik bei Thoraxverletzung (EKG, Sonografie, Urin, Labor)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "ekg",
+              "label": "EKG",
+              "text": "\nEKG: {befund}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "befund",
+                  "label": "EKG-Befund",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Sinusrhythmus, keine Rhythmusstörung, keine Erregungsrückbildungsstörung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sono",
+              "label": "Sonografie Abdomen",
+              "text": "\nSonografie des Abdomens (FAST): keine freie Flüssigkeit."
+            },
+            {
+              "art": "option",
+              "id": "urin",
+              "label": "Urin-Teststreifen",
+              "text": "\nUrin-Teststreifen: kein Nachweis von Blut."
+            },
+            {
+              "art": "option",
+              "id": "labor",
+              "label": "Labor",
+              "text": "\nLabor: Hämoglobin {hb}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "hb",
+                  "label": "Hämoglobin",
+                  "einheit": "g/dl",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-rippenfraktur",
+          "titel": "Rippenfraktur, Rippenprellung – Procedere",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme-abgelehnt",
+              "label": "Stationäre Aufnahme angeboten, abgelehnt",
+              "text": "Die stationäre Aufnahme zur Schmerzbehandlung und Überwachung haben wir angeboten; {person} lehnt sie nach Aufklärung über das Risiko einer Lungenentzündung und einer verzögerten Blutung ab."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "Schmerzmittel nach ärztlicher Verordnung für {dauer}, so dass tiefes Durchatmen und Abhusten möglich sind.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "1 Woche",
+                    "2 Wochen",
+                    "3 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "atemtraining",
+              "label": "Atemtraining",
+              "an": true,
+              "text": "Atemtraining zur Vorbeugung einer Lungenentzündung: mehrmals täglich tief ein- und ausatmen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "keine-ruhigstellung",
+              "label": "Keine Ruhigstellung",
+              "an": true,
+              "text": "Keine Ruhigstellung des Brustkorbs, kein Rippengurt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Körperliche Schonung",
+              "an": true,
+              "text": "Körperliche Schonung für {dauer}: kein Sport, kein Heben schwerer Lasten.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "2 Wochen",
+                    "3 Wochen",
+                    "4 Wochen",
+                    "6 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 1 Woche"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgenkontrolle",
+              "label": "Röntgenkontrolle",
+              "text": "Röntgenkontrolle des Thorax {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen",
+                    "nach 1 Woche"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "über die Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in unserer Notaufnahme"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung-hinweis",
+              "label": "Hinweis bei Gerinnungshemmung",
+              "text": "Unter gerinnungshemmender Medikation kann eine Blutung im Brustkorb auch nach Tagen auftreten: Wiedervorstellung bei Atemnot, zunehmenden Schmerzen, Schwindel oder Schwäche."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme oder Notruf 112 bei: Atemnot, stark zunehmenden Schmerzen im Brustkorb, Fieber, Husten mit gelbem oder blutigem Auswurf, Schmerzen im Oberbauch, Schwindel oder Kollaps."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brief-zna",
+      "name": "Brief Notaufnahme",
+      "kuerzel": "✉️",
+      "bausteine": [
+        {
+          "id": "proc-gegen-aerztlichen-rat",
+          "titel": "Entlassung gegen ärztlichen Rat (einwilligungsfähige Erwachsene)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "empfehlung",
+              "typ": "begriff",
+              "label": "Empfohlene Maßnahme",
+              "required": true,
+              "vorschlaege": [
+                "die stationäre Aufnahme",
+                "die stationäre Überwachung für 24 Stunden",
+                "eine CT des Schädels",
+                "eine Röntgenuntersuchung",
+                "die operative Versorgung"
+              ]
+            },
+            {
+              "id": "datum",
+              "typ": "datum",
+              "label": "Datum des Verlassens",
+              "required": true
+            },
+            {
+              "id": "uhrzeit",
+              "typ": "begriff",
+              "label": "Uhrzeit (HH:MM)",
+              "required": true
+            },
+            {
+              "id": "risiko",
+              "typ": "freitext",
+              "label": "Risiko, schwerste Folge",
+              "required": true,
+              "vorschlaege": [
+                "einer verzögerten Hirnblutung mit bleibenden Schäden oder tödlichem Ausgang",
+                "einer übersehenen Fraktur mit bleibender Funktionseinschränkung",
+                "einer fortschreitenden Infektion bis zur Blutvergiftung",
+                "einer bleibenden Lähmung"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Wir haben "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "empfehlung"
+            },
+            {
+              "art": "text",
+              "text": " empfohlen. "
+            },
+            {
+              "art": "person",
+              "form": "nom",
+              "gross": true
+            },
+            {
+              "art": "text",
+              "text": " verließ "
+            },
+            {
+              "art": "auswahl",
+              "id": "ort",
+              "label": "Ort",
+              "optionen": [
+                "die Klinik",
+                "die Notaufnahme"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": " am "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "datum"
+            },
+            {
+              "art": "text",
+              "text": " um "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "uhrzeit"
+            },
+            {
+              "art": "text",
+              "text": " Uhr auf eigenen Wunsch gegen ärztlichen Rat. Über das Risiko "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "risiko"
+            },
+            {
+              "art": "text",
+              "text": " haben wir "
+            },
+            {
+              "art": "person",
+              "form": "akk"
+            },
+            {
+              "art": "text",
+              "text": " aufgeklärt. "
+            },
+            {
+              "art": "person",
+              "form": "pron-nom",
+              "gross": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "einsicht",
+              "label": "Einsichtsfähigkeit",
+              "pflicht": true,
+              "optionen": [
+                "war wach, zu Person, Ort und Zeit orientiert und konnte die Aufklärung in eigenen Worten wiedergeben. ",
+                "war wach und zu Person, Ort und Zeit orientiert; ein Hinweis auf eine eingeschränkte Einsichtsfähigkeit ergab sich nicht. "
+              ]
+            },
+            {
+              "art": "person",
+              "form": "pron-nom",
+              "gross": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "erklaerung",
+              "label": "Erklärung zur Entlassung",
+              "pflicht": true,
+              "optionen": [
+                "hat die Erklärung zur Entlassung gegen ärztlichen Rat unterschrieben. ",
+                "lehnte die Unterschrift ab; eine Pflegekraft war bei der Aufklärung anwesend. ",
+                "lehnte die Unterschrift ab; ein zweiter Arzt war bei der Aufklärung anwesend. "
+              ]
+            },
+            {
+              "art": "option",
+              "id": "offene-tuer",
+              "label": "Wiederkommen jederzeit möglich",
+              "an": true,
+              "text": "{Er} kann jederzeit wiederkommen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

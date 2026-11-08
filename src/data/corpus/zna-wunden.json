@@ -1,0 +1,5246 @@
+{
+  "regionen": [
+    {
+      "id": "wunden",
+      "name": "Wunden",
+      "kuerzel": "🩹",
+      "bausteine": [
+        {
+          "id": "dx-wunde",
+          "titel": "Diagnose Schnittwunde, Riss-Quetschwunde",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Lokalisation der Wunde",
+              "required": true,
+              "vorschlaege": [
+                "am Unterarm",
+                "an der Hand",
+                "am Daumen",
+                "am Zeigefinger",
+                "am Oberschenkel",
+                "am Knie",
+                "am Unterschenkel",
+                "am Fuß"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Wundart",
+              "pflicht": true,
+              "optionen": [
+                "Schnittwunde",
+                "Riss-Quetschwunde",
+                "Platzwunde",
+                "Stichwunde",
+                "Schürfwunde",
+                "Ablederung"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "option",
+              "id": "laenge",
+              "label": "Länge der Wunde",
+              "text": ", {cm}",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "cm",
+                  "label": "Länge",
+                  "einheit": "cm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "tiefe",
+              "label": "Tiefe",
+              "optionen": [
+                "",
+                ", oberflächlich",
+                ", bis ins Subkutangewebe",
+                ", bis auf die Faszie",
+                ", mit Sehnenbeteiligung",
+                ", mit Gelenkeröffnung",
+                ", mit Verdacht auf Gelenkeröffnung"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "ana-tetanus-letzte-impfung",
+          "titel": "Tetanus: Abstand der letzten Impfung",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "zuletzt",
+              "label": "Letzte Tetanusimpfung",
+              "an": true,
+              "text": "Letzte Tetanusimpfung: {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Letzte Tetanusimpfung",
+                  "optionen": [
+                    "",
+                    "vor weniger als 5 Jahren",
+                    "vor 5 bis 10 Jahren",
+                    "vor mehr als 10 Jahren",
+                    "unbekannt",
+                    "nie oder unvollständig geimpft"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-wunde",
+          "titel": "Wunde – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Region",
+              "required": true,
+              "vorschlaege": [
+                "Unterarm",
+                "Hand",
+                "Daumen",
+                "Zeigefinger",
+                "Oberschenkel",
+                "Knie",
+                "Unterschenkel",
+                "Fuß"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "messwert",
+              "id": "laenge",
+              "label": "Wundlänge",
+              "vorlage": "Wunde von {w} cm Länge. ",
+              "gruppe": "Inspektion"
+            },
+            {
+              "art": "befund",
+              "id": "wundraender",
+              "chip": "Wundränder",
+              "gruppe": "Inspektion",
+              "normal": "Wundränder glatt. ",
+              "abweichung": "Wundränder {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Wundränder",
+                  "optionen": [
+                    "",
+                    "gequetscht",
+                    "zerfetzt",
+                    "klaffend",
+                    "gequetscht und avital"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "blutung",
+              "chip": "Blutung",
+              "gruppe": "Inspektion",
+              "normal": "Keine aktive Blutung. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Blutung",
+                  "optionen": [
+                    "",
+                    "Sickerblutung",
+                    "Spritzende Blutung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "verschmutzung",
+              "chip": "Verschmutzung",
+              "gruppe": "Inspektion",
+              "normal": "Wunde nicht verschmutzt. ",
+              "abweichung": "Wunde{grad} verschmutzt. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " gering",
+                    " stark"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "wundgrund",
+              "chip": "Wundgrund, Fremdkörper",
+              "gruppe": "Inspektion",
+              "normal": "Wundgrund einsehbar, kein Fremdkörper. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Wundgrund nicht vollständig einsehbar",
+                    "Fremdkörper im Wundgrund"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "tiefe",
+              "chip": "Tiefe Strukturen",
+              "gruppe": "Inspektion",
+              "normal": "Keine Sehne, keine Gelenkkapsel und kein Knochen sichtbar. ",
+              "abweichung": "{was} im Wundgrund sichtbar. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Struktur",
+                  "optionen": [
+                    "",
+                    "Muskelfaszie",
+                    "Sehne",
+                    "Gelenkkapsel",
+                    "Knochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "infekt",
+              "label": "Keine Infektzeichen",
+              "gruppe": "Inspektion",
+              "text": "Keine Rötung, keine Überwärmung, kein Eiter. "
+            },
+            {
+              "art": "befund",
+              "id": "sehnen",
+              "chip": "Beweglichkeit und Kraft distal",
+              "gruppe": "Funktion",
+              "normal": "Aktive Beweglichkeit distal der Wunde gegen Widerstand intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Streckdefizit",
+                    "Beugedefizit",
+                    "Kraftminderung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Finger oder Gelenk",
+                  "maxLen": 50
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sensibilitaet",
+              "chip": "Sensibilität distal",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Sensibilität distal der Wunde intakt. ",
+              "abweichung": "Sensibilitätsminderung {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort oder Versorgungsgebiet",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "durchblutung",
+              "chip": "Durchblutung distal",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Durchblutung distal der Wunde intakt, Rekapillarisierungszeit unter 2 Sekunden. ",
+              "abweichung": "Durchblutung distal der Wunde vermindert. "
+            }
+          ]
+        },
+        {
+          "id": "dgn-wunde",
+          "titel": "Bildgebung bei Wunde",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "bildgebung",
+              "label": "Bildgebung",
+              "pflicht": true,
+              "optionen": [
+                "Auf eine Bildgebung haben wir verzichtet, weil sich klinisch kein Hinweis auf einen Fremdkörper oder eine knöcherne Verletzung ergab.",
+                "Röntgen der verletzten Region in 2 Ebenen: kein röntgendichter Fremdkörper, kein Frakturnachweis.",
+                "Sonografie der Weichteile: kein Nachweis eines Fremdkörpers."
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend.",
+                " Fachradiologisch befundet."
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-wunde-roentgen",
+          "titel": "Röntgen bei Wunde oder Fremdkörperverdacht",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Röntgen: Region",
+              "required": true,
+              "vorschlaege": [
+                "Hand",
+                "Daumen",
+                "Zeigefinger",
+                "Unterarm",
+                "Oberschenkel",
+                "Knie",
+                "Unterschenkel",
+                "Fuß"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "ebenen",
+              "label": "Ebenen",
+              "optionen": [
+                "in 2 Ebenen",
+                "in 1 Ebene"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund",
+              "pflicht": true,
+              "optionen": [
+                "kein röntgendichter Fremdkörper, kein Frakturnachweis.",
+                "röntgendichter Fremdkörper, kein Frakturnachweis.",
+                "kein röntgendichter Fremdkörper, kein Frakturnachweis, kein Zahnfragment."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "lage",
+              "label": "Lage des Fremdkörpers",
+              "text": " Lage des Fremdkörpers: {wo}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Lage des Fremdkörpers",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "text": " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "dgn-wunde-sono",
+          "titel": "Sonografie der Weichteile bei Wunde oder Fremdkörperverdacht",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Sonografie: Region",
+              "required": true,
+              "vorschlaege": [
+                "Hand",
+                "Daumen",
+                "Zeigefinger",
+                "Unterarm",
+                "Oberschenkel",
+                "Knie",
+                "Unterschenkel",
+                "Fuß"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Sonografie Weichteile "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Sonografiebefund",
+              "pflicht": true,
+              "optionen": [
+                "kein Fremdkörper darstellbar.",
+                "Fremdkörper darstellbar."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "tiefe",
+              "label": "Tiefe des Fremdkörpers",
+              "text": " Tiefe: {mm}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Tiefe",
+                  "einheit": "mm",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dgn-wunde-verzicht",
+          "titel": "Verzicht auf Bildgebung bei Wunde oder Fremdkörper",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "grund",
+              "typ": "freitext",
+              "label": "Grund für den Verzicht",
+              "required": true,
+              "vorschlaege": [
+                "weil sich klinisch kein Hinweis auf einen Fremdkörper oder eine knöcherne Verletzung ergab",
+                "weil der Fremdkörper sichtbar war und vollständig entfernt wurde"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf eine Bildgebung haben wir verzichtet, "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "grund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "th-wundversorgung",
+          "titel": "Wundversorgung",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wunde",
+              "label": "Lage und Länge der Wunde",
+              "text": "Versorgung einer {laenge} langen Wunde {lage}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "laenge",
+                  "label": "Länge",
+                  "einheit": "cm",
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "lage",
+                  "label": "Lage (z. B. rechts parietal, am Unterarm rechts)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "la",
+              "label": "Lokalanästhesie",
+              "an": true,
+              "text": "Wundversorgung {art}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Lokalanästhesie",
+                  "optionen": [
+                    "",
+                    "in Infiltrationsanästhesie",
+                    "in Leitungsanästhesie nach Oberst",
+                    "ohne Lokalanästhesie"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "la-mittel",
+              "label": "Lokalanästhetikum und Menge",
+              "text": "Lokalanästhetikum: {menge} {mittel}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "menge",
+                  "label": "Menge",
+                  "einheit": "ml",
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "mittel",
+                  "label": "Lokalanästhetikum (Wirkstoff und Konzentration)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "spuelung",
+              "label": "Reinigung und Spülung",
+              "an": true,
+              "text": "Wunde desinfiziert und gespült."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "exzision",
+              "label": "Wundrandausschneidung",
+              "text": "Wundränder ausgeschnitten."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verschluss",
+              "label": "Wundverschluss mit Naht oder Klammern",
+              "an": true,
+              "text": "Wundverschluss mit {zahl} {art}{faden}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "zahl",
+                  "label": "Anzahl",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Verschlussart",
+                  "optionen": [
+                    "",
+                    "Einzelknopfnähten",
+                    "Rückstichnähten",
+                    "Hautklammern",
+                    "Klammerpflastern"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "faden",
+                  "label": "Fadenstärke",
+                  "optionen": [
+                    "",
+                    " (Fadenstärke 3-0)",
+                    " (Fadenstärke 4-0)",
+                    " (Fadenstärke 5-0)",
+                    " (Fadenstärke 6-0)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kleber",
+              "label": "Gewebekleber",
+              "text": "Wundverschluss mit Gewebekleber."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "offen",
+              "label": "Offene Wundbehandlung",
+              "text": "Kein primärer Wundverschluss, offene Wundbehandlung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lasche",
+              "label": "Lasche",
+              "text": "Lasche eingelegt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband",
+              "text": "{was} angelegt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verband",
+                  "optionen": [
+                    "Steriler Verband",
+                    "Sprühverband",
+                    "Pflasterverband",
+                    "Kompressionsverband"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "pflicht": true,
+              "optionen": [
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis.",
+                "Impfausweis liegt nicht vor; saubere, geringfügige Wunde, nach Angabe mindestens 3 Impfungen, letzte vor weniger als 10 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-wunde-versorgung",
+          "titel": "Wundversorgung mit Wundverschluss als Pflichtwahl",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wunde",
+              "label": "Lage und Länge der Wunde",
+              "text": "Versorgung einer {laenge} langen Wunde {lage}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "laenge",
+                  "label": "Länge",
+                  "einheit": "cm",
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "lage",
+                  "label": "Lage (z. B. rechts parietal, am Unterarm rechts)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "la",
+              "label": "Lokalanästhesie",
+              "an": true,
+              "text": "Wundversorgung {art}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Lokalanästhesie",
+                  "optionen": [
+                    "",
+                    "in Infiltrationsanästhesie",
+                    "in Leitungsanästhesie nach Oberst",
+                    "ohne Lokalanästhesie"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "la-mittel",
+              "label": "Lokalanästhetikum und Menge",
+              "text": "Lokalanästhetikum: {menge} {mittel}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "menge",
+                  "label": "Menge",
+                  "einheit": "ml",
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "mittel",
+                  "label": "Lokalanästhetikum (Wirkstoff und Konzentration)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "spuelung",
+              "label": "Reinigung und Spülung",
+              "an": true,
+              "text": "Wunde desinfiziert und gespült."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "exzision",
+              "label": "Wundrandausschneidung",
+              "text": "Wundränder ausgeschnitten."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "verschluss",
+              "label": "Wundverschluss",
+              "pflicht": true,
+              "optionen": [
+                "Wundverschluss mit Einzelknopfnähten.",
+                "Wundverschluss mit Rückstichnähten.",
+                "Wundverschluss mit Hautklammern.",
+                "Wundverschluss mit Klammerpflastern.",
+                "Wundverschluss mit Gewebekleber.",
+                "Kein primärer Wundverschluss, offene Wundbehandlung.",
+                "Kein Wundverschluss nötig, Wundauflage.",
+                "Kein Wundverschluss in der Notaufnahme."
+              ]
+            },
+            {
+              "art": "option",
+              "id": "anzahl",
+              "label": "Anzahl der Nähte oder Klammern, Fadenstärke",
+              "text": " Anzahl: {zahl}{faden}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "zahl",
+                  "label": "Anzahl",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "faden",
+                  "label": "Fadenstärke",
+                  "optionen": [
+                    "",
+                    ", Fadenstärke 3-0",
+                    ", Fadenstärke 4-0",
+                    ", Fadenstärke 5-0",
+                    ", Fadenstärke 6-0"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lasche",
+              "label": "Lasche",
+              "text": "Lasche eingelegt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband",
+              "text": "{was} angelegt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verband",
+                  "optionen": [
+                    "Steriler Verband",
+                    "Sprühverband",
+                    "Pflasterverband",
+                    "Kompressionsverband"
+                  ]
+                }
+              ],
+              "an": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "pflicht": true,
+              "optionen": [
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis.",
+                "Impfausweis liegt nicht vor; saubere, geringfügige Wunde, nach Angabe mindestens 3 Impfungen, letzte vor weniger als 10 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-wunde",
+          "titel": "Wunde – ambulante Weiterbehandlung (keine Sehnen-, Nerven-, Gefäß- oder Gelenkbeteiligung)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wundkontrolle",
+              "label": "Wundkontrolle",
+              "an": true,
+              "text": "Wund- und Verbandskontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 Tagen",
+                    "nach 2 bis 3 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "fadenzug",
+              "label": "Entfernung des Nahtmaterials",
+              "an": true,
+              "text": "Entfernung {was} {wann} nach der Wundversorgung {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Nahtmaterial",
+                  "optionen": [
+                    "",
+                    "der Fäden",
+                    "der Klammern"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am 5. bis 7. Tag",
+                    "am 7. bis 10. Tag",
+                    "am 10. bis 14. Tag",
+                    "am 14. bis 21. Tag"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kein-nahtmaterial",
+              "label": "Kein Nahtmaterial zu entfernen",
+              "text": "Kein Nahtmaterial zu entfernen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "trocken",
+              "label": "Wunde trocken halten",
+              "an": true,
+              "text": "Wunde {dauer} trocken und sauber halten.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 24 Stunden",
+                    "für 48 Stunden",
+                    "bis zur Wundkontrolle",
+                    "bis zur Entfernung des Nahtmaterials"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Schonen und Hochlagern",
+              "text": "Verletzte Stelle {seite} schonen und hochlagern."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "text": "Ruhigstellung {seite} in der angelegten Schiene für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "3 Tage",
+                    "5 Tage",
+                    "1 Woche",
+                    "die Zeit bis zur Entfernung des Nahtmaterials"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kein-antibiotikum",
+              "label": "Kein Antibiotikum",
+              "text": "Kein Antibiotikum."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "antibiotikum",
+              "label": "Antibiotikum",
+              "text": "Antibiotikum {wirkstoff} für {tage}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Wirkstoff und Dosis",
+                  "maxLen": 60
+                },
+                {
+                  "art": "zahl",
+                  "id": "tage",
+                  "label": "Dauer",
+                  "einheit": "Tage",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "handchirurgie",
+              "label": "Handchirurgische Vorstellung",
+              "text": "Vorstellung in der handchirurgischen Sprechstunde {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "fremdkoerper-belassen",
+              "label": "Belassener Fremdkörper",
+              "text": "Vorstellung {wo} {wann} zur Entscheidung über die Entfernung des belassenen Fremdkörpers.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der handchirurgischen Sprechstunde",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Rötung, Schwellung, Überwärmung oder pochendem Schmerz der Wunde, Eiter oder Nässen, rotem Streifen von der Wunde in Richtung Körper, Fieber über 38,5 °C, aufgehender Naht, Blutung, die nach 10 Minuten Druck nicht steht."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-wunde-aufnahme",
+          "titel": "Wunde – stationäre Aufnahme zur operativen Versorgung (Sehnen-, Nerven-, Gefäß- oder Gelenkbeteiligung)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "antibiotikum",
+              "typ": "begriff",
+              "label": "Antibiotikum (Wirkstoff, Dosis, Beginn)",
+              "required": true,
+              "vorschlaege": [
+                "keines"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme zur operativen Versorgung",
+              "an": true,
+              "text": "Stationäre Aufnahme zur operativen Versorgung ({was}).",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Versorgung",
+                  "optionen": [
+                    "",
+                    "Sehnennaht",
+                    "Nervennaht",
+                    "Gelenkspülung",
+                    "Gefäßversorgung",
+                    "Wundrevision"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Antibiotikum: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "antibiotikum"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "proc-wunde-verlegung",
+          "titel": "Wunde – Verlegung in die Handchirurgie am selben Tag",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "antibiotikum",
+              "typ": "begriff",
+              "label": "Antibiotikum (Wirkstoff, Dosis, Beginn)",
+              "required": true,
+              "vorschlaege": [
+                "keines"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verlegung",
+              "label": "Verlegung in die Handchirurgie",
+              "an": true,
+              "text": "Verlegung in die Handchirurgie {wohin} am selben Tag nach telefonischer Anmeldung.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wohin",
+                  "label": "Handchirurgie: Klinik",
+                  "maxLen": 80,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Antibiotikum: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "antibiotikum"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "proc-fremdkoerper-belassen",
+          "titel": "Fremdkörper belassen – Entscheidung über die Entfernung, Antibiotikum",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "antibiotikum",
+              "typ": "begriff",
+              "label": "Antibiotikum (Wirkstoff, Dosis, Dauer)",
+              "required": true,
+              "vorschlaege": [
+                "keines"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Antibiotikum: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "antibiotikum"
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "vorstellung",
+              "label": "Belassener Fremdkörper",
+              "text": "Vorstellung {wo} {wann} zur Entscheidung über die Entfernung des belassenen Fremdkörpers.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der handchirurgischen Sprechstunde",
+                    "in unserer Sprechstunde nach Terminvereinbarung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ],
+                  "required": true
+                }
+              ],
+              "an": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "suche",
+              "label": "Bildgebung zur Suche des Fremdkörpers",
+              "text": "{verfahren} {wann} {wo} zur Suche des Fremdkörpers.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verfahren",
+                  "label": "Verfahren",
+                  "optionen": [
+                    "",
+                    "Sonografie",
+                    "MRT"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "wo",
+                  "maxLen": 80,
+                  "required": true,
+                  "vorschlaege": [
+                    "in unserer Klinik nach Terminvereinbarung",
+                    "in der radiologischen Praxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "operation",
+              "label": "Entfernung im Operationssaal",
+              "text": "Entfernung des Fremdkörpers im Operationssaal {wann}, {wie}; {person} ist darüber aufgeklärt.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "wann",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "am Folgetag",
+                    "innerhalb von 1 Woche"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "ambulant oder stationär",
+                  "optionen": [
+                    "",
+                    "ambulant",
+                    "stationär"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wundkontrolle",
+              "label": "Wundkontrolle",
+              "an": true,
+              "text": "Wund- und Verbandskontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 Tagen",
+                    "nach 2 bis 3 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "trocken",
+              "label": "Wunde trocken halten",
+              "an": true,
+              "text": "Wunde {dauer} trocken und sauber halten.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "für 24 Stunden",
+                    "für 48 Stunden",
+                    "bis zur Wundkontrolle",
+                    "bis zur Entfernung des Nahtmaterials"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Rötung, Schwellung, Überwärmung oder pochendem Schmerz der Wunde, Eiter oder Nässen, rotem Streifen von der Wunde in Richtung Körper, Fieber über 38,5 °C, aufgehender Naht, Blutung, die nach 10 Minuten Druck nicht steht."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "dx-biss",
+          "titel": "Diagnose Bissverletzung",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Lokalisation der Bissverletzung",
+              "required": true,
+              "vorschlaege": [
+                "an der Hand",
+                "am Daumen",
+                "am Zeigefinger",
+                "am Unterarm",
+                "am Oberschenkel",
+                "am Unterschenkel",
+                "am Fuß"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "tier",
+              "label": "Art des Bisses",
+              "pflicht": true,
+              "optionen": [
+                "Hundebissverletzung",
+                "Katzenbissverletzung",
+                "Menschenbissverletzung",
+                "Tierbissverletzung"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "tiefe",
+              "label": "Wundform",
+              "optionen": [
+                "",
+                ", oberflächlich",
+                ", tiefe Punktionswunde",
+                ", Riss-Quetschwunde"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "zusatz",
+              "label": "Zusatz",
+              "optionen": [
+                "",
+                ", mit Verdacht auf Gelenkbeteiligung",
+                ", mit Verdacht auf Beteiligung der Sehnenscheide",
+                ", infiziert"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "ana-biss",
+          "titel": "Bissverletzung – Anamnese (Zusatzangaben)",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "tetanus-zuletzt",
+              "typ": "begriff",
+              "label": "Letzte Tetanusimpfung",
+              "required": true,
+              "vorschlaege": [
+                "vor weniger als 5 Jahren",
+                "vor 5 bis 10 Jahren",
+                "vor mehr als 10 Jahren",
+                "unbekannt",
+                "nie geimpft"
+              ]
+            },
+            {
+              "id": "tollwut-tier",
+              "typ": "begriff",
+              "label": "Tollwutimpfung des Tieres",
+              "required": true,
+              "vorschlaege": [
+                "laut Halter geimpft",
+                "nicht geimpft",
+                "unbekannt",
+                "entfällt"
+              ]
+            },
+            {
+              "id": "ausland",
+              "typ": "begriff",
+              "label": "Biss im Ausland oder Tier aus dem Ausland",
+              "required": true,
+              "vorschlaege": [
+                "nein",
+                "ja",
+                "unbekannt"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Zur Bissverletzung: "
+            },
+            {
+              "art": "auswahl",
+              "id": "tier",
+              "label": "Tier",
+              "pflicht": true,
+              "optionen": [
+                "Gebissen habe ein Hund. ",
+                "Gebissen habe eine Katze. ",
+                "Gebissen habe ein Mensch. ",
+                "Gebissen habe ein Wildtier. "
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "halter",
+              "label": "Herkunft des Tieres",
+              "pflicht": true,
+              "optionen": [
+                "Es handle sich um das eigene Tier. ",
+                "Es handle sich um ein fremdes Tier, der Halter sei bekannt. ",
+                "Es handle sich um ein fremdes Tier, der Halter sei nicht bekannt. ",
+                "Es handle sich um ein streunendes Tier. ",
+                ""
+              ]
+            },
+            {
+              "art": "option",
+              "id": "faustschlag",
+              "label": "Biss durch Faustschlag gegen Zähne",
+              "text": "Bei einem Faustschlag sei die Hand gegen die Zähne einer anderen Person geprallt. "
+            },
+            {
+              "art": "befund",
+              "id": "risiko",
+              "chip": "Risikofaktoren für eine Infektion",
+              "gruppe": "Risikofaktoren",
+              "normal": "Ein Diabetes, eine Immunschwäche oder eine fehlende Milz sei nicht bekannt. ",
+              "abweichung": "Bekannt sei {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Risikofaktor",
+                  "maxLen": 120,
+                  "required": true,
+                  "vorschlaege": [
+                    "ein Diabetes mellitus",
+                    "eine Immunschwäche",
+                    "eine fehlende Milz",
+                    "eine künstliche Herzklappe",
+                    "ein Gelenkersatz"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "text",
+              "text": "Letzte Tetanusimpfung: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "tetanus-zuletzt"
+            },
+            {
+              "art": "text",
+              "text": ". Tollwutimpfung des Tieres: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "tollwut-tier"
+            },
+            {
+              "art": "text",
+              "text": ". Biss im Ausland oder Tier aus dem Ausland: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "ausland"
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "option",
+              "id": "hepatitis-b",
+              "label": "Hepatitis-B-Impfschutz (Menschenbiss)",
+              "text": " Hepatitis-B-Impfschutz: {status}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "status",
+                  "label": "Hepatitis-B-Impfschutz",
+                  "optionen": [
+                    "",
+                    "vollständig",
+                    "unvollständig",
+                    "unbekannt"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-biss",
+          "titel": "Bissverletzung – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Region",
+              "required": true,
+              "vorschlaege": [
+                "Hand",
+                "Daumen",
+                "Zeigefinger",
+                "Unterarm",
+                "Oberschenkel",
+                "Unterschenkel",
+                "Fuß"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "wunde",
+              "label": "Wundform",
+              "pflicht": true,
+              "optionen": [
+                "Punktförmige Bisswunden. ",
+                "Oberflächliche Bisswunde. ",
+                "Tiefe Bisswunde. ",
+                "Riss-Quetschwunde nach Biss. ",
+                "Mehrere Bisswunden. "
+              ]
+            },
+            {
+              "art": "option",
+              "id": "laenge",
+              "label": "Wundlänge",
+              "gruppe": "Inspektion",
+              "text": "Wundlänge {cm}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "cm",
+                  "label": "Länge",
+                  "einheit": "cm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "tiefe",
+              "chip": "Tiefe Strukturen",
+              "gruppe": "Inspektion",
+              "normal": "Keine Sehne, keine Gelenkkapsel und kein Knochen sichtbar. ",
+              "abweichung": "{was} im Wundgrund sichtbar. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Struktur",
+                  "optionen": [
+                    "",
+                    "Muskelfaszie",
+                    "Sehne",
+                    "Gelenkkapsel",
+                    "Knochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "roetung",
+              "chip": "Rötung, Überwärmung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, keine Überwärmung. ",
+              "abweichung": "Rötung und Überwärmung um die Wunde, Durchmesser {cm}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "cm",
+                  "label": "Durchmesser",
+                  "einheit": "cm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung. ",
+              "abweichung": "Schwellung{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "lymphangitis",
+              "chip": "Lymphangitis",
+              "gruppe": "Inspektion",
+              "normal": "Keine Lymphangitis. ",
+              "abweichung": "Lymphangitis. "
+            },
+            {
+              "art": "befund",
+              "id": "sehnenscheide",
+              "chip": "Druckschmerz Sehnenscheide",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz entlang der Sehnenscheiden. ",
+              "abweichung": "Druckschmerz entlang der Sehnenscheide {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort (z. B. der Beugesehne des Zeigefingers)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gelenk",
+              "chip": "Beweglichkeit benachbarter Gelenke",
+              "gruppe": "Funktion",
+              "normal": "Benachbarte Gelenke frei beweglich. ",
+              "abweichung": "Beweglichkeit {gelenk} schmerzhaft eingeschränkt. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "gelenk",
+                  "label": "Gelenk (z. B. des Zeigefingergrundgelenks)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sehnen",
+              "chip": "Beweglichkeit und Kraft distal",
+              "gruppe": "Funktion",
+              "normal": "Aktive Beweglichkeit distal der Wunde gegen Widerstand intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Streckdefizit",
+                    "Beugedefizit",
+                    "Kraftminderung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Finger oder Gelenk",
+                  "maxLen": 50
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sensibilitaet",
+              "chip": "Sensibilität distal",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Sensibilität distal der Wunde intakt. ",
+              "abweichung": "Sensibilitätsminderung {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort oder Versorgungsgebiet",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "durchblutung",
+              "chip": "Durchblutung distal",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Durchblutung distal der Wunde intakt. ",
+              "abweichung": "Durchblutung distal der Wunde vermindert. "
+            }
+          ]
+        },
+        {
+          "id": "th-biss",
+          "titel": "Bissverletzung – Wundversorgung",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "tollwut",
+              "typ": "begriff",
+              "label": "Tollwut-Risiko und Vorgehen",
+              "required": true,
+              "vorschlaege": [
+                "kein Anhalt",
+                "nicht auszuschließen, Rücksprache mit dem Gesundheitsamt",
+                "nicht auszuschließen, Tollwutimpfung begonnen"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "la",
+              "label": "Lokalanästhesie",
+              "text": "Wundversorgung {art}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Lokalanästhesie",
+                  "optionen": [
+                    "",
+                    "in Infiltrationsanästhesie",
+                    "in Leitungsanästhesie nach Oberst",
+                    "ohne Lokalanästhesie"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "la-mittel",
+              "label": "Lokalanästhetikum und Menge",
+              "text": "Lokalanästhetikum: {menge} {mittel}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "menge",
+                  "label": "Menge",
+                  "einheit": "ml",
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "mittel",
+                  "label": "Lokalanästhetikum (Wirkstoff und Konzentration)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "spuelung",
+              "label": "Reinigung und Spülung",
+              "an": true,
+              "text": "Wunde desinfiziert und gespült."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "debridement",
+              "label": "Wundrandausschneidung",
+              "text": "Wundränder ausgeschnitten, avitales Gewebe entfernt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "verschluss",
+              "label": "Primärer Wundverschluss",
+              "pflicht": true,
+              "optionen": [
+                "Kein primärer Wundverschluss, offene Wundbehandlung.",
+                "Primärer Wundverschluss mit adaptierenden Nähten.",
+                "Wunde locker adaptiert, Lasche eingelegt."
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abstrich",
+              "label": "Wundabstrich",
+              "text": "Wundabstrich entnommen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "serologie",
+              "label": "Hepatitis- und HIV-Serologie (Menschenbiss)",
+              "text": "Blutentnahme zur Bestimmung von Hepatitis- und HIV-Serologie {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Blutentnahme",
+                  "optionen": [
+                    "",
+                    "erfolgt",
+                    "in der Durchgangsarztpraxis veranlasst",
+                    "in der Hausarztpraxis veranlasst"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband",
+              "an": true,
+              "text": "Steriler Verband angelegt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "pflicht": true,
+              "optionen": [
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis."
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Tollwut-Risiko: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "tollwut"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "proc-biss",
+          "titel": "Bissverletzung – ambulante Behandlung (keine Gelenk-, Sehnenscheidenbeteiligung, keine Lymphangitis)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "antibiotikum",
+              "typ": "begriff",
+              "label": "Antibiotikum (Wirkstoff, Dosis, Dauer)",
+              "required": true,
+              "vorschlaege": [
+                "keines"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Antibiotikum: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "antibiotikum"
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wundkontrolle",
+              "label": "Wundkontrolle",
+              "an": true,
+              "text": "Wundkontrolle {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 48 Stunden"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonen und Hochlagern",
+              "an": true,
+              "text": "Verletzte Stelle {seite} schonen und hochlagern bis zur Wundkontrolle."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband belassen",
+              "an": true,
+              "text": "Verband bis zur Wundkontrolle belassen und trocken halten."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung bis zur Wundkontrolle",
+              "text": "Ruhigstellung {seite} in der angelegten Schiene bis zur Wundkontrolle; dort Entscheidung über die weitere Ruhigstellung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "fadenzug",
+              "label": "Entfernung des Nahtmaterials",
+              "text": "Entfernung der Fäden {wann} nach der Wundversorgung {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am 5. bis 7. Tag",
+                    "am 7. bis 10. Tag",
+                    "am 10. bis 14. Tag"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "handchirurgie",
+              "label": "Handchirurgische Vorstellung",
+              "text": "Vorstellung in der handchirurgischen Sprechstunde {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "am nächsten Werktag"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Rötung, Schwellung, Überwärmung oder pochendem Schmerz der Wunde, Eiter, rotem Streifen von der Wunde in Richtung Körper, Fieber über 38,5 °C, zunehmenden Schmerzen beim Bewegen der Finger oder des benachbarten Gelenks, Taubheitsgefühl."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-biss-aufnahme",
+          "titel": "Bissverletzung – stationäre Aufnahme zur operativen Revision (Gelenk-, Sehnenscheidenbeteiligung, Lymphangitis)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme zur operativen Revision",
+              "an": true,
+              "text": "Stationäre Aufnahme zur operativen Revision und intravenösen Antibiotikabehandlung."
+            }
+          ]
+        },
+        {
+          "id": "proc-biss-op-abgelehnt",
+          "titel": "Bissverletzung – Operation abgelehnt (Gelenk-, Sehnenscheidenbeteiligung, Lymphangitis)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abgelehnt",
+              "label": "Operation abgelehnt, Antibiotikum, Kontrolle am Folgetag",
+              "an": true,
+              "text": "Operative Behandlung von {person-dat} abgelehnt, Aufklärung über die Risiken erfolgt; Antibiotikum {wirkstoff} und Kontrolle am Folgetag in unserer Notaufnahme.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum (Wirkstoff, Dosis, Dauer)",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Rötung, Schwellung, Überwärmung oder pochendem Schmerz der Wunde, Eiter, rotem Streifen von der Wunde in Richtung Körper, Fieber über 38,5 °C, zunehmenden Schmerzen beim Bewegen der Finger oder des benachbarten Gelenks, Taubheitsgefühl."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "dx-fremdkoerper",
+          "titel": "Diagnose Fremdkörper in den Weichteilen",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Lokalisation des Fremdkörpers",
+              "required": true,
+              "vorschlaege": [
+                "an der Hand",
+                "am Daumen",
+                "am Zeigefinger",
+                "am Unterarm",
+                "am Knie",
+                "am Fuß",
+                "an der Fußsohle"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Fremdkörper "
+            },
+            {
+              "art": "auswahl",
+              "id": "material",
+              "label": "Material",
+              "pflicht": true,
+              "optionen": [
+                "(Holzsplitter)",
+                "(Glassplitter)",
+                "(Metallsplitter)",
+                "(Dorn oder Stachel)",
+                "(Angelhaken)",
+                "(Material unbekannt)"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "tiefe",
+              "label": "Tiefe",
+              "optionen": [
+                "",
+                ", kutan",
+                ", subkutan",
+                ", tief gelegen"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ", "
+            },
+            {
+              "art": "auswahl",
+              "id": "status",
+              "label": "Verbleib",
+              "pflicht": true,
+              "optionen": [
+                "vollständig entfernt",
+                "teilweise entfernt",
+                "belassen",
+                "nicht aufgefunden"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-fremdkoerper",
+          "titel": "Fremdkörper – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Region",
+              "required": true,
+              "vorschlaege": [
+                "Hand",
+                "Daumen",
+                "Zeigefinger",
+                "Unterarm",
+                "Knie",
+                "Fuß",
+                "Fußsohle"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "fk",
+              "label": "Eintrittsstelle und Fremdkörper",
+              "pflicht": true,
+              "optionen": [
+                "Eintrittsstelle sichtbar, Fremdkörper sichtbar. ",
+                "Eintrittsstelle sichtbar, Fremdkörper tastbar. ",
+                "Eintrittsstelle sichtbar, Fremdkörper weder sichtbar noch tastbar. ",
+                "Keine Eintrittsstelle sichtbar, Fremdkörper tastbar. "
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "infekt",
+              "chip": "Infektzeichen",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung, keine Überwärmung, kein Eiter. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Rötung und Überwärmung um die Eintrittsstelle",
+                    "Eitrige Sekretion aus der Eintrittsstelle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sehnenscheide",
+              "chip": "Druckschmerz Sehnenscheide",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz entlang der Sehnenscheiden. ",
+              "abweichung": "Druckschmerz entlang der Sehnenscheide {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort (z. B. der Beugesehne des Zeigefingers)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gelenk",
+              "chip": "Benachbartes Gelenk",
+              "gruppe": "Funktion",
+              "normal": "Benachbartes Gelenk frei beweglich, kein Erguss. ",
+              "abweichung": "Beweglichkeit {gelenk} schmerzhaft eingeschränkt{erguss}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "gelenk",
+                  "label": "Gelenk (z. B. des Kniegelenks)",
+                  "maxLen": 60
+                },
+                {
+                  "art": "auswahl",
+                  "id": "erguss",
+                  "label": "Erguss",
+                  "optionen": [
+                    "",
+                    ", Erguss"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sehnen",
+              "chip": "Beweglichkeit und Kraft distal",
+              "gruppe": "Funktion",
+              "normal": "Aktive Beweglichkeit distal gegen Widerstand intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Streckdefizit",
+                    "Beugedefizit",
+                    "Kraftminderung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Finger oder Gelenk",
+                  "maxLen": 50
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sensibilitaet",
+              "chip": "Sensibilität distal",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Sensibilität distal intakt. ",
+              "abweichung": "Sensibilitätsminderung {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort oder Versorgungsgebiet",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "durchblutung",
+              "chip": "Durchblutung distal",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Durchblutung distal intakt. ",
+              "abweichung": "Durchblutung distal vermindert. "
+            }
+          ]
+        },
+        {
+          "id": "dgn-fremdkoerper",
+          "titel": "Röntgen bei Fremdkörper",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Röntgen: Region",
+              "required": true,
+              "vorschlaege": [
+                "Hand",
+                "Daumen",
+                "Zeigefinger",
+                "Unterarm",
+                "Knie",
+                "Fuß"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "ebenen",
+              "label": "Ebenen",
+              "optionen": [
+                "in 2 Ebenen",
+                "in 1 Ebene"
+              ],
+              "default": 0
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "auswahl",
+              "id": "ergebnis",
+              "label": "Röntgenbefund",
+              "pflicht": true,
+              "optionen": [
+                "röntgendichter Fremdkörper nachweisbar, kein Frakturnachweis.",
+                "kein röntgendichter Fremdkörper nachweisbar, kein Frakturnachweis."
+              ]
+            },
+            {
+              "art": "auswahl",
+              "id": "befundung",
+              "label": "Befundung",
+              "optionen": [
+                "",
+                " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend.",
+                " Fachradiologisch befundet."
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "holz",
+              "label": "Holz und Dornen nicht röntgendicht",
+              "text": " Holz und Dornen sind im Röntgen nicht sichtbar."
+            },
+            {
+              "art": "option",
+              "id": "sono",
+              "label": "Sonografie",
+              "text": "\nSonografie der Weichteile: {befund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Fremdkörper darstellbar",
+                    "kein Fremdkörper darstellbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Röntgenkontrolle nach Entfernung",
+              "text": "\nRöntgenkontrolle nach Entfernung: kein verbliebener röntgendichter Fremdkörper."
+            }
+          ]
+        },
+        {
+          "id": "th-fremdkoerper",
+          "titel": "Fremdkörper vollständig entfernt",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "entfernung",
+              "label": "Entfernung",
+              "an": true,
+              "text": "Fremdkörper {anaesthesie} vollständig entfernt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anaesthesie",
+                  "label": "Lokalanästhesie",
+                  "optionen": [
+                    "",
+                    "in Infiltrationsanästhesie",
+                    "in Leitungsanästhesie nach Oberst",
+                    "ohne Lokalanästhesie"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "erweiterung",
+              "label": "Erweiterungsschnitt",
+              "text": "Zugang über einen Erweiterungsschnitt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "spuelung",
+              "label": "Spülung",
+              "an": true,
+              "text": "Wunde desinfiziert und gespült."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "verschluss",
+              "label": "Wundverschluss",
+              "pflicht": true,
+              "optionen": [
+                "Offene Wundbehandlung.",
+                "Wundverschluss mit Einzelknopfnähten.",
+                "Wundverschluss mit Klammerpflastern."
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband",
+              "an": true,
+              "text": "Steriler Verband angelegt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "pflicht": true,
+              "optionen": [
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-fremdkoerper-belassen",
+          "titel": "Fremdkörper ganz oder teilweise belassen",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "teilentfernung",
+              "label": "Teilweise entfernt",
+              "text": "Fremdkörper {anaesthesie} teilweise entfernt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anaesthesie",
+                  "label": "Lokalanästhesie",
+                  "optionen": [
+                    "",
+                    "in Infiltrationsanästhesie",
+                    "in Leitungsanästhesie nach Oberst",
+                    "ohne Lokalanästhesie"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belassen",
+              "label": "Fremdkörper belassen",
+              "text": "Fremdkörper belassen, weil {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "er nicht aufgefunden wurde",
+                    "die Entfernung tiefe Strukturen gefährdet hätte"
+                  ],
+                  "required": true
+                }
+              ],
+              "an": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung",
+              "label": "Aufklärung über das Belassen",
+              "text": "Über das Belassen des Fremdkörpers und das Risiko einer Infektion haben wir {person-akk} aufgeklärt.",
+              "an": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "spuelung",
+              "label": "Spülung",
+              "an": true,
+              "text": "Wunde desinfiziert und gespült."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "verschluss",
+              "label": "Wundverschluss",
+              "pflicht": true,
+              "optionen": [
+                "Offene Wundbehandlung.",
+                "Wundverschluss mit Einzelknopfnähten.",
+                "Wundverschluss mit Klammerpflastern."
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband",
+              "an": true,
+              "text": "Steriler Verband angelegt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "pflicht": true,
+              "optionen": [
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "weichteile",
+      "name": "Weichteile und Infekte",
+      "kuerzel": "🦠",
+      "bausteine": [
+        {
+          "id": "dx-prellung",
+          "titel": "Diagnose Prellung",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Region (z. B. des Oberschenkels)",
+              "required": true,
+              "vorschlaege": [
+                "des Oberarms",
+                "des Unterarms",
+                "der Hand",
+                "des Oberschenkels"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Prellung "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "zusatz",
+              "label": "Zusatz",
+              "optionen": [
+                "",
+                ", mit Hämatom",
+                ", mit Schürfwunde",
+                ", mit Hämatom und Schürfwunde"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "kein-fraktur",
+              "label": "Zeile: kein Frakturnachweis",
+              "text": "\nKein Frakturnachweis im Röntgen"
+            }
+          ]
+        },
+        {
+          "id": "bef-prellung",
+          "titel": "Prellung – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Region",
+              "required": true,
+              "vorschlaege": [
+                "Oberarm",
+                "Unterarm",
+                "Hand",
+                "Oberschenkel"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Fehlstellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Fehlstellung. ",
+              "abweichung": "Sichtbare Fehlstellung. "
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung. ",
+              "abweichung": "Schwellung{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haematom",
+              "chip": "Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein Hämatom. ",
+              "abweichung": "Hämatom{groesse}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "groesse",
+                  "label": "Ausdehnung",
+                  "optionen": [
+                    "",
+                    " (umschrieben)",
+                    " (ausgedehnt)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Haut",
+              "gruppe": "Inspektion",
+              "normal": "Haut intakt. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Prellmarke",
+                    "Schürfwunde",
+                    "Oberflächliche Ablederung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "druckschmerz",
+              "chip": "Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz. ",
+              "abweichung": "Druckschmerz {wo}{grad}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort (z. B. über dem lateralen Oberschenkel)",
+                  "maxLen": 60
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "knochen",
+              "chip": "Stauchungs-, Kompressions-, Rotationsschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Stauchungs-, Kompressions- oder Rotationsschmerz. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Stauchungsschmerz",
+                    "Kompressionsschmerz",
+                    "Rotationsschmerz"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "weichteile",
+              "chip": "Weichteilspannung",
+              "gruppe": "Palpation",
+              "normal": "Weichteile weich. ",
+              "abweichung": "Weichteile prall gespannt. "
+            },
+            {
+              "art": "befund",
+              "id": "beweglichkeit",
+              "chip": "Beweglichkeit angrenzender Gelenke",
+              "gruppe": "Beweglichkeit",
+              "normal": "Angrenzende Gelenke aktiv und passiv frei beweglich. ",
+              "abweichung": "Beweglichkeit {gelenk} schmerzbedingt eingeschränkt. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "gelenk",
+                  "label": "Gelenk (z. B. des Kniegelenks)",
+                  "maxLen": 50
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "erguss",
+              "chip": "Gelenkerguss",
+              "gruppe": "Beweglichkeit",
+              "normal": "",
+              "abweichung": "Erguss im angrenzenden Gelenk. "
+            },
+            {
+              "art": "befund",
+              "id": "belastung",
+              "chip": "Belastbarkeit des Beins",
+              "gruppe": "Belastbarkeit",
+              "normal": "Bein voll belastbar. ",
+              "abweichung": "Belastung des Beins {wie}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Belastbarkeit",
+                  "optionen": [
+                    "",
+                    "unter Schmerzen möglich",
+                    "nicht möglich"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "{was} {wo}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Sensibilitätsminderung",
+                    "Kraftminderung",
+                    "Abgeschwächter Puls"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 50
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-prellung",
+          "titel": "Prellung – Entlassung, Kontrolle bei anhaltenden Beschwerden (belastbar, keine pralle Schwellung)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonen, Kühlen, Hochlagern",
+              "an": true,
+              "text": "Verletzte Stelle {seite} schonen, kühlen und hochlagern für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "2 bis 3 Tage",
+                    "3 bis 5 Tage",
+                    "1 Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "belastung",
+              "label": "Belastung",
+              "an": true,
+              "text": "Belastung {seite} danach nach Beschwerden steigern."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gehstuetzen",
+              "label": "Unterarmgehstützen",
+              "text": "Unterarmgehstützen für {dauer}, solange das Gehen schmerzt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "2 bis 3 Tage",
+                    "bis zu 1 Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "",
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe nach ärztlicher Verordnung, solange das Bein nicht voll belastet wird."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat} {dosis} subkutan, 1-mal täglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "maxLen": 20,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Kontrolle bei anhaltenden Beschwerden",
+              "an": true,
+              "text": "Ärztliche Kontrolle {wo}, wenn die Beschwerden nach {frist} anhalten; dort Entscheidung über eine Bildgebung.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "5 bis 7 Tagen",
+                    "7 bis 10 Tagen",
+                    "2 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmender Schwellung oder zunehmenden Schmerzen trotz Hochlagern, rasch zunehmendem Spannungsschmerz, der sich durch Schmerzmittel nicht bessert, Taubheitsgefühl oder Kribbeln, kalten oder blassen Fingern oder Zehen, Schmerzen oder Schwellung in der Wade, Atemnot."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-prellung-kontrolle",
+          "titel": "Prellung – Entlassung mit fester Kontrolle und Entlastung (Bein nicht belastbar)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Feste klinische Kontrolle",
+              "an": true,
+              "text": "Klinische Kontrolle der verletzten Stelle {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 bis 3 Tagen"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "entlastung",
+              "label": "Entlastung bis zur Kontrolle",
+              "an": true,
+              "text": "Bis zur Kontrolle Entlastung des Beins {seite} an Unterarmgehstützen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bildgebung",
+              "label": "Schnittbildgebung bei fortbestehender Belastungsunfähigkeit",
+              "text": "Bei fortbestehender Belastungsunfähigkeit {verfahren} der verletzten Region {seite} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "verfahren",
+                  "label": "Verfahren",
+                  "optionen": [
+                    "",
+                    "CT",
+                    "MRT"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "wann",
+                  "maxLen": 60,
+                  "required": true,
+                  "vorschlaege": [
+                    "am Tag der Kontrolle",
+                    "innerhalb von 3 Tagen"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "wo",
+                  "maxLen": 80,
+                  "required": true,
+                  "vorschlaege": [
+                    "in unserer Notaufnahme",
+                    "in unserer Klinik nach Terminvereinbarung",
+                    "in der radiologischen Praxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "",
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Medikamentöse Thromboseprophylaxe nach ärztlicher Verordnung, solange das Bein nicht voll belastet wird."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "thrombose-praeparat",
+              "label": "Thromboseprophylaxe: Präparat und Dosis",
+              "text": " Präparat: {praeparat} {dosis} subkutan, 1-mal täglich.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "praeparat",
+                  "label": "Präparat",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Enoxaparin",
+                    "Certoparin",
+                    "Dalteparin",
+                    "Tinzaparin",
+                    "Nadroparin"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "dosis",
+                  "label": "Dosis mit Einheit",
+                  "maxLen": 20,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmender Schwellung oder zunehmenden Schmerzen trotz Hochlagern, rasch zunehmendem Spannungsschmerz, der sich durch Schmerzmittel nicht bessert, Taubheitsgefühl oder Kribbeln, kalten oder blassen Fingern oder Zehen, Schmerzen oder Schwellung in der Wade, Atemnot."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-prellung-aufnahme",
+          "titel": "Prellung – stationäre Aufnahme",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme",
+              "an": true,
+              "text": "Stationäre Aufnahme zur {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "Überwachung der Weichteile",
+                    "Schmerzbehandlung und weiteren Bildgebung"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dx-weichteilinfekt",
+          "titel": "Diagnose Weichteilinfekt, Abszess",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Lokalisation des Infekts",
+              "required": true,
+              "vorschlaege": [
+                "am Unterarm",
+                "an der Hand",
+                "in der Achselhöhle",
+                "am Gesäß",
+                "in der Leiste",
+                "am Oberschenkel",
+                "am Unterschenkel",
+                "am Fuß"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "pflicht": true,
+              "optionen": [
+                "Abszess",
+                "Phlegmone",
+                "Erysipel",
+                "Infizierte Wunde",
+                "Infiziertes Atherom",
+                "Lokale Entzündungsreaktion nach Insektenstich"
+              ]
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "zusatz",
+              "label": "Zusatz",
+              "optionen": [
+                "",
+                ", mit Lymphangitis"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "ana-weichteilinfekt",
+          "titel": "Weichteilinfekt – Anamnese (Zusatzangaben)",
+          "typ": "anamnese",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "fieber",
+              "label": "Fieber oder Schüttelfrost",
+              "pflicht": true,
+              "optionen": [
+                "Fieber oder Schüttelfrost hätten nicht bestanden. ",
+                "Fieber oder Schüttelfrost hätten bestanden. "
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "risiko",
+              "chip": "Diabetes, Immunschwäche, Durchblutungsstörung",
+              "gruppe": "Risikofaktoren",
+              "normal": "Ein Diabetes, eine Immunschwäche oder eine Durchblutungsstörung sei nicht bekannt. ",
+              "abweichung": "Bekannt sei {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Risikofaktor",
+                  "maxLen": 120,
+                  "required": true,
+                  "vorschlaege": [
+                    "ein Diabetes mellitus",
+                    "eine Immunschwäche",
+                    "eine Durchblutungsstörung"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "implantat",
+              "chip": "Implantat in der Region",
+              "gruppe": "Risikofaktoren",
+              "normal": "In der betroffenen Region liege kein Implantat. ",
+              "abweichung": "In der betroffenen Region liege {was}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Implantat oder Voroperation",
+                  "maxLen": 80,
+                  "required": true,
+                  "vorschlaege": [
+                    "eine Platte",
+                    "eine Prothese"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "eintritt",
+              "label": "Eintrittspforte",
+              "text": "Vorausgegangen sei {was} {wann}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Eintrittspforte",
+                  "optionen": [
+                    "",
+                    "eine Wunde",
+                    "ein Insektenstich",
+                    "eine Injektion",
+                    "eine Operation"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "wann",
+                  "label": "wann (z. B. vor 3 Tagen)",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "vorbehandlung",
+              "label": "Antibiotische Vorbehandlung",
+              "text": "Eine Vorbehandlung mit {wirkstoff} seit {tage} habe keine Besserung gebracht. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum der Vorbehandlung",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "tage",
+                  "label": "seit",
+                  "einheit": "Tagen",
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "bef-weichteilinfekt",
+          "titel": "Weichteilinfekt – Untersuchung",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "region",
+              "typ": "begriff",
+              "label": "Region",
+              "required": true,
+              "vorschlaege": [
+                "Unterarm",
+                "Hand",
+                "Achselhöhle",
+                "Gesäß",
+                "Leiste",
+                "Oberschenkel",
+                "Unterschenkel",
+                "Fuß"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "platzhalter",
+              "ref": "region"
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "roetung",
+              "chip": "Rötung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Rötung. ",
+              "abweichung": "Rötung von {a} mal {b}, {grenze} begrenzt. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "a",
+                  "label": "Länge",
+                  "einheit": "cm",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "b",
+                  "label": "Breite",
+                  "einheit": "cm",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grenze",
+                  "label": "Begrenzung",
+                  "optionen": [
+                    "",
+                    "scharf",
+                    "unscharf"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung. ",
+              "abweichung": "Schwellung{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sekretion",
+              "chip": "Sekretion",
+              "gruppe": "Inspektion",
+              "normal": "Keine Sekretion. ",
+              "abweichung": "{was}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Sekretion",
+                  "optionen": [
+                    "",
+                    "Eitrige Sekretion",
+                    "Seröse Sekretion",
+                    "Spontane Eiterentleerung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "lymphangitis",
+              "chip": "Lymphangitis",
+              "gruppe": "Inspektion",
+              "normal": "Keine Lymphangitis. ",
+              "abweichung": "Lymphangitis. "
+            },
+            {
+              "art": "befund",
+              "id": "ueberwaermung",
+              "chip": "Überwärmung",
+              "gruppe": "Palpation",
+              "normal": "Keine Überwärmung. ",
+              "abweichung": "Überwärmung. "
+            },
+            {
+              "art": "befund",
+              "id": "fluktuation",
+              "chip": "Fluktuation",
+              "gruppe": "Palpation",
+              "normal": "Keine Fluktuation. ",
+              "abweichung": "Fluktuation tastbar. "
+            },
+            {
+              "art": "befund",
+              "id": "druckschmerz",
+              "chip": "Druckschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz. ",
+              "abweichung": "Druckschmerz{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "lymphknoten",
+              "chip": "Regionäre Lymphknoten",
+              "gruppe": "Palpation",
+              "normal": "Regionäre Lymphknoten nicht vergrößert. ",
+              "abweichung": "Regionäre Lymphknoten {wo} vergrößert und druckschmerzhaft. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "in der Achselhöhle",
+                    "in der Leiste",
+                    "in der Ellenbeuge",
+                    "in der Kniekehle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "sehnenscheide",
+              "chip": "Druckschmerz Sehnenscheide",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz entlang der Sehnenscheiden. ",
+              "abweichung": "Druckschmerz entlang der Sehnenscheide {wo}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wo",
+                  "label": "Ort",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "gelenk",
+              "chip": "Benachbartes Gelenk",
+              "gruppe": "Funktion",
+              "normal": "Benachbartes Gelenk frei beweglich. ",
+              "abweichung": "Beweglichkeit des benachbarten Gelenks schmerzhaft eingeschränkt. "
+            },
+            {
+              "art": "befund",
+              "id": "dms",
+              "chip": "Durchblutung, Motorik, Sensibilität distal",
+              "gruppe": "Durchblutung, Motorik, Sensibilität",
+              "normal": "Durchblutung, Motorik und Sensibilität distal intakt. ",
+              "abweichung": "{was} distal. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Sensibilitätsminderung",
+                    "Kraftminderung",
+                    "Verminderte Durchblutung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "messwert",
+              "id": "temperatur",
+              "label": "Körpertemperatur",
+              "vorlage": "Körpertemperatur {w} °C. ",
+              "gruppe": "Messwerte"
+            }
+          ]
+        },
+        {
+          "id": "dgn-weichteilinfekt",
+          "titel": "Diagnostik bei Weichteilinfekt: Labor, Sonografie, Röntgen, Abstrich",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "option",
+              "id": "labor",
+              "label": "Labor",
+              "an": true,
+              "text": "Labor: Leukozyten {leuko}, CRP {crp}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "leuko",
+                  "label": "Leukozyten (mit Einheit)",
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "crp",
+                  "label": "CRP (mit Einheit)",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "sono",
+              "label": "Sonografie",
+              "text": "\nSonografie der Weichteile: {befund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "befund",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "echoarme Flüssigkeitsansammlung, vereinbar mit einem Abszess",
+                    "keine abgrenzbare Flüssigkeitsansammlung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgen",
+              "text": "\nRöntgen der betroffenen Region in 2 Ebenen: kein Fremdkörper, keine Osteolyse."
+            },
+            {
+              "art": "option",
+              "id": "abstrich",
+              "label": "Abstrich",
+              "text": "\nAbstrich zur mikrobiologischen Untersuchung entnommen, Befund ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "dgn-weichteilinfekt-verzicht",
+          "titel": "Verzicht auf Labor und Bildgebung bei Weichteilinfekt",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "grund",
+              "typ": "freitext",
+              "label": "Grund für den Verzicht",
+              "required": true,
+              "vorschlaege": [
+                "weil der Befund umschrieben ist und kein Fieber besteht"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Auf Labor und Bildgebung haben wir verzichtet, "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "grund"
+            },
+            {
+              "art": "text",
+              "text": "."
+            }
+          ]
+        },
+        {
+          "id": "th-abszess",
+          "titel": "Weichteilinfekt – Inzision (Abszessspaltung)",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "spaltung",
+              "label": "Abszessspaltung",
+              "an": true,
+              "text": "Abszess {anaesthesie} gespalten, {sekret} entleert, Wundhöhle gespült.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anaesthesie",
+                  "label": "Anästhesie",
+                  "optionen": [
+                    "",
+                    "in Lokalanästhesie",
+                    "in Leitungsanästhesie nach Oberst",
+                    "nach Vereisung",
+                    "in Kurznarkose"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "sekret",
+                  "label": "Entleert",
+                  "optionen": [
+                    "",
+                    "Eiter",
+                    "wenig Eiter",
+                    "Blut und Eiter",
+                    "seröse Flüssigkeit"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lasche",
+              "label": "Lasche",
+              "text": "Lasche eingelegt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abstrich",
+              "label": "Abstrich",
+              "text": "Abstrich zur mikrobiologischen Untersuchung entnommen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband",
+              "an": true,
+              "text": "Steriler Verband angelegt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "optionen": [
+                "",
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "th-weichteilinfekt-konservativ",
+          "titel": "Weichteilinfekt – konservative Behandlung ohne Inzision",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "konservativ",
+              "label": "Keine Inzision",
+              "an": true,
+              "text": "Keine Inzision, konservative Behandlung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "markierung",
+              "label": "Rötung angezeichnet",
+              "an": true,
+              "text": "Grenze der Rötung auf der Haut angezeichnet."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abstrich",
+              "label": "Abstrich",
+              "text": "Abstrich zur mikrobiologischen Untersuchung entnommen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband",
+              "an": false,
+              "text": "Steriler Verband angelegt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "tetanus",
+              "label": "Tetanus",
+              "optionen": [
+                "",
+                "Tetanusschutz ausreichend, keine Impfung.",
+                "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                "Impfausweis liegt nicht vor; nach Angabe mindestens 3 Impfungen, letzte vor weniger als 5 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis."
+              ],
+              "pflicht": true
+            }
+          ]
+        },
+        {
+          "id": "proc-weichteilinfekt",
+          "titel": "Weichteilinfekt – ambulant nach Inzision (umschriebener Befund, keine Lymphangitis, kein Fieber, keine Gelenk- oder Sehnenscheidenbeteiligung)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "antibiotikum",
+              "typ": "begriff",
+              "label": "Antibiotikum (Wirkstoff, Dosis, Dauer)",
+              "required": true,
+              "vorschlaege": [
+                "keines"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Antibiotikum: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "antibiotikum"
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "wundkontrolle",
+              "label": "Wundkontrolle und Verbandwechsel",
+              "an": true,
+              "text": "Wundkontrolle und Verbandwechsel {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "am Folgetag, danach täglich",
+                    "alle 2 Tage"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "lasche",
+              "label": "Entfernung der Lasche",
+              "text": "Entfernung der Lasche {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "nach 2 Tagen",
+                    "nach 3 Tagen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ausduschen",
+              "label": "Wunde ausduschen",
+              "text": "Wunde ab {wann} täglich mit lauwarmem Wasser ausduschen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "ab wann",
+                  "optionen": [
+                    "",
+                    "dem Folgetag",
+                    "dem 2. Tag",
+                    "der Entfernung der Lasche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonen und Hochlagern",
+              "an": true,
+              "text": "Betroffene Stelle {seite} schonen und hochlagern."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Ausbreitung der Rötung, zunehmender Schwellung oder zunehmenden Schmerzen, rotem Streifen in Richtung Körper, Fieber über 38,5 °C oder Schüttelfrost, erneuter Eiteransammlung, schmerzhafter Bewegungseinschränkung des benachbarten Gelenks."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-weichteilinfekt-konservativ",
+          "titel": "Weichteilinfekt – ambulant ohne Inzision (umschriebener Befund, keine Lymphangitis, kein Fieber, keine Gelenk- oder Sehnenscheidenbeteiligung)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [
+            {
+              "id": "antibiotikum",
+              "typ": "begriff",
+              "label": "Antibiotikum (Wirkstoff, Dosis, Dauer)",
+              "required": true,
+              "vorschlaege": [
+                "keines"
+              ]
+            }
+          ],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "text",
+              "text": "Antibiotikum: "
+            },
+            {
+              "art": "platzhalter",
+              "ref": "antibiotikum"
+            },
+            {
+              "art": "text",
+              "text": "."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Klinische Kontrolle der Rötung",
+              "an": true,
+              "text": "Klinische Kontrolle der Rötung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "am Folgetag, danach täglich"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Durchgangsarztpraxis",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Schonen und Hochlagern",
+              "an": true,
+              "text": "Betroffene Stelle {seite} schonen und hochlagern."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Ausbreitung der Rötung, zunehmender Schwellung oder zunehmenden Schmerzen, rotem Streifen in Richtung Körper, Fieber über 38,5 °C oder Schüttelfrost, erneuter Eiteransammlung, schmerzhafter Bewegungseinschränkung des benachbarten Gelenks."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        },
+        {
+          "id": "proc-weichteilinfekt-aufnahme",
+          "titel": "Weichteilinfekt – stationäre Aufnahme",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme",
+              "an": true,
+              "text": "Stationäre Aufnahme zur {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "operativen Behandlung",
+                    "intravenösen Antibiotikabehandlung",
+                    "operativen Behandlung und intravenösen Antibiotikabehandlung"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-weichteilinfekt-abgelehnt",
+          "titel": "Weichteilinfekt – stationäre Aufnahme abgelehnt",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "abgelehnt",
+              "label": "Aufnahme abgelehnt, Antibiotikum, Kontrolle am Folgetag",
+              "an": true,
+              "text": "Stationäre Aufnahme von {person-dat} abgelehnt, Aufklärung über die Risiken erfolgt; Antibiotikum {wirkstoff} und Kontrolle am Folgetag in unserer Notaufnahme.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum (Wirkstoff, Dosis, Dauer)",
+                  "maxLen": 100,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "maxLen": 200,
+                  "required": true,
+                  "label": "Schmerzmittel",
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Ausbreitung der Rötung, zunehmender Schwellung oder zunehmenden Schmerzen, rotem Streifen in Richtung Körper, Fieber über 38,5 °C oder Schüttelfrost, erneuter Eiteransammlung, schmerzhafter Bewegungseinschränkung des benachbarten Gelenks."
+            },
+            {
+              "art": "option",
+              "id": "besprochen",
+              "label": "Warnzeichen besprochen",
+              "text": " Die Warnzeichen haben wir mit {person-dat} besprochen."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

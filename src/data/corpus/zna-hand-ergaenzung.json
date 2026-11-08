@@ -1,0 +1,3579 @@
+{
+  "regionen": [
+    {
+      "id": "mittelhand",
+      "name": "Mittelhand",
+      "kuerzel": "✋",
+      "bausteine": [
+        {
+          "id": "dx-mhk1-fraktur",
+          "titel": "Diagnose Fraktur des 1. Mittelhandknochens",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "offen",
+              "label": "Geschlossen oder offen",
+              "optionen": [
+                "Geschlossene",
+                "Offene"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "form",
+              "label": "Frakturform",
+              "optionen": [
+                "extraartikuläre Basisfraktur",
+                "Bennett-Fraktur",
+                "Rolando-Fraktur",
+                "intraartikuläre Trümmerfraktur der Basis",
+                "Schaftfraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " des 1. Mittelhandknochens "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "stellung",
+              "label": "Stellung",
+              "optionen": [
+                "",
+                ", nicht verschoben",
+                ", gering verschoben",
+                ", verschoben",
+                ", mit Subluxation im Daumensattelgelenk"
+              ],
+              "default": 0
+            }
+          ]
+        },
+        {
+          "id": "dgn-mhk1-roentgen",
+          "titel": "Röntgen Daumen (1. Mittelhandknochen)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Daumen "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen: Fraktur des 1. Mittelhandknochens"
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Röntgenbefund",
+              "optionen": [
+                ", Basis, extraartikulär",
+                ", Basis, intraartikulär mit ulnopalmarem Kantenfragment (Bennett)",
+                ", Basis, intraartikulär Y- oder T-förmig (Rolando)",
+                ", Basis, intraartikulär mehrfragmentär",
+                ", Schaft, quer",
+                ", Schaft, schräg"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "stellung",
+              "label": "Stellung",
+              "optionen": [
+                ", nicht verschoben",
+                ", gering verschoben",
+                ", verschoben"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "gelenk",
+              "label": "Daumensattelgelenk",
+              "optionen": [
+                ", Daumensattelgelenk kongruent.",
+                ", Daumensattelgelenk subluxiert."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "abkippung",
+              "label": "Abkippung (Grad)",
+              "an": false,
+              "text": " Abkippung etwa {grad}°.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "grad",
+                  "label": "Grad",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "stufe",
+              "label": "Gelenkstufe (mm)",
+              "an": false,
+              "text": " Gelenkstufe etwa {mm}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Millimeter",
+                  "einheit": "mm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "an": false,
+              "text": " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "th-mhk1-reposition",
+          "titel": "1. Mittelhandknochen: geschlossene Reposition und Ruhigstellung",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "reposition",
+              "label": "Geschlossene Reposition und Ruhigstellung",
+              "an": true,
+              "text": "Fraktur in {betaeubung} geschlossen reponiert und in der {was} {seite} ruhiggestellt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "betaeubung",
+                  "label": "Betäubung",
+                  "optionen": [
+                    "",
+                    "Leitungsanästhesie",
+                    "Bruchspaltanästhesie",
+                    "Analgosedierung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ruhigstellung",
+                  "optionen": [
+                    "",
+                    "Unterarmgipsschiene mit Daumeneinschluss",
+                    "Daumenschiene mit Einschluss des Handgelenks"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle nach Reposition",
+              "an": true,
+              "text": "Röntgenkontrolle nach Reposition: {stellung}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stellung",
+                  "label": "Stellung",
+                  "optionen": [
+                    "",
+                    "Stellung regelrecht, Daumensattelgelenk kongruent",
+                    "Stellung verbessert, Daumensattelgelenk kongruent",
+                    "Stellung nicht ausreichend",
+                    "Daumensattelgelenk weiter subluxiert"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dms",
+              "label": "Durchblutung, Motorik, Sensibilität danach",
+              "an": true,
+              "text": "Danach periphere Durchblutung, Motorik und Sensibilität {erg} {detail}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "intakt",
+                    "gestört"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz bei Störung (was, wo)",
+                  "maxLen": 80
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-mhk1-ohne-reposition",
+          "titel": "1. Mittelhandknochen: Ruhigstellung ohne Reposition",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung ohne Reposition",
+              "an": true,
+              "text": "{was} {seite} ohne Reposition angelegt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ruhigstellung",
+                  "optionen": [
+                    "",
+                    "Unterarmgipsschiene mit Daumeneinschluss",
+                    "Daumenschiene mit Einschluss des Handgelenks"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dms",
+              "label": "Durchblutung, Motorik, Sensibilität danach",
+              "an": true,
+              "text": "Danach periphere Durchblutung, Motorik und Sensibilität {erg} {detail}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "intakt",
+                    "gestört"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz bei Störung (was, wo)",
+                  "maxLen": 80
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-mhk1-konservativ",
+          "titel": "1. Mittelhandknochen – Procedere: konservativ",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "stellung",
+              "label": "Konservative Behandlung",
+              "an": true,
+              "text": "Konservative Behandlung {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Begründung",
+                  "optionen": [
+                    "",
+                    "bei hinnehmbarer Stellung",
+                    "bei nicht verschobener Gelenkfraktur",
+                    "auf Wunsch nach Aufklärung über die operative Behandlung",
+                    "wegen Begleiterkrankungen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "an": true,
+              "text": "Ruhigstellung des Daumens {seite} {was} für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "womit",
+                  "optionen": [
+                    "",
+                    "in der Unterarmgipsschiene mit Daumeneinschluss",
+                    "im Daumengips (Unterarmgips mit Daumeneinschluss)",
+                    "in der Daumenschiene mit Einschluss des Handgelenks"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "3 Wochen",
+                    "4 Wochen",
+                    "6 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gipskontrolle",
+              "label": "Kontrolle der Ruhigstellung am Folgetag",
+              "an": true,
+              "text": "Kontrolle der Ruhigstellung am Folgetag {wo}: Sitz, Schwellung, Durchblutung und Gefühl von Daumen und Fingern, Beweglichkeit der Finger.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Hausarztpraxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle in der Ruhigstellung",
+              "an": true,
+              "text": "Röntgenkontrolle des Daumens {seite} in der Ruhigstellung{grund} {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "wegen der Gelenkbeteiligung",
+                  "optionen": [
+                    "",
+                    " wegen der Gelenkbeteiligung"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "nach 1 Woche",
+                    "nach 1 und 2 Wochen",
+                    "am 4., 7. und 11. Tag",
+                    "wöchentlich bis zur 3. Woche"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Handsprechstunde"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verschiebung",
+              "label": "Bei Verschiebung: Handsprechstunde",
+              "an": true,
+              "text": "Bei Verschiebung in der Röntgenkontrolle: Vorstellung in unserer Handsprechstunde {frist} zur Entscheidung über eine Operation.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "innerhalb von 3 Tagen nach der Röntgenkontrolle",
+                    "am nächsten Werktag nach der Röntgenkontrolle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen-ohne",
+              "label": "Röntgen ohne Gips nach Abnahme",
+              "an": false,
+              "text": "Nach Abnahme der Ruhigstellung Röntgenkontrolle ohne Gips {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Handsprechstunde"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "uebungen",
+              "label": "Bewegungsübungen nach Abnahme",
+              "an": false,
+              "text": "Nach Abnahme der Ruhigstellung Bewegungsübungen des Daumens {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie",
+                  "optionen": [
+                    "",
+                    "in Eigenübung",
+                    "mit Ergotherapie, Verordnung über die weiterbehandelnde Praxis",
+                    "mit Ergotherapie, Verordnung mitgegeben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Kühlung, Schonung, Hochlagern",
+              "an": true,
+              "text": "Kühlung, Schonung und Hochlagern der Hand {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegen",
+              "label": "Freie Gelenke bewegen",
+              "an": true,
+              "text": "Nicht ruhiggestellte Finger, Ellenbogen und Schulter {seite} mehrmals täglich bewegen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "an": false,
+              "text": "Medikamentöse Thromboseprophylaxe wegen zusätzlicher Risikofaktoren: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "default": 1,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen oder zunehmender Schwellung von Daumen oder Fingern, Taubheitsgefühl oder Kribbeln im Daumen oder in den Fingern, kaltem, blassem oder blauem Daumen, Druckstellen unter dem Gips oder der Schiene, zu engem oder gebrochenem Gips{infekt}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "infekt",
+                  "label": "Zeichen einer Infektion",
+                  "optionen": [
+                    "",
+                    ", Rötung, Eiter, pochendem Schmerz oder Fieber"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-mhk1-handsprechstunde",
+          "titel": "1. Mittelhandknochen – Procedere: Vorstellung in der Handsprechstunde zur Operation (Gelenkbeteiligung, Verschiebung)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "handsprechstunde",
+              "label": "Vorstellung in der Handsprechstunde",
+              "an": true,
+              "text": "Vorstellung in unserer Handsprechstunde {wann} {zweck}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "am nächsten Werktag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "zweck",
+                  "label": "Zweck",
+                  "optionen": [
+                    "",
+                    "zur Entscheidung über eine Operation",
+                    "zur Planung der Operation"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Bis dahin Ruhigstellung",
+              "an": true,
+              "text": "Bis dahin Ruhigstellung des Daumens {seite} {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "womit",
+                  "optionen": [
+                    "",
+                    "in der Unterarmgipsschiene mit Daumeneinschluss",
+                    "in der Daumenschiene mit Einschluss des Handgelenks"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gipskontrolle",
+              "label": "Kontrolle der Ruhigstellung am Folgetag",
+              "an": true,
+              "text": "Kontrolle der Ruhigstellung am Folgetag {wo}: Sitz, Schwellung, Durchblutung und Gefühl von Daumen und Fingern, Beweglichkeit der Finger.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Hausarztpraxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ct",
+              "label": "CT zur Operationsplanung",
+              "an": false,
+              "text": "CT des Daumensattelgelenks {seite} zur Planung der Operation: {wer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wer",
+                  "label": "wer",
+                  "optionen": [
+                    "",
+                    "Anmeldung durch uns, der Termin wird mitgeteilt",
+                    "Veranlassung durch die Handsprechstunde"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Kühlung, Schonung, Hochlagern",
+              "an": true,
+              "text": "Kühlung, Schonung und Hochlagern der Hand {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegen",
+              "label": "Freie Gelenke bewegen",
+              "an": true,
+              "text": "Nicht ruhiggestellte Finger, Ellenbogen und Schulter {seite} mehrmals täglich bewegen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmung bis zur Vorstellung",
+              "an": false,
+              "text": "Gerinnungshemmende Medikamente bis zur Vorstellung in der Handsprechstunde: {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Vorgehen",
+                  "optionen": [
+                    "",
+                    "unverändert weiter einnehmen",
+                    "Festlegung in der Handsprechstunde"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "an": false,
+              "text": "Medikamentöse Thromboseprophylaxe wegen zusätzlicher Risikofaktoren: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "default": 1,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen oder zunehmender Schwellung von Daumen oder Fingern, Taubheitsgefühl oder Kribbeln im Daumen oder in den Fingern, kaltem, blassem oder blauem Daumen, Druckstellen unter dem Gips oder der Schiene, zu engem oder gebrochenem Gips{infekt}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "infekt",
+                  "label": "Zeichen einer Infektion",
+                  "optionen": [
+                    "",
+                    ", Rötung, Eiter, pochendem Schmerz oder Fieber"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-mhk1-aufnahme",
+          "titel": "1. Mittelhandknochen – Procedere: stationäre Aufnahme",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme",
+              "an": true,
+              "text": "Stationäre Aufnahme {zweck} der Fraktur des 1. Mittelhandknochens {seite}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zweck",
+                  "label": "Zweck",
+                  "optionen": [
+                    "",
+                    "zur operativen Versorgung",
+                    "zur Abschwellung und operativen Versorgung",
+                    "zur Schmerzbehandlung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "grund",
+              "label": "Anlass der Aufnahme",
+              "an": false,
+              "text": "Aufnahme wegen {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Anlass",
+                  "optionen": [
+                    "",
+                    "der offenen Fraktur",
+                    "des Weichteilschadens",
+                    "einer Störung von Durchblutung oder Sensibilität",
+                    "der nicht gesicherten häuslichen Versorgung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Ruhigstellung und Hochlagerung bis zur Operation",
+              "an": false,
+              "text": "Bis zur Operation Ruhigstellung und Hochlagerung der Hand {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern seit",
+              "an": false,
+              "text": "Nüchtern seit {zeit}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "zeit",
+                  "label": "Uhrzeit oder Angabe",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmung bis zur Operation",
+              "an": false,
+              "text": "Gerinnungshemmende Medikamente bis zur Operation: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, letzte Einnahme, Vorgehen",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "dx-handprellung",
+          "titel": "Diagnose Prellung der Hand",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Diagnose",
+              "optionen": [
+                "Prellung der Hand",
+                "Prellung der Mittelhand",
+                "Prellung des Handrückens",
+                "Prellung des Daumenballens",
+                "Prellung des Kleinfingerballens"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "zusatz",
+              "label": "Zusatz",
+              "optionen": [
+                "",
+                ", mit Hämatom",
+                ", mit Schürfwunde",
+                ", mit Hämatom und Schürfwunde"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "kein-fraktur",
+              "label": "kein Frakturnachweis im Röntgen",
+              "an": false,
+              "text": ", kein Frakturnachweis im Röntgen"
+            }
+          ]
+        },
+        {
+          "id": "bef-handprellung",
+          "titel": "Hand – Untersuchung bei Prellung (Mittelhand; Handgelenk zuwählbar)",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Hand "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "haut",
+              "chip": "Prellmarke/Schürfwunde",
+              "gruppe": "Inspektion",
+              "normal": "Haut intakt, keine Prellmarke. ",
+              "abweichung": "{art}{ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Prellmarke",
+                    "Schürfwunde",
+                    "Prellmarke und Schürfwunde"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " am Handrücken",
+                    " in der Hohlhand",
+                    " über den Fingergrundgelenken",
+                    " am Daumenballen",
+                    " am Kleinfingerballen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung. ",
+              "abweichung": "Schwellung{ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " am Handrücken",
+                    " über der radialen Mittelhand",
+                    " über der ulnaren Mittelhand",
+                    " in der Hohlhand",
+                    " am Daumenballen",
+                    " am Kleinfingerballen",
+                    " der ganzen Hand"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haematom",
+              "chip": "Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein Hämatom. ",
+              "abweichung": "Hämatom{ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " am Handrücken",
+                    " in der Hohlhand",
+                    " am Daumenballen",
+                    " am Kleinfingerballen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Fehlstellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine sichtbare Fehlstellung. ",
+              "abweichung": "Sichtbare Fehlstellung {art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art",
+                  "optionen": [
+                    "",
+                    "mit eingesunkenem Mittelhandköpfchen",
+                    "mit Stufe am Handrücken",
+                    "mit Achsabweichung eines Fingers"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "drehfehler",
+              "chip": "Drehfehler",
+              "gruppe": "Inspektion",
+              "normal": "Kein Drehfehler der Langfinger beim Faustschluss. ",
+              "abweichung": "Drehfehler {finger} beim Faustschluss. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "finger",
+                  "label": "Finger",
+                  "optionen": [
+                    "",
+                    "des Zeigefingers",
+                    "des Mittelfingers",
+                    "des Ringfingers",
+                    "des Kleinfingers"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds-mittelhand",
+              "chip": "DS Mittelhand",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über der Mittelhand. ",
+              "abweichung": "Druckschmerz über {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "dem Handrücken",
+                    "der radialen Mittelhand",
+                    "der ulnaren Mittelhand",
+                    "dem 1. Mittelhandknochen",
+                    "dem 2. Mittelhandknochen",
+                    "dem 3. Mittelhandknochen",
+                    "dem 4. Mittelhandknochen",
+                    "dem 5. Mittelhandknochen",
+                    "dem Daumenballen",
+                    "dem Kleinfingerballen",
+                    "der Hohlhand"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "stauchung",
+              "chip": "Stauchungs-/Kompressionsschmerz",
+              "gruppe": "Palpation",
+              "normal": "Kein Stauchungsschmerz der Mittelhandknochen, kein Mittelhandkompressionsschmerz. ",
+              "abweichung": "{art}{ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Stauchungsschmerz",
+                    "Mittelhandkompressionsschmerz",
+                    "Stauchungs- und Mittelhandkompressionsschmerz"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Strahl",
+                  "optionen": [
+                    "",
+                    " des 1. Strahls",
+                    " des 2. Strahls",
+                    " des 3. Strahls",
+                    " des 4. Strahls",
+                    " des 5. Strahls"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "faustschluss",
+              "chip": "Faustschluss",
+              "gruppe": "Beweglichkeit",
+              "normal": "Faustschluss vollständig, Finger frei beweglich. ",
+              "abweichung": "Faustschluss {art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "schmerzbedingt unvollständig",
+                    "unvollständig",
+                    "nicht möglich"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "daumen",
+              "chip": "Beweglichkeit Daumen",
+              "gruppe": "Beweglichkeit",
+              "normal": "Daumen frei beweglich, Opposition vollständig. ",
+              "abweichung": "Beweglichkeit des Daumens {art}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "schmerzhaft eingeschränkt",
+                    "schmerzbedingt aufgehoben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hg-ds",
+              "chip": "Handgelenk: DS distaler Radius/Ulna",
+              "gruppe": "Handgelenk",
+              "normal": "Kein Druckschmerz über dem distalen Radius und der distalen Ulna. ",
+              "abweichung": "Druckschmerz über {ort}{grad}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "dem distalen Radius",
+                    "der distalen Ulna",
+                    "dem Processus styloideus radii",
+                    "dem Processus styloideus ulnae"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hg-tabatiere",
+              "chip": "Handgelenk: DS Tabatière",
+              "gruppe": "Handgelenk",
+              "normal": "Kein Druckschmerz in der Tabatière. ",
+              "abweichung": "Druckschmerz in der Tabatière{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hg-handwurzel",
+              "chip": "Handgelenk: DS Handwurzel",
+              "gruppe": "Handgelenk",
+              "normal": "Kein Druckschmerz über der übrigen Handwurzel. ",
+              "abweichung": "Druckschmerz über der Handwurzel{ort}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " radial",
+                    " zentral",
+                    " ulnar"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "hg-beweglichkeit",
+              "chip": "Handgelenk: Beweglichkeit",
+              "gruppe": "Handgelenk",
+              "normal": "Handgelenk frei beweglich. ",
+              "abweichung": "Beweglichkeit des Handgelenks {art}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "schmerzhaft eingeschränkt",
+                    "endgradig schmerzhaft",
+                    "schmerzbedingt aufgehoben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "Durchblutung/Motorik/Sensibilität gestört",
+              "gruppe": "DMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "Periphere {was} gestört {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "was",
+                  "optionen": [
+                    "",
+                    "Sensibilität",
+                    "Motorik",
+                    "Durchblutung",
+                    "Sensibilität und Motorik"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Ort (z. B. Versorgungsgebiet des N. ulnaris)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "nerven",
+              "label": "Nerven einzeln geprüft: intakt",
+              "an": false,
+              "text": "Sensibilität im Versorgungsgebiet von N. medianus, N. ulnaris und N. radialis intakt. ",
+              "gruppe": "DMS"
+            }
+          ]
+        },
+        {
+          "id": "th-handprellung",
+          "titel": "Prellung der Hand: Ringe, Verband, Kühlung, Schürfwunde",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ring",
+              "label": "Ringe entfernt",
+              "an": false,
+              "text": "Ringe von der Hand {seite} entfernt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verband",
+              "label": "Verband oder Schiene angelegt",
+              "an": false,
+              "text": "{was} {seite} angelegt, danach Durchblutung, Motorik und Sensibilität {erg}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Verband oder Schiene",
+                  "optionen": [
+                    "",
+                    "Elastischer Verband der Hand",
+                    "Unterarmgipsschiene",
+                    "Handgelenkorthese",
+                    "Intrinsic-Plus-Gipsschiene"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Durchblutung, Motorik, Sensibilität danach",
+                  "optionen": [
+                    "",
+                    "intakt",
+                    "gestört"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kuehlung",
+              "label": "Hand gekühlt und hochgelagert",
+              "an": false,
+              "text": "Hand {seite} gekühlt und hochgelagert."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schuerfwunde",
+              "label": "Schürfwunde versorgt",
+              "an": false,
+              "text": "Schürfwunde an der Hand {seite} gereinigt und steril verbunden. {tetanus}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "tetanus",
+                  "label": "Tetanus",
+                  "optionen": [
+                    "",
+                    "Tetanusschutz ausreichend, keine Impfung.",
+                    "Tetanus-Auffrischimpfung nach Aufklärung verabreicht.",
+                    "Tetanus-Simultanimpfung (Impfstoff und Immunglobulin) nach Aufklärung verabreicht.",
+                    "Tetanusimpfung empfohlen, Impfung abgelehnt.",
+                    "Impfausweis liegt nicht vor; saubere, geringfügige Wunde, nach Angabe mindestens 3 Impfungen, letzte vor weniger als 10 Jahren, daher keine Impfung; Vorlage des Impfausweises in der Hausarztpraxis."
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-handprellung",
+          "titel": "Prellung der Hand – Procedere (Ruhigstellung oder funktionell, Kontrolle, Warnzeichen)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Verband oder Ruhigstellung",
+              "an": true,
+              "text": "Hand {seite}: {was} für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "womit",
+                  "optionen": [
+                    "",
+                    "elastischer Verband",
+                    "Ruhigstellung in der Unterarmgipsschiene",
+                    "Ruhigstellung in der Handgelenkorthese",
+                    "Ruhigstellung in der Intrinsic-Plus-Gipsschiene"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "2 bis 3 Tage",
+                    "3 bis 5 Tage",
+                    "1 Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schienenkontrolle",
+              "label": "Kontrolle der Ruhigstellung am Folgetag",
+              "an": false,
+              "text": "Kontrolle der Ruhigstellung der Hand {seite} am Folgetag {wo}: Sitz, Schwellung, Durchblutung und Gefühl der Finger.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Hausarztpraxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "funktionell",
+              "label": "Keine Ruhigstellung",
+              "an": true,
+              "text": "Hand {seite}: keine Ruhigstellung, {ab} im Alltag nach Schmerz benutzen.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ab",
+                  "label": "ab wann",
+                  "optionen": [
+                    "",
+                    "sofort",
+                    "nach 2 bis 3 Tagen Schonung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Kühlen und Hochlagern",
+              "an": true,
+              "text": "Kühlung und Hochlagern der Hand {seite} in den ersten Tagen nach dem Unfall."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "kontrolle",
+              "label": "Ärztliche Kontrolle",
+              "an": true,
+              "text": "Ärztliche Kontrolle der Hand {seite} {wo} {wann}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der Hausarztpraxis",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "nach 3 bis 5 Tagen",
+                    "nach 1 Woche",
+                    ", wenn die Beschwerden nach 1 Woche nicht deutlich nachlassen",
+                    ", wenn die Beschwerden nach 2 Wochen nicht deutlich nachlassen",
+                    "am Folgetag"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bildgebung",
+              "label": "Bei anhaltenden Schmerzen Bildgebung",
+              "an": true,
+              "text": "Bei anhaltenden Schmerzen in der Kontrolle Bildgebung zur Klärung einer zunächst nicht erkannten Fraktur."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "an": false,
+              "text": "Medikamentöse Thromboseprophylaxe wegen zusätzlicher Risikofaktoren: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "default": 1,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmender Schwellung oder zunehmenden Schmerzen trotz Hochlagern, starkem Spannungsschmerz der Hand, der sich durch Schmerzmittel nicht bessert, Taubheitsgefühl oder Kribbeln in den Fingern, kalten, blassen oder blauen Fingern{schiene}{infekt}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "schiene",
+                  "label": "Ruhigstellung",
+                  "optionen": [
+                    "",
+                    ", Druckstellen unter dem Verband oder der Schiene"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "infekt",
+                  "label": "Zeichen einer Infektion",
+                  "optionen": [
+                    "",
+                    ", Rötung, Eiter, pochendem Schmerz oder Fieber"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-handprellung-aufnahme",
+          "titel": "Prellung der Hand – Procedere (stationäre Aufnahme oder Verlegung: ausgeprägte Schwellung, Verdacht auf Kompartmentsyndrom, Störung von Durchblutung oder Sensibilität)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme",
+              "an": true,
+              "text": "Stationäre Aufnahme zur {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Grund",
+                  "optionen": [
+                    "",
+                    "Hochlagerung und Überwachung bei ausgeprägter Schwellung",
+                    "Überwachung bei Verdacht auf Kompartmentsyndrom der Hand",
+                    "Abklärung einer Störung von Durchblutung oder Sensibilität"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "mitbeurteilung",
+              "label": "Handchirurgische Mitbeurteilung",
+              "an": false,
+              "text": "Handchirurgische Mitbeurteilung veranlasst."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verlegung",
+              "label": "Verlegung zur handchirurgischen Versorgung",
+              "an": false,
+              "text": "Verlegung zur handchirurgischen Versorgung in {klinik}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Aufnehmende Klinik",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "finger",
+      "name": "Finger",
+      "kuerzel": "👆",
+      "bausteine": [
+        {
+          "id": "bef-daumen-fraktur",
+          "titel": "Daumen – Untersuchung bei Fraktur (Daumenstrahl)",
+          "typ": "untersuchung",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Daumen "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": ": "
+            },
+            {
+              "art": "befund",
+              "id": "wunde",
+              "chip": "Wunde",
+              "gruppe": "Inspektion",
+              "normal": "Haut geschlossen, keine Wunde. ",
+              "abweichung": "Wunde{ort} {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " an der Daumenkuppe",
+                    " am Nagelwall",
+                    " am Endglied",
+                    " über dem Interphalangealgelenk",
+                    " am Grundglied",
+                    " über dem Grundgelenk",
+                    " am Daumenballen",
+                    " über der Daumenbasis"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Größe, Tiefe",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "schwellung",
+              "chip": "Schwellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine Schwellung. ",
+              "abweichung": "Schwellung{ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " über der Daumenbasis",
+                    " am Daumenballen",
+                    " über dem Grundgelenk",
+                    " am Grundglied",
+                    " über dem Interphalangealgelenk",
+                    " am Endglied",
+                    " des ganzen Daumens"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (gering)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "haematom",
+              "chip": "Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein Hämatom. ",
+              "abweichung": "Hämatom{ort}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " am Daumenballen",
+                    " über der Daumenbasis",
+                    " am Grundglied",
+                    " am Endglied"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "subungual",
+              "chip": "subunguales Hämatom",
+              "gruppe": "Inspektion",
+              "normal": "Kein subunguales Hämatom. ",
+              "abweichung": "Subunguales Hämatom{anteil}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "anteil",
+                  "label": "Anteil",
+                  "optionen": [
+                    "",
+                    " unter weniger als der Hälfte des Nagels",
+                    " unter mehr als der Hälfte des Nagels"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "nagel",
+              "chip": "Nagelplatte/Nagelwall",
+              "gruppe": "Inspektion",
+              "normal": "Nagelplatte fest, Nagelwall intakt. ",
+              "abweichung": "{art}. ",
+              "selten": true,
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Nagelplatte gelöst",
+                    "Nagelplatte aus dem Nagelwall luxiert",
+                    "Nagelwall eingerissen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "fehlstellung",
+              "chip": "Fehlstellung",
+              "gruppe": "Inspektion",
+              "normal": "Keine sichtbare Fehlstellung. ",
+              "abweichung": "Sichtbare Fehlstellung {ort}{art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "an der Daumenbasis",
+                    "am Grundglied",
+                    "im Interphalangealgelenk",
+                    "am Endglied"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Art",
+                  "optionen": [
+                    "",
+                    " mit Achsabweichung",
+                    " mit Verkürzung",
+                    " mit dorsoradialem Vorspringen"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "drehfehler",
+              "chip": "Drehfehler",
+              "gruppe": "Inspektion",
+              "normal": "Kein Drehfehler des Daumens im Seitenvergleich. ",
+              "abweichung": "Drehfehler des Daumens im Seitenvergleich {detail}. ",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Richtung (z. B. in Pronation)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds-mittelhand",
+              "chip": "DS 1. Mittelhandknochen/Sattelgelenk",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem 1. Mittelhandknochen und dem Daumensattelgelenk. ",
+              "abweichung": "Druckschmerz über {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "der Basis des 1. Mittelhandknochens",
+                    "dem Schaft des 1. Mittelhandknochens",
+                    "dem Köpfchen des 1. Mittelhandknochens",
+                    "dem Daumensattelgelenk"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds-grundgelenk",
+              "chip": "DS Daumengrundgelenk",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über dem Daumengrundgelenk. ",
+              "abweichung": "Druckschmerz über dem Daumengrundgelenk{ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    " ulnarseitig",
+                    " radialseitig",
+                    " palmar",
+                    " dorsal"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "ds-glied",
+              "chip": "DS Grund-/Endglied",
+              "gruppe": "Palpation",
+              "normal": "Kein Druckschmerz über Grund- und Endglied. ",
+              "abweichung": "Druckschmerz über {ort}{grad}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "ort",
+                  "label": "Ort",
+                  "optionen": [
+                    "",
+                    "der Basis des Grundglieds",
+                    "dem Schaft des Grundglieds",
+                    "dem Köpfchen des Grundglieds",
+                    "dem Interphalangealgelenk",
+                    "der Basis des Endglieds",
+                    "dem Endglied"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "grad",
+                  "label": "Ausmaß",
+                  "optionen": [
+                    "",
+                    " (leicht)",
+                    " (deutlich)"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bewegung-sattel",
+              "chip": "Bewegung Sattelgelenk",
+              "gruppe": "Beweglichkeit",
+              "normal": "Daumensattelgelenk frei beweglich, Opposition vollständig. ",
+              "abweichung": "Bewegung im Daumensattelgelenk {art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "schmerzhaft eingeschränkt",
+                    "schmerzbedingt aufgehoben",
+                    "bei Frakturverdacht nicht geprüft"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "bewegung",
+              "chip": "Bewegung Grund-/Interphalangealgelenk",
+              "gruppe": "Beweglichkeit",
+              "normal": "Grundgelenk und Interphalangealgelenk aktiv frei beweglich. ",
+              "abweichung": "Bewegung {gelenk} {art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "gelenk",
+                  "label": "Gelenk",
+                  "optionen": [
+                    "",
+                    "im Grundgelenk",
+                    "im Interphalangealgelenk",
+                    "im Grund- und Interphalangealgelenk"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "schmerzhaft eingeschränkt",
+                    "schmerzbedingt aufgehoben",
+                    "bei Frakturverdacht nicht geprüft"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "beugesehne",
+              "chip": "Beugung im Interphalangealgelenk",
+              "gruppe": "Funktion",
+              "normal": "Aktive Beugung im Interphalangealgelenk möglich (lange Daumenbeugesehne intakt). ",
+              "abweichung": "Aktive Beugung im Interphalangealgelenk {art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "abgeschwächt",
+                    "nicht möglich",
+                    "schmerzbedingt nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "strecksehne",
+              "chip": "Überstreckung/Retropulsion (lange Strecksehne)",
+              "gruppe": "Funktion",
+              "normal": "Aktive Überstreckung im Interphalangealgelenk und Retropulsion des Daumens möglich (lange Daumenstrecksehne intakt). ",
+              "abweichung": "{art}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Befund",
+                  "optionen": [
+                    "",
+                    "Aktive Streckung im Interphalangealgelenk mit Streckdefizit",
+                    "Aktive Streckung im Interphalangealgelenk nicht möglich",
+                    "Aktive Streckung im Interphalangealgelenk schmerzbedingt nicht beurteilbar",
+                    "Retropulsion des Daumens nicht möglich"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "seitenband",
+              "chip": "Seitenbänder Daumengrundgelenk",
+              "gruppe": "Stabilität",
+              "normal": "Ulnare und radiale Seitenbandführung am Daumengrundgelenk stabil. ",
+              "abweichung": "{band} Seitenband am Daumengrundgelenk {erg}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "band",
+                  "label": "Seitenband",
+                  "optionen": [
+                    "",
+                    "Ulnares",
+                    "Radiales"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "im Seitenvergleich vermehrt aufklappbar, fester Anschlag",
+                    "im Seitenvergleich vermehrt aufklappbar, kein fester Anschlag",
+                    "schmerzbedingt nicht beurteilbar"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "befund",
+              "id": "pdms",
+              "chip": "Durchblutung/Motorik/Sensibilität gestört",
+              "gruppe": "DMS",
+              "normal": "Periphere Durchblutung, Motorik und Sensibilität intakt. ",
+              "abweichung": "Periphere {was} gestört {detail}. ",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "was",
+                  "optionen": [
+                    "",
+                    "Sensibilität",
+                    "Durchblutung",
+                    "Motorik",
+                    "Sensibilität und Durchblutung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Ort (z. B. ulnarseitig am Daumen)",
+                  "maxLen": 60
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "zweipunkt",
+              "label": "2-Punkt-Diskriminierung gemessen",
+              "an": false,
+              "text": "2-Punkt-Diskriminierung am Daumen {erg}. ",
+              "gruppe": "DMS",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "radial und ulnar unter 5 mm",
+                    "vermindert, über 5 mm"
+                  ],
+                  "required": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-daumen-massnahmen",
+          "titel": "Daumen: Ringe, Aufklärung über die Behandlung",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ring",
+              "label": "Ringe entfernt",
+              "an": false,
+              "text": "Ringe von der Hand {seite} entfernt."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung-kons",
+              "label": "Aufklärung, Wunsch konservativ",
+              "an": false,
+              "text": "Über die Behandlungsmöglichkeiten (operativ und konservativ) mit Vor- und Nachteilen haben wir {person-akk} aufgeklärt. Gewünscht wird die konservative Behandlung."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufklaerung-op",
+              "label": "Aufklärung, Wunsch Operation",
+              "an": false,
+              "text": "Über die Behandlungsmöglichkeiten (operativ und konservativ) mit Vor- und Nachteilen haben wir {person-akk} aufgeklärt. Gewünscht wird die operative Behandlung."
+            }
+          ]
+        },
+        {
+          "id": "dx-daumenfraktur",
+          "titel": "Diagnose Daumenfraktur (Grund- oder Endglied)",
+          "typ": "diagnose",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "auswahl",
+              "id": "offen",
+              "label": "Geschlossen oder offen",
+              "optionen": [
+                "Geschlossene",
+                "Offene"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " "
+            },
+            {
+              "art": "auswahl",
+              "id": "glied",
+              "label": "Glied",
+              "optionen": [
+                "Grundgliedfraktur",
+                "Endgliedfraktur"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "text",
+              "text": " des Daumens "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "auswahl",
+              "id": "lok",
+              "label": "Lokalisation",
+              "optionen": [
+                "",
+                ", Basis",
+                ", Schaft",
+                ", Basis, ulnarseitiger knöcherner Seitenbandausriss",
+                ", Basis, radialseitiger knöcherner Seitenbandausriss",
+                ", Basis, dorsaler knöcherner Strecksehnenausriss",
+                ", Basis, palmarer knöcherner Beugesehnenausriss",
+                ", Köpfchen (Kondylenfraktur)"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "gelenk",
+              "label": "Gelenkbeteiligung",
+              "optionen": [
+                "",
+                ", extraartikulär",
+                ", mit Gelenkbeteiligung"
+              ],
+              "default": 0
+            },
+            {
+              "art": "auswahl",
+              "id": "stellung",
+              "label": "Stellung",
+              "optionen": [
+                "",
+                ", nicht verschoben",
+                ", gering verschoben",
+                ", verschoben"
+              ],
+              "default": 0
+            },
+            {
+              "art": "option",
+              "id": "rotation",
+              "label": "ohne Drehfehler",
+              "an": false,
+              "text": ", ohne Drehfehler"
+            }
+          ]
+        },
+        {
+          "id": "dgn-daumen-fraktur",
+          "titel": "Röntgen Daumen (Fraktur Grund- oder Endglied)",
+          "typ": "diagnostik",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "text",
+              "text": "Röntgen Daumen "
+            },
+            {
+              "art": "seite"
+            },
+            {
+              "art": "text",
+              "text": " in 2 Ebenen: Fraktur des "
+            },
+            {
+              "art": "auswahl",
+              "id": "glied",
+              "label": "Glied",
+              "optionen": [
+                "Grundglieds",
+                "Endglieds"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "art",
+              "label": "Lokalisation",
+              "optionen": [
+                ", Basis",
+                ", Schaft, quer",
+                ", Schaft, schräg",
+                ", Basis, ulnarseitiger knöcherner Seitenbandausriss",
+                ", Basis, radialseitiger knöcherner Seitenbandausriss",
+                ", Basis, dorsaler knöcherner Strecksehnenausriss",
+                ", Basis, palmarer knöcherner Beugesehnenausriss",
+                ", Köpfchen (Kondylenfraktur)"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "gelenk",
+              "label": "Gelenkbeteiligung",
+              "optionen": [
+                ", ohne Gelenkbeteiligung",
+                ", mit Gelenkbeteiligung"
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "auswahl",
+              "id": "stellung",
+              "label": "Stellung",
+              "optionen": [
+                ", nicht verschoben.",
+                ", gering verschoben.",
+                ", verschoben."
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "option",
+              "id": "achse",
+              "label": "Achsabweichung (Grad)",
+              "an": false,
+              "text": " Achsabweichung etwa {grad}°.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "grad",
+                  "label": "Grad",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "stufe",
+              "label": "Gelenkstufe (mm)",
+              "an": false,
+              "text": " Gelenkstufe etwa {mm}.",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "mm",
+                  "label": "Millimeter",
+                  "einheit": "mm",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "befundung",
+              "label": "Befundung durch die Notaufnahme",
+              "an": false,
+              "text": " Befundung durch die Notaufnahme, fachradiologischer Befund ausstehend."
+            }
+          ]
+        },
+        {
+          "id": "th-daumen-reposition",
+          "titel": "Daumenfraktur: geschlossene Reposition und Ruhigstellung",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "reposition",
+              "label": "Geschlossene Reposition und Ruhigstellung",
+              "an": true,
+              "text": "Fraktur in {betaeubung} geschlossen reponiert und in der {was} {seite} ruhiggestellt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "betaeubung",
+                  "label": "Betäubung",
+                  "optionen": [
+                    "",
+                    "Leitungsanästhesie",
+                    "Bruchspaltanästhesie",
+                    "Analgosedierung"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ruhigstellung",
+                  "optionen": [
+                    "",
+                    "Unterarmgipsschiene mit Daumeneinschluss",
+                    "Daumenschiene mit Einschluss des Grundgelenks",
+                    "Daumenschiene mit Einschluss von Grund- und Interphalangealgelenk",
+                    "Schiene für das Interphalangealgelenk"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "drehfehler",
+              "label": "Drehfehler nach Reposition",
+              "an": true,
+              "text": "Nach Reposition {erg}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Drehfehler",
+                  "optionen": [
+                    "",
+                    "kein Drehfehler",
+                    "Drehfehler verbleibend"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle nach Reposition",
+              "an": true,
+              "text": "Röntgenkontrolle nach Reposition: {stellung}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "stellung",
+                  "label": "Stellung",
+                  "optionen": [
+                    "",
+                    "Stellung regelrecht",
+                    "Stellung nicht ausreichend"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dms",
+              "label": "Durchblutung, Motorik, Sensibilität danach",
+              "an": true,
+              "text": "Danach periphere Durchblutung, Motorik und Sensibilität {erg} {detail}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "intakt",
+                    "gestört"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz bei Störung (was, wo)",
+                  "maxLen": 80
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "th-daumen-ohne-reposition",
+          "titel": "Daumenfraktur: Ruhigstellung ohne Reposition",
+          "typ": "therapie",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung ohne Reposition",
+              "an": true,
+              "text": "{was} {seite} ohne Reposition angelegt.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "Ruhigstellung",
+                  "optionen": [
+                    "",
+                    "Unterarmgipsschiene mit Daumeneinschluss",
+                    "Daumenschiene mit Einschluss des Grundgelenks",
+                    "Daumenschiene mit Einschluss von Grund- und Interphalangealgelenk",
+                    "Schiene für das Interphalangealgelenk"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "dms",
+              "label": "Durchblutung, Motorik, Sensibilität danach",
+              "an": true,
+              "text": "Danach periphere Durchblutung, Motorik und Sensibilität {erg} {detail}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "erg",
+                  "label": "Ergebnis",
+                  "optionen": [
+                    "",
+                    "intakt",
+                    "gestört"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "detail",
+                  "id": "detail",
+                  "label": "Zusatz bei Störung (was, wo)",
+                  "maxLen": 80
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-daumenfraktur-konservativ",
+          "titel": "Daumenfraktur – Procedere (konservativ: Stellung hinnehmbar, kein Drehfehler, keine Gelenkstufe; knöcherner Seitenbandausriss: Vorlage Skidaumen, knöcherner Strecksehnenausriss: Vorlage Mallet)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bedingung",
+              "label": "Konservativ nur bei",
+              "an": true,
+              "text": "Konservative Behandlung: {bedingung}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "bedingung",
+                  "label": "Bedingung",
+                  "optionen": [
+                    "",
+                    "extraartikuläre Fraktur, Stellung hinnehmbar, kein Drehfehler",
+                    "Gelenkbeteiligung ohne Gelenkstufe, Stellung hinnehmbar, kein Drehfehler"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Ruhigstellung",
+              "an": true,
+              "text": "Ruhigstellung des Daumens {seite} {was} für {dauer}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "womit",
+                  "optionen": [
+                    "",
+                    "in der Unterarmgipsschiene mit Daumeneinschluss",
+                    "in der Daumenschiene mit Einschluss des Grundgelenks",
+                    "in der Daumenschiene mit Einschluss von Grund- und Interphalangealgelenk",
+                    "in der Schiene für das Interphalangealgelenk"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    "2 Wochen",
+                    "3 Wochen",
+                    "4 Wochen",
+                    "6 Wochen"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schienenkontrolle",
+              "label": "Kontrolle der Ruhigstellung am Folgetag",
+              "an": true,
+              "text": "Kontrolle der Ruhigstellung am Folgetag {wo}: Sitz, Schwellung, Durchblutung und Gefühl des Daumens.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Hausarztpraxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "roentgen",
+              "label": "Röntgenkontrolle",
+              "an": true,
+              "text": "Röntgenkontrolle des Daumens {seite} zur Kontrolle der Stellung {wann} {wo}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "nach 1 Woche",
+                    "nach 1 und 2 Wochen",
+                    "am 4., 7. und 11. Tag"
+                  ],
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Handsprechstunde"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verschiebung",
+              "label": "Bei Verschiebung: Handsprechstunde",
+              "an": true,
+              "text": "Bei Verschiebung oder Drehfehler in der Kontrolle: Vorstellung in unserer Handsprechstunde {frist} zur Entscheidung über eine Operation.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "frist",
+                  "label": "Frist",
+                  "optionen": [
+                    "",
+                    "innerhalb von 3 Tagen nach der Kontrolle",
+                    "am nächsten Werktag nach der Kontrolle"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "uebungen",
+              "label": "Bewegungsübungen nach Abnahme",
+              "an": false,
+              "text": "Nach Abnahme der Ruhigstellung Bewegungsübungen des Daumens {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "wie",
+                  "optionen": [
+                    "",
+                    "in Eigenübung",
+                    "mit Ergotherapie, Verordnung über die weiterbehandelnde Praxis",
+                    "mit Ergotherapie, Verordnung mitgegeben"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Kühlung, Schonung, Hochlagern",
+              "an": true,
+              "text": "Kühlung, Schonung und Hochlagern der Hand {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegen",
+              "label": "Freie Gelenke bewegen",
+              "an": true,
+              "text": "Nicht ruhiggestellte Finger und Gelenke des Arms {seite} mehrmals täglich bewegen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "an": false,
+              "text": "Medikamentöse Thromboseprophylaxe wegen zusätzlicher Risikofaktoren: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "default": 1,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen oder zunehmender Schwellung, Taubheitsgefühl oder Kribbeln im Daumen, kaltem, blassem oder blauem Daumen, Druckstellen oder offenen Hautstellen unter der Schiene oder dem Gips{infekt}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "infekt",
+                  "label": "Zeichen einer Infektion",
+                  "optionen": [
+                    "",
+                    ", Rötung, Eiter, pochendem Schmerz oder Fieber"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-daumenfraktur-handsprechstunde",
+          "titel": "Daumenfraktur – Procedere (Vorstellung in der Handsprechstunde zur Entscheidung über eine Operation)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "handsprechstunde",
+              "label": "Vorstellung in der Handsprechstunde",
+              "an": true,
+              "text": "Vorstellung in unserer Handsprechstunde {wann} zur Entscheidung über eine Operation.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "wann",
+                  "optionen": [
+                    "",
+                    "am Folgetag",
+                    "innerhalb von 3 Tagen",
+                    "innerhalb von 1 Woche"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "ruhigstellung",
+              "label": "Bis dahin Ruhigstellung",
+              "an": true,
+              "text": "Bis dahin Ruhigstellung des Daumens {seite} {was}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "was",
+                  "label": "womit",
+                  "optionen": [
+                    "",
+                    "in der Unterarmgipsschiene mit Daumeneinschluss",
+                    "in der Daumenschiene mit Einschluss des Grundgelenks",
+                    "in der Daumenschiene mit Einschluss von Grund- und Interphalangealgelenk",
+                    "in der Schiene für das Interphalangealgelenk"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schienenkontrolle",
+              "label": "Kontrolle der Ruhigstellung am Folgetag",
+              "an": true,
+              "text": "Kontrolle der Ruhigstellung am Folgetag {wo}: Sitz, Schwellung, Durchblutung und Gefühl des Daumens.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wo",
+                  "label": "wo",
+                  "optionen": [
+                    "",
+                    "in der unfallchirurgischen oder orthopädischen Praxis",
+                    "in der Hausarztpraxis",
+                    "beim Durchgangsarzt",
+                    "in unserer Sprechstunde nach Terminvereinbarung",
+                    "in unserer Notaufnahme"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "schonung",
+              "label": "Kühlung, Schonung, Hochlagern",
+              "an": true,
+              "text": "Kühlung, Schonung und Hochlagern der Hand {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "bewegen",
+              "label": "Freie Gelenke bewegen",
+              "an": true,
+              "text": "Nicht ruhiggestellte Finger und Gelenke des Arms {seite} mehrmals täglich bewegen."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "analgesie",
+              "label": "Schmerzmittel",
+              "an": true,
+              "text": "{was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Schmerzmittel",
+                  "maxLen": 200,
+                  "required": true,
+                  "vorschlaege": [
+                    "Schmerzmittel bei Schmerzen nach ärztlicher Verordnung",
+                    "Schmerzmittel wie rezeptiert",
+                    "Kein Schmerzmittel nötig"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmung bis zur Vorstellung",
+              "an": false,
+              "text": "Gerinnungshemmende Medikamente bis zur Vorstellung in der Handsprechstunde: {wie}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "wie",
+                  "label": "Vorgehen",
+                  "optionen": [
+                    "",
+                    "unverändert weiter einnehmen",
+                    "Festlegung in der Handsprechstunde"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "auswahl",
+              "id": "thrombose",
+              "label": "Thromboseprophylaxe",
+              "optionen": [
+                "Keine medikamentöse Thromboseprophylaxe.",
+                "Keine medikamentöse Thromboseprophylaxe (Verletzung am Arm, volle Gehfähigkeit).",
+                ""
+              ],
+              "pflicht": true
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "thrombose-med",
+              "label": "Medikamentöse Thromboseprophylaxe",
+              "an": false,
+              "text": "Medikamentöse Thromboseprophylaxe wegen zusätzlicher Risikofaktoren: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, Dosis und Dauer",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "au",
+              "label": "Arbeitsunfähigkeit",
+              "an": false,
+              "text": "Arbeitsunfähigkeit: {au}{dauer}{weiter}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "au",
+                  "label": "Arbeitsunfähigkeit",
+                  "optionen": [
+                    "",
+                    "von uns nicht bescheinigt, Bescheinigung über die Hausarztpraxis",
+                    "nicht erforderlich",
+                    "von uns bescheinigt"
+                  ],
+                  "default": 1,
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "dauer",
+                  "label": "Dauer",
+                  "optionen": [
+                    "",
+                    " für 3 Tage",
+                    " für 1 Woche",
+                    " für 2 Wochen",
+                    " bis zur Kontrolle in der Praxis"
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "weiter",
+                  "label": "Verlängerung",
+                  "optionen": [
+                    "",
+                    ", Verlängerung bei Bedarf über die Hausarztpraxis"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "sicherheitsnetz",
+              "label": "Wiedervorstellung bei Warnzeichen",
+              "an": true,
+              "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: zunehmenden Schmerzen oder zunehmender Schwellung, Taubheitsgefühl oder Kribbeln im Daumen, kaltem, blassem oder blauem Daumen, Druckstellen oder offenen Hautstellen unter der Schiene oder dem Gips{infekt}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "infekt",
+                  "label": "Zeichen einer Infektion",
+                  "optionen": [
+                    "",
+                    ", Rötung, Eiter, pochendem Schmerz oder Fieber"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "proc-daumenfraktur-aufnahme",
+          "titel": "Daumenfraktur – Procedere (stationäre Aufnahme, Notfalloperation oder Verlegung: offene Fraktur, Weichteilschaden, Störung von Durchblutung oder Sensibilität)",
+          "typ": "procedere",
+          "status": "entwurf",
+          "platzhalter": [],
+          "segmente": [
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "aufnahme",
+              "label": "Stationäre Aufnahme",
+              "an": true,
+              "text": "Stationäre Aufnahme {zweck} der Fraktur des Daumens {seite}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "zweck",
+                  "label": "Zweck",
+                  "optionen": [
+                    "",
+                    "zur notfallmäßigen operativen Versorgung",
+                    "zur operativen Versorgung",
+                    "zur Abschwellung und operativen Versorgung"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "grund",
+              "label": "Anlass der Aufnahme",
+              "an": false,
+              "text": "Aufnahme wegen {grund}.",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "grund",
+                  "label": "Anlass",
+                  "optionen": [
+                    "",
+                    "der offenen Fraktur",
+                    "des Weichteilschadens",
+                    "einer Störung der Durchblutung",
+                    "einer Störung der Sensibilität"
+                  ],
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "verlegung",
+              "label": "Verlegung zur handchirurgischen Versorgung",
+              "an": false,
+              "text": "Verlegung zur handchirurgischen Versorgung in {klinik}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "klinik",
+                  "label": "Aufnehmende Klinik",
+                  "maxLen": 120,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "hochlagern",
+              "label": "Ruhigstellung und Hochlagerung bis zur Operation",
+              "an": false,
+              "text": "Bis zur Operation Ruhigstellung und Hochlagerung der Hand {seite}."
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "nuechtern",
+              "label": "Nüchtern seit",
+              "an": false,
+              "text": "Nüchtern seit {zeit}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "zeit",
+                  "label": "Uhrzeit oder Angabe",
+                  "maxLen": 40,
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "punkt"
+            },
+            {
+              "art": "option",
+              "id": "gerinnung",
+              "label": "Gerinnungshemmung bis zur Operation",
+              "an": false,
+              "text": "Gerinnungshemmende Medikamente bis zur Operation: {was}.",
+              "slots": [
+                {
+                  "art": "detail",
+                  "id": "was",
+                  "label": "Wirkstoff, letzte Einnahme, Vorgehen",
+                  "maxLen": 160,
+                  "required": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
