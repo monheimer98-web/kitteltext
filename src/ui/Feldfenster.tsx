@@ -16,7 +16,6 @@ import {
   mitEigenemText,
   mitOption,
   mitPerson,
-  mitSeite,
   mitSlot,
   mitSpaeter,
   mitWahl,
@@ -26,11 +25,14 @@ import { INDEX, aendere, aktiverFall, brief, schnellwertMerken, schnellwertVerge
 import { gueltigerSchnellwert } from "../speicher.ts";
 import { melde } from "./kopieren.ts";
 import { PERSON_WORT } from "../engine/aenderung.ts";
-import { meldeErsetzt, offenesFeld, personDesBriefs, schliesseFeld, seiteDesBriefs, stellenZustand, tokenElement, uebernimm, weiter, zugErlaubt, zugNachEingabe, zugStand } from "./aktionen.ts";
+import { meldeErsetzt, offenesFeld, personDesBriefs, schliesseFeld, seiteDesBausteins, seiteDesBriefs, stellenZustand, tokenElement, uebernimm, weiter, zugErlaubt, zugNachEingabe, zugStand } from "./aktionen.ts";
 import { SPERRE } from "../data/tastatur.ts";
 import { naechsteAngabe } from "../engine/ziffernreihe.ts";
 import { nachDemZeichnen } from "./fokus.ts";
 import { NormwertInfo } from "./Normwert.tsx";
+import { MedikationEditor } from "./Medikation.tsx";
+import { FalldatumEditor, FristZeilen } from "./Falldaten.tsx";
+import { mitVorschlag } from "../engine/text.ts";
 
 export const SEITEN: Seite[] = ["rechts", "links", "beidseits"];
 export const SEITE_NAME: Record<Seite, string> = { rechts: "rechts", links: "links", beidseits: "beidseits", ohne: "ohne Seite" };
@@ -246,7 +248,7 @@ export function Eingabe(p: {
  * Eigene entstehen mit „als Schnellwert merken“ und gelten für alle Felder mit derselben Bezeichnung.
  * So liefert die App keine Präparate und Dosierungen mit; die Hausliste schreibt der Arzt selbst.
  */
-function Schnellwerte({ label, katalog, wert, onWahl, eigene: mitEigenen }: { label: string; katalog: string[]; wert: string; onWahl: (v: string) => void; eigene: boolean }) {
+export function Schnellwerte({ label, katalog, wert, onWahl, eigene: mitEigenen }: { label: string; katalog: string[]; wert: string; onWahl: (v: string) => void; eigene: boolean }) {
   const eigene = mitEigenen ? schnellwerteFuer(label).filter((v) => !katalog.includes(v)) : [];
   const t = wert.trim();
   const merkbar = mitEigenen && gueltigerSchnellwert(t) && !katalog.includes(t) && !eigene.includes(t);
@@ -301,6 +303,10 @@ function Schnellwerte({ label, katalog, wert, onWahl, eigene: mitEigenen }: { la
 
 function FeldEditor({ k, def }: { k: string; def: Platzhalter }) {
   const fall = aktiverFall.value!;
+  // Datum des Fallkopfs (E-58): Hier eingetragen, gilt es für den ganzen Brief; ohne Datum bleibt der Platzhalter fürs KIS.
+  // Welches Datum (OP oder 2. OP) die Stelle nimmt, steht am Token (PS-R5-1); ein dritter OP-Baustein hat keines.
+  const art = tokenVon(k)?.falldatum;
+  if (art) return <FalldatumEditor k={k} art={art} fertig={() => (zugNachEingabe(), fertig())} />;
   const wert = fall.werte[k] ?? "";
   const vorschlag = fall.werte[k] === undefined && !!def.default?.trim() && !fall.spaeter[k];
   const setze = (v: string) => aendere((f) => mitWert(f, k, v), `wert:${k}`);
@@ -562,7 +568,9 @@ function OptionEditor({ k, seg }: { k: string; seg: Extract<SegmentMitId, { art:
     <>
       {token?.zustand === "vorschlag" && (
         <div class="ff-vorschlag">
-          <span>Vorschlag der Vorlage. Grau wird nicht kopiert.</span>
+          <span>
+            {token.uebertragen ? `Angabe aus ${token.uebertragen.map((q) => `„${q}“`).join(", ")}.` : "Vorschlag der Vorlage."} Grau wird nicht kopiert.
+          </span>
           <button type="button" class="knopf primaer klein" data-taste="ü" aria-keyshortcuts="Ü" onClick={() => (uebernimm([k]), weiter())}>
             <kbd class="taste">Ü</kbd> Übernehmen ✓
           </button>
@@ -636,7 +644,7 @@ function SeiteEditor({ bausteinId }: { bausteinId: string }) {
   return (
     <>
       <Zeile label={`Nur „${b?.titel ?? "dieser Baustein"}“ (andere Seite als der übrige Brief)`}>
-        <Pillen label="Seite nur dieses Bausteins" ziffern={!!fall.seite} wert={abweichend} optionen={alle.map((s) => ({ wert: s, label: SEITE_NAME[s] }))} onWahl={(s) => (aendere((f) => mitSeite(f, s, bausteinId)), schliesseFeld())} />
+        <Pillen label="Seite nur dieses Bausteins" ziffern={!!fall.seite} wert={abweichend} optionen={alle.map((s) => ({ wert: s, label: SEITE_NAME[s] }))} onWahl={(s) => (seiteDesBausteins(bausteinId, s), schliesseFeld())} />
       </Zeile>
       <Zeile label="Ganzer Brief">
         <Pillen label="Seite des ganzen Briefs" ziffern={!fall.seite} wert={fall.seite ?? undefined} optionen={alle.map((s) => ({ wert: s, label: SEITE_NAME[s] }))} onWahl={ganzerBrief} />
@@ -647,7 +655,7 @@ function SeiteEditor({ bausteinId }: { bausteinId: string }) {
         )}
       </Zeile>
       {abweichend && (
-        <button type="button" class="link" onClick={() => (aendere((f) => mitSeite(f, null, bausteinId)), schliesseFeld())}>
+        <button type="button" class="link" onClick={() => (seiteDesBausteins(bausteinId, null), schliesseFeld())}>
           wieder wie der übrige Brief
         </button>
       )}
@@ -750,7 +758,7 @@ function ziffernZiel(el: HTMLElement): HTMLElement | null {
  */
 interface FokusStand {
   gruppe: string;
-  feld: "" | "zeile" | "mehrzeilig";
+  feld: "" | "zeile" | "mehrzeilig" | "tabelle";
   /** Das Feld ist leer und hat Schnellwerte darunter: ↓ führt dorthin. */
   schnell: boolean;
   knopf: "" | "schnellwert" | "wahl" | "knopf";
@@ -776,7 +784,9 @@ function markiereZiffern(el: HTMLElement | null) {
   ziel?.classList.add("ziffern-ziel");
   const a = document.activeElement as HTMLElement | null;
   const drin = !!a && el.contains(a) && a !== el;
-  const feld = drin && a!.tagName === "TEXTAREA" ? "mehrzeilig" : drin && a!.tagName === "INPUT" ? "zeile" : "";
+  // In der Medikation geht Tab von Feld zu Feld wie in einer Tabelle (E-62).
+  const tabelle = drin && !!a!.closest(".med-editor") && (a!.tagName === "INPUT" || a!.tagName === "SELECT");
+  const feld = tabelle ? "tabelle" : drin && a!.tagName === "TEXTAREA" ? "mehrzeilig" : drin && a!.tagName === "INPUT" ? "zeile" : "";
   const zeile = feld ? a!.closest(".ff-zeile") : null;
   const vorschlaege = zeile?.querySelector(".ff-vorschlaege .pille") ?? (el.querySelectorAll(".ff-eingabe").length === 1 ? el.querySelector(".ff-vorschlaege .pille") : null);
   const schnell = !!feld && !!vorschlaege && !(a as HTMLInputElement).value;
@@ -790,6 +800,7 @@ function markiereZiffern(el: HTMLElement | null) {
 /** Was Enter am Element mit dem Fokus tut; leer, wenn der Hinweis des Fensters gilt (PS-N05, A-4 der Vorgaben). */
 function fokusHinweis(f: FokusStand): string {
   const schnell = f.schnell ? " · ↓ Schnellwerte" : "";
+  if (f.feld === "tabelle") return "Tab: nächstes Feld · Enter: weiter · Esc schließt";
   if (f.feld === "zeile") return `Enter oder Tab: weiter${schnell} · Esc schließt`;
   if (f.feld === "mehrzeilig") return `Enter: neue Zeile · Strg+Enter oder Tab: weiter${schnell} · Esc schließt`;
   if (f.knopf === "schnellwert") return `Enter setzt „${f.aufschrift}“ ein · ↑ zurück ins Feld · Esc schließt`;
@@ -981,7 +992,7 @@ export function Feldfenster() {
       tipp = "Ziffer wählt · ↑ ↓ markieren, Enter wählt das Markierte · Esc schließt";
     }
   } else if (feld.art === "feld" && f?.platzhalter) {
-    inhalt = <FeldEditor k={feld.key} def={f.platzhalter} />;
+    inhalt = f.platzhalter.typ === "medikation" ? <MedikationEditor k={feld.key} def={f.platzhalter} /> : <FeldEditor k={feld.key} def={f.platzhalter} />;
   } else if (seg?.art === "auswahl") {
     titel = seg.label;
     inhalt = <AuswahlEditor k={feld.key} seg={seg} />;
@@ -989,7 +1000,8 @@ export function Feldfenster() {
   } else if (seg?.art === "option") {
     titel = seg.label;
     inhalt = <OptionEditor k={feld.key} seg={seg} />;
-    const grau = tokenVon(feld.key)?.zustand === "vorschlag";
+    const t = tokenVon(feld.key);
+    const grau = !!t && mitVorschlag(t);
     const gruppe = fokusStand.value.gruppe;
     tipp = [grau ? "Ü übernimmt" : "", seg.slots && gruppe ? `Ziffer wählt in „${gruppe}“` : "", "Esc schließt"].filter(Boolean).join(" · ");
   }
@@ -1056,7 +1068,7 @@ export function Feldfenster() {
   return (
     <div
       ref={ref}
-      class="feldfenster"
+      class={feld.art === "feld" && f?.platzhalter?.typ === "medikation" ? "feldfenster breit" : "feldfenster"}
       role="dialog"
       tabIndex={-1}
       aria-label={titel || "Feld bearbeiten"}
@@ -1073,6 +1085,12 @@ export function Feldfenster() {
         </div>
       )}
       {inhalt}
+      <FristZeilen token={tokenVon(feld.key)} onUebernommen={weiter} />
+      {tokenVon(feld.key)?.uebertragen && (
+        <p class="ff-hinweis" data-uebertragen>
+          {`Angabe aus ${tokenVon(feld.key)!.uebertragen!.map((q) => `„${q}“`).join(", ")}${tokenVon(feld.key)!.zustand === "vorschlag" ? ": grau, bis du sie übernimmst" : ""}. Eine eigene Wahl hier geht vor.`}
+        </p>
+      )}
       {text && (
         <p class={gesperrt || hinweis?.key === feld.key ? "ff-tipp ff-tastenhinweis aktiv" : "ff-tipp ff-tastenhinweis"} role="status">
           {text}

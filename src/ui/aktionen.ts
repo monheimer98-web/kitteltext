@@ -4,10 +4,12 @@
 import { effect, signal, untracked } from "@preact/signals";
 import type { AbschnittId, Fall, Geschlecht, Seite } from "../model/types.ts";
 import type { TokenArt } from "../engine/text.ts";
-import { fuerZwischenablage, unsichereZeichen } from "../engine/text.ts";
+import { fuerZwischenablage, mitVorschlag, offeneFristen, unsichereZeichen } from "../engine/text.ts";
+import { abschnittHtml, auswahlHtml, briefHtml } from "../engine/kopierformat.ts";
 import { briefText, renderBrief, sichtbareAbschnitte } from "../engine/render.ts";
 import type { AbschnittAnsicht, BriefAnsicht } from "../engine/render.ts";
-import { alsKopiert, beendetZug, fallName, mitPerson, mitSeite, sicherZuruecknehmen, uebernehmen } from "../engine/fall.ts";
+import { alsKopiert, beendetZug, fallName, geaenderteBausteinSeiten, mitPerson, mitSeite, sicherZuruecknehmen, uebernehmen } from "../engine/fall.ts";
+import type { SichereRuecknahme } from "../engine/fall.ts";
 import {
   BILD_ERSATZ_MS,
   EBEN_MS,
@@ -180,6 +182,35 @@ export function stellenZustand(key: string): string | undefined {
 const SEITE_WORT: Record<Seite, string> = { rechts: "rechts", links: "links", beidseits: "beidseits", ohne: "ohne Seite" };
 
 /**
+ * „Rückgängig“ in einer Meldung zu Seite, Person oder Befund (H-R4-1): stellt den alten Stand her, solange die Stelle
+ * noch den neuen trägt, sagt, was jetzt gilt, und setzt den Fokus dorthin, wo die Änderung steht. Ohne das verschwand der
+ * Knopf mit der Meldung, der Fokus lag auf der Seite, und nichts sagte, dass es gewirkt hatte.
+ */
+export function rueckgaengigMitMeldung(fallId: string, noch: (f: Fall) => boolean, zurueck: (f: Fall) => Fall, text: string, fokus: () => HTMLElement | null) {
+  const jetzt = faelle.peek().find((f) => f.id === fallId);
+  if (!jetzt) return melde({ text: "Nichts zurückzunehmen: Der Fall ist geschlossen.", art: "ok" });
+  const ziel = () => {
+    if (aktivId.peek() !== fallId) return;
+    nachDemZeichnen(() => {
+      const el = fokus();
+      if (!el) return fokusSichern();
+      inSicht(el);
+      el.focus({ preventScroll: true });
+    });
+  };
+  if (!noch(jetzt)) {
+    melde({ text: "Nichts zurückzunehmen: Die Stelle ist inzwischen geändert.", art: "ok", fallId });
+    return ziel();
+  }
+  aendereFall(fallId, zurueck);
+  melde({ text: `Zurückgenommen: ${text}`, art: "ok", fallId });
+  ziel();
+}
+
+const SEITENWAHL = () => document.querySelector<HTMLElement>("[data-seitenwahl] [role=radiogroup]");
+const PERSONWAHL = () => document.querySelector<HTMLElement>("[data-personwahl] [role=radiogroup]");
+
+/**
  * Setzt die Seite des ganzen Briefs. Ändert das eine schon gesetzte Seite, nennt die Meldung alte und neue Seite und
  * bietet „Rückgängig“: Die Seite dreht jede Seitenangabe im Brief (PS-K08, E-43 Grundsatz 6). Die Bestätigung davor
  * holt die Ansicht ein.
@@ -190,11 +221,36 @@ export function seiteDesBriefs(neu: Seite) {
   const alt = fall.seite;
   aendere((f) => mitSeite(f, neu));
   if (alt) {
-    melde(
-      { text: `Seite des ganzen Briefs: ${SEITE_WORT[neu]} (vorher ${SEITE_WORT[alt]})`, art: "warnung", fallId: fall.id, aktion: { label: "Rückgängig", ausfuehren: () => aendereFall(fall.id, (f) => mitSeite(f, alt)) } },
-      8000,
-    );
+    const ausfuehren = () => rueckgaengigMitMeldung(fall.id, (f) => f.seite === neu, (f) => mitSeite(f, alt), `Seite des ganzen Briefs wieder ${SEITE_WORT[alt]} (eben ${SEITE_WORT[neu]})`, SEITENWAHL);
+    melde({ text: `Seite des ganzen Briefs: ${SEITE_WORT[neu]} (vorher ${SEITE_WORT[alt]})`, art: "warnung", fallId: fall.id, aktion: { label: "Rückgängig", ausfuehren } }, 8000);
   }
+}
+
+/**
+ * Setzt die Seite eines einzelnen Bausteins (`null`: wieder wie der übrige Brief). Ändert das die Seite, die der
+ * Baustein im Brief schon trug, meldet es sich wie ein Wechsel der Seite des Briefs, mit dem Namen des Bausteins und
+ * „Rückgängig“ (PS-R4-1); der Tipp-Zug endet dabei (`beendetZug`).
+ */
+export function seiteDesBausteins(bausteinId: string, neu: Seite | null) {
+  const fall = aktiverFall.peek();
+  if (!fall) return;
+  const altEigen = fall.seiteBaustein[bausteinId];
+  aendere((f) => mitSeite(f, neu, bausteinId));
+  const nach = aktiverFall.peek();
+  const w = nach ? geaenderteBausteinSeiten(fall, nach).find((x) => x.bausteinId === bausteinId) : undefined;
+  if (!w || w.vorher === null) return;
+  const titel = INDEX.bausteine.get(bausteinId)?.titel ?? bausteinId;
+  const wort = (s: Seite | null) => (s ? SEITE_WORT[s] : "nicht gewählt");
+  const eigenNeu = nach!.seiteBaustein[bausteinId];
+  const ausfuehren = () =>
+    rueckgaengigMitMeldung(
+      fall.id,
+      (f) => f.seiteBaustein[bausteinId] === eigenNeu,
+      (f) => mitSeite(f, altEigen ?? null, bausteinId),
+      `Seite „${titel}“ wieder ${wort(w.vorher)} (eben ${wort(w.nachher)})`,
+      () => document.querySelector<HTMLElement>(`[data-key="${CSS.escape(`${bausteinId}/__seite`)}"]`),
+    );
+  melde({ text: `Seite „${titel}“: ${wort(w.nachher)} (vorher ${wort(w.vorher)})`, art: "warnung", fallId: fall.id, aktion: { label: "Rückgängig", ausfuehren } }, 8000);
 }
 
 /** Wählt die Person. Ändert das eine schon gewählte Person, meldet es sich wie ein Wechsel der Seite (QA-34). */
@@ -204,16 +260,26 @@ export function personDesBriefs(neu: Geschlecht) {
   const alt = fall.geschlecht;
   aendere((f) => mitPerson(f, neu, f.alter));
   if (alt) {
-    melde(
-      { text: `Person: ${PERSON_WORT[neu]} (vorher ${PERSON_WORT[alt]})`, art: "warnung", fallId: fall.id, aktion: { label: "Rückgängig", ausfuehren: () => aendereFall(fall.id, (f) => mitPerson(f, alt, f.alter)) } },
-      8000,
-    );
+    const ausfuehren = () => rueckgaengigMitMeldung(fall.id, (f) => f.geschlecht === neu, (f) => mitPerson(f, alt, f.alter), `Person wieder ${PERSON_WORT[alt]} (eben ${PERSON_WORT[neu]})`, PERSONWAHL);
+    melde({ text: `Person: ${PERSON_WORT[neu]} (vorher ${PERSON_WORT[alt]})`, art: "warnung", fallId: fall.id, aktion: { label: "Rückgängig", ausfuehren } }, 8000);
   }
 }
 
-/** Macht die Vorschläge der genannten Textstellen zur Aussage des Arztes. */
+/**
+ * Macht die Vorschläge der genannten Textstellen zur Aussage des Arztes. Ein graues Datum in Klammern hinter einer
+ * Frist gehört zum Satz (E-59): Wer den Satz übernimmt, übernimmt, was er grau sieht.
+ */
 export function uebernimm(keys: string[]) {
-  if (keys.length > 0) aendere((f) => uebernehmen(f, keys, INDEX));
+  if (keys.length > 0) aendere((f) => uebernehmen(f, samtFristen(keys), INDEX));
+}
+
+function samtFristen(keys: string[]): string[] {
+  const gesucht = new Set(keys);
+  const aus = new Set(keys);
+  for (const a of brief.peek()?.abschnitte ?? []) {
+    for (const t of a.tokens) if (t.key && gesucht.has(t.key)) for (const k of offeneFristen(t)) aus.add(k);
+  }
+  return [...aus];
 }
 
 // --- Tipp-Zug (E-44, E-45) ---------------------------------------------------
@@ -254,8 +320,8 @@ interface Sperre {
   verworfen: string;
   /** Was zurückgenommen wurde, weil der Zug blind war. */
   zurueck: string;
-  /** Zusätze des blinden Zugs, die stehen bleiben (PS-N13). */
-  behalten: string;
+  /** Was die Rücknahme stehen ließ oder nicht wiederherstellt: Zusätze, entfernte Sätze, getippter Wortlaut, Seiten (`nachRuecknahme`). */
+  extra: string;
   /** Befehle kurz vor der Sperre, die die Meldung mit „Rückgängig“ nennt. */
   eben: readonly Befehl[];
   /** Folge am Knopf („Fall bleibt offen“): „Enter verworfen, Fall bleibt offen.“ (MT-04). */
@@ -335,6 +401,11 @@ export function zugKnopfGewechselt() {
  */
 export function zugNachEingabe() {
   vorige = [];
+  zugSprung();
+}
+
+/** F2 innerhalb der Befundliste (M-15): Der Zeiger springt zur nächsten offenen Zeile; die Schreckzeit beginnt neu. */
+export function sprungInListe() {
   zugSprung();
 }
 
@@ -493,7 +564,7 @@ export function blindesZeichen(e: KeyboardEvent): boolean {
 function verwirf(u: Urteil, zeichen: string, zeit: number, folge = "", textImFeld = false) {
   zeigeZug();
   const neu = !sperre;
-  if (!sperre) sperre = { grund: GRUND[u] ?? "", verworfen: "", zurueck: "", behalten: "", eben: [], folge, seit: zeit, fallId: aktivId.peek() };
+  if (!sperre) sperre = { grund: GRUND[u] ?? "", verworfen: "", zurueck: "", extra: "", eben: [], folge, seit: zeit, fallId: aktivId.peek() };
   sperre.verworfen += zeichen;
   const verraet = zeichen.trim() !== "" && zeichen !== "↵";
   if (verraet && (textImFeld || blind(kette, "verworfen", zeit, false))) {
@@ -525,7 +596,22 @@ function ebenGesetzt(zeit: number): readonly Befehl[] {
 function zurueckText(befehle: readonly Befehl[], vorher: Fall, nachher: Fall): string {
   const art = { listen: einstellungen.peek().listen };
   const text = zurueckgenommenText(vorher, nachher, (f) => renderBrief(f, INDEX, art));
-  return text || aufzaehlen(befehle.map((b) => b.text));
+  return text || aufzaehlen(befehle.map((b) => b.text), Infinity);
+}
+
+/**
+ * Was eine sichere Rücknahme nicht zurückgesetzt hat, als Sätze für die Meldung (PS-N13, CR-R4-02, PS-R4-1): Zusätze,
+ * die stehen bleiben; Sätze, die der Zug entfernt hat und die nicht wiederkommen; getippter Wortlaut von vorher, der
+ * nicht zurückkommt; Seiten einzelner Bausteine, die stehen bleiben. Nichts davon verschwindet still.
+ */
+function nachRuecknahme(r: SichereRuecknahme): string {
+  const z = (n: string) => `„${n}“`;
+  const teile: string[] = [];
+  if (r.behalten.length) teile.push(`Im Brief geblieben: ${aufzaehlen(r.behalten.map(z), Infinity)} (angefügt, bitte prüfen).`);
+  if (r.entfernt.length) teile.push(`Nicht wieder eingefügt: ${aufzaehlen(r.entfernt.map(z), Infinity)} (im Zug entfernt; bei Bedarf über „+ …“ wieder anfügen).`);
+  if (r.geleert.length) teile.push(`Nicht wiederhergestellt: ${aufzaehlen(r.geleert.map((g) => `${z(g.name)} war ${z(kurz(g.vorher))}`), Infinity)}.`);
+  if (r.seiteBleibt.length) teile.push(`Seite bleibt: ${aufzaehlen(r.seiteBleibt.map((x) => `${z(x.name)} ${x.seite}`), Infinity)} (bitte prüfen).`);
+  return teile.length ? `${teile.join(" ")} ` : "";
 }
 
 /**
@@ -537,8 +623,9 @@ function nimmKetteZurueck(befehle: readonly Befehl[]) {
   const jetzt = faelle.peek().find((f) => f.id === fallId);
   if (!jetzt || !sperre) return;
   const art = { listen: einstellungen.peek().listen };
-  const { fall: zurueck, behalten } = sicherZuruecknehmen(jetzt, befehle, (f) => renderBrief(f, INDEX, art));
-  sperre.behalten = aufzaehlen(behalten.map((name) => `„${name}“`), Infinity);
+  const r = sicherZuruecknehmen(jetzt, befehle, (f) => renderBrief(f, INDEX, art));
+  const zurueck = r.fall;
+  sperre.extra = nachRuecknahme(r);
   if (zurueck === jetzt) return;
   const vorBrief = brief.peek();
   aendereFall(fallId, () => zurueck);
@@ -589,10 +676,9 @@ function zeigeSperre() {
   const k = kopie && jetztMs() < kopie.bis && (kopie.meldung === null || meldung.peek() === kopie.meldung) ? kopie : null;
   const zeichen = verworfenWort(s.verworfen);
   const verworfen = s.folge ? `${zeichen} verworfen, ${s.folge}.` : `Verworfen: ${zeichen}${s.grund ? ` (${s.grund})` : ""}.`;
-  const eben = s.eben.length > 0 ? ` Eben gesetzt: ${aufzaehlen(s.eben.map((b) => b.text))}.` : "";
+  const eben = s.eben.length > 0 ? ` Eben gesetzt: ${aufzaehlen(s.eben.map((b) => b.text), Infinity)}.` : "";
   const zurueck = s.zurueck ? `Zurückgenommen, weil gleich weitergetippt: ${s.zurueck}. ` : "";
-  const behalten = s.behalten ? `Im Brief geblieben: ${s.behalten} (angefügt, bitte prüfen). ` : "";
-  const text = `${k ? `${k.text} · ` : ""}${zurueck}${behalten}${verworfen} ${SPERRE}${eben}`;
+  const text = `${k ? `${k.text} · ` : ""}${zurueck}${s.extra}${verworfen} ${SPERRE}${eben}`;
   const befehle = s.eben;
   const m: Meldung = {
     text,
@@ -659,14 +745,17 @@ function nimmZurueck(befehle: readonly Befehl[]) {
   const jetzt = faelle.peek().find((f) => f.id === fallId);
   if (!fallId || !jetzt) return melde({ text: "Nichts zurückzunehmen: Der Fall ist geschlossen.", art: "ok" });
   // Auch hier nur in die sichere Richtung (E-48); einen Zusatz entfernt dieses Rückgängig, weil der Arzt es verlangt.
-  const zurueck = sicherZuruecknehmen(jetzt, befehle).fall;
-  if (zurueck === jetzt) return melde({ text: "Nichts zurückzunehmen: Die Stelle ist inzwischen geändert.", art: "ok" });
+  const art = { listen: einstellungen.peek().listen };
+  const r = sicherZuruecknehmen(jetzt, befehle, (f) => renderBrief(f, INDEX, art), false);
+  const zurueck = r.fall;
+  const extra = nachRuecknahme(r).trim();
+  if (zurueck === jetzt) return melde({ text: extra ? `Nichts zurückgenommen. ${extra}` : "Nichts zurückzunehmen: Die Stelle ist inzwischen geändert.", art: extra ? "warnung" : "ok", fallId }, extra ? 8000 : undefined);
   const vorBrief = brief.peek();
   aendereFall(fallId, () => zurueck);
   kette = neueKette(jetztMs());
   vorige = [];
   const imFall = aktivId.peek() === fallId ? "" : ` in Fall ${jetzt.nr}`;
-  melde({ text: `Zurückgenommen${imFall}: ${zurueckText(befehle, jetzt, zurueck)}`, art: "ok", fallId });
+  melde({ text: `Zurückgenommen${imFall}: ${zurueckText(befehle, jetzt, zurueck)}${extra ? `. ${extra}` : ""}`, art: extra ? "warnung" : "ok", fallId }, extra ? 8000 : undefined);
   fokusNachRuecknahme(jetzt, vorBrief);
 }
 
@@ -831,7 +920,7 @@ function halte(nur?: AbschnittAnsicht): Halt[] {
         continue;
       }
       if (!t.key || !t.bausteinId || t.art === "seite" || t.art === "person") continue;
-      if (t.zustand !== "offen" && t.zustand !== "vorschlag") continue;
+      if (t.zustand !== "offen" && !mitVorschlag(t)) continue;
       const block = `${a.id}:${t.bausteinId}`;
       // Ein verlangter Messwert steht in derselben Liste wie die Befunde seines Bausteins.
       if (t.art === "befund" || t.art === "messwert") {
@@ -1067,6 +1156,8 @@ export interface LetzteKopie {
   zeichen: number;
   anfang: string;
   platzhalter: number;
+  /** "formatiert": beide Fassungen; "text": nur reiner Text, obwohl formatiert eingestellt war; null: nur Text eingestellt */
+  fassung: "formatiert" | "text" | null;
 }
 
 /** Was zuletzt kopiert wurde. Die App weiß nicht, ob und wo es eingefügt wurde. */
@@ -1119,7 +1210,13 @@ async function kopiere(fall: Fall, abschnitt: AbschnittId | "alles", was: string
   letzteUebernahme = null;
   offenerBefehl = null;
   const ablage = fuerZwischenablage(text, format());
-  const ok = await inZwischenablage(ablage);
+  // Formatierte Fassung aus denselben Abschnitten wie der Text (E-61); aus, wenn der Arzt nur reinen Text will.
+  const html = einstellungen.value.formatiert
+    ? abschnitt === "alles"
+      ? briefHtml(teile, format(), einstellungen.value.ueberschriften)
+      : abschnittHtml(teile[0], format())
+    : undefined;
+  const ok = await inZwischenablage(ablage, html);
   if (!ok) {
     handkopie.value = { was: `${was} · ${kennung}`, text: ablage };
     return false;
@@ -1129,7 +1226,7 @@ async function kopiere(fall: Fall, abschnitt: AbschnittId | "alles", was: string
   fensterVerlassen = false;
   // Wer einmal kopiert hat, braucht die Kurzanleitung über dem Brief nicht mehr.
   if (!einstellungen.value.tippGesehen) setzeEinstellung("tippGesehen", true);
-  letzteKopie.value = { fallId: fall.id, abschnitt, was, fall: kennung, um: Date.now(), zeichen: ablage.length, anfang: text.replace(/\s+/g, " ").slice(0, 90), platzhalter };
+  letzteKopie.value = { fallId: fall.id, abschnitt, was, fall: kennung, um: Date.now(), zeichen: ablage.length, anfang: text.replace(/\s+/g, " ").slice(0, 90), platzhalter, fassung: html === undefined ? null : ok };
   const unsicher = format().zeichen === "einfach" ? unsichereZeichen(text) : [];
   const hinweise = [
     platzhalter > 0 ? `${platzhalter} Platzhalter im KIS ergänzen` : "",
@@ -1252,7 +1349,7 @@ export function beiKopieAusBrief(e: ClipboardEvent) {
   const auswahl = sel?.toString() ?? "";
   if (!sel || !auswahl.trim() || !e.clipboardData) return;
   const wurzel = e.currentTarget as HTMLElement | null;
-  const unfertig = [...(wurzel?.querySelectorAll<HTMLElement>(".tok.z-offen, .tok.z-vorschlag") ?? [])].filter((el) => sel.containsNode(el, true));
+  const unfertig = [...(wurzel?.querySelectorAll<HTMLElement>(".tok.z-offen, .tok.z-vorschlag, .tok-frist.z-vorschlag") ?? [])].filter((el) => sel.containsNode(el, true));
   e.preventDefault();
   if (unfertig.length > 0) {
     e.clipboardData.setData("text/plain", NICHT_KOPIERT);
@@ -1260,6 +1357,8 @@ export function beiKopieAusBrief(e: ClipboardEvent) {
     return;
   }
   e.clipboardData.setData("text/plain", fuerZwischenablage(auswahl, format()));
+  // Auch die Markierung bekommt die formatierte Fassung, gegliedert nach ihren Zeilen (E-61).
+  if (einstellungen.value.formatiert) e.clipboardData.setData("text/html", auswahlHtml(auswahl, format()));
 }
 
 export function uhrzeit(ms: number): string {

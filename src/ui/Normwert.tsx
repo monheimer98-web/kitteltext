@@ -1,10 +1,13 @@
 // Das „i“ an Messfeldern (E-48 (10)): zeigt Normalwerte zum Nachschlagen, setzt nichts in den Brief. Es öffnet per Klick,
 // Enter, Leertaste oder Zeigen mit der Maus; Esc schließt die Box zuerst. Es ist kein Halt: Tasten auf ihm zählen nicht zum
-// Tippen im Brief, ein Klick nimmt den Fokus nicht, die Ziffernreihe kennt es nicht.
+// Tippen im Brief, ein Klick nimmt den Fokus nicht, die Ziffernreihe kennt es nicht. Es bleibt in der Tab-Folge (jede
+// Bedienung mit der Tastatur erreichbar); darauf getippte Zeichen nennt die Meldungszeile, statt sie still zu schlucken
+// (PS-R4-2, E-65). Ist am Feld eine Ausgangsstellung gewählt, zeigt es nur deren Normalwerte (R4-D3).
 
 import { useLayoutEffect, useRef, useState } from "preact/hooks";
 import { NORMWERTE } from "../data/normwerte.ts";
-import { normTitel, normwertKarte } from "../engine/normwerte.ts";
+import { fuerStellung, normTitel, normwertKarte } from "../engine/normwerte.ts";
+import { melde } from "./kopieren.ts";
 import type { NormAnzeige, Normeintrag } from "../engine/normwerte.ts";
 
 const KARTE = normwertKarte(NORMWERTE);
@@ -93,8 +96,13 @@ function Box({ id, anzeige, lage }: { id: string; anzeige: NormAnzeige; lage: La
   );
 }
 
-export function NormwertInfo({ k, label }: { k: string; label: string }) {
-  const anzeige = KARTE.get(feld(k));
+/** Auf dem „i“ getippte Zeichen: Eine Folge in kurzem Abstand erscheint als ein Text in der Meldung. */
+const FOLGE_MS = 2000;
+
+export function NormwertInfo({ k, label, stellung }: { k: string; label: string; stellung?: string }) {
+  const roh = KARTE.get(feld(k));
+  const anzeige = roh && fuerStellung(roh, stellung);
+  const getippt = useRef({ text: "", zuletzt: 0 });
   const [offen, setOffen] = useState(false);
   const [zeigt, setZeigt] = useState(false);
   const [id] = useState(() => `normwert-${++zaehler}`);
@@ -150,12 +158,19 @@ export function NormwertInfo({ k, label }: { k: string; label: string }) {
               vermesse();
               setOffen(!offen);
             }
-          } else if (e.key.length === 1) {
-            // Zeichen auf dem „i“ wählen nichts in der Zeile und zählen nicht als Tippen im Brief.
+          } else if (e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey) {
+            // Zeichen auf dem „i“ wählen nichts in der Zeile und zählen nicht als Tippen im Brief. Verloren gehen sie nicht
+            // still: Wer den Wert hier statt im Feld tippt, liest in der Meldung, was nicht eingetragen wurde (PS-R4-2).
             e.preventDefault();
             e.stopPropagation();
+            const g = getippt.current;
+            if (e.timeStamp - g.zuletzt > FOLGE_MS) g.text = "";
+            g.text += e.key;
+            g.zuletzt = e.timeStamp;
+            melde({ text: `„${g.text}“ nicht eingetragen: Der Fokus liegt auf dem „i“ (Normalwerte zu ${label}). Zum Eintragen Tab ins Feld.`, art: "warnung" }, 6000);
           }
         }}
+        onBlur={() => (getippt.current.text = "")}
         onKeyUp={(e) => e.key === " " && e.preventDefault()}
       >
         i

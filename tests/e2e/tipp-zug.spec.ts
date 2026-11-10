@@ -523,18 +523,21 @@ test.describe("QA-24: Genau eine Nummernreihe im Fenster, auch nach einem Klick 
     expect(geaendert[0]).toContain("für 2 Wochen Tag und Nacht tragen.");
   });
 
-  test("Tibiakopf „Physiotherapie“: Klick in „Inhalt“, dann „3“: wählt die Verordnung", async ({ page }) => {
+  test("Tibiakopf „Physiotherapie“: Klick in „Inhalt“, dann „3“: Dem Satz fehlt nichts mehr, es geht zur Verordnung (eigener Satz, E-71), „3“ wählt dort", async ({ page }) => {
     await vorlage(page, "tibiakopf", "Tibiakopffraktur, Osteosynthese", true);
-    await stelle(abschnitt(page, "procedere"), /^Physiotherapie: /).first().click();
+    const pro = abschnitt(page, "procedere");
+    await stelle(pro, /^Physiotherapie: /).first().click();
     const fenster = feldfenster(page);
-    const gruppen = await fenster.getByRole("radiogroup").evaluateAll((g) => g.map((x) => x.getAttribute("aria-label") ?? ""));
-    const inhalt = gruppen.find((g) => /Inhalt/.test(g))!;
-    const verordnung = gruppen.find((g) => /Verordnung/.test(g))!;
-    await fenster.getByRole("radiogroup", { name: inhalt }).getByRole("radio", { name: /mit Gangschule/ }).first().click();
-    expect(await gruppenMitNummern(fenster)).toEqual([verordnung]);
-    const dritte = (await fenster.getByRole("radiogroup", { name: verordnung }).getByRole("radio").nth(2).textContent())!.replace(/^\d/, "").trim();
+    expect(await fenster.getByRole("radiogroup").evaluateAll((g) => g.map((x) => x.getAttribute("aria-label") ?? ""))).toEqual(["Inhalt", "Häufigkeit"]);
+    expect(await gruppenMitNummern(fenster)).toEqual(["Inhalt"]);
+    await fenster.getByRole("radiogroup", { name: "Inhalt" }).getByRole("radio", { name: /mit Gangschule/ }).first().click();
+    // Die Häufigkeit ist freiwillig und bleibt leer; die Pflichtfrage nach der Verordnung ist der nächste Halt.
+    await expect(fenster).toHaveAccessibleName("Verordnung der Physiotherapie");
+    expect(await gruppenMitNummern(fenster)).toEqual(["Verordnung der Physiotherapie"]);
+    const dritte = (await fenster.getByRole("radiogroup", { name: "Verordnung der Physiotherapie" }).getByRole("radio").nth(2).textContent())!.replace(/^\d/, "").trim();
     await taste(page, "3");
-    await expect(stelle(abschnitt(page, "procedere"), new RegExp(`^Physiotherapie: .*${dritte.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`))).toBeVisible();
+    await expect(stelle(pro, new RegExp(`^Verordnung der Physiotherapie: .*${dritte.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`))).toBeVisible();
+    await expect(stelle(pro, /^Physiotherapie: Physiotherapie mit Gangschule\./)).toBeVisible();
   });
 });
 

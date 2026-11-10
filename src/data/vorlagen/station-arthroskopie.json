@@ -102,7 +102,6 @@
       ],
       "vorgaben": {
         "an": [
-          "th-st-weitere/physio",
           "proc-st-wunde/hochlagern",
           "proc-st-meniskus-resektion/steigerung",
           "proc-st-meniskus-resektion/bewegung"
@@ -119,9 +118,13 @@
         ],
         "slots": {
           "th-st-weitere/physio/inhalt": 1,
-          "proc-st-sicherheitsnetz-arthroskopie-knie/sicherheitsnetz/zeichen": 1
+          "proc-st-sicherheitsnetz-arthroskopie-knie/sicherheitsnetz/zeichen": 1,
+          "proc-st-meniskus-resektion/sport/wann": 2
         }
       },
+      "nichtAnbieten": [
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ],
       "schnellwerte": {
         "ana-st-elektiv/eingriff": [
           "Arthroskopie des Kniegelenks",
@@ -239,11 +242,11 @@
       "vorgaben": {
         "an": [
           "th-st-weitere/implantat",
-          "th-st-weitere/physio",
           "proc-st-wunde/hochlagern",
           "proc-st-meniskus-naht/steigerung",
           "proc-st-meniskus-naht/bewegung",
-          "proc-st-meniskus-naht/orthese"
+          "proc-st-meniskus-naht/orthese",
+          "med-st-entlassung-dauer-procedere/thrombose"
         ],
         "aus": [
           "verl-st-aufnahme-operation/aufnahme",
@@ -260,6 +263,9 @@
           "proc-st-sicherheitsnetz-arthroskopie-knie/sicherheitsnetz/zeichen": 2
         }
       },
+      "nichtAnbieten": [
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ],
       "schnellwerte": {
         "ana-st-elektiv/eingriff": [
           "Arthroskopie des Kniegelenks",
@@ -389,7 +395,6 @@
       "vorgaben": {
         "an": [
           "th-st-weitere/implantat",
-          "th-st-weitere/physio",
           "proc-st-wunde/hochlagern",
           "proc-st-vkb-plastik/steigerung",
           "proc-st-vkb-plastik/bewegung"
@@ -408,6 +413,9 @@
           "th-st-weitere/physio/inhalt": 1
         }
       },
+      "nichtAnbieten": [
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ],
       "schnellwerte": {
         "ana-st-elektiv/eingriff": [
           "Ersatzplastik des vorderen Kreuzbands",
@@ -522,7 +530,6 @@
         "an": [
           "ana-st-elektiv/haendigkeit",
           "th-st-weitere/implantat",
-          "th-st-weitere/physio",
           "proc-st-rm-naht/phasen",
           "proc-st-rm-naht/belastung"
         ],
@@ -540,6 +547,9 @@
           "th-st-weitere/physio/inhalt": 2
         }
       },
+      "nichtAnbieten": [
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ],
       "schnellwerte": {
         "ana-st-elektiv/eingriff": [
           "Arthroskopie der Schulter mit Refixation der Rotatorenmanschette",

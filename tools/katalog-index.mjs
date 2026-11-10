@@ -15,7 +15,8 @@ const name = (art, i) => `${art}${i}`;
 // Prüfsumme über alle Katalogdateien (FNV-1a, 32 Bit). Sie ist die Version des Katalogs: Ändert sich irgendein
 // Zeichen, setzen offene Fälle ihre Auswahlen zurück. Niemand muss daran denken, eine Nummer zu erhöhen.
 let stand = 0x811c9dc5;
-for (const [ordner, dateien] of [["corpus", korpus], ["vorlagen", vorlagen]]) {
+// Die Standardprotokolle zählen mit: Gewählte Felder darin zeigen per Index auf Wortlaut.
+for (const [ordner, dateien] of [["corpus", korpus], ["vorlagen", vorlagen], [".", ["protokolle.json"]]]) {
   for (const f of dateien) {
     for (const zeichen of f + "\n" + readFileSync(new URL(`${ordner}/${f}`, basis), "utf8")) {
       stand ^= zeichen.codePointAt(0);

@@ -209,7 +209,8 @@ export function schnellwerteFehler(v: Vorlage, index: KatalogIndex): string[] {
       const def = b.platzhalter.find((p) => p.id === id);
       if (!def || !b.segmente.some((s) => s.art === "platzhalter" && s.ref === id)) fehler.push(`${ort}: kein Feld im Text des Bausteins`);
       // Zahlen und Zeiträume je Diagnose wären Behandlungsvorgaben, kein Wortlaut (E-40).
-      else if (def.typ !== "freitext" && def.typ !== "begriff") fehler.push(`${ort}: Feld vom Typ ${def.typ}, Schnellwerte nur für Freitext und Begriff`);
+      // Schnellwerte der Medikation werden freie Zeilen der Liste (E-62), keine Dosierung der App.
+      else if (def.typ !== "freitext" && def.typ !== "begriff" && def.typ !== "medikation") fehler.push(`${ort}: Feld vom Typ ${def.typ}, Schnellwerte nur für Freitext, Begriff und Medikation`);
     } else {
       const seg = b.segmente.find((s) => "id" in s && s.id === id);
       const slot = seg && "slots" in seg ? seg.slots?.find((s) => s.id === slotId) : undefined;

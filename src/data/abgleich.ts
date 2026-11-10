@@ -5,17 +5,28 @@
 import type { Abgleichregel } from "../engine/abgleich.ts";
 
 // „Schmerzadaptierte Vollbelastung" und „Vollbelastung" gelten hier als dasselbe: Beide erlauben das volle Gewicht.
+// Gezählt wird nur der Stand bei Entlassung, nicht ein späteres Ziel (M-04, r5-luecken): „…, danach Vollbelastung“,
+// „Steigerung bis zur Vollbelastung“, „Thromboseprophylaxe bis zum Erreichen der Vollbelastung“, „Vollbelastung ab
+// der 7. Woche“. Zeilen der Standardprotokolle, die nicht in der 1. Woche beginnen („3. bis 6. Woche nach der
+// Operation: Vollbelastung …“, „Ab der 7. Woche …“), zählen ebenfalls nicht; die erste Zeile („1. bis 6. Woche …:
+// Teilbelastung …“) zählt.
+const NICHT_SPAETER = String.raw`(?<!\b(?:(?:[2-9]|\d{2,})\. bis \d+\.|[Aa]b der \d+\.) Woche nach (?:der Operation|dem Unfall|der Aufnahme): [^.\n]*)`;
 const BELASTUNG: Record<string, RegExp> = {
-  Vollbelastung: /Vollbelastung/i,
-  Teilbelastung: /Teilbelastung|Minimalbelastung/i,
-  Entlastung: /\bEntlastung\b/i,
+  Vollbelastung: new RegExp(
+    NICHT_SPAETER + String.raw`(?:(?<!(?:bis zur|bis zum Erreichen der|danach|ohne) )Vollbelastung(?! ab der \d)|ohne Einschränkung der Belastung)`,
+    "i",
+  ),
+  Teilbelastung: new RegExp(NICHT_SPAETER + "(?:Teilbelastung|Minimalbelastung)", "i"),
+  Entlastung: new RegExp(NICHT_SPAETER + String.raw`\bEntlastung\b`, "i"),
 };
 
 // Gehhilfe zur Entlassung: Gezählt wird nur ein Satz, der mit „Gehen“ beginnt („Gehen selbstständig am Rollator“,
 // „Gehen ohne Gehhilfe“). Spätere Ziele im Procedere („…, Gehen ohne Gehhilfe bis zum Ende der 6. Woche“,
 // „Gehstützen abtrainieren“) stehen mitten im Satz und zählen nicht. Die Fundstelle ist das Hilfsmittel selbst,
-// damit im selben Satz das zuerst genannte gilt.
-const GEHEN = String.raw`(?<=(?:^|[.:]\s|\n(?:[-•]\s)?)Gehen [^.\n]*?)`;
+// damit im selben Satz das zuerst genannte gilt. Ebenso zählen die Mobilisation im Verlauf („mobilisierten wir … mit
+// Physiotherapie am Rollator“) und die erste Zeile eines Standardprotokolls („1. bis 6. Woche nach der Operation:
+// Vollbelastung des Beins rechts an Unterarmgehstützen“); „Unterarmgehstützen abtrainieren“ in späteren Zeilen nicht.
+const GEHEN = String.raw`(?<=(?:(?:^|[.:]\s|\n(?:[-•]\s)?)Gehen |mit Physiotherapie|\b1\. (?:bis \d+\. )?Woche nach (?:der Operation|dem Unfall|der Aufnahme): )[^.\n]*?)`;
 const GEHHILFE: Record<string, RegExp> = {
   "ohne Hilfsmittel": new RegExp(GEHEN + String.raw`\bohne (Hilfsmittel|Gehhilfe)\b`),
   Unterarmgehstützen: new RegExp(GEHEN + "(Unterarmgehstützen|Gehstützen)"),
@@ -25,10 +36,23 @@ const GEHHILFE: Record<string, RegExp> = {
   Gehbock: new RegExp(GEHEN + "Gehbock"),
 };
 
+// Vollbelastung als Stand bei Entlassung im Procedere: Satz oder Listenpunkt beginnt damit, „bei Entlassung: …“, die
+// Freigabe ohne Einschränkung oder die erste Zeile eines Standardprotokolls (M-10).
+const VOLL_BEI_ENTLASSUNG =
+  /bei Entlassung: (?:[Ss]chmerzadaptierte )?Vollbelastung|(?:^|\n)(?:[-•] )?(?:Schmerzadaptierte )?Vollbelastung(?! erreicht| ab der \d)|Mobilisation nach Schmerzen ohne Einschränkung der Belastung|\b1\. (?:bis \d+\. )?Woche nach (?:der Operation|dem Unfall): (?:schmerzadaptierte )?Vollbelastung/;
+const PROPHYLAXE_BIS_VOLL = /Thromboseprophylaxe (?:mit niedermolekularem Heparin )?bis zum Erreichen der Vollbelastung\./;
+// Eine Zeile zur Thromboseprophylaxe in der Medikation: Zeile des Katalogs, Wirkstoff oder Handelsname, beigefügter Plan.
+const PROPHYLAXE_ZEILE =
+  /Thromboseprophylaxe|parin\b|Clexane|Inhixa|Fragmin|Innohep|Mono-Embolex|Fondaparinux|Arixtra|Rivaroxaban|Xarelto|Apixaban|Eliquis|Dabigatran|Pradaxa|Edoxaban|Lixiana|Acetylsalicylsäure|\bASS\b|beigefügter Medikationsplan|Medikationsplan haben wir mitgegeben/i;
+const WUNDSTOERUNG = /Operationswunde (?:sezernierte verlängert|zeigte eine Rötung der Wundränder|zeigte ein Hämatom|zeigte eine Wundrandnekrose|öffnete sich oberflächlich)/;
+
 export const ABGLEICHREGELN: Abgleichregel[] = [
   { art: "gleich", name: "Belastung", abschnitte: ["entlassbefund", "procedere"], werte: BELASTUNG },
   { art: "gleich", name: "Belastung", abschnitte: ["verlauf", "entlassbefund"], werte: BELASTUNG },
+  { art: "gleich", name: "Belastung", abschnitte: ["verlauf", "procedere"], werte: BELASTUNG },
   { art: "gleich", name: "Gehhilfe", abschnitte: ["entlassbefund", "procedere"], werte: GEHHILFE },
+  { art: "gleich", name: "Gehhilfe", abschnitte: ["verlauf", "entlassbefund"], werte: GEHHILFE },
+  { art: "gleich", name: "Gehhilfe", abschnitte: ["verlauf", "procedere"], werte: GEHHILFE },
   {
     art: "nichtBeide",
     abschnitte: ["entlassbefund", "procedere"],
@@ -459,8 +483,8 @@ export const ABGLEICHREGELN: Abgleichregel[] = [
   {
     art: "nichtBeide",
     abschnitte: ["procedere","procedere"],
-    a: /bei Entlassung: (Schmerzadaptierte )?Vollbelastung/,
-    b: /Thromboseprophylaxe bis zum Erreichen der Vollbelastung\./,
+    a: VOLL_BEI_ENTLASSUNG,
+    b: PROPHYLAXE_BIS_VOLL,
     hinweis: "Thromboseprophylaxe: Bei Entlassung besteht schon Vollbelastung; das Ende der Prophylaxe ist damit unbestimmt.",
   },
   {
@@ -1750,5 +1774,138 @@ export const ABGLEICHREGELN: Abgleichregel[] = [
     ausser: /Beginn der Beschwerden:|Unfallzeitpunkt: (nicht bekannt|kein umschriebenes Ereignis erinnerlich)/,
     b: /Ein Unfall sei nicht erinnerlich/,
     hinweis: "Unfall: Die Anamnese nennt einen Unfallzeitpunkt und verneint zugleich einen Unfall.",
+  },
+  // Runde 5, Zweig r5-luecken: Lücken aus dem Akzeptanztest Station (akzeptanz-station-2026-11-08.md, M-01 bis M-20).
+  // M-10: Vollbelastung im Entlassbefund gegen eine Prophylaxe „bis zum Erreichen der Vollbelastung“. Nennt das
+  // Procedere selbst schon Vollbelastung, meldet die Regel oben; `ausser` verhindert den doppelten Hinweis.
+  {
+    art: "nichtBeide",
+    abschnitte: ["procedere", "entlassbefund"],
+    a: PROPHYLAXE_BIS_VOLL,
+    ausser: VOLL_BEI_ENTLASSUNG,
+    b: /(?:mit|unter) (?:schmerzadaptierter )?Vollbelastung/,
+    hinweis: "Thromboseprophylaxe: Der Entlassbefund nennt schon Vollbelastung; das Ende der Prophylaxe ist damit unbestimmt.",
+  },
+  // M-05: Prophylaxe nach der Entlassung und Medikationszeile in beiden Richtungen. Der Verweis „Wirkstoff und Dosis
+  // siehe Medikation“ hat eine eigene Regel (Runde 12).
+  {
+    art: "fehlt",
+    abschnitte: ["procedere", "medikation"],
+    a: /Medikamentöse Thromboseprophylaxe(?! mit der Entlassung beendet)(?![^\n]*siehe Medikation)/,
+    b: PROPHYLAXE_ZEILE,
+    hinweis: "Thromboseprophylaxe: Das Procedere nennt eine medikamentöse Prophylaxe, die Medikation keine Zeile dazu.",
+  },
+  {
+    art: "fehlt",
+    abschnitte: ["medikation", "procedere"],
+    a: /Dauer siehe Procedere\. [A-ZÄÖÜ]+: Thromboseprophylaxe/,
+    b: /Thromboseprophylaxe/,
+    hinweis: "Thromboseprophylaxe: Die Medikation verweist für die Dauer auf das Procedere, das keine Prophylaxe nennt.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["procedere", "medikation"],
+    a: /Thromboseprophylaxe mit der Entlassung beendet/,
+    b: /Thromboseprophylaxe/,
+    hinweis: "Thromboseprophylaxe: Das Procedere beendet sie mit der Entlassung, die Medikation enthält eine Zeile dazu.",
+  },
+  // M-01: pausierte Gerinnungshemmung ohne Wiederbeginn; genanntes Medikament gegen „keine“ im Procedere.
+  {
+    art: "fehlt",
+    abschnitte: ["verlauf", "procedere"],
+    a: /pausierten wir während der Überwachung|Wiederbeginn siehe Procedere/,
+    b: /(?<!bis zum )Wiederbeginn|Wiederansetzen|Gerinnungshemmende Medikation: unverändert fortführen|[Vv]orbestehende (?:gerinnungshemmende Medikation|Antikoagulation)[^.]*fortführen/,
+    hinweis: "Gerinnungshemmung: Der Verlauf nennt eine Pause, das Procedere keinen Wiederbeginn.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["anamnese", "procedere"],
+    a: /Gerinnungshemmende Medikamente: (?!keine\b)[^\s.]/,
+    b: /Gerinnungshemmende Medikation: keine\./,
+    hinweis: "Gerinnungshemmung: Die Anamnese nennt ein gerinnungshemmendes Medikament, das Procedere verneint eine gerinnungshemmende Medikation.",
+  },
+  // M-20: Bescheinigung von uns ohne Ende (Station: freies Feld „bis“ leer; Notaufnahme: keine Dauer gewählt).
+  {
+    art: "nichtBeide",
+    abschnitte: ["procedere", "procedere"],
+    a: /Arbeitsunfähigkeit: von uns bescheinigt\s*(?:\.|, Verlängerung)/,
+    b: /Arbeitsunfähigkeit: von uns bescheinigt/,
+    hinweis: "Arbeitsunfähigkeit: Das Procedere nennt eine Bescheinigung von uns, aber kein Ende.",
+  },
+  // M-02: reizlose Heilung neben einer Wundheilungsstörung; fortbestehende Störung gegen reizlosen Entlassbefund.
+  {
+    art: "nichtBeide",
+    abschnitte: ["verlauf", "verlauf"],
+    a: /trocken und reizlos/,
+    b: WUNDSTOERUNG,
+    hinweis: "Wunde: Der Verlauf nennt eine reizlose Heilung und zugleich eine Wundheilungsstörung.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["verlauf", "entlassbefund"],
+    a: /Bei Entlassung bestand der Befund fort/,
+    b: /Wundverhältnisse trocken und reizlos/,
+    hinweis: "Wunde: Laut Verlauf bestand die Wundheilungsstörung bei Entlassung fort, der Entlassbefund nennt reizlose Wundverhältnisse.",
+  },
+  // M-02, Entweder-oder in verl-st-operativ/wunde: Die Maßnahme ist dort freiwillig, weil sie nur zur Störung gehört.
+  {
+    art: "fehlt",
+    abschnitte: ["verlauf", "verlauf"],
+    a: WUNDSTOERUNG,
+    b: /besserte sich der Befund|revidierten die Wunde|bestand der Befund fort/,
+    hinweis: "Wunde: Der Verlauf nennt eine Wundheilungsstörung, aber weder Behandlung noch Befund bei Entlassung.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["verlauf", "verlauf"],
+    a: /trocken und reizlos\.\s*(?:Unter lokaler Wundbehandlung|Wir revidierten die Wunde|Bei Entlassung bestand der Befund fort)/,
+    b: /trocken und reizlos/,
+    hinweis: "Wunde: Der Verlauf nennt eine reizlose Heilung und zugleich eine Behandlung der Wunde.",
+  },
+  // M-08: Komplikationen aus dem Verlauf gehören in die Nebendiagnosen (dx-st-neben oder Freitext).
+  {
+    art: "fehlt",
+    abschnitte: ["verlauf", "diagnose"],
+    a: /Einen Harnwegsinfekt behandelten wir/,
+    b: /Harnwegsinfekt|Zystitis|Urosepsis/i,
+    hinweis: "Harnwegsinfekt: Der Verlauf nennt einen, die Diagnosen nicht.",
+  },
+  {
+    art: "fehlt",
+    abschnitte: ["verlauf", "diagnose"],
+    a: /Eine Lungenentzündung behandelten wir/,
+    b: /Pneumonie|Lungenentzündung/i,
+    hinweis: "Lungenentzündung: Der Verlauf nennt eine, die Diagnosen nicht.",
+  },
+  {
+    art: "fehlt",
+    abschnitte: ["verlauf", "diagnose"],
+    a: /trat ein Delir auf/,
+    b: /Delir/i,
+    hinweis: "Delir: Der Verlauf nennt ein Delir, die Diagnosen nicht.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["verlauf", "diagnose"],
+    a: /Ein Delir trat nicht auf/,
+    b: /Delir/i,
+    hinweis: "Delir: Der Verlauf verneint ein Delir, die Diagnosen nennen eines.",
+  },
+  // M-12: Genähte oder geklammerte Kopfplatzwunde ohne Entfernung des Nahtmaterials im Procedere.
+  {
+    art: "fehlt",
+    abschnitte: ["diagnose", "procedere"],
+    a: /Kopfplatzwunde [^\n]*, (?:genäht|geklammert)/,
+    b: /Entfernung (?:der (?:Fäden|Klammern|Hautnähte|Hautklammern)|des Nahtmaterials)|Fadenzug|Nahtmaterial löst sich/,
+    hinweis: "Kopfplatzwunde: Die Diagnose nennt eine genähte oder geklammerte Wunde, das Procedere keine Entfernung des Nahtmaterials.",
+  },
+  // M-26: Wer in die Rehabilitation geht, wendet sich bei Warnzeichen zuerst an deren ärztlichen Dienst (Satz „reha“ der Warnzeichen).
+  // Die Warnzeichen nach Kopfverletzung nennen den Notruf 112 und bleiben außen vor („Notaufnahme oder Notruf 112 bei:“).
+  {
+    art: "nichtBeide",
+    abschnitte: ["verlauf", "procedere"],
+    a: /Wir (?:entließen|verlegten) [^.\n]*in die (?:Anschlussrehabilitation|geriatrische Rehabilitation)\./,
+    b: /^(?![\s\S]*während der Rehabilitation auf)[\s\S]*Sofortige Wiedervorstellung in unserer Notaufnahme bei:/,
+    hinweis: "Warnzeichen: Der Verlauf nennt eine Verlegung in die Rehabilitation, das Procedere für Warnzeichen nur unsere Notaufnahme.",
   },
 ];

@@ -4,7 +4,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { BRIEFTYPEN } from "../src/data/katalog.ts";
-import { briefText, indexiere, ohneDoppelteEinheit, renderBrief } from "../src/engine/render.ts";
+import { STELLUNG, briefText, einheitDahinter, indexiere, ohneDoppelteEinheit, renderBrief, stellungVon } from "../src/engine/render.ts";
 import type { BriefAnsicht, KatalogIndex } from "../src/engine/render.ts";
 import {
   alsKopiert,
@@ -64,13 +64,13 @@ import { bausteinStand, mitSammelangabe, ohneSammelangabe, sammelAussagen, samme
 import { findeAbgleichhinweise } from "../src/engine/abgleich.ts";
 import { ABGLEICHREGELN } from "../src/data/abgleich.ts";
 import { personText } from "../src/engine/person.ts";
-import { fuerZwischenablage, glaetten, istKisSicher, tokensZuText, unsichereZeichen } from "../src/engine/text.ts";
+import { LUECKE, fuerZwischenablage, glaetten, handtext, istKisSicher, tokensZuText, unsichereZeichen } from "../src/engine/text.ts";
 import type { Token } from "../src/engine/text.ts";
 import { TREFFER_MAX, abstand, sucheVorlagen, trefferNachBereich } from "../src/engine/suche.ts";
 import { schnellwerteFehler, schnellwerteVon, stelleVor, wahlPlatzFehler, weglassenFehler } from "../src/engine/vorlage.ts";
 import type { AbschnittId, Baustein, Fall, Platzhalter, Segment, Vorlage } from "../src/model/types.ts";
 import { anleitungVonSelbst } from "../src/engine/einfuehrung.ts";
-import { normTitel, normwertKarte, normZeile } from "../src/engine/normwerte.ts";
+import { fuerStellung, normTitel, normwertKarte, normZeile } from "../src/engine/normwerte.ts";
 import type { Normwerte } from "../src/engine/normwerte.ts";
 
 function testIndex(bausteine: Baustein[], vorlagen: Vorlage[] = [], version = 3): KatalogIndex {
@@ -980,6 +980,303 @@ test("Abgleich Gerinnungshemmung: verneint in der Anamnese, vorausgesetzt anders
   // Was hinter der Dauermedikation steht, zählt nicht dazu (Allergie gegen Aspirin).
   assert.deepEqual(hinweise({ anamnese: "Dauermedikation: Ramipril. Gerinnungshemmende Medikamente: keine. Allergien: Aspirin." }), []);
   assert.deepEqual(hinweise({ anamnese: VERNEINT }), []);
+});
+
+// --- Abgleich aus dem Akzeptanztest Station (r5-luecken, M-01 bis M-20) -------------------------------
+
+/** Abgleich über reine Texte je Abschnitt; `vorn` filtert auf Hinweise, die so beginnen. */
+function textHinweise(texte: Partial<Record<AbschnittId, string>>, vorn?: string): string[] {
+  return findeAbgleichhinweise(
+    { abschnitte: Object.entries(texte).map(([id, t]) => ({ id, titel: id, leer: false, ausgeblendet: false, tokens: [{ t, art: "fix", zustand: "gesetzt" }] })) } as unknown as BriefAnsicht,
+    ABGLEICHREGELN,
+  )
+    .map((h) => h.text)
+    .filter((t) => !vorn || t.startsWith(vorn));
+}
+
+const MOBILISATION = (womit: string, belastung: string) =>
+  `Ab dem 1. Tag nach der Operation mobilisierten wir die Patientin mit Physiotherapie${womit}${belastung}, zuletzt selbstständig auf Stationsebene. `;
+
+test("Abgleich Belastung und Gehhilfe (M-04): Verlauf, Entlassbefund und Procedere paarweise", () => {
+  const verlauf = MOBILISATION(" an Unterarmgehstützen", " unter Teilbelastung");
+  const procedere = "- Vollbelastung des Beins rechts ab sofort.\n- Gehen am Rollator, bis der Gang sicher ist.";
+  // Fall Hüft-TEP aus dem Akzeptanztest: Der Entlassbefund sagt nichts, die Kette über ihn ist unterbrochen.
+  assert.deepEqual(textHinweise({ verlauf, procedere }), [
+    "Belastung: verlauf nennt „Teilbelastung“, procedere nennt „Vollbelastung“.",
+    "Gehhilfe: verlauf nennt „Unterarmgehstützen“, procedere nennt „Rollator“.",
+  ]);
+  // Fall Pertrochantär: Gehhilfe im Verlauf und im Entlassbefund verschieden.
+  assert.deepEqual(textHinweise({ verlauf: MOBILISATION(" am Rollator", " unter Vollbelastung"), entlassbefund: "Gehen selbstständig ohne Hilfsmittel auf Stationsebene. " }, "Gehhilfe:"), [
+    "Gehhilfe: verlauf nennt „Rollator“, entlassbefund nennt „ohne Hilfsmittel“.",
+  ]);
+  // Gleiche Angaben melden nichts.
+  assert.deepEqual(
+    textHinweise({
+      verlauf: MOBILISATION(" am Rollator", " unter schmerzadaptierter Vollbelastung"),
+      entlassbefund: "Gehen selbstständig am Rollator mit Vollbelastung auf Stationsebene. ",
+      procedere: "- Schmerzadaptierte Vollbelastung des Beins rechts ab sofort.\n- Gehen am Rollator, bis der Gang sicher ist.",
+    }),
+    [],
+  );
+  // Spätere Ziele zählen nicht: „danach Vollbelastung“, „bis zum Erreichen der Vollbelastung“, „Steigerung bis zur Vollbelastung“.
+  for (const p of [
+    "- Teilbelastung des Beins rechts mit 20 kg für 6 Wochen nach der Operation, danach Vollbelastung.\n- Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung.",
+    "- Teilbelastung des Beins rechts für 6 Wochen nach der Operation, danach schrittweise Steigerung bis zur Vollbelastung.",
+    "- Belastung bei Entlassung: Teilbelastung mit 20 kg. Weitere Belastung: wie bei Entlassung bis zum Ende der 6. Woche nach der Operation, Vollbelastung ab der 7. Woche.",
+  ]) {
+    assert.deepEqual(textHinweise({ verlauf: MOBILISATION(" an Unterarmgehstützen", " unter Teilbelastung"), procedere: p }, "Belastung:"), [], p);
+  }
+  // Eine Steigerung im Verlauf ist kein Stand.
+  assert.deepEqual(textHinweise({ verlauf: MOBILISATION(" am Rollator", " unter schmerzadaptierter Steigerung der Belastung bis zur Vollbelastung"), procedere: "- Teilbelastung des Beins rechts mit 15 kg ab sofort." }, "Belastung:"), []);
+  // „Ohne Einschränkung der Belastung“ zählt als Vollbelastung.
+  assert.deepEqual(textHinweise({ verlauf: MOBILISATION(" am Rollator", " unter Teilbelastung"), procedere: "- Mobilisation nach Schmerzen ohne Einschränkung der Belastung ab sofort." }, "Belastung:"), [
+    "Belastung: verlauf nennt „Teilbelastung“, procedere nennt „Vollbelastung“.",
+  ]);
+  // Hilfsmittel, die der Verlauf außerhalb der Mobilisation nennt, zählen nicht.
+  assert.deepEqual(textHinweise({ verlauf: "Wir verordneten einen Rollator. ", procedere: "- Gehen an Unterarmgehstützen." }, "Gehhilfe:"), []);
+});
+
+test("Abgleich Belastung und Gehhilfe: Wortlaut der Standardprotokolle; nur die erste Zeile gibt den Stand bei Entlassung", () => {
+  // Zeilen aus docs/03-inhalt/standardprotokolle-entwurf.json (Nr. 1, 4, 7, 14, 15, 17, 18, 20, 23, 26, 27, 28, 40, 41), Seite und
+  // Gehhilfe eingesetzt; der Kasten aus r5-protokolle setzt sie als Listenpunkte ein. Bei 15, 20 und 28 zählt „steigern bis zur
+  // Vollbelastung“ nicht als Vollbelastung (G-101). Nr. 27 nennt die Gehstützen in einem eigenen Satz; der zählt nicht.
+  const protokolle: { nr: number; zeilen: string[]; belastung: string | null; gehhilfe: string | null }[] = [
+    { nr: 1, belastung: "Vollbelastung", gehhilfe: "Unterarmgehstützen", zeilen: [
+      "1. bis 2. Woche nach der Operation: Vollbelastung des Beins rechts an Unterarmgehstützen im Dreipunktegang.",
+      "3. bis 6. Woche nach der Operation: Vollbelastung im Zweipunktegang. Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist.",
+      "Ab der 7. Woche nach der Operation: keine Bewegungsgrenzen der Hüfte mehr. Belastung im Alltag nach Beschwerden steigern.",
+    ] },
+    { nr: 4, belastung: "Vollbelastung", gehhilfe: "Rollator", zeilen: [
+      "1. bis 6. Woche nach der Operation: Vollbelastung des Beins rechts am Rollator.",
+      "Physiotherapie mit Gangschule, Transfertraining, Kräftigung und Sturzvorbeugung.",
+      "Ab der 7. Woche nach der Operation: keine Bewegungsgrenzen der Hüfte mehr. Gehhilfe abtrainieren, sobald der Gang sicher ist.",
+    ] },
+    { nr: 7, belastung: "Teilbelastung", gehhilfe: "Unterarmgehstützen", zeilen: [
+      "1. bis 6. Woche nach der Operation: Teilbelastung des Beins rechts mit 20 kg an Unterarmgehstützen im Dreipunktegang. Hüfte ohne Bewegungsgrenze nach Schmerzen bewegen.",
+      "Physiotherapie mit Gangschule unter Teilbelastung, Transfertraining und Kräftigung.",
+      "Ab der 7. Woche nach der Operation: nach Röntgenkontrolle ohne Verschiebung Steigerung bis zur Vollbelastung innerhalb von 2 Wochen.",
+    ] },
+    { nr: 14, belastung: "Vollbelastung", gehhilfe: "Gehwagen", zeilen: [
+      "1. bis 6. Woche nach dem Unfall: schmerzadaptierte Vollbelastung beider Beine am Gehwagen. Gehstrecke nach Schmerzen steigern.",
+      "Keine Bettruhe und keine Beckenorthese.",
+      "Ab der 7. Woche nach dem Unfall: Gehhilfe abtrainieren, sobald der Gang sicher ist.",
+    ] },
+    { nr: 15, belastung: null, gehhilfe: "Unterarmgehstützen", zeilen: [
+      "1. bis 2. Woche nach dem Unfall: Belastung beider Beine an Unterarmgehstützen nach Schmerzen steigern bis zur Vollbelastung.",
+      "3. bis 6. Woche nach dem Unfall: Vollbelastung, Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist.",
+    ] },
+    { nr: 17, belastung: "Teilbelastung", gehhilfe: "Unterarmgehstützen", zeilen: [
+      "1. bis 6. Woche nach der Operation: Teilbelastung des Beins rechts mit 20 kg an Unterarmgehstützen im Dreipunktegang. Kniegelenk aktiv und passiv bewegen bis Extension/Flexion 0/0/90°.",
+      "7. bis 12. Woche nach der Operation: nach Röntgenkontrolle mit Zeichen der knöchernen Heilung schrittweise Steigerung bis zur Vollbelastung. Beugung ohne Bewegungsgrenze.",
+    ] },
+    { nr: 18, belastung: "Teilbelastung", gehhilfe: "Unterarmgehstützen", zeilen: [
+      "1. bis 12. Woche nach der Operation: Teilbelastung des Beins rechts mit 20 kg an Unterarmgehstützen im Dreipunktegang.",
+      "1. bis 6. Woche nach der Operation: Kniegelenk aktiv und passiv bewegen bis Extension/Flexion 0/0/90°. Ab der 7. Woche Beugung ohne Bewegungsgrenze.",
+      "Ab der 13. Woche nach der Operation: nach Röntgenkontrolle mit Zeichen der knöchernen Heilung schrittweise Steigerung bis zur Vollbelastung.",
+    ] },
+    { nr: 20, belastung: null, gehhilfe: "Unterarmgehstützen", zeilen: [
+      "1. bis 6. Woche nach der Operation: Belastung des Beins rechts an Unterarmgehstützen nach Schmerzen steigern bis zur Vollbelastung.",
+      "Ab der 7. Woche nach der Operation: Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist.",
+    ] },
+    { nr: 23, belastung: null, gehhilfe: "Unterarmgehstützen", zeilen: [
+      "1. bis 2. Woche nach der Operation: Belastung des Beins rechts an Unterarmgehstützen nach Schmerzen steigern.",
+      "3. bis 4. Woche nach der Operation: Vollbelastung im Zweipunktegang, Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist.",
+    ] },
+    { nr: 26, belastung: "Teilbelastung", gehhilfe: "Unterarmgehstützen", zeilen: [
+      "1. bis 6. Woche nach der Operation: Minimalbelastung des Beins rechts an Unterarmgehstützen, den Fuß nur mit dem Gewicht des Beins aufsetzen.",
+      "7. bis 12. Woche nach der Operation: schrittweise Steigerung bis zur Vollbelastung, Orthese und Unterarmgehstützen abtrainieren.",
+    ] },
+    { nr: 27, belastung: "Vollbelastung", gehhilfe: null, zeilen: [
+      "1. bis 2. Woche nach der Operation: schmerzadaptierte Vollbelastung des Beins rechts. Unterarmgehstützen, bis das Gehen ohne Hinken gelingt.",
+      "Kniegelenk ohne Bewegungsgrenze nach Schmerzen bewegen, Drehbewegungen unter Belastung bis zum Ende der 2. Woche vermeiden.",
+      "Ab der 3. Woche nach der Operation: Belastung im Alltag ohne Einschränkung.",
+    ] },
+    { nr: 28, belastung: null, gehhilfe: "Unterarmgehstützen", zeilen: [
+      "1. bis 2. Woche nach der Operation: Belastung des Beins rechts an Unterarmgehstützen nach Schwellung und Schmerz steigern bis zur Vollbelastung.",
+      "3. bis 6. Woche nach der Operation: Vollbelastung, Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist. Beugung bis zur freien Beweglichkeit steigern.",
+    ] },
+    { nr: 41, belastung: "Vollbelastung", gehhilfe: "ohne Hilfsmittel", zeilen: [
+      "1. bis 2. Woche nach der Operation: Mobilisation nach Schmerzen ohne Einschränkung der Belastung, Gehen ohne Gehhilfe. Bewegung der Wirbelsäule im schmerzarmen Bereich.",
+      "Ab der 7. Woche nach der Operation: Belastung im Alltag ohne Einschränkung, Kraft- und Gleichgewichtstraining fortführen.",
+    ] },
+    { nr: 40, belastung: "Vollbelastung", gehhilfe: "Rollator", zeilen: [
+      "1. bis 6. Woche nach dem Unfall: Mobilisation nach Schmerzen ohne Einschränkung der Belastung, Gehen am Rollator. Tiefes Sitzen, Rumpfbeugen und schweres Heben meiden.",
+      "Ab der 7. Woche nach dem Unfall: Belastung im Alltag nach Beschwerden steigern, Kraft- und Gleichgewichtstraining fortführen.",
+    ] },
+  ];
+  const WOMIT: Record<string, string> = { Unterarmgehstützen: " an Unterarmgehstützen", Rollator: " am Rollator", Gehwagen: " am Gehwagen" };
+  const BELASTUNG: Record<string, string> = { Vollbelastung: " unter Vollbelastung", Teilbelastung: " unter Teilbelastung" };
+  let geprueft = 0;
+  for (const p of protokolle) {
+    // Ob der Kasten die Zeilen als Listenpunkte, als Zeilen oder als Absatz einsetzt, ändert nichts.
+    for (const procedere of [p.zeilen.map((z) => `- ${z}`).join("\n"), p.zeilen.join("\n"), p.zeilen.join(" ")]) {
+      for (const [g, womit] of Object.entries(WOMIT)) {
+        for (const [b, belastung] of Object.entries(BELASTUNG)) {
+          geprueft++;
+          const h = textHinweise({ verlauf: MOBILISATION(womit, belastung), procedere });
+          const soll = [
+            ...(p.belastung && p.belastung !== b ? [`Belastung: verlauf nennt „${b}“, procedere nennt „${p.belastung}“.`] : []),
+            ...(p.gehhilfe && p.gehhilfe !== g ? [`Gehhilfe: verlauf nennt „${g}“, procedere nennt „${p.gehhilfe}“.`] : []),
+          ];
+          assert.deepEqual(h.filter((t) => /^(Belastung|Gehhilfe):/.test(t)), soll, `Nr. ${p.nr}, ${g}, ${b}: ${procedere}`);
+        }
+      }
+    }
+  }
+  assert.equal(geprueft, protokolle.length * 3 * 6);
+});
+
+test("Abgleich Gerinnungshemmung (M-01): Pause ohne Wiederbeginn, genanntes Medikament gegen „keine“", () => {
+  const PAUSE = "Gerinnungshemmung: Der Verlauf nennt eine Pause, das Procedere keinen Wiederbeginn.";
+  const KEINE = "Gerinnungshemmung: Die Anamnese nennt ein gerinnungshemmendes Medikament, das Procedere verneint eine gerinnungshemmende Medikation.";
+  const anamnese = "Gerinnungshemmende Medikamente: Apixaban, letzte Einnahme am Aufnahmetag. Allergien: keine bekannt.";
+  // Fall Commotio aus dem Akzeptanztest.
+  assert.deepEqual(
+    textHinweise({ anamnese, verlauf: "Die gerinnungshemmende Medikation pausierten wir während der Überwachung. ", procedere: "- Gerinnungshemmende Medikation: keine." }, "Gerinnungshemmung:"),
+    [PAUSE, KEINE],
+  );
+  // Pause mit Verweis auf das Procedere, das nichts dazu sagt.
+  for (const verlauf of [
+    "Die gerinnungshemmende Medikation pausierten wir, Wiederbeginn siehe Procedere. ",
+    "Die gerinnungshemmende Medikation mit Apixaban pausierten wir vor der Operation. Bis zur Entlassung blieb sie pausiert, Wiederbeginn siehe Procedere. ",
+    "Die gerinnungshemmende Medikation mit Apixaban pausierten wir ab der Aufnahme. Bis zur Entlassung gaben wir stattdessen niedermolekulares Heparin, Wiederbeginn siehe Procedere. ",
+  ]) {
+    assert.deepEqual(textHinweise({ verlauf, procedere: "- Medikamentöse Thromboseprophylaxe bis einschließlich 35. Tag nach der Operation." }, "Gerinnungshemmung:"), [PAUSE], verlauf);
+    assert.deepEqual(
+      textHinweise({ verlauf, procedere: "- Medikamentöse Thromboseprophylaxe bis zum Wiederbeginn der vorbestehenden Antikoagulation, danach keine zusätzliche Thromboseprophylaxe." }, "Gerinnungshemmung:"),
+      [PAUSE],
+      verlauf,
+    );
+  }
+  // Ein Procedere, das den Wiederbeginn regelt, meldet nichts.
+  for (const procedere of [
+    "- Gerinnungshemmende Medikation: unverändert fortführen.",
+    "- Gerinnungshemmende Medikation: pausiert, Entscheidung über den Wiederbeginn bei der Kontrolle in der Hausarztpraxis.",
+    "- Gerinnungshemmende Medikation pausiert, Wiederbeginn am 12.11.2026.",
+    "- Medikamentöse Thromboseprophylaxe bis einschließlich 10. Tag nach der Operation. Wiederbeginn der vorbestehenden gerinnungshemmenden Medikation ab dem 3. Tag nach der Operation.",
+    "- Vorbestehende gerinnungshemmende Medikation fortführen, keine zusätzliche Thromboseprophylaxe.",
+    "- Pausierte Medikation siehe Medikation. Über das Wiederansetzen entscheidet die Hausarztpraxis.",
+  ]) {
+    assert.deepEqual(textHinweise({ anamnese, verlauf: "Die gerinnungshemmende Medikation pausierten wir während der Überwachung. ", procedere }, "Gerinnungshemmung:"), [], procedere);
+  }
+  // Wiederbeginn schon im Verlauf; unveränderte Fortführung im Verlauf.
+  for (const verlauf of [
+    "Die gerinnungshemmende Medikation mit Apixaban pausierten wir vor der Operation. Am 2. Tag nach der Operation begannen wir sie wieder. ",
+    "Die gerinnungshemmende Medikation führten wir unverändert fort. ",
+  ]) {
+    assert.deepEqual(textHinweise({ verlauf, procedere: "- Medikamentöse Thromboseprophylaxe bis einschließlich 35. Tag nach der Operation." }, "Gerinnungshemmung:"), [], verlauf);
+  }
+  // Ohne Gerinnungshemmer in der Anamnese passt „keine“.
+  assert.deepEqual(textHinweise({ anamnese: "Gerinnungshemmende Medikamente: keine. Allergien: keine bekannt.", procedere: "- Gerinnungshemmende Medikation: keine." }, "Gerinnungshemmung:"), []);
+  assert.deepEqual(textHinweise({ anamnese: "Gerinnungshemmende Medikamente: Acetylsalicylsäure 100 mg. ", procedere: "- Gerinnungshemmende Medikation: keine." }, "Gerinnungshemmung:"), [KEINE]);
+});
+
+test("Abgleich Thromboseprophylaxe (M-05, M-10): Procedere und Medikation in beiden Richtungen; Vollbelastung gegen „bis zum Erreichen der Vollbelastung“", () => {
+  const OHNE_ZEILE = "Thromboseprophylaxe: Das Procedere nennt eine medikamentöse Prophylaxe, die Medikation keine Zeile dazu.";
+  const OHNE_PROCEDERE = "Thromboseprophylaxe: Die Medikation verweist für die Dauer auf das Procedere, das keine Prophylaxe nennt.";
+  const BEENDET = "Thromboseprophylaxe: Das Procedere beendet sie mit der Entlassung, die Medikation enthält eine Zeile dazu.";
+  const UNBESTIMMT = "Thromboseprophylaxe: Bei Entlassung besteht schon Vollbelastung; das Ende der Prophylaxe ist damit unbestimmt.";
+  const UNBESTIMMT_EB = "Thromboseprophylaxe: Der Entlassbefund nennt schon Vollbelastung; das Ende der Prophylaxe ist damit unbestimmt.";
+  const MEDIKATION_LEER = "Schema: morgens-mittags-abends-nachts.\n- Ramipril 5 mg Tablette, 1-0-0-0, dauerhaft. UNVERÄNDERT: Bluthochdruck.\n\nArzneimittelunverträglichkeiten: keine bekannt.";
+  const ZEILE = "Enoxaparin 40 mg Fertigspritze, subkutan, 0-0-1-0, Dauer siehe Procedere. NEU: Thromboseprophylaxe.";
+  const PROPHYLAXE_35 = "- Medikamentöse Thromboseprophylaxe bis einschließlich 35. Tag nach der Operation.";
+  // Fall Hüft-TEP aus dem Akzeptanztest: 35 Tage im Procedere, keine Medikationszeile.
+  assert.deepEqual(textHinweise({ procedere: PROPHYLAXE_35, medikation: MEDIKATION_LEER }, "Thromboseprophylaxe:"), [OHNE_ZEILE]);
+  for (const med of [ZEILE, "- Clexane 40 mg s.c. 0-0-1 bis 35. Tag", "- Siehe beigefügter Medikationsplan.", "- Rivaroxaban 10 mg 1-0-0 für 35 Tage"]) {
+    assert.deepEqual(textHinweise({ procedere: PROPHYLAXE_35, medikation: med }, "Thromboseprophylaxe:"), [], med);
+  }
+  // Der Verweis auf die Medikation hat seine eigene Regel; keine doppelte Meldung.
+  assert.deepEqual(textHinweise({ procedere: "- Medikamentöse Thromboseprophylaxe bis einschließlich 28. Tag nach der Operation. Wirkstoff und Dosis siehe Medikation.", medikation: MEDIKATION_LEER }, "Thromboseprophylaxe:"), [
+    "Thromboseprophylaxe: Das Procedere verweist für Wirkstoff und Dosis auf die Medikation, die keine Zeile dazu enthält.",
+  ]);
+  // Umgekehrt: Medikationszeile verweist auf ein Procedere ohne Prophylaxe.
+  assert.deepEqual(textHinweise({ procedere: "- Vollbelastung des Beins rechts ab sofort.", medikation: ZEILE }, "Thromboseprophylaxe:"), [OHNE_PROCEDERE]);
+  assert.deepEqual(textHinweise({ procedere: PROPHYLAXE_35, medikation: ZEILE }, "Thromboseprophylaxe:"), []);
+  // Mit der Entlassung beendet, aber Zeile in der Medikation.
+  assert.deepEqual(textHinweise({ procedere: "- Medikamentöse Thromboseprophylaxe mit der Entlassung beendet bei ausreichender Mobilität.", medikation: ZEILE }, "Thromboseprophylaxe:"), [BEENDET]);
+  assert.deepEqual(textHinweise({ procedere: "- Medikamentöse Thromboseprophylaxe mit der Entlassung beendet bei ausreichender Mobilität.", medikation: MEDIKATION_LEER }, "Thromboseprophylaxe:"), []);
+  // M-10, Fall OSG: „Vollbelastung ab sofort“ und Prophylaxe bis zur Vollbelastung.
+  const BIS_VOLL = "- Medikamentöse Thromboseprophylaxe bis zum Erreichen der Vollbelastung.";
+  for (const belastung of [
+    "- Vollbelastung des Beins rechts ab sofort.",
+    "- Schmerzadaptierte Vollbelastung des Beins rechts ab sofort.",
+    "- Vollbelastung ab sofort.",
+    "- Mobilisation nach Schmerzen ohne Einschränkung der Belastung ab sofort.",
+    "- Belastung bei Entlassung: Schmerzadaptierte Vollbelastung.",
+    "- 1. bis 6. Woche nach der Operation: schmerzadaptierte Vollbelastung des Beins rechts am Rollator.",
+  ]) {
+    assert.deepEqual(textHinweise({ procedere: `${belastung}\n${BIS_VOLL}` }, "Thromboseprophylaxe:"), [UNBESTIMMT], belastung);
+    // Der Entlassbefund meldet nicht noch einmal dasselbe.
+    assert.deepEqual(textHinweise({ procedere: `${belastung}\n${BIS_VOLL}`, entlassbefund: "Gehen selbstständig am Rollator mit Vollbelastung. " }, "Thromboseprophylaxe:"), [UNBESTIMMT], belastung);
+  }
+  for (const belastung of [
+    "- Teilbelastung des Beins rechts mit 20 kg für 6 Wochen nach der Operation, danach Vollbelastung.",
+    "- 1. bis 6. Woche nach der Operation: Teilbelastung des Beins rechts mit 20 kg an Unterarmgehstützen im Dreipunktegang.\n- 7. bis 12. Woche nach der Operation: schrittweise Steigerung bis zur Vollbelastung.",
+    "- Teilbelastung des Beins rechts mit 15 kg ab sofort.\n- Keine medikamentöse Thromboseprophylaxe nach der Entlassung, Vollbelastung erreicht.",
+    // Protokolle Nr. 20 und 28: Steigerung bis zur Vollbelastung, Vollbelastung erst ab der 3. Woche (G-101).
+    "- 1. bis 6. Woche nach der Operation: Belastung des Beins rechts an Unterarmgehstützen nach Schmerzen steigern bis zur Vollbelastung.",
+    "- 1. bis 2. Woche nach der Operation: Belastung des Beins rechts an Unterarmgehstützen nach Schwellung und Schmerz steigern bis zur Vollbelastung.\n- 3. bis 6. Woche nach der Operation: Vollbelastung, Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist.",
+  ]) {
+    assert.deepEqual(textHinweise({ procedere: `${belastung}\n${BIS_VOLL}` }, "Thromboseprophylaxe: Bei"), [], belastung);
+  }
+  // Vollbelastung nur im Entlassbefund.
+  assert.deepEqual(
+    textHinweise({ procedere: `- Teilbelastung des Beins rechts mit 20 kg für 2 Wochen nach der Operation.\n${BIS_VOLL}`, entlassbefund: "Gehen selbstständig an Unterarmgehstützen mit Vollbelastung auf Stationsebene. " }, "Thromboseprophylaxe:"),
+    [UNBESTIMMT_EB],
+  );
+  assert.deepEqual(
+    textHinweise({ procedere: `- Teilbelastung des Beins rechts mit 20 kg für 2 Wochen nach der Operation.\n${BIS_VOLL}`, entlassbefund: "Gehen selbstständig an Unterarmgehstützen mit Teilbelastung auf Stationsebene. " }, "Thromboseprophylaxe:"),
+    [],
+  );
+});
+
+test("Abgleich Arbeitsunfähigkeit (M-20) und Wunde (M-02)", () => {
+  const AU = "Arbeitsunfähigkeit: Das Procedere nennt eine Bescheinigung von uns, aber kein Ende.";
+  for (const p of ["- Arbeitsunfähigkeit: von uns bescheinigt.", "- Arbeitsunfähigkeit: von uns bescheinigt .", "Arbeitsunfähigkeit: von uns bescheinigt, Verlängerung bei Bedarf über die Hausarztpraxis."]) {
+    assert.deepEqual(textHinweise({ procedere: p }, "Arbeitsunfähigkeit:"), [AU], p);
+  }
+  for (const p of [
+    "- Arbeitsunfähigkeit: von uns bescheinigt bis einschließlich 20.11.2026.",
+    "- Arbeitsunfähigkeit: von uns bescheinigt 20.11.2026.",
+    "Arbeitsunfähigkeit: von uns bescheinigt für 1 Woche, Verlängerung bei Bedarf über die Hausarztpraxis.",
+    "Arbeitsunfähigkeit: von uns bescheinigt bis zur Kontrolle in der Praxis.",
+    "- Arbeitsunfähigkeit: keine Bescheinigung erforderlich.",
+    "- Arbeitsunfähigkeit: von uns nicht bescheinigt, Beurteilung durch die Hausarztpraxis.",
+  ]) {
+    assert.deepEqual(textHinweise({ procedere: p }, "Arbeitsunfähigkeit:"), [], p);
+  }
+  const WUNDE = "Wunde: Der Verlauf nennt eine reizlose Heilung und zugleich eine Wundheilungsstörung.";
+  const FORT = "Wunde: Laut Verlauf bestand die Wundheilungsstörung bei Entlassung fort, der Entlassbefund nennt reizlose Wundverhältnisse.";
+  // Fall DRF aus dem Akzeptanztest.
+  assert.deepEqual(
+    textHinweise({ verlauf: "Die Operationswunde heilte trocken und reizlos. Die Operationswunde zeigte eine Rötung der Wundränder. Unter lokaler Wundbehandlung besserte sich der Befund. " }, "Wunde:"),
+    [WUNDE],
+  );
+  assert.deepEqual(textHinweise({ verlauf: "Die Operationswunde zeigte eine Rötung der Wundränder. Unter lokaler Wundbehandlung besserte sich der Befund. ", entlassbefund: "Wundverhältnisse trocken und reizlos. " }, "Wunde:"), []);
+  assert.deepEqual(
+    textHinweise({ verlauf: "Die Operationswunde sezernierte verlängert. Bei Entlassung bestand der Befund fort, Kontrollen siehe Procedere. ", entlassbefund: "Wundverhältnisse trocken und reizlos. " }, "Wunde:"),
+    [FORT],
+  );
+  assert.deepEqual(
+    textHinweise({ verlauf: "Die Operationswunde sezernierte verlängert. Bei Entlassung bestand der Befund fort, Kontrollen siehe Procedere. ", entlassbefund: "Wunde mit geringer seröser Sekretion. " }, "Wunde:"),
+    [],
+  );
+  assert.deepEqual(textHinweise({ verlauf: "Die Operationswunde heilte nach anfänglicher Sekretion trocken und reizlos. " }, "Wunde:"), []);
+  // Entweder-oder in verl-st-operativ/wunde: Störung ohne Maßnahme, reizlose Heilung mit Maßnahme.
+  const OHNE_MASSNAHME = "Wunde: Der Verlauf nennt eine Wundheilungsstörung, aber weder Behandlung noch Befund bei Entlassung.";
+  const REIZLOS_MIT = "Wunde: Der Verlauf nennt eine reizlose Heilung und zugleich eine Behandlung der Wunde.";
+  for (const st of ["sezernierte verlängert", "zeigte eine Rötung der Wundränder", "zeigte ein Hämatom", "zeigte eine Wundrandnekrose", "öffnete sich oberflächlich"]) {
+    assert.deepEqual(textHinweise({ verlauf: `Die Operationswunde ${st}. Die Schmerzen behandelten wir nach Stufenschema. ` }, "Wunde:"), [OHNE_MASSNAHME], st);
+    for (const m of [
+      "Unter lokaler Wundbehandlung besserte sich der Befund.",
+      "Unter lokaler Wundbehandlung und antibiotischer Behandlung besserte sich der Befund.",
+      "Wir revidierten die Wunde operativ, siehe Therapie.",
+      "Bei Entlassung bestand der Befund fort, Kontrollen siehe Procedere.",
+    ]) {
+      assert.deepEqual(textHinweise({ verlauf: `Die Operationswunde ${st}. ${m} ` }, "Wunde:"), [], m);
+      assert.deepEqual(textHinweise({ verlauf: `Die Operationswunde heilte trocken und reizlos. ${m} ` }, "Wunde:"), [REIZLOS_MIT], m);
+    }
+  }
 });
 
 test("Gesamtbrief: Überschriften, leere und ausgeblendete Abschnitte fehlen", () => {
@@ -1923,11 +2220,18 @@ test("beendetZug: nur eine geänderte, schon gewählte Seite des Briefs oder Per
   assert.equal(beendetZug(patient, mitSeite(patient, "links")), true);
   assert.equal(beendetZug(patient, mitSeite(patient, "ohne")), true);
   assert.equal(beendetZug(patient, mitPerson(patient, "w", "")), true);
-  // Gleich bleibend, nur das Alter, die Seite eines einzelnen Bausteins oder eine andere Stelle: kein Ende.
+  // Gleich bleibend, nur das Alter oder eine andere Stelle: kein Ende.
   assert.equal(beendetZug(patient, mitSeite(patient, "rechts")), false);
   assert.equal(beendetZug(patient, mitPerson(patient, "m", "42")), false);
-  assert.equal(beendetZug(patient, mitSeite(patient, "links", "t-pr")), false);
   assert.equal(beendetZug(patient, mitWert(patient, "t-pr/x", "y")), false);
+  // PS-R4-1: Die Seite eines Bausteins, die er im Brief schon trug (eigene oder die des Briefs), wechselt: Ende des Zugs.
+  const links = mitSeite(patient, "links", "t-pr");
+  assert.equal(beendetZug(patient, links), true);
+  assert.equal(beendetZug(links, mitSeite(links, "beidseits", "t-pr")), true);
+  assert.equal(beendetZug(links, mitSeite(links, null, "t-pr")), true, "wieder wie der Brief ist auch ein Wechsel");
+  // Dieselbe Seite wie der Brief als eigene Seite ändert im Brief nichts; ohne Seite des Briefs ist es die erste Wahl.
+  assert.equal(beendetZug(patient, mitSeite(patient, "rechts", "t-pr")), false);
+  assert.equal(beendetZug(f0, mitSeite(f0, "links", "t-pr")), false);
 });
 
 test("enthaeltNoch: Rückgängig nach „Ersetzt“ nur, solange die Stelle genau den Schnellwert enthält (PS-N10)", () => {
@@ -2103,6 +2407,87 @@ test("sicherZuruecknehmen: eine Aussage von vorher wird offen, nicht wieder schw
   assert.equal(sicherZuruecknehmen(f0, [{ vorher: f0, nachher: b1 }], brief).fall, f0);
 });
 
+test("sicherZuruecknehmen, Runde 5: Satz aus einer zurückgenommenen Wahl bleibt nicht (CR-R4-01); entfernter Satz wird genannt (CR-R4-02); Wortlaut, Zusatz, Alter leer und genannt; Bausteinseite bleibt (PS-R4-1)", () => {
+  // CR-R4-01: Wahl an einer Entweder-oder-Stelle, dann Ü auf ihren grauen Satz, dann Rücknahme des Zugs.
+  const keine = baustein("keine-wunde", "befund", [{ art: "option", id: "satz", label: "Keine Wunde", an: true, text: "Keine Wunde im Bereich der Fraktur. " }]);
+  const wunde = baustein("wunde", "befund", [{ art: "option", id: "satz", label: "Wunde", an: true, text: "Wunde über der Fraktur. " }]);
+  const kopf = baustein("kopf", "befund", [{ art: "text", text: "Befund: " }]);
+  const vw = vorlage("v-wunde", { befund: ["kopf"] }, { wahl: [{ abschnitt: "befund", label: "Wunde im Bereich der Fraktur?", bausteine: ["keine-wunde", "wunde"] }] });
+  const iw = testIndex([keine, wunde, kopf], [vw]);
+  const briefW = (f: Fall) => renderBrief(f, iw, { listen: "striche" });
+  const w0 = mitSeite(mitVorlage(neuerFall("zna", iw), vw, iw), "links");
+  const w1 = mitWahl(w0, "wahl/befund/0", "keine-wunde", iw);
+  const w2 = uebernehmen(w1, ["keine-wunde/satz"], iw);
+  assert.equal(w2.optionen["keine-wunde/satz"], true);
+  const rw = sicherZuruecknehmen(w2, [{ vorher: w0, nachher: w1 }, { vorher: w1, nachher: w2 }], briefW);
+  assert.deepEqual(rw.behalten, [], "der Satz steht ohne seinen Baustein nicht im Brief");
+  assert.equal(rw.fall.optionen["keine-wunde/satz"], undefined, "kein Vermerk ohne Baustein");
+  assert.ok(!rw.fall.bausteine.befund?.includes("keine-wunde"));
+  // Dieselbe Wahl später erneut: Der Satz ist grau, nicht schwarz.
+  const wieder = mitWahl(rw.fall, "wahl/befund/0", "keine-wunde", iw);
+  assert.equal(briefW(wieder)!.abschnitte.flatMap((a) => a.tokens).find((t) => t.key === "keine-wunde/satz")?.zustand, "vorschlag");
+
+  const brief = (f: Fall) => renderBrief(f, index, { listen: "striche" });
+  const f0 = mitPerson(mitSeite(neu(V), "links"), "m", "34");
+  // CR-R4-02 (a): „+ Kein Sturz auf den Kopf“ stand schwarz im Brief, der Zug entfernt den Satz („Satz entfernen“).
+  const a0 = mitEigenemText(mitOption(f0, "t-ana/kopf", true), "t-ana/kopf", "Kein Kopfanprall.");
+  const a1 = mitEigenemText(mitOption(a0, "t-ana/kopf", false), "t-ana/kopf", undefined);
+  const ra = sicherZuruecknehmen(a1, [{ vorher: a0, nachher: a1 }], brief);
+  assert.equal(ra.fall.optionen["t-ana/kopf"], undefined);
+  assert.deepEqual(ra.entfernt, ["Kein Sturz auf den Kopf"]);
+  assert.deepEqual(ra.geleert, [{ name: "Kein Sturz auf den Kopf", vorher: "Kein Kopfanprall." }]);
+  // Ein Satz, den die Vorlage vorschlägt, wird grau: nicht entfernt.
+  const g0 = mitOption(f0, "t-proc/kuehlen", true);
+  const g1 = mitOption(g0, "t-proc/kuehlen", false);
+  assert.deepEqual(sicherZuruecknehmen(g1, [{ vorher: g0, nachher: g1 }], brief).entfernt, []);
+  // Eigener Wortlaut an einer Auswahl: Der Zug wählt eine Option (der Wortlaut fällt weg); zurück heißt offen, nicht der alte Wortlaut.
+  const e0 = mitEigenemText(f0, "t-dgn/ergebnis", "Fissur, keine Dislokation.");
+  const e1 = mitAuswahl(e0, "t-dgn/ergebnis", 0);
+  const re = sicherZuruecknehmen(e1, [{ vorher: e0, nachher: e1 }], brief);
+  assert.equal(re.fall.eigen["t-dgn/ergebnis"], undefined);
+  assert.equal(re.fall.auswahl["t-dgn/ergebnis"], undefined);
+  assert.equal(ab(re.fall, index, "diagnostik").tokens.find((t) => t.key === "t-dgn/ergebnis")?.zustand, "offen");
+  assert.deepEqual(re.geleert, [{ name: "Röntgenbefund", vorher: "Fissur, keine Dislokation." }]);
+  // Getipptes Feld (Hinweis des Code-Reviews): leer und genannt.
+  const p0 = mitWert(f0, "t-ana/hergang", "Sturz vom Fahrrad");
+  const p1 = mitWert(p0, "t-ana/hergang", "Umknicktrauma");
+  assert.deepEqual(sicherZuruecknehmen(p1, [{ vorher: p0, nachher: p1 }], brief).geleert, [{ name: "Unfallhergang", vorher: "Sturz vom Fahrrad" }]);
+  // Freier Zusatz und Alter: leer statt alter Text, genannt.
+  const z0 = mitZusatz(f0, "procedere", "Wiedervorstellung bei Fieber.");
+  const z1 = mitZusatz(z0, "procedere", "");
+  const rz = sicherZuruecknehmen(z1, [{ vorher: z0, nachher: z1 }], brief);
+  assert.equal(rz.fall.zusatz.procedere, "");
+  assert.deepEqual(rz.geleert, [{ name: "Ergänzung Procedere", vorher: "Wiedervorstellung bei Fieber." }]);
+  const al1 = mitPerson(f0, "m", "43");
+  const ral = sicherZuruecknehmen(al1, [{ vorher: f0, nachher: al1 }], brief);
+  assert.equal(ral.fall.alter, "");
+  assert.deepEqual(ral.geleert, [{ name: "Alter", vorher: "34" }]);
+  // PS-R4-1: Seite eines Bausteins, die er vorher trug: bleibt, wird genannt; ohne Seite davor geht sie zurück auf offen.
+  const s0 = mitSeite(f0, "rechts", "t-osg");
+  const s1 = mitSeite(s0, "links", "t-osg");
+  const rs = sicherZuruecknehmen(s1, [{ vorher: s0, nachher: s1 }], brief);
+  assert.equal(rs.fall.seiteBaustein["t-osg"], "links");
+  assert.equal(rs.fall, s1, "nichts geändert");
+  assert.deepEqual(rs.seiteBleibt, [{ name: "t-osg", seite: "links" }]);
+  const s2 = mitSeite(s0, "beidseits", "t-osg");
+  const rs2 = sicherZuruecknehmen(s2, [{ vorher: s0, nachher: s2 }], brief);
+  assert.equal(rs2.fall.seiteBaustein["t-osg"], "beidseits");
+  assert.equal(schritteZuruecknehmen(s2, [{ vorher: s0, nachher: s2 }]).seiteBaustein["t-osg"], "rechts", "bisher: alte Seite zurück");
+  const ohneSeite = mitSeite(f0, null);
+  const o1 = mitSeite(ohneSeite, "rechts", "t-osg");
+  const ro = sicherZuruecknehmen(o1, [{ vorher: ohneSeite, nachher: o1 }], brief);
+  assert.equal(ro.fall.seiteBaustein["t-osg"], undefined);
+  assert.deepEqual(ro.seiteBleibt, []);
+});
+
+test("Meldung zur Seite eines Bausteins nennt den Baustein (PS-R4-1)", () => {
+  const brief = (f: Fall) => renderBrief(f, index, { listen: "striche" });
+  const f0 = mitSeite(neu(V), "links");
+  const f1 = mitSeite(f0, "rechts", "t-osg");
+  assert.equal(zurueckgenommenText(f1, f0, brief), "„Seite (t-osg)“ (jetzt: „links“)");
+  assert.equal(gesetztText(f0, brief(f0), f1, brief(f1)), "Seite (t-osg) „rechts“");
+});
+
 test("ohneDoppelteEinheit: „3 cm“ in einem Feld, hinter dem der Text „cm“ schreibt, wird „3“ (H-R3-1)", () => {
   assert.equal(ohneDoppelteEinheit("3 cm", "cm"), "3");
   assert.equal(ohneDoppelteEinheit("3cm", "cm"), "3");
@@ -2113,6 +2498,16 @@ test("ohneDoppelteEinheit: „3 cm“ in einem Feld, hinter dem der Text „cm�
   assert.equal(ohneDoppelteEinheit("3 cm", undefined), "3 cm");
   assert.equal(ohneDoppelteEinheit("cm", "cm"), "cm", "ohne Zahl bleibt alles");
   assert.equal(ohneDoppelteEinheit("3 mm", "cm"), "3 mm", "andere Einheit bleibt");
+  // CR-R4-03: Einheit ohne Leerzeichen dahinter („{w}°.“, „{w}/min.“).
+  assert.equal(einheitDahinter("°. "), "°");
+  assert.equal(einheitDahinter("/min. "), "/min");
+  assert.equal(einheitDahinter(" cm Länge."), "cm");
+  assert.equal(einheitDahinter(". "), undefined);
+  assert.equal(einheitDahinter("{b}. "), undefined, "eine neue Stelle ist keine Einheit");
+  assert.equal(ohneDoppelteEinheit("90°", "°"), "90");
+  assert.equal(ohneDoppelteEinheit("40/0/70 °", "°"), "40/0/70");
+  assert.equal(ohneDoppelteEinheit("80/min", "/min"), "80");
+  assert.equal(ohneDoppelteEinheit("80", "/min"), "80");
 });
 
 test("anleitungVonSelbst: nur beim allerersten Start und nur mit dauerhaftem Speicher (D-05)", () => {
@@ -2169,4 +2564,87 @@ test("Normalwerte: Karte über Fundstellen, mehrere Einträge je Feld, ganze Tab
   assert.equal(normZeile(n.eintraege[1]), "Außenrotation/Innenrotation: Oberarm anliegend 40–60/0/90–95°; in 90° Abduktion 70–90/0/60–70°");
   assert.equal(normTitel(n.eintraege.slice(0, 3)), "Normalwerte (Neutral-Null)");
   assert.equal(normTitel(n.eintraege), "Normalwerte");
+});
+
+// --- Runde 5: Ausgangsstellung, Handbearbeitung vor dem Klären -----------------------------------------------------
+
+test("Ausgangsstellung am Messfeld (R4-D3): in Klammern hinter der Einheit, in derselben Stelle; nur angebotene; bleibt bei neuer Katalogfassung", () => {
+  const rot = baustein("t-schulter", "befund", [
+    { art: "messwert", id: "rot", label: "Außenrotation/Innenrotation", gruppe: "Beweglichkeit", vorlage: "Außenrotation/Innenrotation {w}°. ", stellungen: ["Oberarm anliegend", "in 90° Abduktion"] },
+    { art: "messwert", id: "puls", label: "Puls", vorlage: "Puls {w}/min. " },
+  ]);
+  const iv = testIndex([rot]);
+  const k = "t-schulter/rot";
+  let f = mitWert(fallMit(iv, { befund: ["t-schulter"] }), k, "40/0/70");
+  assert.equal(ab(f, iv, "befund").text, "Außenrotation/Innenrotation 40/0/70°.");
+  f = mitSlot(f, `${k}/${STELLUNG}`, "in 90° Abduktion");
+  const a = ab(f, iv, "befund");
+  assert.equal(a.text, "Außenrotation/Innenrotation 40/0/70° (in 90° Abduktion).");
+  // Wert und Stellung sind eine Stelle: Eine Meldung über die Stelle nennt beides.
+  assert.deepEqual(a.tokens.filter((t) => t.key === k).map((t) => t.t), ["40/0/70° (in 90° Abduktion)"]);
+  // Mit Einheit getippt: keine doppelte Einheit, die Klammer bleibt dahinter.
+  assert.equal(ab(mitWert(f, k, "40/0/70°"), iv, "befund").text, "Außenrotation/Innenrotation 40/0/70° (in 90° Abduktion).");
+  // Ohne Wert steht auch die Stellung nicht im Brief.
+  assert.equal(ab(mitWert(f, k, undefined), iv, "befund").text, "");
+  // Eine Stellung, die das Feld nicht anbietet, gilt nicht; ein Feld ohne Stellungen kennt keine.
+  assert.equal(stellungVon(mitSlot(f, `${k}/${STELLUNG}`, "im Stehen"), k, rot.segmente[0] as { stellungen?: string[] }), undefined);
+  assert.equal(ab(mitSlot(f, `${k}/${STELLUNG}`, "im Stehen"), iv, "befund").text, "Außenrotation/Innenrotation 40/0/70°.");
+  const p = mitSlot(mitWert(f, "t-schulter/puls", "80"), `t-schulter/puls/${STELLUNG}`, "in 90° Abduktion");
+  assert.match(ab(p, iv, "befund").text, /Puls 80\/min\.$/);
+  // Neue Katalogfassung: Die Stellung bleibt, solange es sie gibt; sonst geht sie mit den übrigen Wahlen.
+  const neu1 = testIndex([rot], [], 9);
+  assert.equal(nachKatalogwechsel(f, neu1).slots[`${k}/${STELLUNG}`], "in 90° Abduktion");
+  const ohne = baustein("t-schulter", "befund", [{ ...(rot.segmente[0] as Extract<Segment, { art: "messwert" }>), stellungen: ["Oberarm anliegend"] }]);
+  assert.equal(nachKatalogwechsel(f, testIndex([ohne], [], 9)).slots[`${k}/${STELLUNG}`], undefined);
+  // Rücknahme in die sichere Richtung: Die Stellung geht, der Wert vor dem Zug bleibt, die Meldung nennt die Stellung.
+  const vorher = mitWert(fallMit(iv, { befund: ["t-schulter"] }), k, "40/0/70");
+  const nachher = mitSlot(vorher, `${k}/${STELLUNG}`, "Oberarm anliegend");
+  const zwei = mitSlot(nachher, `${k}/${STELLUNG}`, "in 90° Abduktion");
+  const r = sicherZuruecknehmen(zwei, [{ vorher: nachher, nachher: zwei }], (x) => renderBrief(x, iv, { listen: "striche" }));
+  assert.equal(r.fall.slots[`${k}/${STELLUNG}`], undefined);
+  assert.equal(r.fall.werte[k], "40/0/70");
+  assert.deepEqual(r.geleert, [{ name: "Außenrotation/Innenrotation", vorher: "Oberarm anliegend" }]);
+});
+
+test("Normalwerte für die gewählte Ausgangsstellung (R4-D3): nur deren Wert; ohne Wahl oder ohne passende Stellung alles", () => {
+  const e = { schluessel: "s-rot", gelenk: "Schultergelenk", bewegung: "Außenrotation/Innenrotation", stellungen: [{ stellung: "Oberarm anliegend", normal: "40–60/0/90–95°" }, { stellung: "in 90° Abduktion", normal: "70–90/0/60–70°" }], hinweis: "h", fundstellen: [] };
+  const x = { schluessel: "s-abd", gelenk: "Schultergelenk", bewegung: "Abduktion/Adduktion", normal: "150–180/0/20–40°", hinweis: "h", fundstellen: [] };
+  const anz = { art: "einzeln" as const, eintraege: [e, x] };
+  const gew = fuerStellung(anz, "in 90° Abduktion");
+  assert.ok(gew.art === "einzeln");
+  assert.equal(normZeile(gew.eintraege[0]), "Außenrotation/Innenrotation: in 90° Abduktion 70–90/0/60–70°");
+  assert.equal(gew.eintraege[1], x);
+  assert.equal(fuerStellung(anz, undefined), anz);
+  assert.deepEqual(fuerStellung(anz, "im Stehen"), anz);
+  const tab = { art: "tabelle" as const, gruppen: [] };
+  assert.equal(fuerStellung(tab, "in 90° Abduktion"), tab);
+});
+
+test("Handtext vor dem Klären (M-18 Station): Vorschlag und offene Stelle in ‹…›, gesetzter Text unverändert; zählt als Lücke", () => {
+  const t: Token[] = [
+    { t: "Befund: ", art: "fix" },
+    { t: "Keine Schwellung. ", art: "befund", key: "b/s", zustand: "vorschlag", label: "Schwellung" },
+    { t: "Druckschmerz über dem Außenknöchel. ", art: "befund", key: "b/d", zustand: "abw", label: "Druckschmerz" },
+    { t: "‹Hämatom?›", art: "befund", key: "b/h", zustand: "offen", label: "Hämatom" },
+    { t: " Stabil", art: "option", key: "b/st", zustand: "offen", label: "Stabilität" },
+    { t: "", art: "messwert", key: "b/m", zustand: "offen", label: "Umfang" },
+  ];
+  const h = handtext(t);
+  assert.equal(h, "Befund: ‹Vorschlag: Keine Schwellung.› Druckschmerz über dem Außenknöchel. ‹Hämatom?› ‹Stabil›‹Umfang›");
+  // Jede noch zu klärende Stelle bleibt eine Lücke und sperrt so das Kopieren.
+  assert.equal((h.match(LUECKE) ?? []).length, 4);
+  // Klammern im Vorschlag schließen die Lücke nicht vorzeitig.
+  assert.equal(handtext([{ t: "Text › mit Klammer. ", art: "option", key: "x", zustand: "vorschlag" }]), "‹Vorschlag: Text  mit Klammer.› ");
+  // Fertiger Text bleibt, wie er ist.
+  assert.equal(handtext(t.slice(0, 1).concat(t[2])), "Befund: Druckschmerz über dem Außenknöchel. ");
+  // Im Brief: Ein von Hand übernommener Text mit diesen Lücken ist nicht fertig.
+  let f = fallMit(index, { befund: ["t-osg"] });
+  const a0 = ab(f, index, "befund");
+  assert.equal(a0.fertig, false);
+  f = mitManuell(f, "befund", handtext(a0.tokens));
+  const a1 = ab(f, index, "befund");
+  assert.equal(a1.fertig, false);
+  assert.ok(a1.offen > 0);
+  f = mitManuell(f, "befund", "Klinisch unauffällig.");
+  assert.equal(ab(f, index, "befund").fertig, true);
 });

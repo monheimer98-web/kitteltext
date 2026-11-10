@@ -1,8 +1,11 @@
 // Führt alle Katalogdateien zusammen. Inhalte stehen ausschließlich in den
 // JSON-Dateien; hier wird nichts Fachliches formuliert.
 
-import type { Baustein, Brieftyp, Katalog, Region, Vorlage } from "../model/types.ts";
+import type { Baustein, Brieftyp, Katalog, Protokoll, Region, Vorlage } from "../model/types.ts";
 import { KATALOG_STAND, KORPUS_DATEIEN, VORLAGEN_DATEIEN } from "./dateien.ts";
+import PROTOKOLLE from "./protokolle.json" with { type: "json" };
+import { FALLDATUM_FELDER, FRISTEN, FRIST_ABSCHNITTE } from "./falldaten.ts";
+import { FOLGEANGABEN, KOPPLUNGEN } from "./kopplung.ts";
 
 interface KorpusDatei {
   regionen: Region[];
@@ -101,4 +104,7 @@ export const KATALOG: Katalog = {
   regionen,
   vorlagen: (VORLAGEN_DATEIEN as { vorlagen: Vorlage[] }[]).flatMap((d) => d.vorlagen),
   brieftypen: BRIEFTYPEN,
+  // Standardprotokolle der Nachbehandlung, ärztlich freigegeben am 08.11.2026 (E-49).
+  protokolle: (PROTOKOLLE as { protokolle: Protokoll[] }).protokolle,
+  regeln: { falldatumFelder: FALLDATUM_FELDER, fristAbschnitte: FRIST_ABSCHNITTE, fristen: FRISTEN, kopplungen: KOPPLUNGEN, folgeangaben: FOLGEANGABEN },
 };

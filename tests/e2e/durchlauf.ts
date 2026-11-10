@@ -7,7 +7,7 @@ export type Lage =
   | { art: "eingabe"; kennung: string; mehrzeilig: boolean; leer: boolean; schnellwerte: boolean }
   | { art: "wahl"; kennung: string }
   | { art: "lesen"; kennung: string }
-  | { art: "liste"; kennung: string; zeile: string | null; normal: boolean; offen: number; inAngabe: boolean; imFeld: boolean }
+  | { art: "liste"; kennung: string; zeile: string | null; zeilenKey: string | null; normal: boolean; offen: number; inAngabe: boolean; imFeld: boolean }
   | { art: "block"; kennung: string }
   | { art: "seite" | "person"; kennung: string }
   | { art: "ende"; kennung: string }
@@ -34,6 +34,7 @@ export function lage(page: Page): Promise<Lage> {
         art: "liste",
         kennung: bl.getAttribute("aria-label") ?? "",
         zeile: z ? z.className : null,
+        zeilenKey: z?.dataset.zeile ?? null,
         normal: z ? [...z.querySelectorAll(".bz-wahl button")].some((b) => (b.textContent ?? "").includes("unauffällig")) : false,
         offen: bl.querySelectorAll(".bz-offen, .bz-vorschlag, .bz-luecke, .bz-einstufig").length,
         inAngabe: !!a?.closest(".pillen, input"),
@@ -86,8 +87,10 @@ export async function gewohnheitZifferEnter(page: Page): Promise<{ enter: number
       ende = true;
       break;
     }
-    const n = (besucht.get(l.art + l.kennung) ?? 0) + 1;
-    besucht.set(l.art + l.kennung, n);
+    // In der Befundliste führt F2 von offener Zeile zu offener Zeile (M-15): Jede Zeile ist ein eigener Schritt.
+    const wo = l.art + l.kennung + (l.art === "liste" ? (l.zeilenKey ?? "") : "");
+    const n = (besucht.get(wo) ?? 0) + 1;
+    besucht.set(wo, n);
     if (n > 6) break;
     if (l.art === "eingabe") {
       // Wer hinsieht, schreibt erst, wenn das Feld zu sehen ist (E-45 Satz 4: Text in der Schreckzeit nimmt zurück).
@@ -113,8 +116,9 @@ export async function gewohnheitZifferEnter(page: Page): Promise<{ enter: number
   for (let i = 0; i < 30 && !ende; i++) {
     await taste(page, "F2");
     const l = await lage(page);
-    if (l.art === "ende" || gesehen.has(l.art + l.kennung)) break;
-    gesehen.add(l.art + l.kennung);
+    const wo = l.art + l.kennung + (l.art === "liste" ? (l.zeilenKey ?? "") : "");
+    if (l.art === "ende" || gesehen.has(wo)) break;
+    gesehen.add(wo);
     if (!["liste", "block", "lesen"].includes(l.art)) rest.push(`${l.art}: ${l.kennung}`);
   }
   return { enter, ungewollt, rest };

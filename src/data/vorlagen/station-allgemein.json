@@ -8,7 +8,8 @@
         "frei",
         "Entlassbrief",
         "Operation",
-        "ohne Vorlage"
+        "ohne Vorlage",
+        "Delir"
       ],
       "region": "brief-station",
       "setting": "station",
@@ -107,7 +108,8 @@
         "konservativ",
         "ohne Operation",
         "Überwachung",
-        "Schmerztherapie"
+        "Schmerztherapie",
+        "Delir"
       ],
       "region": "brief-station",
       "setting": "station",
@@ -187,7 +189,8 @@
         "Oberschenkelhalsbruch",
         "Gammanagel",
         "proximaler Femurnagel",
-        "PFNA"
+        "PFNA",
+        "Delir"
       ],
       "kuerzel": [
         "ptf",
@@ -261,7 +264,6 @@
       "vorgaben": {
         "an": [
           "dx-st-neben/osteoporose",
-          "th-st-weitere/physio",
           "ana-st-unfall/wohnen",
           "ana-st-unfall/mobilitaet",
           "ana-st-unfall/pflegegrad",
@@ -273,7 +275,8 @@
           "dgn-st-labor/hb-entlassung"
         ],
         "aus": [
-          "proc-st-kontrollen/klinisch"
+          "proc-st-kontrollen/klinisch",
+          "ana-st-unfall/arbeitsunfall"
         ],
         "auswahl": {
           "dgn-st-roentgen-postop/region": 0
@@ -287,6 +290,12 @@
           "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 1
         }
       },
+      "nichtAnbieten": [
+        "proc-st-belastung/arm",
+        "proc-st-kontrollen/roentgen-ohne-seite",
+        "proc-st-metall/stellschraube",
+        "proc-st-metall/stellschraube-bleibt"
+      ],
       "schnellwerte": {
         "ana-st-unfall/hergang": [
           "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",

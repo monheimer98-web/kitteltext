@@ -863,7 +863,11 @@
               "label": "Außenrotation/Innenrotation",
               "gruppe": "Beweglichkeit",
               "vorlage": "Außenrotation/Innenrotation {w}°. ",
-              "normal": ""
+              "normal": "",
+              "stellungen": [
+                "in 90° Hüftbeugung",
+                "in Streckung"
+              ]
             },
             {
               "art": "befund",

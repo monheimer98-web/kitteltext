@@ -372,7 +372,11 @@
               "label": "Außenrotation/Innenrotation",
               "gruppe": "Beweglichkeit",
               "vorlage": "Außenrotation/Innenrotation {w}°. ",
-              "leer": "_/0/_"
+              "leer": "_/0/_",
+              "stellungen": [
+                "Oberarm anliegend",
+                "in 90° Abduktion"
+              ]
             },
             {
               "art": "befund",

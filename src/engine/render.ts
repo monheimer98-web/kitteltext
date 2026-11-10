@@ -12,16 +12,24 @@ import type {
   BefundSlot,
   Brieftyp,
   Fall,
+  FalldatumArt,
   Katalog,
+  Katalogregeln,
   Platzhalter,
+  Protokoll,
   Seite,
   Vorlage,
 } from "../model/types.ts";
 import { abschnittVon, schluessel, wahlSchluessel } from "../model/types.ts";
 import { personText } from "./person.ts";
 import { stelleLeer, stelleVor, weggelasseneStellen } from "./vorlage.ts";
-import { LUECKE, glaetten, kisPlatzhalter, luecke, tokensZuText } from "./text.ts";
+import { ersetzteStellen, protokollBaustein } from "./protokoll.ts";
+import { LUECKE, glaetten, kisPlatzhalter, luecke, mitVorschlag, tokensZuText } from "./text.ts";
+import { falldatumZuordnung, mehrdeutigeAnker, mitFristen } from "./falldaten.ts";
+import { folgeangabenVon, uebertragungen } from "./kopplung.ts";
+import type { Uebertragung } from "./kopplung.ts";
 import type { Token } from "./text.ts";
+import { istLeer, leseMedikation, medText, medZellen } from "./medikation.ts";
 
 export interface KatalogIndex {
   katalog: Katalog;
@@ -30,6 +38,8 @@ export interface KatalogIndex {
   brieftypen: Map<string, Brieftyp>;
   /** Baustein-ID -> Region-ID */
   regionVon: Map<string, string>;
+  /** Standardprotokolle nach ID; ihre Bausteine stehen in `bausteine` (Region „protokolle“) */
+  protokolle: Map<string, Protokoll>;
 }
 
 export function indexiere(katalog: Katalog): KatalogIndex {
@@ -41,10 +51,19 @@ export function indexiere(katalog: Katalog): KatalogIndex {
       regionVon.set(b.id, r.id);
     }
   }
+  // Protokolle stehen in keiner Region: So erscheinen sie nicht unter „+ Baustein“, sondern nur im Kasten des Procedere.
+  const protokolle = new Map<string, Protokoll>();
+  for (const p of katalog.protokolle ?? []) {
+    if (bausteine.has(p.id)) continue;
+    protokolle.set(p.id, p);
+    bausteine.set(p.id, protokollBaustein(p));
+    regionVon.set(p.id, "protokolle");
+  }
   return {
     katalog,
     bausteine,
     regionVon,
+    protokolle,
     vorlagen: new Map(katalog.vorlagen.map((v) => [v.id, v])),
     brieftypen: new Map(katalog.brieftypen.map((b) => [b.id, b])),
   };
@@ -134,10 +153,21 @@ interface Sammler {
   ohne: Set<string>;
   /** Sätze, die die Vorlage in diesem Fall gar nicht anbietet */
   weg: Set<string>;
+  /** Sätze und Auswahlen, an deren Stelle ein Standardprotokoll im Fall steht (E-52) */
+  ersetzt: Set<string>;
+  /** Sätze, die zur Region der Vorlage nicht passen: kein „+ …“ */
+  nichtAnbieten: Set<string>;
   an: Set<string>;
   nichtAn: Set<string>;
   slotVorgabe: Record<string, number>;
   auswahlVorgabe: Record<string, number>;
+  regeln: Katalogregeln | undefined;
+  /** Antworten, die Stellen ohne eigene Antwort von einer anderen Stelle bekommen (E-60) */
+  uebertragen: Map<string, Uebertragung>;
+  /** Datum des Fallkopfs je gebundenem Datumsfeld (`baustein/feld`); `null`: kein Datum mehr frei, gewöhnliches Feld */
+  falldaten: ReadonlyMap<string, FalldatumArt | null>;
+  /** Anker ohne errechnetes Datum, weil „nach der Operation“ zwei Operationen meinen kann */
+  mehrdeutig: ReadonlySet<FalldatumArt>;
 }
 
 /** Stellen, die in Befund- und Optionstexten ohne eigenen Slot erlaubt sind. */
@@ -196,6 +226,8 @@ interface Gefuellt {
   offen: boolean;
   /** enthält eine Angabe, die aus der Vorlage stammt und nicht vom Arzt */
   vorschlag: boolean;
+  /** Bausteine, von denen eine Angabe übertragen ist (E-60) */
+  uebertragen?: string[];
 }
 
 /** Vorgabe eines Feldes aus dem Hausstandard; leer, wenn es keine gibt oder sie auf keine Option zeigt. */
@@ -214,11 +246,14 @@ function fuelleSlots(
   fall: Fall,
   s: Sammler,
   auffaellig = false,
+  folge: ReadonlySet<string> = new Set(),
 ): Gefuellt {
   const vorher = s.offen;
   let t = setzeBezug(roh, b, fall, s);
   let vorschlag = false;
+  const uebertragen: string[] = [];
   const werte = new Map<string, string>();
+  const getippt = new Set<string>();
   for (const slot of slots ?? []) {
     const key = schluessel(b.id, segId, slot.id);
     const wert = fall.slots[key];
@@ -227,7 +262,14 @@ function fuelleSlots(
       s.offen++;
       return luecke(segLabel === slot.label ? slot.label : `${segLabel}: ${slot.label}`);
     };
-    if (slot.art === "auswahl") {
+    // Antwort von einer anderen Stelle (E-60): vor jeder Vorgabe der Vorlage, nie vor einer eigenen Antwort.
+    const ueber = wert === undefined && !auffaellig ? s.uebertragen.get(key) : undefined;
+    const uebertragenIndex = ueber && slot.art === "auswahl" ? gueltigerIndex(ueber.wert, slot.optionen.length) : undefined;
+    if (ueber && ((slot.art === "auswahl" && uebertragenIndex !== undefined) || slot.art === "detail")) {
+      val = slot.art === "auswahl" && uebertragenIndex !== undefined ? slot.optionen[uebertragenIndex] : ueber.wert;
+      if (!ueber.aussage) vorschlag = true;
+      uebertragen.push(ueber.quelle);
+    } else if (slot.art === "auswahl") {
       const gewaehlt = gueltigerIndex(wert, slot.optionen.length);
       const vorgabe = gueltigerIndex(s.slotVorgabe[key], slot.optionen.length);
       if (gewaehlt !== undefined) {
@@ -243,7 +285,8 @@ function fuelleSlots(
         } else if (auffaellig) {
           // Art, Ort und Ausmaß eines auffälligen Befunds legt nie die Vorlage fest: Der Arzt wählt sie.
           val = offen();
-        } else {
+        } else if (!folge.has(slot.id)) {
+          // Eine Folgeangabe (M-24) gehört zum Satz, den der Arzt eben selbst ausgefüllt hat; alles andere bleibt Vorschlag.
           vorschlag = true;
         }
       }
@@ -252,6 +295,7 @@ function fuelleSlots(
       else if (slot.required) val = offen();
     } else if (slot.art === "zahl") {
       const v = (wert ?? "").trim();
+      if (v && !slot.einheit) getippt.add(slot.id);
       if (v) val = slot.einheit ? `${ohneDoppelteEinheit(v, slot.einheit)} ${slot.einheit}` : v;
       else if (slot.required) val = offen();
       else val = slot.leerMarker ?? "";
@@ -262,8 +306,13 @@ function fuelleSlots(
     werte.set(slot.id, val);
   }
   // In einem Durchgang: Was der Arzt getippt hat, wird nicht noch einmal nach Stellen durchsucht („{links}" bleibt stehen).
-  if (slots?.length) t = t.replace(/\{([a-zA-Z0-9_-]+)\}/g, (_, id: string) => werte.get(id) ?? "");
-  return { text: t, offen: s.offen > vorher, vorschlag };
+  // Eine Zahl ohne eigene Einheit, hinter der der Text die Einheit schreibt („{wert}°.“), steht ohne mitgetippte Einheit
+  // da (CR-R4-03).
+  if (slots?.length) t = t.replace(/\{([a-zA-Z0-9_-]+)\}/g, (ganz: string, id: string, stelle: number, alles: string) => {
+    const w = werte.get(id) ?? "";
+    return getippt.has(id) ? ohneDoppelteEinheit(w, einheitDahinter(alles.slice(stelle + ganz.length))) : w;
+  });
+  return { text: t, offen: s.offen > vorher, vorschlag, ...(uebertragen.length > 0 ? { uebertragen } : {}) };
 }
 
 /** Eigener Wortlaut des Arztes; leer gilt als nicht vorhanden. */
@@ -307,19 +356,65 @@ function auffaelligesZuerst(tokens: Token[]): Token[] {
   return aus;
 }
 
+/** Zeichen eines Unterpunkts: eigene Zeile, mit Leerzeichen eingerückt (kein Tabulator, den manche KIS-Felder schlucken). */
+export const UNTERPUNKT = "\n  - ";
+
+/** Listen- oder Unterpunktzeichen, mit dem ein Punkt beginnt; mehrzeiliger Freitext darin wird je Zeile ein Punkt (M-06). */
+function istPunktzeichen(praefix: string): boolean {
+  return /^\n *- $/.test(praefix);
+}
+
+/**
+ * Ein Unterpunkt steht für sich: Komma, Semikolon und Leerzeichen am Anfang (aus dem Satzbau der Zeile darüber)
+ * entfallen, ebenso Klammern, die den ganzen Punkt umschließen („ (AO 2R3A2)“ → „AO 2R3A2“).
+ */
+function alsUnterpunkt(tokens: Token[]): Token[] {
+  const aus = tokens.map((t) => ({ ...t }));
+  const erster = aus.findIndex((t) => t.t.trim().length > 0);
+  if (erster < 0) return aus;
+  aus[erster].t = aus[erster].t.replace(/^[\s,;]+/, "");
+  let letzter = aus.length - 1;
+  while (letzter > erster && aus[letzter].t.trim().length === 0) letzter--;
+  const ganz = tokensZuText(aus.slice(erster, letzter + 1)).trim();
+  const innen = ganz.slice(1, -1);
+  if (ganz.startsWith("(") && ganz.endsWith(")") && !/[()]/.test(innen.replace(/\([^()]*\)/g, ""))) {
+    aus[erster].t = aus[erster].t.replace(/^\(/, "");
+    aus[letzter].t = aus[letzter].t.replace(/\)(\s*)$/, "$1");
+  }
+  return aus;
+}
+
 function bausteinTokens(b: Baustein, fall: Fall, opt: RenderOptionen, s: Sammler): { tokens: Token[]; liste: boolean } {
   const aus: Token[] = [];
   let aktuell: Token[] = [];
   let praefix = "";
   let beginntMitListe: boolean | null = null;
+  // Ein Listenpunkt, dessen Auswahl ein Standardprotokoll ersetzt, tritt ganz zurück, samt Regionskopf und Seite davor;
+  // was er schon gezählt hat, gilt dann nicht.
+  let verwerfen = false;
+  const schnappschuss = () => ({ zahlen: { offen: s.offen, vorschlag: s.vorschlag, auffaellig: s.auffaellig, seiteFehlt: s.seiteFehlt, personFehlt: s.personFehlt, brauchtSeite: s.brauchtSeite, brauchtPerson: s.brauchtPerson }, aus: s.aus.length, spaeter: s.spaeter.length });
+  let stand = schnappschuss();
 
   const flush = () => {
+    if (verwerfen) {
+      Object.assign(s, stand.zahlen);
+      s.aus.length = stand.aus;
+      s.spaeter.length = stand.spaeter;
+      aktuell = [];
+      verwerfen = false;
+    }
     if (tokensZuText(aktuell).trim().length > 0) {
       if (beginntMitListe === null) beginntMitListe = praefix.startsWith("\n-");
-      if (praefix) aus.push({ t: praefix, art: "fix" });
-      aus.push(...auffaelligesZuerst(aktuell));
+      if (praefix === UNTERPUNKT) {
+        aus.push({ t: praefix, art: "gliederung" });
+        aus.push(...alsUnterpunkt(aktuell));
+      } else {
+        if (praefix) aus.push({ t: praefix, art: "fix" });
+        aus.push(...auffaelligesZuerst(aktuell));
+      }
     }
     aktuell = [];
+    stand = schnappschuss();
   };
 
   for (const seg of b.segmente) {
@@ -327,6 +422,12 @@ function bausteinTokens(b: Baustein, fall: Fall, opt: RenderOptionen, s: Sammler
       case "punkt":
         flush();
         praefix = opt.listen === "striche" ? "\n- " : " ";
+        break;
+
+      case "unterpunkt":
+        // Unterpunkte bleiben auch bei „Fließtext“ eigene Zeilen: Die Einstellung gilt für Maßnahmen und Procedere.
+        flush();
+        praefix = UNTERPUNKT;
         break;
 
       case "absatz":
@@ -371,17 +472,50 @@ function bausteinTokens(b: Baustein, fall: Fall, opt: RenderOptionen, s: Sammler
         if (!def) break;
         const key = schluessel(b.id, def.id);
         const mitEinheit = (w: string) => (def.einheit ? `${ohneDoppelteEinheit(w, def.einheit)} ${def.einheit}` : w);
-        if (fall.spaeter[key]) {
+        // Datum des Fallkopfs (E-58): Ein hier eingetragener Wert geht vor (bewusste Abweichung, Fall von vorher).
+        const falldatum = s.falldaten.get(key) ?? undefined;
+        // Ein Datum, das der Arzt im Fallkopf nachträgt, ersetzt auch einen Platzhalter fürs KIS an dieser Stelle.
+        if (fall.spaeter[key] && !(falldatum && fall.daten[falldatum] && !(fall.werte[key] ?? "").trim())) {
           s.spaeter.push({ key, label: def.label });
-          aktuell.push({ t: kisPlatzhalter(def.label), art: "feld", key, zustand: "spaeter", label: def.label });
+          aktuell.push({ t: kisPlatzhalter(def.label), art: "feld", key, zustand: "spaeter", label: def.label, falldatum });
           break;
         }
         const roh = fall.werte[key];
-        const wert = (roh ?? "").trim();
+        if (def.typ === "medikation") {
+          const eintraege = leseMedikation(roh).filter((e) => !istLeer(e));
+          if (eintraege.length > 0) {
+            // Jeder Eintrag ist ein eigener Punkt der Liste; nur strukturierte Zeilen tragen Zellen für die Tabelle.
+            const trenner = istPunktzeichen(praefix) ? praefix : praefix === " " ? " " : "\n";
+            eintraege.forEach((e, i) => {
+              const { text, offen } = e.art === "frei" ? { text: e.text.trim(), offen: e.text.includes("‹") } : medText(e);
+              if (offen) s.offen++;
+              if (i > 0) aktuell.push({ t: trenner, art: "fix" });
+              aktuell.push({ t: text, art: "feld", key, zustand: offen ? "offen" : "gesetzt", label: def.label, frei: true, zellen: e.art === "zeile" ? medZellen(e) : undefined });
+            });
+            break;
+          }
+        }
+        const wert = def.typ === "medikation" ? "" : (roh ?? "").trim();
         if (wert) {
           const offen = wert.includes("‹");
           if (offen) s.offen++;
-          aktuell.push({ t: mitEinheit(wert), art: "feld", key, zustand: offen ? "offen" : "gesetzt", label: def.label, frei: true });
+          // Mehrzeiliger Freitext in einem Listenpunkt: jede Zeile ein eigener Punkt (M-06).
+          const zeilen = istPunktzeichen(praefix) ? wert.split("\n").map((z) => z.trim()).filter(Boolean).join(praefix) : wert;
+          aktuell.push({ t: mitEinheit(zeilen), art: "feld", key, zustand: offen ? "offen" : "gesetzt", label: def.label, frei: true, falldatum });
+        } else if (falldatum) {
+          const datum = fall.daten[falldatum];
+          if (datum) {
+            aktuell.push({ t: datum, art: "feld", key, zustand: "gesetzt", label: def.label, falldatum });
+          } else {
+            // Fehlt das Datum, steht an genau dieser Stelle der Platzhalter fürs KIS: sichtbar, nachgehalten, ohne Sperre.
+            s.spaeter.push({ key, label: def.label });
+            aktuell.push({ t: kisPlatzhalter(def.label), art: "feld", key, zustand: "spaeter", label: def.label, falldatum });
+          }
+        } else if (roh === undefined && s.uebertragen.has(key)) {
+          // Antwort von einer anderen Stelle (E-60), vor dem Hausstandard.
+          const u = s.uebertragen.get(key)!;
+          if (!u.aussage) s.vorschlag++;
+          aktuell.push({ t: mitEinheit(u.wert), art: "feld", key, zustand: u.aussage ? "gesetzt" : "vorschlag", label: def.label, uebertragen: [u.quelle] });
         } else if (roh === undefined && hausstandard(def)) {
           // Wert aus dem Hausstandard: ein Vorschlag, bis der Arzt ihn übernimmt.
           const vorgabe = hausstandard(def);
@@ -400,15 +534,24 @@ function bausteinTokens(b: Baustein, fall: Fall, opt: RenderOptionen, s: Sammler
 
       case "auswahl": {
         const key = schluessel(b.id, seg.id);
+        if (s.ersetzt.has(key)) {
+          verwerfen = true;
+          break;
+        }
         const eigen = eigenerText(fall, key);
         const gewaehlt = gueltigerIndex(fall.auswahl[key], seg.optionen.length);
         // Vorgabe der Vorlage, sonst die des Bausteins (Hausstandard). Beides ist nur ein Vorschlag.
         const vorgabe = gueltigerIndex(s.auswahlVorgabe[key], seg.optionen.length) ?? gueltigerIndex(seg.default, seg.optionen.length);
         let t: string;
         let zustand: Token["zustand"] = "gesetzt";
+        const ueber = eigen === undefined && gewaehlt === undefined ? s.uebertragen.get(key) : undefined;
+        const uebertragenIndex = ueber ? gueltigerIndex(ueber.wert, seg.optionen.length) : undefined;
         if (eigen !== undefined) t = eigen;
         else if (gewaehlt !== undefined) t = seg.optionen[gewaehlt];
-        else if (seg.variante) t = seg.optionen[vorgabe ?? 0] ?? "";
+        else if (ueber && uebertragenIndex !== undefined) {
+          t = seg.optionen[uebertragenIndex];
+          if (!ueber.aussage) zustand = "vorschlag";
+        } else if (seg.variante) t = seg.optionen[vorgabe ?? 0] ?? "";
         else if (vorgabe === undefined) {
           s.offen++;
           aktuell.push({ t: luecke(seg.label), art: "auswahl", key, zustand: "offen", label: seg.label });
@@ -424,7 +567,7 @@ function bausteinTokens(b: Baustein, fall: Fall, opt: RenderOptionen, s: Sammler
         if (t.includes("‹")) zustand = "offen";
         if (zustand === "vorschlag") s.vorschlag++;
         if (zustand === "offen") s.offen++;
-        aktuell.push({ t, art: "auswahl", key, zustand, label: seg.label, frei: eigen !== undefined });
+        aktuell.push({ t, art: "auswahl", key, zustand, label: seg.label, frei: eigen !== undefined, ...(ueber && uebertragenIndex !== undefined ? { uebertragen: [ueber.quelle] } : {}) });
         break;
       }
 
@@ -492,24 +635,40 @@ function bausteinTokens(b: Baustein, fall: Fall, opt: RenderOptionen, s: Sammler
         }
         const [vor, nach = ""] = seg.vorlage.split("{w}");
         aktuell.push({ t: vor, art: "fix" });
-        // Die Einheit steht in der Vorlage hinter dem Wert („Wunde von {w} cm Länge.“); getippt mit Einheit nicht doppelt.
-        aktuell.push({ t: ohneDoppelteEinheit(wert, /^\s+([^\s.,;:]+)/.exec(nach)?.[1]), art: "messwert", key, zustand: "gesetzt", label: seg.label, frei: true });
+        // Die Einheit steht in der Vorlage hinter dem Wert („Wunde von {w} cm Länge.“, „{w}°.“, „{w}/min.“); getippt mit
+        // Einheit nicht doppelt, auch ohne Leerzeichen davor (CR-R4-03).
+        const w = ohneDoppelteEinheit(wert, einheitDahinter(nach));
+        const stellung = stellungVon(fall, key, seg);
+        if (stellung) {
+          // Die gewählte Ausgangsstellung steht hinter der Einheit in Klammern, in derselben Stelle wie der Wert: Ein
+          // Wert ohne seine Stellung wäre eine andere Aussage (R4-D3).
+          const einheit = /^\s*[^\s.,;:{]+/.exec(nach)?.[0] ?? "";
+          aktuell.push({ t: `${w}${einheit} (${stellung})`, art: "messwert", key, zustand: "gesetzt", label: seg.label, frei: true });
+          aktuell.push({ t: nach.slice(einheit.length), art: "fix" });
+          break;
+        }
+        aktuell.push({ t: w, art: "messwert", key, zustand: "gesetzt", label: seg.label, frei: true });
         aktuell.push({ t: nach, art: "fix" });
         break;
       }
 
       case "option": {
         const key = schluessel(b.id, seg.id);
-        if (s.weg.has(key)) break;
+        // Weggelassen oder durch ein Standardprotokoll ersetzt: weder im Brief noch unter „+ …“.
+        if (s.weg.has(key) || s.ersetzt.has(key)) break;
         const gewaehlt = fall.optionen[key];
         const vorgabe = s.an.has(key) ? true : s.nichtAn.has(key) ? false : (seg.an ?? false);
         if (!(gewaehlt ?? vorgabe)) {
+          if (s.nichtAnbieten.has(key)) break;
           const vorschau = seg.text.replace(/\{seite\}/g, seiteVon(fall, b.id) ?? "…").replace(/\{[a-zA-Z0-9_-]+\}/g, "…").replace(/\s+/g, " ").trim();
           s.aus.push({ key, label: seg.label, bausteinId: b.id, art: "option", gruppe: seg.gruppe, vorschau });
           break;
         }
         const eigen = eigenerText(fall, key);
-        const g = eigen !== undefined ? { text: setzeBezug(eigen, b, fall, s), offen: false, vorschlag: false } : fuelleSlots(seg.text, seg.slots, b, seg.id, seg.label, fall, s);
+        const g: Gefuellt =
+          eigen !== undefined
+            ? { text: setzeBezug(eigen, b, fall, s), offen: false, vorschlag: false }
+            : fuelleSlots(seg.text, seg.slots, b, seg.id, seg.label, fall, s, false, folgeangabenVon(b, seg.id, fall, s.regeln));
         // Ein Satz, der nur aus einer leeren Angabe besteht, behauptet nichts und ist nicht zu übernehmen.
         if (g.text.trim() === "") break;
         const offen = g.offen || g.text.includes("‹");
@@ -526,12 +685,17 @@ function bausteinTokens(b: Baustein, fall: Fall, opt: RenderOptionen, s: Sammler
           label: seg.label,
           gruppe: seg.gruppe,
           frei: eigen !== undefined,
+          ...(g.uebertragen ? { uebertragen: g.uebertragen } : {}),
         });
         break;
       }
     }
   }
   flush();
+  // Die Überschrift steht nur über einem Baustein mit Text, auf eigener Zeile.
+  if (b.ueberschrift && aus.some((t) => t.t.trim().length > 0)) {
+    aus.unshift({ t: b.ueberschrift, art: "titel" }, ...(aus[0].t.startsWith("\n") ? [] : [{ t: "\n", art: "fix" as const }]));
+  }
   // Auch fester Text weiß, zu welchem Baustein er gehört, damit die Oberfläche Bausteine als Block zeigen kann.
   return { tokens: aus.map((t) => ({ ...t, bausteinId: b.id })), liste: beginntMitListe === true };
 }
@@ -554,6 +718,9 @@ function findeSeitenkonflikt(tokens: Token[], fall: Fall): string | null {
 
 function neuerSammler(fall: Fall, index: KatalogIndex): Sammler {
   const vorlage = fall.vorlageId ? index.vorlagen.get(fall.vorlageId) : undefined;
+  const weg = weggelasseneStellen(fall, vorlage, index);
+  const ersetzt = ersetzteStellen(fall, index);
+  const falldaten = falldatumZuordnung(fall, bausteineImBrief(fall, index), index.katalog.regeln);
   return {
     offen: 0,
     vorschlag: 0,
@@ -566,12 +733,25 @@ function neuerSammler(fall: Fall, index: KatalogIndex): Sammler {
     aus: [],
     entscheiden: new Set(vorlage?.entscheiden ?? []),
     ohne: new Set(vorlage?.ohne ?? []),
-    weg: weggelasseneStellen(fall, vorlage, index),
+    weg,
+    ersetzt,
+    nichtAnbieten: new Set(vorlage?.nichtAnbieten ?? []),
     an: new Set(vorlage?.vorgaben?.an ?? []),
     nichtAn: new Set(vorlage?.vorgaben?.aus ?? []),
     slotVorgabe: vorlage?.vorgaben?.slots ?? {},
     auswahlVorgabe: vorlage?.vorgaben?.auswahl ?? {},
+    regeln: index.katalog.regeln,
+    uebertragen: uebertragungen(fall, index, index.katalog.regeln, new Set([...weg, ...ersetzt])),
+    falldaten,
+    mehrdeutig: mehrdeutigeAnker(fall, falldaten),
   };
+}
+
+/** Bausteine des Falls in der Reihenfolge des Briefs: Abschnitte wie im Brieftyp, darin wie im Fall. */
+function bausteineImBrief(fall: Fall, index: KatalogIndex): Baustein[] {
+  const reihe = index.brieftypen.get(fall.brieftypId)?.abschnitte.map((a) => a.id) ?? [];
+  const ids = [...reihe, ...(Object.keys(fall.bausteine) as AbschnittId[]).filter((a) => !reihe.includes(a))].flatMap((a) => fall.bausteine[a] ?? []);
+  return ids.map((bid) => index.bausteine.get(bid)).filter((b): b is Baustein => b !== undefined);
 }
 
 interface AbschnittIntern extends AbschnittAnsicht {
@@ -690,7 +870,7 @@ function renderIntern(id: AbschnittId, titel: string, fall: Fall, index: Katalog
     }
   }
 
-  const tokens = glaetten(roh);
+  const tokens = manuell === undefined ? mitFristen(glaetten(roh), id, fall, s.regeln, s.mehrdeutig) : glaetten(roh);
   const text = tokensZuText(tokens);
   const kopie = fall.kopiert[id];
   const leer = text.length === 0;
@@ -698,7 +878,7 @@ function renderIntern(id: AbschnittId, titel: string, fall: Fall, index: Katalog
   // Der Sammler zählt jede fehlende Angabe; er bleibt die Sperre und hält die Zahl über null, falls keine Stelle sie trägt.
   const freieLuecken = tokens.reduce((n, t) => n + (t.frei && !t.key ? (t.t.match(LUECKE) ?? []).length : 0), 0);
   const offen = Math.max(tokens.filter((t) => t.zustand === "offen").length + freieLuecken + fehlend.length, s.offen > 0 ? 1 : 0);
-  const vorschlag = Math.max(tokens.filter((t) => t.zustand === "vorschlag").length, s.vorschlag > 0 ? 1 : 0);
+  const vorschlag = Math.max(tokens.filter(mitVorschlag).length, s.vorschlag > 0 ? 1 : 0);
   return {
     id,
     titel,
@@ -770,6 +950,26 @@ export { abschnittVon };
  * Ein Wert, den der Arzt mit Einheit getippt hat („3 cm“), obwohl der Text die Einheit selbst dahinter schreibt: ohne
  * die Einheit, sonst stünde „3 cm cm“ im Brief (H-R3-1). Nur wenn vor der Einheit eine Zahl steht.
  */
+/**
+ * Die Einheit, die ein Text unmittelbar hinter einem Wert schreibt: „°“ in „°. “, „/min“ in „/min. “, „cm“ in
+ * „ cm Länge.“; mit oder ohne Leerzeichen davor. Ein Satzzeichen oder eine neue Stelle ist keine Einheit.
+ */
+export function einheitDahinter(text: string): string | undefined {
+  return /^\s*([^\s.,;:{]+)/.exec(text)?.[1];
+}
+
+/** Angabe eines Messfelds, unter der die gewählte Ausgangsstellung steht: `bausteinId/segId/stellung`. */
+export const STELLUNG = "stellung";
+
+/**
+ * Gewählte Ausgangsstellung eines Messfelds, nur wenn die Vorlage sie anbietet. Gespeichert ist der Wortlaut, nicht die
+ * Nummer: Er übersteht eine neue Katalogfassung, solange es die Stellung dort noch gibt.
+ */
+export function stellungVon(fall: Fall, key: string, seg: { stellungen?: string[] }): string | undefined {
+  const s = fall.slots[`${key}/${STELLUNG}`];
+  return s !== undefined && seg.stellungen?.includes(s) ? s : undefined;
+}
+
 export function ohneDoppelteEinheit(wert: string, einheit: string | undefined): string {
   if (!einheit) return wert;
   const e = einheit.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");

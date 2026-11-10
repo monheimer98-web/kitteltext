@@ -17,7 +17,11 @@
         "Insuffizienzfraktur Becken",
         "Fragilitätsfraktur des Beckens",
         "Alterstrauma Becken",
-        "Sturz im Alter"
+        "Sturz im Alter",
+        "Os pubis",
+        "Os-pubis-Fraktur",
+        "Ramus pubis",
+        "Delir"
       ],
       "kuerzel": [
         "brf",
@@ -136,6 +140,10 @@
           "verl-st-besonderheiten/gerinnungshemmung/seit": 1
         }
       },
+      "nichtAnbieten": [
+        "proc-st-kontrollen/roentgen",
+        "proc-st-kontrollen/roentgen-tage"
+      ],
       "weglassen": {
         "ana-st-unfall/kopf": [
           "ana-st-kopfanprall/kopf"
@@ -267,7 +275,6 @@
       ],
       "vorgaben": {
         "an": [
-          "th-st-weitere/physio",
           "ana-st-unfall/mobilitaet",
           "proc-st-belastung/ohne-seite",
           "proc-st-verhalten-kyphoplastie/rumpforthese",
@@ -297,6 +304,13 @@
           "proc-st-kontrollen/roentgen-ohne-seite/anker": 0
         }
       },
+      "nichtAnbieten": [
+        "proc-st-belastung/arm",
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-kontrollen/roentgen-tage"
+      ],
       "schnellwerte": {
         "ana-st-unfall/hergang": [
           "Es sei zu einem Sturz aus dem Stand gekommen.",

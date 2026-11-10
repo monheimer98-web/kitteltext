@@ -84,3 +84,18 @@ export function normTitel(eintraege: readonly Normeintrag[]): string {
   const werte = eintraege.flatMap((e) => (e.stellungen?.length ? e.stellungen.map((s) => s.normal) : [e.normal ?? ""]));
   return werte.every((w) => w.includes("/0/")) ? "Normalwerte (Neutral-Null)" : "Normalwerte";
 }
+
+/**
+ * Was das „i“ zeigt, wenn am Feld eine Ausgangsstellung gewählt ist: bei Einträgen mit Stellungen nur deren Normalwert
+ * (R4-D3). Ohne Wahl, oder gibt es die Stellung im Eintrag nicht, bleibt die Anzeige, wie sie ist.
+ */
+export function fuerStellung(anzeige: NormAnzeige, stellung: string | undefined): NormAnzeige {
+  if (!stellung || anzeige.art !== "einzeln") return anzeige;
+  return {
+    art: "einzeln",
+    eintraege: anzeige.eintraege.map((e) => {
+      const passend = e.stellungen?.filter((s) => s.stellung === stellung) ?? [];
+      return passend.length ? { ...e, stellungen: passend } : e;
+    }),
+  };
+}

@@ -103,7 +103,6 @@
       "vorgaben": {
         "an": [
           "th-st-weitere/implantat",
-          "th-st-weitere/physio",
           "proc-st-wunde/hochlagern",
           "proc-st-metall/metall",
           "med-st-entlassung/thrombose",
@@ -129,6 +128,11 @@
           "proc-st-sicherheitsnetz-unterschenkel/sicherheitsnetz/zeichen": 3
         }
       },
+      "nichtAnbieten": [
+        "proc-st-kontrollen/roentgen-ohne-seite",
+        "proc-st-metall/stellschraube",
+        "proc-st-metall/stellschraube-bleibt"
+      ],
       "schnellwerte": {
         "ana-st-unfall/hergang": [
           "Es sei zu einem Sturz aus dem Stand gekommen.",
@@ -251,6 +255,9 @@
           "th-st-weitere/physio/inhalt": 1
         }
       },
+      "nichtAnbieten": [
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ],
       "schnellwerte": {
         "ana-st-unfall/hergang": [
           "Es sei zu einem Sturz aus dem Stand gekommen.",
@@ -361,7 +368,6 @@
       "vorgaben": {
         "an": [
           "th-st-weitere/implantat",
-          "th-st-weitere/physio",
           "proc-st-wunde/hochlagern",
           "proc-st-metall/metall",
           "med-st-entlassung/thrombose",
@@ -388,6 +394,11 @@
           "proc-st-sicherheitsnetz-unterschenkel/sicherheitsnetz/zeichen": 3
         }
       },
+      "nichtAnbieten": [
+        "proc-st-kontrollen/roentgen-ohne-seite",
+        "proc-st-metall/stellschraube",
+        "proc-st-metall/stellschraube-bleibt"
+      ],
       "schnellwerte": {
         "ana-st-unfall/hergang": [
           "Beim Sport sei es zu einem Tritt gegen den Unterschenkel gekommen.",

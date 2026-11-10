@@ -13,7 +13,8 @@
         "Hemiprothese",
         "Hemiendoprothese",
         "Hüft-TEP nach Fraktur",
-        "Garden"
+        "Garden",
+        "Delir"
       ],
       "kuerzel": [
         "shf",
@@ -100,7 +101,6 @@
         "an": [
           "dx-st-neben/osteoporose",
           "th-st-weitere/implantat",
-          "th-st-weitere/physio",
           "ana-st-unfall/wohnen",
           "ana-st-unfall/versorgung",
           "ana-st-unfall/mobilitaet",
@@ -121,7 +121,8 @@
           "verl-st-operativ/wunde",
           "verl-st-operativ/aufnahme",
           "verl-st-operativ/operation",
-          "proc-st-belastung/bein"
+          "proc-st-belastung/bein",
+          "ana-st-unfall/arbeitsunfall"
         ],
         "auswahl": {
           "dx-st-schenkelhals/typ": 0,
@@ -135,6 +136,13 @@
           "verl-st-aufnahme-operation/aufnahme/anlass": 1
         }
       },
+      "nichtAnbieten": [
+        "proc-st-belastung/arm",
+        "proc-st-verhalten/finger",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-verhalten/rumpforthese",
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ],
       "schnellwerte": {
         "ana-st-unfall/hergang": [
           "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
@@ -160,7 +168,8 @@
         "kanülierte Schrauben",
         "dynamische Hüftschraube",
         "eingestauchte Schenkelhalsfraktur",
-        "Garden"
+        "Garden",
+        "Delir"
       ],
       "kuerzel": [
         "shf",
@@ -243,7 +252,6 @@
       "vorgaben": {
         "an": [
           "dx-st-neben/osteoporose",
-          "th-st-weitere/physio",
           "ana-st-unfall/wohnen",
           "ana-st-unfall/mobilitaet",
           "bef-st-allgemein/haut",
@@ -264,7 +272,8 @@
           "verl-st-operativ/wunde",
           "verl-st-operativ/aufnahme",
           "verl-st-operativ/operation",
-          "proc-st-belastung/bein"
+          "proc-st-belastung/bein",
+          "ana-st-unfall/arbeitsunfall"
         ],
         "auswahl": {
           "dgn-st-roentgen-postop/region": 0
@@ -276,6 +285,12 @@
           "verl-st-aufnahme-operation/aufnahme/anlass": 1
         }
       },
+      "nichtAnbieten": [
+        "proc-st-belastung/arm",
+        "proc-st-kontrollen/roentgen-ohne-seite",
+        "proc-st-metall/stellschraube",
+        "proc-st-metall/stellschraube-bleibt"
+      ],
       "schnellwerte": {
         "ana-st-unfall/hergang": [
           "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
@@ -410,6 +425,13 @@
           "proc-st-kontrollen/roentgen/anker": 1
         }
       },
+      "nichtAnbieten": [
+        "proc-st-verhalten/luxation",
+        "proc-st-verhalten/sitzen",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-verhalten/rumpforthese",
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ],
       "schnellwerte": {
         "ana-st-unfall/hergang": [
           "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
@@ -524,7 +546,6 @@
         "an": [
           "dx-st-neben/osteoporose",
           "th-st-weitere/implantat",
-          "th-st-weitere/physio",
           "ana-st-unfall/haendigkeit",
           "ana-st-unfall/wohnen",
           "ana-st-unfall/versorgung",
@@ -560,6 +581,15 @@
           "proc-st-kontrollen/roentgen/region": 7
         }
       },
+      "nichtAnbieten": [
+        "proc-st-verhalten/luxation",
+        "proc-st-verhalten/sitzen",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-verhalten/rumpforthese",
+        "proc-st-kontrollen/roentgen-ohne-seite",
+        "proc-st-metall/stellschraube",
+        "proc-st-metall/stellschraube-bleibt"
+      ],
       "schnellwerte": {
         "ana-st-unfall/hergang": [
           "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",
@@ -673,7 +703,6 @@
         "an": [
           "dx-st-neben/osteoporose",
           "th-st-weitere/implantat",
-          "th-st-weitere/physio",
           "ana-st-unfall/haendigkeit",
           "ana-st-unfall/wohnen",
           "ana-st-unfall/versorgung",
@@ -709,6 +738,13 @@
           "proc-st-kontrollen/roentgen/region": 7
         }
       },
+      "nichtAnbieten": [
+        "proc-st-verhalten/luxation",
+        "proc-st-verhalten/sitzen",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-verhalten/rumpforthese",
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ],
       "schnellwerte": {
         "ana-st-unfall/hergang": [
           "Es sei zu einem Sturz im häuslichen Umfeld gekommen.",

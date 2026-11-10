@@ -20,10 +20,19 @@ interface Stelle {
   bausteinId?: string;
 }
 
+/**
+ * Name einer Stelle für Meldungen. Die Seitenangabe eines Bausteins nennt den Baustein: „Seite (Distorsion …)“ liest
+ * sich sonst als Seite des ganzen Briefs (PS-R4-1).
+ */
+function stellenName(t: BriefAnsicht["abschnitte"][number]["tokens"][number], a: BriefAnsicht["abschnitte"][number]): string {
+  const titel = t.art === "seite" && t.bausteinId ? a.bausteine.find((b) => b.id === t.bausteinId)?.titel : undefined;
+  return titel ? `Seite (${titel})` : (t.label ?? a.titel);
+}
+
 function stellen(b: BriefAnsicht | null): Map<string, Stelle> {
   const aus = new Map<string, Stelle>();
   for (const a of b?.abschnitte ?? []) {
-    for (const t of a.tokens) if (t.key) aus.set(t.key, { zustand: t.zustand ?? "gesetzt", text: t.t, label: t.label ?? a.titel, bausteinId: t.bausteinId });
+    for (const t of a.tokens) if (t.key) aus.set(t.key, { zustand: t.zustand ?? "gesetzt", text: t.t, label: stellenName(t, a), bausteinId: t.bausteinId });
     if (a.manuell) aus.set(`hand:${a.id}`, { zustand: "gesetzt", text: a.text, label: `${a.titel} (von Hand)` });
   }
   return aus;

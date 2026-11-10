@@ -40,6 +40,7 @@ import { Brief, STATUS_TEXT } from "./Brief.tsx";
 import { Feldfenster, PersonWahl, PillenText, SEITEN, SEITE_NAME, enterWaehltNur } from "./Feldfenster.tsx";
 import { Regionenliste, Schnellwahl, Vorlagensuche } from "./Vorlagensuche.tsx";
 import { Einstellungen } from "./Einstellungen.tsx";
+import { Vorschau, vorschauOffen } from "./Vorschau.tsx";
 import {
   alterInWorten,
   ausstehend,
@@ -64,6 +65,7 @@ import {
 } from "./aktionen.ts";
 import { melde, meldung } from "./kopieren.ts";
 import { useFokusZurueck } from "./fokus.ts";
+import { Falldaten } from "./Falldaten.tsx";
 
 function SettingWahl() {
   const optionen: { wert: Setting; label: string }[] = [
@@ -486,6 +488,8 @@ function Fallkopf() {
           />
         </div>
       </div>
+      {/* Je Fall eigene Felder: Ein unlesbarer Entwurf darf nicht in den nächsten Fall wandern (CR-R5-01). */}
+      {fall.setting === "station" && <Falldaten key={fall.id} />}
     </div>
   );
 }
@@ -495,6 +499,8 @@ function abschnittStand(a: AbschnittAnsicht): { zeichen: string; text: string; a
   if (a.offen > 0) return { zeichen: "●", text: `${a.offen} offen`, art: "offen" };
   if (a.vorschlag > 0) return { zeichen: "○", text: `${a.vorschlag} grau`, art: "vorschlag" };
   if (a.geaendertSeitKopie) return { zeichen: "↻", text: "seit Kopie geändert", art: "geaendert" };
+  // Mit Abgleich-Hinweis nicht grün (M-27 Station), wie am Knopf des Abschnitts.
+  if (a.kopiert && abgleich.value.some((h) => h.abschnitte.includes(a.id))) return { zeichen: "!", text: "kopiert, Hinweis prüfen", art: "geaendert" };
   if (a.kopiert) return { zeichen: "✓", text: `kopiert ${a.kopiertUm ? uhrzeit(a.kopiertUm) : ""}`, art: "fertig" };
   return { zeichen: "→", text: "fertig zum Kopieren", art: "bereit" };
 }
@@ -585,7 +591,13 @@ function Pruefleiste() {
           <span>Ganzen Brief kopieren</span>
           <kbd>Strg+⇧+↵</kbd>
         </button>
+        {einstellungen.value.formatiert && (
+          <button type="button" class="link vorschau-knopf" disabled={sichtbar.length === 0} onClick={() => (vorschauOffen.value = true)} title="Zeigt den Brief so, wie er formatiert in die Zwischenablage geht">
+            Vorschau formatiert
+          </button>
+        )}
       </div>
+      <Vorschau />
 
       {kopie && (
         <div class="letzte-kopie" aria-live="polite">
@@ -596,6 +608,9 @@ function Pruefleiste() {
           <div class="lk-text">„{kopie.anfang}…"</div>
           <div class="lk-fuss">
             {kopie.zeichen} Zeichen{kopie.platzhalter > 0 && ` · ${kopie.platzhalter} Platzhalter fürs KIS`}
+            {/* Ob das KIS die formatierte Fassung getreu übernimmt, ist nicht geprüft; der Ausweg steht dabei (CR-R5-02, E-72). */}
+            {kopie.fassung === "formatiert" && " · formatiert und als Text (abschalten: Einstellungen → Formatiert kopieren)"}
+            {kopie.fassung === "text" && " · nur als Text: Der Browser hat die formatierte Fassung nicht angenommen"}
           </div>
         </div>
       )}

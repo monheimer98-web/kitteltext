@@ -6,10 +6,12 @@ import { KATALOG } from "../src/data/katalog.ts";
 import { ALLE_ABSCHNITTE, abschnittVon } from "../src/model/types.ts";
 import type { Baustein, BefundSlot, Fall, Vorlage } from "../src/model/types.ts";
 import { BEZUG, briefText, indexiere, renderBrief } from "../src/engine/render.ts";
-import { mitAngabe, mitAuswahl, mitBaustein, mitOption, mitPerson, mitSeite, mitVorlage, mitWahl, neuerFall, uebernehmen } from "../src/engine/fall.ts";
+import { ergaenzt, mitAngabe, mitAuswahl, mitBaustein, mitEigenemText, mitOption, mitPerson, mitSeite, mitVorlage, mitWahl, nachKatalogwechsel, neuerFall, uebernehmen } from "../src/engine/fall.ts";
 import { mitSammelangabe, sammelSchritte } from "../src/engine/sammel.ts";
 import { findeAbgleichhinweise } from "../src/engine/abgleich.ts";
 import { ABGLEICHREGELN } from "../src/data/abgleich.ts";
+import { sucheVorlagen } from "../src/engine/suche.ts";
+import { mitProtokoll } from "../src/engine/protokoll.ts";
 import { istKisSicher } from "../src/engine/text.ts";
 import { istFragesatz, schnellwerteFehler, wahlPlatzFehler, weglassenFehler } from "../src/engine/vorlage.ts";
 
@@ -148,7 +150,7 @@ test("Vorlagen verweisen nur auf vorhandene Bausteine im passenden Abschnitt", (
 test("Vorlagen und Entweder-oder-Stellen haben nur bekannte Felder (CR-T1-03)", () => {
   // Ein falsch geschriebenes Feld („Vor“, „nach“, „vor “) wirkt nicht, und kein anderer Test sähe es: Die Stelle stünde
   // still am Ende des Abschnitts. Die Listen folgen `Vorlage` und `Wahlstelle` in `src/model/types.ts`.
-  const VORLAGE = new Set(["id", "titel", "suchbegriffe", "kuerzel", "region", "setting", "abschnitte", "entscheiden", "ohne", "vorgaben", "weglassen", "schnellwerte", "wahl", "status", "quelle"]);
+  const VORLAGE = new Set(["id", "titel", "suchbegriffe", "kuerzel", "region", "setting", "abschnitte", "entscheiden", "ohne", "vorgaben", "nichtAnbieten", "weglassen", "schnellwerte", "wahl", "status", "quelle"]);
   const STELLE = new Set(["abschnitt", "label", "bausteine", "vor", "pflicht"]);
   const fehler: string[] = [];
   for (const v of KATALOG.vorlagen) {
@@ -245,7 +247,7 @@ test("T1 in Becken, Hüfte, Knie: Pflichtstelle zuerst in der Anamnese, Einleitu
     if (mitWahl(start, key, null, index) !== start) fehler.push(`${id}: „nichts davon“ wirkt`);
     for (const bid of w.bausteine) {
       const a = anamnese(mitWahl(start, key, bid, index));
-      if (a.tokens[0]?.bausteinId !== bid || !a.text.startsWith("Die 82-jährige Patientin stellte sich ‹Art der Vorstellung› in unserer Notaufnahme vor.")) {
+      if (a.tokens[0]?.bausteinId !== bid || !a.text.startsWith("Die 82-jährige Patientin ‹Vorstellung oder Verlegung›.")) {
         fehler.push(`${id} mit ${bid}: Einleitungssatz nicht am Anfang: ${a.text.slice(0, 80)}`);
       }
     }
@@ -433,7 +435,8 @@ test("Leere Vorgeschichte in jeder Vorlage: der Klick schließt genau diese Lüc
       }
       if (sammelSchritte(fall, bid, index).length > 0) fehler.push(`${v.id}: ${bid} hat nach dem Klick noch einen Knopf`);
     }
-    const text = briefText(renderBrief(fall, index));
+    // Der Einzug eines Unterpunkts („\n  - “, E-63) ist kein doppeltes Leerzeichen.
+    const text = briefText(renderBrief(fall, index)).replace(/\n {2}- /g, "\n- ");
     if (/ {2}| [.,;:]|\.\./.test(text.replace(/‹[^›]*›/g, "X"))) fehler.push(`${v.id}: Text nach dem Klick nicht sauber`);
   }
   melde(fehler);
@@ -653,13 +656,454 @@ test("Abgleich im echten Katalog: Gehhilfe im Entlassbefund und im Procedere, je
   melde(fehler);
 });
 
+/** Setzt einen Satz mit allen Angaben: genannte Werte, sonst die erste Option mit Text, Zahl 6, freier Text „Probe“. */
+function satzMit(f: Fall, bid: string, seg: string, werte: Record<string, string | number> = {}): Fall {
+  const s = index.bausteine.get(bid)!.segmente.find((x) => "id" in x && x.id === seg);
+  assert.ok(s && s.art === "option", `${bid}/${seg} ist kein Satz`);
+  let g = mitOption(f, `${bid}/${seg}`, true);
+  for (const x of s.slots ?? []) {
+    const w = x.id in werte ? String(werte[x.id]) : x.art === "auswahl" ? String(x.optionen.findIndex((y) => y !== "")) : x.art === "zahl" ? "6" : x.art === "detail" ? "Probe" : "rechts";
+    g = mitAngabe(g, `${bid}/${seg}`, `${bid}/${seg}/${x.id}`, w);
+  }
+  return g;
+}
+const stationsfall = (id: string) => mitPerson(mitSeite(mitVorlage(neuerFall("station", index), index.vorlagen.get(id)!, index), "rechts"), "w", "82");
+const hinweiseIm = (f: Fall, vorn: string) =>
+  findeAbgleichhinweise(renderBrief(f, index), ABGLEICHREGELN)
+    .map((h) => h.text)
+    .filter((t) => t.startsWith(vorn));
+
+test("Abgleich im echten Katalog (Akzeptanztest Station, M-04, M-01, M-05, M-10, M-20): die Fälle des Tests melden, die stimmigen nicht", () => {
+  // M-04 Hüft-TEP: Verlauf Teilbelastung an Unterarmgehstützen, Procedere Vollbelastung am Rollator, Entlassbefund ohne Angabe.
+  let f = stationsfall("station-hueft-tep");
+  f = satzMit(f, "verl-st-operativ", "mobilisation", { hilfsmittel: 1, belastung: 3 });
+  f = satzMit(f, "proc-st-belastung", "bein", { stufe: 1, dauer: 1, danach: 0 });
+  f = satzMit(f, "proc-st-belastung", "hilfsmittel", { womit: 2 });
+  assert.deepEqual(hinweiseIm(f, "Belastung:"), ["Belastung: Verlauf nennt „Teilbelastung“, Procedere nennt „Vollbelastung“."]);
+  assert.deepEqual(hinweiseIm(f, "Gehhilfe:"), ["Gehhilfe: Verlauf nennt „Unterarmgehstützen“, Procedere nennt „Rollator“."]);
+  f = satzMit(f, "verl-st-operativ", "mobilisation", { hilfsmittel: 2, belastung: 1 });
+  assert.deepEqual([...hinweiseIm(f, "Belastung:"), ...hinweiseIm(f, "Gehhilfe:")], []);
+  // M-04 Pertrochantär: Verlauf am Rollator, Entlassbefund ohne Hilfsmittel, Procedere am Rollator.
+  f = stationsfall("station-pertrochantaere-femurfraktur-marknagel");
+  f = satzMit(f, "verl-st-operativ", "mobilisation", { hilfsmittel: 2, belastung: 1 });
+  f = satzMit(f, "eb-st-mobilitaet", "gehen", { hilfsmittel: 1, belastung: 0, strecke: 0 });
+  f = satzMit(f, "proc-st-belastung", "hilfsmittel", { womit: 2 });
+  assert.deepEqual(hinweiseIm(f, "Gehhilfe:"), [
+    "Gehhilfe: Entlassbefund nennt „ohne Hilfsmittel“, Procedere nennt „Rollator“.",
+    "Gehhilfe: Verlauf nennt „Rollator“, Entlassbefund nennt „ohne Hilfsmittel“.",
+  ]);
+  // M-01 Commotio: Apixaban, im Verlauf pausiert, im Procedere „keine“.
+  f = stationsfall("station-commotio-ueberwachung");
+  f = satzMit(f, "ana-st-commotio", "antikoagulation", { was: 3, zuletzt: 0 });
+  f = satzMit(f, "verl-st-commotio", "gerinnungshemmung", { was: 2 });
+  f = satzMit(f, "proc-st-commotio", "gerinnungshemmung", { was: 3 });
+  assert.deepEqual(hinweiseIm(f, "Gerinnungshemmung:"), [
+    "Gerinnungshemmung: Der Verlauf nennt eine Pause, das Procedere keinen Wiederbeginn.",
+    "Gerinnungshemmung: Die Anamnese nennt ein gerinnungshemmendes Medikament, das Procedere verneint eine gerinnungshemmende Medikation.",
+  ]);
+  for (const was of [1, 2]) assert.deepEqual(hinweiseIm(satzMit(f, "proc-st-commotio", "gerinnungshemmung", { was }), "Gerinnungshemmung:"), [], `Procedere ${was}`);
+  // M-05 Hüft-TEP: Prophylaxe 35 Tage, keine Medikationszeile; mit der Zeile still.
+  f = mitAuswahl(stationsfall("station-hueft-tep"), "proc-st-thrombose/art", 4);
+  assert.deepEqual(hinweiseIm(f, "Thromboseprophylaxe:"), ["Thromboseprophylaxe: Das Procedere nennt eine medikamentöse Prophylaxe, die Medikation keine Zeile dazu."]);
+  assert.deepEqual(hinweiseIm(satzMit(f, "med-st-entlassung", "thrombose", { wirkstoff: "Enoxaparin", staerke: "40" }), "Thromboseprophylaxe:"), []);
+  // M-10 OSG: Vollbelastung ab sofort, Prophylaxe bis zum Erreichen der Vollbelastung.
+  f = stationsfall("station-osg-fraktur-osteosynthese");
+  f = satzMit(f, "proc-st-belastung", "bein", { stufe: 1, dauer: 1, danach: 0 });
+  f = mitAuswahl(f, "proc-st-thrombose/art", 5);
+  assert.ok(hinweiseIm(f, "Thromboseprophylaxe:").includes("Thromboseprophylaxe: Bei Entlassung besteht schon Vollbelastung; das Ende der Prophylaxe ist damit unbestimmt."));
+  f = satzMit(f, "proc-st-belastung", "bein", { stufe: 7, dauer: 4, danach: 1 });
+  assert.ok(!hinweiseIm(f, "Thromboseprophylaxe:").some((t) => /unbestimmt/.test(t)));
+  // M-20: Bescheinigung von uns ohne Ende.
+  f = satzMit(stationsfall("station-hueft-tep"), "proc-st-arbeit", "au", { art: 2, bis: "" });
+  assert.deepEqual(hinweiseIm(f, "Arbeitsunfähigkeit:"), ["Arbeitsunfähigkeit: Das Procedere nennt eine Bescheinigung von uns, aber kein Ende."]);
+  assert.deepEqual(hinweiseIm(satzMit(f, "proc-st-arbeit", "au", { art: 2, bis: "bis einschließlich 20.11.2026" }), "Arbeitsunfähigkeit:"), []);
+});
+
+test("Wunde als Entweder-oder (M-02): die Störung ersetzt den Normalsatz, die Maßnahme gehört zur Störung", () => {
+  const verlauf = (f: Fall) => renderBrief(f, index).abschnitte.find((a) => a.id === "verlauf")!;
+  let f = stationsfall("station-distale-radiusfraktur-platte");
+  // Ab Werk der graue Normalsatz; Übernehmen nimmt nur ihn.
+  assert.match(verlauf(uebernehmen(f, ["verl-st-operativ/wunde"], index)).text, /Die Operationswunde heilte trocken und reizlos\. /);
+  f = mitAngabe(f, "verl-st-operativ/wunde", "verl-st-operativ/wunde/wie", "4");
+  assert.doesNotMatch(verlauf(f).text, /reizlos/);
+  assert.match(verlauf(f).text, /Die Operationswunde zeigte eine Rötung der Wundränder\. /);
+  assert.deepEqual(hinweiseIm(f, "Wunde:"), ["Wunde: Der Verlauf nennt eine Wundheilungsstörung, aber weder Behandlung noch Befund bei Entlassung."]);
+  f = mitAngabe(f, "verl-st-operativ/wunde", "verl-st-operativ/wunde/massnahme", "1");
+  assert.match(verlauf(f).text, /Die Operationswunde zeigte eine Rötung der Wundränder\. Unter lokaler Wundbehandlung besserte sich der Befund\. /);
+  assert.deepEqual(hinweiseIm(f, "Wunde:"), []);
+  // Störung über die Besonderheiten neben dem übernommenen Normalsatz (Fall des Akzeptanztests).
+  let g = uebernehmen(stationsfall("station-distale-radiusfraktur-platte"), ["verl-st-operativ/wunde"], index);
+  g = satzMit(g, "verl-st-besonderheiten", "wundheilung", { befund: 2, massnahme: 1 });
+  assert.deepEqual(hinweiseIm(g, "Wunde:"), ["Wunde: Der Verlauf nennt eine reizlose Heilung und zugleich eine Wundheilungsstörung."]);
+});
+
+test("Harnwegsinfekt, Lungenentzündung und Delir (M-08, M-09): Lücken für Wirkstoff, Dauer und Erreger; Hinweis, solange die Nebendiagnose fehlt", () => {
+  const text = (f: Fall, id: string) => renderBrief(f, index).abschnitte.find((a) => a.id === id)!.text;
+  let f = stationsfall("station-pertrochantaere-femurfraktur-marknagel");
+  // Ohne Wirkstoff, Dauer und Erreger bleibt der Satz eine Lücke und zählt im Abgleich noch nicht.
+  f = mitOption(f, "verl-st-besonderheiten/harnwegsinfekt", true);
+  assert.match(text(f, "verlauf"), /Einen Harnwegsinfekt behandelten wir antibiotisch mit ‹[^›]+› für ‹[^›]+›\. Erreger: ‹[^›]+›\./);
+  assert.deepEqual(hinweiseIm(f, "Harnwegsinfekt:"), []);
+  f = satzMit(f, "verl-st-besonderheiten", "harnwegsinfekt", { wirkstoff: "Cefpodoxim", tage: "5", ende: 1, erreger: "Escherichia coli" });
+  assert.match(text(f, "verlauf"), /Einen Harnwegsinfekt behandelten wir antibiotisch mit Cefpodoxim für 5 Tage, abgeschlossen vor der Entlassung\. Erreger: Escherichia coli\./);
+  assert.deepEqual(hinweiseIm(f, "Harnwegsinfekt:"), ["Harnwegsinfekt: Der Verlauf nennt einen, die Diagnosen nicht."]);
+  f = mitOption(f, "dx-st-neben/harnwegsinfekt", true);
+  // Unter „Nebendiagnosen:“ als Unterpunkt (E-63); der Abgleich liest den Wortlaut ohne Spiegelstrich.
+  assert.match(text(f, "diagnose"), /\n  - Harnwegsinfekt(\n|$)/);
+  assert.deepEqual(hinweiseIm(f, "Harnwegsinfekt:"), []);
+  // Lungenentzündung gleich gebaut.
+  f = satzMit(f, "verl-st-besonderheiten", "pneumonie", { wirkstoff: "Ampicillin/Sulbactam", tage: "7", ende: 0, erreger: "kein Nachweis" });
+  assert.match(text(f, "verlauf"), /Eine Lungenentzündung behandelten wir antibiotisch mit Ampicillin\/Sulbactam für 7 Tage\. Erreger: kein Nachweis\./);
+  assert.deepEqual(hinweiseIm(f, "Lungenentzündung:"), ["Lungenentzündung: Der Verlauf nennt eine, die Diagnosen nicht."]);
+  assert.deepEqual(hinweiseIm(mitOption(f, "dx-st-neben/pneumonie", true), "Lungenentzündung:"), []);
+  // Delir: Verlauf und Nebendiagnose in beide Richtungen.
+  let d = satzMit(stationsfall("station-pertrochantaere-femurfraktur-marknagel"), "verl-st-besonderheiten", "delir", { verlauf: 2 });
+  assert.deepEqual(hinweiseIm(d, "Delir:"), ["Delir: Der Verlauf nennt ein Delir, die Diagnosen nicht."]);
+  d = satzMit(d, "dx-st-neben", "delir", { art: 1 });
+  assert.match(text(d, "diagnose"), /\n  - Postoperatives Delir(\n|$)/);
+  assert.deepEqual(hinweiseIm(d, "Delir:"), []);
+  d = satzMit(d, "verl-st-besonderheiten", "delir", { verlauf: 1 });
+  assert.deepEqual(hinweiseIm(d, "Delir:"), ["Delir: Der Verlauf verneint ein Delir, die Diagnosen nennen eines."]);
+  // Jede Vorlage mit den Besonderheiten im Verlauf hat die Nebendiagnosen, sonst liefe der Hinweis ins Leere.
+  const ohne = KATALOG.vorlagen.filter((v) => (v.abschnitte.verlauf ?? []).includes("verl-st-besonderheiten") && !(v.abschnitte.diagnose ?? []).includes("dx-st-neben")).map((v) => v.id);
+  assert.deepEqual(ohne, []);
+});
+
+test("Thrombosezeile der Medikation (M-05): angeboten als Satz mit Lücken, wo nach der Entlassung meist eine Prophylaxe folgt; gefüllt beruhigt sie den Abgleich", () => {
+  const MIT_ZEILE = [
+    "station-pertrochantaere-femurfraktur-marknagel",
+    "station-schenkelhalsfraktur-prothese",
+    "station-schenkelhalsfraktur-osteosynthese",
+    "station-hueft-tep",
+    "station-knie-tep",
+    "station-osg-fraktur-osteosynthese",
+    "station-kniearthroskopie-meniskusnaht",
+    "station-tibiakopffraktur-osteosynthese",
+    "station-tibiakopffraktur-konservativ",
+    "station-unterschenkelschaftfraktur-marknagel",
+    "station-periprothetische-femurfraktur-huefte",
+    "station-periprothetische-fraktur-knie",
+  ];
+  const fehler: string[] = [];
+  for (const v of KATALOG.vorlagen.filter((x) => x.setting === "station")) {
+    const med = (v.abschnitte.medikation ?? []).find((b) => b.startsWith("med-st-entlassung"));
+    if (!med) continue;
+    const an = (v.vorgaben?.an ?? []).includes(`${med}/thrombose`);
+    if (an !== MIT_ZEILE.includes(v.id)) fehler.push(`${v.id}: Zeile ${an ? "angeboten" : "nicht angeboten"}`);
+    if (!an) continue;
+    let f = stationsfall(v.id);
+    const zeile = renderBrief(f, index).abschnitte.find((a) => a.id === "medikation")!.tokens.find((t) => /Thromboseprophylaxe/.test(t.t));
+    if (zeile?.zustand !== "offen") fehler.push(`${v.id}: Zeile steht nicht als Lücke im Brief (${zeile?.zustand})`);
+    // Procedere mit einer Prophylaxe nach der Entlassung, dann die Zeile gefüllt.
+    const thr = (v.abschnitte.procedere ?? []).find((b) => /thrombose/.test(b))!;
+    const art = index.bausteine.get(thr)!.segmente.find((x) => "id" in x && x.id === "art");
+    const i = art?.art === "auswahl" ? art.optionen.findIndex((o) => /^Medikamentöse Thromboseprophylaxe bis (einschließlich|zum Erreichen)/.test(o)) : -1;
+    if (i < 0) { fehler.push(`${v.id}: keine Prophylaxe mit Dauer in ${thr}`); continue; }
+    f = mitAuswahl(f, `${thr}/art`, i);
+    // Ohne Verweis meldet die Regel aus M-05, mit „Wirkstoff und Dosis siehe Medikation“ die ältere Regel.
+    if (!hinweiseIm(f, "Thromboseprophylaxe: Das Procedere").some((t) => /keine Zeile dazu/.test(t))) fehler.push(`${v.id}: ohne gefüllte Zeile kein Hinweis`);
+    f = satzMit(f, med, "thrombose", { wirkstoff: "Enoxaparin", staerke: "40" });
+    const rest = hinweiseIm(f, "Thromboseprophylaxe:").filter((t) => !/unbestimmt/.test(t));
+    if (rest.length) fehler.push(`${v.id}: mit Zeile noch ${rest.join(" ")}`);
+  }
+  melde(fehler);
+});
+
+test("Zusatzknöpfe nach Region (M-16): `nichtAnbieten` nennt nur zuwählbare Sätze der Vorlage; sie fehlen unter „+ …“, ein eingeschalteter steht im Brief", () => {
+  const fehler: string[] = [];
+  let gesamt = 0;
+  for (const v of KATALOG.vorlagen) {
+    const liste = v.nichtAnbieten ?? [];
+    gesamt += liste.length;
+    const bausteine = new Set(Object.values(v.abschnitte).flat());
+    const an = new Set(v.vorgaben?.an ?? []);
+    for (const key of liste) {
+      const [bid, id] = key.split("/");
+      const seg = bausteine.has(bid) ? index.bausteine.get(bid)?.segmente.find((x) => "id" in x && x.id === id) : undefined;
+      if (seg?.art !== "option") { fehler.push(`${v.id}: ${key} ist kein Satz eines Bausteins der Vorlage`); continue; }
+      const vorgeschlagen = an.has(key) || (seg.an === true && !(v.vorgaben?.aus ?? []).includes(key));
+      if (vorgeschlagen || (v.entscheiden ?? []).includes(key) || key in (v.weglassen ?? {})) fehler.push(`${v.id}: ${key} schlägt die Vorlage vor oder regelt ihn anders`);
+    }
+    if (!liste.length) continue;
+    let f = stationsfall(v.id);
+    const knoepfe = renderBrief(f, index).abschnitte.flatMap((a) => a.aus.map((e) => e.key));
+    for (const key of liste) if (knoepfe.includes(key)) fehler.push(`${v.id}: ${key} steht noch unter „+ …“`);
+    // Wer den Satz ausdrücklich einschaltet (älterer Fall, eigene Vorlage), sieht ihn im Brief.
+    f = mitOption(f, liste[0], true);
+    const [bid] = liste[0].split("/");
+    if (!renderBrief(f, index).abschnitte.some((a) => a.tokens.some((t) => t.bausteinId === bid && t.t.trim() !== "" && t.zustand !== null && t.zustand !== undefined)))
+      fehler.push(`${v.id}: ${liste[0]} eingeschaltet erscheint nicht`);
+  }
+  assert.ok(gesamt > 80, `nur ${gesamt} Einträge`);
+  melde(fehler);
+  // Radiusfraktur: keine Belastung des Beins, keine Hüft- und Knieregeln, keine Stellschraube; der Arm bleibt.
+  const drf = renderBrief(stationsfall("station-distale-radiusfraktur-platte"), index).abschnitte.find((a) => a.id === "procedere")!.aus.map((e) => e.label);
+  for (const weg of ["Belastung Bein", "Teilbelastung Bein in Kilogramm", "Bewegungsregeln nach Hüftprothese", "Bewegungsziel nach Knieprothese", "Entfernung der Stellschraube"]) assert.ok(!drf.includes(weg), weg);
+  assert.ok(drf.includes("Gehhilfe"), "Gehhilfe");
+});
+
+test("Kopfplatzwunde (M-12): genäht oder geklammert ohne Entfernung des Nahtmaterials gibt einen Hinweis, geklebt keinen, mit Entfernung keinen", () => {
+  const vorn = "Kopfplatzwunde:";
+  const wunde = (versorgung: number) => satzMit(stationsfall("station-commotio-ueberwachung"), "dx-st-commotio", "wunde", { ort: 1, cm: 3, versorgung });
+  assert.deepEqual(hinweiseIm(stationsfall("station-commotio-ueberwachung"), vorn), [], "ohne Wunde");
+  for (const versorgung of [1, 2]) {
+    const f = wunde(versorgung);
+    assert.equal(hinweiseIm(f, vorn).length, 1, `Versorgung ${versorgung}`);
+    assert.deepEqual(hinweiseIm(satzMit(f, "proc-st-commotio", "faeden", { material: versorgung, tage: 7 }), vorn), [], `Versorgung ${versorgung} mit Entfernung`);
+  }
+  for (const versorgung of [3, 4]) assert.deepEqual(hinweiseIm(wunde(versorgung), vorn), [], `Versorgung ${versorgung}`);
+});
+
+test("Radiusfraktur (M-21): Gelenkbeteiligung und Verschiebung sind Lücken und lassen sich wie die Weber-Klassifikation weglassen", () => {
+  const bid = "dx-st-radius";
+  const segs = index.bausteine.get(bid)!.segmente;
+  const diagnose = (f: Fall) => renderBrief(f, index).abschnitte.find((a) => a.id === "diagnose")!.tokens.filter((t) => t.bausteinId === bid);
+  let f = stationsfall("station-distale-radiusfraktur-platte");
+  for (const sid of ["gelenk", "verschiebung"]) {
+    const seg = segs.find((x) => "id" in x && x.id === sid)!;
+    assert.ok(seg.art === "auswahl" && seg.pflicht === true, `${sid} bleibt Pflicht`);
+    assert.equal(seg.optionen.at(-1), "", `${sid}: „weglassen“ steht hinten, frühere Fälle behalten ihre Wahl`);
+    assert.ok(diagnose(f).some((t) => t.key === `${bid}/${sid}` && t.zustand === "offen"), `${sid} ist eine Lücke`);
+    f = mitAuswahl(f, `${bid}/${sid}`, seg.optionen.length - 1);
+  }
+  const text = diagnose(f).map((t) => t.t).join("");
+  assert.match(text, /^Distale Radiusfraktur rechts/);
+  assert.doesNotMatch(text, /artikulär|verschoben|‹/);
+});
+
+test("Labor (M-22): Natrium bei Aufnahme, minimal und vor Entlassung wählbar wie Hämoglobin und Kreatinin, Einheit mmol/l", () => {
+  const v = KATALOG.vorlagen.find((x) => Object.values(x.abschnitte).flat().includes("dgn-st-labor"))!;
+  let f = stationsfall(v.id);
+  const aus = renderBrief(f, index).abschnitte.flatMap((a) => a.aus.map((e) => e.key));
+  for (const id of ["natrium-aufnahme", "natrium-minimal", "natrium-entlassung"]) assert.ok(aus.includes(`dgn-st-labor/${id}`), id);
+  f = satzMit(f, "dgn-st-labor", "natrium-aufnahme", { w: "128" });
+  f = satzMit(f, "dgn-st-labor", "natrium-minimal", { w: "124", wann: 2 });
+  f = satzMit(f, "dgn-st-labor", "natrium-entlassung", { w: "133" });
+  const text = renderBrief(f, index).abschnitte.flatMap((a) => a.tokens).filter((t) => t.bausteinId === "dgn-st-labor").map((t) => t.t).join("");
+  assert.match(text, /Natrium bei Aufnahme 128 mmol\/l\. Natrium minimal 124 mmol\/l am 2\. Tag nach der Operation\. Natrium vor Entlassung 133 mmol\/l\./);
+});
+
+test("Hüft-TEP (M-25): Röntgenkontrolle der Hüfte mit Lücke für den Zeitpunkt vorgeschlagen; ohne Kontrolle lässt sie sich herausnehmen", () => {
+  const key = "proc-st-kontrollen/roentgen";
+  let f = stationsfall("station-hueft-tep");
+  const satz = () => renderBrief(f, index).abschnitte.find((a) => a.id === "procedere")!.tokens.find((t) => t.key === key && t.t.trim() !== "");
+  assert.equal(satz()?.zustand, "offen");
+  assert.match(satz()!.t, /^Röntgenkontrolle der Hüfte rechts in 2 Ebenen ‹[^›]*Wochen[^›]*› nach der Operation/);
+  f = satzMit(f, "proc-st-kontrollen", "roentgen", { region: 1, ebenen: 0, wochen: "6", anker: 0, wo: 0 });
+  assert.match(satz()!.t, /^Röntgenkontrolle der Hüfte rechts in 2 Ebenen 6 Wochen nach der Operation/);
+  f = mitOption(f, key, false);
+  assert.equal(satz(), undefined);
+});
+
+test("Warnzeichen bei Verlegung in die Rehabilitation (M-26): Satz „reha“ in jedem Warnzeichen-Baustein der Station; Hinweis, solange er bei Verlegung fehlt", () => {
+  const vorn = "Warnzeichen:";
+  const fehler: string[] = [];
+  let geprueft = 0;
+  const entlassung = index.bausteine.get("verl-st-entlassung")!.segmente.find((x) => "id" in x && x.id === "entlassung");
+  const wohinSlot = entlassung?.art === "option" ? entlassung.slots?.find((x) => x.id === "wohin") : undefined;
+  const WOHIN = wohinSlot?.art === "auswahl" ? wohinSlot.optionen : [];
+  for (const v of KATALOG.vorlagen) {
+    if (v.setting !== "station") continue;
+    const netz = (v.abschnitte.procedere ?? []).find((bid) => index.bausteine.get(bid)!.segmente.some((x) => "id" in x && x.id === "sicherheitsnetz"));
+    // Nach Kopfverletzung nennen die Warnzeichen den Notruf 112; Regel und Satz gelten dort nicht.
+    if (!netz || netz === "proc-st-commotio-warnzeichen") continue;
+    geprueft++;
+    const reha = index.bausteine.get(netz)!.segmente.find((x) => "id" in x && x.id === "reha");
+    if (reha?.art !== "option" || reha.an) { fehler.push(`${v.id}: ${netz} ohne zuwählbaren Satz „reha“`); continue; }
+    // Entscheidung des Lead: bei Atemnot und Brustschmerz der Notruf, nicht erst der ärztliche Dienst (sichere Richtung).
+    if (!reha.text.includes("Bei Atemnot oder Brustschmerz sofort Notruf 112.")) fehler.push(`${v.id}: ${netz}/reha ohne Notruf 112`);
+    let f = satzMit(stationsfall(v.id), netz, "sicherheitsnetz");
+    if (!Object.values(v.abschnitte).flat().includes("verl-st-entlassung")) continue;
+    f = satzMit(f, "verl-st-entlassung", "entlassung", { verb: 1, wohin: WOHIN.indexOf("in die Anschlussrehabilitation") });
+    if (hinweiseIm(f, vorn).length !== 1) fehler.push(`${v.id}: Verlegung in die Rehabilitation ohne Hinweis`);
+    if (hinweiseIm(mitOption(f, `${netz}/reha`, true), vorn).length) fehler.push(`${v.id}: mit Satz „reha“ noch ein Hinweis`);
+    if (hinweiseIm(satzMit(f, "verl-st-entlassung", "entlassung", { verb: 0, wohin: WOHIN.indexOf("nach Hause") }), vorn).length) fehler.push(`${v.id}: Entlassung nach Hause mit Hinweis`);
+  }
+  assert.ok(geprueft >= 25, `nur ${geprueft} Vorlagen`);
+  melde(fehler);
+});
+
+test("Arbeitsunfall (M-26): in den Vorlagen für meist hochbetagte Patienten zuwählbar statt gefragt", () => {
+  for (const id of ["station-pertrochantaere-femurfraktur-marknagel", "station-schenkelhalsfraktur-prothese", "station-schenkelhalsfraktur-osteosynthese", "station-periprothetische-femurfraktur-huefte", "station-periprothetische-fraktur-knie"]) {
+    let f = stationsfall(id);
+    const wahl = index.vorlagen.get(id)!.wahl ?? [];
+    if (wahl.length) f = mitWahl(f, "wahl/anamnese/0", "ana-st-unfall", index);
+    const br = renderBrief(f, index).abschnitte.find((a) => a.id === "anamnese")!;
+    assert.ok(!br.tokens.some((t) => t.key === "ana-st-unfall/arbeitsunfall"), `${id}: Arbeitsunfall steht im Brief`);
+    assert.ok(br.aus.some((e) => e.key === "ana-st-unfall/arbeitsunfall"), `${id}: Arbeitsunfall nicht zuwählbar`);
+  }
+});
+
+test("Suche (M-17): „OSG OP“, „Malleolarfraktur“, „Os pubis“ und „Delir“ treffen auf der Station die passenden Vorlagen", () => {
+  const erste = (q: string) => sucheVorlagen(KATALOG.vorlagen, q, "station").map((t) => t.vorlage.id);
+  for (const q of ["OSG OP", "Malleolarfraktur", "Außenknöchelfraktur OP", "Sprunggelenk OP"]) assert.equal(erste(q)[0], "station-osg-fraktur-osteosynthese", q);
+  assert.equal(erste("Os pubis")[0], "station-beckenringfraktur-konservativ");
+  const delir = erste("Delir");
+  for (const id of ["station-pertrochantaere-femurfraktur-marknagel", "station-schenkelhalsfraktur-prothese", "station-schenkelhalsfraktur-osteosynthese", "station-frei", "station-frei-konservativ"])
+    assert.ok(delir.includes(id), `Delir ohne ${id}`);
+});
+
+test("Vorstellung oder Verlegung (PS-B1): die Anamnesen der Station bieten neben den sechs Arten der Vorstellung in der Notaufnahme die Verlegung aus einem anderen Krankenhaus", () => {
+  const ARTEN = ["selbstständig", "in Begleitung von Angehörigen", "mit dem Rettungsdienst", "mit dem Rettungsdienst in Notarztbegleitung", "mit Einweisung aus der Hausarztpraxis", "nach Zuweisung aus einer Praxis"];
+  for (const [bid, vorlage] of [["ana-st-unfall", "station-frei"], ["ana-st-beschwerden", "station-frei-konservativ"], ["ana-st-commotio", "station-commotio-ueberwachung"]] as const) {
+    const seg = index.bausteine.get(bid)!.segmente.find((x) => "id" in x && x.id === "aufnahmeweg");
+    assert.ok(seg?.art === "auswahl" && seg.pflicht === true, `${bid}: Pflichtauswahl`);
+    // Die bisherigen Nummern bleiben: Gleiche Wahl, gleicher Satz.
+    assert.deepEqual(seg.optionen.slice(0, 6), ARTEN.map((a) => `stellte sich ${a} in unserer Notaufnahme vor`), bid);
+    assert.equal(seg.optionen[6], "wurde aus einem anderen Krankenhaus zur weiteren Behandlung zu uns verlegt", bid);
+    let f = stationsfall(vorlage);
+    const wahl = index.vorlagen.get(vorlage)!.wahl ?? [];
+    const nr = wahl.findIndex((w) => w.bausteine.includes(bid));
+    if (nr >= 0) f = mitWahl(f, `wahl/anamnese/${nr}`, bid, index);
+    f = mitAuswahl(f, `${bid}/aufnahmeweg`, 6);
+    const text = renderBrief(f, index).abschnitte.find((a) => a.id === "anamnese")!.tokens.filter((t) => t.bausteinId === bid).map((t) => t.t).join("");
+    assert.match(text, /^Die 82-jährige Patientin wurde aus einem anderen Krankenhaus zur weiteren Behandlung zu uns verlegt\. /, bid);
+    assert.doesNotMatch(text, /Notaufnahme/, bid);
+  }
+});
+
+test("Meniskusteilresektion (SP-F2): Sport bleibt zuwählbar; wer ihn wählt, sieht die Rückkehr ab der 7. Woche als Vorschlag, wie in Protokoll Nr. 27", () => {
+  const key = "proc-st-meniskus-resektion/sport";
+  let f = stationsfall("station-kniearthroskopie-meniskusteilresektion");
+  const procedere = () => renderBrief(f, index).abschnitte.find((a) => a.id === "procedere")!;
+  assert.ok(procedere().aus.some((e) => e.key === key), "Sport ist zuwählbar");
+  f = mitOption(f, key, true);
+  const satz = procedere().tokens.find((t) => t.key === key && t.t.trim() !== "")!;
+  assert.equal(satz.zustand, "vorschlag");
+  assert.match(satz.t, /^Sport stufenweise nach Abklingen von Schwellung und Schmerz, mit Sprüngen, Stopps und Drehbewegungen frühestens ab der 7\. Woche nach der Operation\./);
+});
+
+test("Abgleich mit den Standardprotokollen (G-101): jede Zeile des Katalogs ergibt die erwartete Belastung und Gehhilfe; spätere Phasen und „steigern bis zur Vollbelastung“ zählen nicht", () => {
+  // Erwartet je Nummer: Belastung (V Voll-, T Teil- oder Minimalbelastung, - keine Aussage) und Gehhilfe (U Unterarmgehstützen, - keine).
+  // Nr. 27 nennt die Gehstützen in einem eigenen Satz und bleibt ohne Gehhilfe (bekannte Lücke, kein falscher Alarm).
+  const ERWARTET = "1VU 2VU 3VU 4VU 5VU 6VU 7TU 8VU 9TU 10TU 11VU 12TU 13VU 14VU 15-U 16TU 17TU 18TU 19TU 20-U 21TU 22TU 23-U 24TU 25TU 26TU 27V- 28-U 29TU 30-- 31-- 32-- 33-- 34-- 35-- 36-- 37-- 38-- 39V- 40VU 41VU 42--";
+  const erwartet = new Map(ERWARTET.split(" ").map((x) => [Number(x.slice(0, -2)), x.slice(-2)]));
+  const regel = (name: string) => ABGLEICHREGELN.find((r) => r.art === "gleich" && r.name === name && r.abschnitte[1] === "procedere");
+  const frueheste = (text: string, name: string) => {
+    const r = regel(name);
+    assert.ok(r && r.art === "gleich", name);
+    let best: { n: string; i: number } | null = null;
+    for (const [n, m] of Object.entries(r.werte)) {
+      const x = m.exec(text);
+      if (x && (!best || x.index < best.i)) best = { n, i: x.index };
+    }
+    return best?.n ?? null;
+  };
+  const kurz: Record<string, string> = { Vollbelastung: "V", Teilbelastung: "T", Unterarmgehstützen: "U" };
+  const fehler: string[] = [];
+  assert.equal(KATALOG.protokolle!.length, erwartet.size);
+  for (const p of KATALOG.protokolle!) {
+    let f = mitProtokoll(stationsfall(p.vorlage), p.id, index);
+    for (const seg of index.bausteine.get(p.id)!.segmente) {
+      if (seg.art !== "option") continue;
+      for (const slot of seg.slots ?? []) if (slot.art === "auswahl") f = mitAngabe(f, `${p.id}/${seg.id}`, `${p.id}/${seg.id}/${slot.id}`, String(slot.optionen.findIndex((o) => o !== "")));
+    }
+    const a = renderBrief(f, index).abschnitte.find((x) => x.id === "procedere")!;
+    const text = a.tokens.filter((t) => t.zustand !== "offen" && t.zustand !== "vorschlag").map((t) => t.t).join("");
+    const ist = (kurz[frueheste(text, "Belastung") ?? ""] ?? "-") + (kurz[frueheste(text, "Gehhilfe") ?? ""] ?? "-");
+    if (ist !== erwartet.get(p.nr)) fehler.push(`Nr. ${p.nr}: ${ist}, erwartet ${erwartet.get(p.nr)}`);
+  }
+  melde(fehler);
+});
+
+test("Protokoll und Seite (Nr. 16): ein Protokoll verlangt die Seite des Falls nur, wenn die Vorlage selbst eine verlangt", () => {
+  const fehler: string[] = [];
+  for (const p of KATALOG.protokolle!) {
+    const v = index.vorlagen.get(p.vorlage)!;
+    const ohne = mitPerson(mitVorlage(neuerFall("station", index), v, index), "w", "82");
+    if (renderBrief(ohne, index).brauchtSeite) continue;
+    if (renderBrief(mitProtokoll(ohne, p.id, index), index).brauchtSeite) fehler.push(`Nr. ${p.nr}: verlangt eine Seite`);
+  }
+  melde(fehler);
+  // Becken mit hinterer Beteiligung: Die Seite des Beins ist eine Lücke im Protokoll, gewählt steht sie im Satz.
+  const id = "proc-st-protokoll-beckenringfraktur-konservativ-3";
+  let f = mitProtokoll(mitPerson(mitVorlage(neuerFall("station", index), index.vorlagen.get("station-beckenringfraktur-konservativ")!, index), "w", "82"), id, index);
+  const zeile = () => renderBrief(f, index).abschnitte.find((a) => a.id === "procedere")!.tokens.find((t) => t.key === `${id}/z1`)!;
+  assert.equal(zeile().zustand, "offen");
+  assert.match(zeile().t, /Teilbelastung des Beins ‹[^›]*Seite des verletzten Beins› mit 20 kg/);
+  f = mitAngabe(f, `${id}/z1`, `${id}/z1/bein`, "2");
+  assert.match(zeile().t, /^1\. bis 6\. Woche nach dem Unfall: Teilbelastung des Beins links mit 20 kg an Unterarmgehstützen im Dreipunktegang\. Das andere Bein voll belasten\.$/);
+});
+
+test("Therapie operativ (M-19): die Operation steht ohne Physiotherapie-Zeile; die Physiotherapie nennt der Verlauf", () => {
+  const fehler: string[] = [];
+  let operativ = 0;
+  const OHNE_PHYSIO = new Set(["station-weichteilinfekt", "station-metallentfernung"]);
+  for (const v of KATALOG.vorlagen) {
+    if (v.setting !== "station" || /konservativ|commotio|lumboischialgie/.test(v.abschnitte.therapie?.[0] ?? "konservativ")) continue;
+    operativ++;
+    const br = renderBrief(stationsfall(v.id), index).abschnitte;
+    const text = (id: string) => br.find((a) => a.id === id)?.tokens.map((t) => t.t).join("") ?? "";
+    if (/Physiotherapie/.test(text("therapie"))) fehler.push(`${v.id}: Therapie nennt Physiotherapie`);
+    // Weichteilinfekt und Metallentfernung schlugen nie eine Physiotherapie vor; daran ändert M-19 nichts.
+    if (!OHNE_PHYSIO.has(v.id) && !/[Pp]hysiotherap/.test(text("verlauf"))) fehler.push(`${v.id}: Verlauf ohne Physiotherapie`);
+  }
+  assert.ok(operativ >= 18, `nur ${operativ} operative Vorlagen`);
+  melde(fehler);
+});
+
+test("Ruhigstellung und Osteoporose (M-11): Radiusfraktur und OSG schlagen die Schiene oder Orthese mit Dauer vor, die Radiusfraktur auch die Osteoporose-Abklärung; beide lassen sich herausnehmen", () => {
+  for (const [id, saetze] of [
+    ["station-distale-radiusfraktur-platte", ["proc-st-verhalten/ruhigstellung", "proc-st-osteoporose/abklaerung"]],
+    ["station-osg-fraktur-osteosynthese", ["proc-st-verhalten/ruhigstellung"]],
+  ] as const) {
+    let f = stationsfall(id);
+    const procedere = () => renderBrief(f, index).abschnitte.find((a) => a.id === "procedere")!;
+    for (const key of saetze) {
+      const da = () => procedere().tokens.some((t) => t.key === key && t.t.trim() !== "");
+      assert.ok(da(), `${id}: ${key} fehlt im Procedere`);
+      assert.ok(!procedere().aus.some((e) => e.key === key), `${id}: ${key} steht noch unter „+ …“`);
+      f = mitOption(f, key, false);
+      assert.ok(!da(), `${id}: ${key} lässt sich nicht herausnehmen`);
+    }
+  }
+});
+
+test("Abgleich im echten Katalog (M-04): jede Mobilisation im Verlauf gegen jede Gehhilfe im Procedere; gleiche melden nichts, verschiedene genau einmal", () => {
+  const art = (o: string) =>
+    /ohne (Hilfsmittel|Gehhilfe)/.test(o) ? "ohne" : /Unterarmgehstützen/.test(o) ? "Stützen" : /Rollator/.test(o) ? "Rollator" : /Gehwagen/.test(o) ? "Gehwagen" : /Gehstock/.test(o) ? "Gehstock" : null;
+  const fehler: string[] = [];
+  let paare = 0;
+  for (const v of KATALOG.vorlagen) {
+    if (v.setting !== "station") continue;
+    const mob = (v.abschnitte.verlauf ?? []).flatMap((bid) =>
+      index.bausteine.get(bid)!.segmente.flatMap((s) => (s.art === "option" && /mobilisierten wir/.test(s.text) ? [{ bid, s }] : [])),
+    );
+    const geh = (v.abschnitte.procedere ?? []).flatMap((bid) =>
+      index.bausteine.get(bid)!.segmente.flatMap((s) => (s.art === "option" && /^Gehen \{/.test(s.text) ? [{ bid, s }] : [])),
+    );
+    for (const m of mob) {
+      const hm = (m.s.slots ?? []).find((x) => x.id === "hilfsmittel");
+      if (hm?.art !== "auswahl") continue;
+      for (const p of geh) {
+        const pg = (p.s.slots ?? []).find((x) => x.art === "auswahl");
+        if (pg?.art !== "auswahl") continue;
+        hm.optionen.forEach((om, i) => {
+          if (!art(om)) return;
+          pg.optionen.forEach((op, j) => {
+            if (!art(op)) return;
+            paare++;
+            const f = satzMit(satzMit(stationsfall(v.id), m.bid, m.s.id, { hilfsmittel: i }), p.bid, p.s.id, { [pg.id]: j });
+            const h = hinweiseIm(f, "Gehhilfe: Verlauf");
+            const soll = art(om) !== art(op) ? 1 : 0;
+            if (h.length !== soll) fehler.push(`${v.id}: „${om}“ gegen „${op}“ meldet ${h.length}`);
+          });
+        });
+      }
+    }
+  }
+  assert.ok(paare > 100, `nur ${paare} Paare`);
+  melde(fehler);
+});
+
 test("Jede Vorlage ergibt einen sauberen Text", () => {
   const fehler: string[] = [];
   for (const v of KATALOG.vorlagen) {
     for (const liste of ["striche", "fliesstext"] as const) {
       let fall = mitVorlage(neuerFall(v.setting, index), v, index);
       fall = mitPerson(mitSeite(fall, "links"), "w", "52");
-      const text = briefText(renderBrief(fall, index, { listen: liste }));
+      // Der Einzug eines Unterpunkts („\n  - “, E-63) ist kein doppeltes Leerzeichen.
+      const text = briefText(renderBrief(fall, index, { listen: liste })).replace(/\n {2}- /g, "\n- ");
       const ohneLuecken = text.replace(/‹[^›]*›/g, "X");
       if (!text.trim()) fehler.push(`${v.id}: leerer Brief`);
       if (/ {2}/.test(text)) fehler.push(`${v.id}: doppeltes Leerzeichen`);
@@ -814,6 +1258,7 @@ test("R2-03: vorbelegte Angaben hinter der letzten Pflichtangabe halten den Satz
   const fehler: string[] = [];
   const vorbelegt = new Set<string>();
   const freiwillig = new Set<string>();
+  const mitFolge = new Set<string>();
   const gesehen = new Set<string>();
   for (const b of alle) {
     if (gesehen.has(b.id)) continue;
@@ -825,7 +1270,10 @@ test("R2-03: vorbelegte Angaben hinter der letzten Pflichtangabe halten den Satz
       if (letzte < 0) continue;
       const dahinter = slots.slice(letzte + 1);
       const key = `${b.id}/${seg.id}`;
-      const mitText = dahinter.filter((s) => textOhneWahl(s).trim() !== "");
+      // Folgeangaben (M-24, E-60) werden mit den Pflichtangaben zur Aussage des Arztes; sie halten den Satz nicht grau.
+      const folge = (s: BefundSlot) => (KATALOG.regeln?.folgeangaben ?? []).some((f) => f.key === s.id || f.key === `${key}/${s.id}`);
+      const mitText = dahinter.filter((s) => textOhneWahl(s).trim() !== "" && !folge(s));
+      if (dahinter.some((s) => textOhneWahl(s).trim() !== "" && folge(s))) mitFolge.add(key);
       if (mitText.length > 0) vorbelegt.add(key);
       else if (dahinter.length > 0) freiwillig.add(key);
       if (mitText.length === 0) continue;
@@ -838,8 +1286,10 @@ test("R2-03: vorbelegte Angaben hinter der letzten Pflichtangabe halten den Satz
     }
   }
   melde(fehler);
-  // Stand 08.11.2026; ändert sich der Katalog, ändern sich die Zahlen, und E-45 nennt sie neu.
-  assert.equal(vorbelegt.size, 28, `vorbelegt: ${[...vorbelegt].join(", ")}`);
+  // Stand 08.11.2026; ändert sich der Katalog, ändern sich die Zahlen, und E-45 nennt sie neu. Seit E-60 zählen Sätze,
+  // deren einzige vorbelegte Angabe dahinter eine Folgeangabe ist (Einheit hinter dem Laborwert), nicht mehr mit (28 → 20).
+  assert.equal(vorbelegt.size, 20, `vorbelegt: ${[...vorbelegt].join(", ")}`);
+  assert.equal(mitFolge.size, 8, `mit Folgeangabe: ${[...mitFolge].join(", ")}`);
   assert.ok(freiwillig.size > 0);
   console.log(`R2-03: ${vorbelegt.size} Sätze mit vorbelegter Angabe hinter der letzten Pflichtangabe, ${freiwillig.size} mit nur freiwilligen`);
 });
@@ -906,4 +1356,121 @@ test("Normalwerte: Entscheidungen der Auftraggeberin vom 08.11.2026 sind umgeset
   const [radial, , ulnar] = (/(\d+)\/0\/(\d+)/.exec(beispiel("hand-us-rom-radulnar")) ?? []).slice(1).flatMap((x) => [Number(x), 0]);
   assert.ok(radial >= 25 && radial <= 30 && ulnar >= 30 && ulnar <= 40, beispiel("hand-us-rom-radulnar"));
   assert.match(beispiel("hand-us-rom-prosup"), /80\/0\/80/);
+});
+
+test("Standardprotokolle (E-49, E-52): Vorlage, ersetzte Stellen und Felder stimmen, Text ist KIS-sicher", async () => {
+  const { protokollFehler } = await import("../src/engine/protokoll.ts");
+  assert.ok((KATALOG.protokolle ?? []).length > 0, "Katalog ohne Standardprotokolle");
+  melde(protokollFehler(index));
+});
+
+// --- Runde 5 -----------------------------------------------------------------------------------------------------
+
+test("CR-R4-03: Ein Messwert oder eine Zahl mit mitgetippter Einheit steht nicht doppelt da, mit und ohne Leerzeichen (alle Felder des Katalogs)", async () => {
+  const { einheitDahinter } = await import("../src/engine/render.ts");
+  const fehler: string[] = [];
+  const gezaehlt = { messwert: 0, zahl: 0 };
+  for (const b of alle) {
+    // Eigene kleine Vorlage je Baustein, damit nur dieser Baustein im Brief steht.
+    const setting = KATALOG.brieftypen.find((t) => t.setting === "zna")?.abschnitte.some((a) => a.id === abschnittVon(b)) ? "zna" : "station";
+    const v: Vorlage = { id: `cr-r4-03-${b.id}`, titel: b.titel, region: "x", setting, status: "entwurf", abschnitte: { [abschnittVon(b)]: [b.id] } };
+    const idx = indexiere({ ...KATALOG, vorlagen: [v] });
+    const grund = mitPerson(mitSeite(mitVorlage(neuerFall(setting, idx), v, idx), "links"), "w", "50");
+    const text = (f: Fall) => briefText(renderBrief(f, idx, { listen: "striche" }));
+    for (const s of b.segmente) {
+      if (s.art === "messwert") {
+        const einheit = einheitDahinter(s.vorlage.split("{w}")[1] ?? "");
+        if (!einheit) continue;
+        gezaehlt.messwert++;
+        const k = `${b.id}/${s.id}`;
+        for (const getippt of [`40${einheit}`, `40 ${einheit}`]) {
+          const t = text({ ...grund, werte: { [k]: getippt } });
+          if (!t.includes(`40${s.vorlage.split("{w}")[1].trimEnd()}`.replace(/\s+$/, "")) || t.includes(`${einheit}${einheit}`) || t.includes(`${einheit} ${einheit}`)) fehler.push(`${k} „${getippt}“: ${t.replace(/\s+/g, " ").slice(0, 160)}`);
+        }
+      }
+      if ((s.art === "option" || s.art === "befund") && s.slots) {
+        const roh = s.art === "option" ? s.text : s.abweichung;
+        for (const sl of s.slots) {
+          if (sl.art !== "zahl" || sl.einheit) continue;
+          const nach = roh.split(`{${sl.id}}`)[1];
+          const einheit = nach === undefined ? undefined : einheitDahinter(nach);
+          // Nur Einheiten, keine Wörter des Satzes („von“, „subkutan“).
+          if (!einheit || /^\p{Ll}{3,}$/u.test(einheit)) continue;
+          gezaehlt.zahl++;
+          const k = `${b.id}/${s.id}`;
+          for (const getippt of [`4${einheit}`, `4 ${einheit}`]) {
+            const f = s.art === "option" ? mitAngabe(grund, k, `${k}/${sl.id}`, getippt) : { ...grund, befund: { [k]: "abw" as const }, slots: { [`${k}/${sl.id}`]: getippt } };
+            const t = text(f);
+            if (t.includes(`${einheit}${einheit}`) || t.includes(`${einheit} ${einheit}`)) fehler.push(`${k}/${sl.id} „${getippt}“: ${t.replace(/\s+/g, " ").slice(0, 160)}`);
+          }
+        }
+      }
+    }
+  }
+  // Stand 08.11.2026 laut Code-Review: 24 Messfelder schreiben die Einheit selbst dahinter (18 „°“, 6 „/min“); dazu Messfelder mit
+  // Leerzeichen vor der Einheit („ °C“, „ mmHg“) und Zahlen in Sätzen.
+  assert.ok(gezaehlt.messwert >= 24, `nur ${gezaehlt.messwert} Messfelder mit Einheit`);
+  melde(fehler);
+  console.log(`CR-R4-03: ${gezaehlt.messwert} Messfelder und ${gezaehlt.zahl} Zahlenangaben mit Einheit im Text geprüft`);
+});
+
+test("R4-D3: Rotationsfelder von Schulter und Hüfte bieten genau die Ausgangsstellungen der Normalwerttabelle an; im Brief in Klammern hinter dem Wert", async () => {
+  const { NORMWERTE } = await import("../src/data/normwerte.ts");
+  const { STELLUNG } = await import("../src/engine/render.ts");
+  const fehler: string[] = [];
+  const geprueft: string[] = [];
+  // Jede Fundstelle eines Tabelleneintrags mit Stellungen, die ein Messfeld ist, muss genau diese Stellungen anbieten.
+  const soll = new Map<string, string[]>();
+  for (const e of NORMWERTE.eintraege) {
+    if (!e.stellungen?.length) continue;
+    for (const f of e.fundstellen) {
+      const seg = alle.find((b) => b.id === f.baustein)?.segmente.find((s) => "id" in s && s.id === f.segment);
+      if (seg?.art === "messwert" && !f.slot) soll.set(`${f.baustein}/${f.segment}`, e.stellungen.map((s) => s.stellung));
+    }
+  }
+  for (const b of alle) {
+    for (const s of b.segmente) {
+      if (s.art !== "messwert") continue;
+      const k = `${b.id}/${s.id}`;
+      const erwartet = soll.get(k);
+      if (!erwartet && !s.stellungen) continue;
+      if (JSON.stringify(s.stellungen ?? []) !== JSON.stringify(erwartet ?? [])) {
+        fehler.push(`${k}: Stellungen ${JSON.stringify(s.stellungen ?? [])}, Tabelle ${JSON.stringify(erwartet ?? [])}`);
+        continue;
+      }
+      const setting = KATALOG.brieftypen.find((t) => t.setting === "zna")?.abschnitte.some((a) => a.id === abschnittVon(b)) ? "zna" : "station";
+      const v: Vorlage = { id: `r4-d3-${b.id}`, titel: b.titel, region: "x", setting, status: "entwurf", abschnitte: { [abschnittVon(b)]: [b.id] } };
+      const idx = indexiere({ ...KATALOG, vorlagen: [v] });
+      const grund = mitPerson(mitSeite(mitVorlage(neuerFall(setting, idx), v, idx), "links"), "w", "50");
+      for (const st of s.stellungen ?? []) {
+        const t = briefText(renderBrief({ ...grund, werte: { [k]: "40/0/70" }, slots: { [`${k}/${STELLUNG}`]: st } }, idx, { listen: "striche" }));
+        if (!t.includes(`Außenrotation/Innenrotation 40/0/70° (${st}).`)) fehler.push(`${k} „${st}“: ${t.replace(/\s+/g, " ").slice(0, 160)}`);
+      }
+      geprueft.push(k);
+    }
+  }
+  // Schulter (Station Rotatorenmanschette, Hausstandard knapp) und Hüfte (Station elektiv).
+  assert.deepEqual(geprueft.sort(), ["bef-st-huefte-elektiv/rotation", "bef-st-schulter-rm/rotation", "schulter-unt-knapp/schulter-knapp-rom-iroaro"]);
+  melde(fehler);
+});
+
+test("Physiotherapie und Verordnung (Nr. 4, E-71): zwei Sätze in einem Listenpunkt; ein älterer Fall zeigt die Verordnung wieder als Lücke, nichts wird still gesetzt", () => {
+  const zeile = (f: Fall) => renderBrief(f, index).abschnitte.find((a) => a.id === "procedere")!.text.split("\n").find((z) => /Physiotherapie/.test(z) && !/Protokoll/.test(z)) ?? "";
+  let f = stationsfall("station-hueft-tep");
+  assert.equal(zeile(f), "- Physiotherapie. ‹Verordnung der Physiotherapie›");
+  f = satzMit(f, "proc-st-physio", "physio", { inhalt: 1, haeufigkeit: 1 });
+  f = satzMit(f, "proc-st-physio", "verordnung", { wer: 1 });
+  assert.equal(zeile(f), "- Physiotherapie mit Gangschule 2-mal pro Woche. Eine Verordnung für Physiotherapie haben wir mitgegeben.");
+  // Jede Antwort nennt die Physiotherapie und steht auch allein, wenn ein Protokoll den Inhaltssatz ersetzt.
+  const seg = index.bausteine.get("proc-st-physio")!.segmente.find((x) => "id" in x && x.id === "verordnung");
+  assert.ok(seg?.art === "option" && seg.an === true);
+  const wer = seg.slots?.find((x) => x.id === "wer");
+  assert.ok(wer?.art === "auswahl" && wer.required === true);
+  for (const o of wer.optionen.filter(Boolean)) assert.match(o, /Physiotherapie/);
+  // Älterer Fall: Antwort unter der alten Kennung im Satz „physio“, eigener Wortlaut des Inhaltssatzes.
+  const alt = { ...stationsfall("station-hueft-tep"), katalog: 1, slots: { "proc-st-physio/physio/verordnung": "1" }, optionen: { "proc-st-physio/physio": true } };
+  const geladen = nachKatalogwechsel(ergaenzt(JSON.parse(JSON.stringify(alt)), index)!, index);
+  assert.equal(zeile(geladen), "- Physiotherapie. ‹Verordnung der Physiotherapie›");
+  const eigen = nachKatalogwechsel(ergaenzt(JSON.parse(JSON.stringify(mitEigenemText(alt, "proc-st-physio/physio", "Physiotherapie mit Gangschule. Eine Verordnung haben wir mitgegeben."))), index)!, index);
+  assert.equal(zeile(eigen), "- Physiotherapie mit Gangschule. Eine Verordnung haben wir mitgegeben. ‹Verordnung der Physiotherapie›");
 });

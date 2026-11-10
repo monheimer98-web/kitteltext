@@ -108,16 +108,22 @@
               "default": 0
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "kompartment",
               "label": "Kompartmentsyndrom",
-              "text": "\nKompartmentsyndrom des Unterschenkels {seite}"
+              "text": "Kompartmentsyndrom des Unterschenkels {seite}"
+            },
+            {
+              "art": "unterpunkt"
             },
             {
               "art": "option",
               "id": "peroneus",
               "label": "Läsion des N. peroneus",
-              "text": "\nLäsion des N. peroneus {seite}"
+              "text": "Läsion des N. peroneus {seite}"
             }
           ]
         },
@@ -220,16 +226,22 @@
               "default": 0
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "kompartment",
               "label": "Kompartmentsyndrom",
-              "text": "\nKompartmentsyndrom des Unterschenkels {seite}"
+              "text": "Kompartmentsyndrom des Unterschenkels {seite}"
+            },
+            {
+              "art": "unterpunkt"
             },
             {
               "art": "option",
               "id": "peroneus",
               "label": "Läsion des N. peroneus",
-              "text": "\nLäsion des N. peroneus {seite}"
+              "text": "Läsion des N. peroneus {seite}"
             }
           ]
         },
@@ -1723,16 +1735,22 @@
               "default": 0
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "kompartment",
               "label": "Kompartmentsyndrom",
-              "text": "\nKompartmentsyndrom des Unterschenkels {seite}"
+              "text": "Kompartmentsyndrom des Unterschenkels {seite}"
+            },
+            {
+              "art": "unterpunkt"
             },
             {
               "art": "option",
               "id": "peroneus",
               "label": "Läsion des N. peroneus",
-              "text": "\nLäsion des N. peroneus {seite}"
+              "text": "Läsion des N. peroneus {seite}"
             }
           ]
         },
@@ -2990,6 +3008,12 @@
                   "required": true
                 }
               ]
+            },
+            {
+              "art": "option",
+              "id": "reha",
+              "label": "Warnzeichen während der Rehabilitation",
+              "text": "Treten diese Zeichen während der Rehabilitation auf, zuerst Vorstellung beim ärztlichen Dienst der Rehabilitationsklinik. Bei Atemnot oder Brustschmerz sofort Notruf 112. "
             },
             {
               "art": "punkt"

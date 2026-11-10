@@ -38,6 +38,10 @@ export const NICHTS_VERGESSEN = {
     "„Bitte abgleichen“ heißt: Zwei Abschnitte passen nicht zusammen, etwa bei der Belastung. Der Hinweis steht am Abschnitt und bei den Kopierknöpfen; beide Stellen prüfen.",
     "Was du erst im KIS weißt, setzt du auf „erst im KIS ausfüllen“. Im Text steht dann etwa [OP-DATUM], die Liste „Im KIS zu ergänzen“ zählt mit.",
     "F2 springt zur nächsten Stelle, die zu klären ist, Umschalt+F2 zur vorigen. Bleibt nichts, meldet die App „Nichts mehr zu klären.“",
+    "Im Procedere vieler Stationsvorlagen steht oben der Kasten „Standardprotokoll“: „Vorschau“ zeigt die Zeilen grau, „Übernehmen“ setzt sie schwarz in den Brief, die Sätze der Vorlage, die sie ersetzen, treten zurück, und die Meldung nennt sie.",
+    "„Entfernen“ bringt diese Sätze so zurück, wie sie waren; was danach noch gelb ist, etwa die Gehhilfe, wählst du selbst.",
+    "Auf Station stehen unter dem Fallkopf Aufnahme, OP und Entlassung: „12.11.“, „heute“ oder „gestern“ genügt. Das Datum steht dann überall, wo der Brief es braucht; fehlt es, steht dort [OP-DATUM] fürs KIS. Hinter Fristen steht das errechnete Datum grau in Klammern, bis du es mit Ü übernimmst.",
+    "Gehhilfe, Allergien und Klammern beantwortest du einmal: An den anderen Stellen steht deine Antwort grau, mit Ü übernehmen oder dort anders wählen.",
   ],
 } as const;
 

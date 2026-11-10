@@ -992,10 +992,13 @@
               ]
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "kauda",
               "label": "Kaudasyndrom",
-              "text": "\n{was}",
+              "text": "{was}",
               "slots": [
                 {
                   "art": "auswahl",

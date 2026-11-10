@@ -937,7 +937,11 @@ kbd {
   padding: 0 6px;
   font-weight: 600;
   font-size: 14.5px;
-  white-space: nowrap;
+  /* Lange Lücken (Protokollzeilen, QA-37) brechen in der Spalte um; Rahmen und Fläche
+     wiederholen sich je Zeile über box-decoration-break an .tok. „normal“ statt des geerbten
+     pre-wrap, sonst hängt das Leerzeichen am Zeilenende samt Rahmen über den Satzspiegel. */
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 .tok.z-spaeter {
   background: var(--flaeche);
@@ -1203,6 +1207,17 @@ kbd.taste {
   margin: 2px 0 8px 24px;
   padding: 8px 10px;
   border-left: 2px solid var(--linie-stark);
+}
+/* Ausgangsstellung am Messfeld (R4-D3): Knopfreihe und, solange keine gewählt ist, ein leiser Hinweis daneben. */
+.bz-stellung {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 10px;
+}
+.bz-stellung-hinweis {
+  font-size: 12px;
+  color: var(--text-leise);
 }
 .bl-fuss {
   display: flex;
@@ -2085,4 +2100,316 @@ kbd.taste {
     padding: 4px 6px;
     font-size: 12.5px;
   }
+}
+
+/* ---------- Standardprotokoll im Procedere (E-52) ---------- */
+
+/* Kasten über dem Text des Procedere. Er gehört nicht zum Brief: nichts darin lässt sich markieren, die Vorschau ist grau. */
+.protokoll {
+  margin: 8px 0 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  background: var(--flaeche);
+  white-space: normal;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.protokoll:focus-visible {
+  outline: 2px solid var(--akzent);
+  outline-offset: 2px;
+}
+.pk-kopf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 10px;
+}
+.pk-kopf h3 {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 650;
+}
+.pk-quelle,
+.pk-hinweis {
+  font-size: 12px;
+  color: var(--text-leise);
+}
+.protokoll > .pk-hinweis {
+  margin-top: 4px;
+}
+.pk-liste {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.pk-variante {
+  padding: 6px 8px;
+  border: 1px solid var(--linie);
+  border-radius: 6px;
+  background: var(--papier);
+}
+.pk-variante.aktiv {
+  border-color: var(--ok);
+}
+.pk-zeile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 8px;
+}
+.pk-titel {
+  flex: 1 1 240px;
+  min-width: 0;
+  font-size: 13.5px;
+  overflow-wrap: anywhere;
+}
+.pk-variante.aktiv .pk-titel {
+  font-weight: 600;
+}
+.pk-im-brief {
+  font-size: 12.5px;
+  color: var(--ok);
+}
+.pk-vorschau {
+  margin-top: 6px;
+  color: var(--text-leise);
+  font-size: 13px;
+}
+.pk-vorschau ul {
+  margin: 2px 0 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+.pk-vorschau li {
+  margin: 2px 0;
+}
+.pk-zusatz {
+  display: grid;
+  gap: 4px;
+  margin-top: 6px;
+}
+.pk-haken {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-height: 26px;
+  padding: 3px 6px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: none;
+  text-align: left;
+  font-size: 13px;
+  color: var(--text);
+}
+.pk-haken:hover {
+  background: var(--akzent-flaeche);
+}
+.pk-kaestchen {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  border: 1.5px solid var(--linie-stark);
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--akzent);
+}
+.pk-haken[aria-checked="true"] .pk-kaestchen {
+  border-color: var(--akzent);
+}
+
+/* Formatiert kopieren (E-61): Vorschau der HTML-Fassung. Die Inline-Stile der Blöcke kommen aus engine/kopierformat.ts;
+   hier nur der Rahmen und das Zurücksetzen der Dialogregeln für Listen. */
+.vorschau-knopf {
+  align-self: flex-start;
+  font-size: 13px;
+}
+.dialog-karte.vorschau {
+  width: min(860px, 100%);
+}
+.vorschau-papier {
+  max-height: 62vh;
+  overflow-y: auto;
+  padding: 16px 20px;
+  border: 1px solid var(--linie);
+  border-radius: var(--radius);
+  background: var(--papier);
+  color: var(--text);
+  line-height: 1.45;
+}
+.vorschau-papier ul {
+  display: block;
+  list-style: disc;
+  gap: 0;
+}
+.vorschau-papier ul ul {
+  list-style: circle;
+}
+.vorschau-papier table {
+  margin: 2px 0;
+}
+.vorschau-hinweis {
+  font-size: 12px;
+  color: var(--offen);
+}
+
+/* ---------- Medikation im Feldfenster (E-62) ---------- */
+
+.feldfenster.breit {
+  width: 600px;
+}
+.med-liste {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.med-zeile {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  gap: 6px 8px;
+  align-items: end;
+  padding-top: 8px;
+  border-top: 1px solid var(--linie);
+}
+.med-zeile:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.med-frei {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+.med-feld {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-size: 12.5px;
+  color: var(--text-leise);
+}
+.med-feld .ff-eingabe {
+  color: var(--text);
+  font-size: 14px;
+}
+.med-schema {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.med-schema .med-zeit {
+  width: 3em;
+  min-width: 0;
+  padding: 6px 2px;
+  text-align: center;
+}
+.med-status {
+  min-width: 9em;
+}
+.med-weg {
+  align-self: end;
+}
+.med-zeile:not(.med-frei) .med-weg {
+  grid-row: 1;
+  grid-column: 3;
+}
+.med-offen .ff-eingabe[aria-invalid="true"] {
+  border: 2px solid var(--offen-rand);
+  background: var(--offen-flaeche);
+}
+.med-fehlt {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 12px;
+  color: var(--offen);
+}
+.med-knoepfe {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+@media (max-width: 560px) {
+  .med-zeile {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .med-zeile:not(.med-frei) .med-weg {
+    grid-row: auto;
+    grid-column: auto;
+  }
+}
+
+/* ---------- Falldaten im Fallkopf (E-58) und Daten in Klammern (E-59) ---------- */
+
+.fd-zeile {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 18px;
+  margin-top: 8px;
+}
+.fd-feld {
+  gap: 6px;
+}
+.fk-eingabe.fd-eingabe {
+  width: 96px;
+  font-variant-numeric: tabular-nums;
+}
+.ff-eingabe.fd-eingabe {
+  max-width: 140px;
+  font-variant-numeric: tabular-nums;
+}
+.fd-fehler {
+  border-color: var(--offen-rand);
+  background: var(--offen-flaeche);
+}
+/* Feste Breite: Was beim Tippen daneben erscheint, schiebt nichts zur Seite (QA-25). */
+.fd-vorschau {
+  width: 92px;
+  white-space: nowrap;
+  font-size: 12.5px;
+  color: var(--text-leise);
+  font-variant-numeric: tabular-nums;
+}
+.ff-zeile .fd-vorschau {
+  margin-left: 8px;
+}
+.fd-fehler-text {
+  color: var(--offen);
+  font-weight: 600;
+}
+.fd-hinweis {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--offen);
+  font-weight: 600;
+}
+.fd-weitere {
+  font-size: 12.5px;
+}
+/* Errechnetes Datum in Klammern: grau und punktiert wie ein Vorschlag, bis der Arzt es übernimmt. */
+.tok-frist.z-vorschlag {
+  color: var(--text-leise);
+  text-decoration: underline dotted var(--linie-stark);
+  -webkit-user-select: none;
+  user-select: none;
+}
+.ff-fristen {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+}
+/* Nur für Vorlesehilfen: sichtbar wäre es doppelt (steht schon im Titel des Felds). */
+.nur-vorlesen {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }

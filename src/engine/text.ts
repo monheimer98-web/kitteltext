@@ -2,6 +2,8 @@
 // veränderliche Stelle im Brief anklickbar machen kann. Der kopierte Text ist
 // immer die Verkettung genau dieser Tokens.
 
+import type { FalldatumArt } from "../model/types.ts";
+
 export type TokenArt =
   | "fix"
   | "seite"
@@ -13,7 +15,9 @@ export type TokenArt =
   | "option"
   | "wahl" // Entweder-oder-Stelle der Vorlage, noch nicht entschieden
   | "zusatz"
-  | "manuell";
+  | "manuell"
+  | "gliederung" // Zeichen eines Unterpunkts samt Einzug („\n  - “): bleibt beim Glätten unverändert
+  | "titel"; // Überschrift über dem Text eines Bausteins („Nebendiagnosen:“), steht nur, wenn er Text hat
 
 export type TokenZustand =
   | "offen" // Pflichtangabe fehlt
@@ -36,6 +40,43 @@ export interface Token {
   gruppe?: string;
   /** vom Arzt frei geschriebener Text: wird nicht geglättet */
   frei?: boolean;
+  /**
+   * Zellen einer Tabellenzeile, wenn der Text aus einer strukturierten Eingabe stammt (Medikation: Wirkstoff,
+   * Stärke/Form, Schema in einer Zelle, Hinweis). Die formatierte Fassung baut daraus die Tabelle; der Text bleibt `t`.
+   */
+  zellen?: string[];
+  /** Das Feld setzt ein Datum des Fallkopfs ein (E-58); fehlt es, steht der Platzhalter fürs KIS. */
+  falldatum?: FalldatumArt;
+  /** Errechnete Daten in Klammern im Text dieses Tokens (E-59), nach Lage im Text. */
+  fristen?: FristTeil[];
+  /** Fristen dieses Tokens, deren Datum der Arzt weggelassen hat („ohne Datum“): zum Zurückholen im Feldfenster. */
+  ohneFrist?: string[];
+  /** Angaben dieses Satzes, deren Antwort von einer anderen Stelle stammt (E-60): Bezeichnung der Quelle. */
+  uebertragen?: string[];
+}
+
+/**
+ * Ein errechnetes Datum in Klammern hinter einer Frist: `t.slice(start, ende)` ist „(20.11.2026)“. Es hat einen
+ * eigenen Zustand: Vorschlag, bis der Arzt es übernimmt; dann zählt es zu seiner Aussage.
+ */
+export interface FristTeil {
+  key: string;
+  start: number;
+  ende: number;
+  zustand: "vorschlag" | "gesetzt";
+  anker: FalldatumArt;
+  tage: number;
+  datum: string;
+}
+
+/** Steht im Token etwas, das noch Vorschlag ist: der Satz selbst oder ein errechnetes Datum darin? */
+export function mitVorschlag(t: Token): boolean {
+  return t.zustand === "vorschlag" || (!!t.fristen && t.fristen.some((f) => f.zustand === "vorschlag"));
+}
+
+/** Schlüssel der errechneten Daten eines Tokens, die noch Vorschlag sind. */
+export function offeneFristen(t: Token): string[] {
+  return (t.fristen ?? []).filter((f) => f.zustand === "vorschlag").map((f) => f.key);
 }
 
 /** Sichtbare Lücke für eine fehlende Pflichtangabe. */
@@ -78,6 +119,17 @@ export function glaetten(tokens: Token[]): Token[] {
   for (const tok of tokens) {
     const roh = tok.t.replace(/\r/g, "");
     if (roh.length === 0) continue;
+
+    // Einzug eines Unterpunkts: Leerzeichen am Zeilenanfang tragen hier die Gliederung und bleiben stehen.
+    if (tok.art === "gliederung") {
+      if (letztes === " ") kuerzeLeerzeichen();
+      // Steht schon ein Zeilenumbruch davor, entsteht keine Leerzeile.
+      const t = letztes === "\n" ? roh.replace(/^\n/, "") : roh;
+      aus.push({ ...tok, t, frei: true });
+      letztes = t[t.length - 1];
+      umbrueche = 0;
+      continue;
+    }
 
     // Satzende trifft ohne Leerzeichen auf den nächsten Satz.
     const trenner = SATZENDE.includes(letztes) && WORTANFANG.test(roh[0]) ? " " : "";
@@ -148,6 +200,39 @@ function letztesZeichen(tokens: Token[]): string {
 
 export function tokensZuText(tokens: Token[]): string {
   return tokens.map((t) => t.t).join("");
+}
+
+/**
+ * Text für „Von Hand bearbeiten“, auch bevor alles geklärt ist (M-18 Station, E-66). Im freien Text gibt es kein Grau:
+ * Ein Vorschlag steht deshalb als „‹Vorschlag: …›“ da, eine offene Stelle als Lücke. Beides zählt als Lücke und sperrt
+ * das Kopieren, bis der Arzt den Text übernimmt (Klammern löschen), ändert oder streicht. So wird kein Vorschlag still
+ * zur Aussage des Arztes.
+ */
+export function handtext(tokens: Token[]): string {
+  return tokens
+    .map((t) => {
+      if (t.zustand !== "vorschlag" && t.zustand !== "offen") return mitGrauenFristen(t);
+      if (t.t.includes("‹")) return t.t;
+      const m = /^(\s*)([\s\S]*?)(\s*)$/.exec(t.t)!;
+      if (!m[2]) return t.zustand === "offen" ? `${t.t}${luecke(t.label ?? "offen")}` : t.t;
+      // Klammern im Satz selbst würden die Lücke vorzeitig schließen.
+      const kern = m[2].replace(/[‹›]/g, "");
+      return `${m[1]}${luecke(t.zustand === "vorschlag" ? `Vorschlag: ${kern}` : kern)}${m[3]}`;
+    })
+    .join("");
+}
+
+/** Ein errechnetes Datum, das noch Vorschlag ist, steht im freien Text als Lücke „‹Vorschlag: (20.11.2026)›“ (E-59). */
+function mitGrauenFristen(t: Token): string {
+  const grau = (t.fristen ?? []).filter((f) => f.zustand === "vorschlag").sort((a, b) => a.start - b.start);
+  if (grau.length === 0) return t.t;
+  let aus = "";
+  let bis = 0;
+  for (const f of grau) {
+    aus += t.t.slice(bis, f.start) + luecke(`Vorschlag: ${t.t.slice(f.start, f.ende)}`);
+    bis = f.ende;
+  }
+  return aus + t.t.slice(bis);
 }
 
 export interface KopierFormat {

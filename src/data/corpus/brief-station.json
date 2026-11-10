@@ -97,6 +97,7 @@
           "titel": "Weitere Diagnosen",
           "typ": "diagnose",
           "status": "entwurf",
+          "ueberschrift": "Nebendiagnosen:",
           "platzhalter": [
             {
               "id": "neben",
@@ -114,10 +115,13 @@
           ],
           "segmente": [
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "anaemie",
               "label": "Blutungsanämie",
-              "text": "Blutungsanämie{wann}{transfusion}\n",
+              "text": "Blutungsanämie{wann}{transfusion}",
               "slots": [
                 {
                   "art": "auswahl",
@@ -146,10 +150,13 @@
               ]
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "osteoporose",
               "label": "Osteoporose",
-              "text": "{was}\n",
+              "text": "{was}",
               "slots": [
                 {
                   "art": "auswahl",
@@ -167,10 +174,13 @@
               ]
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "sturzursache",
               "label": "Sturzursache",
-              "text": "{was}\n",
+              "text": "{was}",
               "slots": [
                 {
                   "art": "auswahl",
@@ -190,10 +200,13 @@
               ]
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "keim",
               "label": "Keimbesiedlung",
-              "text": "Besiedlung mit {erreger}{ort}\n",
+              "text": "Besiedlung mit {erreger}{ort}",
               "slots": [
                 {
                   "art": "auswahl",
@@ -221,6 +234,49 @@
                   ]
                 }
               ]
+            },
+            {
+              "art": "unterpunkt"
+            },
+            {
+              "art": "option",
+              "id": "harnwegsinfekt",
+              "label": "Harnwegsinfekt",
+              "text": "Harnwegsinfekt"
+            },
+            {
+              "art": "unterpunkt"
+            },
+            {
+              "art": "option",
+              "id": "pneumonie",
+              "label": "Pneumonie",
+              "text": "Pneumonie"
+            },
+            {
+              "art": "unterpunkt"
+            },
+            {
+              "art": "option",
+              "id": "delir",
+              "label": "Delir",
+              "text": "{art}",
+              "slots": [
+                {
+                  "art": "auswahl",
+                  "id": "art",
+                  "label": "Delir",
+                  "required": true,
+                  "optionen": [
+                    "",
+                    "Postoperatives Delir",
+                    "Delir"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "unterpunkt"
             },
             {
               "art": "platzhalter",
@@ -603,25 +659,26 @@
             },
             {
               "art": "text",
-              "text": " stellte sich "
+              "text": " "
             },
             {
               "art": "auswahl",
-              "id": "vorstellung",
-              "label": "Art der Vorstellung",
+              "id": "aufnahmeweg",
+              "label": "Vorstellung oder Verlegung",
               "pflicht": true,
               "optionen": [
-                "selbstständig",
-                "in Begleitung von Angehörigen",
-                "mit dem Rettungsdienst",
-                "mit dem Rettungsdienst in Notarztbegleitung",
-                "mit Einweisung aus der Hausarztpraxis",
-                "nach Zuweisung aus einer Praxis"
+                "stellte sich selbstständig in unserer Notaufnahme vor",
+                "stellte sich in Begleitung von Angehörigen in unserer Notaufnahme vor",
+                "stellte sich mit dem Rettungsdienst in unserer Notaufnahme vor",
+                "stellte sich mit dem Rettungsdienst in Notarztbegleitung in unserer Notaufnahme vor",
+                "stellte sich mit Einweisung aus der Hausarztpraxis in unserer Notaufnahme vor",
+                "stellte sich nach Zuweisung aus einer Praxis in unserer Notaufnahme vor",
+                "wurde aus einem anderen Krankenhaus zur weiteren Behandlung zu uns verlegt"
               ]
             },
             {
               "art": "text",
-              "text": " in unserer Notaufnahme vor. "
+              "text": ". "
             },
             {
               "art": "platzhalter",
@@ -1325,25 +1382,26 @@
             },
             {
               "art": "text",
-              "text": " stellte sich "
+              "text": " "
             },
             {
               "art": "auswahl",
-              "id": "vorstellung",
-              "label": "Art der Vorstellung",
+              "id": "aufnahmeweg",
+              "label": "Vorstellung oder Verlegung",
               "pflicht": true,
               "optionen": [
-                "selbstständig",
-                "in Begleitung von Angehörigen",
-                "mit dem Rettungsdienst",
-                "mit dem Rettungsdienst in Notarztbegleitung",
-                "mit Einweisung aus der Hausarztpraxis",
-                "nach Zuweisung aus einer Praxis"
+                "stellte sich selbstständig in unserer Notaufnahme vor",
+                "stellte sich in Begleitung von Angehörigen in unserer Notaufnahme vor",
+                "stellte sich mit dem Rettungsdienst in unserer Notaufnahme vor",
+                "stellte sich mit dem Rettungsdienst in Notarztbegleitung in unserer Notaufnahme vor",
+                "stellte sich mit Einweisung aus der Hausarztpraxis in unserer Notaufnahme vor",
+                "stellte sich nach Zuweisung aus einer Praxis in unserer Notaufnahme vor",
+                "wurde aus einem anderen Krankenhaus zur weiteren Behandlung zu uns verlegt"
               ]
             },
             {
               "art": "text",
-              "text": " in unserer Notaufnahme vor. "
+              "text": ". "
             },
             {
               "art": "platzhalter",
@@ -2347,6 +2405,63 @@
             },
             {
               "art": "option",
+              "id": "natrium-aufnahme",
+              "label": "Natrium bei Aufnahme",
+              "text": "Natrium bei Aufnahme {w}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "w",
+                  "label": "Wert",
+                  "einheit": "mmol/l",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "natrium-minimal",
+              "label": "Natrium minimal",
+              "text": "Natrium minimal {w}{wann}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "w",
+                  "label": "Wert",
+                  "einheit": "mmol/l",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "wann",
+                  "label": "Zeitpunkt",
+                  "optionen": [
+                    "",
+                    " am 1. Tag nach der Operation",
+                    " am 2. Tag nach der Operation",
+                    " am 3. Tag nach der Operation",
+                    " am 4. Tag nach der Operation"
+                  ]
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "natrium-entlassung",
+              "label": "Natrium vor Entlassung",
+              "text": "Natrium vor Entlassung {w}. ",
+              "slots": [
+                {
+                  "art": "zahl",
+                  "id": "w",
+                  "label": "Wert",
+                  "einheit": "mmol/l",
+                  "required": true
+                }
+              ]
+            },
+            {
+              "art": "option",
               "id": "inr",
               "label": "INR bei Aufnahme",
               "text": "INR bei Aufnahme {w}. ",
@@ -2641,7 +2756,7 @@
               "id": "wunde",
               "label": "Wundheilung",
               "an": true,
-              "text": "{wie} ",
+              "text": "{wie}{massnahme} ",
               "slots": [
                 {
                   "art": "auswahl",
@@ -2650,7 +2765,24 @@
                   "optionen": [
                     "Die Operationswunde heilte trocken und reizlos.",
                     "Die Operationswunden heilten trocken und reizlos.",
-                    "Die Operationswunde heilte nach anfänglicher Sekretion trocken und reizlos."
+                    "Die Operationswunde heilte nach anfänglicher Sekretion trocken und reizlos.",
+                    "Die Operationswunde sezernierte verlängert.",
+                    "Die Operationswunde zeigte eine Rötung der Wundränder.",
+                    "Die Operationswunde zeigte ein Hämatom.",
+                    "Die Operationswunde zeigte eine Wundrandnekrose.",
+                    "Die Operationswunde öffnete sich oberflächlich."
+                  ]
+                },
+                {
+                  "art": "auswahl",
+                  "id": "massnahme",
+                  "label": "Maßnahme bei Wundheilungsstörung",
+                  "optionen": [
+                    "",
+                    " Unter lokaler Wundbehandlung besserte sich der Befund.",
+                    " Unter lokaler Wundbehandlung und antibiotischer Behandlung besserte sich der Befund.",
+                    " Wir revidierten die Wunde operativ, siehe Therapie.",
+                    " Bei Entlassung bestand der Befund fort, Kontrollen siehe Procedere."
                   ]
                 }
               ]
@@ -3001,13 +3133,42 @@
               "art": "option",
               "id": "harnwegsinfekt",
               "label": "Harnwegsinfekt",
-              "text": "Einen Harnwegsinfekt behandelten wir antibiotisch {details}. ",
+              "text": "Einen Harnwegsinfekt behandelten wir antibiotisch mit {wirkstoff} für {tage}{ende}. Erreger: {erreger}. ",
               "slots": [
                 {
                   "art": "detail",
-                  "id": "details",
-                  "label": "Wirkstoff und Dauer, z. B. mit ... für 5 Tage",
-                  "maxLen": 80
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "tage",
+                  "label": "Dauer der antibiotischen Behandlung",
+                  "einheit": "Tage",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ende",
+                  "label": "Ende der Behandlung",
+                  "optionen": [
+                    "",
+                    ", abgeschlossen vor der Entlassung",
+                    ", Fortführung nach der Entlassung siehe Medikation"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "erreger",
+                  "label": "Erreger",
+                  "maxLen": 80,
+                  "required": true,
+                  "vorschlaege": [
+                    "kein Nachweis in der Urinkultur",
+                    "Befund der Urinkultur ausstehend"
+                  ]
                 }
               ]
             },
@@ -3015,13 +3176,42 @@
               "art": "option",
               "id": "pneumonie",
               "label": "Lungenentzündung",
-              "text": "Eine Lungenentzündung behandelten wir antibiotisch {details}. ",
+              "text": "Eine Lungenentzündung behandelten wir antibiotisch mit {wirkstoff} für {tage}{ende}. Erreger: {erreger}. ",
               "slots": [
                 {
                   "art": "detail",
-                  "id": "details",
-                  "label": "Wirkstoff und Dauer, z. B. mit ... für 7 Tage",
-                  "maxLen": 80
+                  "id": "wirkstoff",
+                  "label": "Antibiotikum (Wirkstoff)",
+                  "maxLen": 60,
+                  "required": true
+                },
+                {
+                  "art": "zahl",
+                  "id": "tage",
+                  "label": "Dauer der antibiotischen Behandlung",
+                  "einheit": "Tage",
+                  "required": true
+                },
+                {
+                  "art": "auswahl",
+                  "id": "ende",
+                  "label": "Ende der Behandlung",
+                  "optionen": [
+                    "",
+                    ", abgeschlossen vor der Entlassung",
+                    ", Fortführung nach der Entlassung siehe Medikation"
+                  ]
+                },
+                {
+                  "art": "detail",
+                  "id": "erreger",
+                  "label": "Erreger",
+                  "maxLen": 80,
+                  "required": true,
+                  "vorschlaege": [
+                    "kein Nachweis",
+                    "Befund der Kultur ausstehend"
+                  ]
                 }
               ]
             },
@@ -4888,7 +5078,7 @@
               "id": "physio",
               "label": "Physiotherapie",
               "an": true,
-              "text": "Physiotherapie{inhalt}{haeufigkeit}. {verordnung} ",
+              "text": "Physiotherapie{inhalt}{haeufigkeit}. ",
               "slots": [
                 {
                   "art": "auswahl",
@@ -4913,17 +5103,26 @@
                     " 2- bis 3-mal pro Woche",
                     " täglich"
                   ]
-                },
+                }
+              ]
+            },
+            {
+              "art": "option",
+              "id": "verordnung",
+              "label": "Verordnung der Physiotherapie",
+              "an": true,
+              "text": "{wer} ",
+              "slots": [
                 {
                   "art": "auswahl",
-                  "id": "verordnung",
-                  "label": "Verordnung",
+                  "id": "wer",
+                  "label": "Verordnung der Physiotherapie",
                   "required": true,
                   "optionen": [
                     "",
-                    "Eine Verordnung haben wir mitgegeben.",
-                    "Verordnung durch die weiterbehandelnde Praxis.",
-                    "Fortführung in der Rehabilitationsklinik."
+                    "Eine Verordnung für Physiotherapie haben wir mitgegeben.",
+                    "Verordnung der Physiotherapie durch die weiterbehandelnde Praxis.",
+                    "Fortführung der Physiotherapie in der Rehabilitationsklinik."
                   ]
                 }
               ]
@@ -5256,6 +5455,12 @@
             },
             {
               "art": "option",
+              "id": "reha",
+              "label": "Warnzeichen während der Rehabilitation",
+              "text": "Treten diese Zeichen während der Rehabilitation auf, zuerst Vorstellung beim ärztlichen Dienst der Rehabilitationsklinik. Bei Atemnot oder Brustschmerz sofort Notruf 112. "
+            },
+            {
+              "art": "option",
               "id": "besprochen",
               "label": "Warnzeichen besprochen",
               "text": "Die Warnzeichen haben wir mit {person-dat} besprochen. "
@@ -5276,7 +5481,7 @@
           "platzhalter": [
             {
               "id": "liste",
-              "typ": "freitext",
+              "typ": "medikation",
               "label": "Arzneimittel (je Zeile: Wirkstoff Stärke Form, Schema, Dauer. STATUS: Grund.)",
               "required": true,
               "vorschlaege": [
@@ -5521,7 +5726,7 @@
           "platzhalter": [
             {
               "id": "liste",
-              "typ": "freitext",
+              "typ": "medikation",
               "label": "Arzneimittel (je Zeile: Wirkstoff Stärke Form, Schema, Dauer. STATUS: Grund.)",
               "required": true,
               "vorschlaege": [
@@ -6245,10 +6450,13 @@
               "default": 0
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "wunde",
               "label": "Kopfplatzwunde",
-              "text": "\nKopfplatzwunde {lseite} {ort}, {cm}, {versorgung}",
+              "text": "Kopfplatzwunde {lseite} {ort}, {cm}, {versorgung}",
               "slots": [
                 {
                   "art": "lokaleSeite",
@@ -6292,10 +6500,13 @@
               ]
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "prellung",
               "label": "Schädelprellung",
-              "text": "\nSchädelprellung {lseite} {ort}",
+              "text": "Schädelprellung {lseite} {ort}",
               "slots": [
                 {
                   "art": "lokaleSeite",
@@ -6319,10 +6530,13 @@
               ]
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "schuerfwunden",
               "label": "Schürfwunden",
-              "text": "\nSchürfwunden {wo}",
+              "text": "Schürfwunden {wo}",
               "slots": [
                 {
                   "art": "detail",
@@ -6333,10 +6547,13 @@
               ]
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "gerinnungshemmung",
               "label": "Gerinnungshemmung",
-              "text": "\nGerinnungshemmende Medikation mit {was}",
+              "text": "Gerinnungshemmende Medikation mit {was}",
               "slots": [
                 {
                   "art": "auswahl",
@@ -6357,10 +6574,13 @@
               ]
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "alkohol",
               "label": "Alkoholintoxikation",
-              "text": "\nAkute Alkoholintoxikation"
+              "text": "Akute Alkoholintoxikation"
             }
           ]
         },
@@ -6483,25 +6703,26 @@
             },
             {
               "art": "text",
-              "text": " stellte sich "
+              "text": " "
             },
             {
               "art": "auswahl",
-              "id": "vorstellung",
-              "label": "Art der Vorstellung",
+              "id": "aufnahmeweg",
+              "label": "Vorstellung oder Verlegung",
               "pflicht": true,
               "optionen": [
-                "selbstständig",
-                "in Begleitung von Angehörigen",
-                "mit dem Rettungsdienst",
-                "mit dem Rettungsdienst in Notarztbegleitung",
-                "mit Einweisung aus der Hausarztpraxis",
-                "nach Zuweisung aus einer Praxis"
+                "stellte sich selbstständig in unserer Notaufnahme vor",
+                "stellte sich in Begleitung von Angehörigen in unserer Notaufnahme vor",
+                "stellte sich mit dem Rettungsdienst in unserer Notaufnahme vor",
+                "stellte sich mit dem Rettungsdienst in Notarztbegleitung in unserer Notaufnahme vor",
+                "stellte sich mit Einweisung aus der Hausarztpraxis in unserer Notaufnahme vor",
+                "stellte sich nach Zuweisung aus einer Praxis in unserer Notaufnahme vor",
+                "wurde aus einem anderen Krankenhaus zur weiteren Behandlung zu uns verlegt"
               ]
             },
             {
               "art": "text",
-              "text": " in unserer Notaufnahme vor. "
+              "text": ". "
             },
             {
               "art": "platzhalter",

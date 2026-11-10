@@ -87,6 +87,8 @@ export interface Einstellungen {
   zeichen: "original" | "einfach";
   /** Abschnittsüberschriften im Gesamtbrief mitkopieren */
   ueberschriften: boolean;
+  /** neben dem reinen Text eine formatierte Fassung (HTML) in die Zwischenablage legen (E-61) */
+  formatiert: boolean;
   listen: "striche" | "fliesstext";
   /** Hinweis zur Zweckbestimmung gelesen */
   hinweisGelesen: boolean;
@@ -101,6 +103,7 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   zeilenende: "crlf",
   zeichen: "einfach",
   ueberschriften: true,
+  formatiert: true,
   listen: "striche",
   hinweisGelesen: false,
   tippGesehen: false,
@@ -120,12 +123,22 @@ export function speichereEinstellungen(e: Einstellungen): boolean {
   return schreib(true, "einstellungen", e);
 }
 
+/**
+ * Formatstand der gespeicherten Fälle. 1 (ohne Angabe): bis v2. 2: Falldaten im Fallkopf (`daten`) und übernommene
+ * errechnete Daten (`fristen`), E-58, E-59; Werte vom Typ `medikation` mit Tabulator als Feldgrenze (E-62), aus Format 1
+ * werden Tabulatoren dort Leerzeichen (CR-R5-03). Ein Fall mit älterem Stand lädt weiter; die neuen Felder sind dann
+ * leer (`ergaenzt` in `engine/fall.ts`). Wer das Format der Fälle ändert, erhöht die Nummer und ergänzt `ergaenzt`.
+ */
+export const SITZUNG_FORMAT = 2;
+
 export interface Sitzung {
   /** rohe Fälle; der Store prüft und ergänzt sie */
   faelle: unknown[];
   aktivId: string | null;
   /** höchste bisher vergebene Fallnummer */
   zaehler: number;
+  /** Formatstand, mit dem die Fälle geschrieben wurden; beim Laden 1, wenn er fehlt */
+  format: number;
 }
 
 export function ladeSitzung(): Sitzung {
@@ -134,12 +147,13 @@ export function ladeSitzung(): Sitzung {
     faelle: Array.isArray(s?.faelle) ? s.faelle : [],
     aktivId: typeof s?.aktivId === "string" ? s.aktivId : null,
     zaehler: typeof s?.zaehler === "number" ? s.zaehler : 0,
+    format: typeof s?.format === "number" && Number.isInteger(s.format) && s.format >= 1 ? s.format : 1,
   };
 }
 
-/** Fallinhalte liegen nur im Sitzungsspeicher, nie im dauerhaften Speicher. */
-export function speichereSitzung(s: Sitzung): boolean {
-  return schreib(false, "sitzung", s);
+/** Fallinhalte liegen nur im Sitzungsspeicher, nie im dauerhaften Speicher. Geschrieben wird immer der heutige Formatstand. */
+export function speichereSitzung(s: Omit<Sitzung, "format">): boolean {
+  return schreib(false, "sitzung", { ...s, format: SITZUNG_FORMAT });
 }
 
 export interface Nutzung {

@@ -1,0 +1,1954 @@
+{
+  "protokolle": [
+    {
+      "id": "proc-st-protokoll-hueft-tep-1",
+      "nr": 1,
+      "vorlage": "station-hueft-tep",
+      "variante": "dorsaler Zugang",
+      "titel": "Standardprotokoll: Hüftprothese, dorsaler Zugang: Vollbelastung, Luxationsregeln 6 Wochen",
+      "zeilen": [
+        "1. bis 2. Woche nach der Operation: Vollbelastung des Beins {seite} an Unterarmgehstützen im Dreipunktegang.",
+        "3. bis 6. Woche nach der Operation: Vollbelastung im Zweipunktegang. Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist.",
+        "Bis zum Ende der 6. Woche nach der Operation: Hüfte {seite} nicht über 90° beugen, Beine nicht übereinanderschlagen, das Bein nicht nach innen drehen. Das beugt einer Luxation vor.",
+        "Ab der 7. Woche nach der Operation: keine Bewegungsgrenzen der Hüfte mehr. Belastung im Alltag nach Beschwerden steigern.",
+        "Physiotherapie mit Gangschule, Treppensteigen und Kräftigung der Hüftmuskulatur.",
+        "Klinische und radiologische Kontrolle der Hüfte {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung frühestens ab dem 4. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 12 Wochen, mittelschwere bis schwere Tätigkeit 16 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/luxation",
+        "proc-st-kontrollen/klinisch",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-hueft-tep-2",
+      "nr": 2,
+      "vorlage": "station-hueft-tep",
+      "variante": "vorderer oder seitlicher Zugang",
+      "titel": "Standardprotokoll: Hüftprothese, vorderer oder seitlicher Zugang: Vollbelastung, Luxationsregeln 6 Wochen",
+      "zeilen": [
+        "1. bis 2. Woche nach der Operation: Vollbelastung des Beins {seite} an Unterarmgehstützen im Dreipunktegang.",
+        "3. bis 6. Woche nach der Operation: Vollbelastung im Zweipunktegang. Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist.",
+        "Bis zum Ende der 6. Woche nach der Operation: Hüfte {seite} nicht überstrecken und das Bein nicht nach außen drehen. Das beugt einer Luxation vor.",
+        "Ab der 7. Woche nach der Operation: keine Bewegungsgrenzen der Hüfte mehr. Belastung im Alltag nach Beschwerden steigern.",
+        "Physiotherapie mit Gangschule, Treppensteigen und Kräftigung der Hüftmuskulatur.",
+        "Klinische und radiologische Kontrolle der Hüfte {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung frühestens ab dem 4. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 12 Wochen, mittelschwere bis schwere Tätigkeit 16 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/luxation",
+        "proc-st-kontrollen/klinisch",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-knie-tep-1",
+      "nr": 3,
+      "vorlage": "station-knie-tep",
+      "variante": "Standard",
+      "titel": "Standardprotokoll: Knieprothese: Vollbelastung, Bewegung frei, Beugeziel 90° nach 2 Wochen",
+      "zeilen": [
+        "1. bis 2. Woche nach der Operation: Vollbelastung des Beins {seite} an Unterarmgehstützen im Dreipunktegang. Kniegelenk aktiv und passiv ohne Bewegungsgrenze üben, Ziel Extension/Flexion 0/0/90°.",
+        "Kein Kissen unter die Kniekehle legen, die volle Streckung täglich üben.",
+        "3. bis 6. Woche nach der Operation: Vollbelastung im Zweipunktegang, Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist. Ziel Extension/Flexion 0/0/110°.",
+        "Ab der 7. Woche nach der Operation: Belastung im Alltag nach Beschwerden steigern.",
+        "Physiotherapie mit Bewegungsübungen, Gangschule, Kräftigung der Oberschenkelmuskulatur und manueller Lymphdrainage bei Schwellung.",
+        "Klinische Kontrolle des Kniegelenks {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung frühestens ab dem 4. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 12 Wochen, mittelschwere bis schwere Tätigkeit 16 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-kontrollen/klinisch",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-schenkelhalsfraktur-prothese-1",
+      "nr": 4,
+      "vorlage": "station-schenkelhalsfraktur-prothese",
+      "variante": "dorsaler Zugang",
+      "titel": "Standardprotokoll: Schenkelhalsfraktur mit Prothese, dorsaler Zugang: Vollbelastung, Luxationsregeln 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Vollbelastung des Beins {seite} {gehhilfe}.",
+        "Bis zum Ende der 6. Woche nach der Operation: Hüfte {seite} nicht über 90° beugen, Beine nicht übereinanderschlagen, das Bein nicht nach innen drehen. Das beugt einer Luxation vor.",
+        "Physiotherapie mit Gangschule, Transfertraining, Kräftigung und Sturzvorbeugung.",
+        "Ab der 7. Woche nach der Operation: keine Bewegungsgrenzen der Hüfte mehr. Gehhilfe abtrainieren, sobald der Gang sicher ist.",
+        "Röntgenkontrolle der Hüfte {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung-hueftfraktur/bein",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/bewegung",
+        "proc-st-hueftprothese-luxation/regeln",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-schenkelhalsfraktur-prothese-2",
+      "nr": 5,
+      "vorlage": "station-schenkelhalsfraktur-prothese",
+      "variante": "vorderer oder seitlicher Zugang",
+      "titel": "Standardprotokoll: Schenkelhalsfraktur mit Prothese, vorderer oder seitlicher Zugang: Vollbelastung, Luxationsregeln 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Vollbelastung des Beins {seite} {gehhilfe}.",
+        "Bis zum Ende der 6. Woche nach der Operation: Hüfte {seite} nicht überstrecken und das Bein nicht nach außen drehen. Das beugt einer Luxation vor.",
+        "Physiotherapie mit Gangschule, Transfertraining, Kräftigung und Sturzvorbeugung.",
+        "Ab der 7. Woche nach der Operation: keine Bewegungsgrenzen der Hüfte mehr. Gehhilfe abtrainieren, sobald der Gang sicher ist.",
+        "Röntgenkontrolle der Hüfte {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung-hueftfraktur/bein",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/bewegung",
+        "proc-st-hueftprothese-luxation/regeln",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-schenkelhalsfraktur-osteosynthese-1",
+      "nr": 6,
+      "vorlage": "station-schenkelhalsfraktur-osteosynthese",
+      "variante": "belastungsstabil",
+      "titel": "Standardprotokoll: Schenkelhalsfraktur, Osteosynthese belastungsstabil: schmerzadaptierte Vollbelastung",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: schmerzadaptierte Vollbelastung des Beins {seite} {gehhilfe}. Hüfte ohne Bewegungsgrenze nach Schmerzen bewegen.",
+        "Physiotherapie mit Gangschule, Transfertraining, Kräftigung und Sturzvorbeugung.",
+        "Ab der 7. Woche nach der Operation: Gehhilfe abtrainieren, sobald der Gang sicher ist.",
+        "Röntgenkontrolle der Hüfte {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung frühestens ab dem 5. Monat, mit hoher Stoßbelastung ab dem 6. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 16 Wochen, mittelschwere bis schwere Tätigkeit 20 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung-hueftfraktur/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-schenkelhals/beweglichkeit",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-schenkelhalsfraktur-osteosynthese-2",
+      "nr": 7,
+      "vorlage": "station-schenkelhalsfraktur-osteosynthese",
+      "variante": "nicht belastungsstabil",
+      "titel": "Standardprotokoll: Schenkelhalsfraktur, Osteosynthese nicht belastungsstabil: Teilbelastung 20 kg für 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg an Unterarmgehstützen im Dreipunktegang. Hüfte ohne Bewegungsgrenze nach Schmerzen bewegen.",
+        "Physiotherapie mit Gangschule unter Teilbelastung, Transfertraining und Kräftigung.",
+        "Röntgenkontrolle der Hüfte {seite} 6 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: nach Röntgenkontrolle ohne Verschiebung Steigerung bis zur Vollbelastung innerhalb von 2 Wochen.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung frühestens ab dem 5. Monat, mit hoher Stoßbelastung ab dem 6. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 16 Wochen, mittelschwere bis schwere Tätigkeit 20 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung-hueftfraktur/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-schenkelhals/beweglichkeit",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-pertrochantaere-femurfraktur-marknagel-1",
+      "nr": 8,
+      "vorlage": "station-pertrochantaere-femurfraktur-marknagel",
+      "variante": "belastungsstabil",
+      "titel": "Standardprotokoll: Pertrochantäre Fraktur, Marknagel belastungsstabil: schmerzadaptierte Vollbelastung",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: schmerzadaptierte Vollbelastung des Beins {seite} {gehhilfe}. Hüfte ohne Bewegungsgrenze nach Schmerzen bewegen.",
+        "Physiotherapie mit Gangschule, Transfertraining, Kräftigung und Sturzvorbeugung.",
+        "Ab der 7. Woche nach der Operation: Gehhilfe abtrainieren, sobald der Gang sicher ist.",
+        "Röntgenkontrolle von Hüfte und Oberschenkel {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung frühestens ab dem 5. Monat, mit hoher Stoßbelastung ab dem 6. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 12 Wochen, mittelschwere bis schwere Tätigkeit 20 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/bewegung",
+        "proc-st-pertroch/beweglichkeit",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-pertrochantaere-femurfraktur-marknagel-2",
+      "nr": 9,
+      "vorlage": "station-pertrochantaere-femurfraktur-marknagel",
+      "variante": "nicht belastungsstabil",
+      "titel": "Standardprotokoll: Pertrochantäre Fraktur, Marknagel nicht belastungsstabil: Teilbelastung 20 kg für 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg an Unterarmgehstützen im Dreipunktegang. Hüfte ohne Bewegungsgrenze nach Schmerzen bewegen.",
+        "Physiotherapie mit Gangschule unter Teilbelastung, Transfertraining und Kräftigung.",
+        "Röntgenkontrolle von Hüfte und Oberschenkel {seite} 6 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: nach Röntgenkontrolle ohne Verschiebung Steigerung bis zur Vollbelastung innerhalb von 2 Wochen.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 12 Wochen, mittelschwere bis schwere Tätigkeit 20 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/bewegung",
+        "proc-st-pertroch/beweglichkeit",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-periprothetische-femurfraktur-huefte-1",
+      "nr": 10,
+      "vorlage": "station-periprothetische-femurfraktur-huefte",
+      "variante": "Belastung begrenzt",
+      "titel": "Standardprotokoll: Periprothetische Femurfraktur Hüfte (ohne Leitlinie, Hausschema empfohlen): Teilbelastung 20 kg für 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg {gehhilfe}.",
+        "Physiotherapie mit Gangschule unter der erlaubten Belastung, Transfertraining und Kräftigung.",
+        "Röntgenkontrolle von Hüfte und Oberschenkel {seite} 6 und 12 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: nach Röntgenkontrolle ohne Verschiebung und ohne Lockerungszeichen schrittweise Steigerung bis zur Vollbelastung.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in unserer Sprechstunde nach Terminvereinbarung"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-periprothetisch-belastung/entlassung",
+        "proc-st-periprothetisch-belastung/weiter",
+        "proc-st-periprothetisch-belastung/gehhilfe",
+        "proc-st-periprothetisch-kontrolle/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": true,
+      "vermerk": "ohne Leitlinie, Hausschema empfohlen",
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-periprothetische-femurfraktur-huefte-2",
+      "nr": 11,
+      "vorlage": "station-periprothetische-femurfraktur-huefte",
+      "variante": "Belastung freigegeben",
+      "titel": "Standardprotokoll: Periprothetische Femurfraktur Hüfte (ohne Leitlinie, Hausschema empfohlen): schmerzadaptierte Vollbelastung",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: schmerzadaptierte Vollbelastung des Beins {seite} {gehhilfe}.",
+        "Physiotherapie mit Gangschule, Transfertraining und Kräftigung.",
+        "Röntgenkontrolle von Hüfte und Oberschenkel {seite} 6 und 12 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: Gehhilfe abtrainieren, sobald der Gang sicher ist.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in unserer Sprechstunde nach Terminvereinbarung"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-periprothetisch-belastung/entlassung",
+        "proc-st-periprothetisch-belastung/weiter",
+        "proc-st-periprothetisch-belastung/gehhilfe",
+        "proc-st-periprothetisch-kontrolle/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": true,
+      "vermerk": "ohne Leitlinie, Hausschema empfohlen",
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-periprothetische-fraktur-knie-1",
+      "nr": 12,
+      "vorlage": "station-periprothetische-fraktur-knie",
+      "variante": "Belastung begrenzt",
+      "titel": "Standardprotokoll: Periprothetische Fraktur Knie (ohne Leitlinie, Hausschema empfohlen): Teilbelastung 20 kg für 6 Wochen, Bewegung frei",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg {gehhilfe}.",
+        "Kniegelenk aktiv und passiv nach Schmerzen bewegen, Ziel Extension/Flexion 0/0/90° bis zum Ende der 2. Woche. Kein Kissen unter die Kniekehle legen.",
+        "Physiotherapie mit Bewegungsübungen, Gangschule unter der erlaubten Belastung und Kräftigung der Oberschenkelmuskulatur.",
+        "Röntgenkontrolle {region} {seite} 6 und 12 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: nach Röntgenkontrolle ohne Verschiebung und ohne Lockerungszeichen schrittweise Steigerung bis zur Vollbelastung.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in unserer Sprechstunde nach Terminvereinbarung"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen"
+          ],
+          "pflicht": true
+        },
+        "region": {
+          "label": "Region",
+          "optionen": [
+            "von Knie und Oberschenkel",
+            "von Knie und Unterschenkel",
+            "von Knie, Ober- und Unterschenkel"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-periprothetisch-belastung/entlassung",
+        "proc-st-periprothetisch-belastung/weiter",
+        "proc-st-periprothetisch-belastung/gehhilfe",
+        "proc-st-periprothetisch-knie-bewegung/knie",
+        "proc-st-periprothetisch-knie-bewegung/streckung",
+        "proc-st-periprothetisch-kontrolle/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": true,
+      "vermerk": "ohne Leitlinie, Hausschema empfohlen",
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-periprothetische-fraktur-knie-2",
+      "nr": 13,
+      "vorlage": "station-periprothetische-fraktur-knie",
+      "variante": "Belastung freigegeben",
+      "titel": "Standardprotokoll: Periprothetische Fraktur Knie (ohne Leitlinie, Hausschema empfohlen): schmerzadaptierte Vollbelastung, Bewegung frei",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: schmerzadaptierte Vollbelastung des Beins {seite} {gehhilfe}.",
+        "Kniegelenk aktiv und passiv nach Schmerzen bewegen, Ziel Extension/Flexion 0/0/90° bis zum Ende der 2. Woche. Kein Kissen unter die Kniekehle legen.",
+        "Physiotherapie mit Bewegungsübungen, Gangschule und Kräftigung der Oberschenkelmuskulatur.",
+        "Röntgenkontrolle {region} {seite} 6 und 12 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: Gehhilfe abtrainieren, sobald der Gang sicher ist.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in unserer Sprechstunde nach Terminvereinbarung"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen"
+          ],
+          "pflicht": true
+        },
+        "region": {
+          "label": "Region",
+          "optionen": [
+            "von Knie und Oberschenkel",
+            "von Knie und Unterschenkel",
+            "von Knie, Ober- und Unterschenkel"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-periprothetisch-belastung/entlassung",
+        "proc-st-periprothetisch-belastung/weiter",
+        "proc-st-periprothetisch-belastung/gehhilfe",
+        "proc-st-periprothetisch-knie-bewegung/knie",
+        "proc-st-periprothetisch-knie-bewegung/streckung",
+        "proc-st-periprothetisch-kontrolle/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": true,
+      "vermerk": "ohne Leitlinie, Hausschema empfohlen",
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-beckenringfraktur-konservativ-1",
+      "nr": 14,
+      "vorlage": "station-beckenringfraktur-konservativ",
+      "variante": "Fragilitätsfraktur",
+      "titel": "Standardprotokoll: Beckenringfraktur beim älteren Menschen: schmerzadaptierte Vollbelastung, Röntgen nach 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach dem Unfall: schmerzadaptierte Vollbelastung beider Beine {gehhilfe}. Gehstrecke nach Schmerzen steigern.",
+        "Keine Bettruhe und keine Beckenorthese.",
+        "Physiotherapie mit Gangschule, Transfertraining und Sturzvorbeugung.",
+        "Röntgenkontrolle des Beckens 6 Wochen nach dem Unfall {wo}.",
+        "Ab der 7. Woche nach dem Unfall: Gehhilfe abtrainieren, sobald der Gang sicher ist.",
+        "Abweichungen nach Maßgabe der weiterbehandelnden unfallchirurgischen oder orthopädischen Praxis."
+      ],
+      "zusatz": [],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-beckenring-konservativ/belastung",
+        "proc-st-beckenring-konservativ/schema",
+        "proc-st-beckenring-konservativ/steigerung",
+        "proc-st-beckenring-konservativ/roentgen",
+        "proc-st-beckenring-konservativ/sport",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-beckenringfraktur-konservativ-2",
+      "nr": 15,
+      "vorlage": "station-beckenringfraktur-konservativ",
+      "variante": "jüngerer Mensch, stabile Fraktur",
+      "titel": "Standardprotokoll: Beckenringfraktur stabil, jüngerer Mensch: Steigerung bis zur Vollbelastung in 2 Wochen",
+      "zeilen": [
+        "1. bis 2. Woche nach dem Unfall: Belastung beider Beine an Unterarmgehstützen nach Schmerzen steigern bis zur Vollbelastung.",
+        "3. bis 6. Woche nach dem Unfall: Vollbelastung, Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist.",
+        "Keine Beckenorthese.",
+        "Physiotherapie mit Gangschule und Kräftigung der Hüft- und Rumpfmuskulatur.",
+        "Röntgenkontrolle des Beckens 6 Wochen nach dem Unfall {wo}.",
+        "Ab der 7. Woche nach dem Unfall: Belastung im Alltag nach Beschwerden steigern.",
+        "Abweichungen nach Maßgabe der weiterbehandelnden unfallchirurgischen oder orthopädischen Praxis."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung ab dem 4. Monat, mit hoher Stoßbelastung ab dem 6. Monat nach dem Unfall.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 8 Wochen, mittelschwere bis schwere Tätigkeit 12 Wochen nach dem Unfall."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-beckenring-konservativ/belastung",
+        "proc-st-beckenring-konservativ/schema",
+        "proc-st-beckenring-konservativ/steigerung",
+        "proc-st-beckenring-konservativ/roentgen",
+        "proc-st-beckenring-konservativ/sport",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-beckenringfraktur-konservativ-3",
+      "nr": 16,
+      "vorlage": "station-beckenringfraktur-konservativ",
+      "variante": "jüngerer Mensch, hinterer Beckenring beteiligt",
+      "titel": "Standardprotokoll: Beckenringfraktur mit hinterer Beteiligung, konservativ: Teilbelastung 20 kg der verletzten Seite für 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach dem Unfall: Teilbelastung des Beins {bein} mit 20 kg an Unterarmgehstützen im Dreipunktegang. Das andere Bein voll belasten.",
+        "Keine Beckenorthese.",
+        "Physiotherapie mit Gangschule unter Teilbelastung und Kräftigung der Hüft- und Rumpfmuskulatur.",
+        "Röntgenkontrolle des Beckens 6 Wochen nach dem Unfall {wo}.",
+        "Ab der 7. Woche nach dem Unfall: nach Röntgenkontrolle ohne Verschiebung Steigerung bis zur Vollbelastung in 2 bis 3 Wochen.",
+        "Abweichungen nach Maßgabe der weiterbehandelnden unfallchirurgischen oder orthopädischen Praxis."
+      ],
+      "zusatz": [
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 8 Wochen, mittelschwere bis schwere Tätigkeit 12 Wochen nach dem Unfall."
+      ],
+      "felder": {
+        "bein": {
+          "label": "Seite des verletzten Beins",
+          "optionen": [
+            "rechts",
+            "links"
+          ],
+          "pflicht": true
+        },
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-beckenring-konservativ/belastung",
+        "proc-st-beckenring-konservativ/schema",
+        "proc-st-beckenring-konservativ/steigerung",
+        "proc-st-beckenring-konservativ/roentgen",
+        "proc-st-beckenring-konservativ/sport",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-tibiakopffraktur-osteosynthese-1",
+      "nr": 17,
+      "vorlage": "station-tibiakopffraktur-osteosynthese",
+      "variante": "Teilbelastung 6 Wochen",
+      "titel": "Standardprotokoll: Tibiakopffraktur, Osteosynthese: Teilbelastung 20 kg für 6 Wochen, Beugung bis 90°",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg an Unterarmgehstützen im Dreipunktegang. Kniegelenk aktiv und passiv bewegen bis Extension/Flexion 0/0/90°.",
+        "Physiotherapie mit Bewegungsübungen, Kräftigung der Oberschenkelmuskulatur, Lymphdrainage bei Schwellung und Gangschule unter Teilbelastung.",
+        "Röntgenkontrollen des Kniegelenks {seite} 2 und 6 Wochen nach der Operation {wo}.",
+        "7. bis 12. Woche nach der Operation: nach Röntgenkontrolle mit Zeichen der knöchernen Heilung schrittweise Steigerung bis zur Vollbelastung. Beugung ohne Bewegungsgrenze.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung frühestens ab dem 6. Monat, mit Sprüngen und Drehbewegungen ab dem 9. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 12 Wochen, mittelschwere bis schwere Tätigkeit 16 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-tibiakopf-osteosynthese/belastung",
+        "proc-st-tibiakopf-osteosynthese/schema",
+        "proc-st-tibiakopf-osteosynthese/steigerung",
+        "proc-st-tibiakopf-osteosynthese/bewegung",
+        "proc-st-tibiakopf-osteosynthese/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-tibiakopffraktur-osteosynthese-2",
+      "nr": 18,
+      "vorlage": "station-tibiakopffraktur-osteosynthese",
+      "variante": "Teilbelastung 12 Wochen",
+      "titel": "Standardprotokoll: Tibiakopffraktur, Osteosynthese mit Trümmerzone: Teilbelastung 20 kg für 12 Wochen, Beugung bis 90° für 6 Wochen",
+      "zeilen": [
+        "1. bis 12. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg an Unterarmgehstützen im Dreipunktegang.",
+        "1. bis 6. Woche nach der Operation: Kniegelenk aktiv und passiv bewegen bis Extension/Flexion 0/0/90°. Ab der 7. Woche Beugung ohne Bewegungsgrenze.",
+        "Physiotherapie mit Bewegungsübungen, Kräftigung der Oberschenkelmuskulatur, Lymphdrainage bei Schwellung und Gangschule unter Teilbelastung.",
+        "Röntgenkontrollen des Kniegelenks {seite} 2, 6 und 12 Wochen nach der Operation {wo}.",
+        "Ab der 13. Woche nach der Operation: nach Röntgenkontrolle mit Zeichen der knöchernen Heilung schrittweise Steigerung bis zur Vollbelastung.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung frühestens ab dem 6. Monat, mit Sprüngen und Drehbewegungen ab dem 9. Monat nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-tibiakopf-osteosynthese/belastung",
+        "proc-st-tibiakopf-osteosynthese/schema",
+        "proc-st-tibiakopf-osteosynthese/steigerung",
+        "proc-st-tibiakopf-osteosynthese/bewegung",
+        "proc-st-tibiakopf-osteosynthese/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-tibiakopffraktur-konservativ-1",
+      "nr": 19,
+      "vorlage": "station-tibiakopffraktur-konservativ",
+      "variante": "Standard",
+      "titel": "Standardprotokoll: Tibiakopffraktur konservativ: Teilbelastung 15 kg für 6 Wochen in Knieorthese",
+      "zeilen": [
+        "1. bis 6. Woche nach dem Unfall: Teilbelastung des Beins {seite} mit 15 kg an Unterarmgehstützen im Dreipunktegang.",
+        "Knieorthese ohne Bewegungsgrenze beim Gehen und nachts tragen, zur Körperpflege und für die Übungen abnehmen.",
+        "Kniegelenk aktiv und passiv nach Schmerzen bewegen, Ziel Extension/Flexion 0/0/90°.",
+        "Physiotherapie mit Bewegungsübungen, Kräftigung der Oberschenkelmuskulatur und Gangschule unter Teilbelastung.",
+        "Röntgenkontrollen des Kniegelenks {seite} 1, 2 und 6 Wochen nach dem Unfall {wo}.",
+        "Ab der 7. Woche nach dem Unfall: nach Röntgenkontrolle mit Zeichen der knöchernen Heilung schrittweise Steigerung bis zur Vollbelastung. Orthese dann abtrainieren.",
+        "Abweichungen nach Maßgabe der weiterbehandelnden unfallchirurgischen oder orthopädischen Praxis."
+      ],
+      "zusatz": [],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-tibiakopf-konservativ/belastung",
+        "proc-st-tibiakopf-konservativ/ruhigstellung",
+        "proc-st-tibiakopf-konservativ/schema",
+        "proc-st-tibiakopf-konservativ/steigerung",
+        "proc-st-tibiakopf-konservativ/bewegung",
+        "proc-st-tibiakopf-konservativ/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-unterschenkelschaftfraktur-marknagel-1",
+      "nr": 20,
+      "vorlage": "station-unterschenkelschaftfraktur-marknagel",
+      "variante": "belastungsstabil",
+      "titel": "Standardprotokoll: Unterschenkelschaftfraktur, Marknagel belastungsstabil: Steigerung bis zur Vollbelastung in 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Belastung des Beins {seite} an Unterarmgehstützen nach Schmerzen steigern bis zur Vollbelastung.",
+        "Kniegelenk und oberes Sprunggelenk {seite} aktiv und passiv ohne Bewegungsgrenze bewegen. Fuß mehrmals täglich bis zur Neutralstellung anziehen.",
+        "Physiotherapie mit Gangschule, Bewegungsübungen von Knie und Sprunggelenk und Kräftigung.",
+        "Röntgenkontrollen des Unterschenkels {seite} mit angrenzenden Gelenken 6 und 12 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung frühestens ab dem 4. Monat, mit hoher Stoßbelastung ab dem 6. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 8 Wochen, mittelschwere bis schwere Tätigkeit 12 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-unterschenkel-marknagel/belastung",
+        "proc-st-unterschenkel-marknagel/schema",
+        "proc-st-unterschenkel-marknagel/steigerung",
+        "proc-st-unterschenkel-marknagel/bewegung",
+        "proc-st-unterschenkel-marknagel/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-unterschenkelschaftfraktur-marknagel-2",
+      "nr": 21,
+      "vorlage": "station-unterschenkelschaftfraktur-marknagel",
+      "variante": "nicht belastungsstabil",
+      "titel": "Standardprotokoll: Unterschenkelschaftfraktur, Marknagel nicht belastungsstabil: Teilbelastung 20 kg für 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg an Unterarmgehstützen im Dreipunktegang.",
+        "Kniegelenk und oberes Sprunggelenk {seite} aktiv und passiv ohne Bewegungsgrenze bewegen. Fuß mehrmals täglich bis zur Neutralstellung anziehen.",
+        "Physiotherapie mit Gangschule unter Teilbelastung, Bewegungsübungen von Knie und Sprunggelenk und Kräftigung.",
+        "Röntgenkontrollen des Unterschenkels {seite} mit angrenzenden Gelenken 6 und 12 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: nach Röntgenkontrolle mit Zeichen der knöchernen Heilung schrittweise Steigerung bis zur Vollbelastung.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung frühestens ab dem 4. Monat, mit hoher Stoßbelastung ab dem 6. Monat nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-unterschenkel-marknagel/belastung",
+        "proc-st-unterschenkel-marknagel/schema",
+        "proc-st-unterschenkel-marknagel/steigerung",
+        "proc-st-unterschenkel-marknagel/bewegung",
+        "proc-st-unterschenkel-marknagel/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-osg-fraktur-osteosynthese-1",
+      "nr": 22,
+      "vorlage": "station-osg-fraktur-osteosynthese",
+      "variante": "ohne Stellschraube, Teilbelastung",
+      "titel": "Standardprotokoll: Sprunggelenkfraktur ohne Stellschraube: Teilbelastung 20 kg für 6 Wochen in Orthese",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg an Unterarmgehstützen im Dreipunktegang.",
+        "Unterschenkelorthese beim Gehen tragen. Oberes Sprunggelenk aus der Orthese heraus aktiv und passiv ohne Bewegungsgrenze bewegen.",
+        "Physiotherapie mit Bewegungsübungen des Sprunggelenks, Lymphdrainage bei Schwellung und Gangschule unter Teilbelastung.",
+        "Röntgenkontrolle des Sprunggelenks {seite} 6 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: nach Röntgenkontrolle schrittweise Steigerung bis zur Vollbelastung. Orthese und Unterarmgehstützen abtrainieren.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit Sprüngen und Richtungswechseln frühestens ab dem 4. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 8 Wochen, mittelschwere bis schwere Tätigkeit 12 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/ruhigstellung",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-osg-fraktur-osteosynthese-2",
+      "nr": 23,
+      "vorlage": "station-osg-fraktur-osteosynthese",
+      "variante": "ohne Stellschraube, frühfunktionell",
+      "titel": "Standardprotokoll: Sprunggelenkfraktur ohne Stellschraube, frühfunktionell: Vollbelastung bis Ende der 4. Woche",
+      "zeilen": [
+        "1. bis 2. Woche nach der Operation: Belastung des Beins {seite} an Unterarmgehstützen nach Schmerzen steigern.",
+        "Keine Ruhigstellung. Oberes Sprunggelenk aktiv und passiv ohne Bewegungsgrenze bewegen.",
+        "3. bis 4. Woche nach der Operation: Vollbelastung im Zweipunktegang, Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist.",
+        "Physiotherapie mit Bewegungsübungen des Sprunggelenks, Lymphdrainage bei Schwellung und Gangschule.",
+        "Röntgenkontrollen des Sprunggelenks {seite} 2 und 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung ab dem 3. Monat, mit Sprüngen und Richtungswechseln ab dem 4. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 8 Wochen, mittelschwere bis schwere Tätigkeit 10 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/ruhigstellung",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-osg-fraktur-osteosynthese-3",
+      "nr": 24,
+      "vorlage": "station-osg-fraktur-osteosynthese",
+      "variante": "mit Stellschraube",
+      "titel": "Standardprotokoll: Sprunggelenkfraktur mit Stellschraube (ohne Leitlinie, Hausschema empfohlen): Teilbelastung 20 kg für 6 Wochen, Vollbelastung nach Schraubenentfernung",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg an Unterarmgehstützen im Dreipunktegang.",
+        "Unterschenkelorthese beim Gehen tragen. Oberes Sprunggelenk aus der Orthese heraus aktiv und passiv bewegen.",
+        "Physiotherapie mit Bewegungsübungen des Sprunggelenks, Lymphdrainage bei Schwellung und Gangschule unter Teilbelastung.",
+        "Röntgenkontrolle des Sprunggelenks {seite} 6 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: nach Entfernung der Stellschraube schrittweise Steigerung bis zur Vollbelastung. Orthese und Unterarmgehstützen abtrainieren.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/ruhigstellung",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": true,
+      "vermerk": "ohne Leitlinie, Hausschema empfohlen",
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-kniearthroskopie-meniskusnaht-1",
+      "nr": 25,
+      "vorlage": "station-kniearthroskopie-meniskusnaht",
+      "variante": "Längs- oder Korbhenkelriss",
+      "titel": "Standardprotokoll: Meniskusnaht, Längs- oder Korbhenkelriss: Teilbelastung 20 kg und Beugung bis 90° für 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg an Unterarmgehstützen im Dreipunktegang.",
+        "Knieorthese mit Bewegungsgrenze Extension/Flexion 0/0/90° beim Gehen und nachts tragen. Kniegelenk innerhalb dieser Grenze bewegen, Beugung nur ohne Belastung.",
+        "Physiotherapie mit Bewegungsübungen innerhalb der Grenze, Kräftigung der Oberschenkelmuskulatur und Gangschule unter Teilbelastung.",
+        "7. bis 12. Woche nach der Operation: schrittweise Steigerung bis zur Vollbelastung, Orthese und Unterarmgehstützen abtrainieren. Beugung bis zur freien Beweglichkeit steigern.",
+        "Bis zum Ende der 12. Woche nach der Operation keine tiefe Hocke und keine Beugung über 90° unter Belastung.",
+        "Klinische Kontrolle des Kniegelenks {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Kniebelastung frühestens ab dem 6. Monat, mit Sprüngen und Drehbewegungen ab dem 9. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 12 Wochen, mittelschwere bis schwere Tätigkeit 16 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-meniskus-naht/belastung",
+        "proc-st-meniskus-naht/schema",
+        "proc-st-meniskus-naht/steigerung",
+        "proc-st-meniskus-naht/bewegung",
+        "proc-st-meniskus-naht/orthese",
+        "proc-st-meniskus-naht/hocke",
+        "proc-st-kontrollen/klinisch",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-kniearthroskopie-meniskusnaht-2",
+      "nr": 26,
+      "vorlage": "station-kniearthroskopie-meniskusnaht",
+      "variante": "Wurzel- oder Radiärriss",
+      "titel": "Standardprotokoll: Meniskusnaht, Wurzel- oder Radiärriss: Minimalbelastung 6 Wochen, Beugung 60° dann 90°",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Minimalbelastung des Beins {seite} an Unterarmgehstützen, den Fuß nur mit dem Gewicht des Beins aufsetzen.",
+        "Knieorthese beim Gehen und nachts tragen. Kniegelenk bis zum Ende der 2. Woche bis Extension/Flexion 0/0/60° bewegen, danach bis 0/0/90°.",
+        "Physiotherapie mit Bewegungsübungen innerhalb der Grenze, Kräftigung der Oberschenkelmuskulatur in Streckung und Gangschule.",
+        "7. bis 12. Woche nach der Operation: schrittweise Steigerung bis zur Vollbelastung, Orthese und Unterarmgehstützen abtrainieren. Beugung bis zur freien Beweglichkeit steigern.",
+        "Bis zum Ende der 12. Woche nach der Operation keine tiefe Hocke und keine Beugung über 90° unter Belastung.",
+        "Klinische Kontrolle des Kniegelenks {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Kniebelastung frühestens ab dem 6. Monat, mit Sprüngen und Drehbewegungen ab dem 9. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 12 Wochen, mittelschwere bis schwere Tätigkeit 16 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-meniskus-naht/belastung",
+        "proc-st-meniskus-naht/schema",
+        "proc-st-meniskus-naht/steigerung",
+        "proc-st-meniskus-naht/bewegung",
+        "proc-st-meniskus-naht/orthese",
+        "proc-st-meniskus-naht/hocke",
+        "proc-st-kontrollen/klinisch",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-kniearthroskopie-meniskusteilresektion-1",
+      "nr": 27,
+      "vorlage": "station-kniearthroskopie-meniskusteilresektion",
+      "variante": "Standard",
+      "titel": "Standardprotokoll: Meniskusteilresektion: schmerzadaptierte Vollbelastung, Bewegung frei",
+      "zeilen": [
+        "1. bis 2. Woche nach der Operation: schmerzadaptierte Vollbelastung des Beins {seite}. Unterarmgehstützen, bis das Gehen ohne Hinken gelingt.",
+        "Kniegelenk ohne Bewegungsgrenze nach Schmerzen bewegen, Drehbewegungen unter Belastung bis zum Ende der 2. Woche vermeiden.",
+        "Physiotherapie mit Bewegungsübungen, Kräftigung der Oberschenkelmuskulatur und Koordinationstraining.",
+        "Ab der 3. Woche nach der Operation: Belastung im Alltag ohne Einschränkung.",
+        "Eine Röntgenkontrolle ist nicht erforderlich.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport stufenweise nach Abklingen von Schwellung und Schmerz. Sprünge, Stopps und Drehbewegungen frühestens ab der 7. Woche nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 4 Wochen, schwere Tätigkeit 6 Wochen nach der Operation."
+      ],
+      "felder": {},
+      "ersetzt": [
+        "proc-st-meniskus-resektion/belastung",
+        "proc-st-meniskus-resektion/schema",
+        "proc-st-meniskus-resektion/steigerung",
+        "proc-st-meniskus-resektion/bewegung",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-vkb-plastik-1",
+      "nr": 28,
+      "vorlage": "station-vkb-plastik",
+      "variante": "isoliert",
+      "titel": "Standardprotokoll: Vordere Kreuzbandplastik isoliert: Steigerung bis zur Vollbelastung, Beugung bis 90° für 2 Wochen, ohne Orthese",
+      "zeilen": [
+        "1. bis 2. Woche nach der Operation: Belastung des Beins {seite} an Unterarmgehstützen nach Schwellung und Schmerz steigern bis zur Vollbelastung.",
+        "Kniegelenk {seite} bis Extension/Flexion 0/0/90° bewegen, die volle Streckung von Beginn an üben. Kein Kissen unter die Kniekehle legen.",
+        "Eine Knieorthese ist nicht erforderlich.",
+        "3. bis 6. Woche nach der Operation: Vollbelastung, Unterarmgehstützen abtrainieren, sobald der Gang ohne Hinken sicher ist. Beugung bis zur freien Beweglichkeit steigern.",
+        "Physiotherapie mit Streckübungen, Kräftigung in geschlossener Kette, Koordination und Gangschule.",
+        "7. bis 12. Woche nach der Operation: Kraft-, Koordinations- und Ausdauertraining, z. B. auf dem Fahrradergometer. Lauftraining frühestens ab der 13. Woche.",
+        "Klinische Kontrolle des Kniegelenks {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Kniebelastung frühestens ab dem 6. Monat, mit Sprüngen und Drehbewegungen ab dem 12. Monat nach Funktionstest.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 12 Wochen, mittelschwere bis schwere Tätigkeit 16 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-vkb-plastik/belastung",
+        "proc-st-vkb-plastik/schema",
+        "proc-st-vkb-plastik/steigerung",
+        "proc-st-vkb-plastik/bewegung",
+        "proc-st-vkb-plastik/orthese",
+        "proc-st-kontrollen/klinisch",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-vkb-plastik-2",
+      "nr": 29,
+      "vorlage": "station-vkb-plastik",
+      "variante": "mit Meniskusnaht",
+      "titel": "Standardprotokoll: Vordere Kreuzbandplastik mit Meniskusnaht: Teilbelastung 20 kg und Beugung bis 90° in Orthese für 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Teilbelastung des Beins {seite} mit 20 kg an Unterarmgehstützen im Dreipunktegang.",
+        "Knieorthese mit Bewegungsgrenze Extension/Flexion 0/0/90° beim Gehen und nachts tragen. Volle Streckung von Beginn an üben, Beugung nur ohne Belastung.",
+        "Physiotherapie mit Streckübungen, Bewegungsübungen innerhalb der Grenze, Kräftigung der Oberschenkelmuskulatur und Gangschule unter Teilbelastung.",
+        "7. bis 12. Woche nach der Operation: schrittweise Steigerung bis zur Vollbelastung, Orthese und Unterarmgehstützen abtrainieren. Beugung bis zur freien Beweglichkeit steigern.",
+        "Bis zum Ende der 12. Woche nach der Operation keine tiefe Hocke und keine Beugung über 90° unter Belastung.",
+        "Klinische Kontrolle des Kniegelenks {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Kniebelastung frühestens ab dem 6. Monat, mit Sprüngen und Drehbewegungen ab dem 12. Monat nach Funktionstest.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 12 Wochen, mittelschwere bis schwere Tätigkeit 16 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-vkb-plastik/belastung",
+        "proc-st-vkb-plastik/schema",
+        "proc-st-vkb-plastik/steigerung",
+        "proc-st-vkb-plastik/bewegung",
+        "proc-st-vkb-plastik/orthese",
+        "proc-st-kontrollen/klinisch",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-proximale-humerusfraktur-osteosynthese-1",
+      "nr": 30,
+      "vorlage": "station-proximale-humerusfraktur-osteosynthese",
+      "variante": "Standard",
+      "titel": "Standardprotokoll: Proximale Humerusfraktur, Osteosynthese: übungsstabil, 90° für 3 Wochen, keine Stützbelastung für 6 Wochen",
+      "zeilen": [
+        "1. bis 3. Woche nach der Operation: Schulter {seite} passiv und assistiv bewegen, Vorheben und Abspreizen bis 90°, Drehung nach Schmerzen.",
+        "Armschlinge nur zur Schmerzlinderung, zu den Übungen abnehmen. Ellenbogen, Handgelenk und Finger mehrmals täglich aktiv bewegen.",
+        "4. bis 6. Woche nach der Operation: zusätzlich aktiv bewegen, Bewegungsumfang nach Schmerzen über 90° steigern. Armschlinge abtrainieren.",
+        "Bis zum Ende der 6. Woche nach der Operation keine Stütz- und Hebebelastung des Arms {seite}.",
+        "7. bis 12. Woche nach der Operation: freie Beweglichkeit, Steigerung der Belastung bis zur vollen Alltagsbelastung.",
+        "Physiotherapie mit passiven und assistiven Bewegungsübungen, Pendelübungen und Schulterblattstabilisierung, ab der 7. Woche Kräftigung.",
+        "Röntgenkontrollen der Schulter {seite} 2 und 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Belastung der Schulter frühestens ab dem 3. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 8 Wochen, mittelschwere bis schwere Tätigkeit 12 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/arm",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/ruhigstellung",
+        "proc-st-verhalten/finger",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-kontrollen/roentgen-tage",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-proximale-humerusfraktur-inverse-prothese-1",
+      "nr": 31,
+      "vorlage": "station-proximale-humerusfraktur-inverse-prothese",
+      "variante": "Standard",
+      "titel": "Standardprotokoll: Proximale Humerusfraktur, inverse Prothese: Schlinge 4 Wochen, 90° für 6 Wochen, Luxationsregeln",
+      "zeilen": [
+        "1. bis 4. Woche nach der Operation: Armschlinge {seite} Tag und Nacht, zur Körperpflege und für die Übungen abnehmen.",
+        "Schulter passiv und assistiv bewegen, Vorheben und Abspreizen bis 90°, Drehung nach Schmerzen.",
+        "Bis zum Ende der 6. Woche nach der Operation: Arm nicht hinter den Körper führen, Hand nicht auf den Rücken legen, nicht abstützen.",
+        "5. bis 6. Woche nach der Operation: Armschlinge abtrainieren. Zusätzlich aktiv bewegen, Vorheben und Abspreizen weiter bis 90°.",
+        "7. bis 12. Woche nach der Operation: Steigerung bis zur freien Beweglichkeit und schrittweise bis zur vollen Alltagsbelastung.",
+        "Physiotherapie mit Bewegungsübungen innerhalb der Grenzen und Schulterblattstabilisierung, ab der 7. Woche Kräftigung des Deltamuskels.",
+        "Röntgenkontrollen der Schulter {seite} 6 und 12 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Belastung der Schulter frühestens ab dem 6. Monat nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/arm",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/ruhigstellung",
+        "proc-st-verhalten/finger",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-kontrollen/roentgen-tage",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-proximale-humerusfraktur-konservativ-1",
+      "nr": 32,
+      "vorlage": "station-proximale-humerusfraktur-konservativ",
+      "variante": "Ruhigstellung 3 Wochen",
+      "titel": "Standardprotokoll: Proximale Humerusfraktur konservativ: Gilchrist-Verband 3 Wochen, dann passiv bis 90°",
+      "zeilen": [
+        "1. bis 3. Woche nach dem Unfall: Gilchrist-Verband {seite} Tag und Nacht, zur Körperpflege vorsichtig abnehmen. Schulter nicht aktiv bewegen.",
+        "Ellenbogen, Handgelenk und Finger mehrmals täglich aktiv bewegen.",
+        "4. bis 6. Woche nach dem Unfall: Gilchrist-Verband abtrainieren. Pendelübungen, Schulter passiv und assistiv bewegen, Vorheben und Abspreizen bis 90°.",
+        "7. bis 12. Woche nach dem Unfall: zusätzlich aktiv ohne Bewegungsgrenze bewegen, Belastung schrittweise bis zur vollen Alltagsbelastung steigern.",
+        "Bis zum Ende der 8. Woche nach dem Unfall keine Stütz- und Hebebelastung des Arms {seite}.",
+        "Physiotherapie ab der 4. Woche mit Pendelübungen, passiven und assistiven Bewegungsübungen, ab der 7. Woche aktiv mit Kräftigung.",
+        "Röntgenkontrollen der Schulter {seite} 1, 3 und 6 Wochen nach dem Unfall {wo}.",
+        "Abweichungen nach Maßgabe der weiterbehandelnden unfallchirurgischen oder orthopädischen Praxis."
+      ],
+      "zusatz": [
+        "Sport mit geringer Belastung der Schulter ab dem 4. Monat, mit hoher Belastung ab dem 6. Monat nach dem Unfall.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 10 Wochen, mittelschwere bis schwere Tätigkeit 12 Wochen nach dem Unfall."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/arm",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/ruhigstellung",
+        "proc-st-verhalten/finger",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-kontrollen/roentgen-tage",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-proximale-humerusfraktur-konservativ-2",
+      "nr": 33,
+      "vorlage": "station-proximale-humerusfraktur-konservativ",
+      "variante": "frühfunktionell",
+      "titel": "Standardprotokoll: Proximale Humerusfraktur konservativ, eingestaucht: Gilchrist-Verband 1 Woche, dann passiv bis 90°",
+      "zeilen": [
+        "1. Woche nach dem Unfall: Gilchrist-Verband {seite} zur Schmerzlinderung, zur Körperpflege vorsichtig abnehmen. Ellenbogen, Handgelenk und Finger aktiv bewegen.",
+        "2. bis 6. Woche nach dem Unfall: Gilchrist-Verband abtrainieren. Pendelübungen, Schulter passiv und assistiv bewegen, Vorheben und Abspreizen bis 90°.",
+        "7. bis 12. Woche nach dem Unfall: zusätzlich aktiv ohne Bewegungsgrenze bewegen, Belastung schrittweise bis zur vollen Alltagsbelastung steigern.",
+        "Bis zum Ende der 6. Woche nach dem Unfall keine Stütz- und Hebebelastung des Arms {seite}.",
+        "Physiotherapie ab der 2. Woche mit Pendelübungen, passiven und assistiven Bewegungsübungen, ab der 7. Woche aktiv mit Kräftigung.",
+        "Röntgenkontrollen der Schulter {seite} 1, 2 und 6 Wochen nach dem Unfall {wo}.",
+        "Abweichungen nach Maßgabe der weiterbehandelnden unfallchirurgischen oder orthopädischen Praxis."
+      ],
+      "zusatz": [
+        "Sport mit geringer Belastung der Schulter ab dem 4. Monat, mit hoher Belastung ab dem 6. Monat nach dem Unfall."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-belastung/arm",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/ruhigstellung",
+        "proc-st-verhalten/finger",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-kontrollen/roentgen-tage",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-schulterarthroskopie-rotatorenmanschette-1",
+      "nr": 34,
+      "vorlage": "station-schulterarthroskopie-rotatorenmanschette",
+      "variante": "kleine bis mittlere Ruptur, 4 Wochen",
+      "titel": "Standardprotokoll: Rotatorenmanschettennaht, kleine bis mittlere Ruptur: Kissen und nur passiv für 4 Wochen",
+      "zeilen": [
+        "1. bis 4. Woche nach der Operation: Schulterabduktionskissen {seite} Tag und Nacht, zum Essen, zur Körperpflege und für die Übungen abnehmen.",
+        "Schulter nur passiv bewegen: Vorheben und Abspreizen bis 90°, Außendrehung bis 30°. Arm nicht an den Körper heranführen.",
+        "Ellenbogen, Handgelenk und Finger mehrmals täglich aktiv bewegen.",
+        "5. bis 6. Woche nach der Operation: Kissen abtrainieren. Zusätzlich assistiv und aktiv nach Schmerzen, Vorheben und Abspreizen bis 90°, Drehung bis 45°.",
+        "Bis zum Ende der 6. Woche nach der Operation nicht abstützen, nichts heben und nichts tragen.",
+        "7. bis 12. Woche nach der Operation: Steigerung bis zur freien Beweglichkeit und bis zur vollen Alltagsbelastung.",
+        "Physiotherapie mit passiven Bewegungsübungen und Schulterblattkontrolle, ab der 5. Woche assistiv und aktiv, ab der 7. Woche Kräftigung.",
+        "Klinische Kontrolle der Schulter {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Belastung der Schulter ab dem 6. Monat nach der Operation. Überkopf-, Wurf- und Kontaktsport erst nach ärztlicher Freigabe.",
+        "Voraussichtliche Arbeitsfähigkeit: mittelschwere Tätigkeit 12 bis 18 Wochen, schwere Tätigkeit 6 Monate nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-rm-naht/ruhigstellung",
+        "proc-st-rm-naht/nachbar",
+        "proc-st-rm-naht/schema",
+        "proc-st-rm-naht/phasen",
+        "proc-st-rm-naht/heranfuehren",
+        "proc-st-rm-naht/belastung",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-schulterarthroskopie-rotatorenmanschette-2",
+      "nr": 35,
+      "vorlage": "station-schulterarthroskopie-rotatorenmanschette",
+      "variante": "große Ruptur, 6 Wochen",
+      "titel": "Standardprotokoll: Rotatorenmanschettennaht, große Ruptur: Kissen und nur passiv für 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Schulterabduktionskissen {seite} Tag und Nacht, zum Essen, zur Körperpflege und für die Übungen abnehmen.",
+        "Schulter nur passiv bewegen: Vorheben und Abspreizen bis 90°, Außendrehung bis 30°. Arm nicht an den Körper heranführen.",
+        "Ellenbogen, Handgelenk und Finger mehrmals täglich aktiv bewegen.",
+        "7. bis 12. Woche nach der Operation: Kissen abtrainieren. Zusätzlich assistiv und aktiv nach Schmerzen, Steigerung bis zur freien Beweglichkeit.",
+        "Bis zum Ende der 8. Woche nach der Operation nicht abstützen, nichts heben und nichts tragen. Danach Steigerung bis zur vollen Alltagsbelastung.",
+        "Physiotherapie mit passiven Bewegungsübungen und Schulterblattkontrolle, ab der 7. Woche assistiv und aktiv, ab der 9. Woche Kräftigung.",
+        "Klinische Kontrolle der Schulter {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Belastung der Schulter ab dem 6. Monat nach der Operation. Überkopf-, Wurf- und Kontaktsport erst nach ärztlicher Freigabe.",
+        "Voraussichtliche Arbeitsfähigkeit: mittelschwere Tätigkeit 12 bis 18 Wochen, schwere Tätigkeit 6 Monate nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-rm-naht/ruhigstellung",
+        "proc-st-rm-naht/nachbar",
+        "proc-st-rm-naht/schema",
+        "proc-st-rm-naht/phasen",
+        "proc-st-rm-naht/heranfuehren",
+        "proc-st-rm-naht/belastung",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-schulterarthroskopie-rotatorenmanschette-3",
+      "nr": 36,
+      "vorlage": "station-schulterarthroskopie-rotatorenmanschette",
+      "variante": "Naht der Subscapularissehne, 6 Wochen",
+      "titel": "Standardprotokoll: Rotatorenmanschettennaht mit Subscapularis: Kissen und nur passiv für 6 Wochen, Außendrehung bis 0°",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Schulterabduktionskissen {seite} Tag und Nacht, zum Essen, zur Körperpflege und für die Übungen abnehmen.",
+        "Schulter nur passiv bewegen: Vorheben und Abspreizen bis 90°, Außendrehung nur bis zur Neutralstellung. Arm nicht hinter den Körper führen.",
+        "Ellenbogen, Handgelenk und Finger mehrmals täglich aktiv bewegen.",
+        "7. bis 12. Woche nach der Operation: Kissen abtrainieren. Zusätzlich assistiv und aktiv nach Schmerzen, Steigerung bis zur freien Beweglichkeit.",
+        "Bis zum Ende der 8. Woche nach der Operation nicht abstützen, nichts heben und nichts tragen. Danach Steigerung bis zur vollen Alltagsbelastung.",
+        "Physiotherapie mit passiven Bewegungsübungen und Schulterblattkontrolle, ab der 7. Woche assistiv und aktiv, ab der 9. Woche Kräftigung.",
+        "Klinische Kontrolle der Schulter {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Belastung der Schulter ab dem 6. Monat nach der Operation. Überkopf-, Wurf- und Kontaktsport erst nach ärztlicher Freigabe.",
+        "Voraussichtliche Arbeitsfähigkeit: mittelschwere Tätigkeit 12 bis 18 Wochen, schwere Tätigkeit 6 Monate nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-rm-naht/ruhigstellung",
+        "proc-st-rm-naht/nachbar",
+        "proc-st-rm-naht/schema",
+        "proc-st-rm-naht/phasen",
+        "proc-st-rm-naht/heranfuehren",
+        "proc-st-rm-naht/belastung",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-distale-radiusfraktur-platte-1",
+      "nr": 37,
+      "vorlage": "station-distale-radiusfraktur-platte",
+      "variante": "ohne Ruhigstellung",
+      "titel": "Standardprotokoll: Distale Radiusfraktur, Platte übungsstabil: ohne Ruhigstellung, kein Stützen für 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach der Operation: Eine Ruhigstellung ist nicht erforderlich. Handgelenk {seite} aktiv im schmerzarmen Bereich bewegen, Unterarm drehen.",
+        "Finger, Ellenbogen und Schulter {seite} mehrmals täglich frei bewegen.",
+        "Bis zum Ende der 6. Woche nach der Operation: Hand für leichte Alltagstätigkeiten benutzen, nicht abstützen, nichts über 1 kg heben.",
+        "Ab der 7. Woche nach der Operation: schrittweise Steigerung bis zur vollen Belastung im Alltag, Kräftigung der Hand.",
+        "Physiotherapie oder Ergotherapie mit Bewegungsübungen von Handgelenk, Unterarm und Fingern, Lymphdrainage bei Schwellung.",
+        "Röntgenkontrolle des Handgelenks {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Handbelastung ab dem 3. Monat, mit Stützen und Stößen ab dem 6. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 6 Wochen, mittelschwere bis schwere Tätigkeit 8 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/arm",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/finger",
+        "proc-st-verhalten/ruhigstellung",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-distale-radiusfraktur-platte-2",
+      "nr": 38,
+      "vorlage": "station-distale-radiusfraktur-platte",
+      "variante": "Schiene 2 Wochen",
+      "titel": "Standardprotokoll: Distale Radiusfraktur, Platte: Unterarmschiene 2 Wochen zur Schmerzlinderung, kein Stützen für 6 Wochen",
+      "zeilen": [
+        "1. bis 2. Woche nach der Operation: Unterarmschiene {seite} zur Schmerzlinderung, zur Körperpflege und für die Übungen abnehmen.",
+        "Handgelenk {seite} aus der Schiene heraus aktiv im schmerzarmen Bereich bewegen. Finger, Ellenbogen und Schulter mehrmals täglich frei bewegen.",
+        "3. bis 6. Woche nach der Operation: Schiene weglassen, Handgelenk und Unterarm aktiv weiter bewegen.",
+        "Bis zum Ende der 6. Woche nach der Operation: Hand für leichte Alltagstätigkeiten benutzen, nicht abstützen, nichts über 1 kg heben.",
+        "Ab der 7. Woche nach der Operation: schrittweise Steigerung bis zur vollen Belastung im Alltag, Kräftigung der Hand.",
+        "Physiotherapie oder Ergotherapie mit Bewegungsübungen von Handgelenk, Unterarm und Fingern, Lymphdrainage bei Schwellung.",
+        "Röntgenkontrolle des Handgelenks {seite} 6 Wochen nach der Operation {wo}.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Handbelastung ab dem 3. Monat, mit Stützen und Stößen ab dem 6. Monat nach der Operation.",
+        "Voraussichtliche Arbeitsfähigkeit: leichte Tätigkeit 6 Wochen, mittelschwere bis schwere Tätigkeit 8 Wochen nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/arm",
+        "proc-st-belastung/bewegung",
+        "proc-st-verhalten/finger",
+        "proc-st-verhalten/ruhigstellung",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-wirbelkoerperfraktur-konservativ-1",
+      "nr": 39,
+      "vorlage": "station-wirbelkoerperfraktur-konservativ",
+      "variante": "traumatisch, knochengesund",
+      "titel": "Standardprotokoll: Wirbelkörperfraktur konservativ, traumatisch: Phasen nach Leitlinie, normales Sitzen ab der 7. Woche",
+      "zeilen": [
+        "1. bis 6. Woche nach dem Unfall: Mobilisation nach Schmerzen ohne Einschränkung der Belastung. Tiefes Sitzen, Hocken, Rumpfbeugen und Drehen des Oberkörpers meiden.",
+        "Im Bett den Körper als Ganzes drehen und über die Seitenlage aufstehen. Nicht schwer heben.",
+        "Physiotherapie mit Haltungs- und Rückenschule, Atemtherapie, Gangschule und Eigenübungen.",
+        "7. bis 8. Woche nach dem Unfall: normales Sitzen erlaubt, Drehen des Oberkörpers nicht erzwingen. Physiotherapie mit Kräftigung und Koordination.",
+        "9. bis 12. Woche nach dem Unfall: Stabilisationstraining für Rücken und Bauch, schrittweise Rückkehr zu den Alltagsbelastungen.",
+        "Ab der 13. Woche nach dem Unfall: Belastung im Alltag ohne Einschränkung. Schweres Heben schrittweise wieder aufnehmen.",
+        "Röntgenkontrollen {region} im Stehen {wo}: 2, 6 und 12 Wochen nach dem Unfall.",
+        "Abweichungen nach Maßgabe der weiterbehandelnden unfallchirurgischen oder orthopädischen Praxis."
+      ],
+      "zusatz": [
+        "Kontaktsportarten frühestens ab dem 8. Monat nach dem Unfall und erst nach gesicherter knöcherner Heilung.",
+        "Berufliche Wiedereingliederung voraussichtlich ab der 12. Woche nach dem Unfall."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        },
+        "region": {
+          "label": "Region",
+          "optionen": [
+            "der Brustwirbelsäule",
+            "der Lendenwirbelsäule",
+            "der Brust- und Lendenwirbelsäule"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/ohne-seite",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-verhalten/heben",
+        "proc-st-kontrollen/roentgen-ohne-seite",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-wirbelkoerperfraktur-konservativ-2",
+      "nr": 40,
+      "vorlage": "station-wirbelkoerperfraktur-konservativ",
+      "variante": "osteoporotisch",
+      "titel": "Standardprotokoll: Wirbelkörperfraktur konservativ, osteoporotisch: Mobilisation nach Schmerzen, Röntgen im Stehen nach 2, 4 und 6 Wochen",
+      "zeilen": [
+        "1. bis 6. Woche nach dem Unfall: Mobilisation nach Schmerzen ohne Einschränkung der Belastung, Gehen {gehhilfe}. Tiefes Sitzen, Rumpfbeugen und schweres Heben meiden.",
+        "Über die Seitenlage aufstehen.",
+        "Physiotherapie mit Haltungsschulung, Kräftigung der Rumpfmuskulatur, Gangschule und Sturzvorbeugung.",
+        "Röntgenkontrollen {region} im Stehen {wo}: 2, 4 und 6 Wochen nach dem Unfall.",
+        "Ab der 7. Woche nach dem Unfall: Belastung im Alltag nach Beschwerden steigern, Kraft- und Gleichgewichtstraining fortführen.",
+        "Abweichungen nach Maßgabe der weiterbehandelnden unfallchirurgischen oder orthopädischen Praxis."
+      ],
+      "zusatz": [],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen",
+            "ohne Gehhilfe"
+          ],
+          "pflicht": true
+        },
+        "region": {
+          "label": "Region",
+          "optionen": [
+            "der Brustwirbelsäule",
+            "der Lendenwirbelsäule",
+            "der Brust- und Lendenwirbelsäule"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/ohne-seite",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-verhalten/heben",
+        "proc-st-kontrollen/roentgen-ohne-seite",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-kyphoplastie-1",
+      "nr": 41,
+      "vorlage": "station-kyphoplastie",
+      "variante": "Standard",
+      "titel": "Standardprotokoll: Kyphoplastie: Mobilisation nach Schmerzen, Bewegung frei bis zur 6. Woche",
+      "zeilen": [
+        "1. bis 2. Woche nach der Operation: Mobilisation nach Schmerzen ohne Einschränkung der Belastung, Gehen {gehhilfe}. Bewegung der Wirbelsäule im schmerzarmen Bereich.",
+        "Bis zum Ende der 6. Woche nach der Operation über die Seitenlage aufstehen, tiefes Bücken und schweres Heben meiden.",
+        "3. bis 6. Woche nach der Operation: Bewegung der Wirbelsäule schrittweise steigern bis zur Bewegung ohne Grenze.",
+        "Physiotherapie mit Haltungsschulung, Kräftigung der Rumpfmuskulatur, Gangschule und Sturzvorbeugung.",
+        "Röntgenkontrolle {region} im Stehen 6 Wochen nach der Operation {wo}.",
+        "Ab der 7. Woche nach der Operation: Belastung im Alltag ohne Einschränkung, Kraft- und Gleichgewichtstraining fortführen.",
+        "Abweichungen nach Maßgabe des Operateurs."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung ab dem 4. Monat nach der Operation."
+      ],
+      "felder": {
+        "wo": {
+          "label": "Ort der Kontrolle",
+          "optionen": [
+            "in der unfallchirurgischen oder orthopädischen Praxis",
+            "in unserer Sprechstunde nach Terminvereinbarung",
+            "in der Durchgangsarztpraxis",
+            "in der Rehabilitationsklinik"
+          ],
+          "vorwahl": "in der unfallchirurgischen oder orthopädischen Praxis"
+        },
+        "gehhilfe": {
+          "label": "Gehhilfe",
+          "optionen": [
+            "an Unterarmgehstützen",
+            "am Rollator",
+            "am Gehwagen",
+            "ohne Gehhilfe"
+          ],
+          "pflicht": true
+        },
+        "region": {
+          "label": "Region",
+          "optionen": [
+            "der Brustwirbelsäule",
+            "der Lendenwirbelsäule",
+            "der Brust- und Lendenwirbelsäule"
+          ],
+          "pflicht": true
+        }
+      },
+      "ersetzt": [
+        "proc-st-belastung/ohne-seite",
+        "proc-st-belastung/hilfsmittel",
+        "proc-st-verhalten-kyphoplastie/heben",
+        "proc-st-kyphoplastie/schema",
+        "proc-st-kyphoplastie/bewegung",
+        "proc-st-kyphoplastie/verhalten",
+        "proc-st-kontrollen/roentgen-ohne-seite",
+        "proc-st-physio/physio"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    },
+    {
+      "id": "proc-st-protokoll-rippenserienfraktur-1",
+      "nr": 42,
+      "vorlage": "station-rippenserienfraktur",
+      "variante": "Standard",
+      "titel": "Standardprotokoll: Rippenserienfraktur konservativ: Alltagsbelastung nach Schmerzen, Atemtraining",
+      "zeilen": [
+        "1. bis 4. Woche nach dem Unfall: Belastung im Alltag nach Schmerzen. Schweres Heben, Tragen und starkes Pressen meiden.",
+        "Keinen Brustgurt und keinen festen Verband um den Brustkorb tragen.",
+        "Atemübungen mit dem Atemtrainer mehrmals täglich. Schmerzmittel so einnehmen, dass tiefes Durchatmen und Abhusten möglich sind.",
+        "5. bis 6. Woche nach dem Unfall: Belastung schrittweise steigern, ab der 7. Woche ohne Einschränkung.",
+        "Abweichungen nach Maßgabe der weiterbehandelnden unfallchirurgischen oder orthopädischen Praxis."
+      ],
+      "zusatz": [
+        "Sport mit geringer Stoßbelastung ab dem 4. Monat, mit Körperkontakt ab dem 6. Monat nach dem Unfall.",
+        "Voraussichtliche Arbeitsfähigkeit: mittelschwere bis schwere Tätigkeit 6 Wochen nach dem Unfall."
+      ],
+      "felder": {},
+      "ersetzt": [
+        "proc-st-belastung/ohne-seite",
+        "proc-st-verhalten/atem"
+      ],
+      "ohneLeitlinie": false,
+      "vermerk": null,
+      "pruefstatus": "freigegeben",
+      "quelle": "nach deutschem Fachwissen, Stand 2026, ärztlich freigegeben 08.11.2026"
+    }
+  ]
+}

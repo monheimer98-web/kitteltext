@@ -6,9 +6,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "preact/hooks";
 import type { AbschnittId, Baustein, BefundStatus, Pruefstatus, Segment } from "../model/types.ts";
 import { abschnittVon, schluessel } from "../model/types.ts";
-import { istWahlbefund } from "../engine/render.ts";
+import { STELLUNG, istWahlbefund, stellungVon } from "../engine/render.ts";
 import type { AbschnittAnsicht, AusEintrag } from "../engine/render.ts";
 import type { Token } from "../engine/text.ts";
+import { LUECKE, handtext, mitVorschlag, offeneFristen } from "../engine/text.ts";
+import { FALLDATUM_NAME } from "../data/falldaten.ts";
 import {
   mitAusgeblendet,
   mitAuswahl,
@@ -24,7 +26,7 @@ import {
 } from "../engine/fall.ts";
 import { normalisiere } from "../engine/suche.ts";
 import { bausteinStand, sammelAussagen, sammelSchritte } from "../engine/sammel.ts";
-import { INDEX, abgleich, aendere, aendereFall, aktiverFall, brief, eigenenBausteinSpeichern, einstellungen, katalogStand, zurueck } from "../store.ts";
+import { INDEX, abgleich, aendere, aktiverFall, brief, eigenenBausteinSpeichern, einstellungen, katalogStand, zurueck } from "../store.ts";
 import { melde } from "./kopieren.ts";
 import {
   beiKopieAusBrief,
@@ -37,10 +39,13 @@ import {
   oeffneFeld,
   offeneListe,
   offenesFeld,
+  rueckgaengigMitMeldung,
   sammelangabeSetzen,
   sammelErledigt,
   schliesseListe,
+  sprungInListe,
   stellenZustand,
+  tokenElement,
   uebernimmMitMeldung,
   uhrzeit,
   zugErlaubt,
@@ -50,6 +55,7 @@ import { EigenerWortlaut, Eingabe, Pillen, Slots, anzeige } from "./Feldfenster.
 import { entwurfEigenerBaustein } from "../engine/eigen.ts";
 import { aufzaehlen } from "../engine/aenderung.ts";
 import { NormwertInfo } from "./Normwert.tsx";
+import { Protokollkasten } from "./Protokoll.tsx";
 
 export const STATUS_TEXT: Record<Pruefstatus, string> = {
   hausstandard: "Standardtext",
@@ -87,14 +93,28 @@ function TokenAnsicht({ t, abschnitt }: { t: Token; abschnitt: AbschnittId }) {
   const ende = /\s+$/.exec(t.t)?.[0] ?? "";
   const anfang = /^\s+/.exec(t.t)?.[0] ?? "";
   const kern = t.t.slice(anfang.length, t.t.length - ende.length);
-  const anzeige = t.zustand === "offen" ? `● ${offeneAnzeige(kern, t.label)}` : kern;
-  const zusatz = ZUSTAND_TEXT[t.zustand ?? "gesetzt"];
+  const anzeige = t.zustand === "offen" ? `● ${offeneAnzeige(kern, t.label)}` : t.fristen ? mitFristTeilen(t, anfang.length, kern) : kern;
+  const herkunft = t.uebertragen ? `Angabe aus ${t.uebertragen.map((q) => `„${q}“`).join(", ")}` : "";
+  const zusatz = [
+    t.falldatum && t.zustand === "spaeter"
+      ? `${FALLDATUM_NAME[t.falldatum].lang} fehlt im Fallkopf, Platzhalter fürs KIS`
+      : herkunft && t.zustand === "vorschlag"
+        ? `${herkunft}, noch nicht übernommen`
+        : ZUSTAND_TEXT[t.zustand ?? "gesetzt"],
+    herkunft && t.zustand !== "vorschlag" ? herkunft : "",
+    // Ein zweiter OP-Baustein heißt im Text auch „OP-Datum“; die Ansage nennt, welches Datum er trägt (PS-R5-1).
+    t.falldatum && t.zustand === "gesetzt" ? (t.falldatum === "op" ? "aus dem Fallkopf" : `aus dem Fallkopf, ${FALLDATUM_NAME[t.falldatum].lang}`) : "",
+    offeneFristen(t).length > 0 ? "Datum in Klammern errechnet, noch nicht übernommen" : "",
+  ]
+    .filter(Boolean)
+    .join(", ");
   const marke = (
     <span
       role="button"
       tabIndex={0}
       data-key={key}
-      class={`tok tok-${t.art} z-${t.zustand ?? "gesetzt"}${offen ? " tok-aktiv" : ""}${frischeStellen.value.has(key) ? " tok-frisch" : ""}`}
+      data-falldatum={t.falldatum}
+      class={`tok tok-${t.art} z-${t.zustand ?? "gesetzt"}${offen ? " tok-aktiv" : ""}${frischeStellen.value.has(key) ? " tok-frisch" : ""}${offeneFristen(t).length > 0 ? " mit-frist" : ""}`}
       aria-label={`${t.label ?? ""}: ${kern}${zusatz ? `, ${zusatz}` : ""}`}
       aria-expanded={offen}
       onClick={oeffne}
@@ -119,6 +139,29 @@ function TokenAnsicht({ t, abschnitt }: { t: Token; abschnitt: AbschnittId }) {
   ) : (
     marke
   );
+}
+
+/**
+ * Der Text einer Stelle mit errechnetem Datum in Klammern (E-59): Das Datum steht grau, solange es ein Vorschlag ist,
+ * und schwarz, sobald der Arzt es übernommen hat. `versatz` ist der abgeschnittene Leerraum am Anfang des Tokens.
+ */
+function mitFristTeilen(t: Token, versatz: number, kern: string) {
+  const teile = [];
+  let bis = 0;
+  for (const f of t.fristen ?? []) {
+    const start = f.start - versatz;
+    const ende = f.ende - versatz;
+    if (start < bis || ende > kern.length) continue;
+    teile.push(kern.slice(bis, start));
+    teile.push(
+      <span class={`tok-frist z-${f.zustand}`} data-frist={f.key}>
+        {kern.slice(start, ende)}
+      </span>,
+    );
+    bis = ende;
+  }
+  teile.push(kern.slice(bis));
+  return teile;
 }
 
 type BefundSeg = Extract<Segment, { art: "befund" }>;
@@ -149,6 +192,13 @@ function zeileDarunter(liste: Element, nach: Element | null, offen = false): HTM
   const alle = [...liste.querySelectorAll<HTMLElement>("[data-zeile]")];
   const i = nach ? alle.indexOf(nach as HTMLElement) : -1;
   return alle.slice(i + 1).find((z) => !offen || z.matches(OFFENE_ZEILE)) ?? null;
+}
+
+/** Offene Zeile über `vor`, die nächstgelegene zuerst (Umschalt+F2). */
+function offeneZeileDarueber(liste: Element, vor: Element | null): HTMLElement | null {
+  const alle = [...liste.querySelectorAll<HTMLElement>("[data-zeile]")];
+  const i = vor ? alle.indexOf(vor as HTMLElement) : alle.length;
+  return alle.slice(0, Math.max(0, i)).reverse().find((z) => z.matches(OFFENE_ZEILE)) ?? null;
 }
 
 /** Fokus auf „Weiter“ am Ende der Liste, sichtbar (QA-21). */
@@ -210,7 +260,9 @@ function BefundZeile({ b, seg, entscheiden, ohne, a }: { b: Baustein; seg: Befun
     if (status === "abw" && neu !== "abw") {
       const fallId = fall.id;
       hebeHervor([k]);
-      melde({ text: `${seg.chip}: jetzt ${STAND_NAME[neu]} (vorher auffällig)`, art: "warnung", fallId, aktion: { label: "Rückgängig", ausfuehren: () => aendereFall(fallId, (f) => mitBefund(f, k, "abw")) } }, 7000);
+      const ausfuehren = () =>
+        rueckgaengigMitMeldung(fallId, (f) => f.befund[k] === neu, (f) => mitBefund(f, k, "abw"), `„${seg.chip}“ wieder auffällig (eben ${STAND_NAME[neu]})`, () => document.querySelector<HTMLElement>(`[data-zeile="${CSS.escape(k)}"]`) ?? tokenElement(k));
+      melde({ text: `${seg.chip}: jetzt ${STAND_NAME[neu]} (vorher auffällig)`, art: "warnung", fallId, aktion: { label: "Rückgängig", ausfuehren } }, 7000);
     }
     // Danach ist die Zeile wieder der Zeiger, auch nach einem Klick: Die Angabe, die jetzt fehlt, trägt die Nummern, und
     // eine Ziffer wählt dort (QA-26).
@@ -303,19 +355,42 @@ function MesswertZeile({ b, seg, entscheiden }: { b: Baustein; seg: MesswertSeg;
   const nichtGemessen = !!fall.versteckt[k] && !wert.trim();
   // Verlangt die Vorlage den Wert, ist die Zeile offen, bis er eingetragen oder als nicht gemessen gekennzeichnet ist.
   const stand = wert.trim() ? "ok" : entscheiden && !nichtGemessen ? "offen" : "weg";
+  const zeile = useRef<HTMLDivElement>(null);
+  const stellungKey = schluessel(b.id, seg.id, STELLUNG);
+  const stellung = stellungVon(fall, k, seg);
+  // Nach Enter im Feld: Bietet das Feld Ausgangsstellungen an und ist noch keine gewählt, bleibt der Zeiger auf der Zeile,
+  // ihre Ziffern wählen die Stellung; ein weiteres Enter geht ohne sie weiter. Hinweisen statt zwingen (R4-D3).
+  const nachEnter = () => {
+    const f = aktiverFall.peek();
+    const z = zeile.current;
+    if (z && f && seg.stellungen?.length && (f.werte[k] ?? "").trim() && !stellungVon(f, k, seg)) {
+      z.focus({ preventScroll: true });
+      z.scrollIntoView({ block: "nearest" });
+      return;
+    }
+    weiterInListe(z);
+  };
   return (
-    <div class={`bz bz-${stand}`} tabIndex={-1} role="group" aria-label={`${seg.label}: ${stand === "ok" ? wert : stand === "offen" ? "eintragen" : "nicht gemessen"}`} data-zeile={k} data-gruppe={seg.gruppe ?? ""}>
+    <div
+      class={`bz bz-${stand}`}
+      ref={zeile}
+      tabIndex={-1}
+      role="group"
+      aria-label={`${seg.label}: ${stand === "ok" ? wert + (stellung ? ` (${stellung})` : "") : stand === "offen" ? "eintragen" : "nicht gemessen"}${seg.stellungen?.length && !stellung && wert.trim() ? ", Ausgangsstellung nicht angegeben" : ""}`}
+      data-zeile={k}
+      data-gruppe={seg.gruppe ?? ""}
+    >
       <div class="bz-kopf">
         <span class="bz-zeichen" aria-hidden="true">
           {stand === "ok" ? "✓" : stand === "offen" ? "●" : "–"}
         </span>
         <span class="bz-label">
           {seg.label}
-          <NormwertInfo k={k} label={seg.label} />
+          <NormwertInfo k={k} label={seg.label} stellung={stellung} />
           {stand === "offen" && <em> eintragen</em>}
         </span>
         <div class="bz-wahl">
-          <Eingabe wert={wert} label={seg.label} platzhalter="nicht gemessen" onEnter={() => weiterInListe(document.querySelector<HTMLElement>(`[data-zeile="${CSS.escape(k)}"]`))} onInput={(v) => aendere((f) => mitVersteckt(mitWert(f, k, v), k, false), `wert:${k}`)} />
+          <Eingabe wert={wert} label={seg.label} platzhalter="nicht gemessen" onEnter={nachEnter} onInput={(v) => aendere((f) => mitVersteckt(mitWert(f, k, v), k, false), `wert:${k}`)} />
           {seg.normal && (
             <button type="button" class={wert.trim() === seg.normal ? "bz-knopf aktiv" : "bz-knopf"} onClick={() => aendere((f) => mitVersteckt(mitWert(f, k, seg.normal), k, false))} title="Diesen Wert gemessen: einsetzen">
               {seg.normal}
@@ -328,6 +403,21 @@ function MesswertZeile({ b, seg, entscheiden }: { b: Baustein; seg: MesswertSeg;
           )}
         </div>
       </div>
+      {seg.stellungen?.length ? (
+        <div class="bz-detail bz-stellung">
+          <Pillen
+            label={`Ausgangsstellung ${seg.label}`}
+            wert={stellung}
+            optionen={seg.stellungen.map((s) => ({ wert: s, label: s }))}
+            onWahl={(s, perTaste) => {
+              aendere((f) => mitSlot(f, stellungKey, s));
+              // Mit der Tastatur wie jede Angabe der Liste: danach eine Zeile tiefer. Mit der Maus bleibt der Platz.
+              if (perTaste) nachDemZeichnen(() => weiterInListe(zeile.current));
+            }}
+          />
+          {!stellung && wert.trim() && <span class="bz-stellung-hinweis">Ausgangsstellung nicht angegeben</span>}
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -396,7 +486,8 @@ function Befundliste({ b, a }: { b: Baustein; a: AbschnittAnsicht }) {
     if (!g) return;
     const keys = vorschlaegeIn(g);
     const namen = g.zeilen.filter((s) => keys.includes(schluessel(b.id, s.id))).map((s) => (s.art === "befund" ? s.chip : s.label));
-    uebernimmMitMeldung(keys, `${keys.length} ${keys.length === 1 ? "Normalbefund" : "Normalbefunde"}${g.name ? ` „${g.name}“` : ""} (${aufzaehlen(namen)})`);
+    // Alle Namen, jeder in Anführungszeichen: „und 1 weitere“ verbarg einen Befund, und Namen mit Komma ließen sich nicht trennen (H-R4-4).
+    uebernimmMitMeldung(keys, `${keys.length} ${keys.length === 1 ? "Normalbefund" : "Normalbefunde"}${g.name ? ` „${g.name}“` : ""} (${aufzaehlen(namen.map((n) => `„${n}“`), Infinity)})`);
     nachDemZeichnen(() => {
       const el = ref.current;
       if (!el) return;
@@ -430,6 +521,20 @@ function Befundliste({ b, a }: { b: Baustein; a: AbschnittAnsicht }) {
     if (e.key === "Escape") {
       e.stopPropagation();
       schliesseListe();
+      return;
+    }
+    // F2 nimmt die nächste offene Stelle in Leserichtung (M-15): erst die offenen Zeilen dieser Liste unter dem Zeiger,
+    // auch aus einer Angabe heraus; liegt keine mehr darunter, geht es wie überall zum nächsten Halt. Die übersprungene
+    // Zeile bleibt offen, die Liste kommt am Ende wieder an die Reihe.
+    if (e.key === "F2" && !e.altKey && !e.ctrlKey && !e.metaKey && ref.current) {
+      const hier = ziel.closest<HTMLElement>("[data-zeile]") ?? (ziel.closest(".bl-fuss") ? null : undefined);
+      const n = e.shiftKey ? offeneZeileDarueber(ref.current, hier ?? null) : hier === null ? null : zeileDarunter(ref.current, hier ?? null, true);
+      if (n) {
+        e.preventDefault();
+        e.stopPropagation();
+        sprungInListe();
+        fokusZeile(n);
+      }
       return;
     }
     if (ziel.tagName === "INPUT" || ziel.tagName === "TEXTAREA" || e.altKey || e.ctrlKey || e.metaKey) return;
@@ -703,6 +808,7 @@ function Zusatz({ a }: { a: AbschnittAnsicht }) {
 function Handtext({ a }: { a: AbschnittAnsicht }) {
   const fall = aktiverFall.value!;
   const wert = fall.manuell[a.id] ?? "";
+  const luecken = (wert.match(LUECKE) ?? []).length;
   return (
     <div class="handtext">
       <textarea
@@ -713,6 +819,11 @@ function Handtext({ a }: { a: AbschnittAnsicht }) {
         aria-label={`${a.titel} von Hand bearbeiten`}
         onInput={(e) => aendere((f) => mitManuell(f, a.id, (e.target as HTMLTextAreaElement).value), `manuell:${a.id}`)}
       />
+      {luecken > 0 && (
+        <p class="ab-warnung handtext-luecken" role="status">
+          {luecken === 1 ? "Noch eine Stelle" : `Noch ${luecken} Stellen`} in ‹…›: ausfüllen, übernehmen (Klammern löschen) oder streichen. Erst dann lässt sich der Abschnitt kopieren.
+        </p>
+      )}
       <div class="handtext-fuss">
         <span>Von Hand bearbeitet. Seite und Person folgen hier nicht mehr dem Fallkopf.</span>
         <button type="button" class="link" onClick={() => aendere((f) => mitManuell(f, a.id, undefined))}>
@@ -730,9 +841,21 @@ function hatBefunde(b: Baustein | undefined): boolean {
 function Block({ a, block }: { a: AbschnittAnsicht; block: { bausteinId: string | null; tokens: Token[] } }) {
   const b = block.bausteinId ? INDEX.bausteine.get(block.bausteinId) : undefined;
   const befunde = hatBefunde(b);
-  const grau = block.tokens.filter((t) => t.zustand === "vorschlag" && t.key);
-  const graueBefunde = grau.filter((t) => t.art === "befund");
+  const grau = block.tokens.filter((t) => mitVorschlag(t) && t.key);
+  const graueBefunde = grau.filter((t) => t.art === "befund" && t.zustand === "vorschlag");
   const graueSaetze = grau.filter((t) => t.art !== "befund").map((t) => t.key!);
+  // Steht nur das Datum in Klammern grau, heißt es so: Der Satz selbst ist schon Aussage des Arztes (E-59).
+  const nurDatum = graueSaetze.length > 0 && grau.every((t) => t.zustand !== "vorschlag");
+  // Graue Sätze, die eine Antwort von anderer Stelle tragen, nennen ihre Herkunft statt „Vorschlag der Vorlage“ (E-60).
+  const grauVorschlag = grau.filter((t) => t.zustand === "vorschlag" && t.art !== "befund");
+  const herkunft = [...new Set(grauVorschlag.flatMap((t) => t.uebertragen ?? []))];
+  const woher =
+    grauVorschlag.length > 0 && grauVorschlag.every((t) => t.uebertragen?.length)
+      ? `Angabe aus ${herkunft.map((q) => `„${q}“`).join(", ")}`
+      : herkunft.length > 0
+        ? "Vorschlag"
+        : "Vorschlag der Vorlage";
+  const wasGrau = nurDatum ? (graueSaetze.length === 1 ? "Datum" : `${graueSaetze.length} Daten`) : `${graueSaetze.length} ${graueSaetze.length === 1 ? "Satz" : "Sätze"}`;
   const offeneBefunde = block.tokens.filter((t) => (t.art === "befund" || t.art === "messwert") && t.zustand === "offen").length;
   const offen = offeneListe.value?.bausteinId === block.bausteinId;
   const mitKopf = b && (graueSaetze.length > 0 || graueBefunde.length > 0 || offeneBefunde > 0 || offen || b.status === "eigen");
@@ -743,7 +866,7 @@ function Block({ a, block }: { a: AbschnittAnsicht; block: { bausteinId: string 
   const bestaetigt = b && sammel.length === 0 && erledigt?.fallId === fall.id && erledigt.bausteinId === b.id && erledigt.stand === bausteinStand(fall, b.id) ? erledigt.aussagen : null;
   // Mit Meldung, was übernommen wurde, und „Rückgängig“ (E-44 Satz 2, PS-N02).
   const uebernehmen = () => {
-    uebernimmMitMeldung(graueSaetze, `${graueSaetze.length} ${graueSaetze.length === 1 ? "Satz" : "Sätze"} in „${b?.titel ?? "Block"}“`);
+    uebernimmMitMeldung(graueSaetze, `${wasGrau} in „${b?.titel ?? "Block"}“`);
     naechsteStelle();
   };
   // Halt im Durchlauf: Der Block selbst hat den Fokus, nicht „Übernehmen ✓“ (E-43, Grundsatz 3). Übernommen wird mit Ü
@@ -758,7 +881,7 @@ function Block({ a, block }: { a: AbschnittAnsicht; block: { bausteinId: string 
       if (zugErlaubt(e, graueSaetze.length > 0 ? "ü" : "")) uebernehmen();
     } else if (ziel === e.currentTarget && (e.key === "Enter" || e.key === " ")) {
       e.preventDefault();
-      if (graueSaetze.length > 0) melde({ text: "Enter übernimmt nicht. Ü übernimmt die grauen Sätze, F2 geht weiter.", art: "ok" });
+      if (graueSaetze.length > 0) melde({ text: `Enter übernimmt nicht. Ü übernimmt ${nurDatum ? "das graue Datum" : "die grauen Sätze"}, F2 geht weiter.`, art: "ok" });
     }
   };
   return (
@@ -767,7 +890,7 @@ function Block({ a, block }: { a: AbschnittAnsicht; block: { bausteinId: string 
       data-block={block.bausteinId ?? undefined}
       tabIndex={block.bausteinId ? -1 : undefined}
       role={graueSaetze.length > 0 ? "group" : undefined}
-      aria-label={graueSaetze.length > 0 && b ? `${b.titel}: Vorschlag der Vorlage, noch nicht übernommen. Ü übernimmt.` : undefined}
+      aria-label={graueSaetze.length > 0 && b ? `${b.titel}: ${nurDatum ? "Datum in Klammern errechnet" : woher}, noch nicht übernommen. Ü übernimmt.` : undefined}
       onKeyDown={taste}
     >
       {mitKopf && (
@@ -775,8 +898,8 @@ function Block({ a, block }: { a: AbschnittAnsicht; block: { bausteinId: string 
           {b.status === "eigen" && <span class="block-etikett">Text dieses Arbeitsplatzes, ungeprüft</span>}
           {graueSaetze.length > 0 && (
             <>
-              <span class="block-etikett">{b.status === "eigen" ? "noch nicht übernommen · grau wird nicht kopiert" : "Vorschlag der Vorlage · grau wird nicht kopiert"}</span>
-              <button type="button" class="knopf klein" data-uebernehmen aria-keyshortcuts="Ü" onClick={uebernehmen} title="Die grauen Sätze dieses Blocks gelesen und als eigene Aussage übernehmen (Ü)">
+              <span class="block-etikett">{nurDatum ? "Datum errechnet aus dem Fallkopf · grau wird nicht kopiert" : b.status === "eigen" ? "noch nicht übernommen · grau wird nicht kopiert" : `${woher} · grau wird nicht kopiert`}</span>
+              <button type="button" class="knopf klein" data-uebernehmen aria-keyshortcuts="Ü" onClick={uebernehmen} title={nurDatum ? "Das graue Datum geprüft und als eigene Angabe übernehmen (Ü)" : "Die grauen Sätze dieses Blocks gelesen und als eigene Aussage übernehmen (Ü)"}>
                 <kbd class="taste">Ü</kbd> {graueSaetze.length === 1 ? "Übernehmen ✓" : `${graueSaetze.length} übernehmen ✓`}
               </button>
             </>
@@ -814,6 +937,11 @@ function Block({ a, block }: { a: AbschnittAnsicht; block: { bausteinId: string 
   );
 }
 
+/** Abgleich-Hinweise, die diesen Abschnitt betreffen, gleich an welcher Stelle des Paares er steht. */
+export function abgleichFuer(id: AbschnittId) {
+  return abgleich.value.filter((h) => h.abschnitte.includes(id));
+}
+
 function KopierKnopf({ a }: { a: AbschnittAnsicht }) {
   // Ein einziger Knopf, dessen Aufschrift wechselt: So bleibt der Tastaturfokus erhalten.
   if (!a.leer && !a.fertig) {
@@ -829,6 +957,10 @@ function KopierKnopf({ a }: { a: AbschnittAnsicht }) {
   if (a.geaendertSeitKopie) {
     klasse = "geaendert";
     text = "seit Kopie geändert · neu kopieren";
+  } else if (a.kopiert && abgleichFuer(a.id).length > 0) {
+    // Hinweis nach dem Kopieren: gelb statt grün, bis der Hinweis geklärt ist (M-27 Station).
+    klasse = "geaendert";
+    text = `kopiert ${a.kopiertUm ? uhrzeit(a.kopiertUm) : ""} · Hinweis prüfen`;
   } else if (a.kopiert) {
     klasse = "kopiert";
     text = `✓ kopiert ${a.kopiertUm ? uhrzeit(a.kopiertUm) : ""}`;
@@ -912,7 +1044,9 @@ function Abschnitt({ a }: { a: AbschnittAnsicht }) {
     };
   }, [menue]);
   const fall = aktiverFall.value!;
-  const kopierStand = a.leer ? "" : a.geaendertSeitKopie ? "geaendert" : a.kopiert ? "kopiert" : "";
+  const hinweise = abgleichFuer(a.id);
+  // Ein kopierter Abschnitt mit Abgleich-Hinweis ist nicht mehr grün: Im KIS steht womöglich, was nicht zusammenpasst.
+  const kopierStand = a.leer ? "" : a.geaendertSeitKopie ? "geaendert" : a.kopiert ? (hinweise.length ? "geaendert" : "kopiert") : "";
 
   if (a.ausgeblendet) {
     return (
@@ -943,13 +1077,14 @@ function Abschnitt({ a }: { a: AbschnittAnsicht }) {
             {menue && (
               <div class="menue" role="menu" data-haelt-feld>
                 {!a.manuell && (
+                  // Auch vor dem Klären (M-18 Station, E-66): Lücken und Vorschläge stehen im freien Text als ‹…› und
+                  // sperren das Kopieren, bis sie ausgefüllt, übernommen oder gestrichen sind.
                   <button
                     type="button"
-                    disabled={!a.fertig}
-                    title={a.fertig ? "Den fertigen Text als freien Text weiterbearbeiten" : "Erst Lücken und Vorschläge klären: Von Hand bearbeitet wird nur fertiger Text"}
-                    onClick={() => (aendere((f) => mitManuell(f, a.id, a.text)), setMenue(false))}
+                    title={a.fertig ? "Den Text als freien Text weiterbearbeiten" : "Als freien Text weiterbearbeiten: Offenes und Vorschläge stehen dort in ‹…›, kopiert wird erst ohne sie"}
+                    onClick={() => (aendere((f) => mitManuell(f, a.id, a.fertig ? a.text : handtext(a.tokens))), setMenue(false))}
                   >
-                    Von Hand bearbeiten{a.fertig ? "" : " (erst klären)"}
+                    Von Hand bearbeiten
                   </button>
                 )}
                 {a.bausteine.map((b) => (
@@ -984,19 +1119,23 @@ function Abschnitt({ a }: { a: AbschnittAnsicht }) {
           Im frei geschriebenen Text steht „{a.seitenkonflikt}", die Seite des Falls ist {fall.seite}. Bitte prüfen.
         </p>
       )}
-      {abgleich.value
-        .filter((h) => h.abschnitte[1] === a.id)
-        .map((h) => (
-          <p class="ab-warnung" role="alert">
-            Bitte abgleichen. {h.text}
+      {hinweise.map((h) => {
+        // An beiden Abschnitten des Paares, mit dem Namen des anderen (M-27 Station): Wer den ersten schon kopiert hat,
+        // sieht den Hinweis auch dort.
+        const andere = h.abschnitte.filter((x) => x !== a.id).map((x) => brief.value?.abschnitte.find((y) => y.id === x)?.titel ?? x);
+        return (
+          <p class="ab-warnung" role="alert" data-abgleich>
+            Bitte abgleichen{andere.length ? ` mit ${aufzaehlen(andere.map((t) => `„${t}“`), Infinity)}` : ""}. {h.text}
           </p>
-        ))}
+        );
+      })}
       {a.leer && a.kopiert && <p class="ab-warnung">Dieser Abschnitt wurde um {a.kopiertUm ? uhrzeit(a.kopiertUm) : "?"} kopiert und ist jetzt leer. Im KIS steht noch der alte Text.</p>}
 
       {a.manuell ? (
         <Handtext a={a} />
       ) : (
         <>
+          {a.id === "procedere" && <Protokollkasten a={a} />}
           {a.leer && a.bausteine.length === 0 && !wahl && <p class="ab-leer">Noch leer. Baustein einfügen oder frei schreiben.</p>}
           <div class="ab-text">
             {bloecke(a.tokens).map((b) => (

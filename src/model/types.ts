@@ -46,7 +46,10 @@ export type PlatzhalterTyp =
   | "auswahl"
   | "begriff" // kurze Angabe, einzeilig
   | "freitext" // längere Angabe, darf mehrzeilig sein
-  | "datum";
+  | "datum"
+  // Arzneimittel als Zeilen mit Wirkstoff, Stärke/Form, Schema, Hinweis und Status; einzelne Zeilen dürfen freier Text
+  // sein (engine/medikation.ts). Gespeichert als Text im Feld des Falls.
+  | "medikation";
 
 export interface Platzhalter {
   id: string;
@@ -138,6 +141,11 @@ export type Segment =
       normal?: string;
       leer?: string;
       gruppe?: string;
+      /**
+       * Ausgangsstellungen zur Wahl (Rotation von Schulter und Hüfte, R4-D3). Die gewählte steht hinter der Einheit in
+       * Klammern: „Außenrotation/Innenrotation 40/0/70° (in 90° Abduktion).“ Ohne Wahl steht der Wert wie bisher da.
+       */
+      stellungen?: string[];
     }
   // Bezug auf den Patienten: "Der 34-jährige Patient", "der Patientin", "Pat."
   | { art: "person"; form: PersonForm; gross?: boolean; alter?: boolean }
@@ -155,6 +163,9 @@ export type Segment =
     }
   // Beginn eines Listenpunkts
   | { art: "punkt" }
+  // Beginn eines eingerückten Unterpunkts der laufenden Zeile oder des Listenpunkts (Klassifikation, Begleitverletzung
+  // unter der Diagnose). Komma und Leerzeichen am Anfang des Unterpunkts entfallen, ebenso Klammern um den ganzen Punkt.
+  | { art: "unterpunkt" }
   | { art: "absatz" };
 
 /** Einteilung der ersten Fassung; bestimmt den Abschnitt, wenn keiner angegeben ist. */
@@ -212,6 +223,8 @@ export interface Baustein {
   segmente: Segment[];
   status?: Pruefstatus;
   sammelangabe?: Sammelangabe;
+  /** Eigene Zeile über dem Text des Bausteins („Nebendiagnosen:“); steht nur im Brief, wenn der Baustein Text hat. */
+  ueberschrift?: string;
 }
 
 export interface Region {
@@ -276,6 +289,14 @@ export interface Vorlage {
    */
   weglassen?: Record<string, string[]>;
   /**
+   * Sätze (`option`, Schlüssel `bausteinId/id`) gemeinsamer Bausteine, die zur
+   * Region dieser Vorlage nicht passen (Teilbelastung des Beins beim
+   * Radiusbruch). Sie erscheinen nicht unter „+ …“. Hat der Arzt einen
+   * solchen Satz im Fall ausdrücklich eingeschaltet, steht er wie jeder andere
+   * im Brief. Nie für Sätze, die die Vorlage vorschlägt oder entscheiden lässt.
+   */
+  nichtAnbieten?: string[];
+  /**
    * Schnellwerte gemeinsamer Felder für diese Diagnose. Schlüssel wie im Fall:
    * `bausteinId/platzhalterId` (Freitext, Begriff) oder
    * `bausteinId/segmentId/slotId` (Angabe `detail`). Der Wert ersetzt die
@@ -330,14 +351,116 @@ export interface Brieftyp {
   abschnitte: BriefAbschnitt[];
 }
 
+/**
+ * Feld eines Standardprotokolls (`{wo}`, `{gehhilfe}`, `{region}`): eine Auswahl im Satz. Entweder mit Vorwahl, die der
+ * Arzt mit dem Protokoll übernimmt (`vorwahl`, eine der Optionen), oder als Pflichtauswahl ohne Vorwahl (`pflicht`).
+ * `{seite}` ist kein Feld: Es folgt der Seite des Falls.
+ */
+export interface ProtokollFeld {
+  label: string;
+  optionen: string[];
+  vorwahl?: string;
+  pflicht?: boolean;
+}
+
+/**
+ * Standardprotokoll der Nachbehandlung zu einer Stationsvorlage (Datei `src/data/protokolle.json`). Der Arzt sieht es
+ * im Kasten über dem Procedere an und übernimmt es als Ganzes; dann stehen die Zeilen als Spiegelstriche im Procedere,
+ * und die Sätze aus `ersetzt` treten zurück, solange das Protokoll im Fall steht.
+ */
+export interface Protokoll {
+  /** zugleich die ID des Bausteins, als der das Protokoll im Fall steht (`proc-st-protokoll-…`) */
+  id: string;
+  /** Nummer im fachlichen Entwurf (`docs/03-inhalt/standardprotokolle-entwurf.md`) */
+  nr: number;
+  vorlage: string;
+  variante: string;
+  /** beginnt mit „Standardprotokoll: “ und nennt alle Festlegungen */
+  titel: string;
+  zeilen: string[];
+  /** einzeln zuwählbare Zeilen (Sport, Arbeitsfähigkeit) */
+  zusatz: string[];
+  felder: Record<string, ProtokollFeld>;
+  /** Sätze und Auswahlen (`bausteinId/id`) der Vorlage, die das Protokoll ersetzt */
+  ersetzt: string[];
+  ohneLeitlinie: boolean;
+  vermerk: string | null;
+  pruefstatus: "freigegeben" | "entwurf";
+  quelle: string;
+}
+
 export interface Katalog {
   version: number;
   regionen: Region[];
   vorlagen: Vorlage[];
   brieftypen: Brieftyp[];
+  /** Standardprotokolle; ihre Bausteine stehen im Index, nicht in einer Region und nicht unter „+ Baustein“ */
+  protokolle?: Protokoll[];
+  /** Regeln, die am Wortlaut des Katalogs hängen und deshalb bei den Daten stehen (`src/data/`); ohne sie gilt keine. */
+  regeln?: Katalogregeln;
+}
+
+/** Wortlaut einer Frist, hinter den das errechnete Datum in Klammern tritt (E-59). */
+export interface Fristmuster {
+  /** Immer mit Flag `g`; das Datum steht hinter dem Treffer. */
+  muster: RegExp;
+  anker: FalldatumArt;
+  /** Tage ab dem Anker; Tag der Operation oder Aufnahme ist Tag 0. */
+  tage: (treffer: RegExpExecArray) => number;
+}
+
+/**
+ * Eine Angabe, die mehrere Bausteine abfragen (Gehhilfe, Nahtmaterial, Allergien), E-60. Der Arzt beantwortet sie an
+ * einer Stelle; die übrigen Stellen zeigen dieselbe Antwort, bis er dort selbst etwas anderes wählt.
+ */
+export interface Kopplung {
+  name: string;
+  glieder: Koppelglied[];
+  /**
+   * Begriffe, an denen Auswahlen verschiedener Bausteine dieselbe Antwort erkennen („Rollator“). Eine Stelle bekommt
+   * eine Antwort nur, wenn genau eine ihrer Möglichkeiten zum Begriff passt. Freitextfelder übernehmen den Wortlaut.
+   */
+  begriffe?: Record<string, RegExp>;
+}
+
+export interface Koppelglied {
+  /** Angabe in einem Satz (`baustein/satz/angabe`), Auswahl (`baustein/auswahl`) oder Platzhalter (`baustein/feld`). */
+  key: string;
+  /**
+   * Wofür die Stelle spricht (`entlassung`, `aufenthalt`, `anamnese` …). Gleicher Bezug: Die Antwort gilt als Aussage
+   * des Arztes. Anderer Bezug: Sie erscheint als Vorschlag, denn im Aufenthalt kann die Gehhilfe eine andere gewesen sein.
+   */
+  bezug: string;
+}
+
+/**
+ * Vorbelegte Angabe in einem Satz, die zur Aussage des Arztes wird, sobald er alle Pflichtangaben des Satzes selbst
+ * beantwortet hat (M-24, E-60): die Einheit hinter dem getippten Laborwert, der Beginn der Mobilisation, der Zeitpunkt
+ * vor dem gewählten Befund.
+ */
+export interface Folgeangabe {
+  /** Schlüssel der Angabe (`baustein/satz/angabe`); eine Kennung ohne Schrägstrich (`einheit`) steht für jede Angabe dieses Namens. */
+  key: string;
+}
+
+export interface Katalogregeln {
+  /** Bezeichnung eines Datumsfelds → Datum des Fallkopfs, das es einsetzt („OP-Datum“ → `op`). Nur Station. */
+  falldatumFelder?: Readonly<Record<string, FalldatumArt>>;
+  fristAbschnitte?: readonly AbschnittId[];
+  fristen?: readonly Fristmuster[];
+  kopplungen?: readonly Kopplung[];
+  folgeangaben?: readonly Folgeangabe[];
 }
 
 export type BefundStatus = "ok" | "abw" | "weg";
+
+/**
+ * Daten des Aufenthalts, die der Arzt einmal im Fallkopf einträgt (E-58): Aufnahme, Operation, zweite Operation,
+ * Entlassung. Es sind keine Identitätsdaten; Geburtsdatum und Fallnummer gibt es nicht.
+ */
+export type FalldatumArt = "aufnahme" | "op" | "op2" | "entlassung";
+
+export const FALLDATUM_ARTEN: readonly FalldatumArt[] = ["aufnahme", "op", "op2", "entlassung"];
 
 /**
  * Ein Fall ist ein Brief in Arbeit. Er enthält Auswahl, Werte und freien
@@ -375,6 +498,14 @@ export interface Fall {
   eigen: Record<string, string>;
   /** Felder, die bewusst erst im KIS ausgefüllt werden; im Text steht dann [BEZEICHNUNG] */
   spaeter: Record<string, boolean>;
+  /** Daten des Aufenthalts aus dem Fallkopf, je TT.MM.JJJJ (E-58). Fehlt eins, steht an seinen Stellen der Platzhalter fürs KIS. */
+  daten: Partial<Record<FalldatumArt, string>>;
+  /**
+   * Errechnete Daten in Klammern hinter einer Frist („am 12. Tag nach der Operation (20.11.2026)“), E-59. Schlüssel:
+   * Textstelle, Anker und Tage (`proc-st-wunde/naht|op+12`), Wert: das übernommene Datum; leer heißt „ohne Datum“.
+   * Weicht das errechnete Datum vom übernommenen ab, ist es wieder ein Vorschlag.
+   */
+  fristen: Record<string, string>;
   /** freie Ergänzung am Ende eines Abschnitts */
   zusatz: Partial<Record<AbschnittId, string>>;
   /** vollständig von Hand überschriebener Abschnitt */

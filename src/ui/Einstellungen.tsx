@@ -192,6 +192,15 @@ export function Einstellungen({ onZu }: { onZu: () => void }) {
 
         <Gruppe titel="Einfügen ins KIS">
           <Wahl
+            name="formatiert"
+            titel="Formatiert kopieren"
+            hilfe="Legt neben dem reinen Text eine formatierte Fassung (fette Überschriften, Listen, Medikation als Tabelle) in die Zwischenablage, die das KIS nutzt, wenn es Formatierung annimmt."
+            optionen={[
+              { wert: true, label: "an" },
+              { wert: false, label: "aus, nur Text" },
+            ]}
+          />
+          <Wahl
             name="zeichen"
             titel="Sonderzeichen"
             hilfe={'„KIS-sicher“ schreibt Zeichen um, die ältere Klinikprogramme verfälschen: Gedankenstrich zu Bindestrich, „ “ zu ", ≥ zu >=.'}

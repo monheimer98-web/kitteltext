@@ -53,10 +53,13 @@
               "default": 0
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "vorne",
               "label": "Vorderer Beckenring",
-              "text": "\nVorderer Beckenring: {was} {lseite}",
+              "text": "Vorderer Beckenring: {was} {lseite}",
               "an": true,
               "slots": [
                 {
@@ -81,10 +84,13 @@
               ]
             },
             {
+              "art": "unterpunkt"
+            },
+            {
               "art": "option",
               "id": "hinten",
               "label": "Hinterer Beckenring",
-              "text": "\nHinterer Beckenring: {was} {lseite}",
+              "text": "Hinterer Beckenring: {was} {lseite}",
               "an": true,
               "slots": [
                 {
@@ -1292,6 +1298,12 @@
             },
             {
               "art": "option",
+              "id": "reha",
+              "label": "Warnzeichen während der Rehabilitation",
+              "text": "Treten diese Zeichen während der Rehabilitation auf, zuerst Vorstellung beim ärztlichen Dienst der Rehabilitationsklinik. Bei Atemnot oder Brustschmerz sofort Notruf 112. "
+            },
+            {
+              "art": "option",
               "id": "besprochen",
               "label": "Warnzeichen besprochen",
               "text": "Die Warnzeichen haben wir mit {person-dat} besprochen. "
@@ -2234,6 +2246,12 @@
               "label": "Wiedervorstellung bei Warnzeichen",
               "text": "Sofortige Wiedervorstellung in unserer Notaufnahme bei: Rötung, Schwellung oder Nässen an den Einstichstellen am Rücken, Fieber über 38,5 °C, plötzlich neuen oder deutlich zunehmenden Rückenschmerzen, Taubheitsgefühl im Gesäß oder im Genitalbereich, Lähmung oder zunehmender Schwäche der Beine, Störung beim Wasserlassen oder beim Stuhlgang, Atemnot oder Brustschmerz, erneutem Sturz. ",
               "an": true
+            },
+            {
+              "art": "option",
+              "id": "reha",
+              "label": "Warnzeichen während der Rehabilitation",
+              "text": "Treten diese Zeichen während der Rehabilitation auf, zuerst Vorstellung beim ärztlichen Dienst der Rehabilitationsklinik. Bei Atemnot oder Brustschmerz sofort Notruf 112. "
             },
             {
               "art": "option",

@@ -391,7 +391,8 @@
               "pflicht": true,
               "optionen": [
                 ", extraartikulär",
-                ", intraartikulär"
+                ", intraartikulär",
+                ""
               ]
             },
             {
@@ -403,7 +404,8 @@
                 ", nach dorsal verschoben",
                 ", nach palmar verschoben",
                 ", verkürzt und nach dorsal verschoben",
-                ", nicht wesentlich verschoben"
+                ", nicht wesentlich verschoben",
+                ""
               ]
             },
             {

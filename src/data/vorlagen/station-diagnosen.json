@@ -93,19 +93,28 @@
       "vorgaben": {
         "an": [
           "th-st-weitere/implantat",
-          "th-st-weitere/physio",
           "proc-st-verhalten/luxation",
+          "proc-st-kontrollen/roentgen",
           "proc-st-kontrollen/sprechstunde",
-          "proc-st-physio/reha"
+          "proc-st-physio/reha",
+          "med-st-entlassung/thrombose"
         ],
         "slots": {
           "th-st-weitere/implantat/hinweis": 1,
           "th-st-weitere/physio/inhalt": 1,
           "verl-st-operativ/aufnahme/anlass": 4,
           "verl-st-operativ/roentgen/ergebnis": 2,
-          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 10
+          "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 10,
+          "proc-st-kontrollen/roentgen/region": 1
         }
-      }
+      },
+      "nichtAnbieten": [
+        "proc-st-belastung/arm",
+        "proc-st-verhalten/finger",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-verhalten/rumpforthese",
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ]
     },
     {
       "setting": "station",
@@ -197,11 +206,11 @@
       "vorgaben": {
         "an": [
           "th-st-weitere/implantat",
-          "th-st-weitere/physio",
           "proc-st-verhalten/knie-beugung",
           "proc-st-kontrollen/sprechstunde",
           "proc-st-physio/reha",
-          "eb-st-mobilitaet/beweglichkeit"
+          "eb-st-mobilitaet/beweglichkeit",
+          "med-st-entlassung/thrombose"
         ],
         "slots": {
           "th-st-weitere/implantat/hinweis": 1,
@@ -210,7 +219,15 @@
           "verl-st-operativ/roentgen/ergebnis": 2,
           "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 1
         }
-      }
+      },
+      "nichtAnbieten": [
+        "proc-st-belastung/arm",
+        "proc-st-verhalten/finger",
+        "proc-st-verhalten/luxation",
+        "proc-st-verhalten/sitzen",
+        "proc-st-verhalten/rumpforthese",
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ]
     },
     {
       "setting": "station",
@@ -305,12 +322,13 @@
       ],
       "vorgaben": {
         "an": [
-          "th-st-weitere/physio",
           "proc-st-belastung/arm",
           "proc-st-verhalten/finger",
           "proc-st-kontrollen/roentgen",
           "proc-st-metall/metall",
-          "proc-st-belastung/bewegung"
+          "proc-st-belastung/bewegung",
+          "proc-st-osteoporose/abklaerung",
+          "proc-st-verhalten/ruhigstellung"
         ],
         "aus": [
           "proc-st-belastung/bein",
@@ -329,6 +347,18 @@
           "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 2
         }
       },
+      "nichtAnbieten": [
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-belastung/ohne-seite",
+        "proc-st-verhalten/luxation",
+        "proc-st-verhalten/sitzen",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-verhalten/rumpforthese",
+        "proc-st-kontrollen/roentgen-ohne-seite",
+        "proc-st-metall/stellschraube",
+        "proc-st-metall/stellschraube-bleibt"
+      ],
       "ohne": [
         "hand-untersuchung/hand-us-haematom",
         "hand-untersuchung/hand-us-ds-tabatiere",
@@ -366,7 +396,11 @@
         "bimalleolär",
         "trimalleolär",
         "Luxationsfraktur",
-        "Knöchelbruch"
+        "Knöchelbruch",
+        "OSG-Fraktur OP",
+        "Sprunggelenkfraktur OP",
+        "Malleolarfraktur",
+        "Innenknöchelfraktur"
       ],
       "kuerzel": [
         "osg",
@@ -442,11 +476,12 @@
       ],
       "vorgaben": {
         "an": [
-          "th-st-weitere/physio",
           "proc-st-wunde/hochlagern",
           "proc-st-kontrollen/roentgen",
           "proc-st-metall/metall",
-          "proc-st-belastung/bewegung"
+          "proc-st-belastung/bewegung",
+          "med-st-entlassung/thrombose",
+          "proc-st-verhalten/ruhigstellung"
         ],
         "auswahl": {
           "dgn-st-roentgen/region": 4,
@@ -459,6 +494,15 @@
           "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 3
         }
       },
+      "nichtAnbieten": [
+        "proc-st-belastung/arm",
+        "proc-st-verhalten/finger",
+        "proc-st-verhalten/luxation",
+        "proc-st-verhalten/sitzen",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-verhalten/rumpforthese",
+        "proc-st-kontrollen/roentgen-ohne-seite"
+      ],
       "ohne": [
         "osg-untersuchung/osg_ds_fibulotalar",
         "osg-untersuchung/osg_gabel",
@@ -596,7 +640,18 @@
           "proc-st-kontrollen/roentgen-ohne-seite/stand": 1,
           "proc-st-kontrollen/roentgen-ohne-seite/anker": 2
         }
-      }
+      },
+      "nichtAnbieten": [
+        "proc-st-belastung/arm",
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-verhalten/finger",
+        "proc-st-verhalten/luxation",
+        "proc-st-verhalten/sitzen",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-kontrollen/roentgen-tage"
+      ]
     },
     {
       "setting": "station",
@@ -697,6 +752,12 @@
           "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 8
         }
       },
+      "nichtAnbieten": [
+        "proc-st-verhalten/luxation",
+        "proc-st-verhalten/sitzen",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-verhalten/rumpforthese"
+      ],
       "ohne": [
         "bef-weichteilinfekt/sehnenscheide"
       ]
@@ -803,7 +864,18 @@
           "proc-st-kontrollen/roentgen-ohne-seite/region": 5,
           "proc-st-sicherheitsnetz/sicherheitsnetz/zeichen": 11
         }
-      }
+      },
+      "nichtAnbieten": [
+        "proc-st-belastung/arm",
+        "proc-st-belastung/bein",
+        "proc-st-belastung/teilbelastung",
+        "proc-st-verhalten/finger",
+        "proc-st-verhalten/luxation",
+        "proc-st-verhalten/sitzen",
+        "proc-st-verhalten/knie-beugung",
+        "proc-st-kontrollen/roentgen",
+        "proc-st-kontrollen/roentgen-tage"
+      ]
     }
   ]
 }

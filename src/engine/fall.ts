@@ -5,15 +5,20 @@ import type {
   BefundStatus,
   Brieftyp,
   Fall,
+  FalldatumArt,
   Geschlecht,
   Seite,
   Setting,
   Vorlage,
 } from "../model/types.ts";
-import { abschnittVon, schluessel } from "../model/types.ts";
-import { gueltigerIndex } from "./render.ts";
+import { FALLDATUM_ARTEN, abschnittVon, schluessel } from "../model/types.ts";
+import { STELLUNG, gueltigerIndex } from "./render.ts";
+import { istDatum } from "./datum.ts";
+import { fristDatum, leseFristSchluessel } from "./falldaten.ts";
+import { uebertragungen } from "./kopplung.ts";
 import type { BriefAnsicht, KatalogIndex } from "./render.ts";
 import { weggelasseneStellen } from "./vorlage.ts";
+import { ersetzteStellen } from "./protokoll.ts";
 
 function neueId(): string {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
@@ -50,6 +55,8 @@ export function neuerFall(setting: Setting, index: KatalogIndex, nr = 1, jetzt =
     optionen: {},
     eigen: {},
     spaeter: {},
+    daten: {},
+    fristen: {},
     zusatz: {},
     manuell: {},
     kopiert: {},
@@ -59,9 +66,10 @@ export function neuerFall(setting: Setting, index: KatalogIndex, nr = 1, jetzt =
 
 /**
  * Bringt einen gespeicherten Fall auf den heutigen Aufbau. Fehlende Felder
- * werden ergänzt; was kein Fall ist, ergibt null.
+ * werden ergänzt; was kein Fall ist, ergibt null. `format` ist der Formatstand,
+ * mit dem die Sitzung geschrieben wurde (`SITZUNG_FORMAT`); ohne Angabe der heutige.
  */
-export function ergaenzt(roh: unknown, index: KatalogIndex): Fall | null {
+export function ergaenzt(roh: unknown, index: KatalogIndex, format?: number): Fall | null {
   const f = roh as Partial<Fall> | null;
   if (!f || typeof f !== "object" || typeof f.id !== "string") return null;
   if (f.setting !== "zna" && f.setting !== "station") return null;
@@ -79,7 +87,31 @@ export function ergaenzt(roh: unknown, index: KatalogIndex): Fall | null {
   if (typeof fall.geaendert !== "number") fall.geaendert = fall.erstellt;
   if (typeof fall.alter !== "string") fall.alter = "";
   if (typeof fall.etikett !== "string") fall.etikett = "";
+  // Falldaten gibt es seit Speicherformat 2 (E-58). Ein älterer Fall hat keine; was kein gültiges Datum ist, entfällt.
+  const daten: Fall["daten"] = {};
+  for (const art of FALLDATUM_ARTEN) if (istDatum(fall.daten[art])) daten[art] = fall.daten[art];
+  fall.daten = daten;
+  fall.fristen = Object.fromEntries(Object.entries(fall.fristen).filter(([k, v]) => leseFristSchluessel(k) && (v === "" || istDatum(v))));
+  // Bis Format 1 war die Medikation freier Text; ein Tabulator darin (eingefügt aus einer Tabelle) würde heute als
+  // Feldgrenze gelesen, die Felder verschöben sich still (CR-R5-03). Die Zeile bleibt frei, wie sie getippt war.
+  if (format !== undefined && format < 2) fall.werte = ohneTabulatorInMedikation(fall.werte, index);
   return fall;
+}
+
+function ohneTabulatorInMedikation(werte: Record<string, string>, index: KatalogIndex): Record<string, string> {
+  const aus: Record<string, string> = {};
+  for (const [k, w] of Object.entries(werte)) {
+    const [bid, pid] = k.split("/");
+    const typ = index.bausteine.get(bid)?.platzhalter.find((p) => p.id === pid)?.typ;
+    aus[k] =
+      typ === "medikation" && typeof w === "string"
+        ? w
+            .split("\n")
+            .map((z) => (z.includes("\t") ? z.replace(/[ \t]*\t[ \t]*/g, " ").trim() : z))
+            .join("\n")
+        : w;
+  }
+  return aus;
 }
 
 /**
@@ -99,6 +131,8 @@ export function nachKatalogwechsel(fall: Fall, index: KatalogIndex): Fall {
     const seg = segment(key);
     const slot = seg && "slots" in seg ? seg.slots?.find((x) => x.id === key.split("/")[2]) : undefined;
     if (slot && slot.art !== "auswahl") slots[key] = wert;
+    // Die Ausgangsstellung eines Messwerts steht als Wortlaut da und bleibt, solange die neue Fassung sie anbietet (R4-D3).
+    if (seg?.art === "messwert" && key.split("/")[2] === STELLUNG && seg.stellungen?.includes(wert)) slots[key] = wert;
   }
   // Eigener Wortlaut bleibt im Brief stehen: Der Satz bleibt gewählt, der Befund auffällig.
   const befund: Fall["befund"] = {};
@@ -148,6 +182,7 @@ function bereinigt(fall: Fall): Fall {
     optionen: nurVon(fall.optionen, ids),
     eigen: nurVon(fall.eigen, ids),
     spaeter: nurVon(fall.spaeter, ids),
+    fristen: nurVon(fall.fristen, ids),
   };
 }
 
@@ -258,15 +293,28 @@ export function uebernehmen(fall: Fall, keys: string[], index: KatalogIndex): Fa
   const vorgabeAus = new Set(vorlage?.vorgaben?.aus ?? []);
   // Was die Vorlage nicht anbietet, war kein Vorschlag, gleich was der Aufrufer übergibt.
   const weg = weggelasseneStellen(fall, vorlage, index);
+  // Was ein Standardprotokoll ersetzt, steht nicht im Brief und war also auch kein Vorschlag (E-52).
+  for (const k of ersetzteStellen(fall, index)) weg.add(k);
+  // Antworten anderer Stellen (E-60) stehen grau im Brief; übernommen wird, was der Arzt sieht.
+  const ueber = uebertragungen(fall, index, undefined, weg);
   const neu = { ...fall, befund: { ...fall.befund }, optionen: { ...fall.optionen }, slots: { ...fall.slots }, werte: { ...fall.werte }, auswahl: { ...fall.auswahl } };
   for (const key of keys) {
-    const [bausteinId, id] = key.split("/");
     if (!gehoert(fall, key)) continue;
+    // Ein errechnetes Datum in Klammern (E-59): übernommen wird der Wert, den die App gerade ausrechnet.
+    if (leseFristSchluessel(key)) {
+      const datum = fristDatum(fall, key);
+      if (datum) neu.fristen = { ...neu.fristen, [key]: datum };
+      continue;
+    }
+    const [bausteinId, id] = key.split("/");
     const b = index.bausteine.get(bausteinId);
     if (!b) continue;
     const def = b.platzhalter.find((p) => p.id === id);
     if (def) {
-      if (neu.werte[key] === undefined && def.default?.trim()) {
+      const u = ueber.get(key);
+      if (neu.werte[key] === undefined && u && !neu.spaeter[key]) {
+        neu.werte[key] = u.wert;
+      } else if (neu.werte[key] === undefined && def.default?.trim()) {
         let wert = def.default.trim();
         if (def.typ === "auswahl" && def.optionen && /^\d+$/.test(wert)) wert = def.optionen[Number(wert)] ?? "";
         neu.werte[key] = wert;
@@ -285,18 +333,37 @@ export function uebernehmen(fall: Fall, keys: string[], index: KatalogIndex): Fa
       if (!vorgeschlagen) continue;
       neu.optionen[key] = true;
       for (const slot of seg.slots ?? []) {
-        if (slot.art !== "auswahl") continue;
         const k = schluessel(bausteinId, id, slot.id);
+        const u = neu.slots[k] === undefined ? ueber.get(k) : undefined;
+        if (slot.art === "detail" && u) neu.slots[k] = u.wert;
+        if (slot.art !== "auswahl") continue;
         if (gueltigerIndex(neu.slots[k], slot.optionen.length) !== undefined) continue;
-        const wahl = gueltigerIndex(slotVorgabe[k], slot.optionen.length) ?? gueltigerIndex(slot.default, slot.optionen.length) ?? (slot.required ? undefined : 0);
+        const wahl = gueltigerIndex(u?.wert, slot.optionen.length) ?? gueltigerIndex(slotVorgabe[k], slot.optionen.length) ?? gueltigerIndex(slot.default, slot.optionen.length) ?? (slot.required ? undefined : 0);
         if (wahl !== undefined && !(slot.required && slot.optionen[wahl] === "")) neu.slots[k] = String(wahl);
       }
     } else if (seg.art === "auswahl") {
-      const wahl = gueltigerIndex(vorlage?.vorgaben?.auswahl?.[key], seg.optionen.length) ?? gueltigerIndex(seg.default, seg.optionen.length);
+      const wahl = gueltigerIndex(ueber.get(key)?.wert, seg.optionen.length) ?? gueltigerIndex(vorlage?.vorgaben?.auswahl?.[key], seg.optionen.length) ?? gueltigerIndex(seg.default, seg.optionen.length);
       if (neu.auswahl[key] === undefined && wahl !== undefined) neu.auswahl[key] = wahl;
     }
   }
   return neu;
+}
+
+/**
+ * Datum des Fallkopfs (E-58); `undefined` oder leer löscht es. Nimmt nur ein gültiges Datum TT.MM.JJJJ an: Was der Arzt
+ * tippt, liest vorher `leseDatum`.
+ */
+export function mitFalldatum(fall: Fall, art: FalldatumArt, datum: string | undefined): Fall {
+  if (datum !== undefined && datum !== "" && !istDatum(datum)) return fall;
+  if ((fall.daten[art] ?? "") === (datum ?? "")) return fall;
+  return { ...fall, daten: mitEintrag(fall.daten, art, datum ? datum : undefined) };
+}
+
+/** Errechnetes Datum in Klammern übernehmen (Wert), weglassen ("") oder wieder zum Vorschlag machen (`undefined`). */
+export function mitFrist(fall: Fall, key: string, wert: string | undefined): Fall {
+  if (!gehoert(fall, key) || !leseFristSchluessel(key)) return fall;
+  if (wert !== undefined && wert !== "" && !istDatum(wert)) return fall;
+  return { ...fall, fristen: mitEintrag(fall.fristen, key, wert) };
 }
 
 export function mitSlot(fall: Fall, key: string, wert: string | undefined): Fall {
@@ -390,7 +457,7 @@ export function fallName(fall: Fall, index: KatalogIndex): string {
 }
 
 // Felder, deren Einträge ein Schritt einzeln setzt; „Rückgängig“ in einer Meldung nimmt genau diese zurück.
-const SCHRITT_FELDER = ["befund", "slots", "werte", "auswahl", "versteckt", "optionen", "eigen", "spaeter", "seiteBaustein", "bausteine", "ausgeblendet", "zusatz", "manuell"] as const;
+const SCHRITT_FELDER = ["befund", "slots", "werte", "auswahl", "versteckt", "optionen", "eigen", "spaeter", "daten", "fristen", "seiteBaustein", "bausteine", "ausgeblendet", "zusatz", "manuell"] as const;
 const SCHRITT_WERTE = ["geschlecht", "alter", "seite"] as const;
 
 function gleich(a: unknown, b: unknown): boolean {
@@ -448,26 +515,54 @@ export function schritteZuruecknehmen(jetzt: Fall, schritte: readonly { vorher: 
   return aus;
 }
 
-// Felder, deren Einträge eine Aussage des Arztes tragen. Fehlt der Eintrag, ist die Stelle offen oder grau.
-const AUSSAGE_FELDER = ["befund", "slots", "werte", "auswahl", "versteckt", "optionen", "spaeter"] as const;
+// Felder, deren Einträge eine Aussage des Arztes tragen. Fehlt der Eintrag, ist die Stelle offen oder grau. Eigener
+// Wortlaut gehört dazu (PS-R4-1): Ohne ihn gilt wieder die Auswahl oder der Befund, die mit zurückgehen. Ebenso die
+// Daten des Fallkopfs und übernommene Daten in Klammern (E-58, E-59).
+const AUSSAGE_FELDER = ["befund", "slots", "werte", "auswahl", "versteckt", "optionen", "spaeter", "eigen", "daten", "fristen"] as const;
 
 export interface SichereRuecknahme {
   fall: Fall;
   /** Zusätze des Zugs, die stehen bleiben, mit Namen oder Wortlaut (PS-N13). */
   behalten: string[];
+  /** Sätze, die der Arzt vor dem Zug im Brief hatte und die der Zug entfernt hat; sie kommen nicht wieder (CR-R4-02). */
+  entfernt: string[];
+  /** Getippter Wortlaut von vor dem Zug, der nicht zurückkommt: Name der Stelle und Wortlaut (Hinweis des Code-Reviews). */
+  geleert: { name: string; vorher: string }[];
+  /** Seiten einzelner Bausteine, die stehen bleiben statt auf die alte Seite zurückzugehen: Name und Seite (PS-R4-1). */
+  seiteBleibt: { name: string; seite: string }[];
 }
+
+/** Seite, die ein Baustein im Brief trägt: seine eigene, sonst die des Briefs. */
+function seiteDes(fall: Fall, bausteinId: string): Seite | null {
+  return fall.seiteBaustein[bausteinId] ?? fall.seite;
+}
+
+const SEITE_NAME: Record<Seite, string> = { rechts: "rechts", links: "links", beidseits: "beidseits", ohne: "ohne Seite" };
 
 /**
  * Nimmt Schritte nur in die sichere Richtung zurück (E-48, CR-TS13): Eine Stelle, die vor dem Schritt eine Aussage trug,
  * wird offen oder grau statt wieder diese Aussage. Sonst käme eine Aussage schwarz und kopierbar zurück, die der Arzt
- * eben verworfen hatte. Was vorher offen oder grau war, geht wie bei `schritteZuruecknehmen` zurück.
+ * eben verworfen hatte. Was vorher offen oder grau war, geht wie bei `schritteZuruecknehmen` zurück. Das gilt auch für
+ * eigenen Wortlaut, den freien Zusatz eines Abschnitts und das Alter (PS-R4-1): Sie werden leer statt wieder der alte
+ * Text; der alte Text steht in `geleert`, damit die Meldung ihn nennt. Die Seite eines Bausteins hat keinen offenen
+ * Stand neben der Seite des Briefs: Trug der Baustein vorher eine Seite, bleibt die jetzige stehen und wird genannt.
  * Mit `brief` bleibt ein angefügter Zusatz stehen und wird genannt, statt still zu verschwinden: ein Satz („+ …“), der
- * vor dem Zug nicht im Brief stand und durch die Rücknahme wieder verschwände. Seine offenen Angaben bleiben offen und
- * halten das Kopieren auf. Die Wahl an einer Entweder-oder-Stelle ist kein Zusatz, sondern eine Aussage: Sie geht zurück.
+ * vor dem Zug nicht im Brief stand, durch die Rücknahme wieder verschwände und mit dem Vermerk tatsächlich im Brief
+ * steht; ein Satz, dessen Baustein mit der Rücknahme geht, bleibt nicht (CR-R4-01). Seine offenen Angaben bleiben offen
+ * und halten das Kopieren auf. Die Wahl an einer Entweder-oder-Stelle ist kein Zusatz, sondern eine Aussage: Sie geht
+ * zurück. `zusaetze: false` („Rückgängig“, das der Arzt verlangt) entfernt auch Zusätze.
  */
-export function sicherZuruecknehmen(jetzt: Fall, schritte: readonly { vorher: Fall; nachher: Fall }[], brief?: (f: Fall) => BriefAnsicht | null): SichereRuecknahme {
+export function sicherZuruecknehmen(
+  jetzt: Fall,
+  schritte: readonly { vorher: Fall; nachher: Fall }[],
+  brief?: (f: Fall) => BriefAnsicht | null,
+  zusaetze = true,
+): SichereRuecknahme {
+  const leer: SichereRuecknahme = { fall: jetzt, behalten: [], entfernt: [], geleert: [], seiteBleibt: [] };
   const normal = schritteZuruecknehmen(jetzt, schritte);
-  if (normal === jetzt) return { fall: jetzt, behalten: [] };
+  if (normal === jetzt) return leer;
+  const geleert: { key: string; vorher: string }[] = [];
+  const getippt = (v: unknown) => typeof v === "string" && v.trim() !== "" && !/^\d+$/.test(v.trim());
   let aus = normal;
   for (const feld of AUSSAGE_FELDER) {
     const n = normal[feld] as Record<string, unknown>;
@@ -475,29 +570,92 @@ export function sicherZuruecknehmen(jetzt: Fall, schritte: readonly { vorher: Fa
     const zurueck = Object.keys(n).filter((k) => !gleich(n[k], j[k]));
     if (zurueck.length === 0) continue;
     const neu = { ...n };
-    for (const k of zurueck) delete neu[k];
+    for (const k of zurueck) {
+      delete neu[k];
+      if ((feld === "werte" || feld === "eigen" || feld === "slots") && getippt(n[k])) geleert.push({ key: k, vorher: String(n[k]).trim() });
+    }
     aus = { ...aus, [feld]: neu };
+  }
+  // Freier Zusatz: leer statt alter Text.
+  for (const id of Object.keys(normal.zusatz) as AbschnittId[]) {
+    const vorher = normal.zusatz[id] ?? "";
+    if (vorher !== (jetzt.zusatz[id] ?? "") && vorher.trim()) {
+      aus = { ...aus, zusatz: { ...aus.zusatz, [id]: "" } };
+      geleert.push({ key: `zusatz:${id}`, vorher: vorher.trim() });
+    }
   }
   for (const feld of ["seite", "geschlecht"] as const) {
     if (normal[feld] !== jetzt[feld] && normal[feld] !== null) aus = { ...aus, [feld]: null };
   }
-  const behalten: string[] = [];
-  if (brief) {
-    const vorher = brief(jetzt);
-    const nachher = brief(aus);
-    const tokens = (b: BriefAnsicht | null) => b?.abschnitte.flatMap((a) => a.tokens) ?? [];
-    const danach = new Set(tokens(nachher).map((t) => t.key).filter(Boolean));
-    const optionen = { ...aus.optionen };
-    for (const k of Object.keys(jetzt.optionen)) {
-      if (jetzt.optionen[k] !== true || normal.optionen[k] === true || danach.has(k)) continue;
-      const t = tokens(vorher).find((x) => x.key === k);
-      if (!t) continue;
-      optionen[k] = true;
-      behalten.push(t.label ?? kurzerText(t.t));
-    }
-    aus = { ...aus, optionen };
+  if (normal.alter !== jetzt.alter && normal.alter.trim()) {
+    aus = { ...aus, alter: "" };
+    geleert.push({ key: "alter", vorher: normal.alter.trim() });
   }
-  return { fall: gleich(aus, jetzt) ? jetzt : aus, behalten };
+  // Seite eines Bausteins: Trug er vorher eine Seite (eigene oder die des Briefs), bleibt die jetzige.
+  const seiteBleibtIds: string[] = [];
+  for (const k of new Set([...Object.keys(normal.seiteBaustein), ...Object.keys(jetzt.seiteBaustein)])) {
+    if (normal.seiteBaustein[k] === jetzt.seiteBaustein[k]) continue;
+    if (seiteDes(normal, k) === null || !alleBausteinIds(aus).has(k)) continue;
+    const seiteBaustein = { ...aus.seiteBaustein };
+    const j = jetzt.seiteBaustein[k];
+    if (j === undefined) delete seiteBaustein[k];
+    else seiteBaustein[k] = j;
+    aus = { ...aus, seiteBaustein };
+    seiteBleibtIds.push(k);
+  }
+  const behalten: string[] = [];
+  const entfernt: string[] = [];
+  let namen = new Map<string, string>();
+  if (brief) {
+    const tokens = (b: BriefAnsicht | null) => b?.abschnitte.flatMap((a) => a.tokens) ?? [];
+    const vorherBrief = brief(jetzt);
+    const davorBrief = brief(normal);
+    namen = new Map([...tokens(davorBrief), ...tokens(vorherBrief)].filter((t) => t.key && t.label).map((t) => [t.key!, t.label!]));
+    for (const a of [...(davorBrief?.abschnitte ?? []), ...(vorherBrief?.abschnitte ?? [])]) {
+      namen.set(`zusatz:${a.id}`, `Ergänzung ${a.titel}`);
+      for (const b of a.bausteine) namen.set(`baustein:${b.id}`, b.titel);
+    }
+    const nachherBrief = brief(aus);
+    const danach = new Set(tokens(nachherBrief).map((t) => t.key).filter(Boolean));
+    if (zusaetze) {
+      // Ist der Baustein selbst zurückgenommen (etwa ein eben übernommenes Standardprotokoll), bleibt sein Satz nicht
+      // stehen: Er stünde nirgends, und die Meldung nennte ihn als im Brief geblieben (r5-protokolle).
+      const imFall = alleBausteinIds(aus);
+      const kandidaten = Object.keys(jetzt.optionen).filter(
+        (k) => jetzt.optionen[k] === true && normal.optionen[k] !== true && !danach.has(k) && imFall.has(k.slice(0, k.indexOf("/"))) && tokens(vorherBrief).some((x) => x.key === k),
+      );
+      if (kandidaten.length > 0) {
+        // Nur was mit dem Vermerk wirklich im Brief steht: Geht der Baustein des Satzes mit zurück, bleibt nichts.
+        const versuch = { ...aus, optionen: { ...aus.optionen, ...Object.fromEntries(kandidaten.map((k) => [k, true])) } };
+        const imBrief = new Set(tokens(brief(versuch)).map((t) => t.key).filter(Boolean));
+        const optionen = { ...aus.optionen };
+        for (const k of kandidaten) {
+          if (!imBrief.has(k)) continue;
+          optionen[k] = true;
+          const t = tokens(vorherBrief).find((x) => x.key === k)!;
+          behalten.push(t.label ?? kurzerText(t.t));
+        }
+        aus = { ...aus, optionen };
+      }
+    }
+    // Ein Satz, den der Arzt vor dem Zug ausdrücklich im Brief hatte und den der Zug entfernt hat, kommt nicht schwarz
+    // zurück; die Meldung nennt ihn (CR-R4-02).
+    const amEnde = new Set(tokens(brief(aus)).map((t) => t.key).filter(Boolean));
+    for (const k of Object.keys(normal.optionen)) {
+      if (normal.optionen[k] !== true || jetzt.optionen[k] === true || amEnde.has(k)) continue;
+      const t = tokens(davorBrief).find((x) => x.key === k);
+      if (t) entfernt.push(t.label ?? kurzerText(t.t));
+    }
+  }
+  const name = (key: string) => (key === "alter" ? "Alter" : (namen.get(key) ?? namen.get(key.split("/").slice(0, 2).join("/")) ?? key));
+  const fall = gleich(aus, jetzt) ? jetzt : aus;
+  return {
+    fall,
+    behalten,
+    entfernt,
+    geleert: geleert.map((g) => ({ name: name(g.key), vorher: g.vorher })),
+    seiteBleibt: seiteBleibtIds.map((k) => ({ name: namen.get(`baustein:${k}`) ?? k, seite: SEITE_NAME[seiteDes(fall, k) ?? "ohne"] })),
+  };
 }
 
 function kurzerText(t: string, max = 60): string {
@@ -506,12 +664,26 @@ function kurzerText(t: string, max = 60): string {
 }
 
 /**
- * Ändert der Schritt eine schon gewählte Seite des ganzen Briefs oder Person? Dann beendet er den Tipp-Zug wie das
- * Kopieren (PS-N11): Eine spätere Rücknahme des Zugs stellte sonst genau die Seite oder Person wieder her, die der Arzt
- * eben verworfen hat, schwarz und kopierbar. Die erste Wahl zählt nicht; ihre Rücknahme führt zu „offen“.
+ * Ändert der Schritt eine schon gewählte Seite des ganzen Briefs, eines einzelnen Bausteins oder die Person? Dann
+ * beendet er den Tipp-Zug wie das Kopieren (PS-N11, PS-R4-1): Eine spätere Rücknahme des Zugs stellte sonst genau die
+ * Seite oder Person wieder her, die der Arzt eben verworfen hat, schwarz und kopierbar. Bei einem Baustein zählt die
+ * Seite, die er im Brief trug, auch wenn es die des Briefs war. Die erste Wahl zählt nicht; ihre Rücknahme führt zu
+ * „offen“.
  */
 export function beendetZug(vorher: Fall, nachher: Fall): boolean {
-  return (vorher.seite !== null && nachher.seite !== vorher.seite) || (vorher.geschlecht !== null && nachher.geschlecht !== vorher.geschlecht);
+  if ((vorher.seite !== null && nachher.seite !== vorher.seite) || (vorher.geschlecht !== null && nachher.geschlecht !== vorher.geschlecht)) return true;
+  const ids = alleBausteinIds(nachher);
+  return [...new Set([...Object.keys(vorher.seiteBaustein), ...Object.keys(nachher.seiteBaustein)])].some(
+    (k) => ids.has(k) && vorher.seiteBaustein[k] !== nachher.seiteBaustein[k] && seiteDes(vorher, k) !== null && seiteDes(nachher, k) !== seiteDes(vorher, k),
+  );
+}
+
+/** Bausteine, deren Seite im Brief der Schritt geändert hat, mit Seite davor und danach (Meldung, PS-R4-1). */
+export function geaenderteBausteinSeiten(vorher: Fall, nachher: Fall): { bausteinId: string; vorher: Seite | null; nachher: Seite | null }[] {
+  const ids = alleBausteinIds(nachher);
+  return [...new Set([...Object.keys(vorher.seiteBaustein), ...Object.keys(nachher.seiteBaustein)])]
+    .filter((k) => ids.has(k) && vorher.seiteBaustein[k] !== nachher.seiteBaustein[k] && seiteDes(nachher, k) !== seiteDes(vorher, k))
+    .map((k) => ({ bausteinId: k, vorher: seiteDes(vorher, k), nachher: seiteDes(nachher, k) }));
 }
 
 /**

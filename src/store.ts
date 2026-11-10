@@ -43,7 +43,7 @@ export function abgelaufen(f: Fall, jetzt = Date.now()): boolean {
 
 raeumeAltlasten();
 const sitzung = ladeSitzung();
-const geladen = sitzung.faelle.map((f) => ergaenzt(f, INDEX)).filter((f): f is Fall => f !== null && !abgelaufen(f));
+const geladen = sitzung.faelle.map((f) => ergaenzt(f, INDEX, sitzung.format)).filter((f): f is Fall => f !== null && !abgelaufen(f));
 
 /** Zahl der Fälle, deren Auswahlen nach einer Katalogänderung zurückgesetzt wurden. */
 export const katalogGeaendert = signal(geladen.filter((f) => f.katalog !== KATALOG.version).length);
