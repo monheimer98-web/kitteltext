@@ -101,7 +101,7 @@ export function frisch() {
   lokal.gesperrt = false;
   sitzung.gesperrt = false;
   zwischenablage.gesperrt = false;
-  aktionen.raeumeArbeitsplatz();
+  void aktionen.raeumeArbeitsplatz(true);
   zwischenablage.texte = [];
   zeitgeber.wartend = [];
   fokus.length = 0;

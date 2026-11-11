@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "preact/hooks";
 import type { ComponentChildren } from "preact";
-import { ABLAUF_STUNDEN, INDEX, eigeneVorlageLoeschen, eigenenBausteinLoeschen, eigenes, eigenesErsetzen, einstellungen, faelle, setzeEinstellung } from "../store.ts";
-import { raeumeArbeitsplatz } from "./aktionen.ts";
+import { ABLAUF_STUNDEN, INDEX, bestand, eigeneVorlageLoeschen, eigenenBausteinLoeschen, eigenes, eigenesErsetzen, einstellungen, setzeEinstellung } from "../store.ts";
 import { useFokusZurueck } from "./fokus.ts";
 import { ausNeuererFassung, eigenesAlsText, pruefeEigenes } from "../speicher.ts";
 import { inZwischenablage } from "./kopieren.ts";
@@ -10,6 +9,9 @@ import { KATALOG } from "../data/katalog.ts";
 import { TASTATUR, TASTENSPERRE } from "../data/tastatur.ts";
 import { melde } from "./kopieren.ts";
 import { Arbeitsplatz } from "./Arbeitsplatz.tsx";
+import { BehaltenEinstellung } from "./Behalten.tsx";
+import { RaeumenFrage, raeumeUndMelde } from "./Raeumen.tsx";
+import { BEHALTEN_TAGE } from "../engine/behalten.ts";
 
 function Wahl<K extends keyof E>(p: { name: K; titel: string; hilfe?: string; optionen: { wert: E[K]; label: string }[] }) {
   const aktuell = einstellungen.value[p.name];
@@ -64,7 +66,7 @@ function Loeschen(p: { name: string; art: "Vorlage" | "Baustein"; loesche: () =>
         p.danach();
       }}
     >
-      {frage ? "wirklich löschen?" : "löschen"}
+      {frage ? "Wirklich löschen?" : "Löschen"}
     </button>
   );
 }
@@ -171,6 +173,7 @@ export function Einstellungen({ onZu }: { onZu: () => void }) {
   useFokusZurueck();
   const ref = useRef<HTMLDivElement>(null);
   const [check, setCheck] = useState(false);
+  const [raeumen, setRaeumen] = useState(false);
   useEffect(() => {
     ref.current?.querySelector<HTMLElement>("button")?.focus();
     const taste = (e: KeyboardEvent) => e.key === "Escape" && !document.querySelector("[aria-label='Arbeitsplatz-Check']") && onZu();
@@ -255,22 +258,26 @@ export function Einstellungen({ onZu }: { onZu: () => void }) {
             <div>
               <div class="es-titel">Arbeitsplatz räumen</div>
               <div class="es-hilfe">
-                Löscht alle {faelle.value.length} offenen Fälle sofort und überschreibt die Zwischenablage. Eigene Bausteine und Vorlagen bleiben. Ohnehin gilt: Fälle liegen nur in diesem Browserfenster und verfallen ohne
-                Änderung nach {ABLAUF_STUNDEN.zna} Stunden (Notaufnahme) bzw. {ABLAUF_STUNDEN.station} Stunden (Station).
+                Löscht sofort die Fälle dieses Fensters und überschreibt die Zwischenablage; gibt es behaltene Fälle, fragt es, ob sie bleiben oder mit gelöscht werden. Eigene Bausteine und Vorlagen bleiben. Ohnehin
+                verschwinden Fälle mit dem Browserfenster und ohne Änderung nach {ABLAUF_STUNDEN.zna} Stunden (Notaufnahme) bzw. {ABLAUF_STUNDEN.station} Stunden (Station); behaltene Stationsfälle löscht die App{" "}
+                {BEHALTEN_TAGE} Tage nach Beginn.
               </div>
             </div>
             <button
               type="button"
               class="knopf gefahr"
+              aria-expanded={raeumen}
               onClick={() => {
-                raeumeArbeitsplatz();
-                melde({ text: "Alle Fälle gelöscht, Zwischenablage überschrieben. Eigene Bausteine und Vorlagen bleiben.", art: "ok" }, 5000);
+                if (bestand.value.eintraege.length > 0) return setRaeumen(!raeumen);
+                void raeumeUndMelde(true);
                 onZu();
               }}
             >
-              Alle Fälle löschen
+              Jetzt räumen
             </button>
           </div>
+          {raeumen && <RaeumenFrage id="raeumen-einstellungen" onFertig={(geraeumt) => (geraeumt ? onZu() : setRaeumen(false))} />}
+          <BehaltenEinstellung />
           <Wahl
             name="farbmodus"
             titel="Darstellung"

@@ -26,15 +26,18 @@ import {
 } from "../engine/fall.ts";
 import { normalisiere } from "../engine/suche.ts";
 import { bausteinStand, sammelAussagen, sammelSchritte } from "../engine/sammel.ts";
-import { INDEX, abgleich, aendere, aktiverFall, brief, eigenenBausteinSpeichern, einstellungen, katalogStand, zurueck } from "../store.ts";
+import { INDEX, abgleich, aendere, aktiverFall, brief, eigenenBausteinSpeichern, einstellungen, istBehalten, katalogStand, zurueck } from "../store.ts";
+import { standText } from "../engine/stand.ts";
 import { melde } from "./kopieren.ts";
 import {
   beiKopieAusBrief,
   blindesZeichen,
   frischeStellen,
   hebeHervor,
+  jetztImTakt,
   klaere,
   kopiereAbschnitt,
+  kopiertUmText,
   naechsteStelle,
   oeffneFeld,
   offeneListe,
@@ -50,12 +53,13 @@ import {
   uhrzeit,
   zugErlaubt,
 } from "./aktionen.ts";
-import { nachDemZeichnen } from "./fokus.ts";
+import { messeKopf, nachDemZeichnen } from "./fokus.ts";
 import { EigenerWortlaut, Eingabe, Pillen, Slots, anzeige } from "./Feldfenster.tsx";
 import { entwurfEigenerBaustein } from "../engine/eigen.ts";
 import { aufzaehlen } from "../engine/aenderung.ts";
 import { NormwertInfo } from "./Normwert.tsx";
 import { Protokollkasten } from "./Protokoll.tsx";
+import { istKurzeStelle, offeneMarke } from "../engine/anzeige.ts";
 
 export const STATUS_TEXT: Record<Pruefstatus, string> = {
   hausstandard: "Standardtext",
@@ -73,15 +77,6 @@ const ZUSTAND_TEXT: Record<string, string> = {
   gesetzt: "",
 };
 
-/** Was an einer offenen Stelle steht: die Bezeichnung der Lücke oder der Satz mit Auslassungspunkten. */
-function offeneAnzeige(kern: string, label: string | undefined): string {
-  const einzeln = /^‹([^›]*)›[.,;:!?]?$/.exec(kern);
-  if (einzeln) return einzeln[1];
-  const mitPunkten = kern.replace(/‹[^›]*›/g, "…").replace(/…(\s*…)+/g, "…");
-  // Beginnt der Satz mit der Lücke, sagt erst die Bezeichnung, worum es geht.
-  return kern.startsWith("‹") && label ? `${label}: ${mitPunkten}` : mitPunkten;
-}
-
 function TokenAnsicht({ t, abschnitt }: { t: Token; abschnitt: AbschnittId }) {
   if (!t.key || t.art === "fix" || t.art === "zusatz" || t.art === "manuell") {
     return <span class={t.art === "zusatz" ? "tok-zusatz" : undefined}>{t.t}</span>;
@@ -93,7 +88,8 @@ function TokenAnsicht({ t, abschnitt }: { t: Token; abschnitt: AbschnittId }) {
   const ende = /\s+$/.exec(t.t)?.[0] ?? "";
   const anfang = /^\s+/.exec(t.t)?.[0] ?? "";
   const kern = t.t.slice(anfang.length, t.t.length - ende.length);
-  const anzeige = t.zustand === "offen" ? `● ${offeneAnzeige(kern, t.label)}` : t.fristen ? mitFristTeilen(t, anfang.length, kern) : kern;
+  const marke = t.zustand === "offen" ? offeneMarke(kern, t.label) : null;
+  const anzeige = marke ?? (t.fristen ? mitFristTeilen(t, anfang.length, kern) : kern);
   const herkunft = t.uebertragen ? `Angabe aus ${t.uebertragen.map((q) => `„${q}“`).join(", ")}` : "";
   const zusatz = [
     t.falldatum && t.zustand === "spaeter"
@@ -108,13 +104,13 @@ function TokenAnsicht({ t, abschnitt }: { t: Token; abschnitt: AbschnittId }) {
   ]
     .filter(Boolean)
     .join(", ");
-  const marke = (
+  const stelle = (
     <span
       role="button"
       tabIndex={0}
       data-key={key}
       data-falldatum={t.falldatum}
-      class={`tok tok-${t.art} z-${t.zustand ?? "gesetzt"}${offen ? " tok-aktiv" : ""}${frischeStellen.value.has(key) ? " tok-frisch" : ""}${offeneFristen(t).length > 0 ? " mit-frist" : ""}`}
+      class={`tok tok-${t.art} z-${t.zustand ?? "gesetzt"}${marke && istKurzeStelle(marke) ? " kurz" : ""}${offen ? " tok-aktiv" : ""}${frischeStellen.value.has(key) ? " tok-frisch" : ""}${offeneFristen(t).length > 0 ? " mit-frist" : ""}`}
       aria-label={`${t.label ?? ""}: ${kern}${zusatz ? `, ${zusatz}` : ""}`}
       aria-expanded={offen}
       onClick={oeffne}
@@ -133,11 +129,11 @@ function TokenAnsicht({ t, abschnitt }: { t: Token; abschnitt: AbschnittId }) {
   return anfang || ende ? (
     <>
       {anfang}
-      {marke}
+      {stelle}
       {ende}
     </>
   ) : (
-    marke
+    stelle
   );
 }
 
@@ -454,7 +450,9 @@ function Befundliste({ b, a }: { b: Baustein; a: AbschnittAnsicht }) {
     const key = offeneListe.value?.key;
     const ziel = (key ? el.querySelector<HTMLElement>(`[data-zeile="${CSS.escape(key)}"]`) : null) ?? ersteOffeneZeile(el) ?? el.querySelector<HTMLElement>("[data-zeile]");
     if (ziel) fokusZeile(ziel);
-    // Satz und Liste sollen zusammen sichtbar sein: der Block rückt an den oberen Rand.
+    // Satz und Liste sollen zusammen sichtbar sein: der Block rückt an den oberen Rand, unter den Kopf, wie er jetzt ist
+    // (CR-R6F-05).
+    messeKopf(el.closest<HTMLElement>(".papier-rahmen"));
     const block = el.closest(".block") ?? el;
     if (block.getBoundingClientRect().height < window.innerHeight - 180) block.scrollIntoView({ block: "start" });
     else ziel?.scrollIntoView({ block: "center" });
@@ -618,7 +616,7 @@ function Befundliste({ b, a }: { b: Baustein; a: AbschnittAnsicht }) {
     <div class="befundliste" ref={ref} data-haelt-feld onKeyDown={taste} role="group" aria-label={`Befunde ${b.titel}`}>
       <div class="bl-kopf">
         <strong>{b.titel}</strong>
-        <span class="bl-tipp">↑ ↓ Zeile · U unauffällig · A auffällig oder angeben · N nicht untersucht · Ziffer: Angabe · Ü: Gruppe übernehmen · Enter: nächste offene Zeile</span>
+        <span class="bl-tipp">↑ ↓ Zeile · U unauffällig · A auffällig · N nicht untersucht · Ü Gruppe übernehmen</span>
       </div>
       {gruppen.map((g) => {
         const vor = vorschlaegeIn(g);
@@ -945,10 +943,16 @@ export function abgleichFuer(id: AbschnittId) {
 function KopierKnopf({ a }: { a: AbschnittAnsicht }) {
   // Ein einziger Knopf, dessen Aufschrift wechselt: So bleibt der Tastaturfokus erhalten.
   if (!a.leer && !a.fertig) {
-    const teile = [a.offen > 0 ? `● ${a.offen} offen` : "", a.vorschlag > 0 ? `○ ${a.vorschlag} ${a.vorschlag === 1 ? "Vorschlag" : "Vorschläge"}` : ""].filter(Boolean);
+    // Gelb tragen nur ● und Zahl; Fläche und Rand bleiben ruhig (Design-Review Nr. 2). Ein Element im Knopf, damit der
+    // Name derselbe Satz bleibt („● 3 offen · ○ 2 Vorschläge · klären“).
     return (
       <button type="button" class="knopf kopieren offen" onClick={() => klaere(a)} title="Noch nicht kopierbar. Führt zur ersten Stelle, die zu klären ist.">
-        {teile.join(" · ")} · klären
+        <span>
+          {a.offen > 0 && <span class="kz-offen">{`● ${a.offen} offen`}</span>}
+          {a.offen > 0 && a.vorschlag > 0 && " · "}
+          {a.vorschlag > 0 && <span class="kz-grau">{`○ ${a.vorschlag} ${a.vorschlag === 1 ? "Vorschlag" : "Vorschläge"}`}</span>}
+          {" · klären"}
+        </span>
       </button>
     );
   }
@@ -1044,6 +1048,9 @@ function Abschnitt({ a }: { a: AbschnittAnsicht }) {
     };
   }, [menue]);
   const fall = aktiverFall.value!;
+  const jetzt = jetztImTakt();
+  // Behaltener Fall: Text von einem früheren Tag leise am Abschnitt (PS-R6-3, E-86). Kein Gelb, gelb heißt „fehlt noch“.
+  const stand = !a.leer && istBehalten(fall.id) ? standText(fall, [a.id], jetzt) : "";
   const hinweise = abgleichFuer(a.id);
   // Ein kopierter Abschnitt mit Abgleich-Hinweis ist nicht mehr grün: Im KIS steht womöglich, was nicht zusammenpasst.
   const kopierStand = a.leer ? "" : a.geaendertSeitKopie ? "geaendert" : a.kopiert ? (hinweise.length ? "geaendert" : "kopiert") : "";
@@ -1053,7 +1060,7 @@ function Abschnitt({ a }: { a: AbschnittAnsicht }) {
       <section class="abschnitt ausgeblendet" data-abschnitt={a.id}>
         <header>
           <h2>{a.titel}</h2>
-          <span class="ab-hinweis">nicht im Brief{a.kopiert ? ` · wurde um ${a.kopiertUm ? uhrzeit(a.kopiertUm) : "?"} kopiert: im KIS löschen` : ""}</span>
+          <span class="ab-hinweis">nicht im Brief{a.kopiert ? ` · wurde ${kopiertUmText(a.kopiertUm, jetzt)} kopiert: im KIS löschen` : ""}</span>
           <button type="button" class="link" onClick={() => aendere((f) => mitAusgeblendet(f, a.id, false))}>
             wieder aufnehmen
           </button>
@@ -1066,6 +1073,11 @@ function Abschnitt({ a }: { a: AbschnittAnsicht }) {
     <section class={`abschnitt ${kopierStand}`} data-abschnitt={a.id}>
       <header>
         <h2>{a.titel}</h2>
+        {stand && (
+          <span class="ab-hinweis ab-stand" data-stand title="Text zuletzt an einem früheren Tag geändert: noch richtig?">
+            {stand}
+          </span>
+        )}
         <div class="ab-aktionen">
           <button type="button" class="knopf leise klein" aria-expanded={wahl} onClick={() => setWahl(!wahl)} title="Baustein in diesen Abschnitt einfügen">
             + Baustein
@@ -1115,8 +1127,8 @@ function Abschnitt({ a }: { a: AbschnittAnsicht }) {
       {wahl && <BausteinWahl abschnitt={a.id} onFertig={() => setWahl(false)} />}
       {eigen && <EigenSpeichern a={a} onFertig={() => setEigen(false)} />}
       {a.seitenkonflikt && (
-        <p class="ab-warnung" role="alert">
-          Im frei geschriebenen Text steht „{a.seitenkonflikt}", die Seite des Falls ist {fall.seite}. Bitte prüfen.
+        <p class="ab-warnung dringend" role="alert">
+          Im frei geschriebenen Text steht „{a.seitenkonflikt}“, die Seite des Falls ist {fall.seite}. Bitte prüfen.
         </p>
       )}
       {hinweise.map((h) => {
@@ -1125,11 +1137,11 @@ function Abschnitt({ a }: { a: AbschnittAnsicht }) {
         const andere = h.abschnitte.filter((x) => x !== a.id).map((x) => brief.value?.abschnitte.find((y) => y.id === x)?.titel ?? x);
         return (
           <p class="ab-warnung" role="alert" data-abgleich>
-            Bitte abgleichen{andere.length ? ` mit ${aufzaehlen(andere.map((t) => `„${t}“`), Infinity)}` : ""}. {h.text}
+            <strong>Bitte abgleichen{andere.length ? ` mit ${aufzaehlen(andere.map((t) => `„${t}“`), Infinity)}` : ""}.</strong> {h.text}
           </p>
         );
       })}
-      {a.leer && a.kopiert && <p class="ab-warnung">Dieser Abschnitt wurde um {a.kopiertUm ? uhrzeit(a.kopiertUm) : "?"} kopiert und ist jetzt leer. Im KIS steht noch der alte Text.</p>}
+      {a.leer && a.kopiert && <p class="ab-warnung dringend">Dieser Abschnitt wurde {kopiertUmText(a.kopiertUm, jetzt)} kopiert und ist jetzt leer. Im KIS steht noch der alte Text.</p>}
 
       {a.manuell ? (
         <Handtext a={a} />

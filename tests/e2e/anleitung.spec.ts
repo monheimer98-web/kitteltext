@@ -92,4 +92,16 @@ test.describe("Anleitung (D-05)", () => {
     await page.keyboard.press("Escape");
     await expect(leiste(page)).toHaveCount(0);
   });
+
+  test("Mit offener Anleitung unter 1080 px sagt die Kurzform des Kopierknopfs, was sie tut (MT-R6-19)", async ({ page }) => {
+    await page.setViewportSize({ width: 1024, height: 768 });
+    await oeffneApp(page);
+    await vorlageMitKopf(page, "osg", "OSG-Distorsion");
+    await knopf(page).click();
+    await expect(leiste(page)).toBeVisible();
+    const ganz = page.getByRole("button", { name: /^Ganzen Brief kopieren/ });
+    await expect(ganz).toBeVisible();
+    await expect(ganz.locator(".kurz")).toBeVisible();
+    await expect(ganz.locator(".kurz")).toHaveText("Brief kopieren");
+  });
 });

@@ -34,10 +34,16 @@ import {
 import type { Kette, Urteil, Zug } from "../engine/tippzug.ts";
 import { PERSON_WORT, aenderungJetzt, aufzaehlen, geaenderteStellen, gesetztText, kurz, zurueckgenommenText } from "../engine/aenderung.ts";
 import { SPERRE } from "../data/tastatur.ts";
+import { AUS_ABSCHNITT } from "../data/kopplung.ts";
 import { bausteinStand, mitSammelangabe, ohneSammelangabe, sammelAussagen } from "../engine/sammel.ts";
 import type { SammelSetzung } from "../engine/sammel.ts";
-import { INDEX, aendere, aendereFall, aktiverFall, aktivId, allesLoeschen, brief, einstellungen, faelle, setzeEinstellung, sucheOffen, verwerfeAbgelaufene, vermerke } from "../store.ts";
-import { fokusSichern, nachDemZeichnen } from "./fokus.ts";
+import { INDEX, aendere, aendereFall, aktiverFall, aktivId, allesLoeschen, brief, einstellungen, faelle, merkerVon, setzeEinstellung, sucheOffen, verwerfeAbgelaufene, vermerke, behaltenNochHier, eintragVon, fallSchliessen, fallWiederherstellen, fensterRaeumen, geschlossen, istBehalten, nimmFreigegebeneZurueck, ohneBriefZu, uhrTakt } from "../store.ts";
+import { zeitpunkt, alterKurz, loeschText, umZeitpunkt } from "../engine/behalten.ts";
+import { fokusSichern, messeKopf, nachDemZeichnen, waehleLuecke } from "./fokus.ts";
+import type { OeffnenErgebnis } from "../store.ts";
+import { geraeumtText } from "../engine/raeumen.ts";
+import type { Geraeumt } from "../engine/raeumen.ts";
+import { standText } from "../engine/stand.ts";
 import { inZwischenablage, melde, meldung } from "./kopieren.ts";
 import type { Meldung } from "./kopieren.ts";
 
@@ -91,14 +97,22 @@ interface Merkpunkt {
   /** Kennung des Halts an der Stelle selbst, solange es ihn gibt; null, wenn die Stelle kein Halt ist. */
   kennung: string | null;
   davor: ReadonlySet<string>;
+  /**
+   * Bausteine (`abschnitt:bausteinId`), die beim Öffnen ganz vor der Stelle standen. Ein Halt, der dort erst durch die
+   * Entscheidung entsteht, liegt trotzdem davor: etwa ein grauer Übertrag im Entlassbefund, den eine Kopplung (E-60) aus
+   * dem Procedere bekommt (QA-42). Was an der Stelle selbst neu entsteht (ein neuer Baustein), zählt nicht dazu.
+   */
+  bloecke: ReadonlySet<string>;
 }
 let merkpunkt: Merkpunkt | null = null;
 
-/** Merkt die Stelle mit dem Rang `rang`: Alle Halte mit kleinerem Rang liegen davor. */
-function merke(kennung: string | null, rang: number) {
+/** Merkt die Stelle mit dem Rang `rang`: Alle Halte mit kleinerem Rang liegen davor, ebenso alle Bausteine davor. */
+function merke(kennung: string | null, rang: number, eigenerBlock?: string) {
   const davor = new Set<string>();
   for (const h of halte()) if (h.rang < rang && haltKennung(h) !== kennung) davor.add(haltKennung(h));
-  merkpunkt = { kennung, davor };
+  const bloecke = new Set<string>();
+  for (const [block, ende] of reihenfolge().ende) if (ende < rang && block !== eigenerBlock) bloecke.add(block);
+  merkpunkt = { kennung, davor, bloecke };
 }
 
 // Fenster, Befundliste und der Stand des Durchlaufs gehören zu einem Fall.
@@ -139,8 +153,11 @@ export function tokenElement(key: string): HTMLElement | null {
   return document.querySelector<HTMLElement>(`[data-key="${CSS.escape(key)}"]`);
 }
 
-// Ohne Animation: Die Stelle steht sofort da, auch wenn das Fenster gerade im Hintergrund war.
+// Ohne Animation: Die Stelle steht sofort da, auch wenn das Fenster gerade im Hintergrund war. Aufgerufen erst nach dem
+// Zeichnen (`nachDemZeichnen`): Ändert dieselbe Entscheidung den Kopf (Hinweis der Falldaten, zweite OP, Seite, Person),
+// misst `messeKopf` ihn hier schon neu; der Beobachter käme erst nach dem Sprung (CR-R6F-05, PS-R6F-7).
 function inSicht(el: Element | null | undefined) {
+  messeKopf(el?.closest<HTMLElement>(".papier-rahmen"));
   el?.scrollIntoView({ block: "nearest" });
 }
 
@@ -152,7 +169,9 @@ export function oeffneFeld(feld: OffenesFeld) {
   }
   offeneListe.value = null;
   offenesFeld.value = feld;
-  inSicht(tokenElement(feld.key));
+  // Nach dem Zeichnen, damit der Kopf schon seine neue Höhe hat (CR-R6F-05). Das Fenster rückt die Stelle danach selbst
+  // zurecht, wenn es Platz braucht (`inSichtHolen` im Feldfenster).
+  nachDemZeichnen(() => offenesFeld.peek() === feld && inSicht(tokenElement(feld.key)));
 }
 
 export function schliesseFeld(fokusZurueck = true) {
@@ -366,6 +385,7 @@ function zeigeZug() {
  */
 function zugSprung() {
   zug = nachSprung(zug);
+  vorauswahl = null;
   if (typeof requestAnimationFrame !== "function") {
     zug = { ...zug, sichtbarAb: jetztMs() };
     return;
@@ -409,9 +429,46 @@ export function sprungInListe() {
   zugSprung();
 }
 
+/**
+ * Lücke im freien Text, die ein Sprung ausgewählt hat, bevor der Arzt sie sehen konnte (E-93): der Sprung des
+ * Durchlaufs in Handtext oder freie Ergänzung, oder F2 im Feld noch in der Schreckzeit. Bis die Schreckzeit um ist,
+ * ersetzt keine Taste sie; ein Zeichen wird verworfen und gemeldet wie an jedem Halt, kurz nach einem Befehl nimmt es
+ * den Zug zurück (E-45). Gilt nur, solange die Auswahl unverändert steht; Pfeiltaste, Tab, F2 und Klick lösen sie.
+ */
+let vorauswahl: { el: HTMLTextAreaElement; anfang: number; ende: number } | null = null;
+
+function merkeVorauswahl(el: EventTarget | null) {
+  vorauswahl = el instanceof HTMLTextAreaElement ? { el, anfang: el.selectionStart, ende: el.selectionEnd } : null;
+}
+
+/** F2, das noch in der Schreckzeit nach einem Sprung kam; der Hörer in der Einfangphase hält es fest, bevor er löst. */
+let f2ZuFrueh: KeyboardEvent | null = null;
+
+/**
+ * F2 im freien Text (R5-02): wählt die nächste Lücke aus. Wer F2 selbst im Feld drückt, hat hingesehen: keine Sperre,
+ * Tippen ersetzt die Lücke gleich. Kam das F2 aber noch in der Schreckzeit nach einem Sprung, gilt dieselbe Regel wie
+ * nach jedem Sprung: Die neue Auswahl hat ihre Schreckzeit (E-93). `true`, wenn es eine Lücke gab.
+ */
+export function lueckePerF2(e: KeyboardEvent): boolean {
+  const zuFrueh = f2ZuFrueh === e;
+  f2ZuFrueh = null;
+  if (!waehleLuecke(e.target, e.shiftKey)) return false;
+  if (zuFrueh) {
+    zugSprung();
+    merkeVorauswahl(e.target);
+  }
+  return true;
+}
+
+/** Eine Taste, die den Text im Feld ändern würde: Zeichen, Enter, Rück- und Entfernentaste, Einfügen, Ausschneiden. */
+function aendertText(e: KeyboardEvent): boolean {
+  return druckbar(e) || e.key === "Enter" || e.key === "Backspace" || e.key === "Delete" || ((e.ctrlKey || e.metaKey) && (e.key === "v" || e.key === "x"));
+}
+
 /** Pfeiltaste, Tab, F2 oder Klick: Der Arzt sieht sich um. Gibt zurück, ob die Tasten gesperrt waren. */
 function loeseZug(zeit = jetztMs()): boolean {
   offenerBefehl = null;
+  vorauswahl = null;
   kette = neueKette(zeit);
   vorige = [];
   letzteUebernahme = null;
@@ -472,6 +529,7 @@ if (typeof document !== "undefined" && typeof document.addEventListener === "fun
       kette = r.kette;
       const ziel = e.target as HTMLElement | null;
       const imFeld = haltFeld(ziel);
+      if (e.key === "F2") f2ZuFrueh = inSchreckzeit(zug, zeit) ? e : null;
       // Tab im Textfeld heißt weiter, wie Strg+Enter (E-45); es löst nichts und gehört dem Feld.
       if (LOESENDE_TASTEN.has(e.key) && !(imFeld && e.key === "Tab")) {
         const warGesperrt = loeseZug(zeit);
@@ -483,6 +541,29 @@ if (typeof document !== "undefined" && typeof document.addEventListener === "fun
           melde({ text: ENTSPERRT, art: "ok", fallId: aktivId.peek() ?? undefined }, 4000);
         }
         return;
+      }
+      // Eine Lücke, die ein Sprung eben ausgewählt hat (E-93): in der Schreckzeit, bei gesperrten Tasten oder im Takt
+      // eines blinden Zugs ersetzt keine Taste sie. Ein Zeichen wird gemeldet und nimmt den Zug zurück wie Text im Feld
+      // eines Fensters; Enter, Rück- und Entfernentaste werden still verworfen wie Enter kurz nach einem Sprung.
+      if (vorauswahl && ziel === vorauswahl.el && aendertText(e)) {
+        const v = vorauswahl;
+        const schreck = inSchreckzeit(zug, zeit);
+        if (v.el.selectionStart !== v.anfang || v.el.selectionEnd !== v.ende) vorauswahl = null;
+        else if (!druckbar(e)) {
+          // Enter, Rück- und Entfernentaste ersetzen die unveränderte Vorauswahl nie, auch nach der Schreckzeit nicht:
+          // „Ziffer, Enter“ ist Gewohnheit, und Enter allein setzt an keinem Halt etwas (CR-R6C-02). Ein Zeichen,
+          // eine Pfeiltaste, F2 oder ein Klick heben die Vorauswahl auf.
+          e.preventDefault();
+          e.stopPropagation();
+          if (!schreck && !zug.gesperrt) melde({ text: "Die ausgewählte Lücke bleibt stehen: Tippen ersetzt sie, eine Pfeiltaste hebt die Auswahl auf.", art: "ok", fallId: aktivId.peek() ?? undefined }, 5000);
+          return;
+        } else if (schreck || zug.gesperrt || blind(kette, "text", zeit, schreck)) {
+          e.preventDefault();
+          e.stopPropagation();
+          zug = { ...zug, gesperrt: true };
+          verwirf(schreck ? "zu-frueh" : "gesperrt", e.key, zeit, "", true);
+          return;
+        } else vorauswahl = null;
       }
       if (imFeld) {
         const weiterTaste = (e.key === "Enter" && !e.altKey) || (e.key === "Tab" && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey);
@@ -826,13 +907,13 @@ export function uebernimmMitMeldung(keys: string[], was: string) {
 }
 
 /**
- * Ein Schnellwert oder „heute“ hat getippten Text ersetzt: mit beiden Wortlauten und „Rückgängig“ (PS-N05).
- * `noch`: Steht an der Stelle noch genau der Schnellwert? Nur dann stellt „Rückgängig“ den alten Text her; hat der Arzt
- * die Stelle seither neu geschrieben, bliebe sonst seine neue Eingabe auf der Strecke (PS-N10).
+ * Meldung zu einer Änderung mit „Rückgängig“ (G-77). `noch`: Steht die Stelle noch so, wie die Änderung sie hinterließ?
+ * Nur dann stellt „Rückgängig“ mit `zurueck` den alten Stand her; hat der Arzt sie seither neu geschrieben, bliebe sonst
+ * seine neue Eingabe auf der Strecke (PS-N10). `stehend`: bleibt, bis er sie schließt (E-92).
  */
-export function meldeErsetzt(label: string, alt: string, neu: string, noch: (f: Fall) => boolean, zurueck: (f: Fall) => Fall) {
+export function meldeMitRueckgaengig(text: string, noch: (f: Fall) => boolean, zurueck: (f: Fall) => Fall, stehend = false) {
   const fall = aktiverFall.peek();
-  if (!fall || !alt.trim() || alt.trim() === neu.trim()) return;
+  if (!fall) return;
   const fallId = fall.id;
   const ausfuehren = () => {
     const jetzt = faelle.peek().find((f) => f.id === fallId);
@@ -840,7 +921,28 @@ export function meldeErsetzt(label: string, alt: string, neu: string, noch: (f: 
     if (!noch(jetzt)) return melde({ text: "Nichts zurückzunehmen: Die Stelle ist inzwischen geändert.", art: "ok", fallId });
     aendereFall(fallId, zurueck);
   };
-  melde({ text: `Ersetzt: ${label} „${kurz(alt)}“ → „${kurz(neu)}“`, art: "warnung", fallId, aktion: { label: "Rückgängig", ausfuehren } }, 8000);
+  melde({ text, art: "warnung", fallId, ...(stehend ? { stehend } : {}), aktion: { label: "Rückgängig", ausfuehren } }, stehend ? undefined : 8000);
+}
+
+/**
+ * Eine Ziffer, Enter oder ein Klick hat an einer gekoppelten Stelle anders gewählt als die übertragene Antwort (E-92).
+ * Gesetzt ist es, denn der Arzt kann recht haben (hinweisen statt zwingen); die Meldung bleibt stehen, bis er sie
+ * schließt, und nimmt mit „Rückgängig“ nur diese Wahl zurück, solange die Stelle noch so steht. Den Widerspruch
+ * meldet zusätzlich der Abgleich.
+ */
+export function meldeAbweichend(vorschlag: string, aus: AbschnittId, noch: (f: Fall) => boolean, zurueck: (f: Fall) => Fall) {
+  meldeMitRueckgaengig(`Abweichend von „${kurz(vorschlag)}“ ${AUS_ABSCHNITT[aus]} gesetzt.`, noch, zurueck, true);
+}
+
+/** „Satz entfernen“ im Fenster (CR-R6F-04): nennt den Satz und nimmt ihn mit „Rückgängig“ zurück, solange er weg ist. */
+export function meldeEntfernt(satz: string, noch: (f: Fall) => boolean, zurueck: (f: Fall) => Fall) {
+  meldeMitRueckgaengig(satz ? `Satz entfernt: „${kurz(satz)}“` : "Satz entfernt.", noch, zurueck);
+}
+
+/** Ein Schnellwert oder „heute“ hat getippten Text ersetzt: mit beiden Wortlauten und „Rückgängig“ (PS-N05). */
+export function meldeErsetzt(label: string, alt: string, neu: string, noch: (f: Fall) => boolean, zurueck: (f: Fall) => Fall) {
+  if (!alt.trim() || alt.trim() === neu.trim()) return;
+  meldeMitRueckgaengig(`Ersetzt: ${label} „${kurz(alt)}“ → „${kurz(neu)}“`, noch, zurueck);
 }
 
 // Eine Meldung mit „Rückgängig“ gilt dem Fall, in dem sie entstand: Sobald sein Brief nicht mehr zu sehen ist (anderer
@@ -959,6 +1061,13 @@ function haltKennung(h: Halt): string {
   }
 }
 
+/** Baustein eines Halts als `abschnitt:bausteinId`; Seite, Person, Entweder-oder-Stelle und freie Lücke haben keinen. */
+function haltBlock(h: Halt): string | undefined {
+  if (h.art === "liste" || h.art === "block") return `${h.abschnitt}:${h.bausteinId}`;
+  if (h.art === "feld" && h.feld.art !== "wahl") return `${h.feld.abschnitt}:${h.feld.key.split("/")[0]}`;
+  return undefined;
+}
+
 /** Abschnitt und Baustein als ein Schlüssel; ein Baustein steht in genau einem Abschnitt des Briefs. */
 function blockVon(bausteinId: string): string | undefined {
   for (const a of brief.peek()?.abschnitte ?? []) {
@@ -982,17 +1091,18 @@ function folgender(liste: Halt[], rueckwaerts: boolean): Halt {
   const andere = liste.filter((h) => haltKennung(h) !== jetzt);
   if (andere.length === 0) return liste[0];
   if (!m) return rueckwaerts ? andere[andere.length - 1] : andere[0];
+  const lagDavor = (h: Halt) => m.davor.has(haltKennung(h)) || m.bloecke.has(haltBlock(h) ?? "");
   if (rueckwaerts) {
-    const vorher = andere.filter((h) => m.davor.has(haltKennung(h)));
+    const vorher = andere.filter(lagDavor);
     return vorher[vorher.length - 1] ?? andere[andere.length - 1];
   }
-  return andere.find((h) => !m.davor.has(haltKennung(h))) ?? andere[0];
+  return andere.find((h) => !lagDavor(h)) ?? andere[0];
 }
 
-function geheZu(h: Halt) {
+function geheZu(h: Halt, rueckwaerts = false) {
   zugSprung();
   letzterHalt = haltKennung(h);
-  merke(letzterHalt, h.rang);
+  merke(letzterHalt, h.rang, haltBlock(h));
   offenesFeld.value = null;
   if (h.art === "liste") {
     offeneListe.value = { bausteinId: h.bausteinId, key: h.key };
@@ -1012,6 +1122,9 @@ function geheZu(h: Halt) {
       const ziel = in_(".handtext textarea") ?? in_(".zusatz textarea") ?? in_(".zusatz-knopf") ?? in_("[aria-haspopup='menu']");
       inSicht(ziel ?? document.querySelector(`[data-abschnitt="${h.abschnitt}"]`));
       ziel?.focus({ preventScroll: true });
+      // Im Text steht die Lücke gleich ausgewählt; Tippen ersetzt sie, F2 geht zur nächsten (R5-02). Erst nach der
+      // Schreckzeit: Bis dahin galt eine Taste dem vorigen Halt (E-93).
+      if (waehleLuecke(ziel, rueckwaerts, true)) merkeVorauswahl(ziel);
       return;
     }
     const el =
@@ -1047,7 +1160,7 @@ export function naechsteStelle(rueckwaerts = false): boolean {
     amEnde();
     return false;
   }
-  geheZu(folgender(liste, rueckwaerts));
+  geheZu(folgender(liste, rueckwaerts), rueckwaerts);
   return true;
 }
 
@@ -1143,7 +1256,8 @@ function format() {
 }
 
 export function fallKennung(f: Fall): string {
-  return `Fall ${f.nr} · ${fallName(f, INDEX)}${f.etikett.trim() ? ` · ${f.etikett.trim()}` : ""}`;
+  const merker = merkerVon(f);
+  return `Fall ${f.nr} · ${fallName(f, INDEX)}${merker ? ` · ${merker}` : ""}`;
 }
 
 export interface LetzteKopie {
@@ -1164,13 +1278,24 @@ export interface LetzteKopie {
 export const letzteKopie = signal<LetzteKopie | null>(null);
 
 /** Text, den der Browser nicht in die Zwischenablage schreiben ließ; wird zum Kopieren von Hand angezeigt. */
-export const handkopie = signal<{ was: string; text: string } | null>(null);
+export const handkopie = signal<{ fallId: string; was: string; text: string } | null>(null);
+
+// Geht der Fall ohne den Brief vor Augen zu (Ablauf, anderes Fenster, Löschen aus der Liste), gehen „Zuletzt kopiert“ und
+// die Abschrift von Hand mit (CR-R6-09, QA-16).
+effect(() => {
+  const zu = ohneBriefZu.value;
+  const k = letzteKopie.value;
+  const h = handkopie.value;
+  if (k && zu.has(k.fallId)) letzteKopie.value = null;
+  if (h && zu.has(h.fallId)) handkopie.value = null;
+});
 
 // Ob der Arzt das Fenster seit dem letzten Kopieren verlassen hat, also vermutlich ins KIS gewechselt ist.
 let fensterVerlassen = true;
 window.addEventListener?.("blur", () => (fensterVerlassen = true));
 
 const NICHT_KOPIERT = "[Kitteltext: nichts kopiert, der Abschnitt ist noch nicht fertig]";
+const FALL_NICHT_HIER = "[Kitteltext: nichts kopiert, der Fall ist in diesem Fenster nicht mehr offen]";
 
 /**
  * Ein Kopierbefehl, der nichts kopiert, darf den alten Inhalt der
@@ -1200,6 +1325,12 @@ function nichtKopiert(a: AbschnittAnsicht) {
 }
 
 async function kopiere(fall: Fall, abschnitt: AbschnittId | "alles", was: string, text: string, teile: AbschnittAnsicht[]): Promise<boolean> {
+  // Behaltener Fall: erst prüfen, ob das, was hier steht, noch der Stand dieses Fensters ist (PS-R6-5). Sonst schließt der
+  // Store den Fall mit Meldung, und die Zwischenablage behält nicht den Text, den der Arzt für diesen hält.
+  if (!behaltenNochHier(fall.id)) {
+    void inZwischenablage(FALL_NICHT_HIER);
+    return false;
+  }
   // Fall und Bezeichnung stehen fest, bevor auf die Zwischenablage gewartet wird: Wechselt der Arzt inzwischen den Fall, gilt der Vermerk trotzdem dem richtigen.
   const kennung = fallKennung(fall);
   const start = jetztMs();
@@ -1218,7 +1349,7 @@ async function kopiere(fall: Fall, abschnitt: AbschnittId | "alles", was: string
     : undefined;
   const ok = await inZwischenablage(ablage, html);
   if (!ok) {
-    handkopie.value = { was: `${was} · ${kennung}`, text: ablage };
+    handkopie.value = { fallId: fall.id, was: `${was} · ${kennung}`, text: ablage };
     return false;
   }
   const platzhalter = teile.reduce((n, a) => n + a.spaeter.length, 0);
@@ -1233,7 +1364,9 @@ async function kopiere(fall: Fall, abschnitt: AbschnittId | "alles", was: string
     unsicher.length > 0 ? `Zeichen, die das KIS verfälschen kann: ${unsicher.join(" ")}` : "",
     teile.some((a) => a.seitenkonflikt) ? "Seitenangabe im freien Text prüfen" : "",
   ].filter(Boolean);
-  const satz = `${was} kopiert · ${kennung}${hinweise.length ? ` · ${hinweise.join(" · ")}` : ""}`;
+  // Behaltener Fall mit Text von einem früheren Tag: Die Meldung nennt den Stand im Moment des Kopierens (PS-R6-3, E-86).
+  const stand = istBehalten(fall.id) ? standText(fall, teile.map((a) => a.id), Date.now()) : "";
+  const satz = `${was} kopiert${stand ? ` · ${stand}` : ""} · ${kennung}${hinweise.length ? ` · ${hinweise.join(" · ")}` : ""}`;
   const warnung = hinweise.length > 0;
   const dauer = warnung ? 7000 : 3500;
   // Kam inzwischen eine verworfene Taste, ergänzt die Sperrmeldung die Kopiermeldung, Kopie zuerst (MT-04).
@@ -1319,22 +1452,43 @@ export async function kopiereNaechsten(): Promise<void> {
 }
 
 /**
- * Verwirft Fälle nach langer Ruhe. Mit dem Fall verschwindet auch der Auszug „Zuletzt kopiert“, wie beim Räumen des
- * Arbeitsplatzes (QA-16); sonst stünde Brieftext eines verworfenen Falls weiter in der Seitenleiste.
+ * Zurück im Fenster: Fokus, sichtbar geworden oder aus dem Seitenspeicher des Browsers wiederhergestellt. Prüft sofort, was
+ * sonst erst die nächste Minutenprüfung fände: abgelaufene Fälle nach dem Ruhezustand, von einem anderen Fenster geholte
+ * oder geänderte behaltene Fälle (PS-R6-5, CR-R6-11). Aus dem Seitenspeicher nimmt das Fenster zuerst seine beim Verlassen
+ * freigegebenen Fälle zurück.
  */
-export function verwerfeAlte(jetzt = Date.now()): number {
-  const n = verwerfeAbgelaufene(jetzt);
-  const k = letzteKopie.value;
-  if (n > 0 && k && !faelle.value.some((f) => f.id === k.fallId)) letzteKopie.value = null;
-  return n;
+export function nachRueckkehr(ausSeitenspeicher = false): number {
+  if (ausSeitenspeicher) nimmFreigegebeneZurueck();
+  return verwerfeAlte();
 }
 
-/** Räumt den Arbeitsplatz: alle Fälle, die Anzeige „Zuletzt kopiert" und die Zwischenablage. */
-export function raeumeArbeitsplatz() {
-  allesLoeschen();
+/**
+ * Verwirft Fälle nach langer Ruhe und lässt behaltene ablaufen. Mit dem Fall verschwindet auch der Auszug „Zuletzt kopiert“,
+ * wie beim Räumen des Arbeitsplatzes (QA-16, über `ohneBriefZu`); sonst stünde Brieftext eines verworfenen Falls weiter in
+ * der Seitenleiste.
+ */
+export function verwerfeAlte(jetzt = Date.now()): number {
+  return verwerfeAbgelaufene(jetzt);
+}
+
+/**
+ * Räumt den Arbeitsplatz: die Fälle dieses Fensters, die Anzeige „Zuletzt kopiert“ und die Zwischenablage; mit
+ * `mitBehaltenen` auch alle behaltenen Fälle auf dem PC, sonst bleiben sie und die hier offenen werden frei (E-81).
+ * Die Meldung entsteht erst nach dem Schreiben der Zwischenablage und sagt, was nachweislich geklappt hat.
+ */
+export async function raeumeArbeitsplatz(mitBehaltenen: boolean): Promise<{ text: string; art: "ok" | "fehler" }> {
+  let r: Geraeumt;
+  if (mitBehaltenen) {
+    const a = allesLoeschen();
+    r = { fenster: a.fenster, behalten: a.behalten.geloescht || a.behalten.anzahl === 0 ? { art: "geloescht", anzahl: a.behalten.anzahl } : { art: "verweigert", anzahl: a.behalten.anzahl }, ablage: false };
+  } else {
+    const a = fensterRaeumen();
+    r = { fenster: a.fenster, behalten: { art: "bleiben", anzahl: a.behalten }, ablage: false };
+  }
   letzteKopie.value = null;
   handkopie.value = null;
-  void inZwischenablage(" ");
+  r.ablage = (await inZwischenablage(" ")) !== false;
+  return geraeumtText(r);
 }
 
 /**
@@ -1361,14 +1515,81 @@ export function beiKopieAusBrief(e: ClipboardEvent) {
   if (einstellungen.value.formatiert) e.clipboardData.setData("text/html", auswahlHtml(auswahl, format()));
 }
 
-export function uhrzeit(ms: number): string {
-  return new Date(ms).toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+/** Uhrzeit, bei einem anderen Tag mit dem Tag davor („gestern 14:12“): Behaltene Fälle reichen über mehrere Tage (E-67). */
+export function uhrzeit(ms: number, jetzt = Date.now()): string {
+  return zeitpunkt(ms, jetzt);
 }
 
-/** Alter eines Falls in Worten, sobald es für die Unterscheidung zählt (ab zwei Stunden). */
+/** Kopiervermerk nach „wurde … kopiert“: „um 14:10“, „gestern um 14:10“ (CR-R6-13); ohne Zeitpunkt „um ?“. */
+export function kopiertUmText(ms: number | undefined, jetzt = Date.now()): string {
+  return ms ? umZeitpunkt(ms, jetzt) : "um ?";
+}
+
+/** Alter eines Falls im Reiter, sobald es für die Unterscheidung zählt (`alterKurz`). */
 export function alterInWorten(f: Fall, jetzt = Date.now()): string {
-  const stunden = Math.floor((jetzt - f.erstellt) / 3600_000);
-  if (stunden < 2) return "";
-  const tag = new Date(f.erstellt).toDateString() === new Date(jetzt).toDateString();
-  return tag ? `vor ${stunden} Std.` : `seit ${new Date(f.erstellt).toLocaleDateString("de-DE", { weekday: "short" })} ${uhrzeit(f.erstellt)}`;
+  return alterKurz(f.erstellt, jetzt);
+}
+
+/**
+ * Jetzt, für Ansichten mit Zeitangaben: Wer das liest, zeichnet nach jeder Minutenprüfung neu (`uhrTakt`). Gerechnet wird mit
+ * der Uhr beim Zeichnen, damit ein eben angelegter Fall nicht älter oder jünger erscheint, als er ist.
+ */
+export function jetztImTakt(): number {
+  void uhrTakt.value;
+  return Date.now();
+}
+
+// --- Fall schließen und zurückholen (CR-R6-14, CR-R6-18) ---------------------------
+
+export const NEUERE_FASSUNG = "Die behaltenen Fälle stammen aus einer neueren Fassung von Kitteltext. Hier lassen sie sich nur löschen.";
+
+export const OEFFNEN_FEHLER: Record<Exclude<OeffnenErgebnis, "ok">, string> = {
+  fehlt: "Diesen behaltenen Fall gibt es nicht mehr (gelöscht oder abgelaufen).",
+  neuer: NEUERE_FASSUNG,
+  unlesbar: "Dieser behaltene Fall lässt sich nicht lesen. Bitte löschen.",
+  gesperrt: "Der Browser hat das Speichern verweigert; der Fall lässt sich hier nicht öffnen.",
+};
+
+/**
+ * Schließt einen Fall (mit `loeschen` löscht es einen behaltenen vom PC) und meldet, was dabei wirklich geschah: Die Meldung
+ * hängt am Ergebnis, nicht an der Absicht. „Rückgängig“ steht nur dabei, wenn es etwas zurückzuholen gibt. `danach` hängt
+ * an jeder Meldung (was im KIS noch fehlt), `warnung` macht aus der guten Nachricht eine Warnung.
+ */
+export function schliesseFall(fall: Fall, loeschen = false, danach = "", warnung = false) {
+  const kurz = merkerVon(fall) || "ohne Kurzbezeichnung";
+  const ab = eintragVon(fall.id)?.loeschenAb;
+  const r = fallSchliessen(fall.id, loeschen);
+  const anderswo = `„${kurz}“ ist inzwischen in einem anderen Fenster geöffnet oder geändert.`;
+  const text =
+    r === "geloescht"
+      ? `Fall ${fall.nr} geschlossen und „${kurz}“ vom PC gelöscht.`
+      : r === "nicht-geloescht"
+        ? `Fall ${fall.nr} geschlossen, „${kurz}“ aber nicht vom PC gelöscht: Der Browser hat das Löschen verweigert. Er liegt weiter unter „Behaltene Fälle“ (Strg+K). Bitte melden.`
+        : r === "anderswo"
+          ? loeschen
+            ? `Fall ${fall.nr} hier geschlossen, nicht gelöscht: ${anderswo}`
+            : `Fall ${fall.nr} hier geschlossen. ${anderswo}`
+          : r === "fehlt"
+            ? `Fall ${fall.nr} geschlossen. „${kurz}“ war schon vom PC gelöscht (abgelaufen oder in einem anderen Fenster).`
+            : r === "behalten" && ab
+              ? `Fall ${fall.nr} geschlossen. „${kurz}“ bleibt behalten und ${loeschText(ab, Date.now())}; wieder öffnen unter „Behaltene Fälle“ (Strg+K).`
+              : `Fall ${fall.nr} geschlossen.`;
+  melde({
+    text: text + danach,
+    art: r === "nicht-geloescht" ? "fehler" : r === "anderswo" || r === "fehlt" || warnung ? "warnung" : "ok",
+    aktion: geschlossen.peek() ? { label: "Rückgängig", ausfuehren: holeGeschlossenenZurueck } : undefined,
+  });
+}
+
+/** „Rückgängig“ nach dem Schließen. Kommt der Fall nicht oder anders zurück, sagt eine Meldung, warum (CR-R6-14, CR-R6-18). */
+export function holeGeschlossenenZurueck() {
+  const kurz = geschlossen.peek()?.behalten?.eintrag.kurz ?? "";
+  const r = fallWiederherstellen();
+  if (r === "ok") return;
+  if (r === "doppelt")
+    return melde({ text: `„${kurz}“ trägt inzwischen ein anderer behaltener Fall. Der Fall ist wieder offen, aber nur in diesem Fenster; zum Behalten eine andere Kurzbezeichnung wählen.`, art: "warnung" }, 10_000);
+  melde({
+    text: r === "nichts" ? "Der Fall lässt sich nicht mehr zurückholen." : r === "anderswo" ? `„${kurz}“ ist inzwischen in einem anderen Fenster geöffnet. Hierher holen unter „Behaltene Fälle“ (Strg+K).` : OEFFNEN_FEHLER[r],
+    art: "fehler",
+  });
 }

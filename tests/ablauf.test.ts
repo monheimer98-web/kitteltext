@@ -7,7 +7,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { BRIEFTYPEN } from "../src/data/katalog.ts";
-import { mitAngabe, mitAuswahl, mitBefund, mitSeite, mitSlot, mitWahl, mitWert, mitZusatz, ohneBaustein, uebernehmen } from "../src/engine/fall.ts";
+import { mitAngabe, mitAuswahl, mitBefund, mitPerson, mitSeite, mitSlot, mitWahl, mitWert, mitZusatz, ohneBaustein, uebernehmen } from "../src/engine/fall.ts";
 import type { BriefAnsicht } from "../src/engine/render.ts";
 import { bausteinStand } from "../src/engine/sammel.ts";
 import type { AbschnittId, Baustein, Fall, Platzhalter, Segment, Vorlage } from "../src/model/types.ts";
@@ -177,7 +177,7 @@ void BRIEFTYPEN;
 function frisch() {
   lokalerSpeicher.gesperrt = false;
   sitzungsSpeicher.gesperrt = false;
-  aktionen.raeumeArbeitsplatz();
+  void aktionen.raeumeArbeitsplatz(true);
   store.eigenesErsetzen({ bausteine: [], vorlagen: [] });
   zwischenablage.texte = [];
   zwischenablage.warte = null;
@@ -329,7 +329,7 @@ test("Arbeitsplatz räumen: Fälle, „Zuletzt kopiert“ und Zwischenablage sin
   store.fallNeu(V_BEFUND, "rechts");
   aktionen.uebernimm(grau("procedere"));
   await aktionen.kopiereAbschnitt(ansicht("procedere"));
-  aktionen.raeumeArbeitsplatz();
+  void aktionen.raeumeArbeitsplatz(true);
   assert.equal(store.faelle.value.length, 0);
   assert.equal(aktionen.letzteKopie.value, null);
   assert.equal(letzter().trim(), "");
@@ -1180,6 +1180,210 @@ test("Verwerfen nach langer Ruhe nimmt den Auszug „Zuletzt kopiert“ des verw
   assert.equal(aktionen.letzteKopie.value, null);
 });
 
+test("CR-R6-09: „Zuletzt kopiert“ und die Abschrift von Hand gehen mit einem behaltenen Fall, der ohne den Brief vor Augen zugeht; nach dem Reiter-× bleiben sie", () => {
+  const SCHLUESSEL = "kitteltext3.behalten";
+  const behalten = (kurz: string) => {
+    store.setzeEinstellung("stationBehalten", true);
+    store.fallNeu(store.INDEX.vorlagen.get("station-frei")!);
+    const id = store.aktivId.value!;
+    assert.equal(store.fallBehalten(id, kurz), "ok");
+    aktionen.letzteKopie.value = { fallId: id, abschnitt: "verlauf", was: "Verlauf", fall: `„${kurz}“`, um: Date.now(), zeichen: 30, anfang: "Brieftext des Patienten", platzhalter: 0, fassung: null };
+    aktionen.handkopie.value = { fallId: id, was: "Verlauf", text: "Brieftext des Patienten" };
+    return id;
+  };
+  const weg = () => [aktionen.letzteKopie.value, aktionen.handkopie.value];
+  try {
+    // Ein anderes Fenster löscht ihn; dieses erfährt es über `storage`.
+    frisch();
+    let id = behalten("Zi 60");
+    lokalerSpeicher.removeItem(SCHLUESSEL);
+    store.fuerTests.behaltenNeuGelesen();
+    assert.equal(store.istBehalten(id), false);
+    assert.deepEqual(weg(), [null, null], "anderes Fenster");
+
+    // Nach drei Tagen in der Minutenprüfung; verworfen wird dabei kein Sitzungsfall (früher blieb der Auszug dann stehen).
+    frisch();
+    id = behalten("Zi 61");
+    assert.equal(aktionen.verwerfeAlte(Date.now() + 72 * 3600_000 + 60_000), 0);
+    assert.deepEqual(weg(), [null, null], "Ablauf");
+
+    // Gelöscht aus der Liste „Behaltene Fälle“.
+    frisch();
+    id = behalten("Zi 62");
+    assert.ok(store.behaltenLoeschen(id));
+    assert.deepEqual(weg(), [null, null], "aus der Liste gelöscht");
+
+    // Mit dem Reiter geschlossen: Der Hinweis, was in der Zwischenablage liegt, bleibt; läuft der Fall dann ab, geht er.
+    frisch();
+    id = behalten("Zi 65");
+    store.fallSchliessen(id);
+    assert.equal(aktionen.letzteKopie.value?.fallId, id);
+    aktionen.verwerfeAlte(Date.now() + 72 * 3600_000 + 60_000);
+    assert.deepEqual(weg(), [null, null], "hier geschlossen, dann abgelaufen");
+
+    // Ebenso beim Wiederöffnen und nach „Alles kopiert · Fall löschen“.
+    frisch();
+    id = behalten("Zi 63");
+    store.fallSchliessen(id);
+    assert.equal(aktionen.letzteKopie.value?.fallId, id);
+    assert.equal(store.behaltenOeffnen(id), "ok");
+    store.fallSchliessen(id, true);
+    assert.equal(aktionen.letzteKopie.value?.fallId, id, "nach „Alles kopiert · Fall löschen“");
+  } finally {
+    store.setzeEinstellung("stationBehalten", false);
+    frisch();
+  }
+});
+
+test("CR-R6-09: Wer einen Fall aus „Behaltene Fälle“ wieder öffnet, nachdem ein anderes Fenster ihn geholt hatte, verliert den neuen Auszug nicht", () => {
+  frisch();
+  store.setzeEinstellung("stationBehalten", true);
+  try {
+    store.fallNeu(store.INDEX.vorlagen.get("station-frei")!);
+    const id = store.aktivId.value!;
+    assert.equal(store.fallBehalten(id, "Zi 64"), "ok");
+    const roh = JSON.parse(lokalerSpeicher.getItem("kitteltext3.behalten")!);
+    roh.faelle[0] = { ...roh.faelle[0], stand: roh.faelle[0].stand + 1, fenster: "anderes-fenster" };
+    lokalerSpeicher.setItem("kitteltext3.behalten", JSON.stringify(roh));
+    store.fuerTests.behaltenNeuGelesen();
+    assert.equal(store.istBehalten(id), false);
+    assert.ok(store.ohneBriefZu.value.has(id));
+    assert.equal(store.behaltenOeffnen(id), "ok");
+    assert.equal(store.ohneBriefZu.value.has(id), false);
+    aktionen.letzteKopie.value = { fallId: id, abschnitt: "verlauf", was: "Verlauf", fall: "„Zi 64“", um: Date.now(), zeichen: 30, anfang: "neu kopiert", platzhalter: 0, fassung: null };
+    store.fallNeu(store.INDEX.vorlagen.get("station-frei")!);
+    assert.equal(aktionen.letzteKopie.value?.anfang, "neu kopiert");
+  } finally {
+    store.setzeEinstellung("stationBehalten", false);
+    frisch();
+  }
+});
+
+test("CR-R6-14: Die Meldung nach dem Schließen hängt am Ergebnis; „Rückgängig“ steht nur dabei, wenn es etwas zurückzuholen gibt, und sagt, wenn es scheitert", () => {
+  const SCHLUESSEL = "kitteltext3.behalten";
+  const behalten = (kurz: string): Fall => {
+    store.setzeEinstellung("stationBehalten", true);
+    store.fallNeu(store.INDEX.vorlagen.get("station-frei")!);
+    assert.equal(store.fallBehalten(store.aktivId.value!, kurz), "ok");
+    return store.aktiverFall.value!;
+  };
+  /** Was ein anderes Fenster täte, ohne dass das Ereignis hier ankommt. */
+  const fremd = (id: string, fn: (e: Record<string, unknown>) => Record<string, unknown> | null) => {
+    const roh = JSON.parse(lokalerSpeicher.getItem(SCHLUESSEL)!) as { faelle: Record<string, unknown>[] };
+    roh.faelle = roh.faelle.map((e) => (e.id === id ? fn(e) : e)).filter((e): e is Record<string, unknown> => e !== null);
+    lokalerSpeicher.setItem(SCHLUESSEL, JSON.stringify(roh));
+  };
+  const geholt = (e: Record<string, unknown>) => ({ ...e, stand: (e.stand as number) + 1, fenster: "anderes-fenster" });
+  const m = () => kopieren.meldung.value!;
+  try {
+    // Fall nur dieses Fensters.
+    frisch();
+    store.fallNeu(store.INDEX.vorlagen.get("zna-frei")!);
+    let f = store.aktiverFall.value!;
+    aktionen.schliesseFall(f);
+    assert.deepEqual([m().text, m().art, m().aktion?.label], [`Fall ${f.nr} geschlossen.`, "ok", "Rückgängig"]);
+    m().aktion!.ausfuehren();
+    assert.equal(store.aktivId.value, f.id);
+
+    // Behalten: mit dem Reiter geschlossen, dann gelöscht; der Zusatz der Prüfleiste hängt an.
+    frisch();
+    f = behalten("Zi 90");
+    aktionen.schliesseFall(f);
+    assert.match(m().text, new RegExp(`^Fall ${f.nr} geschlossen\\. „Zi 90“ bleibt behalten und wird .+ gelöscht; wieder öffnen unter „Behaltene Fälle“ \\(Strg\\+K\\)\\.$`));
+    m().aktion!.ausfuehren();
+    assert.ok(store.istBehalten(f.id));
+    aktionen.schliesseFall(f, true, " Im KIS noch zu ergänzen: [DATUM].", true);
+    assert.deepEqual([m().text, m().art, m().aktion?.label], [`Fall ${f.nr} geschlossen und „Zi 90“ vom PC gelöscht. Im KIS noch zu ergänzen: [DATUM].`, "warnung", "Rückgängig"]);
+
+    // Ein anderes Fenster hat ihn geholt: nicht „bleibt behalten“, nicht „gelöscht“, kein „Rückgängig“, das nichts täte.
+    for (const loeschen of [false, true]) {
+      frisch();
+      f = behalten("Zi 91");
+      fremd(f.id, geholt);
+      aktionen.schliesseFall(f, loeschen);
+      const text = loeschen
+        ? `Fall ${f.nr} hier geschlossen, nicht gelöscht: „Zi 91“ ist inzwischen in einem anderen Fenster geöffnet oder geändert.`
+        : `Fall ${f.nr} hier geschlossen. „Zi 91“ ist inzwischen in einem anderen Fenster geöffnet oder geändert.`;
+      assert.deepEqual([m().text, m().art, m().aktion], [text, "warnung", undefined]);
+    }
+
+    // Dort schon gelöscht.
+    frisch();
+    f = behalten("Zi 92");
+    fremd(f.id, () => null);
+    aktionen.schliesseFall(f, true);
+    assert.deepEqual([m().text, m().art, m().aktion], [`Fall ${f.nr} geschlossen. „Zi 92“ war schon vom PC gelöscht (abgelaufen oder in einem anderen Fenster).`, "warnung", undefined]);
+
+    // Der Browser verweigert den Zugriff: Die Meldung sagt nicht „gelöscht“.
+    frisch();
+    f = behalten("Zi 93");
+    lokalerSpeicher.gesperrt = true;
+    aktionen.schliesseFall(f, true);
+    lokalerSpeicher.gesperrt = false;
+    assert.deepEqual(
+      [m().text, m().art, m().aktion],
+      [`Fall ${f.nr} geschlossen, „Zi 93“ aber nicht vom PC gelöscht: Der Browser hat das Löschen verweigert. Er liegt weiter unter „Behaltene Fälle“ (Strg+K). Bitte melden.`, "fehler", undefined],
+    );
+    assert.ok(lokalerSpeicher.getItem(SCHLUESSEL)!.includes("Zi 93"));
+
+    // „Rückgängig“, nachdem ein anderes Fenster den Fall geöffnet hat: Meldung statt stillem Nichts oder stillem Holen.
+    frisch();
+    f = behalten("Zi 94");
+    aktionen.schliesseFall(f);
+    fremd(f.id, geholt);
+    m().aktion!.ausfuehren();
+    assert.deepEqual([m().text, m().art], ["„Zi 94“ ist inzwischen in einem anderen Fenster geöffnet. Hierher holen unter „Behaltene Fälle“ (Strg+K).", "fehler"]);
+    assert.equal(store.faelle.value.length, 0);
+
+    // „Rückgängig“ nach dem Löschen, inzwischen abgelaufen.
+    frisch();
+    f = behalten("Zi 95");
+    aktionen.schliesseFall(f, true);
+    const echt = Date.now;
+    Date.now = () => echt() + 72 * 3600_000 + 60_000;
+    try {
+      m().aktion!.ausfuehren();
+    } finally {
+      Date.now = echt;
+    }
+    assert.deepEqual([m().text, m().art], ["Diesen behaltenen Fall gibt es nicht mehr (gelöscht oder abgelaufen).", "fehler"]);
+
+    // „Rückgängig“ nach dem Löschen, die Kurzbezeichnung trägt inzwischen ein anderer Fall.
+    frisch();
+    const anderer = behalten("Zi 98");
+    store.fallSchliessen(anderer.id);
+    f = behalten("Zi 96");
+    aktionen.schliesseFall(f, true);
+    fremd(anderer.id, (e) => ({ ...e, kurz: "Zi. 96", stand: (e.stand as number) + 1 }));
+    m().aktion!.ausfuehren();
+    assert.deepEqual(
+      [m().text, m().art],
+      ["„Zi 96“ trägt inzwischen ein anderer behaltener Fall. Der Fall ist wieder offen, aber nur in diesem Fenster; zum Behalten eine andere Kurzbezeichnung wählen.", "warnung"],
+    );
+    assert.equal(store.aktivId.value, f.id);
+    assert.equal(store.istBehalten(f.id), false);
+  } finally {
+    lokalerSpeicher.gesperrt = false;
+    store.setzeEinstellung("stationBehalten", false);
+    frisch();
+  }
+});
+
+test("CR-R6-10: Nach Schließen und „Rückgängig“ geht Strg+Z weiter wie vor dem Schließen", () => {
+  frisch();
+  store.fallNeu(V_PFLICHT);
+  const id = aktiv().id;
+  store.aendere((f) => mitZusatz(f, "verlauf", "eins"));
+  store.aendere((f) => mitZusatz(f, "verlauf", "zwei"));
+  store.fallSchliessen(id);
+  store.fallWiederherstellen();
+  assert.equal(store.aktivId.value, id);
+  assert.equal(store.kannZurueck.value, true);
+  assert.ok(store.zurueck());
+  assert.equal(aktiv().zusatz.verlauf, "eins");
+  assert.equal(store.kannVor.value, true);
+});
+
 test("Eigene Vorlage behält `pflicht` an der Stelle, Formatstand 4 (PS-T1-01)", () => {
   frisch();
   const v = vorlage("t-v-pflicht-format", { diagnostik: ["t-ct"] }, { wahl: [{ ...WAHL_DG, vor: "t-ct", pflicht: true }] });
@@ -1206,4 +1410,24 @@ test("Eigene Inhalte als Text: Formatstand 3 nur, wenn eine Stelle `vor` trägt 
   // Ein Stand, der nur Format 2 kennt, weist diesen Text deshalb ab, statt `vor` still fallen zu lassen.
   assert.deepEqual(speicher.pruefeEigenes(roh, store.INDEX), store.eigenes.value);
   store.INDEX.vorlagen.delete(v.id);
+});
+
+// QA-42: Nach dem Nahtfenster ging der Durchlauf zurück in den Entlassbefund, weil dort durch die Kopplung (E-60) ein
+// neuer grauer Block entstand. Ein Block, der beim Öffnen der Stelle ganz davor lag, kommt nicht wieder dran.
+test("QA-42: Nach dem Nahtfenster geht es im Procedere weiter, nicht zurück zum neuen grauen Übertrag im Entlassbefund", () => {
+  frisch();
+  store.fallNeu(store.INDEX.vorlagen.get("station-hueft-tep"));
+  store.aendere((f) => mitPerson(mitSeite(f, "rechts"), "w", "70"));
+  const naht = "proc-st-wunde/naht";
+  aktionen.oeffneFeld({ key: naht, art: "option", abschnitt: "procedere" });
+  assert.equal(ansicht("entlassbefund").tokens.find((t) => t.key === "eb-st-wunde/naht")?.zustand, "offen");
+  store.aendere((f) => mitAngabe(f, naht, `${naht}/material`, "2"));
+  store.aendere((f) => mitAngabe(f, naht, `${naht}/wann`, "1"));
+  store.aendere((f) => mitAngabe(f, naht, `${naht}/wer`, "1"));
+  // Durch die Kopplung steht im Entlassbefund jetzt grau „Hautklammern noch nicht entfernt.“.
+  const eb = ansicht("entlassbefund").tokens.find((t) => t.key === "eb-st-wunde/naht");
+  assert.equal(eb?.zustand, "vorschlag");
+  assert.equal(aktionen.stellenZustand(naht), "gesetzt");
+  aktionen.weiter();
+  assert.equal(aktionen.offenesFeld.value?.abschnitt, "procedere", `weiter zu ${JSON.stringify(aktionen.offenesFeld.value)} / Liste ${JSON.stringify(aktionen.offeneListe.value)}`);
 });

@@ -57,14 +57,14 @@ import {
   urteil,
   verworfenWort,
 } from "../src/engine/tippzug.ts";
-import { aenderungJetzt, aufzaehlen, geaenderteStellen, gesetztText, kurz, zurueckgenommenText } from "../src/engine/aenderung.ts";
+import { aenderungJetzt, aufzaehlen, geaenderteNamen, geaenderteStellen, gesetztText, kurz, zurueckgenommenText } from "../src/engine/aenderung.ts";
 import { naechsteAngabe } from "../src/engine/ziffernreihe.ts";
 import { entwurfEigenerBaustein } from "../src/engine/eigen.ts";
 import { bausteinStand, mitSammelangabe, ohneSammelangabe, sammelAussagen, sammelSchritte } from "../src/engine/sammel.ts";
 import { findeAbgleichhinweise } from "../src/engine/abgleich.ts";
 import { ABGLEICHREGELN } from "../src/data/abgleich.ts";
 import { personText } from "../src/engine/person.ts";
-import { LUECKE, fuerZwischenablage, glaetten, handtext, istKisSicher, tokensZuText, unsichereZeichen } from "../src/engine/text.ts";
+import { LUECKE, fuerZwischenablage, glaetten, handtext, istKisSicher, lueckeImText, tokensZuText, unsichereZeichen } from "../src/engine/text.ts";
 import type { Token } from "../src/engine/text.ts";
 import { TREFFER_MAX, abstand, sucheVorlagen, trefferNachBereich } from "../src/engine/suche.ts";
 import { schnellwerteFehler, schnellwerteVon, stelleVor, wahlPlatzFehler, weglassenFehler } from "../src/engine/vorlage.ts";
@@ -2298,6 +2298,16 @@ test("Meldetexte: neuer Stand nach dem Zurücknehmen (MT-03), Gesetztes im Wortl
   assert.equal(aufzaehlen(["a", "b", "c", "d", "e"]), "a, b, c und 2 weitere");
 });
 
+test("geaenderteNamen: wo die verlorene Eingabe stand, ohne ihren Wert; Seite einmal, nicht jede Seitenangabe (MT-R6-07)", () => {
+  const brief = (f: Fall) => renderBrief(f, index, { listen: "striche" });
+  const f0 = mitSeite(neu(V_ENTSCHEIDEN), "links");
+  assert.deepEqual(geaenderteNamen(f0, mitBefund(f0, "t-osg/ds", "abw"), brief), ["„Druckschmerz Außenknöchel“"]);
+  assert.deepEqual(geaenderteNamen(f0, mitSeite(f0, "rechts"), brief), ["Seite"]);
+  assert.deepEqual(geaenderteNamen(f0, mitBefund(mitPerson(f0, "w", ""), "t-osg/haut", "ok"), brief), ["Person", "„Haut“"]);
+  assert.deepEqual(geaenderteNamen(f0, f0, brief), []);
+  assert.deepEqual(geaenderteNamen(f0, { ...f0, id: "anders" }, brief), []);
+});
+
 test("zurueckgenommenText: jede Stelle einmal, mit dem Stand nach der Rücknahme des ganzen Zugs (QA-31), alle genannt (QA-32)", () => {
   const brief = (f: Fall) => renderBrief(f, index, { listen: "striche" });
   const satz = (vor: Fall, nach: Fall) => zurueckgenommenText(vor, nach, brief);
@@ -2647,4 +2657,29 @@ test("Handtext vor dem Klären (M-18 Station): Vorschlag und offene Stelle in �
   assert.ok(a1.offen > 0);
   f = mitManuell(f, "befund", "Klinisch unauffällig.");
   assert.equal(ab(f, index, "befund").fertig, true);
+});
+
+test("R5-02: lueckeImText führt im freien Text von ‹…› zu ‹…›, vorwärts und rückwärts", () => {
+  const t = "Befund: ‹Vorschlag: Druckschmerz.› Schwellung ‹Seite› und ‹Befund›.";
+  const l = [...t.matchAll(LUECKE)].map((m) => ({ anfang: m.index, ende: m.index + m[0].length }));
+  assert.equal(l.length, 3);
+  // Vom Anfang: die erste; ist sie ausgewählt, die zweite, dann die dritte, dahinter keine mehr.
+  assert.deepEqual(lueckeImText(t, 0, 0), l[0]);
+  assert.deepEqual(lueckeImText(t, l[0].anfang, l[0].ende), l[1]);
+  assert.deepEqual(lueckeImText(t, l[1].anfang, l[1].ende), l[2]);
+  assert.equal(lueckeImText(t, l[2].anfang, l[2].ende), undefined);
+  // Rückwärts dieselbe Kette, vor der ersten keine.
+  assert.deepEqual(lueckeImText(t, l[2].anfang, l[2].ende, true), l[1]);
+  assert.deepEqual(lueckeImText(t, l[1].anfang, l[1].ende, true), l[0]);
+  assert.equal(lueckeImText(t, l[0].anfang, l[0].ende, true), undefined);
+  // Einfügemarke mitten in einer Lücke: In beiden Richtungen ist es diese.
+  const mitte = l[1].anfang + 2;
+  assert.deepEqual(lueckeImText(t, mitte, mitte), l[1]);
+  assert.deepEqual(lueckeImText(t, mitte, mitte, true), l[1]);
+  // Direkt vor „‹“ zählt die Lücke dahinter, direkt hinter „›“ die davor.
+  assert.deepEqual(lueckeImText(t, l[2].anfang, l[2].anfang), l[2]);
+  assert.deepEqual(lueckeImText(t, l[0].ende, l[0].ende, true), l[0]);
+  assert.equal(lueckeImText("Ohne Lücke.", 0, 0), undefined);
+  // Hintereinander ohne Zwischenraum: jede einzeln.
+  assert.deepEqual(lueckeImText("‹a›‹b›", 0, 3), { anfang: 3, ende: 6 });
 });

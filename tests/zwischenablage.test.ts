@@ -128,7 +128,7 @@ const grau = (id: AbschnittId) => ansicht(id).tokens.filter((t) => t.zustand ===
 
 async function frisch(wege: Partial<Ablage> = {}) {
   Object.assign(ablage, { writeGeht: true, writeTextGeht: true, execGeht: true });
-  aktionen.raeumeArbeitsplatz();
+  await aktionen.raeumeArbeitsplatz(true);
   // Das Überschreiben beim Räumen läuft asynchron; erst danach zählen die Wege des Tests.
   await new Promise((fertig) => setImmediate(fertig));
   Object.assign(ablage, { inhalt: {}, wege: [] }, wege);
@@ -247,4 +247,56 @@ test("Markierung mit Strg+C: beide Fassungen; mit offener Stelle nur der Hinweis
   assert.deepEqual(Object.keys(gesetzt), ["text/plain"]);
   assert.match(gesetzt["text/plain"], /nichts kopiert/);
   Object.assign(globalThis.window, { getSelection: () => null });
+});
+
+test("PS-R6-5: Behaltener Fall, den ein anderes Fenster geholt hat, ohne Ereignis: nichts kopiert, Zwischenablage entwertet, Fall geschlossen", async () => {
+  await frisch();
+  const VS: Vorlage = { ...V, id: "z-vs", setting: "station" };
+  store.INDEX.vorlagen.set(VS.id, VS);
+  store.setzeEinstellung("stationBehalten", true);
+  store.fallNeu(VS, "rechts");
+  store.kurzFrage.value = null;
+  aktionen.uebernimm(grau("procedere"));
+  const f = store.aktiverFall.value!;
+  assert.equal(store.fallBehalten(f.id, "Zi 12"), "ok");
+  assert.equal(await aktionen.kopiereAbschnitt(ansicht("procedere")), true);
+  // Fenster B holt den Fall; das Ereignis `storage` kommt hier nicht an (Seitenspeicher, Ruhezustand).
+  const roh = JSON.parse(window.localStorage.getItem("kitteltext3.behalten")!);
+  roh.faelle[0] = { ...roh.faelle[0], fenster: "fenster-b", stand: roh.faelle[0].stand + 1 };
+  window.localStorage.setItem("kitteltext3.behalten", JSON.stringify(roh));
+  Object.assign(ablage, { inhalt: { "text/plain": "Text von vorhin" }, wege: [] });
+  store.stehendeMeldung.value = null;
+  assert.equal(await aktionen.kopiereAbschnitt(ansicht("procedere")), false);
+  await new Promise((fertig) => setImmediate(fertig));
+  assert.deepEqual(ablage.inhalt, { "text/plain": "[Kitteltext: nichts kopiert, der Fall ist in diesem Fenster nicht mehr offen]" });
+  assert.equal(store.aktiverFall.value, null);
+  assert.equal(store.stehendeMeldung.value!.text, "„Zi 12“ ist jetzt in einem anderen Fenster geöffnet und hier geschlossen. Nichts kopiert.");
+  store.stehendeMeldung.value = null;
+  store.setzeEinstellung("stationBehalten", false);
+});
+
+test("PS-R6-3: Kopiermeldung eines behaltenen Falls nennt den Stand von einem früheren Tag, nach einer Änderung heute nicht mehr", async () => {
+  await frisch();
+  const VS: Vorlage = { ...V, id: "z-vs", setting: "station" };
+  store.INDEX.vorlagen.set(VS.id, VS);
+  store.setzeEinstellung("stationBehalten", true);
+  store.fallNeu(VS, "rechts");
+  store.kurzFrage.value = null;
+  aktionen.uebernimm(grau("procedere"));
+  const f = store.aktiverFall.value!;
+  assert.equal(store.fallBehalten(f.id, "Zi 12"), "ok");
+  const { meldung } = await import("../src/ui/kopieren.ts");
+  const echt = Date.now;
+  const morgen = new Date(Math.max(f.erstellt, f.geaendert) + 24 * 3600_000).setHours(9, 0, 0, 0);
+  try {
+    Date.now = () => morgen;
+    assert.equal(await aktionen.kopiereAbschnitt(ansicht("procedere")), true);
+    assert.match(meldung.value!.text, /^Procedere kopiert · Stand gestern · Fall \d+ · /);
+    store.aendere((x) => ({ ...x, zusatz: { procedere: "Heute ergänzt." } }));
+    assert.equal(await aktionen.kopiereAbschnitt(ansicht("procedere")), true);
+    assert.match(meldung.value!.text, /^Procedere kopiert · Fall \d+ · /);
+  } finally {
+    Date.now = echt;
+    store.setzeEinstellung("stationBehalten", false);
+  }
 });

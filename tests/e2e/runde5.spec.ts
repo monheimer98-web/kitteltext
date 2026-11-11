@@ -162,7 +162,9 @@ test.describe("Runde 5, Rücknahme und Meldungen", () => {
     await expect(stelle(an, /^Allergien: .*fehlt noch$/)).toBeVisible();
   });
 
-  test("CR-R4-02, Rest: „Satz entfernen“ per Tastatur lässt den Fokus ohne Halt; ein Zeichen danach nimmt nichts zurück und stellt nichts still her", async ({ page }) => {
+  // Seit R5-01 (Runde 6) führt „Satz entfernen“ zum nächsten Halt; damit ist der Weg aus CR-R4-02 über die Oberfläche
+  // erreichbar: Das Zeichen danach nimmt den Zug zurück, der entfernte Satz kommt nicht still wieder und wird genannt.
+  test("CR-R4-02, Rest: „Satz entfernen“ per Tastatur, ein Zeichen danach: Der Satz kommt nicht still wieder und wird genannt", async ({ page }) => {
     await vorlage(page, "osg", "OSG-Distorsion");
     await page.getByRole("button", { name: "+ Tetanusschutz" }).click();
     await taste(page, "ArrowDown");
@@ -176,6 +178,7 @@ test.describe("Runde 5, Rücknahme und Meldungen", () => {
     await nachDemNaechstenBild(page);
     await expect(stelle(page, /^Tetanusschutz: /)).toHaveCount(0);
     await expect(page.getByRole("button", { name: "+ Tetanusschutz" })).toBeVisible();
+    expect(await text(page)).toContain("Nicht wieder eingefügt: „Tetanusschutz“ (im Zug entfernt; bei Bedarf über „+ …“ wieder anfügen).");
   });
 
   test("PS-R4-2: Auf dem „i“ getippte Zeichen setzen nichts und stehen in der Meldung", async ({ page }) => {
@@ -240,6 +243,9 @@ test.describe("Runde 5, Handbearbeitung und Abgleich (Abnahmetest Station)", () 
     await feld.fill(wert.replace(/‹Vorschlag: ([^›]*)›/g, "$1").replace(/‹[^›]*›/g, ""));
     await expect(bf.locator(".handtext-luecken")).toHaveCount(0);
     await expect(bf.getByRole("button", { name: "Kopieren", exact: true })).toBeVisible();
+    // Andere Seite im freien Text: Warnung mit deutschem Schlusszeichen (MT-R6-20).
+    await feld.fill(`${await feld.inputValue()} Schwellung links.`);
+    await expect(bf.getByRole("alert").filter({ hasText: "Im frei geschriebenen Text" })).toContainText("Im frei geschriebenen Text steht „links“, die Seite des Falls ist rechts. Bitte prüfen.");
   });
 
   test("M-27: Abgleich-Hinweis an beiden Abschnitten; der schon kopierte Abschnitt ist danach nicht mehr grün „kopiert“", async ({ page }) => {

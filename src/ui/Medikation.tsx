@@ -5,14 +5,14 @@
 // Tasten: Tab geht von Feld zu Feld wie in einer Tabelle, Enter weiter zur nächsten Lücke im Brief. Ein Bindestrich im
 // Schema springt zur nächsten Einnahmezeit, damit „1-0-1-0“ in einem Zug getippt werden kann.
 
-import { useLayoutEffect, useRef } from "preact/hooks";
+import { useEffect, useLayoutEffect, useRef } from "preact/hooks";
 import type { Platzhalter } from "../model/types.ts";
 import { mitSpaeter, mitWert } from "../engine/fall.ts";
 import { schnellwerteVon } from "../engine/vorlage.ts";
-import { MED_STATUS, MED_ZEITEN, SCHEMA_ODER_HINWEIS, fehlendes, feldText, istLeer, leereZeile, leseMedikation, medText, schemaAusText, schreibeMedikation } from "../engine/medikation.ts";
+import { MED_STATUS, MED_ZEITEN, SCHEMA_ODER_HINWEIS, fehlendes, feldText, istLeer, leereZeile, leseMedikation, medText, mitEingefuegtemSchema, schreibeMedikation } from "../engine/medikation.ts";
 import type { MedEintrag, MedZeile } from "../engine/medikation.ts";
 import { INDEX, aendere, aktiverFall } from "../store.ts";
-import { schliesseFeld, weiter, zugNachEingabe } from "./aktionen.ts";
+import { meldeMitRueckgaengig, schliesseFeld, weiter, zugNachEingabe } from "./aktionen.ts";
 import { FreitextHinweis, Schnellwerte } from "./Feldfenster.tsx";
 
 /** Einträge zum Bearbeiten: ohne gespeicherte Zeile eine leere strukturierte, damit gleich getippt werden kann. */
@@ -50,6 +50,44 @@ export function MedikationEditor({ k, def }: { k: string; def: Platzhalter }) {
     fokusNachZeichnen.current = null;
     if (sel) ref.current?.querySelector<HTMLElement>(sel)?.focus();
   });
+  // Ein Schema als Ganzes in einer Einnahmezeit verteilt sich auf die Zeiten (QA-43). Eingefügt kommt es als `paste` an,
+  // abgelegt oder von einem Hilfsmittel eingegeben nur als `beforeinput`; dort steht der Text noch ungekürzt (maxLength).
+  // Eigener Hörer statt `onBeforeInput`: Preact leitet den Ereignisnamen aus der DOM-Eigenschaft ab, die nicht jeder
+  // Browser hat.
+  // Das Schema ersetzt alle vier Zeiten (PS-R6F-3, E-94). Hat es dabei Werte geleert oder steht es nicht ab der Zeit
+  // mit dem Fokus, sagt die Meldung es, mit Rückgängig.
+  const setzeSchema = (i: number, e: MedZeile, ab: number, text: string): boolean => {
+    const r = mitEingefuegtemSchema(e.schema, ab, text);
+    if (!r) return false;
+    const vorher = roh;
+    aendereZeile(i, { schema: r.schema });
+    const geleert = r.geleert.map((g) => `${MED_ZEITEN[g.zeit]} (vorher „${g.vorher}“)`);
+    if (geleert.length > 0 || r.ab !== ab) {
+      const nachher = aktiverFall.peek()?.werte[k];
+      meldeMitRueckgaengig(
+        `Schema „${text.trim()}“ ab ${MED_ZEITEN[r.ab]} eingesetzt.${geleert.length ? ` Geleert, weil es sie nicht nennt: ${geleert.join(", ")}.` : ""}`,
+        (f) => f.werte[k] === nachher,
+        (f) => mitWert(f, k, vorher),
+      );
+    }
+    return true;
+  };
+  const schemaEinfuegen = useRef<(ev: InputEvent) => void>(() => {});
+  schemaEinfuegen.current = (ev) => {
+    const feld = ev.target as HTMLElement;
+    const z = feld.dataset.medZeit;
+    const zeile = feld.closest<HTMLElement>("[data-med-zeile]")?.dataset.medZeile;
+    if (z === undefined || zeile === undefined || !ev.inputType.startsWith("insert")) return;
+    const e = eintraege[Number(zeile)];
+    if (e?.art !== "zeile" || !setzeSchema(Number(zeile), e, Number(z), ev.data ?? ev.dataTransfer?.getData("text/plain") ?? "")) return;
+    ev.preventDefault();
+  };
+  useEffect(() => {
+    const el = ref.current;
+    const hoerer = (ev: Event) => schemaEinfuegen.current(ev as InputEvent);
+    el?.addEventListener("beforeinput", hoerer);
+    return () => el?.removeEventListener("beforeinput", hoerer);
+  }, []);
   // Eine neue Zeile kommt ans Ende; leere Zeilen davor entfallen, sie sagen nichts.
   const neueZeile = (e: MedEintrag) => speichere([...leseMedikation(roh).filter((x) => !istLeer(x)), e]);
 
@@ -182,13 +220,9 @@ export function MedikationEditor({ k, def }: { k: string; def: Platzhalter }) {
                             aendereZeile(i, { schema });
                           }}
                           onPaste={(ev) => {
-                            // „1-0-1-0“ eingefügt: verteilt auf die Einnahmezeiten ab dieser.
-                            const teile = schemaAusText(ev.clipboardData?.getData("text/plain") ?? "");
-                            if (!teile) return;
+                            // „1-0-1-0“ eingefügt: ersetzt alle vier Einnahmezeiten (E-94).
+                            if (!setzeSchema(i, e, z, ev.clipboardData?.getData("text/plain") ?? "")) return;
                             ev.preventDefault();
-                            const schema = [...e.schema] as MedZeile["schema"];
-                            teile.slice(0, 4 - z).forEach((t, j) => (schema[z + j] = t));
-                            aendereZeile(i, { schema });
                           }}
                         />
                       </>

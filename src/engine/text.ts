@@ -86,6 +86,16 @@ export function luecke(label: string): string {
 
 export const LUECKE = /‹[^›]*›/g;
 
+/**
+ * Nächste Lücke ‹…› im freien Text, ausgehend von der Auswahl `anfang`–`ende` (R5-02). Vorwärts die erste, die hinter
+ * dem Ende der Auswahl endet; rückwärts die letzte, die vor ihrem Anfang beginnt. Eine schon ausgewählte Lücke zählt
+ * so in keiner Richtung, eine Lücke mit der Einfügemarke darin in beiden.
+ */
+export function lueckeImText(text: string, anfang: number, ende: number, rueckwaerts = false): { anfang: number; ende: number } | undefined {
+  const alle = [...text.matchAll(LUECKE)].map((m) => ({ anfang: m.index, ende: m.index + m[0].length }));
+  return rueckwaerts ? alle.filter((l) => l.anfang < anfang).pop() : alle.find((l) => l.ende > ende);
+}
+
 /** Platzhalter, der mitkopiert wird und im KIS auffallen soll. */
 export function kisPlatzhalter(label: string): string {
   return `[${label.toUpperCase()}]`;

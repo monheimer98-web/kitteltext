@@ -6,7 +6,6 @@ import { fallName, mitPerson } from "../engine/fall.ts";
 import { renderBrief, sichtbareAbschnitte } from "../engine/render.ts";
 import type { AbschnittAnsicht } from "../engine/render.ts";
 import {
-  ABLAUF_STUNDEN,
   INDEX,
   abgleich,
   aendere,
@@ -17,21 +16,27 @@ import {
   einstellungen,
   faelle,
   fallNeu,
-  fallSchliessen,
   fallWaehlen,
-  fallWiederherstellen,
   kannVor,
   kannZurueck,
   katalogGeaendert,
   setting,
   setzeEinstellung,
   speichernMoeglich,
+  stehendeMeldung,
   sucheOffen,
   vor,
   vorlageAnwenden,
   zurueck,
   anleitungOffen,
+  bestand,
+  eintragVon,
+  istBehalten,
+  merkerVon,
+  nichtGespeichert,
 } from "../store.ts";
+import { BehalteneListe, FallBehaltenLink, FallkopfBehalten, KurzDialog, useBehaltenMeldung } from "./Behalten.tsx";
+import { RaeumenFrage } from "./Raeumen.tsx";
 import { dauerspeicherGeht, loescheFaelle } from "../speicher.ts";
 import { anleitungVonSelbst } from "../engine/einfuehrung.ts";
 import { Anleitung, schalteAnleitung } from "./Anleitung.tsx";
@@ -45,13 +50,15 @@ import {
   alterInWorten,
   ausstehend,
   handkopie,
+  jetztImTakt,
   kopiereAlles,
   kopiereNaechsten,
   letzteKopie,
+  lueckePerF2,
+  nachRueckkehr,
   naechsteStelle,
-  offeneListe,
   offenesFeld,
-  raeumeArbeitsplatz,
+  schliesseFall,
   schliesseFeld,
   schliesseListe,
   seiteDesBriefs,
@@ -64,8 +71,10 @@ import {
   zugKnopfGewechselt,
 } from "./aktionen.ts";
 import { melde, meldung } from "./kopieren.ts";
-import { useFokusZurueck } from "./fokus.ts";
+import { MERKER_MAX, ungespeichertText } from "../engine/behalten.ts";
+import { useFokusZurueck, useKopfhoehe } from "./fokus.ts";
 import { Falldaten } from "./Falldaten.tsx";
+import { kopfKurz, reiterVersatz } from "../engine/anzeige.ts";
 
 function SettingWahl() {
   const optionen: { wert: Setting; label: string }[] = [
@@ -101,42 +110,79 @@ function neuerFallDialog() {
   if (aktiverFall.value) sucheOffen.value = "neu";
 }
 
+/**
+ * Holt den Reiter des offenen Falls in den sichtbaren Teil der Leiste (QA-44, DS-R6-6). Rechts steht „+ Neuer Fall“
+ * angeheftet; der Reiter muss links davon ganz zu sehen sein, mit seinem ×.
+ */
+function zeigeAktivenReiter(nav: HTMLElement | null) {
+  const eintrag = nav?.querySelector<HTMLElement>("[data-reiter-offen]");
+  if (!nav || !eintrag) return;
+  const n = nav.getBoundingClientRect();
+  const r = eintrag.getBoundingClientRect();
+  const neu = nav.querySelector<HTMLElement>(".reiter-neu");
+  const v = reiterVersatz({ links: r.left, rechts: r.right, sichtLinks: n.left, sichtRechts: n.right - (neu ? neu.getBoundingClientRect().width + 4 : 0) });
+  if (v !== 0) nav.scrollLeft += v;
+}
+
 function Kopf({ onEinstellungen }: { onEinstellungen: () => void }) {
   const [raeumen, setRaeumen] = useState(false);
+  const raeumenKnopf = useRef<HTMLButtonElement>(null);
+  const nav = useRef<HTMLElement>(null);
+  const jetzt = jetztImTakt();
+  // Nur beim Wechsel des Falls, bei neuen oder geschlossenen Reitern und wenn die Leiste schmaler oder breiter wird (Fenster,
+  // Anleitung): Wer die Leiste selbst seitlich schiebt, soll nicht jede Minute zurückgeholt werden.
+  useLayoutEffect(() => zeigeAktivenReiter(nav.current), [aktivId.value, faelle.value.length]);
+  useEffect(() => {
+    const el = nav.current;
+    if (!el || typeof ResizeObserver === "undefined") return;
+    const beobachter = new ResizeObserver(() => zeigeAktivenReiter(el));
+    beobachter.observe(el);
+    return () => beobachter.disconnect();
+  }, []);
   return (
+    <>
     <header class="kopf">
       <div class="marke-name">Kitteltext</div>
-      <nav class="reiter" aria-label="Offene Fälle">
+      <nav class="reiter" aria-label="Offene Fälle" ref={nav}>
         {faelle.value.map((f) => {
           const aktiv = f.id === aktivId.value && !sucheOffen.value;
           const stand = fallStand(f);
-          const alter = alterInWorten(f);
+          const alter = alterInWorten(f, jetzt);
+          const behalten = istBehalten(f.id);
+          const merker = merkerVon(f);
           return (
-            <div class={aktiv ? "reiter-eintrag aktiv" : "reiter-eintrag"}>
+            <div class={aktiv ? "reiter-eintrag aktiv" : "reiter-eintrag"} data-reiter-offen={f.id === aktivId.value ? "" : undefined}>
               <button
                 type="button"
                 class="reiter-knopf"
                 aria-current={aktiv}
                 onClick={() => fallWaehlen(f.id)}
-                title={`Fall ${f.nr} · ${fallName(f, INDEX)} · begonnen ${uhrzeit(f.erstellt)}${stand.text ? ` · ${stand.text}` : ""}${f.nr <= 9 ? ` (Alt+${f.nr})` : ""}`}
+                title={`Fall ${f.nr} · ${fallName(f, INDEX)}${behalten ? ` · behalten als „${merker}“` : ""} · begonnen ${uhrzeit(f.erstellt, jetzt)}${stand.text ? ` · ${stand.text}` : ""}${f.nr <= 9 ? ` (Alt+${f.nr})` : ""}`}
               >
                 <span class="reiter-nr">{f.nr}</span>
+                {/* Behalten: Die Kurzbezeichnung zuerst und in voller Schrift, sonst kürzt die Auslassung genau das weg, woran man den
+                    Fall erkennt (G-122, DS-R6-4). */}
                 <span class="reiter-name">
-                  {fallName(f, INDEX)}
-                  {f.etikett && <em> · {f.etikett}</em>}
+                  {behalten ? (
+                    <>
+                      <em class="reiter-kurz">{merker}</em> · {fallName(f, INDEX)}
+                    </>
+                  ) : (
+                    <>
+                      {fallName(f, INDEX)}
+                      {merker && <em> · {merker}</em>}
+                    </>
+                  )}
                 </span>
-                <span class={alter ? "reiter-zeit alt" : "reiter-zeit"}>{alter || uhrzeit(f.erstellt)}</span>
+                <span class={alter ? "reiter-zeit alt" : "reiter-zeit"}>{alter || uhrzeit(f.erstellt, jetzt)}</span>
                 {stand.zeichen && <span class={`reiter-stand r-${stand.art}`}>{stand.zeichen}</span>}
               </button>
               <button
                 type="button"
                 class="reiter-zu"
-                aria-label={`Fall ${f.nr} schließen`}
-                title="Fall schließen"
-                onClick={() => {
-                  fallSchliessen(f.id);
-                  melde({ text: `Fall ${f.nr} geschlossen.`, art: "ok", aktion: { label: "Rückgängig", ausfuehren: fallWiederherstellen } });
-                }}
+                aria-label={behalten ? `Fall ${f.nr} schließen, bleibt behalten` : `Fall ${f.nr} schließen`}
+                title={behalten ? "Fall in diesem Fenster schließen; er bleibt unter „Behaltene Fälle“ (Strg+K)" : "Fall schließen"}
+                onClick={() => schliesseFall(f)}
               >
                 ×
               </button>
@@ -151,35 +197,23 @@ function Kopf({ onEinstellungen }: { onEinstellungen: () => void }) {
       </nav>
       <div class="kopf-rechts">
         <button type="button" class="knopf leise icon" disabled={!kannZurueck.value} onClick={rueckgaengig} title="Rückgängig (Strg+Z)" aria-label="Rückgängig">
-          ↶
+          <PfeilZurueck />
         </button>
         <button type="button" class="knopf leise icon" disabled={!kannVor.value} onClick={wiederholen} title="Wiederholen (Strg+Y)" aria-label="Wiederholen">
-          ↷
+          <PfeilZurueck gespiegelt />
         </button>
-        {faelle.value.length > 0 &&
-          (raeumen ? (
-            <span class="kopf-frage">
-              Alle {faelle.value.length} Fälle löschen?
-              <button
-                type="button"
-                class="knopf gefahr klein"
-                onClick={() => {
-                  raeumeArbeitsplatz();
-                  setRaeumen(false);
-                  melde({ text: "Arbeitsplatz geräumt: alle Fälle gelöscht, Zwischenablage überschrieben. Eigene Bausteine bleiben.", art: "ok" }, 5000);
-                }}
-              >
-                Ja, räumen
-              </button>
-              <button type="button" class="knopf leise klein" onClick={() => setRaeumen(false)}>
-                Nein
-              </button>
-            </span>
-          ) : (
-            <button type="button" class="knopf leise" onClick={() => setRaeumen(true)} title="Vor dem Verlassen des Rechners: löscht alle offenen Fälle und überschreibt die Zwischenablage">
-              Arbeitsplatz räumen
-            </button>
-          ))}
+        {(faelle.value.length > 0 || bestand.value.eintraege.length > 0 || raeumen) && (
+          <button
+            type="button"
+            class={raeumen ? "knopf leise aktiv" : "knopf leise"}
+            ref={raeumenKnopf}
+            aria-expanded={raeumen}
+            onClick={() => setRaeumen(!raeumen)}
+            title="Vor dem Verlassen des PCs: löscht die Fälle dieses Fensters und überschreibt die Zwischenablage; behaltene Fälle löscht es nur, wenn du es wählst"
+          >
+            Arbeitsplatz räumen
+          </button>
+        )}
         <button
           type="button"
           class={anleitungOffen.value ? "knopf leise aktiv" : "knopf leise"}
@@ -194,18 +228,43 @@ function Kopf({ onEinstellungen }: { onEinstellungen: () => void }) {
         </button>
       </div>
     </header>
+    {/* Unter der Kopfzeile statt in ihr: Die Reiter behalten ihren Platz, und drei Knöpfe passen auch bei 1024 px. */}
+    {raeumen && (
+      <RaeumenFrage
+        id="raeumen-kopf"
+        onFertig={(geraeumt) => {
+          setRaeumen(false);
+          if (!geraeumt) queueMicrotask(() => raeumenKnopf.current?.focus());
+        }}
+      />
+    )}
+    </>
   );
 }
 
-/** Drei Sätze für den ersten Brief. Verschwindet mit „Verstanden“ oder nach dem ersten Kopieren. */
+/**
+ * Rückgängig als gezeichneter Bogenpfeil, gespiegelt für Wiederholen: Die Zeichen ↶ ↷ sehen je nach Schrift verschieden
+ * und blass aus. Inline, ohne Symbolpaket; Name und Titel trägt der Knopf.
+ */
+function PfeilZurueck({ gespiegelt = false }: { gespiegelt?: boolean }) {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false" style={gespiegelt ? { transform: "scaleX(-1)" } : undefined}>
+      <path d="M6 3.5 2.5 7 6 10.5M3 7h6.5a4 4 0 0 1 0 8H7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  );
+}
+
+/**
+ * Eine Zeile für den ersten Brief. Verschwindet mit „Verstanden“ oder nach dem ersten Kopieren. „Enter allein setzt nie
+ * etwas“ steht in der Anleitung unter „Damit nichts fehlt“ (Entscheidung Lead (c)).
+ */
 function Einstieg() {
   if (einstellungen.value.tippGesehen) return null;
   return (
     <div class="einstieg" role="note">
       <p>
-        <strong>So geht es:</strong> <kbd>F2</kbd> führt Stelle für Stelle durch den Brief. <span class="marke marke-offen">● Gelb</span> fehlt noch: Ziffer wählen oder tippen.{" "}
-        <span class="marke marke-vorschlag">○ Grau</span> schlägt die Vorlage vor: lesen, dann mit <kbd>Ü</kbd> übernehmen oder ändern. <kbd>Enter</kbd> allein setzt nie etwas. Ist ein Abschnitt fertig,
-        kopiert ihn <kbd>Strg</kbd>+<kbd>Enter</kbd> fürs KIS.
+        <kbd>F2</kbd> nächste Stelle · <span class="marke marke-offen">● Gelb</span> ausfüllen · <span class="marke marke-vorschlag">○ Grau</span> lesen, <kbd>Ü</kbd> übernehmen ·{" "}
+        <kbd>Strg</kbd>+<kbd>Enter</kbd> Abschnitt kopieren
       </p>
       <button type="button" class="knopf klein" onClick={() => setzeEinstellung("tippGesehen", true)}>
         Verstanden
@@ -254,6 +313,7 @@ function Start() {
         <span class="start-typ">{setting.value === "zna" ? "Ambulanzbrief" : "Entlassbrief"}</span>
       </div>
       <Vorlagensuche onWahl={waehle} onLeer={leer} />
+      {!wechseln && <BehalteneListe />}
       <Schnellwahl onWahl={waehle} />
       <Regionenliste onWahl={waehle} />
       <div class="start-fuss">
@@ -379,8 +439,17 @@ function Fallkopf() {
   const abweichend = Object.values(fall.seiteBaustein).filter((s) => s !== fall.seite && s !== "ohne");
   const titel = vorlage?.titel ?? (fall.setting === "station" ? "Freier Entlassbrief" : "Freier Brief");
   const seitenzusatz = [fall.seite && fall.seite !== "ohne" ? fall.seite.toUpperCase() : "", abweichend.length > 0 ? `+ ${[...new Set(abweichend)].map((x) => x.toUpperCase()).join(" + ")}` : ""].filter(Boolean).join(" ");
+  const jetzt = jetztImTakt();
+  const behalten = istBehalten(fall.id) ? eintragVon(fall.id) : undefined;
+  const kurz = kopfKurz(
+    { brauchtSeite: b.brauchtSeite, seite: fall.seite, brauchtPerson: b.brauchtPerson, geschlecht: fall.geschlecht, alter: fall.alter },
+    behalten && { kurz: behalten.kurz, erstellt: fall.erstellt, geaendert: fall.geaendert, loeschenAb: behalten.loeschenAb },
+    jetzt,
+  );
+  const kopf = useRef<HTMLDivElement>(null);
+  useKopfhoehe(kopf);
   return (
-    <div class="fallkopf">
+    <div class="fallkopf" ref={kopf}>
       <div class="fk-kopfzeile">
         {/* Im schmalen Fenster bleibt nur diese Zeile stehen: Fall, Diagnose und Seite sind immer im Blick. Titel und
             Metazeile stehen immer in eigenen Zeilen, und der Titel bricht nie um: Die Wahl der Seite verschiebt nichts
@@ -392,10 +461,21 @@ function Fallkopf() {
             {/* Das Leerzeichen gehört zum Text (Vorlesen, Kopieren); den sichtbaren Abstand gibt der Zwischenraum. */}
             {seitenzusatz && <span class="fk-seite"> {seitenzusatz}</span>}
           </h1>
+          {/* Nur im kompakten Fallkopf zu sehen, wo die Felder mitscrollen: Seite und Person bleiben stehen. Der Text steht im
+              Stil (data-text), nicht im Dokument: Vorlesehilfen und Suche finden ihn nur einmal, in den Feldern darunter. */}
+          {kurz.length > 0 && (
+            <span class="fk-person" aria-hidden="true">
+              {kurz.map((t) => (
+                <span class={["fk-person-teil", t.fehlt ? "fehlt" : "", t.art ?? ""].filter(Boolean).join(" ")} data-text={t.text} />
+              ))}
+            </span>
+          )}
         </div>
         <div class="fk-neben">
+          {/* Beim behaltenen Fall steht der Beginn in der Zeile darunter, nicht zweimal (MT-R6-08). Über Mitternacht mit Tag. */}
           <span class="fk-typ">
-            {typ?.setting === "station" ? "Entlassbrief" : "Ambulanzbrief"} · seit {uhrzeit(fall.erstellt)}
+            {typ?.setting === "station" ? "Entlassbrief" : "Ambulanzbrief"}
+            {behalten ? "" : ` · begonnen ${uhrzeit(fall.erstellt, jetzt)}`}
           </span>
           {vorlage && (
             <span class={`st-status s-${vorlage.status}`} title={vorlage.quelle ?? ""}>
@@ -417,8 +497,10 @@ function Fallkopf() {
           >
             als eigene Vorlage speichern
           </button>
+          <FallBehaltenLink fall={fall} />
         </div>
       </div>
+      <FallkopfBehalten fall={fall} />
       {speichern && (
         <form
           class="fk-speichern"
@@ -472,21 +554,23 @@ function Fallkopf() {
             </div>
           </>
         )}
-        <div class="fk-feld fk-merker">
-          <input
-            spellcheck={false}
-            autocomplete="off"
-            id="fk-etikett"
-            class="fk-eingabe"
-            type="text"
-            maxLength={14}
-            value={fall.etikett}
-            placeholder="Merker, z. B. Kabine 3"
-            aria-label="Merker für diesen Fall (kein Patientenname)"
-            title="Nur zum Wiederfinden im Reiter. Keinen Namen eintragen."
-            onInput={(e) => aendere((f) => ({ ...f, etikett: (e.target as HTMLInputElement).value }), "etikett")}
-          />
-        </div>
+        {!istBehalten(fall.id) && (
+          <div class="fk-feld fk-merker">
+            <input
+              spellcheck={false}
+              autocomplete="off"
+              id="fk-etikett"
+              class="fk-eingabe"
+              type="text"
+              maxLength={MERKER_MAX}
+              value={fall.etikett}
+              placeholder="Merker, z. B. Kabine 3"
+              aria-label="Merker für diesen Fall (kein Patientenname)"
+              title="Nur zum Wiederfinden im Reiter. Keinen Namen eintragen."
+              onInput={(e) => aendere((f) => ({ ...f, etikett: (e.target as HTMLInputElement).value }), "etikett")}
+            />
+          </div>
+        )}
       </div>
       {/* Je Fall eigene Felder: Ein unlesbarer Entwurf darf nicht in den nächsten Fall wandern (CR-R5-01). */}
       {fall.setting === "station" && <Falldaten key={fall.id} />}
@@ -502,7 +586,7 @@ function abschnittStand(a: AbschnittAnsicht): { zeichen: string; text: string; a
   // Mit Abgleich-Hinweis nicht grün (M-27 Station), wie am Knopf des Abschnitts.
   if (a.kopiert && abgleich.value.some((h) => h.abschnitte.includes(a.id))) return { zeichen: "!", text: "kopiert, Hinweis prüfen", art: "geaendert" };
   if (a.kopiert) return { zeichen: "✓", text: `kopiert ${a.kopiertUm ? uhrzeit(a.kopiertUm) : ""}`, art: "fertig" };
-  return { zeichen: "→", text: "fertig zum Kopieren", art: "bereit" };
+  return { zeichen: "→", text: "fertig", art: "bereit" };
 }
 
 /** Rechte Leiste: Überblick, nächste offene Stelle, Kopieren. Hier wird nichts eingegeben. */
@@ -515,11 +599,10 @@ function Pruefleiste() {
   const zuKlaeren = b.offen + b.vorschlag;
   const kopie = letzteKopie.value;
   const alleKopiert = sichtbar.length > 0 && offen.length === 0;
-  const schliessen = () => {
-    fallSchliessen(fall.id);
-    const offenImKis = b.spaeter.length > 0 ? ` Im KIS noch zu ergänzen: ${b.spaeter.map((p) => `[${p.label.toUpperCase()}]`).join(", ")}.` : "";
-    melde({ text: `Fall ${fall.nr} geschlossen.${offenImKis}`, art: b.spaeter.length > 0 ? "warnung" : "ok", aktion: { label: "Rückgängig", ausfuehren: fallWiederherstellen } });
-  };
+  // Ein behaltener Fall, der ganz kopiert ist, wird gelöscht statt nur geschlossen: Er hat auf dem PC nichts mehr zu tun (E-67).
+  const behalten = istBehalten(fall.id);
+  const schliessen = () =>
+    schliesseFall(fall, behalten, b.spaeter.length > 0 ? ` Im KIS noch zu ergänzen: ${b.spaeter.map((p) => `[${p.label.toUpperCase()}]`).join(", ")}.` : "", b.spaeter.length > 0);
   // Derselbe Knopf behält beim Wechsel den Fokus; was Enter dort tut, ist neu (R2-05).
   const warAlles = useRef(alleKopiert);
   useLayoutEffect(() => {
@@ -527,11 +610,19 @@ function Pruefleiste() {
     warAlles.current = alleKopiert;
   }, [alleKopiert]);
   return (
-    <aside class="pruefleiste" aria-label="Prüfen und kopieren">
+    // Ein gefüllter Knopf je Zustand: beim Klären F2, danach Kopieren (Design-Review Nr. 3).
+    <aside class="pruefleiste" aria-label="Prüfen und kopieren" data-phase={zuKlaeren > 0 ? "klaeren" : "kopieren"}>
       <button type="button" class={zuKlaeren > 0 ? "knopf breit f2" : "knopf breit f2 ruhig"} disabled={zuKlaeren === 0} onClick={() => naechsteStelle()}>
-        <span>
-          {zuKlaeren > 0 ? `Nächste Stelle${b.offen > 0 ? ` · ● ${b.offen} offen` : ""}${b.vorschlag > 0 ? ` · ○ ${b.vorschlag} grau` : ""}` : "Nichts mehr zu klären"}
-        </span>
+        {zuKlaeren > 0 ? (
+          // Zwei Zeilen: oben die Handlung, darunter die Zählung. Der Name bleibt „Nächste Stelle · ● 23 offen · ○ 11 grau“.
+          <span class="f2-text">
+            <span class="f2-titel">Nächste Stelle</span>
+            <span class="nur-vorlesen"> · </span>
+            <span class="f2-zahl">{[b.offen > 0 ? `● ${b.offen} offen` : "", b.vorschlag > 0 ? `○ ${b.vorschlag} grau` : ""].filter(Boolean).join(" · ")}</span>
+          </span>
+        ) : (
+          <span>Nichts mehr zu klären</span>
+        )}
         <kbd>F2</kbd>
       </button>
 
@@ -545,7 +636,9 @@ function Pruefleiste() {
                 <span class="gl-zeichen" aria-hidden="true">
                   {s.zeichen}
                 </span>
-                <span class="gl-titel">{a.titel}</span>
+                <span class="gl-titel" title={a.titel}>
+                  {a.titel}
+                </span>
                 <span class="gl-stand">{s.text}</span>
               </button>
             </li>
@@ -576,7 +669,7 @@ function Pruefleiste() {
       <div class="kopierblock">
         {alleKopiert ? (
           <button type="button" class="knopf primaer breit" onClick={schliessen} onKeyDown={knopfTaste(schliessen, "Fall bleibt offen")}>
-            <span>Alles kopiert · Fall schließen</span>
+            <span>{behalten ? "Alles kopiert · Fall löschen" : "Alles kopiert · Fall schließen"}</span>
           </button>
         ) : (
           <button type="button" class="knopf primaer breit" data-naechste-kopie disabled={!naechster} onClick={kopiereNaechsten} onKeyDown={knopfTaste(() => void kopiereNaechsten(), "nichts kopiert")} title={naechster && !naechster.fertig ? "Dieser Abschnitt ist noch nicht fertig; der Knopf führt zur Stelle, die zu klären ist" : undefined}>
@@ -588,7 +681,13 @@ function Pruefleiste() {
           {sichtbar.length - offen.length} von {sichtbar.length} Abschnitten kopiert
         </span>
         <button type="button" class="knopf breit" disabled={sichtbar.length === 0} onClick={kopiereAlles} onKeyDown={knopfTaste(() => void kopiereAlles(), "nichts kopiert")}>
-          <span>Ganzen Brief kopieren</span>
+          {/* Kurzform nur, wo es eng wird (Fußleiste mit Anleitung); der Name bleibt „Ganzen Brief kopieren“. */}
+          <span>
+            <span class="lang">Ganzen Brief kopieren</span>
+            <span class="kurz" aria-hidden="true">
+              Brief kopieren
+            </span>
+          </span>
           <kbd>Strg+⇧+↵</kbd>
         </button>
         {einstellungen.value.formatiert && (
@@ -647,7 +746,7 @@ function Meldung({ imFluss = false }: { imFluss?: boolean }) {
           {m.aktion.label}
         </button>
       )}
-      {m.art === "fehler" && (
+      {(m.art === "fehler" || m.stehend) && (
         <button type="button" class="link" onClick={() => (meldung.value = null)}>
           Schließen
         </button>
@@ -745,7 +844,7 @@ class Fehlergrenze extends Component<{ children: ComponentChildren }, { fehler: 
       <div class="dialog-flaeche">
         <div class="dialog-karte">
           <h1>Kitteltext kann die gespeicherten Fälle nicht anzeigen</h1>
-          <p>Vermutlich stammen sie aus einer älteren Fassung. Die offenen Fälle dieses Fensters werden verworfen, Einstellungen und eigene Bausteine bleiben.</p>
+          <p>Vermutlich stammen sie aus einer älteren Fassung. Die offenen Fälle dieses Fensters werden verworfen; behaltene Fälle, Einstellungen und eigene Bausteine bleiben.</p>
           <button
             type="button"
             class="knopf primaer"
@@ -781,6 +880,40 @@ function knopfTaste(aktion: () => void, folge: string) {
   };
 }
 
+/**
+ * Der offene Fall ist ohne Zutun zugegangen (Ablauf, anderes Fenster): Die Meldung bleibt stehen, bis jemand sie gelesen hat
+ * (PS-R6-1). Sie steht über Startseite und Brief, damit sie auch nach dem Wechsel in einen anderen Reiter zu sehen ist.
+ */
+function StehendeMeldung() {
+  const m = stehendeMeldung.value;
+  if (!m) return null;
+  return (
+    <div class={`banner stehend ${m.art}`} role="alert" data-stehend>
+      <span>{m.text}</span>{" "}
+      <button type="button" class="link" onClick={() => (stehendeMeldung.value = null)}>
+        Verstanden
+      </button>
+    </div>
+  );
+}
+
+/**
+ * Das Schreiben eines behaltenen Falls scheitert (CR-R6-01, H-R6-4): ein Zustand, kein einmaliger Hinweis. Das Banner steht,
+ * solange es scheitert, und geht von selbst, sobald ein Schreiben gelingt (bei der nächsten Eingabe oder in der Minutenprüfung).
+ * Es liegt in der Seite, nicht über Dialogen, und hat keinen Knopf, der den Fokus verlieren ließe.
+ */
+function Speicherfehler() {
+  const offen = nichtGespeichert.value;
+  if (offen.size === 0) return null;
+  const jetzt = jetztImTakt();
+  const liste = [...offen].map(([id, um]) => ({ kurz: eintragVon(id)?.kurz ?? faelle.value.find((f) => f.id === id)?.etikett.trim() ?? "ohne Kurzbezeichnung", um }));
+  return (
+    <div class="banner stehend fehler" role="alert" data-speicherfehler>
+      {ungespeichertText(liste, jetzt)}
+    </div>
+  );
+}
+
 function istEingabe(e: KeyboardEvent): boolean {
   const t = e.target as HTMLElement;
   return t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable;
@@ -788,6 +921,7 @@ function istEingabe(e: KeyboardEvent): boolean {
 
 function Anwendung() {
   const [zeigeEinstellungen, setZeigeEinstellungen] = useState(false);
+  useBehaltenMeldung();
 
   useEffect(() => {
     const taste = (e: KeyboardEvent) => {
@@ -797,6 +931,8 @@ function Anwendung() {
       const briefSichtbar = aktiverFall.value !== null && sucheOffen.value === null;
       if (e.key === "F2") {
         e.preventDefault();
+        // Im freien Text erst von ‹…› zu ‹…›, dann weiter zum nächsten Halt (R5-02).
+        if (lueckePerF2(e)) return;
         if (briefSichtbar && !naechsteStelle(e.shiftKey)) melde({ text: "Nichts mehr zu klären.", art: "ok" }, 1500);
       } else if (strg && e.key === "Enter") {
         // In einem Eingabefeld gehört Strg+Enter dem Feld, nicht dem Kopieren.
@@ -818,25 +954,39 @@ function Anwendung() {
         }
       } else if (e.key === "Escape" && sucheOffen.value && !offenesFeld.value) {
         sucheOffen.value = null;
-      } else if (!istEingabe(e) && !offenesFeld.value && !offeneListe.value) {
+      } else if (!istEingabe(e)) {
+        // Auch mit offenem Fenster oder offener Liste: Nach einer Entscheidung ist oft schon der nächste Halt offen, und
+        // Strg+Z soll sie sofort zurücknehmen, nicht erst nach Esc (CR-R6F-04). In einem Textfeld gehört es dem Feld.
+        // Das offene Fenster geht dabei zu: Seine Ziffernreihe und seine Stelle gehören zum Stand vor dem Schritt; sonst
+        // träfe die nächste Ziffer eine andere Angabe als die angezeigte, oder ein zurückgenommener Satz käme über sein
+        // stehengebliebenes Fenster wieder (CR-R6C-01, CR-R6C-05). F2 öffnet die Stelle neu.
         if (strg && e.key.toLowerCase() === "z" && !e.shiftKey) {
           e.preventDefault();
+          if (offenesFeld.value) schliesseFeld();
           rueckgaengig();
         } else if (strg && (e.key.toLowerCase() === "y" || (e.key.toLowerCase() === "z" && e.shiftKey))) {
           e.preventDefault();
+          if (offenesFeld.value) schliesseFeld();
           wiederholen();
         }
       }
     };
     document.addEventListener("keydown", taste);
-    // Alte Fälle verfallen auch bei offenem Fenster.
-    const uhr = window.setInterval(() => {
-      const n = verwerfeAlte();
-      if (n > 0) melde({ text: `${n} ${n === 1 ? "Fall wurde" : "Fälle wurden"} nach langer Ruhe verworfen (Notaufnahme ${ABLAUF_STUNDEN.zna} Std., Station ${ABLAUF_STUNDEN.station} Std.).`, art: "warnung" }, 8000);
-    }, 60_000);
+    // Alte Fälle verfallen auch bei offenem Fenster; die Meldung kommt aus dem Store (stehend, wenn der offene Fall dabei war).
+    const uhr = window.setInterval(() => verwerfeAlte(), 60_000);
+    // Zurück aus dem KIS, aus dem Ruhezustand oder über „Zurück“ aus dem Seitenspeicher: sofort prüfen, nicht erst in einer Minute.
+    const fokus = () => nachRueckkehr();
+    const sichtbar = () => document.visibilityState === "visible" && nachRueckkehr();
+    const seite = (e: PageTransitionEvent) => e.persisted && nachRueckkehr(true);
+    window.addEventListener("focus", fokus);
+    document.addEventListener("visibilitychange", sichtbar);
+    window.addEventListener("pageshow", seite);
     return () => {
       document.removeEventListener("keydown", taste);
       window.clearInterval(uhr);
+      window.removeEventListener("focus", fokus);
+      document.removeEventListener("visibilitychange", sichtbar);
+      window.removeEventListener("pageshow", seite);
     };
   }, []);
 
@@ -868,6 +1018,8 @@ function Anwendung() {
   return (
     <div class={anleitungOffen.value ? "app mit-anleitung" : "app"}>
       <Kopf onEinstellungen={() => setZeigeEinstellungen(true)} />
+      <StehendeMeldung />
+      <Speicherfehler />
       {!speichernMoeglich.value && <div class="banner">Dieser Browser speichert nichts: Beim Schließen oder Neuladen geht der Brief verloren.</div>}
       {katalogGeaendert.value > 0 && (
         <div class="banner">
@@ -895,6 +1047,7 @@ function Anwendung() {
       )}
       {zeigeStart && <Meldung />}
       <Handkopie />
+      <KurzDialog />
       {anleitungOffen.value && <Anleitung />}
       {zeigeEinstellungen && <Einstellungen onZu={() => setZeigeEinstellungen(false)} />}
     </div>

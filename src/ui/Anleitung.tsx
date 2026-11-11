@@ -7,6 +7,7 @@ import { offeneListe, offenesFeld } from "./aktionen.ts";
 import { fokusSichern } from "./fokus.ts";
 import { ANLEITUNG_TITEL, GRUNDREGEL, NICHTS_VERGESSEN, SCHLUSSSATZ, TASTATUR_TITEL, VIER_SCHRITTE, ZEHN_MINUTEN, datenschutz } from "../data/anleitung.ts";
 import { TASTATUR, TASTENSPERRE } from "../data/tastatur.ts";
+import { BEHALTEN_TAGE } from "../engine/behalten.ts";
 
 export function schalteAnleitung() {
   anleitungOffen.value = anleitungOffen.value ? null : "knopf";
@@ -58,7 +59,7 @@ export function Anleitung() {
     };
   }, []);
 
-  const schutz = datenschutz(ABLAUF_STUNDEN);
+  const schutz = datenschutz(ABLAUF_STUNDEN, BEHALTEN_TAGE);
   return (
     <aside id="anleitung" class="anleitung" aria-labelledby="anleitung-titel" ref={ref}>
       <div class="al-kopf">

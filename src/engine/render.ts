@@ -26,8 +26,8 @@ import { stelleLeer, stelleVor, weggelasseneStellen } from "./vorlage.ts";
 import { ersetzteStellen, protokollBaustein } from "./protokoll.ts";
 import { LUECKE, glaetten, kisPlatzhalter, luecke, mitVorschlag, tokensZuText } from "./text.ts";
 import { falldatumZuordnung, mehrdeutigeAnker, mitFristen } from "./falldaten.ts";
-import { folgeangabenVon, uebertragungen } from "./kopplung.ts";
-import type { Uebertragung } from "./kopplung.ts";
+import { folgeangabenVon, uebertragungen, widersprueche } from "./kopplung.ts";
+import type { Uebertragung, Widerspruch } from "./kopplung.ts";
 import type { Token } from "./text.ts";
 import { istLeer, leseMedikation, medText, medZellen } from "./medikation.ts";
 
@@ -133,6 +133,13 @@ export interface BriefAnsicht {
   brauchtSeite: boolean;
   brauchtPerson: boolean;
   spaeter: KisPlatzhalter[];
+  /**
+   * Antworten, die Stellen ohne eigene Antwort von einer anderen Stelle bekommen (E-60), je Schlüssel der Zielstelle;
+   * dieselben, die das Rendern einsetzt. Das Feldfenster zeigt sie an (QA-38).
+   */
+  uebertragen?: ReadonlyMap<string, Uebertragung>;
+  /** Gekoppelte Stellen mit verschiedener eigener Antwort (E-92); der Abgleich meldet sie. */
+  widersprueche?: readonly Widerspruch[];
 }
 
 export const SEITE_KEY = "__seite";
@@ -511,7 +518,8 @@ function bausteinTokens(b: Baustein, fall: Fall, opt: RenderOptionen, s: Sammler
             s.spaeter.push({ key, label: def.label });
             aktuell.push({ t: kisPlatzhalter(def.label), art: "feld", key, zustand: "spaeter", label: def.label, falldatum });
           }
-        } else if (roh === undefined && s.uebertragen.has(key)) {
+        } else if (s.uebertragen.has(key)) {
+          // Auch ein geleertes Feld: `uebertragungen` lässt nur Stellen ohne eigenen Wortlaut zu (PS-R6F-2).
           // Antwort von einer anderen Stelle (E-60), vor dem Hausstandard.
           const u = s.uebertragen.get(key)!;
           if (!u.aussage) s.vorschlag++;
@@ -716,7 +724,7 @@ function findeSeitenkonflikt(tokens: Token[], fall: Fall): string | null {
   return null;
 }
 
-function neuerSammler(fall: Fall, index: KatalogIndex): Sammler {
+function neuerSammler(fall: Fall, index: KatalogIndex, uebertragen: Map<string, Uebertragung> = uebertragungenImFall(fall, index)): Sammler {
   const vorlage = fall.vorlageId ? index.vorlagen.get(fall.vorlageId) : undefined;
   const weg = weggelasseneStellen(fall, vorlage, index);
   const ersetzt = ersetzteStellen(fall, index);
@@ -741,7 +749,8 @@ function neuerSammler(fall: Fall, index: KatalogIndex): Sammler {
     slotVorgabe: vorlage?.vorgaben?.slots ?? {},
     auswahlVorgabe: vorlage?.vorgaben?.auswahl ?? {},
     regeln: index.katalog.regeln,
-    uebertragen: uebertragungen(fall, index, index.katalog.regeln, new Set([...weg, ...ersetzt])),
+    // Dieselbe Quelle wie das Feldfenster (CR-R6F-07).
+    uebertragen,
     falldaten,
     mehrdeutig: mehrdeutigeAnker(fall, falldaten),
   };
@@ -810,8 +819,8 @@ function anordnung(
   return { folge, amEnde };
 }
 
-function renderIntern(id: AbschnittId, titel: string, fall: Fall, index: KatalogIndex, opt: RenderOptionen): AbschnittIntern {
-  const s = neuerSammler(fall, index);
+function renderIntern(id: AbschnittId, titel: string, fall: Fall, index: KatalogIndex, opt: RenderOptionen, uebertragen?: Map<string, Uebertragung>): AbschnittIntern {
+  const s = neuerSammler(fall, index, uebertragen);
   const ids = fall.bausteine[id] ?? [];
   const fehlend = ids.filter((bid) => !index.bausteine.has(bid));
   const vorlage = fall.vorlageId ? index.vorlagen.get(fall.vorlageId) : undefined;
@@ -918,7 +927,9 @@ export function renderAbschnitt(
 
 export function renderBrief(fall: Fall, index: KatalogIndex, opt: RenderOptionen = STANDARD_OPTIONEN): BriefAnsicht {
   const typ = index.brieftypen.get(fall.brieftypId);
-  const abschnitte = (typ?.abschnitte ?? []).map((a) => renderIntern(a.id, a.titel, fall, index, opt));
+  const nicht = nichtImBrief(fall, index);
+  const uebertragen = uebertragungen(fall, index, index.katalog.regeln, nicht);
+  const abschnitte = (typ?.abschnitte ?? []).map((a) => renderIntern(a.id, a.titel, fall, index, opt, uebertragen));
   const zaehlen = abschnitte.filter((a) => !a.ausgeblendet);
   return {
     abschnitte,
@@ -929,7 +940,20 @@ export function renderBrief(fall: Fall, index: KatalogIndex, opt: RenderOptionen
     brauchtSeite: abschnitte.some((a) => a.brauchtSeite),
     brauchtPerson: abschnitte.some((a) => a.brauchtPerson),
     spaeter: zaehlen.flatMap((a) => a.spaeter),
+    uebertragen,
+    widersprueche: widersprueche(fall, index, index.katalog.regeln, nicht),
   };
+}
+
+/** Sätze und Auswahlen, die in diesem Fall nicht im Brief stehen: weggelassen oder durch ein Protokoll ersetzt (E-60). */
+function nichtImBrief(fall: Fall, index: KatalogIndex): Set<string> {
+  const vorlage = fall.vorlageId ? index.vorlagen.get(fall.vorlageId) : undefined;
+  return new Set([...weggelasseneStellen(fall, vorlage, index), ...ersetzteStellen(fall, index)]);
+}
+
+/** Übertragungen, wie sie das Rendern dieses Falls einsetzt: ohne weggelassene und durch ein Protokoll ersetzte Stellen. */
+export function uebertragungenImFall(fall: Fall, index: KatalogIndex): Map<string, Uebertragung> {
+  return uebertragungen(fall, index, index.katalog.regeln, nichtImBrief(fall, index));
 }
 
 /** Abschnitte, die in den Gesamtbrief gehören: nicht ausgeblendet und nicht leer. */

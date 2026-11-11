@@ -174,6 +174,30 @@ export function gesetztText(vorFall: Fall | null, vorBrief: BriefAnsicht | null,
   return `${s.label} „${kurz(s.text)}“`;
 }
 
+/**
+ * Namen der Stellen, die sich von `vorFall` zu `nachFall` geändert haben, in Lesereihenfolge: „Seite“, „„DS Außenband““. Für die
+ * Meldung über eine Eingabe, die ein anderes Fenster nicht mehr bekommen hat (MT-R6-07): Sie sagt, wo nachzusehen ist, nicht
+ * was dort stand. Leer, wenn sich nichts Sichtbares geändert hat. `brief` rendert einen Fall.
+ */
+export function geaenderteNamen(vorFall: Fall, nachFall: Fall, brief: (f: Fall) => BriefAnsicht | null): string[] {
+  if (vorFall.id !== nachFall.id) return [];
+  if (vorFall.vorlageId !== nachFall.vorlageId) return ["Vorlage"];
+  const namen: string[] = [];
+  if (vorFall.seite !== nachFall.seite) namen.push("Seite");
+  if (vorFall.geschlecht !== nachFall.geschlecht) namen.push("Person");
+  if (vorFall.alter !== nachFall.alter) namen.push("Alter");
+  // Wie in `zurueckgenommenText`: Stellen, die nur wegen Seite, Person oder Alter anders aussehen, stehen nicht noch einmal da.
+  const alt = stellen(brief(vorFall));
+  const ohneKopf = stellen(brief({ ...nachFall, seite: vorFall.seite, geschlecht: vorFall.geschlecht, alter: vorFall.alter }));
+  for (const k of geaendert(alt, ohneKopf)) {
+    const s = ohneKopf.get(k) ?? alt.get(k);
+    if (unsichtbar(alt.get(k)) && unsichtbar(ohneKopf.get(k))) continue;
+    const name = `„${s!.label}“`;
+    if (!namen.includes(name)) namen.push(name);
+  }
+  return namen;
+}
+
 /** „a, b und c“; ab `max + 1` Einträgen die ersten `max`, dann „und 4 weitere“ (MT-09). */
 export function aufzaehlen(teile: readonly string[], max = 3): string {
   const t = teile.filter(Boolean);

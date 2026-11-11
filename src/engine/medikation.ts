@@ -92,6 +92,33 @@ export function schemaAusText(t: string): string[] | null {
   return teile.length >= 2 && teile.length <= 4 && teile.every((x) => /^[\d½¼¾/.,]+$/.test(x) || /^\d+ \d\/\d$/.test(x)) ? teile : null;
 }
 
+/** Ein Schema, das als Ganzes in eine Einnahmezeit kam, und was es dabei geleert hat. */
+export interface EingefuegtesSchema {
+  schema: MedZeile["schema"];
+  /** Erste Einnahmezeit des Schemas (0 = morgens) */
+  ab: number;
+  /** Zeiten, die das Schema nicht nennt und die vorher einen Wert hatten: jetzt leer, also Lücke */
+  geleert: { zeit: number; vorher: string }[];
+}
+
+/**
+ * Schema, das als Ganzes in eine Einnahmezeit kommt („1-0-1-0“ eingefügt, abgelegt oder von einem Hilfsmittel
+ * eingegeben, QA-43). Es ersetzt alle vier Zeiten (PS-R6F-3, E-94): Zeiten, die es nicht nennt, werden leer und damit
+ * Lücke, statt alte Werte zu behalten; sonst entstünde aus „1-1-1-1“ und „0-0-1“ still „0-0-1-1“. Ab drei Teilen
+ * beginnt es bei morgens („1-0-1“ heißt morgens, mittags, abends, CR-R6F-09); zwei Teile beginnen in der Zeit mit dem
+ * Fokus, passen sie dort nicht hinein, bei morgens. `null`, wenn der Text kein Schema ist; dann ist er eine gewöhnliche
+ * Eingabe.
+ */
+export function mitEingefuegtemSchema(schema: MedZeile["schema"], ab: number, text: string): EingefuegtesSchema | null {
+  const teile = schemaAusText(text);
+  if (!teile) return null;
+  const start = teile.length >= 3 || teile.length > 4 - ab ? 0 : ab;
+  const neu: MedZeile["schema"] = ["", "", "", ""];
+  teile.forEach((t, j) => (neu[start + j] = t));
+  const geleert = schema.flatMap((vorher, zeit) => (zeit >= start && zeit < start + teile.length) || !vorher.trim() ? [] : [{ zeit, vorher }]);
+  return { schema: neu, ab: start, geleert };
+}
+
 function mitPunkt(t: string): string {
   return /[.!?]$/.test(t) ? t : `${t}.`;
 }

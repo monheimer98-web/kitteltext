@@ -513,6 +513,11 @@ export interface Fall {
   /** Text des Abschnitts beim letzten Kopieren, um Änderungen danach zu erkennen */
   kopiert: Partial<Record<AbschnittId, string>>;
   kopiertUm: Partial<Record<AbschnittId, number>>;
+  /**
+   * Zeitpunkt, zu dem sich der Text eines Abschnitts zuletzt durch eine Eingabe geändert hat (E-86). Fehlt er, gilt der
+   * Beginn des Falls. Ein behaltener Fall zeigt damit je Abschnitt, was von einem früheren Tag stammt.
+   */
+  abschnittStand: Partial<Record<AbschnittId, number>>;
 }
 
 export function abschnittVon(b: Baustein): AbschnittId {

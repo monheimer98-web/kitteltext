@@ -1,5 +1,7 @@
-/* Kitteltext. Farbe trägt Bedeutung und nichts sonst:
-   Warnton = offen, Akzent = bedienbar, Grün = kopiert. */
+/* Kitteltext. Farbe trägt Bedeutung und nichts sonst, und jede Farbe hat ein zweites Zeichen (Design-Review 10.11.2026):
+   Grau mit Punktlinie = Vorschlag, Schwarz = Aussage, Gelb mit ● = offen, Grün = geklärt oder kopiert.
+   Blau = Handlung: gefüllt nur für den einen nächsten Schritt, getönt für „gewählt“, als Linie für den Fokus.
+   Rot nur für Destruktives. Gestrichelt nur für „ungeprüft“. Nie --text als Fläche: im Dunkelmodus ein weißer Block. */
 
 :root {
   --flaeche: #eef0f3;
@@ -14,14 +16,45 @@
   --akzent-flaeche: #e8f0fd;
   --offen: #8a5300;
   --offen-flaeche: #fff1d1;
-  --offen-rand: #d99a1c;
+  /* Rand offener Stellen: 3,7:1 auf Weiß (WCAG 1.4.11). */
+  --offen-rand: #b07a0e;
   --gefahr: #b3261e;
   --gefahr-flaeche: #fdecea;
   --ok: #17693a;
   --ok-flaeche: #e3f4e9;
+  /* Punktlinie und Leiste der Vorschläge, Rand ungeprüfter Vorlagen: 3,7:1. */
+  --vorschlag-rand: #7d8696;
+  /* Rand von Eingabefeldern: 3,7:1 auf Weiß, 3,2:1 auf der Fläche. */
+  --feld-rand: #7d8696;
+  /* Gewählt: getönt statt gefüllt. Text 8:1, Rand 5,8:1. */
+  --gewaehlt-flaeche: #dbe6fb;
+  --gewaehlt-rand: #1d5fd1;
+  --gewaehlt-text: #123e8c;
+  /* Meldungszeile: eigener dunkler Ton statt --text als Fläche (14:1). */
+  --meldung-flaeche: #262c38;
+  --meldung-text: #ffffff;
+  --meldung-rand: transparent;
+  --fehler-flaeche: #b3261e;
+  --fehler-text: #ffffff;
   --schatten: 0 1px 2px rgba(16, 24, 40, 0.06), 0 8px 24px rgba(16, 24, 40, 0.1);
-  --radius: 8px;
+  /* Radien 4 (kleine Marken), 6 (Knöpfe, Hinweise), 8 (Karten). --radius bleibt als Name für Karten. In styles.css stehen
+     die Radien noch als Zahl (E-69: nach dem Zusammenführen der Zweige); neue Dateien nehmen die Tokens (DS-R6-1). */
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius: var(--radius-8);
   --schrift: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  /* Sieben Schriftgrößen: Tastenkappen 11, Hinweise 12, Bedienelemente 13, Grundschrift und Listen 14, Brief 16,
+     Falltitel 19, Startfrage 24. Gewichte 400, 600 (gewählt, Überschriften), 700 (Titel). */
+  --schrift-11: 11px;
+  --schrift-12: 12px;
+  --schrift-13: 13px;
+  --schrift-14: 14px;
+  --schrift-16: 16px;
+  --schrift-19: 19px;
+  --schrift-24: 24px;
+  /* Luft zwischen dem stehenden Fallkopf und dem Ziel eines Sprungs. */
+  --luft-unter-kopf: 8px;
   color-scheme: light;
 }
 
@@ -44,6 +77,18 @@
     --gefahr-flaeche: #3c1512;
     --ok: #7fd8a0;
     --ok-flaeche: #12301f;
+    --vorschlag-rand: #76819a;
+    --feld-rand: #6c7790;
+    --gewaehlt-flaeche: #1c2a47;
+    --gewaehlt-rand: #7aa7ff;
+    --gewaehlt-text: #dce7ff;
+    --meldung-flaeche: #2a3140;
+    --meldung-text: #e8eaee;
+    /* Die Fläche hebt sich nur 1,4:1 vom Hintergrund ab; die Linie trennt. */
+    --meldung-rand: #465064;
+    /* Weiß auf hellem Rot hätte 2,3:1. */
+    --fehler-flaeche: #5a1d18;
+    --fehler-text: #ffdad6;
     --schatten: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.5);
     color-scheme: dark;
   }
@@ -66,6 +111,18 @@
   --gefahr-flaeche: #3c1512;
   --ok: #7fd8a0;
   --ok-flaeche: #12301f;
+  --vorschlag-rand: #76819a;
+  --feld-rand: #6c7790;
+  --gewaehlt-flaeche: #1c2a47;
+  --gewaehlt-rand: #7aa7ff;
+  --gewaehlt-text: #dce7ff;
+  --meldung-flaeche: #2a3140;
+  --meldung-text: #e8eaee;
+  /* Die Fläche hebt sich nur 1,4:1 vom Hintergrund ab; die Linie trennt. */
+  --meldung-rand: #465064;
+  /* Weiß auf hellem Rot hätte 2,3:1. */
+  --fehler-flaeche: #5a1d18;
+  --fehler-text: #ffdad6;
   --schatten: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.5);
   color-scheme: dark;
 }
@@ -83,7 +140,7 @@ body,
 body {
   background: var(--flaeche);
   color: var(--text);
-  font: 14px/1.45 var(--schrift);
+  font: var(--schrift-14) / 1.45 var(--schrift);
   -webkit-font-smoothing: antialiased;
 }
 button,
@@ -116,7 +173,7 @@ ul {
   outline-offset: 2px;
 }
 kbd {
-  font: 11px/1 var(--schrift);
+  font: var(--schrift-11) / 1 var(--schrift);
   padding: 3px 5px;
   border: 1px solid var(--linie-stark);
   border-radius: 4px;
@@ -168,13 +225,17 @@ kbd {
   border-color: transparent;
 }
 .knopf.klein {
-  min-height: 26px;
+  min-height: 28px;
   padding: 2px 8px;
-  font-size: 13px;
+  font-size: var(--schrift-13);
 }
 .knopf.icon {
-  padding: 4px 8px;
-  font-size: 16px;
+  width: 32px;
+  padding: 0;
+  font-size: var(--schrift-16);
+}
+.knopf.icon svg {
+  display: block;
 }
 .knopf.breit {
   width: 100%;
@@ -193,6 +254,7 @@ kbd {
   font-weight: 600;
 }
 .link {
+  position: relative;
   border: 0;
   background: none;
   padding: 2px 0;
@@ -202,6 +264,19 @@ kbd {
 }
 .link.gefahr {
   color: var(--gefahr);
+}
+/* Trefferfläche 32 px hoch, ohne die Zeile zu verschieben (Ziel 32 px, optisch kleiner). */
+.link::after,
+.zusatz-knopf::after,
+.aus-knopf::after,
+.bz-knopf::after {
+  content: "";
+  position: absolute;
+  inset: -4px 0;
+}
+.aus-knopf::after,
+.bz-knopf::after {
+  inset: -2px 0;
 }
 
 .umschalter {
@@ -217,14 +292,22 @@ kbd {
   padding: 5px 12px;
   min-height: 30px;
   color: var(--text-leise);
+  white-space: nowrap;
 }
 .umschalter button + button {
   border-left: 1px solid var(--linie-stark);
 }
-.umschalter button.aktiv {
-  background: var(--akzent);
-  color: var(--akzent-text);
+/* Gewählt sieht überall gleich aus: getönt, Rand und Gewicht 600. Gefüllt ist nur der eine nächste Schritt. */
+.umschalter button.aktiv,
+.pille.aktiv,
+.bz-knopf.aktiv {
+  background: var(--gewaehlt-flaeche);
+  border-color: var(--gewaehlt-rand);
+  color: var(--gewaehlt-text);
   font-weight: 600;
+}
+.umschalter button.aktiv {
+  box-shadow: inset 0 0 0 1px var(--gewaehlt-rand);
 }
 
 .pillen {
@@ -233,20 +316,15 @@ kbd {
   gap: 6px;
 }
 .pille {
-  min-height: 30px;
-  padding: 4px 11px;
+  position: relative;
+  min-height: 32px;
+  padding: 4px 14px;
   border: 1px solid var(--linie-stark);
   border-radius: 999px;
   background: var(--karte);
 }
 .pille:hover {
   border-color: var(--akzent);
-}
-.pille.aktiv {
-  background: var(--akzent);
-  border-color: var(--akzent);
-  color: var(--akzent-text);
-  font-weight: 600;
 }
 /* Platz für die fette Aufschrift ist immer reserviert: Eine Wahl schiebt die Knöpfe daneben nicht zur Seite (QA-25). */
 .pille-text {
@@ -268,7 +346,7 @@ kbd {
   gap: 4px;
   padding: 2px 8px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: var(--schrift-12);
   border: 1px solid transparent;
   white-space: nowrap;
 }
@@ -280,17 +358,18 @@ kbd {
 }
 
 .st-status {
-  font-size: 11.5px;
+  font-size: var(--schrift-12);
   padding: 1px 7px;
   border-radius: 999px;
   border: 1px solid var(--linie-stark);
   color: var(--text-leise);
   white-space: nowrap;
 }
+/* Ungeprüft: gestrichelt und lesbar (5,2:1 auf der Fläche), aber nicht gelb; Gelb heißt „hier fehlt noch etwas“. */
 .st-status.s-entwurf {
   border-style: dashed;
-  border-color: var(--offen-rand);
-  color: var(--offen);
+  border-color: var(--vorschlag-rand);
+  color: var(--text-leise);
 }
 .st-status.s-geprueft {
   border-color: var(--ok);
@@ -317,7 +396,7 @@ kbd {
 .marke-name {
   font-weight: 700;
   letter-spacing: -0.01em;
-  font-size: 15px;
+  font-size: var(--schrift-16);
 }
 .kopf-rechts {
   margin-left: auto;
@@ -360,7 +439,7 @@ kbd {
 }
 .reiter-nr {
   font-weight: 700;
-  font-size: 12px;
+  font-size: var(--schrift-12);
   width: 18px;
   height: 18px;
   border-radius: 50%;
@@ -382,12 +461,17 @@ kbd {
   font-style: normal;
   color: var(--text-leise);
 }
+/* Kurzbezeichnung eines behaltenen Falls: das Erkennungszeichen, also in voller Schrift (G-122, DS-R6-4). */
+.reiter-name .reiter-kurz {
+  color: inherit;
+  font-weight: 600;
+}
 .reiter-zeit {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--text-leise);
 }
 .reiter-stand {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   font-weight: 700;
 }
 .r-offen {
@@ -399,11 +483,11 @@ kbd {
 .reiter-zu {
   border: 0;
   background: none;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 4px;
   color: var(--text-leise);
-  font-size: 16px;
+  font-size: var(--schrift-16);
   line-height: 1;
   margin-right: 3px;
 }
@@ -411,17 +495,21 @@ kbd {
   background: var(--gefahr-flaeche);
   color: var(--gefahr);
 }
+/* Rechts angeheftet: Läuft die Leiste über, schieben sich die Reiter darunter, „+ Neuer Fall“ bleibt zu sehen (QA-44). */
 .reiter-neu {
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px dashed var(--linie-stark);
+  border: 1px solid transparent;
   border-bottom: 0;
   border-radius: 7px 7px 0 0;
-  background: none;
+  background: var(--papier);
   padding: 0 11px;
   color: var(--text-leise);
   white-space: nowrap;
+  position: sticky;
+  right: 0;
+  z-index: 1;
 }
 .reiter-neu:hover,
 .reiter-neu.aktiv {
@@ -434,6 +522,20 @@ kbd {
   color: var(--offen);
   padding: 6px 14px;
   border-bottom: 1px solid var(--offen-rand);
+}
+/* Stehende Meldung (PS-R6-1): Form der Warnung am Abschnitt, Strich links statt gelber Fläche; Gelb heißt „fehlt noch“. */
+.banner.stehend {
+  background: var(--karte);
+  color: var(--text);
+  border-bottom: 1px solid var(--linie);
+  border-left: 4px solid var(--offen-rand);
+  font-weight: 600;
+}
+.banner.stehend.fehler {
+  border-left-color: var(--gefahr);
+}
+.banner.stehend .link {
+  font-weight: 400;
 }
 
 /* ---------- Start ---------- */
@@ -455,7 +557,7 @@ kbd {
   gap: 12px;
 }
 .start h1 {
-  font-size: 26px;
+  font-size: var(--schrift-24);
   letter-spacing: -0.02em;
 }
 .start-unter {
@@ -482,9 +584,9 @@ kbd {
   width: 100%;
   height: 52px;
   padding: 0 16px;
-  font-size: 18px;
+  font-size: var(--schrift-19);
   border: 2px solid var(--akzent);
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--papier);
   outline: none;
 }
@@ -496,16 +598,17 @@ kbd {
   right: 44px;
   top: 14px;
   padding: 2px 9px;
+  border: 1px solid var(--gewaehlt-rand);
   border-radius: 999px;
-  background: var(--akzent);
-  color: var(--akzent-text);
+  background: var(--gewaehlt-flaeche);
+  color: var(--gewaehlt-text);
   font-weight: 600;
-  font-size: 13px;
+  font-size: var(--schrift-13);
 }
 .suche-liste {
   margin-top: 6px;
   border: 1px solid var(--linie-stark);
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--karte);
   box-shadow: var(--schatten);
   overflow: hidden;
@@ -526,7 +629,7 @@ kbd {
 }
 .st-titel {
   font-weight: 600;
-  font-size: 15px;
+  font-size: var(--schrift-16);
 }
 /* Treffer des anderen Bereichs: deutlich abgesetzt, damit niemand aus Versehen im falschen Bereich beginnt. */
 .suche-gruppe {
@@ -535,13 +638,13 @@ kbd {
 .suche-gruppe-titel {
   padding: 8px 14px 2px;
   color: var(--text-leise);
-  font-size: 13px;
+  font-size: var(--schrift-13);
   font-weight: 600;
 }
 .st-meta {
   margin-left: auto;
   color: var(--text-leise);
-  font-size: 13px;
+  font-size: var(--schrift-13);
 }
 .schnellwahl {
   display: grid;
@@ -551,7 +654,7 @@ kbd {
 }
 .kurzliste h3,
 .region h3 {
-  font-size: 11.5px;
+  font-size: var(--schrift-12);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-leise);
@@ -577,7 +680,7 @@ kbd {
   padding: 3px 8px;
   margin-left: -8px;
   border: 0;
-  border-radius: 5px;
+  border-radius: 6px;
   background: none;
   text-align: left;
 }
@@ -588,7 +691,7 @@ kbd {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  border: 1.5px dashed var(--offen-rand);
+  border: 1.5px dashed var(--vorschlag-rand);
   flex: none;
 }
 .start-fuss {
@@ -599,7 +702,7 @@ kbd {
   padding-top: 16px;
   border-top: 1px solid var(--linie);
   color: var(--text-leise);
-  font-size: 13px;
+  font-size: var(--schrift-13);
 }
 .start-leer {
   margin-top: 24px;
@@ -620,7 +723,9 @@ kbd {
   grid-row: 1;
   overflow-y: auto;
   padding: 0 20px 24px;
-  scroll-padding-top: 120px;
+  /* Sprünge und Bildlauf legen ein Ziel unter den stehenden Fallkopf, nicht dahinter (QA-40, QA-45). Die Höhe misst
+     `useKopfhoehe` (ui/fokus.ts) und hält sie aktuell; der Rückfallwert gilt nur bis zur ersten Messung. */
+  scroll-padding-top: calc(var(--kopf-stehend, 120px) + var(--luft-unter-kopf));
 }
 .papier {
   max-width: 860px;
@@ -678,15 +783,19 @@ kbd {
   color: var(--akzent);
 }
 .fk-titel h1 {
-  font-size: 19px;
+  font-size: var(--schrift-19);
   letter-spacing: -0.01em;
 }
 .fk-seite {
-  font-weight: 800;
+  font-weight: 700;
+}
+/* Person und Alter in der Titelzeile: nur im kompakten Fallkopf sichtbar, wo die Felder mitscrollen. */
+.fk-person {
+  display: none;
 }
 .fk-typ {
   color: var(--text-leise);
-  font-size: 13px;
+  font-size: var(--schrift-13);
 }
 .fk-felder {
   display: flex;
@@ -699,10 +808,10 @@ kbd {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 3px 6px;
+  padding: 4px 7px;
   margin: -3px -6px;
   border-radius: 8px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
 }
 .fk-feld.fehlt {
   background: var(--offen-flaeche);
@@ -711,7 +820,7 @@ kbd {
 /* Beide Wortlaute liegen übereinander; der längere hält die Breite, auch nach der Wahl (QA-25). */
 .fk-label {
   display: inline-grid;
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
 }
 .fk-label > span {
@@ -725,10 +834,10 @@ kbd {
   visibility: hidden;
 }
 .fk-eingabe {
-  height: 30px;
+  height: 32px;
   width: 168px;
   padding: 0 8px;
-  border: 1px solid var(--linie-stark);
+  border: 1px solid var(--feld-rand);
   border-radius: 6px;
   background: var(--karte);
 }
@@ -749,6 +858,14 @@ kbd {
 .fk-alter {
   width: 64px;
 }
+/* Der Merker gibt nach, bevor er in eine eigene Zeile rutscht (offene Anleitung, schmale Fenster). */
+.fk-merker {
+  flex: 0 1 184px;
+  min-width: 136px;
+}
+.fk-merker .fk-eingabe {
+  width: 100%;
+}
 .ruetteln {
   animation: ruetteln 0.4s;
 }
@@ -766,11 +883,11 @@ kbd {
   align-items: center;
   gap: 12px;
   margin: 10px 0 4px;
-  padding: 8px 12px;
-  border: 1px solid var(--linie-stark);
+  padding: 4px 6px 4px 12px;
+  border: 1px solid var(--linie);
   border-radius: var(--radius);
   background: var(--karte);
-  font-size: 13.5px;
+  font-size: var(--schrift-13);
   line-height: 1.5;
 }
 .einstieg p {
@@ -790,7 +907,6 @@ kbd {
 .abschnitt {
   padding: 12px 22px 14px;
   border-left: 3px solid transparent;
-  scroll-margin-top: 104px;
 }
 .abschnitt + .abschnitt {
   border-top: 1px solid var(--linie);
@@ -808,7 +924,7 @@ kbd {
   min-height: 32px;
 }
 .abschnitt h2 {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text-leise);
@@ -828,12 +944,21 @@ kbd {
   border-color: var(--ok);
   background: var(--ok-flaeche);
 }
-.knopf.kopieren.geaendert,
-.knopf.kopieren.offen {
+.knopf.kopieren.geaendert {
   color: var(--offen);
   border-color: var(--offen-rand);
   background: var(--offen-flaeche);
   font-weight: 600;
+}
+/* Noch nicht fertig: Gelb als Fläche steht nur in der Lücke selbst; hier tragen ● und Zahl die Farbe. */
+.knopf.kopieren.offen {
+  font-weight: 600;
+}
+.kz-offen {
+  color: var(--offen);
+}
+.kz-grau {
+  color: var(--text-leise);
 }
 .abschnitt.ausgeblendet {
   opacity: 0.7;
@@ -841,32 +966,40 @@ kbd {
 .ab-hinweis,
 .ab-leer {
   color: var(--text-leise);
-  font-size: 13px;
+  font-size: var(--schrift-13);
+}
+/* Stand je Abschnitt (E-86): leise neben dem Titel, wie die anderen Hinweise am Abschnitt. */
+.ab-stand {
+  white-space: nowrap;
 }
 .ab-text {
-  font-size: 16px;
+  font-size: var(--schrift-16);
   line-height: 1.65;
   max-width: 76ch;
 }
+/* Zwischen Bausteinen kein Abstand: Der Bildschirm zeigt dieselben Zeilen wie das KIS. Nur die graue Leiste braucht Luft. */
 .block {
-  margin-top: 6px;
+  margin-top: 0;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  scroll-margin-top: 112px;
 }
 .block p {
   white-space: pre-wrap;
 }
 .block.mit-vorschlag {
-  border-left: 3px dashed var(--linie-stark);
+  border-left: 3px dotted var(--vorschlag-rand);
   padding-left: 12px;
   margin-left: -15px;
+}
+.block.mit-vorschlag,
+.block.mit-vorschlag + .block {
+  margin-top: 6px;
 }
 .block-kopf {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
   line-height: 1.3;
   margin-bottom: 1px;
@@ -888,15 +1021,15 @@ kbd {
 .sammel-erledigt {
   display: inline-flex;
   align-items: center;
-  min-height: 26px;
+  min-height: 28px;
   padding: 2px 8px;
   border: 1px solid transparent;
-  font-size: 13px;
+  font-size: var(--schrift-13);
   color: var(--ok);
 }
 
 /* Anklickbare Textstellen. Höchstens drei Auszeichnungen im Text:
-   offen (Fläche + Rahmen + Zeichen), aus der Vorlage (punktiert), auffällig (halbfett). */
+   offen (Fläche + Rahmen + Zeichen), aus der Vorlage (punktiert), auffällig (halbfett). Alle in Briefgröße. */
 .tok {
   cursor: pointer;
   border-radius: 3px;
@@ -917,7 +1050,7 @@ kbd {
 /* Vorschlag der Vorlage: grau und punktiert. Er gehört nicht zum Brief, bis der Arzt ihn übernimmt. */
 .tok.z-vorschlag {
   color: var(--text-leise);
-  text-decoration: underline dotted var(--linie-stark);
+  text-decoration: underline dotted var(--vorschlag-rand);
 }
 .tok.z-gesetzt,
 .tok.z-ok {
@@ -928,60 +1061,65 @@ kbd {
   text-decoration: underline dotted var(--akzent);
 }
 .tok.z-abw {
-  font-weight: 650;
+  font-weight: 600;
 }
+/* Eine lange Stelle bricht um wie Text, statt aus dem Brief zu laufen; jede Zeile trägt Rand und Fläche (clone).
+   Kurze Stellen bleiben beisammen. */
 .tok.z-offen {
   background: var(--offen-flaeche);
   color: var(--offen);
-  border: 2px solid var(--offen-rand);
-  padding: 0 6px;
+  border: 1px solid var(--offen-rand);
+  border-radius: 4px;
+  padding: 0 5px;
   font-weight: 600;
-  font-size: 14.5px;
-  /* Lange Lücken (Protokollzeilen, QA-37) brechen in der Spalte um; Rahmen und Fläche
-     wiederholen sich je Zeile über box-decoration-break an .tok. „normal“ statt des geerbten
-     pre-wrap, sonst hängt das Leerzeichen am Zeilenende samt Rahmen über den Satzspiegel. */
+  /* Geerbtes pre-wrap ließe das Leerzeichen am Zeilenende samt Rahmen über den Satzspiegel hängen (QA-37). */
   white-space: normal;
   overflow-wrap: anywhere;
+}
+.tok.z-offen.kurz {
+  white-space: nowrap;
 }
 .tok.z-spaeter {
   background: var(--flaeche);
   border: 1px solid var(--linie-stark);
   padding: 0 4px;
   font-family: ui-monospace, Consolas, monospace;
-  font-size: 14px;
+  font-size: var(--schrift-14);
 }
 .tok-zusatz {
   white-space: pre-wrap;
 }
 
+/* Weitere Sätze: ruhige Chips. Nicht gestrichelt, das heißt „ungeprüft“. */
 .ab-aus {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  gap: 4px;
   margin-top: 10px;
 }
 .aus-knopf {
-  border: 1px dashed var(--linie-stark);
-  background: none;
-  border-radius: 999px;
-  padding: 2px 10px;
-  min-height: 26px;
-  font-size: 13px;
+  position: relative;
+  border: 1px solid transparent;
+  background: var(--flaeche);
+  border-radius: 6px;
+  padding: 2px 9px;
+  min-height: 28px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
 }
 .aus-knopf:hover {
-  border-style: solid;
-  border-color: var(--akzent);
+  border-color: var(--linie-stark);
   color: var(--text);
-  background: var(--akzent-flaeche);
 }
 .zusatz-knopf {
+  position: relative;
   display: block;
   margin-top: 8px;
   border: 0;
   background: none;
   padding: 2px 0;
-  font-size: 13px;
+  min-height: 28px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
 }
 .zusatz-knopf:hover {
@@ -995,7 +1133,7 @@ kbd {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
   margin-top: 4px;
 }
@@ -1008,7 +1146,7 @@ kbd {
   border-radius: var(--radius);
   background: var(--karte);
   box-shadow: var(--schatten);
-  font-size: 14px;
+  font-size: var(--schrift-14);
   line-height: 1.4;
   white-space: normal;
 }
@@ -1020,13 +1158,17 @@ kbd {
   padding: 8px 12px;
   border-bottom: 1px solid var(--linie);
 }
+.bl-kopf strong {
+  white-space: nowrap;
+}
 .bl-tipp {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--text-leise);
+  text-align: right;
 }
 .bl-gruppe {
   padding: 7px 12px 2px;
-  font-size: 11px;
+  font-size: var(--schrift-12);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-leise);
@@ -1042,7 +1184,7 @@ kbd {
   display: flex;
   align-items: center;
   gap: 8px;
-  min-height: 29px;
+  min-height: 32px;
 }
 .bz-zeichen {
   width: 16px;
@@ -1066,7 +1208,7 @@ kbd {
 }
 .ff-vergessen {
   height: 100%;
-  min-height: 30px;
+  min-height: 32px;
   padding: 0 7px;
   border: 1px solid var(--akzent);
   border-left: 0;
@@ -1079,10 +1221,9 @@ kbd {
   color: var(--gefahr);
 }
 
-/* Angabe, die noch zu wählen ist: gestrichelt, bis ein Knopf gedrückt wurde. */
+/* Angabe, die noch zu wählen ist: gelber Rand, bis ein Knopf gedrückt wurde. */
 .ff-offen .pille {
-  border-style: dashed;
-  border-color: var(--offen);
+  border-color: var(--offen-rand);
 }
 .ff-offen .ff-label {
   color: var(--offen);
@@ -1091,11 +1232,31 @@ kbd {
 .ff-offen .ff-label::before {
   content: "● ";
 }
+/* Antwort einer anderen Stelle, noch nicht übernommen (QA-38): markiert, aber grau mit Punktlinie wie im Brief. Gleiche
+   Rahmenbreite wie jede Pille, damit eine Wahl nichts verschiebt (QA-25). */
+.pille.aktiv.vorschlag {
+  background: var(--karte);
+  border-style: dotted;
+  border-color: var(--vorschlag-rand);
+  color: var(--text-leise);
+}
+.pille.aktiv.vorschlag .pille-text {
+  text-decoration: underline dotted var(--vorschlag-rand);
+}
+.ff-label.mit-herkunft {
+  display: flex;
+  white-space: nowrap;
+}
+.ff-herkunft {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .bz-ok .bz-zeichen {
   color: var(--ok);
 }
 .bz-abw .bz-label {
-  font-weight: 650;
+  font-weight: 600;
 }
 .bz-angegeben .bz-zeichen {
   color: var(--ok);
@@ -1107,19 +1268,21 @@ kbd {
  * beim Drücken unter dem Zeiger lag (QA-19, QA-24).
  */
 .pille-ziffer {
-  display: inline-block;
+  position: absolute;
+  left: -6px;
+  top: -8px;
   visibility: hidden;
   min-width: 16px;
-  margin-right: 6px;
   padding: 0 3px;
-  font: 600 11px/14px var(--schrift);
+  font: 600 var(--schrift-11) / 14px var(--schrift);
   font-variant-numeric: tabular-nums;
   text-align: center;
+  /* In der Schriftfarbe des Knopfs, auch auf dem gewählten (QA-20); eigene Fläche, weil sie auf dem Rand sitzt. */
   color: inherit;
+  background: var(--karte);
   border: 1px solid currentColor;
   border-bottom-width: 2px;
   border-radius: 4px;
-  vertical-align: 1px;
 }
 /* Die Gruppe selbst oder einer ihrer Knöpfe hat den Fokus (Fallkopf, markierte Reihe). */
 .pillen:focus-within .pille-ziffer,
@@ -1151,7 +1314,7 @@ kbd.taste {
   min-width: 1.4em;
   margin-right: 0.3em;
   padding: 1px 4px;
-  font: 600 11px/1.2 var(--schrift);
+  font: 600 var(--schrift-11) / 1.2 var(--schrift);
   text-align: center;
   color: inherit;
   border-color: currentColor;
@@ -1159,14 +1322,13 @@ kbd.taste {
 }
 .ff-tastenhinweis {
   margin: 8px 0 0;
-  font-size: 12px;
+  font-size: var(--schrift-12);
 }
 .ff-tastenhinweis.aktiv {
   color: var(--offen);
   background: var(--offen-flaeche);
   border-radius: 4px;
   padding: 3px 6px;
-  font-size: 12px;
 }
 .bz-weg .bz-label {
   text-decoration: line-through;
@@ -1182,26 +1344,38 @@ kbd.taste {
   align-items: center;
 }
 .bz-wahl .ff-eingabe {
-  width: 110px;
+  width: 132px;
+  min-height: 28px;
   height: 28px;
 }
 .bz-knopf {
-  min-height: 25px;
+  position: relative;
+  min-height: 28px;
   padding: 1px 9px;
   border: 1px solid var(--linie-stark);
   border-radius: 6px;
   background: var(--karte);
-  font-size: 13px;
+  font-size: var(--schrift-13);
   white-space: nowrap;
+}
+/* Feste Spalten: unauffällig, auffällig, nicht untersucht stehen in jeder Zeile untereinander. */
+.bz-wahl > .bz-knopf:nth-last-child(1) {
+  min-width: 124px;
+}
+.bz-wahl > .bz-knopf:nth-last-child(2) {
+  min-width: 84px;
+}
+.bz-wahl > .bz-knopf:nth-last-child(3) {
+  min-width: 96px;
 }
 .bz-knopf:hover {
   border-color: var(--akzent);
 }
-.bz-knopf.aktiv {
-  background: var(--text);
-  border-color: var(--text);
-  color: var(--papier);
-  font-weight: 600;
+/* „nicht untersucht“, „weglassen“: gewählt, aber keine Aussage im Brief. Grau statt blau. */
+.bz-weg .bz-knopf.aktiv {
+  background: var(--flaeche);
+  border-color: var(--feld-rand);
+  color: var(--text);
 }
 .bz-detail {
   margin: 2px 0 8px 24px;
@@ -1216,7 +1390,7 @@ kbd.taste {
   gap: 4px 10px;
 }
 .bz-stellung-hinweis {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--text-leise);
 }
 .bl-fuss {
@@ -1242,7 +1416,7 @@ kbd.taste {
   overflow-y: auto;
   padding: 12px;
   border: 1px solid var(--linie-stark);
-  border-radius: 10px;
+  border-radius: 8px;
   background: var(--karte);
   box-shadow: var(--schatten);
 }
@@ -1256,7 +1430,7 @@ kbd.taste {
   margin-top: 10px;
 }
 .ff-label {
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
   margin-bottom: 4px;
 }
@@ -1264,7 +1438,7 @@ kbd.taste {
   width: 100%;
   min-height: 34px;
   padding: 6px 9px;
-  border: 1px solid var(--linie-stark);
+  border: 1px solid var(--feld-rand);
   border-radius: 6px;
   background: var(--papier);
   resize: vertical;
@@ -1280,8 +1454,36 @@ kbd.taste {
   gap: 5px;
   margin-top: 8px;
 }
+/* Schnellwerte im Fenster: eine linksbündige Liste, je Satz eine Zeile; lange Sätze brechen links bündig um. */
+.feldfenster .ff-vorschlaege {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+.feldfenster .ff-vorschlaege .pille {
+  max-width: 100%;
+  border-radius: 6px;
+  padding: 5px 10px;
+  text-align: left;
+}
+/* Vorschlag einer anderen Stelle als erster Schnellwert (PS-R6F-2): Punktlinie wie im Brief, Herkunft leise dahinter. */
+.ff-vorschlaege .pille.vorschlag {
+  border-style: dotted;
+  border-color: var(--vorschlag-rand);
+}
+.pille-herkunft {
+  margin-left: 6px;
+  font-size: var(--schrift-12);
+  color: var(--text-leise);
+}
+.feldfenster .ff-vorschlaege .ff-eigen .pille {
+  border-radius: 6px 0 0 6px;
+}
+.feldfenster .ff-vorschlaege .ff-vergessen {
+  border-radius: 0 6px 6px 0;
+}
 .ff-hinweis {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--text-leise);
   margin-top: 6px;
 }
@@ -1291,7 +1493,7 @@ kbd.taste {
   align-items: center;
   gap: 10px;
   margin-top: 10px;
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
 }
 .ff-tipp {
   color: var(--text-leise);
@@ -1328,7 +1530,7 @@ kbd.taste {
   visibility: hidden;
   width: 18px;
   flex: none;
-  font-size: 11.5px;
+  font-size: var(--schrift-12);
   color: var(--text-leise);
   text-align: center;
   border: 1px solid var(--linie-stark);
@@ -1339,7 +1541,7 @@ kbd.taste {
   gap: 8px;
   align-items: flex-start;
   margin-top: 10px;
-  font-size: 13px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
 }
 
@@ -1357,7 +1559,7 @@ kbd.taste {
   margin: 8px 0;
 }
 .bw-region {
-  font-size: 11px;
+  font-size: var(--schrift-12);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-leise);
@@ -1366,7 +1568,7 @@ kbd.taste {
 }
 .bw-da {
   margin-left: auto;
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--text-leise);
 }
 .menue-anker {
@@ -1387,9 +1589,10 @@ kbd.taste {
 .menue button {
   display: block;
   width: 100%;
-  padding: 7px 10px;
+  min-height: 32px;
+  padding: 6px 10px;
   border: 0;
-  border-radius: 5px;
+  border-radius: 6px;
   background: none;
   text-align: left;
 }
@@ -1410,16 +1613,53 @@ kbd.taste {
   flex-direction: column;
   gap: 12px;
 }
+/* Ein gefüllter Knopf je Zustand: Solange etwas zu klären ist, ist F2 der nächste Schritt und gefüllt; der Kopierknopf
+   tritt zurück. Ist nichts mehr zu klären, wird F2 ruhig grün und Kopieren gefüllt (data-phase, ohne :has()). */
 .knopf.f2 {
-  background: var(--offen-flaeche);
-  border: 2px solid var(--offen-rand);
-  color: var(--offen);
+  background: var(--akzent);
+  border: 1px solid var(--akzent);
+  color: var(--akzent-text);
   font-weight: 600;
+}
+.knopf.f2 kbd {
+  background: transparent;
+  color: inherit;
+  border-color: currentColor;
+  opacity: 0.8;
+}
+.knopf.f2:hover:not(:disabled) {
+  border-color: var(--akzent);
 }
 .knopf.f2.ruhig {
   background: var(--ok-flaeche);
   border: 1px solid var(--ok);
   color: var(--ok);
+  opacity: 1;
+}
+/* Zwei Zeilen mit Absicht: oben die Handlung, darunter die Zählung. */
+.f2-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+.f2-zahl {
+  font-size: var(--schrift-12);
+  font-weight: 400;
+  white-space: nowrap;
+}
+.pruefleiste[data-phase="klaeren"] .knopf.primaer {
+  background: var(--karte);
+  border-color: var(--linie-stark);
+  color: var(--text);
+}
+.pruefleiste[data-phase="klaeren"] .knopf.primaer:hover:not(:disabled) {
+  border-color: var(--akzent);
+}
+.pruefleiste[data-phase="klaeren"] .knopf.primaer kbd {
+  background: var(--papier);
+  color: var(--text-leise);
+  border-color: var(--linie-stark);
   opacity: 1;
 }
 .gliederung {
@@ -1431,10 +1671,10 @@ kbd.taste {
   align-items: center;
   gap: 8px;
   width: 100%;
-  min-height: 30px;
+  min-height: 32px;
   padding: 3px 6px;
   border: 0;
-  border-radius: 5px;
+  border-radius: 6px;
   background: none;
   text-align: left;
 }
@@ -1448,9 +1688,13 @@ kbd.taste {
 }
 .gl-titel {
   flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .gl-stand {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--text-leise);
   white-space: nowrap;
 }
@@ -1476,7 +1720,7 @@ kbd.taste {
   border-top: 1px solid var(--linie);
 }
 .kopier-fortschritt {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--text-leise);
   margin-bottom: 4px;
 }
@@ -1485,12 +1729,12 @@ kbd.taste {
   padding: 10px;
   border: 1px solid var(--linie);
   border-radius: var(--radius);
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
   background: var(--flaeche);
 }
 .lk-kopf {
   font-weight: 700;
-  font-size: 11px;
+  font-size: var(--schrift-12);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--text-leise);
@@ -1520,14 +1764,19 @@ kbd.taste {
   gap: 14px;
   max-width: min(640px, calc(100vw - 24px));
   padding: 10px 16px;
+  border: 1px solid var(--meldung-rand);
   border-radius: 8px;
-  background: var(--text);
-  color: var(--papier);
+  background: var(--meldung-flaeche);
+  color: var(--meldung-text);
   box-shadow: var(--schatten);
 }
 .meldung .link {
+  flex: none;
   color: inherit;
   font-weight: 700;
+  /* Lange Meldungen brechen um, „Rückgängig“ nie. */
+  white-space: nowrap;
+  overflow-wrap: normal;
 }
 /* Im Brief: eine eigene Zeile unter dem Papier statt über ihm. Sie verdeckt weder die Zeile mit dem Zeiger noch Knöpfe
    oder das Fenster; der Brief darüber wird so lange niedriger (R2-08). */
@@ -1538,9 +1787,11 @@ kbd.taste {
   transform: none;
   max-width: none;
   justify-content: center;
-  padding: 8px 20px;
+  padding: 6px 20px;
+  border-width: 1px 0 0;
   border-radius: 0;
   box-shadow: none;
+  overflow-wrap: anywhere;
 }
 .meldung.im-fluss.m-warnung {
   border-width: 2px 0 0;
@@ -1549,8 +1800,8 @@ kbd.taste {
   display: none;
 }
 .meldung.m-fehler {
-  background: var(--gefahr);
-  color: #fff;
+  background: var(--fehler-flaeche);
+  color: var(--fehler-text);
 }
 .meldung.m-warnung {
   background: var(--offen-flaeche);
@@ -1573,7 +1824,7 @@ kbd.taste {
 .dialog-karte {
   width: min(460px, 100%);
   padding: 24px;
-  border-radius: 12px;
+  border-radius: 8px;
   background: var(--karte);
   border: 1px solid var(--linie);
   box-shadow: var(--schatten);
@@ -1585,7 +1836,7 @@ kbd.taste {
   width: min(680px, 100%);
 }
 .dialog-karte h1 {
-  font-size: 20px;
+  font-size: var(--schrift-19);
 }
 .dialog-karte ul {
   list-style: disc;
@@ -1610,7 +1861,7 @@ kbd.taste {
   gap: 12px;
 }
 .es-gruppe h2 {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text-leise);
@@ -1621,11 +1872,20 @@ kbd.taste {
   align-items: center;
   gap: 16px;
 }
+/* Der Text gibt nach, nie der Umschalter: Bei 1024 px waren „Original“ und „Fließtext“ abgeschnitten. */
+.es-zeile > :first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.es-zeile > .umschalter,
+.es-zeile > .knopf {
+  flex: none;
+}
 .es-titel {
   font-weight: 600;
 }
 .es-hilfe {
-  font-size: 13px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
 }
 .es-test {
@@ -1634,7 +1894,7 @@ kbd.taste {
   border: 1px solid var(--linie);
   border-radius: 6px;
   background: var(--flaeche);
-  font: 12.5px/1.5 ui-monospace, Consolas, monospace;
+  font: var(--schrift-13) / 1.5 ui-monospace, Consolas, monospace;
   white-space: pre-wrap;
 }
 .es-kuerzel {
@@ -1653,6 +1913,7 @@ kbd.taste {
   vertical-align: baseline;
 }
 .nw-knopf {
+  position: relative;
   width: 18px;
   height: 18px;
   padding: 0;
@@ -1660,20 +1921,27 @@ kbd.taste {
   border-radius: 50%;
   background: var(--papier);
   color: var(--text-leise);
-  font: italic 600 11px/16px Georgia, "Times New Roman", serif;
+  font: italic 600 var(--schrift-11) / 16px Georgia, "Times New Roman", serif;
   cursor: help;
+}
+/* Trefferfläche 32 px um das kleine „i“. */
+.nw-knopf::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
 }
 .nw-knopf:hover,
 .nw-knopf[aria-expanded="true"] {
   border-color: var(--akzent);
   color: var(--akzent);
 }
-/* In der Befundliste schwebt die Box unter dem „i“, links von der Eingabe der Zeile. */
+/* In der Befundliste schwebt die Box unter dem „i“, links von der Eingabe der Zeile. Sie liegt unter dem stehenden
+   Fallkopf (z-index 5), damit Seite und Person sichtbar bleiben (H-R4-3). */
 .nw-box {
   position: absolute;
   top: calc(100% + 4px);
   left: -6px;
-  z-index: 45;
+  z-index: 4;
   display: block;
   width: max-content;
   max-width: 320px;
@@ -1683,15 +1951,21 @@ kbd.taste {
   background: var(--karte);
   box-shadow: var(--schatten);
   color: var(--text);
-  font-size: 13px;
+  font-size: var(--schrift-13);
   font-weight: 400;
   font-style: normal;
   line-height: 1.45;
   white-space: normal;
   text-align: left;
 }
+/* Eigener Bildlauf mit sichtbarem Hinweis: Ein Schatten am unteren Rand steht nur, solange darunter noch etwas kommt
+   (Hintergrund „local“ deckt ihn am Ende ab). */
 .nw-box {
   overflow-y: auto;
+  background:
+    linear-gradient(var(--karte), var(--karte)) bottom / 100% 14px no-repeat local,
+    linear-gradient(to top, var(--linie-stark), transparent) bottom / 100% 14px no-repeat scroll,
+    var(--karte);
 }
 .nw-box.nw-oben {
   top: auto;
@@ -1747,7 +2021,7 @@ kbd.taste {
 .nw-quelle {
   display: block;
   color: var(--text-leise);
-  font-size: 11.5px;
+  font-size: var(--schrift-12);
 }
 .nw-quelle {
   margin-top: 4px;
@@ -1781,7 +2055,7 @@ kbd.taste {
   padding: 0 16px 24px;
   background: var(--papier);
   border-left: 1px solid var(--linie-stark);
-  font-size: 13.5px;
+  font-size: var(--schrift-14);
   line-height: 1.5;
 }
 .al-kopf {
@@ -1797,11 +2071,11 @@ kbd.taste {
 }
 .al-kopf h2 {
   margin: 0;
-  font-size: 15px;
+  font-size: var(--schrift-16);
 }
 .al-gruppe h3 {
   margin: 16px 0 6px;
-  font-size: 13.5px;
+  font-size: var(--schrift-14);
 }
 .al-gruppe p {
   margin: 0 0 6px;
@@ -1824,11 +2098,13 @@ kbd.taste {
 .anleitung .al-leise {
   margin: 8px 0 0;
   color: var(--text-leise);
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
 }
 
 /* ---------- Schmale Fenster (angedockt neben dem KIS) ---------- */
 
+/* Fußleiste: eine Zeile mit F2 links und den Kopierknöpfen rechts. Abgleich und „Im KIS zu ergänzen“ stehen je als
+   eigene Zeile darüber, höchstens zwei Zeilen hoch; sie verschwinden nie (Patientensicherheit, Entscheidung (d)). */
 @media (max-width: 1080px) {
   .arbeit {
     grid-template-columns: minmax(0, 1fr);
@@ -1839,40 +2115,122 @@ kbd.taste {
     grid-row: 3;
     border-left: 0;
     border-top: 1px solid var(--linie-stark);
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: fit-content(42%) minmax(0, 1fr);
     align-items: center;
     padding: 8px 12px;
-    gap: 8px;
-    overflow-x: auto;
+    gap: 6px 12px;
+    overflow: visible;
   }
   .pruefleiste .gliederung,
   .pruefleiste .letzte-kopie,
   .kopier-fortschritt {
     display: none;
   }
+  .pruefleiste > .knopf.f2 {
+    grid-column: 1;
+    width: auto;
+    min-width: 0;
+    white-space: nowrap;
+  }
+  .f2-text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .f2-zahl {
+    margin-left: 8px;
+  }
+  .pruefleiste > .kis-liste {
+    grid-column: 1 / -1;
+    order: -1;
+    max-height: 3.4em;
+    overflow-y: auto;
+    padding: 4px 10px;
+    line-height: 1.5;
+  }
+  .pruefleiste > .kis-liste > * {
+    display: inline;
+  }
+  .pruefleiste > .kis-liste > * + *::before {
+    content: " · ";
+  }
+  .pruefleiste > .kis-liste > .lk-kopf::after {
+    content: ": ";
+  }
+  .pruefleiste > .kis-liste > .lk-kopf + *::before {
+    content: none;
+  }
   /* Die Leiste liegt hier unten; die Meldung darf die Kopierknöpfe nicht verdecken. */
   .meldung {
     bottom: 96px;
   }
   .kopierblock {
+    grid-column: 2;
     flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
     border-top: 0;
     padding-top: 0;
-    flex: 1;
+    min-width: 0;
   }
-  .knopf.breit {
+  .kopierblock .knopf.breit {
+    flex: 0 1 auto;
     width: auto;
-    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
   }
-  .reiter-zeit {
+  .kopierblock .knopf.breit > span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .kopierblock .link {
+    flex: none;
+    white-space: nowrap;
+  }
+  /* Die Uhrzeit entfällt, das Alter nicht: Ein Fall von gestern bleibt auch neben dem KIS erkennbar (PS-R6-2). */
+  .reiter-zeit:not(.alt) {
     display: none;
   }
   .abschnitt {
     padding: 10px 14px 12px;
   }
 }
-/* Schmal oder niedrig: Der Fallkopf nähme den halben Schirm. Stehen bleibt nur die Zeile mit Fall, Diagnose und Seite. */
-@media (max-width: 760px), (max-height: 600px) {
+/* Mit offener Anleitung wird es eng: Tastenkappen in der Leiste entfallen (stehen in der Anleitung), der lange
+   Kopierknopf zeigt die Kurzform. Der zugängliche Name bleibt der lange. */
+.knopf .kurz {
+  display: none;
+}
+@media (max-width: 1180px) {
+  .app.mit-anleitung .pruefleiste kbd {
+    display: none;
+  }
+}
+@media (max-width: 1080px) {
+  .app.mit-anleitung .knopf .lang,
+  .app.mit-anleitung .f2-zahl {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .app.mit-anleitung .knopf .kurz {
+    display: inline;
+  }
+  /* Lieber eine zweite Zeile als ein abgeschnittener Abschnittsname: „Medikation bei Entlassung kopieren“ muss lesbar
+     bleiben. Die Zählung steht im Reiter. */
+  .app.mit-anleitung .kopierblock {
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+}
+/* Schmal oder niedrig (am Klinik-PC bleiben bei 1366 × 768 etwa 630 px Fensterhöhe): Der Fallkopf nähme den halben
+   Brief. Stehen bleibt nur die Titelzeile mit Fall, Diagnose, Seite und Person; die Felder scrollen mit (Entscheidung (a):
+   Person und Seite bleiben immer sichtbar). */
+@media (max-width: 760px), (max-height: 720px) {
   .fallkopf,
   .fk-kopfzeile {
     display: contents;
@@ -1886,7 +2244,35 @@ kbd.taste {
     border-bottom: 1px solid var(--linie);
   }
   .fk-titel h1 {
-    font-size: 17px;
+    font-size: var(--schrift-16);
+  }
+  .fk-person {
+    display: inline;
+    flex: none;
+    margin-left: auto;
+    padding-left: 12px;
+    font-weight: 600;
+  }
+  .fk-person-teil::after {
+    content: attr(data-text);
+  }
+  .fk-person-teil + .fk-person-teil::before {
+    content: " · ";
+    color: var(--text-leise);
+    font-weight: 400;
+  }
+  .fk-person-teil.fehlt::after {
+    color: var(--offen);
+  }
+  /* Behaltener Fall von einem früheren Tag oder kurz vor dem Löschen: Randstrich wie der Hinweis am Abschnitt statt Gelb,
+     das „fehlt noch“ heißt (E-82). Der Strich ersetzt den Trenner. */
+  .fk-person-teil.warnung::after {
+    margin-left: 10px;
+    padding-left: 6px;
+    border-left: 3px solid var(--offen-rand);
+  }
+  .fk-person-teil + .fk-person-teil.warnung::before {
+    content: none;
   }
   .fk-neben {
     padding-top: 6px;
@@ -1894,8 +2280,11 @@ kbd.taste {
   .fk-felder {
     padding-bottom: 8px;
   }
-  .papier-rahmen {
-    scroll-padding-top: 52px;
+}
+/* Bei 960 px schnitt die Reiterleiste „Strg+K“ ab; der Kurzbefehl steht auch in der Anleitung. */
+@media (max-width: 1000px) {
+  .reiter-neu kbd {
+    display: none;
   }
 }
 @media (max-width: 640px) {
@@ -1923,11 +2312,12 @@ kbd.taste {
     width: calc(100vw - 16px);
   }
 }
-/* Eben ohne Fenster geändert (zugewählter Satz, Rückgängig): für zwei Sekunden umrandet. */
-.tok-frisch {
-  outline: 2px solid var(--akzent);
-  outline-offset: 2px;
-  border-radius: 3px;
+/* Eben ohne Fenster geändert (zugewählter Satz, Ü, Rückgängig, Protokoll): für zwei Sekunden ein blauer Strich unten.
+   Als Schatten, nicht als Unterstreichung: Die hob `.tok.z-gesetzt` an schwarzen Stellen auf, und bei reduzierter
+   Bewegung blieb nichts (PS-R6-6, E-85). Das Aufblitzen kommt nur hinzu. Einen Rahmen trägt nur der Fokus. */
+.tok.tok-frisch,
+.tok.tok-frisch:hover {
+  box-shadow: inset 0 -2px 0 var(--akzent);
   animation: aufblitzen 2.2s ease-out;
 }
 @keyframes aufblitzen {
@@ -1946,12 +2336,11 @@ kbd.taste {
   }
 }
 
+/* Breite Schirme: Der Brief rückt an die Prüfleiste, statt mittig zu stehen; der Blick zu F2 und Kopieren bleibt kurz. */
 @media (min-width: 1600px) {
-  .ab-text {
-    font-size: 17px;
-  }
   .papier {
     max-width: 920px;
+    margin-right: 12px;
   }
   .arbeit {
     grid-template-columns: minmax(0, 1fr) 360px;
@@ -1980,7 +2369,7 @@ kbd.taste {
   flex-wrap: wrap;
 }
 .marke-vorschlag {
-  border: 1px dashed var(--linie-stark);
+  border: 1px dotted var(--vorschlag-rand);
   color: var(--text-leise);
 }
 .marke-ok {
@@ -1988,14 +2377,27 @@ kbd.taste {
   color: var(--ok);
   border-color: var(--ok);
 }
+/* Hinweis am Abschnitt: Randstrich statt gelber Fläche; die Überschrift im Text trägt die Bedeutung. Dringend (Seite im
+   freien Text widerspricht dem Fall, kopierter Abschnitt jetzt leer) bleibt gelb gefüllt. */
 .ab-warnung {
   margin: 4px 0 6px;
   padding: 6px 10px;
-  border: 2px solid var(--offen-rand);
-  border-radius: 6px;
+  border: 0;
+  border-left: 3px solid var(--offen-rand);
+  border-radius: 0 6px 6px 0;
+  background: var(--flaeche);
+  color: var(--text);
+  font-size: var(--schrift-14);
+  font-weight: 400;
+}
+.ab-warnung strong {
+  font-weight: 600;
+}
+.ab-warnung.dringend {
+  border: 1px solid var(--offen-rand);
+  border-left-width: 3px;
   background: var(--offen-flaeche);
   color: var(--offen);
-  font-size: 13.5px;
   font-weight: 600;
 }
 .bl-abschnitt + .bl-abschnitt {
@@ -2006,7 +2408,7 @@ kbd.taste {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  min-height: 30px;
+  min-height: 32px;
 }
 .bl-gruppe-aktionen {
   display: flex;
@@ -2025,7 +2427,7 @@ kbd.taste {
 }
 .bz-label em {
   font-style: normal;
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--offen);
   font-weight: 600;
   margin-left: 6px;
@@ -2037,38 +2439,62 @@ kbd.taste {
   gap: 10px;
   margin-bottom: 10px;
   padding: 6px 8px;
-  border: 1px dashed var(--linie-stark);
+  border: 1px dotted var(--vorschlag-rand);
   border-radius: 6px;
-  font-size: 13px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
 }
 .pille.wunsch {
   background: var(--offen-flaeche);
-  border: 2px solid var(--offen-rand);
+  border: 1px solid var(--offen-rand);
+  box-shadow: inset 0 0 0 1px var(--offen-rand);
   color: var(--offen);
   font-weight: 600;
 }
 .fk-abweichend {
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
   color: var(--offen);
 }
-.kopf-frage {
-  display: inline-flex;
+/* Frage vor „Arbeitsplatz räumen“: eigene Leiste unter der Kopfzeile, damit die Reiter ihren Platz behalten (QA-44). */
+.raeumen-frage {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: var(--gefahr);
-  font-weight: 600;
-  white-space: nowrap;
+  gap: 6px 12px;
+  padding: 6px 12px;
+  background: var(--karte);
+  border-bottom: 1px solid var(--linie);
+  border-left: 4px solid var(--gefahr);
+  font-size: var(--schrift-13);
+  flex: none;
 }
+.raeumen-titel {
+  font-weight: 600;
+}
+.raeumen-knoepfe {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.es-zeile + .raeumen-frage {
+  margin: 0 0 8px;
+  border: 1px solid var(--linie);
+  border-left: 4px solid var(--gefahr);
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+/* „Bitte abgleichen“ und „Im KIS zu ergänzen“: in der Schrift der App, gelber Randstrich wie der Hinweis am Abschnitt. */
 .kis-liste {
   padding: 8px 10px;
-  border: 1px solid var(--linie-stark);
-  border-radius: var(--radius);
-  font: 12.5px/1.5 ui-monospace, Consolas, monospace;
+  border: 1px solid var(--linie);
+  border-left: 3px solid var(--offen-rand);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--karte);
+  font-size: var(--schrift-13);
+  line-height: 1.45;
 }
+/* Älter als zwei Stunden oder von einem früheren Tag: fett, nicht gelb; Gelb heißt „fehlt noch“ (E-69, E-82). */
 .reiter-zeit.alt {
-  color: var(--offen);
+  color: var(--text);
   font-weight: 600;
 }
 .r-vorschlag {
@@ -2079,9 +2505,12 @@ kbd.taste {
   color: var(--text-leise);
   font-weight: 600;
 }
-.g-bereit .gl-zeichen,
-.g-bereit .gl-stand {
+/* Fertig zum Kopieren: der Pfeil in Blau, der Text leise. Neun blaue Zeilen sähen aus wie Links. */
+.g-bereit .gl-zeichen {
   color: var(--akzent);
+}
+.g-bereit .gl-stand {
+  color: var(--text-leise);
 }
 .menue button:disabled {
   color: var(--text-leise);
@@ -2092,13 +2521,20 @@ kbd.taste {
 .reiter-neu {
   flex: none;
 }
+/* Unter 1180 px laufen schon drei Reiter über; kürzere Namen lassen den offenen Reiter und „+ Neuer Fall“ nebeneinander zu
+   (DS-R6-6). Der volle Name steht im Titel des Reiters. */
+@media (max-width: 1180px) {
+  .reiter-name {
+    max-width: 120px;
+  }
+}
 @media (max-width: 640px) {
   .reiter-name {
     max-width: 110px;
   }
   .kopf-rechts .knopf.leise:not(.icon) {
     padding: 4px 6px;
-    font-size: 12.5px;
+    font-size: var(--schrift-13);
   }
 }
 
@@ -2127,12 +2563,12 @@ kbd.taste {
 }
 .pk-kopf h3 {
   margin: 0;
-  font-size: 13.5px;
-  font-weight: 650;
+  font-size: var(--schrift-14);
+  font-weight: 600;
 }
 .pk-quelle,
 .pk-hinweis {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--text-leise);
 }
 .protokoll > .pk-hinweis {
@@ -2151,8 +2587,10 @@ kbd.taste {
   border-radius: 6px;
   background: var(--papier);
 }
+/* Gewählte Variante: getönt wie jede Wahl, nicht grün (Grün heißt geklärt oder kopiert). */
 .pk-variante.aktiv {
-  border-color: var(--ok);
+  border-color: var(--gewaehlt-rand);
+  background: var(--gewaehlt-flaeche);
 }
 .pk-zeile {
   display: flex;
@@ -2163,20 +2601,20 @@ kbd.taste {
 .pk-titel {
   flex: 1 1 240px;
   min-width: 0;
-  font-size: 13.5px;
+  font-size: var(--schrift-14);
   overflow-wrap: anywhere;
 }
 .pk-variante.aktiv .pk-titel {
   font-weight: 600;
 }
 .pk-im-brief {
-  font-size: 12.5px;
-  color: var(--ok);
+  font-size: var(--schrift-13);
+  color: var(--gewaehlt-text);
 }
 .pk-vorschau {
   margin-top: 6px;
   color: var(--text-leise);
-  font-size: 13px;
+  font-size: var(--schrift-13);
 }
 .pk-vorschau ul {
   margin: 2px 0 0;
@@ -2195,13 +2633,13 @@ kbd.taste {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  min-height: 26px;
+  min-height: 28px;
   padding: 3px 6px;
   border: 1px solid transparent;
   border-radius: 6px;
   background: none;
   text-align: left;
-  font-size: 13px;
+  font-size: var(--schrift-13);
   color: var(--text);
 }
 .pk-haken:hover {
@@ -2215,9 +2653,9 @@ kbd.taste {
   width: 16px;
   height: 16px;
   margin-top: 1px;
-  border: 1.5px solid var(--linie-stark);
-  border-radius: 3px;
-  font-size: 12px;
+  border: 1.5px solid var(--feld-rand);
+  border-radius: 4px;
+  font-size: var(--schrift-12);
   line-height: 1;
   color: var(--akzent);
 }
@@ -2229,7 +2667,7 @@ kbd.taste {
    hier nur der Rahmen und das Zurücksetzen der Dialogregeln für Listen. */
 .vorschau-knopf {
   align-self: flex-start;
-  font-size: 13px;
+  font-size: var(--schrift-13);
 }
 .dialog-karte.vorschau {
   width: min(860px, 100%);
@@ -2256,7 +2694,7 @@ kbd.taste {
   margin: 2px 0;
 }
 .vorschau-hinweis {
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--offen);
 }
 
@@ -2290,12 +2728,12 @@ kbd.taste {
   flex-direction: column;
   gap: 2px;
   min-width: 0;
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
 }
 .med-feld .ff-eingabe {
   color: var(--text);
-  font-size: 14px;
+  font-size: var(--schrift-14);
 }
 .med-schema {
   display: flex;
@@ -2319,13 +2757,14 @@ kbd.taste {
   grid-column: 3;
 }
 .med-offen .ff-eingabe[aria-invalid="true"] {
-  border: 2px solid var(--offen-rand);
+  border: 1px solid var(--offen-rand);
+  box-shadow: inset 0 0 0 1px var(--offen-rand);
   background: var(--offen-flaeche);
 }
 .med-fehlt {
   grid-column: 1 / -1;
   margin: 0;
-  font-size: 12px;
+  font-size: var(--schrift-12);
   color: var(--offen);
 }
 .med-knoepfe {
@@ -2371,7 +2810,7 @@ kbd.taste {
 .fd-vorschau {
   width: 92px;
   white-space: nowrap;
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
   color: var(--text-leise);
   font-variant-numeric: tabular-nums;
 }
@@ -2385,17 +2824,17 @@ kbd.taste {
 .fd-hinweis {
   flex-basis: 100%;
   margin: 0;
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
   color: var(--offen);
   font-weight: 600;
 }
 .fd-weitere {
-  font-size: 12.5px;
+  font-size: var(--schrift-13);
 }
 /* Errechnetes Datum in Klammern: grau und punktiert wie ein Vorschlag, bis der Arzt es übernimmt. */
 .tok-frist.z-vorschlag {
   color: var(--text-leise);
-  text-decoration: underline dotted var(--linie-stark);
+  text-decoration: underline dotted var(--vorschlag-rand);
   -webkit-user-select: none;
   user-select: none;
 }

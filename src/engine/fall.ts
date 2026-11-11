@@ -61,6 +61,7 @@ export function neuerFall(setting: Setting, index: KatalogIndex, nr = 1, jetzt =
     manuell: {},
     kopiert: {},
     kopiertUm: {},
+    abschnittStand: {},
   };
 }
 
@@ -92,6 +93,8 @@ export function ergaenzt(roh: unknown, index: KatalogIndex, format?: number): Fa
   for (const art of FALLDATUM_ARTEN) if (istDatum(fall.daten[art])) daten[art] = fall.daten[art];
   fall.daten = daten;
   fall.fristen = Object.fromEntries(Object.entries(fall.fristen).filter(([k, v]) => leseFristSchluessel(k) && (v === "" || istDatum(v))));
+  // Ein Stand, der keine Zahl ist, gilt als nie gesetzt: Dann zählt der Beginn des Falls, also eher zu alt als zu neu.
+  fall.abschnittStand = Object.fromEntries(Object.entries(fall.abschnittStand).filter(([, v]) => typeof v === "number" && Number.isFinite(v)));
   // Bis Format 1 war die Medikation freier Text; ein Tabulator darin (eingefügt aus einer Tabelle) würde heute als
   // Feldgrenze gelesen, die Felder verschöben sich still (CR-R5-03). Die Zeile bleibt frei, wie sie getippt war.
   if (format !== undefined && format < 2) fall.werte = ohneTabulatorInMedikation(fall.werte, index);
@@ -312,7 +315,7 @@ export function uebernehmen(fall: Fall, keys: string[], index: KatalogIndex): Fa
     const def = b.platzhalter.find((p) => p.id === id);
     if (def) {
       const u = ueber.get(key);
-      if (neu.werte[key] === undefined && u && !neu.spaeter[key]) {
+      if (!(neu.werte[key] ?? "").trim() && u && !neu.spaeter[key]) {
         neu.werte[key] = u.wert;
       } else if (neu.werte[key] === undefined && def.default?.trim()) {
         let wert = def.default.trim();

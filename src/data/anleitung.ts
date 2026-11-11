@@ -35,6 +35,8 @@ export const NICHTS_VERGESSEN = {
   titel: "Damit nichts fehlt",
   saetze: [
     "Gelb mit ● fehlt noch. Solange ein Abschnitt Gelbes oder Graues enthält, kopiert er nicht: Sein Knopf zeigt dann etwa „● 2 offen · ○ 1 Vorschlag · klären“ und führt zur ersten Stelle.",
+    // Stand bis zum Design-Feinschliff im Einstiegskasten über dem Brief (Entscheidung Lead (c), G-61).
+    "Enter allein setzt nie etwas. Gewählt wird mit der Ziffer am Knopf oder mit Pfeiltaste und Enter, übernommen mit Ü.",
     "„Bitte abgleichen“ heißt: Zwei Abschnitte passen nicht zusammen, etwa bei der Belastung. Der Hinweis steht am Abschnitt und bei den Kopierknöpfen; beide Stellen prüfen.",
     "Was du erst im KIS weißt, setzt du auf „erst im KIS ausfüllen“. Im Text steht dann etwa [OP-DATUM], die Liste „Im KIS zu ergänzen“ zählt mit.",
     "F2 springt zur nächsten Stelle, die zu klären ist, Umschalt+F2 zur vorigen. Bleibt nichts, meldet die App „Nichts mehr zu klären.“",
@@ -47,14 +49,15 @@ export const NICHTS_VERGESSEN = {
 
 export const TASTATUR_TITEL = "Tastatur";
 
-/** Die Stunden kommen aus dem Speichermodul, damit der Text nicht von der Regel abweicht. */
-export function datenschutz(stunden: { zna: number; station: number }) {
+/** Stunden und Tage kommen aus Store und Engine, damit der Text nicht von der Regel abweicht. */
+export function datenschutz(stunden: { zna: number; station: number }, behaltenTage: number) {
   return {
     titel: "Datenschutz",
     saetze: [
       "Keine Namen, keine Geburtsdaten, keine Fallnummern eintragen, auch nicht in freien Text. Der Merker ist für „Kabine 3“, nicht für Namen.",
-      "Nichts verlässt diesen PC: Die App sendet nichts, alles bleibt in diesem Browser.",
-      `Fälle verschwinden, wenn du das Browserfenster schließt, sonst nach ${stunden.zna} Stunden ohne Änderung in der Notaufnahme, nach ${stunden.station} Stunden auf Station. Am Ende des Dienstes: „Arbeitsplatz räumen“.`,
+      "Die App sendet nichts; alles bleibt in diesem Browser.",
+      `Fälle verschwinden, wenn du das Browserfenster schließt, sonst nach ${stunden.zna} Stunden ohne Änderung in der Notaufnahme, nach ${stunden.station} Stunden auf Station; behaltene Stationsfälle ausgenommen. Am Ende des Dienstes: „Arbeitsplatz räumen“. Gibt es behaltene Fälle, fragt die App, ob sie bleiben oder mit gelöscht werden.`,
+      `Ein Stationsbrief über mehrere Tage: Unter Einstellungen „Stationsfälle behalten“ einschalten. Bei jedem neuen Stationsfall fragt die App dann nach einer Kurzbezeichnung ohne Namen, etwa „Zi 12 Fenster“. Der Fall bleibt im Browser dieses PCs, für jeden an diesem Windows-Konto sichtbar, höchstens ${behaltenTage} Tage ab Beginn; danach löscht die App ihn, spätestens beim nächsten Start. Wieder öffnen unter „Behaltene Fälle“ (Strg+K). Ein Abschnitt, dessen Text zuletzt an einem früheren Tag geändert wurde, trägt neben dem Titel „Stand gestern“: vor dem Kopieren prüfen, ob er noch stimmt.`,
     ],
   };
 }

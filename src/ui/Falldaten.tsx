@@ -222,7 +222,7 @@ function EigenesDatum({ k, wert }: { k: string; wert: string }) {
  * Daten in Klammern hinter Fristen dieser Stelle (E-59): woraus sie errechnet sind, Übernehmen oder ohne Datum. Auch
  * ein weggelassenes Datum steht hier, damit es sich zurückholen lässt.
  */
-export function FristZeilen({ token, onUebernommen }: { token: Token | undefined; onUebernommen: () => void }) {
+export function FristZeilen({ token, onUebernommen, onGeaendert }: { token: Token | undefined; onUebernommen: () => void; onGeaendert: () => void }) {
   const fall = aktiverFall.value!;
   const fristen = token?.fristen ?? [];
   const weggelassen = token?.ohneFrist ?? [];
@@ -250,7 +250,7 @@ export function FristZeilen({ token, onUebernommen }: { token: Token | undefined
               Übernehmen ✓
             </button>
           )}
-          <button type="button" class="knopf leise klein" onClick={() => aendere((x) => mitFrist(x, f.key, ""))}>
+          <button type="button" class="knopf leise klein" onClick={() => (aendere((x) => mitFrist(x, f.key, "")), onGeaendert())}>
             ohne Datum
           </button>
         </div>
@@ -258,7 +258,7 @@ export function FristZeilen({ token, onUebernommen }: { token: Token | undefined
       {weggelassen.map((key) => (
         <div class="ff-vorschlag ff-frist">
           <span>Datum in Klammern weggelassen ({fristDatum(fall, key)}).</span>
-          <button type="button" class="knopf leise klein" onClick={() => aendere((x) => mitFrist(x, key, undefined))}>
+          <button type="button" class="knopf leise klein" onClick={() => (aendere((x) => mitFrist(x, key, undefined)), onGeaendert())}>
             wieder vorschlagen
           </button>
         </div>

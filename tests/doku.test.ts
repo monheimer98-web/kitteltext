@@ -47,7 +47,7 @@ test("Anleitung in der App: Wortwahl nach dem Prüfbericht marke-text-tastatur (
   const texte: string[] = [];
   const sammle = (x: unknown): void => {
     if (typeof x === "string") texte.push(x);
-    else if (typeof x === "function") sammle(x({ zna: 4, station: 12 }));
+    else if (typeof x === "function") sammle(x({ zna: 4, station: 12 }, 3));
     else if (x && typeof x === "object") Object.values(x).forEach(sammle);
   };
   sammle(HILFE);
@@ -61,4 +61,10 @@ test("Anleitung in der App: Wortwahl nach dem Prüfbericht marke-text-tastatur (
   // Die Grundregel steht wortgleich wie im Hinweis beim Start.
   assert.ok(HILFE.GRUNDREGEL.saetze.includes("Grau ist ein Vorschlag der Vorlage, schwarz ist deine Aussage."));
   assert.equal(HILFE.VIER_SCHRITTE.schritte.length, 4);
+});
+
+test("Eine Regel, ein Wortlaut: „Enter allein setzt nie etwas“ in App und Anleitung (MT-R6-18)", () => {
+  assert.ok(ANLEITUNG.includes("**Enter allein setzt nie etwas:**"), "ANLEITUNG.md");
+  assert.ok(JSON.stringify(HILFE).includes("Enter allein setzt nie etwas."), "Anleitung in der App");
+  assert.ok(!ANLEITUNG.includes("Enter allein wählt"), "alter Wortlaut");
 });

@@ -3,7 +3,20 @@
 // `tests/kopplung.test.ts` meldet jede Kennung, die es im Katalog nicht gibt, und jede Möglichkeit, die zu keinem
 // Begriff passt.
 
-import type { Folgeangabe, Kopplung } from "../model/types.ts";
+import type { AbschnittId, Folgeangabe, Kopplung } from "../model/types.ts";
+
+/** Woher eine übertragene Antwort kommt, als Satzteil der Meldung „Abweichend von „…“ aus dem Entlassbefund gesetzt.“ (E-92). */
+export const AUS_ABSCHNITT: Record<AbschnittId, string> = {
+  diagnose: "aus den Diagnosen",
+  therapie: "aus der Therapie",
+  anamnese: "aus der Anamnese",
+  befund: "aus dem Befund",
+  diagnostik: "aus der Diagnostik",
+  verlauf: "aus dem Verlauf",
+  entlassbefund: "aus dem Entlassbefund",
+  procedere: "aus dem Procedere",
+  medikation: "aus der Medikation",
+};
 
 /**
  * Angaben, die mehrere Bausteine abfragen. Die Reihenfolge der Bezüge ist die Zeitachse des Aufenthalts: Fehlt einer

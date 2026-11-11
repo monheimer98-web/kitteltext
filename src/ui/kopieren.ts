@@ -6,19 +6,21 @@ export interface Meldung {
   aktion?: { label: string; ausfuehren: () => void };
   /** Fall, dem die Meldung gilt: Beim Wechsel zu einem anderen Fall verschwindet sie (PS-N09). */
   fallId?: string;
+  /** Bleibt stehen wie ein Fehler, bis sie geschlossen oder ersetzt wird (E-92). */
+  stehend?: boolean;
 }
 
 export const meldung = signal<Meldung | null>(null);
 let timer: number | undefined;
 
 /**
- * Zeigt eine Meldung. Fehler bleiben stehen, bis sie geschlossen oder von der nächsten Meldung ersetzt werden. Ohne
+ * Zeigt eine Meldung. Fehler und stehende Meldungen bleiben stehen, bis sie geschlossen oder von der nächsten Meldung ersetzt werden. Ohne
  * Angabe steht eine Meldung 3,5 s, mit „Rückgängig“ 8 s (G-77); eine übergebene Dauer gilt immer (PS-N09).
  */
 export function melde(m: Meldung, dauerMs?: number) {
   meldung.value = m;
   window.clearTimeout(timer);
-  if (m.art === "fehler") return;
+  if (m.art === "fehler" || m.stehend) return;
   timer = window.setTimeout(() => meldung.peek() === m && (meldung.value = null), dauerMs ?? (m.aktion ? 8000 : 3500));
 }
 

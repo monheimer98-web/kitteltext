@@ -1,6 +1,9 @@
 // Regeln für den Abgleich zwischen Abschnitten. Sie hängen am Wortlaut des
 // Katalogs und stehen deshalb bei den Daten. Wer Sätze zu Belastung,
 // Gehhilfe, Nahtmaterial, Thromboseprophylaxe, Unfall oder Sturz umformuliert, prüft diese Muster mit.
+// Widersprüche zwischen gekoppelten Stellen (Gehhilfe, Naht- oder Klammermaterial, Dauer der Überwachung) meldet der
+// Abgleich zusätzlich an den Antworten selbst, schon vor dem fertigen Satz (E-92); `kopplung` an einer Regel verhindert,
+// dass derselbe Widerspruch zweimal steht.
 
 import type { Abgleichregel } from "../engine/abgleich.ts";
 
@@ -44,15 +47,24 @@ const PROPHYLAXE_BIS_VOLL = /Thromboseprophylaxe (?:mit niedermolekularem Hepari
 // Eine Zeile zur Thromboseprophylaxe in der Medikation: Zeile des Katalogs, Wirkstoff oder Handelsname, beigefügter Plan.
 const PROPHYLAXE_ZEILE =
   /Thromboseprophylaxe|parin\b|Clexane|Inhixa|Fragmin|Innohep|Mono-Embolex|Fondaparinux|Arixtra|Rivaroxaban|Xarelto|Apixaban|Eliquis|Dabigatran|Pradaxa|Edoxaban|Lixiana|Acetylsalicylsäure|\bASS\b|beigefügter Medikationsplan|Medikationsplan haben wir mitgegeben/i;
+// Allergien in der Anamnese, Arzneimittelunverträglichkeiten in der Medikation (PS-R6F-2): Gleich sein müssen sie nicht
+// (eine Latexallergie ist keine Arzneimittelunverträglichkeit), aber eine Allergie neben „keine bekannt“ soll der Arzt
+// sehen, ebenso umgekehrt. „keine“, „keine bekannt“, „nicht bekannt“ und „ohne …“ gelten als Verneinung. Genannt ist erst,
+// was mit Buchstabe oder Ziffer beginnt: Eine noch graue oder offene Stelle hinterlässt nur Satzzeichen (PS-R6C-2).
+const VERNEINT = String.raw`(?:keine?\b|nicht bekannt|ohne\b)`;
+const ALLERGIE_GENANNT = new RegExp(String.raw`Allergien: (?!${VERNEINT})[\p{L}\d]`, "iu");
+const ALLERGIE_VERNEINT = new RegExp(String.raw`Allergien: ${VERNEINT}`, "i");
+const UNVERTRAEGLICH_GENANNT = new RegExp(String.raw`Arzneimittelunverträglichkeiten: (?!${VERNEINT})[\p{L}\d]`, "iu");
+const UNVERTRAEGLICH_VERNEINT = new RegExp(String.raw`Arzneimittelunverträglichkeiten: ${VERNEINT}`, "i");
 const WUNDSTOERUNG = /Operationswunde (?:sezernierte verlängert|zeigte eine Rötung der Wundränder|zeigte ein Hämatom|zeigte eine Wundrandnekrose|öffnete sich oberflächlich)/;
 
 export const ABGLEICHREGELN: Abgleichregel[] = [
   { art: "gleich", name: "Belastung", abschnitte: ["entlassbefund", "procedere"], werte: BELASTUNG },
   { art: "gleich", name: "Belastung", abschnitte: ["verlauf", "entlassbefund"], werte: BELASTUNG },
   { art: "gleich", name: "Belastung", abschnitte: ["verlauf", "procedere"], werte: BELASTUNG },
-  { art: "gleich", name: "Gehhilfe", abschnitte: ["entlassbefund", "procedere"], werte: GEHHILFE },
-  { art: "gleich", name: "Gehhilfe", abschnitte: ["verlauf", "entlassbefund"], werte: GEHHILFE },
-  { art: "gleich", name: "Gehhilfe", abschnitte: ["verlauf", "procedere"], werte: GEHHILFE },
+  { art: "gleich", name: "Gehhilfe", abschnitte: ["entlassbefund", "procedere"], werte: GEHHILFE, kopplung: "Gehhilfe" },
+  { art: "gleich", name: "Gehhilfe", abschnitte: ["verlauf", "entlassbefund"], werte: GEHHILFE, kopplung: "Gehhilfe" },
+  { art: "gleich", name: "Gehhilfe", abschnitte: ["verlauf", "procedere"], werte: GEHHILFE, kopplung: "Gehhilfe" },
   {
     art: "nichtBeide",
     abschnitte: ["entlassbefund", "procedere"],
@@ -66,6 +78,7 @@ export const ABGLEICHREGELN: Abgleichregel[] = [
     a: /Hautnähte noch nicht entfernt/i,
     b: /Entfernung der Hautklammern/i,
     hinweis: "Nahtmaterial: Der Entlassbefund nennt Hautnähte, das Procedere Hautklammern.",
+    kopplung: "Naht- oder Klammermaterial",
   },
   {
     art: "nichtBeide",
@@ -73,6 +86,7 @@ export const ABGLEICHREGELN: Abgleichregel[] = [
     a: /Hautklammern noch nicht entfernt/i,
     b: /Entfernung der Hautnähte/i,
     hinweis: "Nahtmaterial: Der Entlassbefund nennt Hautklammern, das Procedere Hautnähte.",
+    kopplung: "Naht- oder Klammermaterial",
   },
   {
     art: "nichtBeide",
@@ -80,6 +94,20 @@ export const ABGLEICHREGELN: Abgleichregel[] = [
     a: /Keine medikamentöse Thromboseprophylaxe/i,
     b: /Thromboseprophylaxe/i,
     hinweis: "Thromboseprophylaxe: Das Procedere nennt keine, die Medikation enthält eine Zeile dazu.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["anamnese", "medikation"],
+    a: ALLERGIE_GENANNT,
+    b: UNVERTRAEGLICH_VERNEINT,
+    hinweis: "Allergien: Die Anamnese nennt eine Allergie, die Medikation keine Arzneimittelunverträglichkeit.",
+  },
+  {
+    art: "nichtBeide",
+    abschnitte: ["anamnese", "medikation"],
+    a: ALLERGIE_VERNEINT,
+    b: UNVERTRAEGLICH_GENANNT,
+    hinweis: "Allergien: Die Anamnese nennt keine Allergie, die Medikation eine Arzneimittelunverträglichkeit.",
   },
   {
     art: "fehlt",
@@ -144,6 +172,7 @@ export const ABGLEICHREGELN: Abgleichregel[] = [
     name: "Dauer der Überwachung",
     abschnitte: ["therapie", "verlauf"],
     werte: { "12 Stunden": /[Üü]ber 12 Stunden/, "24 Stunden": /[Üü]ber 24 Stunden/, "48 Stunden": /[Üü]ber 48 Stunden/ },
+    kopplung: "Dauer der Überwachung",
   },
   {
     art: "nichtBeide",

@@ -34,7 +34,8 @@ test("Leere Vorgeschichte: ein Doppelklick setzt die Angaben nur einmal, in eine
   await an.getByRole("button", { name: KNOPF }).dblclick();
   for (const s of GESETZT) await expect(stelle(an, s)).toHaveCount(1);
   const vorgeschichte = an.getByRole("paragraph").first();
-  await expect(vorgeschichte).toContainText("Vorerkrankungen: keine bekannt. Dauermedikation: keine. ● Gerinnungshemmende Medikamente: …. Allergien: keine bekannt.");
+  // Kein vierter Punkt nach den Auslassungspunkten (Design-Review 10.11.2026, Nr. 1); hinter ● steht ein geschütztes Leerzeichen.
+  await expect(vorgeschichte).toContainText("Vorerkrankungen: keine bekannt. Dauermedikation: keine. ● Gerinnungshemmende Medikamente: … Allergien: keine bekannt.");
   expect((await vorgeschichte.textContent())?.match(/keine bekannt/g)).toHaveLength(2);
   const erledigt = an.getByText("Eingetragen: keine Vorerkrankungen, keine Dauermedikation, keine Allergien");
   await expect(erledigt).toBeVisible();

@@ -25,14 +25,16 @@ import { INDEX, aendere, aktiverFall, brief, schnellwertMerken, schnellwertVerge
 import { gueltigerSchnellwert } from "../speicher.ts";
 import { melde } from "./kopieren.ts";
 import { PERSON_WORT } from "../engine/aenderung.ts";
-import { meldeErsetzt, offenesFeld, personDesBriefs, schliesseFeld, seiteDesBausteins, seiteDesBriefs, stellenZustand, tokenElement, uebernimm, weiter, zugErlaubt, zugNachEingabe, zugStand } from "./aktionen.ts";
+import { meldeAbweichend, meldeEntfernt, meldeErsetzt, offenesFeld, personDesBriefs, schliesseFeld, seiteDesBausteins, seiteDesBriefs, stellenZustand, tokenElement, uebernimm, uebernimmMitMeldung, weiter, zugErlaubt, zugNachEingabe, zugStand } from "./aktionen.ts";
 import { SPERRE } from "../data/tastatur.ts";
 import { naechsteAngabe } from "../engine/ziffernreihe.ts";
-import { nachDemZeichnen } from "./fokus.ts";
+import { nachDemZeichnen, stehenderKopf } from "./fokus.ts";
 import { NormwertInfo } from "./Normwert.tsx";
 import { MedikationEditor } from "./Medikation.tsx";
 import { FalldatumEditor, FristZeilen } from "./Falldaten.tsx";
 import { mitVorschlag } from "../engine/text.ts";
+import { uebertragungenAn, wahlImFenster } from "../engine/kopplung.ts";
+import { gueltigerIndex } from "../engine/render.ts";
 
 export const SEITEN: Seite[] = ["rechts", "links", "beidseits"];
 export const SEITE_NAME: Record<Seite, string> = { rechts: "rechts", links: "links", beidseits: "beidseits", ohne: "ohne Seite" };
@@ -62,6 +64,11 @@ export function Pillen<T extends string | number>(p: {
   label: string;
   /** Diese Gruppe nimmt die Ziffern des Fensters, auch wenn der Fokus auf dem Fenster selbst liegt. */
   ziffern?: boolean;
+  /**
+   * Die markierte Wahl ist eine übertragene Antwort, die noch nicht Aussage des Arztes ist (QA-38): grau mit Punktlinie
+   * wie im Brief, beschrieben durch das Element mit dieser Kennung.
+   */
+  vorschlag?: string;
 }) {
   // Pfeiltasten markieren nur; gewählt wird mit Enter oder Leertaste auf dem markierten Knopf oder mit seiner Ziffer.
   // Die Gruppe selbst kann den Fokus haben (Halt im Durchlauf): Dann ist nichts markiert, und Enter wählt nichts (E-43).
@@ -106,7 +113,8 @@ export function Pillen<T extends string | number>(p: {
           type="button"
           role="radio"
           aria-checked={p.wert === o.wert}
-          class={p.wert === o.wert ? "pille aktiv" : "pille"}
+          aria-describedby={p.vorschlag && p.wert === o.wert ? p.vorschlag : undefined}
+          class={p.wert === o.wert ? (p.vorschlag ? "pille aktiv vorschlag" : "pille aktiv") : "pille"}
           onClick={(e) => p.onWahl(o.wert, e.detail === 0, false)}
         >
           {i < 9 && (
@@ -138,10 +146,30 @@ export function enterWaehltNur(anzahl?: number): string {
   return `Enter wählt nur, was markiert ist: ${anzahl ? `Ziffer 1 bis ${Math.min(9, anzahl)}` : "Ziffer"}, oder mit Pfeiltaste markieren und dann Enter.`;
 }
 
-export function Zeile(p: { label: string; children: ComponentChildren; offen?: boolean; slot?: number }) {
+export function Zeile(p: {
+  label: string;
+  children: ComponentChildren;
+  offen?: boolean;
+  /**
+   * Die Angabe zeigt die Antwort einer anderen Stelle als Vorschlag und wäre ohne sie offen. Sie nimmt die Ziffern wie
+   * eine offene, sieht aber nicht so aus (E-92).
+   */
+  uebertrag?: boolean;
+  slot?: number;
+  herkunft?: { id: string; text: string };
+}) {
   return (
-    <div class={p.offen ? "ff-zeile ff-offen" : "ff-zeile"} data-slot={p.slot}>
-      <div class="ff-label">{p.label}</div>
+    <div class={p.offen ? "ff-zeile ff-offen" : p.uebertrag ? "ff-zeile ff-uebertrag" : "ff-zeile"} data-slot={p.slot}>
+      <div class={p.herkunft ? "ff-label mit-herkunft" : "ff-label"}>
+        {p.label}
+        {/* Eine Zeile, auch wenn die Herkunft lang ist: Verschwindet sie nach der Wahl, rückt darunter nichts nach (QA-25). */}
+        {p.herkunft && (
+          <span class="ff-herkunft" id={p.herkunft.id} title={p.herkunft.text}>
+            {/* Geschütztes Leerzeichen: Am Anfang eines Flex-Elements fiele ein gewöhnliches weg (PS-R6F-9). */}
+            {`\u00a0· ${p.herkunft.text}`}
+          </span>
+        )}
+      </div>
       {p.children}
     </div>
   );
@@ -178,6 +206,8 @@ export function Eingabe(p: {
     }
   }, []);
   const taste = (e: KeyboardEvent) => {
+    // Im Textfeld ist Ü ein Buchstabe, auch im leeren Feld mit Vorschlag: Sonst übernahm „Übelkeit …“ den Vorschlag,
+    // und der Rest des Worts stand im nächsten Feld (PS-R6C-1). Den Vorschlag übernimmt ↓ Enter.
     const tab = e.key === "Tab" && !e.altKey && !e.ctrlKey && !e.metaKey;
     // Umschalt+Tab tut im Feld nichts: zurück geht es mit Umschalt+F2 (E-45).
     if (tab && e.shiftKey) {
@@ -248,11 +278,26 @@ export function Eingabe(p: {
  * Eigene entstehen mit „als Schnellwert merken“ und gelten für alle Felder mit derselben Bezeichnung.
  * So liefert die App keine Präparate und Dosierungen mit; die Hausliste schreibt der Arzt selbst.
  */
-export function Schnellwerte({ label, katalog, wert, onWahl, eigene: mitEigenen }: { label: string; katalog: string[]; wert: string; onWahl: (v: string) => void; eigene: boolean }) {
+export function Schnellwerte({
+  label,
+  katalog,
+  wert,
+  onWahl,
+  eigene: mitEigenen,
+  vorschlag,
+}: {
+  label: string;
+  katalog: string[];
+  wert: string;
+  onWahl: (v: string) => void;
+  eigene: boolean;
+  /** Vorschlag einer anderen Stelle (E-60): steht als erster Schnellwert, ↓ und Enter übernehmen ihn (PS-R6F-2) */
+  vorschlag?: { wert: string; quelle: string; onWahl: () => void };
+}) {
   const eigene = mitEigenen ? schnellwerteFuer(label).filter((v) => !katalog.includes(v)) : [];
   const t = wert.trim();
   const merkbar = mitEigenen && gueltigerSchnellwert(t) && !katalog.includes(t) && !eigene.includes(t);
-  if (katalog.length === 0 && eigene.length === 0 && !merkbar) return null;
+  if (katalog.length === 0 && eigene.length === 0 && !merkbar && !vorschlag) return null;
   return (
     <div
       class="ff-vorschlaege"
@@ -266,6 +311,12 @@ export function Schnellwerte({ label, katalog, wert, onWahl, eigene: mitEigenen 
         else knoepfe[Math.min(ziel, knoepfe.length - 1)]?.focus();
       }}
     >
+      {vorschlag && (
+        <button type="button" class="pille vorschlag" data-uebertragen-wert data-taste="ü" aria-keyshortcuts="Ü" onClick={vorschlag.onWahl}>
+          <span>{vorschlag.wert}</span>
+          <span class="pille-herkunft">{`Vorschlag aus „${vorschlag.quelle}“ · ↓ Enter`}</span>
+        </button>
+      )}
       {katalog.map((v) => (
         <button type="button" class="pille" onClick={() => onWahl(v)}>
           {v}
@@ -308,7 +359,12 @@ function FeldEditor({ k, def }: { k: string; def: Platzhalter }) {
   const art = tokenVon(k)?.falldatum;
   if (art) return <FalldatumEditor k={k} art={art} fertig={() => (zugNachEingabe(), fertig())} />;
   const wert = fall.werte[k] ?? "";
-  const vorschlag = fall.werte[k] === undefined && !!def.default?.trim() && !fall.spaeter[k];
+  // Antwort einer anderen Stelle (E-60) geht im Brief vor dem Hausstandard; das Fenster zeigt, was dort steht (QA-38).
+  // Auch im geleerten Feld (PS-R6F-2).
+  const ueber = !wert.trim() && !fall.spaeter[k] ? brief.value?.uebertragen?.get(k) : undefined;
+  const einheit = def.einheit ? ` ${def.einheit}` : "";
+  const uebernimmVorschlag = () => (uebernimmMitMeldung([k], `${def.label}: ${ueber?.wert ?? ""}${einheit}`), fertig());
+  const vorschlag = !ueber && fall.werte[k] === undefined && !!def.default?.trim() && !fall.spaeter[k];
   const setze = (v: string) => aendere((f) => mitWert(f, k, v), `wert:${k}`);
   const frei = def.typ === "freitext" || def.typ === "begriff";
   const katalog = schnellwerteVon(fall.vorlageId ? INDEX.vorlagen.get(fall.vorlageId) : undefined, k, def.vorschlaege ?? []);
@@ -330,6 +386,14 @@ function FeldEditor({ k, def }: { k: string; def: Platzhalter }) {
           autoFocus
         />
       </Zeile>
+      {ueber?.aussage && (
+        <div class="ff-vorschlag" data-uebertragen-wert>
+          <span>
+            Übertragen: {ueber.wert}
+            {einheit}
+          </span>
+        </div>
+      )}
       {vorschlag && (
         <div class="ff-vorschlag">
           <span>
@@ -345,6 +409,7 @@ function FeldEditor({ k, def }: { k: string; def: Platzhalter }) {
         label={def.label}
         katalog={katalog}
         wert={wert}
+        vorschlag={ueber && !ueber.aussage ? { wert: `${ueber.wert}${einheit}`, quelle: ueber.quelle, onWahl: uebernimmVorschlag } : undefined}
         eigene={frei || def.typ === "zeitraum"}
         onWahl={(v) => {
           aendere((f) => mitWert(f, k, v));
@@ -421,21 +486,38 @@ export function Slots({
       {slots.map((slot, nr) => {
         const k = schluessel(bausteinId, segId, slot.id);
         const roh = fall.slots[k];
+        const ueber = brief.value?.uebertragen?.get(k);
+        // Herkunft einer übertragenen Antwort, die noch Vorschlag ist (QA-38); als Aussage geltende nennt der Fuß.
+        const herkunft = ueber && !ueber.aussage && !auffaellig ? { id: `herkunft-${k}`, text: `Vorschlag aus „${ueber.quelle}“` } : undefined;
         if (slot.art === "auswahl") {
-          // Ohne eigene Wahl zeigt der Knopf, was im Satz steht: den Vorschlag der Vorlage oder des Hausstandards.
-          const start = vorgaben[k] ?? slot.default ?? 0;
-          const startLeer = (slot.optionen[start] ?? "").trim() === "";
-          const idx = roh != null && roh !== "" ? Number(roh) : (slot.required && startLeer) || (auffaellig && !startLeer) ? undefined : start;
+          // Ohne eigene Wahl zeigt der Knopf, was im Satz steht: die Antwort einer anderen Stelle, sonst den Vorschlag der
+          // Vorlage oder des Hausstandards (QA-38).
+          const art = { optionen: slot.optionen, pflicht: slot.required, eigen: roh, vorgabe: vorgaben[k], hausstandard: slot.default, auffaellig };
+          const wahl = wahlImFenster({ ...art, uebertragung: ueber });
+          const idx = wahl.index;
+          const grau = wahl.uebertragen && !wahl.uebertragen.aussage ? herkunft : undefined;
+          // Die Ziffern gehen dorthin, wohin sie ohne Kopplung gingen: Die gewohnte Folge („2 1 1“) verrutscht nicht (E-92).
+          const ohneKopplung = grau ? wahlImFenster(art).index === undefined : false;
+          const vorher = { slot: roh, satz: satz ? fall.optionen[satz] : undefined };
           return (
-            <Zeile label={slot.label} offen={idx === undefined} slot={nr}>
+            <Zeile label={slot.label} offen={idx === undefined} uebertrag={ohneKopplung} slot={nr} herkunft={grau}>
               <Pillen
                 label={slot.label}
+                vorschlag={grau?.id}
                 wert={idx}
                 optionen={slot.optionen
                   .map((o, i) => ({ wert: i, label: anzeige(o) }))
                   .filter((o) => !(slot.required && slot.optionen[o.wert] === ""))}
                 onWahl={(i, perTaste) => {
                   aendere((f) => setze(f, k, String(i)));
+                  // Anders als die übertragene Antwort: gesetzt, aber sofort gemeldet, mit Rückgängig (E-92).
+                  if (grau && idx !== undefined && i !== idx)
+                    meldeAbweichend(
+                      anzeige(slot.optionen[idx]),
+                      wahl.uebertragen!.abschnitt,
+                      (f) => f.slots[k] === String(i),
+                      (f) => (satz ? mitOption(mitSlot(f, k, vorher.slot), satz, vorher.satz) : mitSlot(f, k, vorher.slot)),
+                    );
                   nachWahl?.(perTaste, nr);
                 }}
               />
@@ -457,8 +539,14 @@ export function Slots({
             </Zeile>
           );
         }
+        const textVorschlag = slot.art === "detail" && roh === undefined && herkunft ? { ...herkunft, text: `${herkunft.text}: ${ueber!.wert}` } : undefined;
         return (
-          <Zeile label={slot.art === "zahl" && slot.einheit ? `${slot.label} (${slot.einheit})` : slot.label} offen={slot.required === true && !(roh ?? "").trim()} slot={nr}>
+          <Zeile
+            label={slot.art === "zahl" && slot.einheit ? `${slot.label} (${slot.einheit})` : slot.label}
+            offen={slot.required === true && !(roh ?? "").trim() && !textVorschlag}
+            slot={nr}
+            herkunft={textVorschlag}
+          >
             <Eingabe
               wert={roh ?? ""}
               label={slot.label}
@@ -529,18 +617,40 @@ function AuswahlEditor({ k, seg }: { k: string; seg: Extract<SegmentMitId, { art
   const token = tokenVon(k);
   const gewaehlt = fall.auswahl[k];
   const vorlage = fall.vorlageId ? INDEX.vorlagen.get(fall.vorlageId) : undefined;
-  const vorgeschlagen = token?.zustand === "vorschlag" ? (vorlage?.vorgaben?.auswahl?.[k] ?? seg.default ?? 0) : -1;
-  const idx = eigen !== undefined ? -1 : (gewaehlt ?? (seg.variante ? (seg.default ?? 0) : -1));
+  // Antwort einer anderen Stelle (E-60): Das Fenster markiert, was im Brief steht, nicht die Vorgabe der Vorlage (QA-38).
+  // In der Karte steht sie nur, wenn die Stelle keine eigene Antwort hat.
+  const ueber = brief.value?.uebertragen?.get(k);
+  const uebertragen = ueber ? gueltigerIndex(ueber.wert, seg.optionen.length) : undefined;
+  const vorgeschlagen =
+    uebertragen !== undefined ? (ueber!.aussage ? -1 : uebertragen) : token?.zustand === "vorschlag" ? (vorlage?.vorgaben?.auswahl?.[k] ?? seg.default ?? 0) : -1;
+  const idx = eigen !== undefined ? -1 : (gewaehlt ?? (uebertragen !== undefined && ueber!.aussage ? uebertragen : seg.variante ? (seg.default ?? 0) : -1));
   const waehle = (i: number) => {
     aendere((f) => mitAuswahl(f, k, i));
+    // Anders als die übertragene Antwort: gesetzt, aber sofort gemeldet, mit Rückgängig (E-92).
+    if (ueber && !ueber.aussage && uebertragen !== undefined && eigen === undefined && gewaehlt === undefined && i !== uebertragen)
+      meldeAbweichend(
+        seg.optionen[uebertragen].trim(),
+        ueber.abschnitt,
+        (f) => f.auswahl[k] === i && f.eigen[k] === undefined,
+        (f) => mitAuswahl(f, k, undefined),
+      );
     weiter();
   };
-  // Ziffern wertet das Fenster selbst aus (Feldfenster, `fensterTaste`), nicht ein Hörer am Dokument (CR-K01).
+  // Ziffern wertet das Fenster selbst aus (Feldfenster, `fensterTaste`), nicht ein Hörer am Dokument (CR-K01). Ü wählt
+  // die Möglichkeit mit dem Etikett „Vorschlag“ (E-92).
   return (
     <>
       <div class="ff-liste" role="listbox" aria-label={seg.label}>
         {seg.optionen.map((o, i) => (
-          <button type="button" role="option" aria-selected={i === idx} class={i === idx ? "ff-option aktiv" : "ff-option"} onClick={() => waehle(i)}>
+          <button
+            type="button"
+            role="option"
+            aria-selected={i === idx}
+            class={i === idx ? "ff-option aktiv" : "ff-option"}
+            data-taste={i === vorgeschlagen ? "ü" : undefined}
+            aria-keyshortcuts={i === vorgeschlagen ? "Ü" : undefined}
+            onClick={() => waehle(i)}
+          >
             <span class="ff-ziffer">{i < 9 ? i + 1 : ""}</span>
             <span>{o.trim() || "— weglassen —"}</span>
             {i === vorgeschlagen && <span class="bw-da">Vorschlag</span>}
@@ -595,7 +705,7 @@ function OptionEditor({ k, seg }: { k: string; seg: Extract<SegmentMitId, { art:
             nachDemZeichnen(() => {
               const el = document.querySelector<HTMLElement>(".feldfenster");
               if (!el || offenesFeld.peek()?.key !== k) return;
-              const angaben = slots.map((s, j) => ({ knoepfe: istKnopfreihe(s), offen: !!el.querySelector(`[data-slot="${j}"].ff-offen`) }));
+              const angaben = slots.map((s, j) => ({ knoepfe: istKnopfreihe(s), offen: !!el.querySelector(`[data-slot="${j}"].ff-offen, [data-slot="${j}"].ff-uebertrag`) }));
               const j = naechsteAngabe(angaben, antworten, nr, perTaste);
               if (j === null) return fokusImFenster(el);
               if (angaben[j].knoepfe) {
@@ -613,8 +723,19 @@ function OptionEditor({ k, seg }: { k: string; seg: Extract<SegmentMitId, { art:
           type="button"
           class="link gefahr"
           onClick={() => {
+            const vorher = aktiverFall.peek()!;
+            const alt = { an: vorher.optionen[k], eigen: vorher.eigen[k] };
             aendere((f) => mitEigenemText(mitOption(f, k, false), k, undefined));
-            schliesseFeld(false);
+            // Der Satz ist mit einem Klick weg; die Meldung sagt welcher und nimmt es zurück, auch wenn der nächste Halt
+            // schon offen ist (CR-R6F-04).
+            meldeEntfernt(
+              token?.t.trim() ?? "",
+              (f) => f.optionen[k] === false && f.eigen[k] === undefined,
+              (f) => mitEigenemText(mitOption(f, k, alt.an), k, alt.eigen),
+            );
+            // Mit dem Satz verschwindet die Stelle samt Knopf: weiter zum nächsten Halt wie nach jeder Entscheidung, sonst
+            // stünde der Fokus auf BODY und keine Taste wirkte (R5-01, QA-41).
+            weiter();
           }}
         >
           Satz entfernen
@@ -728,7 +849,7 @@ function WahlEditor({ k, stelle }: { k: string; stelle: Wahlstelle }) {
 /**
  * Die Gruppe, die die Ziffern des Fensters nimmt, solange das Fenster selbst den Fokus hat: ausdrücklich bestimmt, sonst
  * die Liste, sonst die Angabe, zu der die Ziffernreihe nach der letzten Antwort gerückt ist (PS-N01), sonst die erste
- * offene Knopfreihe, sonst die erste.
+ * offene Knopfreihe (auch eine, die ohne Kopplung offen wäre, E-92), sonst die erste.
  */
 function zifferGruppe(el: HTMLElement): HTMLElement | null {
   const nr = el.dataset.zifferAngabe;
@@ -736,7 +857,7 @@ function zifferGruppe(el: HTMLElement): HTMLElement | null {
     el.querySelector<HTMLElement>("[data-ziffern]") ??
     el.querySelector<HTMLElement>(".ff-liste") ??
     (nr ? el.querySelector<HTMLElement>(`[data-slot="${nr}"] .pillen`) : null) ??
-    el.querySelector<HTMLElement>(".ff-offen .pillen") ??
+    el.querySelector<HTMLElement>(".ff-offen .pillen, .ff-uebertrag .pillen") ??
     el.querySelector<HTMLElement>(".pillen")
   );
 }
@@ -761,15 +882,19 @@ interface FokusStand {
   feld: "" | "zeile" | "mehrzeilig" | "tabelle";
   /** Das Feld ist leer und hat Schnellwerte darunter: ↓ führt dorthin. */
   schnell: boolean;
-  knopf: "" | "schnellwert" | "wahl" | "knopf";
+  /** Unter dem leeren Feld steht ein Vorschlag einer anderen Stelle: Ü übernimmt ihn (PS-R6F-2). */
+  ue: boolean;
+  /** Die Gruppe mit den Nummern zeigt einen grauen Vorschlag: Ü übernimmt ihn (E-92). */
+  grau: boolean;
+  knopf: "" | "schnellwert" | "vorschlag" | "wahl" | "knopf";
   aufschrift: string;
 }
-const fokusStand = signal<FokusStand>({ gruppe: "", feld: "", schnell: false, knopf: "", aufschrift: "" });
+const fokusStand = signal<FokusStand>({ gruppe: "", feld: "", schnell: false, ue: false, grau: false, knopf: "", aufschrift: "" });
 
 /** Aufschrift eines Knopfs ohne Nummer, Tastenzeichen und Zusatz („Vorschlag“). */
 function aufschrift(knopf: HTMLElement): string {
   return [...knopf.childNodes]
-    .filter((n) => !(n instanceof HTMLElement && n.matches(".pille-ziffer, .ff-ziffer, kbd, .bw-da")))
+    .filter((n) => !(n instanceof HTMLElement && n.matches(".pille-ziffer, .ff-ziffer, kbd, .bw-da, .pille-herkunft")))
     .map((n) => n.textContent ?? "")
     .join("")
     .replace(/\s+/g, " ")
@@ -790,19 +915,30 @@ function markiereZiffern(el: HTMLElement | null) {
   const zeile = feld ? a!.closest(".ff-zeile") : null;
   const vorschlaege = zeile?.querySelector(".ff-vorschlaege .pille") ?? (el.querySelectorAll(".ff-eingabe").length === 1 ? el.querySelector(".ff-vorschlaege .pille") : null);
   const schnell = !!feld && !!vorschlaege && !(a as HTMLInputElement).value;
+  const ue = schnell && !!vorschlaege?.matches(".vorschlag");
   const istKnopf = drin && a!.tagName === "BUTTON";
-  const knopf: FokusStand["knopf"] = !istKnopf ? "" : a!.closest(".ff-vorschlaege") ? "schnellwert" : a!.matches("[role=radio], [role=option]") ? "wahl" : "knopf";
-  const neu: FokusStand = { gruppe: ziel ? (ziel.getAttribute("aria-label") ?? "") : "", feld, schnell, knopf, aufschrift: istKnopf ? aufschrift(a!) : "" };
+  const knopf: FokusStand["knopf"] = !istKnopf
+    ? ""
+    : a!.matches(".ff-vorschlaege .pille.vorschlag")
+      ? "vorschlag"
+      : a!.closest(".ff-vorschlaege")
+        ? "schnellwert"
+        : a!.matches("[role=radio], [role=option]")
+          ? "wahl"
+          : "knopf";
+  const grau = !!ziel?.querySelector(".pille.aktiv.vorschlag");
+  const neu: FokusStand = { gruppe: ziel ? (ziel.getAttribute("aria-label") ?? "") : "", feld, schnell, ue, grau, knopf, aufschrift: istKnopf ? aufschrift(a!) : "" };
   const alt = fokusStand.peek();
-  if (alt.gruppe !== neu.gruppe || alt.feld !== neu.feld || alt.schnell !== neu.schnell || alt.knopf !== neu.knopf || alt.aufschrift !== neu.aufschrift) fokusStand.value = neu;
+  if ((Object.keys(neu) as (keyof FokusStand)[]).some((x) => alt[x] !== neu[x])) fokusStand.value = neu;
 }
 
 /** Was Enter am Element mit dem Fokus tut; leer, wenn der Hinweis des Fensters gilt (PS-N05, A-4 der Vorgaben). */
 function fokusHinweis(f: FokusStand): string {
-  const schnell = f.schnell ? " · ↓ Schnellwerte" : "";
+  const schnell = f.ue ? " · ↓ Enter übernimmt den Vorschlag" : f.schnell ? " · ↓ Schnellwerte" : "";
   if (f.feld === "tabelle") return "Tab: nächstes Feld · Enter: weiter · Esc schließt";
   if (f.feld === "zeile") return `Enter oder Tab: weiter${schnell} · Esc schließt`;
   if (f.feld === "mehrzeilig") return `Enter: neue Zeile · Strg+Enter oder Tab: weiter${schnell} · Esc schließt`;
+  if (f.knopf === "vorschlag") return `Enter oder Ü übernimmt „${f.aufschrift}“ · ↑ zurück ins Feld · Esc schließt`;
   if (f.knopf === "schnellwert") return `Enter setzt „${f.aufschrift}“ ein · ↑ zurück ins Feld · Esc schließt`;
   if (f.knopf === "wahl") return `Enter wählt „${f.aufschrift}“ · Esc schließt`;
   if (f.knopf === "knopf" && f.aufschrift) return `Enter: ${f.aufschrift} · Esc schließt`;
@@ -835,7 +971,7 @@ function zifferKnoepfe(el: HTMLElement): HTMLElement[] {
  */
 export function fokusImFenster(el: HTMLElement | null) {
   if (!el) return;
-  const offen = el.querySelector<HTMLElement>(".ff-offen");
+  const offen = el.querySelector<HTMLElement>(".ff-offen, .ff-uebertrag");
   const eingabe = offen?.querySelector<HTMLElement>(".ff-eingabe");
   (offen && eingabe && !offen.querySelector(".pillen") ? eingabe : el).focus({ preventScroll: true });
 }
@@ -857,7 +993,8 @@ export function Feldfenster() {
   const flaeche = () => {
     const rahmen = document.querySelector<HTMLElement>(".papier-rahmen");
     const s = rahmen?.getBoundingClientRect();
-    const stehend = rahmen ? [...rahmen.querySelectorAll<HTMLElement>(".fallkopf, .fk-titel")].find((e) => getComputedStyle(e).position === "sticky") : undefined;
+    // Im kompakten Kopf steht nur die Titelzeile; der Kopf selbst ist dort ohne Kasten (QA-45).
+    const stehend = rahmen ? stehenderKopf(rahmen) : undefined;
     const oben = Math.max(s?.top ?? 0, stehend?.getBoundingClientRect().bottom ?? 0);
     const unten = Math.min(window.innerHeight, s?.bottom ?? window.innerHeight);
     return { rahmen, oben, unten };
@@ -996,14 +1133,14 @@ export function Feldfenster() {
   } else if (seg?.art === "auswahl") {
     titel = seg.label;
     inhalt = <AuswahlEditor k={feld.key} seg={seg} />;
-    tipp = "Ziffer wählt · ↑ ↓ markieren, Enter wählt das Markierte · Esc schließt";
+    tipp = `${tokenVon(feld.key)?.zustand === "vorschlag" ? "Ü übernimmt den Vorschlag · " : ""}Ziffer wählt · ↑ ↓ markieren, Enter wählt das Markierte · Esc schließt`;
   } else if (seg?.art === "option") {
     titel = seg.label;
     inhalt = <OptionEditor k={feld.key} seg={seg} />;
     const t = tokenVon(feld.key);
     const grau = !!t && mitVorschlag(t);
     const gruppe = fokusStand.value.gruppe;
-    tipp = [grau ? "Ü übernimmt" : "", seg.slots && gruppe ? `Ziffer wählt in „${gruppe}“` : "", "Esc schließt"].filter(Boolean).join(" · ");
+    tipp = [grau || fokusStand.value.grau ? "Ü übernimmt" : "", seg.slots && gruppe ? `Ziffer wählt in „${gruppe}“` : "", "Esc schließt"].filter(Boolean).join(" · ");
   }
   if (!inhalt) return null;
   // Im Textfeld schreibt eine Ziffer, auf einem Knopf löst Enter ihn aus; der Hinweis sagt, was Enter dort tut (TS-01).
@@ -1024,7 +1161,9 @@ export function Feldfenster() {
     const sage = (text: string) => setHinweis({ key: feld.key, text });
     if (e.key.length === 1 && e.key !== " ") {
       e.preventDefault();
-      const uebernehmen = el.querySelector<HTMLElement>("[data-taste='ü']");
+      // Ü übernimmt zuerst den grauen Vorschlag der Gruppe, die die Ziffern nimmt, wie die Ziffer dieses Vorschlags;
+      // sonst, was im Fenster „Ü“ trägt (E-92).
+      const uebernehmen = ziffernZiel(el)?.querySelector<HTMLElement>(".pille.aktiv.vorschlag") ?? el.querySelector<HTMLElement>("[data-taste='ü']");
       const knoepfe = zifferKnoepfe(el);
       if (!zugErlaubt(e, `${knoepfe.length ? "123456789" : ""}${uebernehmen ? "ü" : ""}`, false, "", `${"123456789".slice(0, knoepfe.length)}${uebernehmen ? "ü" : ""}`)) return;
       if (e.key === "ü" || e.key === "Ü") {
@@ -1085,10 +1224,13 @@ export function Feldfenster() {
         </div>
       )}
       {inhalt}
-      <FristZeilen token={tokenVon(feld.key)} onUebernommen={weiter} />
+      {/* „ohne Datum“ und „wieder vorschlagen“ nehmen ihren eigenen Knopf weg: Der Fokus geht zurück ins Fenster (QA-41). */}
+      <FristZeilen token={tokenVon(feld.key)} onUebernommen={weiter} onGeaendert={() => nachDemZeichnen(() => fokusImFenster(ref.current))} />
       {tokenVon(feld.key)?.uebertragen && (
         <p class="ff-hinweis" data-uebertragen>
-          {`Angabe aus ${tokenVon(feld.key)!.uebertragen!.map((q) => `„${q}“`).join(", ")}${tokenVon(feld.key)!.zustand === "vorschlag" ? ": grau, bis du sie übernimmst" : ""}. Eine eigene Wahl hier geht vor.`}
+          {`Angabe aus ${tokenVon(feld.key)!.uebertragen!.map((q) => `„${q}“`).join(", ")}${
+            tokenVon(feld.key)!.zustand === "vorschlag" || uebertragungenAn(ansicht?.uebertragen, feld.key).some((u) => !u.aussage) ? ": grau, bis du sie übernimmst" : ""
+          }. Eine eigene Wahl hier geht vor.`}
         </p>
       )}
       {text && (

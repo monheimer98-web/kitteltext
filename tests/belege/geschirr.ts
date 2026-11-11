@@ -52,7 +52,7 @@ export const INDEX = store.INDEX;
 
 /** Räumt ab, was ein vorheriger Test hinterlassen hat. */
 export function frisch() {
-  aktionen.raeumeArbeitsplatz();
+  void aktionen.raeumeArbeitsplatz(true);
   store.eigenesErsetzen({ bausteine: [], vorlagen: [] });
   zwischenablage.texte = [];
   fenster.blur?.();

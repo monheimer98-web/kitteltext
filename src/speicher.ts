@@ -1,12 +1,15 @@
-// Zugriff auf den Browser-Speicher. Fallinhalte liegen nur im Sitzungsspeicher:
+// Zugriff auf den Browser-Speicher. Fallinhalte liegen im Sitzungsspeicher:
 // Auf gemeinsam genutzten Klinik-PCs sollen sie nach dem Schließen des Fensters
-// verschwunden sein. Dauerhaft liegen Einstellungen, Nutzungszähler und die
-// vom Arzt selbst angelegten Textbausteine und Vorlagen.
+// verschwunden sein. Dauerhaft liegen Einstellungen, Nutzungszähler, die vom Arzt
+// selbst angelegten Textbausteine und Vorlagen und, nur wenn er es eingeschaltet
+// hat, behaltene Stationsfälle für höchstens drei Tage (E-50, E-67).
 
 import type { AbschnittId, Vorlage, Wahlstelle } from "./model/types.ts";
 import { ALLE_ABSCHNITTE } from "./model/types.ts";
 import type { KatalogIndex } from "./engine/render.ts";
 import { bausteineDerVorlage, imBausteinVorgeschlagen, istFragesatz, keineErsatzstelle, satzNichtWeglassbar } from "./engine/vorlage.ts";
+import { alsSpeicher, liesBestand } from "./engine/behalten.ts";
+import type { Bestand, Gelesen } from "./engine/behalten.ts";
 
 const PRAEFIX = "kitteltext3.";
 
@@ -24,6 +27,19 @@ function lies<T>(dauerhaft: boolean, name: string): T | null {
     return roh ? (JSON.parse(roh) as T) : null;
   } catch {
     return null;
+  }
+}
+
+/**
+ * Ist der Eintrag sicher weg? Nur wenn das Lesen gelingt und nichts findet. Ein gesperrter Speicher liefert beim Lesen
+ * einen Fehler; das ist kein Beweis, dass gelöscht ist (CR-R6-06).
+ */
+function sicherWeg(dauerhaft: boolean, name: string): boolean {
+  try {
+    const l = lager(dauerhaft);
+    return !!l && l.getItem(PRAEFIX + name) === null;
+  } catch {
+    return false;
   }
 }
 
@@ -96,6 +112,8 @@ export interface Einstellungen {
   tippGesehen: boolean;
   /** Die Anleitung in der Seitenleiste ist einmal von selbst aufgegangen (D-05) */
   anleitungGezeigt: boolean;
+  /** Stationsfälle bis zu drei Tage auf diesem PC behalten (E-50); ab Werk aus */
+  stationBehalten: boolean;
 }
 
 export const STANDARD_EINSTELLUNGEN: Einstellungen = {
@@ -108,11 +126,16 @@ export const STANDARD_EINSTELLUNGEN: Einstellungen = {
   hinweisGelesen: false,
   tippGesehen: false,
   anleitungGezeigt: false,
+  stationBehalten: false,
 };
 
-export function ladeEinstellungen(): Einstellungen {
+/**
+ * Liest die Einstellungen; was fehlt oder nicht lesbar ist, kommt aus `basis`. Beim Start ist das der Werkszustand, beim
+ * Neulesen der Stand dieses Fensters: Ein gesperrter Speicher setzt dann nichts zurück (CR-R6-02).
+ */
+export function ladeEinstellungen(basis: Einstellungen = STANDARD_EINSTELLUNGEN): Einstellungen {
   const g = lies<Partial<Einstellungen>>(true, "einstellungen") ?? {};
-  const e = { ...STANDARD_EINSTELLUNGEN };
+  const e = { ...basis };
   for (const k of Object.keys(e) as (keyof Einstellungen)[]) {
     if (typeof g[k] === typeof e[k]) (e as Record<string, unknown>)[k] = g[k];
   }
@@ -126,19 +149,38 @@ export function speichereEinstellungen(e: Einstellungen): boolean {
 /**
  * Formatstand der gespeicherten Fälle. 1 (ohne Angabe): bis v2. 2: Falldaten im Fallkopf (`daten`) und übernommene
  * errechnete Daten (`fristen`), E-58, E-59; Werte vom Typ `medikation` mit Tabulator als Feldgrenze (E-62), aus Format 1
- * werden Tabulatoren dort Leerzeichen (CR-R5-03). Ein Fall mit älterem Stand lädt weiter; die neuen Felder sind dann
- * leer (`ergaenzt` in `engine/fall.ts`). Wer das Format der Fälle ändert, erhöht die Nummer und ergänzt `ergaenzt`.
+ * werden Tabulatoren dort Leerzeichen (CR-R5-03). 3: Kennung des Fensters (`fenster`), Kennungen der hier geöffneten
+ * behaltenen Fälle (`behalten`, ihr Inhalt liegt nur in `kitteltext3.behalten`) und Reihenfolge aller Reiter
+ * (`reihenfolge`), E-67. Ein Fall mit älterem Stand lädt weiter; die neuen Felder sind dann leer (`ergaenzt` in
+ * `engine/fall.ts`). Wer das Format der Fälle ändert, erhöht die Nummer und ergänzt `ergaenzt`. Die Nummer gilt auch für
+ * behaltene Fälle: Jeder Eintrag in `kitteltext3.behalten` trägt sie als `fallFormat`, `ergaenzt` bekommt sie beim Öffnen,
+ * und einen Eintrag mit höherer Nummer öffnet diese Fassung nicht (CR-R6-03, `engine/behalten.ts`).
  */
-export const SITZUNG_FORMAT = 2;
+export const SITZUNG_FORMAT = 3;
 
 export interface Sitzung {
-  /** rohe Fälle; der Store prüft und ergänzt sie */
+  /** rohe Fälle dieses Fensters ohne die behaltenen; der Store prüft und ergänzt sie */
   faelle: unknown[];
   aktivId: string | null;
   /** höchste bisher vergebene Fallnummer */
   zaehler: number;
   /** Formatstand, mit dem die Fälle geschrieben wurden; beim Laden 1, wenn er fehlt */
   format: number;
+  /** Kennung dieses Fensters; bleibt beim Neuladen, ein neues Fenster bekommt eine neue */
+  fenster: string | null;
+  /** Kennungen der behaltenen Fälle, die in diesem Fenster offen sind */
+  behalten: string[];
+  /** Kennungen aller Reiter in ihrer Reihenfolge; fehlt sie, gilt die Reihenfolge von `faelle` */
+  reihenfolge: string[];
+  /**
+   * Behaltene Fälle dieses Fensters, deren Schreiben auf den PC gescheitert ist, mit dem Stand des Eintrags, auf den sie
+   * geschrieben hätten (CR-R6-01). Sonst leer. Ältere Fassungen lesen das Feld nicht; das Format bleibt 3.
+   */
+  ungespeichert: { fall: unknown; stand: number }[];
+}
+
+function kennungen(x: unknown): string[] {
+  return Array.isArray(x) ? x.filter((k): k is string => typeof k === "string") : [];
 }
 
 export function ladeSitzung(): Sitzung {
@@ -148,12 +190,84 @@ export function ladeSitzung(): Sitzung {
     aktivId: typeof s?.aktivId === "string" ? s.aktivId : null,
     zaehler: typeof s?.zaehler === "number" ? s.zaehler : 0,
     format: typeof s?.format === "number" && Number.isInteger(s.format) && s.format >= 1 ? s.format : 1,
+    fenster: typeof s?.fenster === "string" && s.fenster ? s.fenster : null,
+    behalten: kennungen(s?.behalten),
+    reihenfolge: kennungen(s?.reihenfolge),
+    ungespeichert: Array.isArray(s?.ungespeichert)
+      ? s.ungespeichert.filter((u): u is { fall: unknown; stand: number } => !!u && typeof u === "object" && Number.isInteger((u as { stand?: unknown }).stand) && !!(u as { fall?: unknown }).fall)
+      : [],
   };
 }
 
-/** Fallinhalte liegen nur im Sitzungsspeicher, nie im dauerhaften Speicher. Geschrieben wird immer der heutige Formatstand. */
+/** Fallinhalte liegen im Sitzungsspeicher, behaltene nur in `kitteltext3.behalten`. Geschrieben wird immer der heutige Formatstand. */
 export function speichereSitzung(s: Omit<Sitzung, "format">): boolean {
   return schreib(false, "sitzung", { ...s, format: SITZUNG_FORMAT });
+}
+
+// --- Behaltene Stationsfälle (E-50, E-67) ------------------------------------
+
+const BEHALTEN = "behalten";
+
+/**
+ * Liest die behaltenen Fälle; abgelaufene und ungültige sind schon heraus (der Aufrufer schreibt zurück, wenn etwas fehlt).
+ * `null` heißt: nicht lesbar (Speicher gesperrt, Zugriff verweigert). Das ist nicht dasselbe wie „keine Fälle“: Dann wird
+ * nichts geschlossen, nichts zurückgeschrieben und nichts als gelöscht gemeldet (CR-R6-06). Ein Eintrag, der kein JSON ist,
+ * gilt dagegen als ungültig und wird beim nächsten Schreiben ersetzt: Er lässt sich nie mehr lesen.
+ */
+export function ladeBehalten(jetzt: number): Gelesen | null {
+  let roh: string | null;
+  try {
+    const l = lager(true);
+    if (!l) return null;
+    roh = l.getItem(PRAEFIX + BEHALTEN);
+  } catch {
+    return null;
+  }
+  let wert: unknown = null;
+  try {
+    wert = roh ? JSON.parse(roh) : null;
+  } catch {
+    wert = null;
+  }
+  return liesBestand(wert, jetzt);
+}
+
+/** Ein leerer Bestand entfernt den Eintrag ganz. */
+export function speichereBehalten(b: Bestand): boolean {
+  if (b.eintraege.length === 0) {
+    entferne(true, BEHALTEN);
+    return sicherWeg(true, BEHALTEN);
+  }
+  return schreib(true, BEHALTEN, alsSpeicher(b));
+}
+
+/** Meldet, wenn ein anderes Fenster die behaltenen Fälle geändert hat (oder jemand den ganzen Speicher geleert hat). */
+export function beiFremderAenderung(fn: () => void) {
+  beiFremdemSchreiben(BEHALTEN, fn);
+}
+
+/** Ein anderes Fenster hat Einstellungen geändert (CR-R6-02). */
+export function beiFremdenEinstellungen(fn: () => void) {
+  beiFremdemSchreiben("einstellungen", fn);
+}
+
+function beiFremdemSchreiben(name: string, fn: () => void) {
+  try {
+    window.addEventListener?.("storage", (e: StorageEvent) => {
+      if (e.key === null || e.key === PRAEFIX + name) fn();
+    });
+  } catch {
+    /* ohne Fenster (Tests) */
+  }
+}
+
+/** Beim Schließen oder Neuladen des Fensters; dann gibt es seine behaltenen Fälle für andere Fenster frei. */
+export function beimVerlassen(fn: () => void) {
+  try {
+    window.addEventListener?.("pagehide", fn);
+  } catch {
+    /* ohne Fenster (Tests) */
+  }
 }
 
 export interface Nutzung {
@@ -175,10 +289,16 @@ export function speichereNutzung(n: Nutzung) {
   schreib(true, "nutzung", n);
 }
 
-/** Löscht alle Fallinhalte auf diesem Gerät; Einstellungen und eigene Bausteine bleiben. */
+/** Löscht die Fälle dieses Fensters; behaltene Fälle, Einstellungen und eigene Bausteine bleiben. */
 export function loescheFaelle() {
   entferne(true, "sitzung");
   entferne(false, "sitzung");
+}
+
+/** Löscht alle behaltenen Fälle auf diesem Gerät, auch solche aus einer neueren Fassung. true nur, wenn nachweislich weg. */
+export function loescheBehaltene(): boolean {
+  entferne(true, BEHALTEN);
+  return sicherWeg(true, BEHALTEN);
 }
 
 /** Entfernt, was die erste Fassung der App dauerhaft abgelegt hatte, darunter den letzten Fall. */

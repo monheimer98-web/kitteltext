@@ -10,7 +10,7 @@ import { ergaenzt, mitAuswahl, mitOption, mitSeite, mitSlot, mitVorlage, mitWert
 import { fuerZwischenablage, unsichereZeichen } from "../src/engine/text.ts";
 import type { KopierFormat } from "../src/engine/text.ts";
 import { abschnittBloecke, abschnittHtml, auswahlHtml, briefHtml, gliedere, zeilenAusText } from "../src/engine/kopierformat.ts";
-import { fehlendes, leereZeile, leseMedikation, medText, medZellen, schemaAusText, schemaWert, schreibeMedikation, zellenAusText } from "../src/engine/medikation.ts";
+import { fehlendes, leereZeile, leseMedikation, medText, medZellen, mitEingefuegtemSchema, schemaAusText, schemaWert, schreibeMedikation, zellenAusText } from "../src/engine/medikation.ts";
 import type { MedEintrag, MedZeile } from "../src/engine/medikation.ts";
 import type { AbschnittId, Baustein, Fall, Platzhalter, Segment, Vorlage } from "../src/model/types.ts";
 
@@ -350,6 +350,28 @@ test("Medikation: eingefügtes Schema wird in Einnahmezeiten geteilt, anderer Te
   assert.deepEqual(schemaAusText("1 1/2-0-0-0"), ["1 1/2", "0", "0", "0"]);
   assert.deepEqual(schemaAusText("0,5-0-0,5-0"), ["0,5", "0", "0,5", "0"]);
   for (const t of ["1", "1-0-1-0-1", "Ibuprofen 600 mg, 1-0-1-0", "bei Bedarf", "1--0", ""]) assert.equal(schemaAusText(t), null, t);
+});
+
+test("QA-43, PS-R6F-3: Ein Schema als Ganzes ersetzt alle vier Zeiten; ab drei Teilen ab morgens, zwei ab der Zeit mit dem Fokus", () => {
+  const leer: [string, string, string, string] = ["", "", "", ""];
+  const nur = (s: typeof leer, ab: number, t: string) => mitEingefuegtemSchema(s, ab, t)?.schema;
+  assert.deepEqual(mitEingefuegtemSchema(leer, 0, "1-0-1-0"), { schema: ["1", "0", "1", "0"], ab: 0, geleert: [] });
+  // Zwei Teile ab „mittags“: dort hinein; „morgens“ nennt das Schema nicht, also leer und Lücke, und gemeldet.
+  assert.deepEqual(mitEingefuegtemSchema(["2", "", "", ""], 1, "1-0"), { schema: ["", "1", "0", ""], ab: 1, geleert: [{ zeit: 0, vorher: "2" }] });
+  assert.deepEqual(nur(leer, 2, "½-0"), ["", "", "½", "0"]);
+  assert.deepEqual(nur(leer, 3, "1-0"), ["1", "0", "", ""], "passt nicht in „nachts“: ab morgens");
+  // Vollständig: von morgens an, nichts fällt weg, nichts steht verschoben.
+  assert.deepEqual(mitEingefuegtemSchema(["9", "9", "9", "9"], 2, "1-0-1-0"), { schema: ["1", "0", "1", "0"], ab: 0, geleert: [] });
+  // Drei Teile: morgens, mittags, abends, auch in „mittags“ oder „nachts“ eingefügt (CR-R6F-09).
+  assert.deepEqual(nur(leer, 1, "1-0-1"), ["1", "0", "1", ""]);
+  assert.deepEqual(nur(leer, 3, "1-0-1"), ["1", "0", "1", ""]);
+  // Die Fälle der Patientensicherheit (Probe E1): über „1-1-1-1“ kein vollständiges falsches Schema mehr.
+  assert.deepEqual(mitEingefuegtemSchema(["1", "1", "1", "1"], 0, "0-0-1"), { schema: ["0", "0", "1", ""], ab: 0, geleert: [{ zeit: 3, vorher: "1" }] });
+  assert.deepEqual(nur(["0", "0", "1", "1"], 1, "1-0-1"), ["1", "0", "1", ""]);
+  assert.deepEqual(nur(["0", "1", "0", "1"], 3, "2-0-2"), ["2", "0", "2", ""]);
+  assert.deepEqual(nur(leer, 0, "1 1/2-0-0-0"), ["1 1/2", "0", "0", "0"]);
+  // Kein Schema: gewöhnliche Eingabe, auch eine einzelne Ziffer.
+  for (const t of ["1", "bei Bedarf", "1-0-1-0-1", ""]) assert.equal(mitEingefuegtemSchema(leer, 0, t), null, t);
 });
 
 test("PS-R5-2: Wirkstoff ohne Schema und ohne Hinweis ist eine Lücke „‹Schema oder Hinweis›“; Bedarf, abgesetzt und pausiert nicht", () => {

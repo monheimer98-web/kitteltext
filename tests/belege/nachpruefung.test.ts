@@ -239,7 +239,11 @@ test("P-16: ein Fall der Notaufnahme verfällt nach 4 Stunden ohne Änderung auc
   const jetzt = Date.now();
   assert.equal(store.verwerfeAbgelaufene(jetzt + 3.9 * 3600_000), 0);
   assert.equal(store.verwerfeAbgelaufene(jetzt + 4.1 * 3600_000), 1);
-  assert.equal(aktionen.alterInWorten({ ...aktiv_oder_leer(), erstellt: jetzt - 26 * 3600_000 }, jetzt).startsWith("seit "), true);
+  // Seit E-82 nur der Tag („gestern“); vorher „seit gestern 14:10“. Gestern 12:00 ist zu jeder Uhrzeit gestern.
+  const gestern = new Date(jetzt);
+  gestern.setDate(gestern.getDate() - 1);
+  gestern.setHours(12, 0, 0, 0);
+  assert.equal(aktionen.alterInWorten({ ...aktiv_oder_leer(), erstellt: gestern.getTime() }, jetzt), "gestern");
 });
 function aktiv_oder_leer() {
   return fallOps.neuerFall("zna", INDEX);
@@ -361,7 +365,7 @@ test("P-26: „Arbeitsplatz räumen“ leert Fälle, „Zuletzt kopiert“ und Z
   frisch();
   osgFertig("rechts");
   await aktionen.kopiereAlles();
-  aktionen.raeumeArbeitsplatz();
+  await aktionen.raeumeArbeitsplatz(true);
   assert.equal(store.faelle.value.length, 0);
   assert.equal(aktionen.letzteKopie.value, null);
   assert.equal(letzter().trim(), "");

@@ -489,9 +489,12 @@ test("QA-23 Wahlziffer als Tastenkappe, klar getrennt von der Zahl im Knopftext 
   await vorlage(page, "tibiakopf", "Tibiakopffraktur, Osteosynthese", true);
   await stelle(abschnitt(page, "procedere"), /^Röntgenkontrolle: /).first().click();
   const kappe = feldfenster(page).getByRole("radiogroup", { name: "Wann" }).locator(".pille-ziffer").nth(1);
+  // Die Kappe sitzt seit dem Design-Feinschliff (10.11.2026, Nr. 16) auf dem Rand des Knopfs, nicht mehr in seiner Zeile:
+  // getrennt heißt jetzt, sie endet mindestens 4 px vor dem Knopftext.
   const stil = await kappe.evaluate((z) => {
     const s = getComputedStyle(z);
-    return { rand: s.borderTopStyle, breite: parseFloat(s.borderTopWidth), abstand: parseFloat(s.marginRight), sichtbar: s.visibility };
+    const text = z.parentElement!.querySelector(".pille-text")!.getBoundingClientRect();
+    return { rand: s.borderTopStyle, breite: parseFloat(s.borderTopWidth), abstand: text.left - z.getBoundingClientRect().right, sichtbar: s.visibility };
   });
   expect(stil).toMatchObject({ rand: "solid", sichtbar: "visible" });
   expect(stil.breite).toBeGreaterThanOrEqual(1);

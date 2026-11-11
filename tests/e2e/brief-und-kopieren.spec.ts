@@ -94,3 +94,20 @@ test("Abschnitt kopieren: unfertig entwertet Strg+Enter die Zwischenablage, fert
   await waehleZiffer(page, "1");
   await expect(th.getByRole("button", { name: "seit Kopie geändert · neu kopieren" })).toBeVisible();
 });
+
+test("Eben geänderte schwarze Stelle ist markiert, auch bei reduzierter Bewegung (PS-R6-6)", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await wunde(page);
+  const th = abschnitt(page, "therapie");
+  await th.getByRole("button", { name: "Weitere Aktionen für Therapie" }).click();
+  await th.getByRole("menu").getByRole("button", { name: "„Wundversorgung mit Wundverschluss als Pflichtwahl\" entfernen" }).click();
+  await th.getByRole("button", { name: "+ Tetanusimpfung" }).click();
+  const satz = stelle(th, "Tetanusimpfung: Tetanusschutz nach Aufklärung aufgefrischt.");
+  await expect(satz).toHaveClass(/z-gesetzt/);
+  await expect(satz).toHaveClass(/tok-frisch/);
+  // Ohne Animation bleibt ein Strich in der Akzentfarbe; nach gut zwei Sekunden ist er weg.
+  const strich = () => satz.evaluate((el) => getComputedStyle(el).boxShadow);
+  expect(await strich()).toMatch(/inset/);
+  await expect(satz).not.toHaveClass(/tok-frisch/, { timeout: 4000 });
+  expect(await strich()).toBe("none");
+});
